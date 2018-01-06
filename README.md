@@ -43,7 +43,9 @@
 <div>
 <h3>Further Description of this Repository</h3>
 
-<p>[Any narrative content may be provided here by the TC, for example, if the Members wish to provide an extended statement of purpose.]</p>
+<p>
+The process for proposing/reviewing/accepting changes to the OpenC2 Language Specification using github is a work in progress and will be described at https://wiki.oasis-open.org/openc2/LanguageMarkDownProcess until we've got it worked out well enough to include right here in the readme.
+</p>
 </div>
 
 <div>
