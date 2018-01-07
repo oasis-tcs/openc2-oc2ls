@@ -258,12 +258,12 @@ TBSL
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e. common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol etc.. Conformant implementations of OpenC2:
 
- * MUST support OpenC2 commands, responses and alerts as defined in this document.
+ * MUST support OpenC2 commands and responses as defined in this document.
  * MUST implement the actions designated as mandatory in this document.
  * MUST implement the targets designated as mandatory in this document.
  * MAY implement optional targets defined in this document 
  * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more actuator profiles. 
- * MUST implement JSON serialization of the commands, responses and alerts that are consistent with the syntax defined in this document.
+ * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
  * TBSL
 
 # Appendix A. Acknowledgments
