@@ -62,6 +62,20 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 [TOC]
 
 -------
+{Editor's Note: This document is NOT complete.
+The document development process is based on agile software development principles.
+Iterative, incremental working documents are being developed, reviewed by the Language
+Subcommittee,
+and then submitted to the Technical Committee for approval as a Committee Specification
+Drafts (CSD).
+This is iteration 2 and  expection is there will be 4 or 5 CSD iterations before this
+document is complete
+and ready to be submitted for approval as a Committee Specification.
+Parenthetical "Editor's Notes" will be removed prior to submitting for Committee
+Specification.
+Sections that are expected to added in a later iteration (prior to 1.0)
+will be labeled with "TBSL" for "To Be Supplied Later",
+optionally with a guestimate as to which iteration it would be supplied in.}
 
 # 1 Introduction
 The OpenC2 Language Specification defines a language used to compose messages that instruct and coordinate the command and control of cyber defenses between and within networks and systems.
@@ -73,7 +87,8 @@ A OpenC2 command that consists of an action coupled with a target is sufficient 
 An OpenC2 response is synchronously issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
 
 ## 1.1 Goal
-TBSL
+{Editor's Note - TBSL - This section will be included in a future iteration (probably
+iteration 5) prior to submitting for Committee Specification.}
 
 ## 1.2 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message capability and provide a framework so that the language can be extended to accommodate new technologies. To achieve this purpose, the scope of this specification includes:
@@ -98,7 +113,8 @@ This Working Draft is being developed under the [Non-Assertion](https://www.oasi
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
 ## 1.5 Document Conventions
-TBSL
+{Editor's Note - TBSL - This section will be included in a future iteration (probably
+iteration 5) prior to submitting for Committee Specification.}
 
 ## 1.6 Naming Conventions
 All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g. literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
@@ -219,7 +235,10 @@ This section defines the set of OpenC2 actions grouped by their general activity
 | remediate   | The ‘remediate’ action tasks the recipient enclave to eliminate the vulnerability or attack point. Remediate implies that addressing the issue is paramount.
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables in Section 3.
+
+{Editor's Note - TBSL - This table will be included in a future iteration (probably
+this iteration 2) prior to submitting for Committee Specification.}
 
 **Table 2-3. Summary of Target Definitions.**
 
@@ -230,12 +249,17 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 ### 2.2.4 Actuator
 An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An actuator profile is a specification that identifies the subset of actions, targets and other aspects of this language specification that are meaningful in the context of a particular ACTUATOR.  The actuator profile also identifies the portions of this specification that are mandatory to implement as well as optional actions and also defines appropriate actuator specifiers and the actuator options.
 
-An Actuator Profile SHALL be composed in accordance with the following framework: TBSL.
+An Actuator Profile SHALL be composed in accordance with the framework in section 4.
+
+{Editor's Note - TBSL - More text be included in a future iteration (probably iteration
+4) prior to submitting for Committee Specification.}
 
 ### 2.2.5 Command Option Vocabulary
 COMMAND OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
 Table 2-4 lists the valid modifiers.
+
+{Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.}
 
 **Table 2-4. Summary of Command Options.**
 
@@ -247,13 +271,16 @@ Table 2-4 lists the valid modifiers.
 The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.  The recipient of the OpenC2 Response is typically the entity that issued the command.
 
 ### 2.3.1 Response Structure
-TBSL
+{Editor's Note - TBSL - This section be included in a future iteration (probably
+iteration 3) prior to submitting for Committee Specification.}
 
 # 3 OpenC2 Property Tables
-TBSL
+{Editor's Note - TBSL - This section be included in future iterations (probably
+iterations 3 & 4) prior to submitting for Committee Specification.}
 
 # 4 Foundational Actuator Profile
-TBSL
+{Editor's Note - TBSL - This section be included in a future iteration (probably
+iteration 5) prior to submitting for Committee Specification.}
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e. common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol etc.. Conformant implementations of OpenC2:
@@ -264,17 +291,20 @@ OpenC2 is a command and control language that converges (i.e. common ‘point of
  * MAY implement optional targets defined in this document 
  * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more actuator profiles. 
  * MUST implement JSON serialization of the commands, responses and alerts that are consistent with the syntax defined in this document.
- * TBSL
+ * {Editor's Note - TBSL - More conformance text will be included in a future iteration
+(probably iteration 5) prior to submitting for Committee Specification.}
 
 # Appendix A. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **Participants**:
-> TBSL
+{Editor's Note - TBSL - This section be included in the final iteration prior to
+submitting for Committee Specification.}
 
 # Appendix B. Revision History
 | Revision  | Date        | Editor            | Changes Made          |
 |:----------|:------------|:------------------|:----------------------|
 | v1.0-wd01 | 10/31/2017  | Romano, Sparrell  | Initial working draft |
-
+| v1.0-csd01 | 11/14/2017  | Romano, Sparrell  | approved wd01 |
+| v1.0-wd02 | 1/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
 
