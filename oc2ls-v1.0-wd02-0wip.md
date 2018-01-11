@@ -70,7 +70,7 @@ An OpenC2 command is composed of an action (what is to be done), a target (what 
 
 A OpenC2 command that consists of an action coupled with a target is sufficient for a high-level effects-based command (e.g., mitigate evildomain.com). The inclusion in the command of an actuator and modifiers provides additional precision and specificity (e.g., deny ip=1.2.3.4 by actuator=firewall3 command-id=1eab14...). Additional detail about aspects of a command may be included to increase the precision of the command.  For example, which target (i.e., target specifier), additional information about what is to be performed on a specific target type (i.e., target option), which actuator(s) (i.e., actuator specifier) and/or additional information regarding how a specific actuator executes the action (i.e., actuator option).
 
-An OpenC2 response is synchronously issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
+An OpenC2 response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
 
 ## 1.1 Goal
 TBSL
