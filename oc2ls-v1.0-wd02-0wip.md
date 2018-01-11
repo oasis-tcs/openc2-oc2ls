@@ -37,7 +37,8 @@ instructions at the “Send A Comment” button on the TC’s web page at https:
 
 This Committee Specification Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
-Note that any machine-readable content (Computer Language Definitions) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s),the content in the separate plain text file prevails.
+Note that any machine-readable content (Computer Language Definitions) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s),
+the content in the separate plain text file prevails.
 
 ### Citation format:
 When referencing this specification the following citation format should be used:
@@ -52,7 +53,16 @@ Copyright © OASIS Open 2018. All Rights Reserved.
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 
 This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
-The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.This document and the information contained herein is provided on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Committee Specification or OASIS Standard, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this specification.OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this specification by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this specification. OASIS may include such claims on its website, but disclaims any obligation to do so.OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Committee Specification or OASIS Standard, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.
+
+The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
+
+This document and the information contained herein is provided on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Committee Specification or OASIS Standard, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this specification.
+
+OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this specification by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this specification. OASIS may include such claims on its website, but disclaims any obligation to do so.
+
+OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Committee Specification or OASIS Standard, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.
 
 The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
 
@@ -62,6 +72,20 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 [TOC]
 
 -------
+{Editor's Note: This document is NOT complete.
+The document development process is based on agile software development principles.
+Iterative, incremental working documents are being developed, reviewed by the Language
+Subcommittee,
+and then submitted to the Technical Committee for approval as a Committee Specification
+Drafts (CSD).
+This is iteration 2 and  expection is there will be 4 or 5 CSD iterations before this
+document is complete
+and ready to be submitted for approval as a Committee Specification.
+Parenthetical "Editor's Notes" will be removed prior to submitting for Committee
+Specification.
+Sections that are expected to added in a later iteration (prior to 1.0)
+will be labeled with "TBSL" for "To Be Supplied Later",
+optionally with a guestimate as to which iteration it would be supplied in.}
 
 # 1 Introduction
 The OpenC2 Language Specification defines a language used to compose messages that instruct and coordinate the command and control of cyber defenses between and within networks and systems.
@@ -73,7 +97,8 @@ A OpenC2 command that consists of an action coupled with a target is sufficient 
 An OpenC2 response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
 
 ## 1.1 Goal
-TBSL
+{Editor's Note - TBSL - This section will be included in a future iteration (probably
+iteration 5) prior to submitting for Committee Specification.}
 
 ## 1.2 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message capability and provide a framework so that the language can be extended to accommodate new technologies. To achieve this purpose, the scope of this specification includes:
@@ -98,7 +123,8 @@ This Working Draft is being developed under the [Non-Assertion](https://www.oasi
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
 ## 1.5 Document Conventions
-TBSL
+{Editor's Note - TBSL - This section will be included in a future iteration (probably
+iteration 5) prior to submitting for Committee Specification.}
 
 ## 1.6 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
@@ -221,7 +247,10 @@ This section defines the set of OpenC2 actions grouped by their general activity
 | remediate   | The ‘remediate’ action tasks the recipient enclave to eliminate the vulnerability or attack point. Remediate implies that addressing the issue is paramount.
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables in Section 3.
+
+{Editor's Note - TBSL - This table will be included in a future iteration (probably
+this iteration 2) prior to submitting for Committee Specification.}
 
 **Table 2-3. Summary of Target Definitions.**
 
@@ -232,12 +261,17 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 ### 2.2.4 Actuator
 An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An actuator profile is a specification that identifies the subset of actions, targets and other aspects of this language specification that are meaningful in the context of a particular ACTUATOR.  The actuator profile also identifies the portions of this specification that are mandatory to implement as well as optional actions and also defines appropriate actuator specifiers and the actuator options.
 
-An Actuator Profile SHALL be composed in accordance with the following framework: TBSL.
+An Actuator Profile SHALL be composed in accordance with the framework in section 4.
+
+{Editor's Note - TBSL - More text be included in a future iteration (probably iteration
+4) prior to submitting for Committee Specification.}
 
 ### 2.2.5 Command Option Vocabulary
 COMMAND OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
 Table 2-4 lists the valid modifiers.
+
+{Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.}
 
 **Table 2-4. Summary of Command Options.**
 
@@ -249,13 +283,16 @@ Table 2-4 lists the valid modifiers.
 The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.  The recipient of the OpenC2 Response is typically the entity that issued the command.
 
 ### 2.3.1 Response Structure
-TBSL
+{Editor's Note - TBSL - This section be included in a future iteration (probably
+iteration 3) prior to submitting for Committee Specification.}
 
 # 3 OpenC2 Property Tables
-TBSL
+{Editor's Note - TBSL - This section be included in future iterations (probably
+iterations 3 & 4) prior to submitting for Committee Specification.}
 
 # 4 Foundational Actuator Profile
-TBSL
+{Editor's Note - TBSL - This section be included in a future iteration (probably
+iteration 5) prior to submitting for Committee Specification.}
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e. common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol etc.. Conformant implementations of OpenC2:
@@ -266,17 +303,20 @@ OpenC2 is a command and control language that converges (i.e. common ‘point of
  * MAY implement optional targets defined in this document 
  * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more actuator profiles. 
  * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
- * TBSL
+ * {Editor's Note - TBSL - More conformance text will be included in a future iteration
+(probably iteration 5) prior to submitting for Committee Specification.}
 
 # Appendix A. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **Participants**:
-> TBSL
+{Editor's Note - TBSL - This section be included in the final iteration prior to
+submitting for Committee Specification.}
 
 # Appendix B. Revision History
 | Revision  | Date        | Editor            | Changes Made          |
 |:----------|:------------|:------------------|:----------------------|
 | v1.0-wd01 | 10/31/2017  | Romano, Sparrell  | Initial working draft |
-
+| v1.0-csd01 | 11/14/2017  | Romano, Sparrell  | approved wd01 |
+| v1.0-wd02 | 1/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
 
