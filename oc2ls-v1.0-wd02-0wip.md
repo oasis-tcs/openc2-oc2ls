@@ -138,7 +138,6 @@ All type names, property names and literals are in lowercase, except when refere
 |:----------------|:--------------------------------------------------|
 | **[Reference]** | [Full reference citation]                         |
 
-
 # 2 OpenC2 Language
 
 ## 2.1 Overview
@@ -234,53 +233,29 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 |  Target | Description |
 | :---|:---|
 |  artifact | The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string or linking to a file-like payload. |
-| :---|:---|
 |  command | The Command Object represents a reference to a previously issued OpenC2 Command. |
-| :---|:---|
 |  device | The Device Object represents the properties of a hardware device. |
-| :---|:---|
 |  directory | The Directory Object represents the properties common to a file system directory. |
-| :---|:---|
 |  disk | The Disk Object represents a disk drive. |
-| :---|:---|
 |  disk_partition | The Disk Partition Object represents a single partition of a disk drive. |
-| :---|:---|
 |  domain_name | The Domain Name represents the properties of a network domain name. |
-| :---|:---|
 |  email_addr | The Email Address Object represents a single email address. |
-| :---|:---|
 |  email_message | The Email Message Object represents an instance of an email message, corresponding to the internet message format described in RFC 5322 and related RFCs. |
-| :---|:---|
 |  file | The File Object represents the properties of a file. |
-| :---|:---|
 |  ipv4_addr | The IPv4 Address Object represents one or more IPv4 addresses expressed using CIDR notation. |
-| :---|:---|
 |  ipv6_addr | The IPv6 Address Object represents one or more IPv6 addresses expressed using CIDR notation. |
-| :---|:---|
 |  mac_addr | The MAC Address Object represents a single Media Access Control (MAC) address. |
-| :---|:---|
 |  memory | The Memory Object represents memory objects. |
-| :---|:---|
 |  ip_connection | The IP Connection Object represents a network connection that originates from a source and is addressed to a destination. |
-| :---|:---|
 |  openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
-| :---|:---|
 |  process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
-| :---|:---|
 |  software | The Software Object represents high-level properties associated with software, including software products. |
-| :---|:---|
 |  url | The URL Object represents the properties of a uniform resource locator (URL). |
-| :---|:---|
 |  user_account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
-| :---|:---|
 |  user_session | The User Session Object represents a user session. |
-| :---|:---|
 |  volume | The Volume Object represents a generic drive volume. |
-| :---|:---|
 |  windows_registry_key | The Registry Key Object represents the properties of a Windows registry key. |
-| :---|:---|
 |  x509_certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
-| :---|:---|
 
 ### 2.2.4 Actuator
 An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An actuator profile is a specification that identifies the subset of actions, targets and other aspects of this language specification that are meaningful in the context of a particular ACTUATOR.  The actuator profile also identifies the portions of this specification that are mandatory to implement as well as optional actions and also defines appropriate actuator specifiers and the actuator options.
