@@ -58,6 +58,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 [TOC]
 
 -------
+{Editor's Note: This document is NOT complete. The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD). This is iteration 2 and expection is there will be 4 or 5 CSD iterations before this document is complete and ready to be submitted for approval as a Committee Specification. Parenthetical "Editor's Notes" will be removed prior to submitting for Committee Specification. Sections that are expected to added in a later iteration (prior to 1.0) will be labeled with "TBSL" for "To Be Supplied Later", optionally with a guestimate as to which iteration it would be supplied in.}
 
 # 1 Introduction
 The OpenC2 Language Specification defines a language used to compose messages that instruct and coordinate the command and control of cyber defenses between and within networks and systems.
@@ -69,7 +70,10 @@ A OpenC2 command that consists of an action coupled with a target is sufficient 
 An OpenC2 response is synchronously issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
 
 ## 1.1 Goal
-TBSL
+{Editor's Note - TBSL - 
+This section will be included in a future iteration 
+(probably iteration 5) 
+prior to submitting for Committee Specification.}
 
 ## 1.2 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message capability and provide a framework so that the language can be extended to accommodate new technologies. To achieve this purpose, the scope of this specification includes:
@@ -95,6 +99,10 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## 1.5 Document Conventions
 TBSL
+{Editor's Note - TBSL - 
+This section will be included in a future iteration 
+(probably iteration 5) 
+prior to submitting for Committee Specification.}
 
 ## 1.6 Naming Conventions
 All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g. literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
