@@ -58,6 +58,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 [TOC]
 
 -------
+{Editor's Note: This document is NOT complete. The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD). This is iteration 2 and expection is there will be 4 or 5 CSD iterations before this document is complete and ready to be submitted for approval as a Committee Specification. Parenthetical "Editor's Notes" will be removed prior to submitting for Committee Specification. Sections that are expected to added in a later iteration (prior to 1.0) will be labeled with "TBSL" for "To Be Supplied Later", optionally with a guestimate as to which iteration it would be supplied in.}
 
 # 1 Introduction
 The OpenC2 Language Specification defines a language used to compose messages that instruct and coordinate the command and control of cyber defenses between and within networks and systems.
