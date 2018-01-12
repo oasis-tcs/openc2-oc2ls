@@ -318,13 +318,12 @@ The OpenC2 Command describes an action performed on a target. It can be directiv
 
 Base Type: Record
 
-|  ID | Property Name | Type | Cardinality | Description |
-| :---|:---|:---|:---|:---|
-|  1 | action | Action | 1 | The task or activity to be performed (i.e., the 'verb'). |
-|  2 | target | Target | 1 | The object of the action. The action is performed on the target. |
-|  3 | actuator | Actuator | 0 or 1 | The subject of the action. The actuator executes the action on the target. |
-|  4 | command-options | Command-Options | 0 or 1 | An object containing additional properties that apply to the command. |
-
+|  ID | Property Name | Type | Description |
+| :---|:---|:---|:---|
+|  1 | action | Action | The task or activity to be performed (i.e., the 'verb'). |
+|  2 | target | Target | The object of the action. The action is performed on the target. |
+|  3 | actuator | Actuator | The subject of the action. The actuator executes the action on the target. |
+|  4 | command-options | Command-Options | An object containing additional properties that apply to the command. |
 
 #### 3.1.1.2 Type Name: Action
 
@@ -363,7 +362,6 @@ Base Type: Enumerated
 |  29 | investigate | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
 |  30 | mitigate | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
 |  31 | remediate | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
-
 
 #### 3.1.1.3 Type Name: Target
 
