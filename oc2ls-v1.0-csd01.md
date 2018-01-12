@@ -70,7 +70,10 @@ A OpenC2 command that consists of an action coupled with a target is sufficient 
 An OpenC2 response is synchronously issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
 
 ## 1.1 Goal
-TBSL
+{Editor's Note - TBSL - 
+This section will be included in a future iteration 
+(probably iteration 5) 
+prior to submitting for Committee Specification.}
 
 ## 1.2 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message capability and provide a framework so that the language can be extended to accommodate new technologies. To achieve this purpose, the scope of this specification includes:
