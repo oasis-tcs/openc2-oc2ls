@@ -99,6 +99,10 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## 1.5 Document Conventions
 TBSL
+{Editor's Note - TBSL - 
+This section will be included in a future iteration 
+(probably iteration 5) 
+prior to submitting for Committee Specification.}
 
 ## 1.6 Naming Conventions
 All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g. literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
