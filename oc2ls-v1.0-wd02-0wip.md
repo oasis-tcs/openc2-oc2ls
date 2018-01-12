@@ -394,6 +394,18 @@ Base Type: Choice
 |  22 | windows_registry_key | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
 |  23 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
+#### 3.1.1.4 Type Name: Actuator
+TBSL
+
+#### 3.1.1.5 Type Name: Command-Options
+TBSL
+
+### 3.1.2 OpenC2 Response
+TBSL
+
+## 3.2 Property Details
+TBSL
+
 # 4 Foundational Actuator Profile
 TBSL
 
