@@ -305,7 +305,94 @@ The OpenC2 Response is a message sent from an entity as the result of a command.
 TBSL
 
 # 3 OpenC2 Property Tables
-TBSL
+
+## 3.1 OpenC2 Messages
+
+The following subsections provide the permitted values within an OpenC2 messages.
+
+### 3.1.1 OpenC2 Command
+
+The OpenC2 Command describes an action performed on a target. It can be directive or descriptive depending on the context.
+
+#### 3.1.1.1 Type Name: OpenC2Command
+
+Base Type: Record
+
+|  ID | Property Name | Type | Description |
+| :---|:---|:---|:---|
+|  1 | action | Action | The task or activity to be performed (i.e., the 'verb'). |
+|  2 | target | Target | The object of the action. The action is performed on the target. |
+|  3 | actuator | Actuator | The subject of the action. The actuator executes the action on the target. |
+|  4 | command-options | Command-Options | An object containing additional properties that apply to the command. |
+
+#### 3.1.1.2 Type Name: Action
+
+Base Type: Enumerated
+
+|  ID | Element Name | Description |
+| :---|:---|:---|
+|  1 | scan | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
+|  2 | locate | The locate action is used to find an object either physically, logically, functionally, or by organization. |
+|  3 | query | The query action initiates a single request for information. |
+|  4 | report | The report action tasks an entity to provide information to a designated recipient of the information. |
+|  5 | notify | The notify action is used to set an entity's alerting preferences. |
+|  6 | deny | The deny action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access. |
+|  7 | contain | The contain action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave. |
+|  8 | allow | The allow action permits the access to or execution of a target. |
+|  9 | start | The start action initiates a process, application, system, or some other activity. |
+|  10 | stop | The stop action halts a system or ends an activity. |
+|  11 | restart | The restart action conducts a stop of a system or an activity followed by a start of a system or an activity. |
+|  12 | pause | The pause action ceases a system or activity while maintaining state. |
+|  13 | resume | The resume action starts a system or activity from a paused state. |
+|  14 | cancel | The cancel action invalidates a previously issued action. |
+|  15 | set | The set action changes a value, configuration, or state of a managed entity within an IT system. |
+|  16 | update | The update action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
+|  17 | move | The move action changes the location of a file, subnet, network, or process. |
+|  18 | redirect | The redirect action changes the flow to a particular destination other than its original intended destination. |
+|  19 | delete | The delete action removes an entity (e.g., data, files, flows). |
+|  20 | snapshot | The snapshot action records and stores the state of a target at an instant in time. |
+|  21 | detonate | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
+|  22 | restore | The restore action returns to an identical or similar known state. |
+|  23 | save | The save action commits data or system state to memory. |
+|  24 | throttle | The throttle action adjusts the rate of a process, function, or activity. |
+|  25 | delay | The delay action stops or holds up an activity or data transmittal. |
+|  26 | substitute | The substitute action replaces all or part of the data, content, or payload. |
+|  27 | copy | The copy action duplicates a file or data flow. |
+|  28 | sync | The sync action synchronizes a sensor or actuator with other system components. |
+|  29 | investigate | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
+|  30 | mitigate | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
+|  31 | remediate | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
+
+#### 3.1.1.3 Type Name: Target
+
+Base Type: Choice
+
+|  ID | Property Name | Type | Description |
+| :---|:---|:---|:---|
+|  1 | artifact | artifact | The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string or linking to a file-like payload. |
+|  2 | command | command | The Command Object represents a reference to a previously issued OpenC2 Command. |
+|  3 | device | device | The Device Object represents the properties of a hardware device. |
+|  4 | directory | directory | The Directory Object represents the properties common to a file system directory. |
+|  5 | disk | disk | The Disk Object represents a disk drive. |
+|  6 | disk_partition | disk-partition | The Disk Partition Object represents a single partition of a disk drive. |
+|  7 | domain_name | domain-name | The Domain Name represents the properties of a network domain name. |
+|  8 | email_addr | email-addr | The Email Address Object represents a single email address. |
+|  9 | email_message | email-message | The Email Message Object represents an instance of an email message, corresponding to the internet message format described in RFC 5322 and related RFCs. |
+|  10 | file | file | The File Object represents the properties of a file. |
+|  11 | ipv4_addr | ipv4-addr | The IPv4 Address Object represents one or more IPv4 addresses expressed using CIDR notation. |
+|  12 | ipv6_addr | ipv6-addr | The IPv6 Address Object represents one or more IPv6 addresses expressed using CIDR notation. |
+|  13 | mac_addr | mac-addr | The MAC Address Object represents a single Media Access Control (MAC) address. |
+|  14 | memory | memory | The Memory Object represents memory objects. |
+|  15 | ip_connection | ip-connection | The IP Connection Object represents a network connection that originates from a source and is addressed to a destination. |
+|   | openc2 | openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
+|  16 | process | process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
+|  17 | software | software | The Software Object represents high-level properties associated with software, including software products. |
+|  18 | url | url | The URL Object represents the properties of a uniform resource locator (URL). |
+|  19 | user_account | user-account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
+|  20 | user_session | user-session | The User Session Object represents a user session. |
+|  21 | volume | volume | The Volume Object represents a generic drive volume. |
+|  22 | windows_registry_key | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
+|  23 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 # 4 Foundational Actuator Profile
 TBSL
