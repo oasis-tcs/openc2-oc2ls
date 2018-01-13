@@ -97,8 +97,7 @@ Additional detail regarding the TARGET and ACTUATOR may be included to increase 
 An OpenC2 Response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of command execution, or other information in conjunction with a particular command.
 
 ## 1.1 Goal
-{Editor's Note - TBSL - This section will be included in a future iteration (probably
-iteration 5) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 ## 1.2 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. . To achieve this purpose, the scope of this specification includes:
@@ -278,15 +277,14 @@ An ACTUATOR is an implementation of a cyber defense function that executes the A
 
 An Actuator Profile SHALL be composed in accordance with the framework in section 4.
 
-{Editor's Note - TBSL - More text be included in a future iteration (probably iteration
-4) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - More text be included in a future iteration (probably iteration 4) prior to submitting for Committee Specification.
 
 ### 2.2.5 Command-Option Vocabulary
 COMMAND-OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND-OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
 Table 2-3 lists the valid command-options.
 
-{Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
 
 **Table 2-3. Summary of Command Options.**
 
@@ -298,8 +296,7 @@ Table 2-3 lists the valid command-options.
 The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.
 
 ### 2.3.1 Response Structure
-{Editor's Note - TBSL - This section be included in a future iteration (probably
-iteration 3) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
 
 # 3 OpenC2 Property Tables
 
@@ -392,24 +389,19 @@ Base Type: Choice
 |  24 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 #### 3.1.1.4 Type Name: Actuator
-{Editor's Note - TBSL - This section be included in future iterations (probably
-iterations 3 & 4) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 #### 3.1.1.5 Type Name: Command-Options
-{Editor's Note - TBSL - This section be included in future iterations (probably
-iterations 3 & 4) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 ### 3.1.2 OpenC2 Response
-{Editor's Note - TBSL - This section be included in future iterations (probably
-iterations 3 & 4) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 ## 3.2 Property Details
-{Editor's Note - TBSL - This section be included in future iterations (probably
-iterations 3 & 4) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 # 4 Foundational Actuator Profile
-{Editor's Note - TBSL - This section be included in a future iteration (probably
-iteration 5) prior to submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol, etc. Conformant implementations of OpenC2:
@@ -420,15 +412,14 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
  * MAY implement optional targets defined in this document 
 * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more Actuator Profiles. 
  * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
- * {Editor's Note - TBSL - More conformance text will be included in a future iteration
-(probably iteration 5) prior to submitting for Committee Specification.}
+
+> Editor's Note - TBSL - More conformance text will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 # Appendix A. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **Participants**:
-{Editor's Note - TBSL - This section be included in the final iteration prior to
-submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
 # Appendix B. Revision History
 | Revision   | Date        | Editor            | Changes Made          |
@@ -438,5 +429,4 @@ submitting for Committee Specification.}
 | v1.0-wd02  | 01/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
 
 # Appendix C. Acronyms
-{Editor's Note - TBSL - This section be included in the final iteration prior to
-submitting for Committee Specification.}
+> Editor's Note - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
