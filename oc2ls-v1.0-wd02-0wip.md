@@ -88,39 +88,45 @@ will be labeled with "TBSL" for "To Be Supplied Later",
 optionally with a guestimate as to which iteration it would be supplied in.}
 
 # 1 Introduction
-The OpenC2 Language Specification defines a language used to compose messages that instruct and coordinate the command and control of cyber defenses between and within networks and systems.
+The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components.
 
-An OpenC2 command is composed of an action (what is to be done), a target (what is being acted upon), an optional actuator (what is executing the command), and command options, which influence how the command is to be performed.
+The OpenC2 language defines two message types: 
 
-A OpenC2 command that consists of an action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion in the command of an actuator and modifiers provides additional precision and specificity (e.g., deny ip=1.2.3.4 by actuator=firewall3 command-id=1eab14...). Additional detail about aspects of a command may be included to increase the precision of the command.  For example, which target (i.e., target specifier), additional information about what is to be performed on a specific target type (i.e., target option), which actuator(s) (i.e., actuator specifier) and/or additional information regarding how a specific actuator executes the action (i.e., actuator option).
+1. **Command**: An instruction from one system to another to act on the content of the command
 
-An OpenC2 response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
+2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked
+
+The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command options, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command-options provide additional precision. 
+
+Additional detail regarding the TARGET and ACTUATOR may be included to increase the precision of the command. For example, which target (i.e., target specifier), additional information about what is to be performed on a specific target type (i.e., target option), which actuator(s) (i.e., actuator specifier) and/or additional information regarding how a specific actuator executes the action (i.e., actuator option).
+
+An OpenC2 Response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of command execution, or other information in conjunction with a particular command.
 
 ## 1.1 Goal
 {Editor's Note - TBSL - This section will be included in a future iteration (probably
 iteration 5) prior to submitting for Committee Specification.}
 
 ## 1.2 Purpose and Scope
-The OpenC2 Language Specification defines the set of components to assemble a complete command and control message capability and provide a framework so that the language can be extended to accommodate new technologies. To achieve this purpose, the scope of this specification includes:
+The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. . To achieve this purpose, the scope of this specification includes:
 
- 1. the set of actions and options that may be used in OpenC2 commands,
- 2. the set of targets, target specifiers, and target options,
- 3. an organizational scheme that describes an actuator profile.
- 4. a syntax to express commands and responses.
- 5. the serialization of OpenC2 commands, and responses.
- 6. the procedures for extending the language to accommodate new technologies in a manner that is consistent with the OpenC2 Language Specification. 
+1. the set of actions and options that may be used in OpenC2 commands
+2. the set of targets, target specifiers, and target options
+3. A syntax that defines the structure of commands and responses
+4. an organizational scheme that describes an Actuator Profile
+5. The MTI serialization of OpenC2 commands, and responses
+6. the procedures for extending the language 
 
-The OpenC2 language is necessary but insufficient for the realization of coordinated cyber response. Though necessary for cyber-response implementations, the following items are beyond the scope of this specification:
+The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions. The following items are beyond the scope of this specification:
 
- 1. Language definitions for a particular actuator to extend the OpenC2 language. Extensions to the language will be captured in other specifications.
- 2. Specifying alternate serializations of OpenC2 commands. However, optional serializations may be documented in other specifications.
- 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies. The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions.
+1. Language extensions unique to an actuator
+2. Alternate serializations of OpenC2 commands
+3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies 
 
 ## 1.3 IPR Policy
 This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 ## 1.4 Terminology
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119] and [RFC8174].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
 ## 1.5 Document Conventions
 {Editor's Note - TBSL - This section will be included in a future iteration (probably
@@ -129,7 +135,7 @@ iteration 5) prior to submitting for Committee Specification.}
 ## 1.6 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 
-All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g. literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
+All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
 { "action": "contain",
