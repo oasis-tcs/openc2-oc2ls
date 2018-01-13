@@ -437,11 +437,11 @@ The following individuals have participated in the creation of this specificatio
 submitting for Committee Specification.}
 
 # Appendix B. Revision History
-| Revision  | Date        | Editor            | Changes Made          |
-|:----------|:------------|:------------------|:----------------------|
-| v1.0-wd01 | 10/31/2017  | Romano, Sparrell  | Initial working draft |
+| Revision   | Date        | Editor            | Changes Made          |
+|:-----------|:------------|:------------------|:----------------------|
+| v1.0-wd01  | 10/31/2017  | Romano, Sparrell  | Initial working draft |
 | v1.0-csd01 | 11/14/2017  | Romano, Sparrell  | approved wd01 |
-| v1.0-wd02 | 1/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
+| v1.0-wd02  | 01/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
 
 # Appendix C. Acronyms
 {Editor's Note - TBSL - This section be included in the final iteration prior to
