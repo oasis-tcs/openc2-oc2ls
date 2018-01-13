@@ -171,7 +171,7 @@ The OpenC2 Command communicates an action to be performed on a target and may in
 ### 2.2.1 Command Structure
 An OpenC2 Command has four fields: ACTION, TARGET, ACTUATOR and COMMAND-OPTIONS.
 
-The ACTION and TARGET fields are required and are populated by one of the ‘action-types’ in Table 2-1 and the ‘target-types’ in Table 2-3. A particular target-type may be further refined by one or more ‘target-specifiers’ and/or ‘target-options’. 
+The ACTION and TARGET fields are required and are populated by one of the ‘action-types’ in Table 2-1 and the ‘target-types’ in Table 2-2. A particular target-type may be further refined by one or more ‘target-specifiers’ and/or ‘target-options’. 
 
 The optional ACTUATOR field identifies the entity or entities that are tasked to execute the OpenC2 Command.
 
@@ -179,7 +179,7 @@ Information with respect to how the action is to be executed is provided with on
 
 The optional COMMAND-OPTIONS field is populated by one or more ‘command-options’ that provide information that influences how the command is executed.    
 
-Table 2-1 summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or COMMAND-OPTIONS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
+The following list summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or COMMAND-OPTIONS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
 * **ACTION** (required): The task or activity to be performed.
 * **TARGET** (required): The object of the action. The ACTION is performed on the target.
@@ -199,14 +199,14 @@ The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on 
 COMMAND-OPTIONS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
 ### 2.2.2 Action Vocabulary
-This section defines the set of OpenC2 actions grouped by their general activity. Table 2-2 summarizes the definition of the OpenC2 actions.
+This section defines the set of OpenC2 actions grouped by their general activity. Table 2-1 summarizes the definition of the OpenC2 actions.
 
 * *Actions that **Control** Information*: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
 * *Actions that Control **Access*: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
 * *Actions that Control Activities/Devices*: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
 * *Effects-Based Actions*: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
 
-**Table 2-2. Summary of Action Definitions**
+**Table 2-1. Summary of Action Definitions**
 
 | Action      | Description                                           |
 |:------------|:------------------------------------------------------|
@@ -248,9 +248,9 @@ This section defines the set of OpenC2 actions grouped by their general activity
 |  remediate  | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-2 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
 
-**Table 2-3. Summary of Targets.**
+**Table 2-2. Summary of Targets.**
 
 |  Target | Description |
 | :---|:---|
@@ -290,11 +290,11 @@ An Actuator Profile SHALL be composed in accordance with the framework in sectio
 ### 2.2.5 Command-Option Vocabulary
 COMMAND-OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND-OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
-Table 2-4 lists the valid command-options.
+Table 2-3 lists the valid command-options.
 
 {Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.}
 
-**Table 2-4. Summary of Command Options.**
+**Table 2-3. Summary of Command Options.**
 
 | Command Option | Type      | Description                            |
 |:---------------|:----------|:---------------------------------------|
