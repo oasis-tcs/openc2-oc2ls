@@ -210,42 +210,42 @@ This section defines the set of OpenC2 actions grouped by their general activity
 
 | Action      | Description                                           |
 |:------------|:------------------------------------------------------|
-|             | **Actions that Control Information**                  |
-| scan        | The ‘scan’ action is the systematic examination of some aspect of the entity or its environment in order to obtain information.
-| locate      | The ‘locate’ action is used to find an object either physically, logically, functionally, or by organization.
-| query       | The ‘query’ action initiates a single request for information.
-| report      | The ‘report’ action tasks an entity to provide information to a designated recipient of the information.
-| notify      | The ‘notify’ action is used to set an entity's alerting preferences.
-|             | **Actions that Control Permissions **                 |
-| deny        | The ‘deny’ action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access.
-| contain     | The ‘contain’ action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave.
-| allow       | The ‘allow’ action permits the access to or execution of a target.
-|             | **Actions that Control Activities/Devices**           |
-| start       | The ‘start’ action initiates a process, application, system, or some other activity.
-| stop        | The ‘stop’ action halts a system or ends an activity.
-| restart     | The ‘restart’ action conducts a ‘stop’ of a system or an activity followed by a ‘start’ of a system or an activity.
-| pause       | The ‘pause’ action ceases a system or activity while maintaining state.
-| resume      | The ‘resume’ action starts a system or activity from a paused state.
-| cancel      | The ‘cancel’ action invalidates a previously issued action.
-| set         | The ‘set’ action changes a value, configuration, or state of a managed entity within an IT system.
-| update      | The ‘update’ action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update.
-| move        | The ‘move’ action changes the location of a file, subnet, network, or process.
-| redirect    | The ‘redirect’ action changes the flow to a particular destination other than its original intended destination.
-| create      | The ‘create’ action adds a new entity (e.g., data, files, directories, security entities, etc.).
-| delete      | The ‘delete’ action removes an entity (e.g., data, files, flows, etc.). 
-| snapshot    | The ‘snapshot’ action records and stores the state of a target at an instant in time.
-| detonate    | The ‘detonate’ action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave.
-| restore     | The ‘restore’ action returns to an identical or similar known state.
-| save        | The ‘save’ action commits data or system state to memory.
-| throttle    | The ‘throttle’ action adjusts the rate of a process, function, or activity.
-| delay       | The ‘delay’ action stops or holds up an activity or data transmittal.
-| substitute  | The ‘substitute’ action replaces all or part of the data, content, or payload.
-| copy        | The ‘copy’ action duplicates a file or data flow.
-| sync        | The ‘sync’ action synchronizes a sensor or actuator with other system components.
-|             | **Effects-Based Actions**                             |
-| investigate | The ‘investigate’ action tasks the recipient enclave to aggregate and report information as it pertains to an anomaly.
-| mitigate    | The ‘mitigate’ action tasks the recipient enclave to circumvent the problem without necessarily eliminating the vulnerability or attack point.
-| remediate   | The ‘remediate’ action tasks the recipient enclave to eliminate the vulnerability or attack point. Remediate implies that addressing the issue is paramount.
+|   | Actions that Control Information |
+|  scan  | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
+|  locate  | The locate action is used to find an object either physically, logically, functionally, or by organization. |
+|  query  | The query action initiates a single request for information. |
+|  report  | The report action tasks an entity to provide information to a designated recipient of the information. |
+|  notify  | The notify action is used to set an entity's alerting preferences. |
+|   | Actions that Control Access  |
+|  deny  | The deny action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access. |
+|  contain  | The contain action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave. |
+|  allow  | The allow action permits the access to or execution of a target. |
+|   | Actions that Control Activities/Devices |
+|  start  | The start action initiates a process, application, system, or some other activity. |
+|  stop  | The stop action halts a system or ends an activity. |
+|  restart  | The restart action conducts a stop of a system or an activity followed by a start of a system or an activity. |
+|  pause  | The pause action ceases a system or activity while maintaining state. |
+|  resume  | The resume action starts a system or activity from a paused state. |
+|  cancel  | The cancel action invalidates a previously issued action. |
+|  set  | The set action changes a value, configuration, or state of a managed entity within an IT system. |
+|  update  | The update action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
+|  move  | The move action changes the location of a file, subnet, network, or process. |
+|  redirect  | The redirect action changes the flow to a particular destination other than its original intended destination. |
+|  create  | The create action adds a new entity (e.g., data, files, directories, security entities). |
+|  delete  | The delete action removes an entity (e.g., data, files, flows). |
+|  snapshot  | The snapshot action records and stores the state of a target at an instant in time. |
+|  detonate  | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
+|  restore  | The restore action returns to an identical or similar known state. |
+|  save  | The save action commits data or system state to memory. |
+|  throttle  | The throttle action adjusts the rate of a process, function, or activity. |
+|  delay  | The delay action stops or holds up an activity or data transmittal. |
+|  substitute  | The substitute action replaces all or part of the data, content, or payload. |
+|  copy  | The copy action duplicates a file or data flow. |
+|  sync  | The sync action synchronizes a sensor or actuator with other system components. |
+|   | Effects-Based Actions |
+|  investigate  | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
+|  mitigate  | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
+|  remediate  | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
 
 ### 2.2.3 Target Vocabulary
 The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
