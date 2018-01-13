@@ -163,15 +163,15 @@ All type names, property names and literals are in lowercase, except when refere
 # 2 OpenC2 Language
 
 ## 2.1 Overview
-The OpenC2 language has two distinct types of messages: Command and Response. At the most basic level, the OpenC2 Command describes an action performed on a target. The OpenC2 Response is used to provide execution status and optional data requested as a result of a command. OpenC2 Response messages may refer to the command that initiated the response.
+The OpenC2 language has two distinct types of messages: Command and Response. The OpenC2 Command describes an action performed on a target. The OpenC2 Response is a means to provide information (such as acknowledgement, status, etc.)  as a result of a command. 
 
 ## 2.2 OpenC2 Command
-The OpenC2 Command communicates an action to be performed on a target and may include the actuator that is to execute the command.
+The OpenC2 Command communicates an action to be performed on a target and may include information identifying the actuator(s) that is to execute the command.
 
 ### 2.2.1 Command Structure
 An OpenC2 Command has four fields: ACTION, TARGET, ACTUATOR and COMMAND-OPTIONS.
 
-The ACTION and TARGET fields are required and are populated by one of the ‘action-types’ in Table 2-1 and the ‘target-types’ in Table TBD. A particular target-type may be further refined by one or more ‘target-specifiers’ and/or ‘target-options’. 
+The ACTION and TARGET fields are required and are populated by one of the ‘action-types’ in Table 2-1 and the ‘target-types’ in Table 2-3. A particular target-type may be further refined by one or more ‘target-specifiers’ and/or ‘target-options’. 
 
 The optional ACTUATOR field identifies the entity or entities that are tasked to execute the OpenC2 Command.
 
@@ -192,19 +192,19 @@ Table 2-1 summarizes the fields and subfields of an OpenC2 Command. OpenC2 Comma
     * **ACTUATOR-OPTIONS** (optional): The options specify how a particular ACTION is to be performed for an actuator type.
 * **COMMAND-OPTIONS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc. COMMAND OPTIONS only influence/ impact the command and are defined independently of any ACTION, ACTUATOR or TARGET.
 
-The TARGET of an OpenC2 command may include a set of targets of the same type, a range of targets, or a particular target. Specifiers for TARGETs are optional and provide additional precision for the target.
+The TARGET of an OpenC2 Command may include a set of targets of the same type, a range of targets, or a particular target. Specifiers for TARGETs are optional and provide additional precision for the target.
 
-The OpenC2 ACTUATOR field provides information about the entity that will execute the ACTION on the TARGET. Specifiers for actuators provide additional information to refine the command so that a particular function, system, class of devices, or specific device can be identified. Options for actuators provide additional information to refine the command to indicate how an action is to be done in the context of the actuator. Options are distinct from COMMAND-OPTIONS in that options are a function of the actuator and the action.
+The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on the TARGET. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. Actuator-options indicate how an action is to be done in the context of the actuator. 
 
 COMMAND-OPTIONS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
 ### 2.2.2 Action Vocabulary
 This section defines the set of OpenC2 actions grouped by their general activity. Table 2-2 summarizes the definition of the OpenC2 actions.
 
- * _Actions that Control Information_: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
- * _Actions that Control Permissions_: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
- * _Actions that Control Activities/Devices_: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
- * _Effects-Based Actions_: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
+* *Actions that **Control** Information*: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
+* *Actions that Control **Access*: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
+* *Actions that Control Activities/Devices*: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
+* *Effects-Based Actions*: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
 
 **Table 2-2. Summary of Action Definitions**
 
@@ -248,7 +248,7 @@ This section defines the set of OpenC2 actions grouped by their general activity
 | remediate   | The ‘remediate’ action tasks the recipient enclave to eliminate the vulnerability or attack point. Remediate implies that addressing the issue is paramount.
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables in Section 3.
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
 
 **Table 2-3. Summary of Targets.**
 
@@ -280,17 +280,17 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 |  x509_certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 ### 2.2.4 Actuator
-An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An actuator profile is a specification that identifies the subset of actions, targets and other aspects of this language specification that are meaningful in the context of a particular ACTUATOR.  The actuator profile also identifies the portions of this specification that are mandatory to implement as well as optional actions and also defines appropriate actuator specifiers and the actuator options.
+An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional l in the context of a particular ACTUATOR.  An Actuator Profile also defines ACTUATOR-SPECIFIERS and ACTUATOR-OPTIONS that are meaningful and possibly unique to the actuator.
 
 An Actuator Profile SHALL be composed in accordance with the framework in section 4.
 
 {Editor's Note - TBSL - More text be included in a future iteration (probably iteration
 4) prior to submitting for Committee Specification.}
 
-### 2.2.5 Command Option Vocabulary
-COMMAND OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
+### 2.2.5 Command-Option Vocabulary
+COMMAND-OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND-OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
-Table 2-4 lists the valid modifiers.
+Table 2-4 lists the valid command-options.
 
 {Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.}
 
@@ -301,7 +301,7 @@ Table 2-4 lists the valid modifiers.
 | TBSL           | TBSL      | TBSL                                   |
 
 ## 2.3 OpenC2 Response
-The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.  The recipient of the OpenC2 Response is typically the entity that issued the command.
+The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.
 
 ### 2.3.1 Response Structure
 {Editor's Note - TBSL - This section be included in a future iteration (probably
