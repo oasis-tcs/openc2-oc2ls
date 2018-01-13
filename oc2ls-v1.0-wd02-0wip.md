@@ -387,15 +387,15 @@ Base Type: Choice
 |  13 | mac_addr | mac-addr | The MAC Address Object represents a single Media Access Control (MAC) address. |
 |  14 | memory | memory | The Memory Object represents memory objects. |
 |  15 | ip_connection | ip-connection | The IP Connection Object represents a network connection that originates from a source and is addressed to a destination. |
-|   | openc2 | openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
-|  16 | process | process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
-|  17 | software | software | The Software Object represents high-level properties associated with software, including software products. |
-|  18 | url | url | The URL Object represents the properties of a uniform resource locator (URL). |
-|  19 | user_account | user-account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
-|  20 | user_session | user-session | The User Session Object represents a user session. |
-|  21 | volume | volume | The Volume Object represents a generic drive volume. |
-|  22 | windows_registry_key | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
-|  23 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
+|  16 | openc2 | openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
+|  17 | process | process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
+|  18 | software | software | The Software Object represents high-level properties associated with software, including software products. |
+|  19 | url | url | The URL Object represents the properties of a uniform resource locator (URL). |
+|  20 | user_account | user-account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
+|  21 | user_session | user-session | The User Session Object represents a user session. |
+|  22 | volume | volume | The Volume Object represents a generic drive volume. |
+|  23 | windows_registry_key | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
+|  24 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 #### 3.1.1.4 Type Name: Actuator
 {Editor's Note - TBSL - This section be included in future iterations (probably
