@@ -201,26 +201,26 @@ COMMAND-OPTIONS influence the command by providing information such as time, per
 ### 2.2.2 Action Vocabulary
 This section defines the set of OpenC2 actions grouped by their general activity. Table 2-1 summarizes the definition of the OpenC2 actions.
 
-* *Actions that **Control** Information*: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
-* *Actions that Control **Access*: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
-* *Actions that Control Activities/Devices*: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
-* *Effects-Based Actions*: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
+* _Actions that Control Information_: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
+* _Actions that Control Access_: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
+* _Actions that Control Activities/Devices_: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
+* _Effects-Based Actions_: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
 
 **Table 2-1. Summary of Action Definitions**
 
 | Action      | Description                                           |
 |:------------|:------------------------------------------------------|
-|   | Actions that Control Information |
+|   | **Actions that Control Information** |
 |  scan  | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
 |  locate  | The locate action is used to find an object either physically, logically, functionally, or by organization. |
 |  query  | The query action initiates a single request for information. |
 |  report  | The report action tasks an entity to provide information to a designated recipient of the information. |
 |  notify  | The notify action is used to set an entity's alerting preferences. |
-|   | Actions that Control Access  |
+|   | **Actions that Control Access** |
 |  deny  | The deny action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access. |
 |  contain  | The contain action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave. |
 |  allow  | The allow action permits the access to or execution of a target. |
-|   | Actions that Control Activities/Devices |
+|   | **Actions that Control Activities/Devices** |
 |  start  | The start action initiates a process, application, system, or some other activity. |
 |  stop  | The stop action halts a system or ends an activity. |
 |  restart  | The restart action conducts a stop of a system or an activity followed by a start of a system or an activity. |
@@ -242,7 +242,7 @@ This section defines the set of OpenC2 actions grouped by their general activity
 |  substitute  | The substitute action replaces all or part of the data, content, or payload. |
 |  copy  | The copy action duplicates a file or data flow. |
 |  sync  | The sync action synchronizes a sensor or actuator with other system components. |
-|   | Effects-Based Actions |
+|   | **Effects-Based Actions** |
 |  investigate  | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
 |  mitigate  | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
 |  remediate  | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
