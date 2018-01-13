@@ -244,9 +244,6 @@ This section defines the set of OpenC2 actions grouped by their general activity
 ### 2.2.3 Target Vocabulary
 The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables in Section 3.
 
-{Editor's Note - TBSL - This table will be included in a future iteration (probably
-this iteration 2) prior to submitting for Committee Specification.}
-
 **Table 2-3. Summary of Targets.**
 
 |  Target | Description |
