@@ -418,13 +418,13 @@ iterations 3 & 4) prior to submitting for Committee Specification.}
 iteration 5) prior to submitting for Committee Specification.}
 
 # 5 Conformance
-OpenC2 is a command and control language that converges (i.e. common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol etc.. Conformant implementations of OpenC2:
+OpenC2 is a command and control language that converges (i.e., common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol, etc. Conformant implementations of OpenC2:
 
  * MUST support OpenC2 commands and responses as defined in this document.
  * MUST implement the actions designated as mandatory in this document.
  * MUST implement the targets designated as mandatory in this document.
  * MAY implement optional targets defined in this document 
- * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more actuator profiles. 
+* MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more Actuator Profiles. 
  * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
  * {Editor's Note - TBSL - More conformance text will be included in a future iteration
 (probably iteration 5) prior to submitting for Committee Specification.}
@@ -443,3 +443,6 @@ submitting for Committee Specification.}
 | v1.0-csd01 | 11/14/2017  | Romano, Sparrell  | approved wd01 |
 | v1.0-wd02 | 1/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
 
+# Appendix C. Acronyms
+{Editor's Note - TBSL - This section be included in the final iteration prior to
+submitting for Committee Specification.}
