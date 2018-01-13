@@ -32,10 +32,10 @@ Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic 
 ## Status
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the “Latest version” location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
 
-TC members should send comments on this specification to the TC’s email list. Others should send comments to the TC’s public comment list, after subscribing to it by following the
-instructions at the “Send A Comment” button on the TC’s web page at https://www.oasis-open.org/committees/openc2/.
+TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the
+instructions at the “Send A Comment” button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
 
-This Committee Specification Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+This Committee Specification Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 Note that any machine-readable content (Computer Language Definitions) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s),
 the content in the separate plain text file prevails.
@@ -123,7 +123,7 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies 
 
 ## 1.3 IPR Policy
-This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 ## 1.4 Terminology
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
@@ -171,13 +171,13 @@ The OpenC2 Command communicates an action to be performed on a target and may in
 ### 2.2.1 Command Structure
 An OpenC2 Command has four fields: ACTION, TARGET, ACTUATOR and COMMAND-OPTIONS.
 
-The ACTION and TARGET fields are required and are populated by one of the ‘action-types’ in Table 2-1 and the ‘target-types’ in Table 2-2. A particular target-type may be further refined by one or more ‘target-specifiers’ and/or ‘target-options’. 
+The ACTION and TARGET fields are required and are populated by one of the 'action-types' in Table 2-1 and the 'target-types' in Table 2-2. A particular target-type may be further refined by one or more 'target-specifiers' and/or 'target-options'. 
 
 The optional ACTUATOR field identifies the entity or entities that are tasked to execute the OpenC2 Command.
 
-Information with respect to how the action is to be executed is provided with one or more ‘actuator-options’. 
+Information with respect to how the action is to be executed is provided with one or more 'actuator-options'. 
 
-The optional COMMAND-OPTIONS field is populated by one or more ‘command-options’ that provide information that influences how the command is executed.    
+The optional COMMAND-OPTIONS field is populated by one or more 'command-options' that provide information that influences how the command is executed.    
 
 The following list summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or COMMAND-OPTIONS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
@@ -418,7 +418,7 @@ iterations 3 & 4) prior to submitting for Committee Specification.}
 iteration 5) prior to submitting for Committee Specification.}
 
 # 5 Conformance
-OpenC2 is a command and control language that converges (i.e., common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol, etc. Conformant implementations of OpenC2:
+OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol, etc. Conformant implementations of OpenC2:
 
  * MUST support OpenC2 commands and responses as defined in this document.
  * MUST implement the actions designated as mandatory in this document.
