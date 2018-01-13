@@ -32,10 +32,10 @@ Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic 
 ## Status
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the “Latest version” location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
 
-TC members should send comments on this specification to the TC’s email list. Others should send comments to the TC’s public comment list, after subscribing to it by following the
-instructions at the “Send A Comment” button on the TC’s web page at https://www.oasis-open.org/committees/openc2/.
+TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the
+instructions at the “Send A Comment” button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
 
-This Committee Specification Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+This Committee Specification Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 Note that any machine-readable content (Computer Language Definitions) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s),
 the content in the separate plain text file prevails.
@@ -88,39 +88,45 @@ will be labeled with "TBSL" for "To Be Supplied Later",
 optionally with a guestimate as to which iteration it would be supplied in.}
 
 # 1 Introduction
-The OpenC2 Language Specification defines a language used to compose messages that instruct and coordinate the command and control of cyber defenses between and within networks and systems.
+The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components.
 
-An OpenC2 command is composed of an action (what is to be done), a target (what is being acted upon), an optional actuator (what is executing the command), and command options, which influence how the command is to be performed.
+The OpenC2 language defines two message types: 
 
-A OpenC2 command that consists of an action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion in the command of an actuator and modifiers provides additional precision and specificity (e.g., deny ip=1.2.3.4 by actuator=firewall3 command-id=1eab14...). Additional detail about aspects of a command may be included to increase the precision of the command.  For example, which target (i.e., target specifier), additional information about what is to be performed on a specific target type (i.e., target option), which actuator(s) (i.e., actuator specifier) and/or additional information regarding how a specific actuator executes the action (i.e., actuator option).
+1. **Command**: An instruction from one system to another to act on the content of the command
 
-An OpenC2 response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of a command or other information in conjunction with a particular command.
+2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked
+
+The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command options, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command-options provide additional precision. 
+
+Additional detail regarding the TARGET and ACTUATOR may be included to increase the precision of the command. For example, which target (i.e., target specifier), additional information about what is to be performed on a specific target type (i.e., target option), which actuator(s) (i.e., actuator specifier) and/or additional information regarding how a specific actuator executes the action (i.e., actuator option).
+
+An OpenC2 Response is issued as a result of an OpenC2 command.  OpenC2 responses are used to provide acknowledgement, status, results of command execution, or other information in conjunction with a particular command.
 
 ## 1.1 Goal
 {Editor's Note - TBSL - This section will be included in a future iteration (probably
 iteration 5) prior to submitting for Committee Specification.}
 
 ## 1.2 Purpose and Scope
-The OpenC2 Language Specification defines the set of components to assemble a complete command and control message capability and provide a framework so that the language can be extended to accommodate new technologies. To achieve this purpose, the scope of this specification includes:
+The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. . To achieve this purpose, the scope of this specification includes:
 
- 1. the set of actions and options that may be used in OpenC2 commands,
- 2. the set of targets, target specifiers, and target options,
- 3. an organizational scheme that describes an actuator profile.
- 4. a syntax to express commands and responses.
- 5. the serialization of OpenC2 commands, and responses.
- 6. the procedures for extending the language to accommodate new technologies in a manner that is consistent with the OpenC2 Language Specification. 
+1. the set of actions and options that may be used in OpenC2 commands
+2. the set of targets, target specifiers, and target options
+3. A syntax that defines the structure of commands and responses
+4. an organizational scheme that describes an Actuator Profile
+5. The MTI serialization of OpenC2 commands, and responses
+6. the procedures for extending the language 
 
-The OpenC2 language is necessary but insufficient for the realization of coordinated cyber response. Though necessary for cyber-response implementations, the following items are beyond the scope of this specification:
+The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions. The following items are beyond the scope of this specification:
 
- 1. Language definitions for a particular actuator to extend the OpenC2 language. Extensions to the language will be captured in other specifications.
- 2. Specifying alternate serializations of OpenC2 commands. However, optional serializations may be documented in other specifications.
- 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies. The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions.
+1. Language extensions unique to an actuator
+2. Alternate serializations of OpenC2 commands
+3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies 
 
 ## 1.3 IPR Policy
-This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 ## 1.4 Terminology
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119] and [RFC8174].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
 ## 1.5 Document Conventions
 {Editor's Note - TBSL - This section will be included in a future iteration (probably
@@ -129,7 +135,7 @@ iteration 5) prior to submitting for Committee Specification.}
 ## 1.6 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 
-All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g. literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
+All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
 { "action": "contain",
@@ -157,23 +163,23 @@ All type names, property names and literals are in lowercase, except when refere
 # 2 OpenC2 Language
 
 ## 2.1 Overview
-The OpenC2 language has two distinct types of messages: Command and Response. At the most basic level, the OpenC2 Command describes an action performed on a target. The OpenC2 Response is used to provide execution status and optional data requested as a result of a command. OpenC2 Response messages may refer to the command that initiated the response.
+The OpenC2 language has two distinct types of messages: Command and Response. The OpenC2 Command describes an action performed on a target. The OpenC2 Response is a means to provide information (such as acknowledgement, status, etc.)  as a result of a command. 
 
 ## 2.2 OpenC2 Command
-The OpenC2 Command communicates an action to be performed on a target and may include the actuator that is to execute the command.
+The OpenC2 Command communicates an action to be performed on a target and may include information identifying the actuator(s) that is to execute the command.
 
 ### 2.2.1 Command Structure
 An OpenC2 Command has four fields: ACTION, TARGET, ACTUATOR and COMMAND-OPTIONS.
 
-The ACTION and TARGET fields are required and are populated by one of the ‘action-types’ in Table 2-1 and the ‘target-types’ in Table TBD. A particular target-type may be further refined by one or more ‘target-specifiers’ and/or ‘target-options’. 
+The ACTION and TARGET fields are required and are populated by one of the 'action-types' in Table 2-1 and the 'target-types' in Table 2-2. A particular target-type may be further refined by one or more 'target-specifiers' and/or 'target-options'. 
 
 The optional ACTUATOR field identifies the entity or entities that are tasked to execute the OpenC2 Command.
 
-Information with respect to how the action is to be executed is provided with one or more ‘actuator-options’. 
+Information with respect to how the action is to be executed is provided with one or more 'actuator-options'. 
 
-The optional COMMAND-OPTIONS field is populated by one or more ‘command-options’ that provide information that influences how the command is executed.    
+The optional COMMAND-OPTIONS field is populated by one or more 'command-options' that provide information that influences how the command is executed.    
 
-Table 2-1 summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or COMMAND-OPTIONS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
+The following list summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or COMMAND-OPTIONS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
 * **ACTION** (required): The task or activity to be performed.
 * **TARGET** (required): The object of the action. The ACTION is performed on the target.
@@ -186,65 +192,65 @@ Table 2-1 summarizes the fields and subfields of an OpenC2 Command. OpenC2 Comma
     * **ACTUATOR-OPTIONS** (optional): The options specify how a particular ACTION is to be performed for an actuator type.
 * **COMMAND-OPTIONS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc. COMMAND OPTIONS only influence/ impact the command and are defined independently of any ACTION, ACTUATOR or TARGET.
 
-The TARGET of an OpenC2 command may include a set of targets of the same type, a range of targets, or a particular target. Specifiers for TARGETs are optional and provide additional precision for the target.
+The TARGET of an OpenC2 Command may include a set of targets of the same type, a range of targets, or a particular target. Specifiers for TARGETs are optional and provide additional precision for the target.
 
-The OpenC2 ACTUATOR field provides information about the entity that will execute the ACTION on the TARGET. Specifiers for actuators provide additional information to refine the command so that a particular function, system, class of devices, or specific device can be identified. Options for actuators provide additional information to refine the command to indicate how an action is to be done in the context of the actuator. Options are distinct from COMMAND-OPTIONS in that options are a function of the actuator and the action.
+The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on the TARGET. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. Actuator-options indicate how an action is to be done in the context of the actuator. 
 
 COMMAND-OPTIONS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
 ### 2.2.2 Action Vocabulary
-This section defines the set of OpenC2 actions grouped by their general activity. Table 2-2 summarizes the definition of the OpenC2 actions.
+This section defines the set of OpenC2 actions grouped by their general activity. Table 2-1 summarizes the definition of the OpenC2 actions.
 
- * _Actions that Control Information_: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
- * _Actions that Control Permissions_: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
- * _Actions that Control Activities/Devices_: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
- * _Effects-Based Actions_: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
+* _Actions that Control Information_: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
+* _Actions that Control Access_: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
+* _Actions that Control Activities/Devices_: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
+* _Effects-Based Actions_: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
 
-**Table 2-2. Summary of Action Definitions**
+**Table 2-1. Summary of Action Definitions**
 
 | Action      | Description                                           |
 |:------------|:------------------------------------------------------|
-|             | **Actions that Control Information**                  |
-| scan        | The ‘scan’ action is the systematic examination of some aspect of the entity or its environment in order to obtain information.
-| locate      | The ‘locate’ action is used to find an object either physically, logically, functionally, or by organization.
-| query       | The ‘query’ action initiates a single request for information.
-| report      | The ‘report’ action tasks an entity to provide information to a designated recipient of the information.
-| notify      | The ‘notify’ action is used to set an entity's alerting preferences.
-|             | **Actions that Control Permissions **                 |
-| deny        | The ‘deny’ action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access.
-| contain     | The ‘contain’ action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave.
-| allow       | The ‘allow’ action permits the access to or execution of a target.
-|             | **Actions that Control Activities/Devices**           |
-| start       | The ‘start’ action initiates a process, application, system, or some other activity.
-| stop        | The ‘stop’ action halts a system or ends an activity.
-| restart     | The ‘restart’ action conducts a ‘stop’ of a system or an activity followed by a ‘start’ of a system or an activity.
-| pause       | The ‘pause’ action ceases a system or activity while maintaining state.
-| resume      | The ‘resume’ action starts a system or activity from a paused state.
-| cancel      | The ‘cancel’ action invalidates a previously issued action.
-| set         | The ‘set’ action changes a value, configuration, or state of a managed entity within an IT system.
-| update      | The ‘update’ action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update.
-| move        | The ‘move’ action changes the location of a file, subnet, network, or process.
-| redirect    | The ‘redirect’ action changes the flow to a particular destination other than its original intended destination.
-| create      | The ‘create’ action adds a new entity (e.g., data, files, directories, security entities, etc.).
-| delete      | The ‘delete’ action removes an entity (e.g., data, files, flows, etc.). 
-| snapshot    | The ‘snapshot’ action records and stores the state of a target at an instant in time.
-| detonate    | The ‘detonate’ action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave.
-| restore     | The ‘restore’ action returns to an identical or similar known state.
-| save        | The ‘save’ action commits data or system state to memory.
-| throttle    | The ‘throttle’ action adjusts the rate of a process, function, or activity.
-| delay       | The ‘delay’ action stops or holds up an activity or data transmittal.
-| substitute  | The ‘substitute’ action replaces all or part of the data, content, or payload.
-| copy        | The ‘copy’ action duplicates a file or data flow.
-| sync        | The ‘sync’ action synchronizes a sensor or actuator with other system components.
-|             | **Effects-Based Actions**                             |
-| investigate | The ‘investigate’ action tasks the recipient enclave to aggregate and report information as it pertains to an anomaly.
-| mitigate    | The ‘mitigate’ action tasks the recipient enclave to circumvent the problem without necessarily eliminating the vulnerability or attack point.
-| remediate   | The ‘remediate’ action tasks the recipient enclave to eliminate the vulnerability or attack point. Remediate implies that addressing the issue is paramount.
+|   | **Actions that Control Information** |
+|  scan  | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
+|  locate  | The locate action is used to find an object either physically, logically, functionally, or by organization. |
+|  query  | The query action initiates a single request for information. |
+|  report  | The report action tasks an entity to provide information to a designated recipient of the information. |
+|  notify  | The notify action is used to set an entity's alerting preferences. |
+|   | **Actions that Control Access** |
+|  deny  | The deny action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access. |
+|  contain  | The contain action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave. |
+|  allow  | The allow action permits the access to or execution of a target. |
+|   | **Actions that Control Activities/Devices** |
+|  start  | The start action initiates a process, application, system, or some other activity. |
+|  stop  | The stop action halts a system or ends an activity. |
+|  restart  | The restart action conducts a stop of a system or an activity followed by a start of a system or an activity. |
+|  pause  | The pause action ceases a system or activity while maintaining state. |
+|  resume  | The resume action starts a system or activity from a paused state. |
+|  cancel  | The cancel action invalidates a previously issued action. |
+|  set  | The set action changes a value, configuration, or state of a managed entity within an IT system. |
+|  update  | The update action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
+|  move  | The move action changes the location of a file, subnet, network, or process. |
+|  redirect  | The redirect action changes the flow to a particular destination other than its original intended destination. |
+|  create  | The create action adds a new entity (e.g., data, files, directories, security entities). |
+|  delete  | The delete action removes an entity (e.g., data, files, flows). |
+|  snapshot  | The snapshot action records and stores the state of a target at an instant in time. |
+|  detonate  | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
+|  restore  | The restore action returns to an identical or similar known state. |
+|  save  | The save action commits data or system state to memory. |
+|  throttle  | The throttle action adjusts the rate of a process, function, or activity. |
+|  delay  | The delay action stops or holds up an activity or data transmittal. |
+|  substitute  | The substitute action replaces all or part of the data, content, or payload. |
+|  copy  | The copy action duplicates a file or data flow. |
+|  sync  | The sync action synchronizes a sensor or actuator with other system components. |
+|   | **Effects-Based Actions** |
+|  investigate  | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
+|  mitigate  | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
+|  remediate  | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-3 and a full description of the targets and their associated specifiers is documented in the property tables in Section 3.
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET).  The baseline set of TARGETs is summarized in Table 2-2 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
 
-**Table 2-3. Summary of Targets.**
+**Table 2-2. Summary of Targets.**
 
 |  Target | Description |
 | :---|:---|
@@ -274,28 +280,28 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 |  x509_certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 ### 2.2.4 Actuator
-An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An actuator profile is a specification that identifies the subset of actions, targets and other aspects of this language specification that are meaningful in the context of a particular ACTUATOR.  The actuator profile also identifies the portions of this specification that are mandatory to implement as well as optional actions and also defines appropriate actuator specifiers and the actuator options.
+An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET.  An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional l in the context of a particular ACTUATOR.  An Actuator Profile also defines ACTUATOR-SPECIFIERS and ACTUATOR-OPTIONS that are meaningful and possibly unique to the actuator.
 
 An Actuator Profile SHALL be composed in accordance with the framework in section 4.
 
 {Editor's Note - TBSL - More text be included in a future iteration (probably iteration
 4) prior to submitting for Committee Specification.}
 
-### 2.2.5 Command Option Vocabulary
-COMMAND OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
+### 2.2.5 Command-Option Vocabulary
+COMMAND-OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself.   COMMAND-OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
-Table 2-4 lists the valid modifiers.
+Table 2-3 lists the valid command-options.
 
 {Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.}
 
-**Table 2-4. Summary of Command Options.**
+**Table 2-3. Summary of Command Options.**
 
 | Command Option | Type      | Description                            |
 |:---------------|:----------|:---------------------------------------|
 | TBSL           | TBSL      | TBSL                                   |
 
 ## 2.3 OpenC2 Response
-The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.  The recipient of the OpenC2 Response is typically the entity that issued the command.
+The OpenC2 Response is a message sent from an entity as the result of a command.  Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command.  Response messages are solicited and correspond to a command.
 
 ### 2.3.1 Response Structure
 {Editor's Note - TBSL - This section be included in a future iteration (probably
@@ -381,15 +387,15 @@ Base Type: Choice
 |  13 | mac_addr | mac-addr | The MAC Address Object represents a single Media Access Control (MAC) address. |
 |  14 | memory | memory | The Memory Object represents memory objects. |
 |  15 | ip_connection | ip-connection | The IP Connection Object represents a network connection that originates from a source and is addressed to a destination. |
-|   | openc2 | openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
-|  16 | process | process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
-|  17 | software | software | The Software Object represents high-level properties associated with software, including software products. |
-|  18 | url | url | The URL Object represents the properties of a uniform resource locator (URL). |
-|  19 | user_account | user-account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
-|  20 | user_session | user-session | The User Session Object represents a user session. |
-|  21 | volume | volume | The Volume Object represents a generic drive volume. |
-|  22 | windows_registry_key | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
-|  23 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
+|  16 | openc2 | openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
+|  17 | process | process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
+|  18 | software | software | The Software Object represents high-level properties associated with software, including software products. |
+|  19 | url | url | The URL Object represents the properties of a uniform resource locator (URL). |
+|  20 | user_account | user-account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
+|  21 | user_session | user-session | The User Session Object represents a user session. |
+|  22 | volume | volume | The Volume Object represents a generic drive volume. |
+|  23 | windows_registry_key | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
+|  24 | x509_certificate | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 #### 3.1.1.4 Type Name: Actuator
 {Editor's Note - TBSL - This section be included in future iterations (probably
@@ -412,13 +418,13 @@ iterations 3 & 4) prior to submitting for Committee Specification.}
 iteration 5) prior to submitting for Committee Specification.}
 
 # 5 Conformance
-OpenC2 is a command and control language that converges (i.e. common ‘point of understanding’) on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol etc.. Conformant implementations of OpenC2:
+OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol, etc. Conformant implementations of OpenC2:
 
  * MUST support OpenC2 commands and responses as defined in this document.
  * MUST implement the actions designated as mandatory in this document.
  * MUST implement the targets designated as mandatory in this document.
  * MAY implement optional targets defined in this document 
- * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more actuator profiles. 
+* MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more Actuator Profiles. 
  * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
  * {Editor's Note - TBSL - More conformance text will be included in a future iteration
 (probably iteration 5) prior to submitting for Committee Specification.}
@@ -431,9 +437,12 @@ The following individuals have participated in the creation of this specificatio
 submitting for Committee Specification.}
 
 # Appendix B. Revision History
-| Revision  | Date        | Editor            | Changes Made          |
-|:----------|:------------|:------------------|:----------------------|
-| v1.0-wd01 | 10/31/2017  | Romano, Sparrell  | Initial working draft |
+| Revision   | Date        | Editor            | Changes Made          |
+|:-----------|:------------|:------------------|:----------------------|
+| v1.0-wd01  | 10/31/2017  | Romano, Sparrell  | Initial working draft |
 | v1.0-csd01 | 11/14/2017  | Romano, Sparrell  | approved wd01 |
-| v1.0-wd02 | 1/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
+| v1.0-wd02  | 01/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
 
+# Appendix C. Acronyms
+{Editor's Note - TBSL - This section be included in the final iteration prior to
+submitting for Committee Specification.}
