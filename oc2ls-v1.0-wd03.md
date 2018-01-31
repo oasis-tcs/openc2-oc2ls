@@ -425,6 +425,7 @@ The following individuals have participated in the creation of this specificatio
 | v1.0-wd01  | 10/31/2017  | Romano, Sparrell  | Initial working draft |
 | v1.0-csd01 | 11/14/2017  | Romano, Sparrell  | approved wd01 |
 | v1.0-wd02  | 01/12/2018  | Romano, Sparrell  | 01 ballot comments<br>targets |
+| v1.0-wd03  | 01/31/2018  | Romano, Sparrell  | Incorporated comments from TC review: editorial, action/target definition changes |
 
 # Appendix C. Acronyms
 > Editor's Note - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
