@@ -402,7 +402,7 @@ Base Type: Choice
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 # 5 Conformance
-OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  OpenC2 does not have a dependency on a particular programming language, computing platform, transport protocol, etc. Conformant implementations of OpenC2:
+OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon. Conformant implementations of OpenC2:
 
  * MUST support OpenC2 commands and responses as defined in this document.
  * MUST implement the actions designated as mandatory in this document.
