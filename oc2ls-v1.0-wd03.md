@@ -203,7 +203,7 @@ This section defines the set of OpenC2 actions grouped by their general activity
 |   | **Actions that Control Information** |
 |  scan  | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
 |  locate  | The locate action is used to find an object either physically, logically, functionally, or by organization. |
-|  query  | The query action initiates a single request for information. |
+|  query  | The query action initiates a request for information. |
 |  report  | The report action tasks an entity to provide information to a designated recipient of the information. |
 |  notify  | The notify action is used to set an entity's alerting preferences. |
 |   | **Actions that Control Access** |
@@ -219,11 +219,11 @@ This section defines the set of OpenC2 actions grouped by their general activity
 |  cancel  | The cancel action invalidates a previously issued action. |
 |  set  | The set action changes a value, configuration, or state of a managed entity within an IT system. |
 |  update  | The update action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
-|  move  | The move action changes the location of a file, subnet, network, or process. |
+|  move  | The move action changes the location of a file, subnet, or process. |
 |  redirect  | The redirect action changes the flow to a particular destination other than its original intended destination. |
-|  create  | The create action adds a new entity (e.g., data, files, directories, security entities). |
-|  delete  | The delete action removes an entity (e.g., data, files, flows). |
-|  snapshot  | The snapshot action records and stores the state of a target at an instant in time. |
+|  create  | The create action adds a new entity of a known type (e.g., data, files, directories). |
+|  delete  | The delete action removes an entity of a known type (e.g., data, files, flows). |
+|  snapshot  | The snapshot action captures the state of a target at an instant in time. |
 |  detonate  | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
 |  restore  | The restore action returns to an identical or similar known state. |
 |  save  | The save action commits data or system state to memory. |
@@ -231,7 +231,7 @@ This section defines the set of OpenC2 actions grouped by their general activity
 |  delay  | The delay action stops or holds up an activity or data transmittal. |
 |  substitute  | The substitute action replaces all or part of the data, content, or payload. |
 |  copy  | The copy action duplicates a file or data flow. |
-|  sync  | The sync action synchronizes a sensor or actuator with other system components. |
+|  sync  | The sync action synchronizes an actuator with other system components. |
 |   | **Effects-Based Actions** |
 |  investigate  | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
 |  mitigate  | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
@@ -246,7 +246,7 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 | :---|:---|
 |  artifact | The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string or linking to a file-like payload. |
 |  command | The Command Object represents a reference to a previously issued OpenC2 Command. |
-|  device | The Device Object represents the properties of a hardware device. |
+|  device | The Device Object represents the properties of a hardware or virtual device. |
 |  directory | The Directory Object represents the properties common to a file system directory. |
 |  disk | The Disk Object represents a disk drive. |
 |  disk_partition | The Disk Partition Object represents a single partition of a disk drive. |
@@ -324,7 +324,7 @@ Base Type: Enumerated
 | :---|:---|:---|
 |  1 | scan | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
 |  2 | locate | The locate action is used to find an object either physically, logically, functionally, or by organization. |
-|  3 | query | The query action initiates a single request for information. |
+|  3 | query | The query action initiates a request for information. |
 |  4 | report | The report action tasks an entity to provide information to a designated recipient of the information. |
 |  5 | notify | The notify action is used to set an entity's alerting preferences. |
 |  6 | deny | The deny action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access. |
@@ -338,21 +338,22 @@ Base Type: Enumerated
 |  14 | cancel | The cancel action invalidates a previously issued action. |
 |  15 | set | The set action changes a value, configuration, or state of a managed entity within an IT system. |
 |  16 | update | The update action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
-|  17 | move | The move action changes the location of a file, subnet, network, or process. |
+|  17 | move | The move action changes the location of a file, subnet, or process. |
 |  18 | redirect | The redirect action changes the flow to a particular destination other than its original intended destination. |
-|  19 | delete | The delete action removes an entity (e.g., data, files, flows). |
-|  20 | snapshot | The snapshot action records and stores the state of a target at an instant in time. |
-|  21 | detonate | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
-|  22 | restore | The restore action returns to an identical or similar known state. |
-|  23 | save | The save action commits data or system state to memory. |
-|  24 | throttle | The throttle action adjusts the rate of a process, function, or activity. |
-|  25 | delay | The delay action stops or holds up an activity or data transmittal. |
-|  26 | substitute | The substitute action replaces all or part of the data, content, or payload. |
-|  27 | copy | The copy action duplicates a file or data flow. |
-|  28 | sync | The sync action synchronizes a sensor or actuator with other system components. |
-|  29 | investigate | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
-|  30 | mitigate | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
-|  31 | remediate | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
+|  19 | create | The create action adds a new entity of a known type (e.g., data, files, directories). |
+|  20 | delete | The delete action removes an entity of a known type (e.g., data, files, flows). |
+|  21 | snapshot | The snapshot action captures the state of a target at an instant in time. |
+|  22 | detonate | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
+|  23 | restore | The restore action returns to an identical or similar known state. |
+|  24 | save | The save action commits data or system state to memory. |
+|  25 | throttle | The throttle action adjusts the rate of a process, function, or activity. |
+|  26 | delay | The delay action stops or holds up an activity or data transmittal. |
+|  27 | substitute | The substitute action replaces all or part of the data, content, or payload. |
+|  28 | copy | The copy action duplicates a file or data flow. |
+|  29 | sync | The sync action synchronizes an actuator with other system components. |
+|  30 | investigate | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
+|  31 | mitigate | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
+|  32 | remediate | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
 
 #### 3.1.1.3 Type Name: Target
 
@@ -362,7 +363,7 @@ Base Type: Choice
 | :---|:---|:---|:---|
 |  1 | artifact | artifact | The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string or linking to a file-like payload. |
 |  2 | command | command | The Command Object represents a reference to a previously issued OpenC2 Command. |
-|  3 | device | device | The Device Object represents the properties of a hardware device. |
+|  3 | device | device | The Device Object represents the properties of a hardware or virtual device. |
 |  4 | directory | directory | The Directory Object represents the properties common to a file system directory. |
 |  5 | disk | disk | The Disk Object represents a disk drive. |
 |  6 | disk_partition | disk-partition | The Disk Partition Object represents a single partition of a disk drive. |
