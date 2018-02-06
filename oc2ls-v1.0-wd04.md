@@ -396,7 +396,74 @@ Base Type: Choice
 > Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 ## 3.2 Property Details
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+
+#### 3.2.n.m Type Name: ipv4_addr
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| ipv4_addr | String | IPv4 address or range in CIDR notatioa.n ie a dotted decimal format per RFC which? with optional CIDR prefix |
+
+Examples of  valid ipv4_addr:
+ * "192.168.10.11" - a single ip address
+ * "192.168.10.11/32" - a single ip address in CIDR notation. 
+ * "192.168.0.0/16" - a range of 256 ip addresses in CIDR notation
+
+#### 3.2.n.m Type Name: ipv6_addr
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| ipv6_addr | String | IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
+
+Examples of valid ipv6_addr:
+ * 2001:db8:aaaa:bbbb:cccc:dddd:0:1
+ * 2001:db8::1
+ * 2001:db8::0/120 - 256 addresses
+
+Examples of INVALID ipv6_addr (since violates RFC 5952):
+ * 2001:DB8::1 - lower case MUST be used
+ * 2001:db8:0:0:1:0:0:1 - the :: notation MUST be used for zero compression when possible
+ * 2001:db8::1:1:1:1:1 - the :: notation MUST NOT be used when only one zero is present
+
+#### 3.2.n.m Type Name: ip_addr
+Base Type: Enumerated
+
+|  ID | Element Name | Description |
+| :---|:---|:---|
+| 1 | ipv6_addr | per section whatever |
+| 2 | ipv4_addr | per section whatever |
+
+#### 3.2.n.m Type Name: src_addr
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| src_addr | ip_addr | source ipv4 or ipv6 address |
+
+#### 3.2.n.m Type Name: dst_addr
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| dst_addr | ip_addr | destination ipv4 or ipv6 address |
+
+
+#### 3.2.n.m Type Name: ip_connection
+Base Type: Record
+
+|  ID | Element Name | Description |
+| :---|:---|:---|
+| 1 | src_addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 2 | src_port | source service, - see src_port section |
+| 3 | l4_protocol | layer 4 protocol - see l4_protocol section |
+| 4 | dst_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 5 | dst_port | destination service, - see dst_port section |
+
+
+#### 3.2.n.m Type Name: src_port
+
+#### 3.2.n.m Type Name: dst_port
+
+#### 3.2.n.m Type Name: l4_protocol
+
+> Editor's Note - TBSL - More will be added to this section in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
