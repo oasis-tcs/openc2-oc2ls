@@ -1,11 +1,10 @@
 ![OASIS Logo](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd01_files/image001.jpg)
 ***
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 03
-## 31 January 2018  
+## Working Draft 04
+## 5 February 2018  
 #### Specification URIs
 **This version:**
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd01.pdf (Authoritative)
 * oasis-to-fill-in-link.md (Authoritative)
 * oasis-to-fill-in-link.html
 * oasis-to-fill-in-link.pdf
