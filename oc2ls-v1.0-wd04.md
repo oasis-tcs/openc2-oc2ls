@@ -414,14 +414,14 @@ Examples of  valid ipv4_addr:
 | ipv6_addr | String | IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples of valid ipv6_addr:
- * 2001:db8:aaaa:bbbb:cccc:dddd:0:1
- * 2001:db8::1
- * 2001:db8::0/120 - 256 addresses
+ * "2001:db8:aaaa:bbbb:cccc:dddd:0:1"
+ * "2001:db8::1"
+ * "2001:db8::0/120" - 256 addresses
 
 Examples of INVALID ipv6_addr (since violates RFC 5952):
- * 2001:DB8::1 - lower case MUST be used
- * 2001:db8:0:0:1:0:0:1 - the :: notation MUST be used for zero compression when possible
- * 2001:db8::1:1:1:1:1 - the :: notation MUST NOT be used when only one zero is present
+ * "2001:DB8::1" - lower case MUST be used
+ * "2001:db8:0:0:1:0:0:1" - the :: notation MUST be used for zero compression when possible
+ * "2001:db8::1:1:1:1:1" - the :: notation MUST NOT be used when only one zero is present
 
 #### 3.2.n.m Type Name: ip_addr
 
@@ -431,7 +431,7 @@ Examples of INVALID ipv6_addr (since violates RFC 5952):
 
 Examples:
  * "192.168.10.11" - a single ipv4 address distinguishable because of the dots
- * 2001:db8::1  - a single ipv6 address distinguishable because of the colons
+ * "2001:db8::1"  - a single ipv6 address distinguishable because of the colons
 
 #### 3.2.n.m Type Name: port
 
