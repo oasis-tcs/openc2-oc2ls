@@ -396,6 +396,8 @@ Base Type: Choice
 
 ## 3.2 Property Details
 
+> Editor's Note - The organization of this section will get redone once more property tables exist  (probably iterations 4) prior to submitting for Committee Specification. For now placeholder section numbers will be used
+
 #### 3.2.n.m Type Name: ip_connection
 
 Base Type: Record
@@ -443,6 +445,9 @@ Base Type: Enumerated
 | 1  | icmp | Internet Control Message Protocol - RFC 792 |
 | 6  | tcp  | Transmission Control Protocol - RFC 793 |
 | 17 | udp  | User Datagram Protocol - RFC 768 |
+
+> Editor's Note - This section be added to in future iterations prior to submitting for Committee Specification.
+
 
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
