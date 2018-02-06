@@ -400,7 +400,7 @@ Base Type: Choice
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ipv4_addr | String | IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC which? with optional CIDR prefix |
+| ipv4_addr | String | IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix |
 
 Examples of  valid ipv4_addr:
  * "192.168.10.11" - a single ip address
@@ -427,7 +427,11 @@ Examples of INVALID ipv6_addr (since violates RFC 5952):
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC which? with optional CIDR prefix. IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
+| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
+
+Examples:
+ * "192.168.10.11" - a single ipv4 address distinguishable because of the dots
+ * 2001:db8::1  - a single ipv6 address distinguishable because of the colons
 
 #### 3.2.n.m Type Name: port
 
