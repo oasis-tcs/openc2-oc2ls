@@ -423,26 +423,11 @@ Examples of INVALID ipv6_addr (since violates RFC 5952):
  * 2001:db8:0:0:1:0:0:1 - the :: notation MUST be used for zero compression when possible
  * 2001:db8::1:1:1:1:1 - the :: notation MUST NOT be used when only one zero is present
 
--------------------------------
-
-#### 3.2.n.m Type Name: ip_addr
-
-Base Type: Choice
-
-|  ID | Element Name | Type | Description |
-| :---|:---|:---|:---|
-| 1 | v6 | ipv6_addr | per section whatever |
-| 2 | v4 | ipv4_addr | per section whatever |
-
------------- OR ---------------
-
 #### 3.2.n.m Type Name: ip_addr
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. |
-
-------------------------------
+| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC which? with optional CIDR prefix. IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
 
 #### 3.2.n.m Type Name: port
 
