@@ -309,7 +309,7 @@ The OpenC2 Command describes an action performed on a target. It can be directiv
 
 Base Type: Record
 
-|  ID | Property Name | Type | Description |
+|  ID | Element Name | Type | Description |
 | :---|:---|:---|:---|
 |  1 | action | Action | The task or activity to be performed (i.e., the 'verb'). |
 |  2 | target | Target | The object of the action. The action is performed on the target. |
@@ -359,7 +359,7 @@ Base Type: Enumerated
 
 Base Type: Choice
 
-|  ID | Property Name | Type | Description |
+|  ID | Element Name | Type | Description |
 | :---|:---|:---|:---|
 |  1 | artifact | artifact | The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string or linking to a file-like payload. |
 |  2 | command | command | The Command Object represents a reference to a previously issued OpenC2 Command. |
@@ -399,7 +399,7 @@ Base Type: Choice
 
 #### 3.2.n.m Type Name: ipv4_addr
 
-| Property Name | Type | Description |
+| Type Name | Type | Description |
 |:---|:---|:---|
 | ipv4_addr | String | IPv4 address or range in CIDR notatioa.n ie a dotted decimal format per RFC which? with optional CIDR prefix |
 
@@ -410,7 +410,7 @@ Examples of  valid ipv4_addr:
 
 #### 3.2.n.m Type Name: ipv6_addr
 
-| Property Name | Type | Description |
+| Type Name | Type | Description |
 |:---|:---|:---|
 | ipv6_addr | String | IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
 
@@ -424,46 +424,56 @@ Examples of INVALID ipv6_addr (since violates RFC 5952):
  * 2001:db8:0:0:1:0:0:1 - the :: notation MUST be used for zero compression when possible
  * 2001:db8::1:1:1:1:1 - the :: notation MUST NOT be used when only one zero is present
 
+-------------------------------
+
 #### 3.2.n.m Type Name: ip_addr
+
+Base Type: Choice
+
+|  ID | Element Name | Type | Description |
+| :---|:---|:---|:---|
+| 1 | v6 | ipv6_addr | per section whatever |
+| 2 | v4 | ipv4_addr | per section whatever |
+
+------------ OR ---------------
+
+#### 3.2.n.m Type Name: ip_addr
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. |
+
+------------------------------
+
+#### 3.2.n.m Type Name: port
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| port | String | Service Name or Transport Protocol Port Number, RFC 6335  |
+
+#### 3.2.n.m Type Name: ip_connection
+
+Base Type: Record
+
+|  ID | Element Name | Type | Description |
+| :---|:---|:---|:---|
+| 1 | src_addr | ip_addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 2 | src_port | port | source service, - see src_port section |
+| 3 | dst_addr | ip_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 4 | dst_port | port | destination service, - see dst_port section |
+| 5 | protocol | l4_protocol | layer 4 protocol - see l4_protocol section |
+
+
+#### 3.2.n.m Type Name: l4_protocol
+Value of the protocol (IPv4) or next header (IPv6) field in an IP packet.  Any IANA value, RFC 5237
+
 Base Type: Enumerated
 
 |  ID | Element Name | Description |
 | :---|:---|:---|
-| 1 | ipv6_addr | per section whatever |
-| 2 | ipv4_addr | per section whatever |
-
-#### 3.2.n.m Type Name: src_addr
-
-| Property Name | Type | Description |
-|:---|:---|:---|
-| src_addr | ip_addr | source ipv4 or ipv6 address |
-
-#### 3.2.n.m Type Name: dst_addr
-
-| Property Name | Type | Description |
-|:---|:---|:---|
-| dst_addr | ip_addr | destination ipv4 or ipv6 address |
-
-
-#### 3.2.n.m Type Name: ip_connection
-Base Type: Record
-
-|  ID | Element Name | Description |
-| :---|:---|:---|
-| 1 | src_addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
-| 2 | src_port | source service, - see src_port section |
-| 3 | l4_protocol | layer 4 protocol - see l4_protocol section |
-| 4 | dst_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
-| 5 | dst_port | destination service, - see dst_port section |
-
-
-#### 3.2.n.m Type Name: src_port
-
-#### 3.2.n.m Type Name: dst_port
-
-#### 3.2.n.m Type Name: l4_protocol
-
-> Editor's Note - TBSL - More will be added to this section in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+| 1  | icmp | Internet Control Message Protocol - RFC 792 |
+| 6  | tcp  | Transmission Control Protocol - RFC 793 |
+| 17 | udp  | User Datagram Protocol - RFC 768 |
 
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
@@ -475,7 +485,7 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
  * MUST implement the actions designated as mandatory in this document.
  * MUST implement the targets designated as mandatory in this document.
  * MAY implement optional targets defined in this document 
-* MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more Actuator Profiles. 
+ * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more Actuator Profiles. 
  * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
 
 > Editor's Note - TBSL - More conformance text will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
