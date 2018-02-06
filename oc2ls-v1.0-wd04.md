@@ -442,9 +442,9 @@ Base Type: Record
 |  ID | Element Name | Type | Description |
 | :---|:---|:---|:---|
 | 1 | src_addr | ip_addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
-| 2 | src_port | port | source service, - see src_port section |
+| 2 | src_port | port | source service per RFC TBSL |
 | 3 | dst_addr | ip_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
-| 4 | dst_port | port | destination service, - see dst_port section |
+| 4 | dst_port | port | destination service per RFC TBSL |
 | 5 | protocol | l4_protocol | layer 4 protocol - see l4_protocol section |
 
 
