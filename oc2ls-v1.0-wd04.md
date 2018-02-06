@@ -400,7 +400,7 @@ Base Type: Choice
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ipv4_addr | String | IPv4 address or range in CIDR notatioa.n ie a dotted decimal format per RFC which? with optional CIDR prefix |
+| ipv4_addr | String | IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC which? with optional CIDR prefix |
 
 Examples of  valid ipv4_addr:
  * "192.168.10.11" - a single ip address
