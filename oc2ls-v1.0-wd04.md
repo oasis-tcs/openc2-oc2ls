@@ -396,48 +396,7 @@ Base Type: Choice
 
 ## 3.2 Property Details
 
-#### 3.2.n.m Type Name: ipv4_addr
-
-| Type Name | Type | Description |
-|:---|:---|:---|
-| ipv4_addr | String | IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix |
-
-Examples of  valid ipv4_addr:
- * "192.168.10.11" - a single ip address
- * "192.168.10.11/32" - a single ip address in CIDR notation. 
- * "192.168.0.0/16" - a range of 256 ip addresses in CIDR notation
-
-#### 3.2.n.m Type Name: ipv6_addr
-
-| Type Name | Type | Description |
-|:---|:---|:---|
-| ipv6_addr | String | IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
-
-Examples of valid ipv6_addr:
- * "2001:db8:aaaa:bbbb:cccc:dddd:0:1"
- * "2001:db8::1"
- * "2001:db8::0/120" - 256 addresses
-
-Examples of INVALID ipv6_addr (since violates RFC 5952):
- * "2001:DB8::1" - lower case MUST be used
- * "2001:db8:0:0:1:0:0:1" - the :: notation MUST be used for zero compression when possible
- * "2001:db8::1:1:1:1:1" - the :: notation MUST NOT be used when only one zero is present
-
-#### 3.2.n.m Type Name: ip_addr
-
-| Type Name | Type | Description |
-|:---|:---|:---|
-| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
-
-Examples:
- * "192.168.10.11" - a single ipv4 address distinguishable because of the dots
- * "2001:db8::1"  - a single ipv6 address distinguishable because of the colons
-
-#### 3.2.n.m Type Name: port
-
-| Type Name | Type | Description |
-|:---|:---|:---|
-| port | String | Service Name or Transport Protocol Port Number, RFC 6335  |
+> Editor's Note - The organization of this section will get redone once more property tables exist  (probably iterations 4) prior to submitting for Committee Specification. For now placeholder section numbers will be used
 
 #### 3.2.n.m Type Name: ip_connection
 
@@ -451,6 +410,30 @@ Base Type: Record
 | 4 | dst_port | port | destination service per RFC TBSL |
 | 5 | protocol | l4_protocol | layer 4 protocol - see l4_protocol section |
 
+#### 3.2.n.m Type Name: ip_addr
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| ip_addr | String | IPv4 or IPv6 address or range in CIDR notatioan. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notatioan. I.e colon notation per RFC 5952 with optional CIDR prefix |
+
+Examples:
+ * "192.168.10.11" - a single ipv4 address distinguishable because of the dots
+ * "192.168.10.11/32" - a single ipv4 address in CIDR notation. 
+ * "192.168.0.0/16" - a range of 256 ipv4 addresses in CIDR notation
+ * "2001:db8::1"  - a single ipv6 address distinguishable because of the colons
+ * "2001:db8:aaaa:bbbb:cccc:dddd:0:1" - a single ipv6 address
+ * "2001:db8::0/120" - 256 ipv6 addresses
+
+Examples of INVALID ipv6_addr (since violates RFC 5952):
+ * "2001:DB8::1" - lower case MUST be used
+ * "2001:db8:0:0:1:0:0:1" - the :: notation MUST be used for zero compression when possible
+ * "2001:db8::1:1:1:1:1" - the :: notation MUST NOT be used when only one zero is present
+
+#### 3.2.n.m Type Name: port
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| port | String | Service Name or Transport Protocol Port Number, RFC 6335  |
 
 #### 3.2.n.m Type Name: l4_protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet.  Any IANA value, RFC 5237
@@ -462,6 +445,9 @@ Base Type: Enumerated
 | 1  | icmp | Internet Control Message Protocol - RFC 792 |
 | 6  | tcp  | Transmission Control Protocol - RFC 793 |
 | 17 | udp  | User Datagram Protocol - RFC 768 |
+
+> Editor's Note - This section be added to in future iterations prior to submitting for Committee Specification.
+
 
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
