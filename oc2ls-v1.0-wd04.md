@@ -297,6 +297,9 @@ Table 2-3 lists the valid command-options.
 |:---|:---|:---|
 | TBSL | TBSL | TBSL |
 
+### 2.2.6 Extensibility
+> Editor's Note - TBSL - This section will be include in a future iteration. 
+
 ## 2.3 OpenC2 Response
 The OpenC2 Response is a message sent from an entity as the result of a command. Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command. Response messages are solicited and correspond to a command.
 
