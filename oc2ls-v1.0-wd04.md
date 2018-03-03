@@ -473,6 +473,13 @@ Base Type: string
 |:---|:---|:---|
 | domain_name | string | per RFC 1034 |
 
+#### 3.2.0.7 Type Name: email_message
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| email_message | string | per RFC TBSL |
+
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
