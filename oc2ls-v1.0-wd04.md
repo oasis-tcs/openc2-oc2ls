@@ -466,14 +466,30 @@ Base Type: Record
 | 0 | **name** (optional) | string |   |
 | 1 | **path** (optional) | string |   |
 
-#### 3.2.0.6 Type Name: domain_name
+#### 3.2.0.6 Type Name: command_id
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| command_id | identifier | Uniquely identifies a particular command |
+
+> Editor's Note - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it’s type is defined.
+
+#### 3.2.0.7 Type Name: identifier
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a seqence number if a sequence of commands are being executed. |
+
+#### 3.2.0.8 Type Name: domain_name
 Base Type: string
 
 | Type Name | Type | Description |
 |:---|:---|:---|
 | domain_name | string | per RFC 1034 |
 
-#### 3.2.0.7 Type Name: email_message
+#### 3.2.0.9 Type Name: email_message
 Base Type: string
 
 | Type Name | Type | Description |
