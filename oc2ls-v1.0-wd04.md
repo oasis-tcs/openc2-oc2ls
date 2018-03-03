@@ -418,7 +418,16 @@ Base Type: Choice
 | 24 | **x509_certificate** | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 #### 3.2.1.4 Type Name: Actuator
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+Base Type: Choice
+
+| ID | Property Name | Type | Description |
+|:---|:---|:---|:---|
+| 1 | TBSL | TBSL | TBSL |
+| 2 | TBSL | TBSL | TBSL |
+
+> Editor's Note - The intent is to fill in this table with actuators as they are defined by the AP-SC. The AP-SC profiles will define the actuators and they will only be listed here. Once we have a lot of them (not an issue yet), we may figure out how to just put a reference here to a list maintained by the AP-SC.
+
+> Editor's Note - The intent is to for the actuators to be extensible. Ie if a vendor has a function that is not yet in an AP-SC profile, the extensibility would be used to add this new function.  The text to go here on how to do that is still under development
 
 #### 3.2.1.5 Type Name: Command-Options
 Base Type: Record
