@@ -446,7 +446,12 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | udp | User Datagram Protocol - RFC 768 |
 | 132 | sctp | Stream Control Transmission Protocol - RFC 4960 |
 
-> Editor's Note - TBSL - This section be added to  in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+#### 3.2.0.5 Type Name: domain_****name
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| domain_name | string | per RFC 1034 |
 
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
