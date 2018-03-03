@@ -137,13 +137,13 @@ RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
-{ "action": "contain",
-  "target": {
-    "user_account": {
-      "user_id": "fjbloggs",
-      "account_type": "windows-local"
+{   "action": "contain",
+    "target": {
+        "user_account": {
+            "user_id": "fjbloggs",
+            "account_type": "windows-local"
+        }
     }
-  }
 }
 ```
 
@@ -304,7 +304,11 @@ Table 2-3 lists the valid command-options.
 The OpenC2 Response is a message sent from an entity as the result of a command. Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command. Response messages are solicited and correspond to a command.
 
 ### 2.3.1 Response Structure
-> Editor's Note - TBSL - This section be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
+The following list summarizes the fields and subfields of an OpenC2 Response. OpenC2 Responses MUST contain an STATUS and MAY contain an STATUS_TEXT and/or RESULTS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the responses.
+
+* **STATUS** (required): An integer containing a numerical status code
+* **STATUS_TEXT** (optional): A free-form string containing human-readable description of the response status. The string can contain more detail than is represented by the status code, but does not affect the meaning of the response.
+* **RESULTS** (optional): Contains the data or extended status code that was requested from an OpenC2 Command. If not present, the status code is a sufficient response.
 
 # 3 OpenC2 Property Tables
 ## 3.1 Terminology
@@ -430,7 +434,37 @@ Base Type: Record
 > Editor's Note - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
 
 ### 3.2.2 OpenC2 Response
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+#### 3.2.2.1 Type Name: OpenC2Response
+Base Type: Record
+
+| ID | Property Name | Type | Description |
+|:---|:---|:---|:---|
+| 1 | **status **(required) | status-code |   |
+| 2 | **status_text **(optional) | string |   |
+| 3 | **results **(optional) | list of string |   |
+
+Example:
+
+```javascript
+{   "status": 200,
+    "status_text": "All endpoints successfully updated",
+    "results": ["wd-394", "sx-2497"]
+}
+```
+
+#### 3.2.2.2 Type Name: status-code
+Base Type: Enumerated
+
+| **Value** | **Description** |
+|:---|:---|
+| 102 | **Processing **- an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
+| 200 | **OK **- the request has succeeded. |
+| 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
+| 400 | **Bad Request** - the server cannot process the request due to something that is perceived to be a client error (e.g., malformed request syntax). |
+| 401 | **Unauthorized **- the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
+| 403 | **Forbidden **- the server understood the request but refuses to authorize it. |
+| 500 | **Server Error** - the server encountered an unexpected condition that prevented it from fulfilling the request. |
+| 501 | **Not Implemented** - the server does not support the functionality required to fulfill the request. |
 
 ## 3.3 Property Details
 > Editor's Note - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
