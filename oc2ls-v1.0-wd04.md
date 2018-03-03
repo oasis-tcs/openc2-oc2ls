@@ -95,7 +95,7 @@ The OpenC2 Language Specification defines a language used to compose messages fo
 The OpenC2 language defines two message types:
 
 1. **Command**: An instruction from one system,the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
-2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked. I.e. the OpenC2 Consumer response to the OpenC2 Producer.
+2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
 
 The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command options, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command-options provide additional precision.
 
@@ -194,7 +194,7 @@ The TARGET of an OpenC2 Command may include a set of targets of the same type, a
 
 The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on the TARGET. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. Actuator-options indicate how an action is to be done in the context of the actuator.
 
-Actuator is optional. One case where the Actuator is not specified is the case if  the transport provides the mutual authentication so the OpenC2 Producer and Consumer both know the Consumer is the Actuator. One example of this would be an https API with mutual authentication. Another  example may be a pub/sub such as OpenDXL.  Another case where the actuator is not specified is when ‘effects-based actions’ are being used such as across trust boundaries - ie the Producer says the effect desired (eg deny ip, mitigate domain, etc) but leaves it up to decision making in the OpenC2 Consumer to determine what actuator to use to achieve the desired effect.
+Actuator is optional. One case where the Actuator is not specified is the case if  the transport provides the mutual authentication so the OpenC2 Producer and Consumer both know the Consumer is the Actuator. One example of this would be an https API with mutual authentication. Another  example may be a pub/sub such as OpenDXL.  Another case where the actuator is not specified is when 'effects-based actions' are being used such as across trust boundaries - i.e., the Producer says the effect desired (e.g., deny ip, mitigate domain, etc.) but leaves it up to decision making in the OpenC2 Consumer to determine what actuator to use to achieve the desired effect.
 
 COMMAND-OPTIONS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
@@ -320,7 +320,7 @@ The syntax of valid OpenC2 messages is defined using the following datatypes:
 |:---|:---|
 | **Primitive Types** |   |
 | Binary | A sequence of octets or bytes. Serialized either as binary data or as a string using an encoding such as hex or base64. |
-| Boolean | A logical entity that can have two values: true and false. Serialized as either integer or keyword. |
+| Boolean | A logical entity that can have two values: `true` and `false`. Serialized as either integer or keyword. |
 | Date-Time | TBD, RFC XXXX |
 | Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. |
 | Number | A real number. Valid values include integers, rational numbers, and irrational numbers. Serialized as either binary data or a text string. |
@@ -489,12 +489,12 @@ Base Type: Record
 | 2 | src_port | port | source service per RFC TBSL |
 | 3 | dst_addr | ip_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
 | 4 | dst_port | port | destination service per RFC TBSL |
-| 5 | protocol | l4_protocol | layer 4 protocol (eg TCP) - see l4_protocol section |
+| 5 | protocol | l4_protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 #### 3.3.0.2 Type Name: ip_addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ip_addr | string | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation. I.e colon notation per RFC 5952 with optional CIDR prefix |
+| ip_addr | string | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -541,14 +541,14 @@ Base Type: string
 |:---|:---|:---|
 | command_id | identifier | Uniquely identifies a particular command |
 
-> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it’s type is defined.
+> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
 
 #### 3.3.0.7 Type Name: identifier
 Base Type: string
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a seqence number if a sequence of commands are being executed. |
+| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
 
 #### 3.3.0.8 Type Name: version
 Base Type: string
@@ -557,7 +557,7 @@ Base Type: string
 |:---|:---|:---|
 | version | string | TBSL |
 
-> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it’s type is defined.
+> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
 
 #### 3.3.0.9 Type Name: domain_name
 Base Type: string
@@ -609,7 +609,7 @@ The following individuals have participated in the creation of this specificatio
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
 # Appendix D. Examples
-> **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (eg one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
+> **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
 
 Example 1:
 
