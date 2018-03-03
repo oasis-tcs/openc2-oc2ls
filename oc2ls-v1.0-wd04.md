@@ -392,7 +392,19 @@ Base Type: Choice
 > Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
 #### 3.1.1.5 Type Name: Command-Options
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+Base Type: Record
+
+| ID | Property Name | Type | Description |
+|:---|:---|:---|:---|
+| 1 | start_time | date-time | The specific date/time to initiate the action  |
+| 2 | stop_time | date-time | The specific date/time to terminate the action |
+| 3 | duration | duration | The length of time for an action to be in effect |
+| 4 | response_requested | response-type | Indicate the type of response required for the action  |
+| 5 | command_id | string | Uniquely identifies a particular command |
+
+> Editor's Note - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
+
+> Editor's Note - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
 
 ### 3.1.2 OpenC2 Response
 > Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
