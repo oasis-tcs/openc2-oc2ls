@@ -342,10 +342,10 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **action **(required) | Action | The task or activity to be performed (i.e., the 'verb'). |
-| 2 | **target **(required) | Target | The object of the action. The action is performed on the target. |
-| 3 | **actuator **(optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
-| 4 | **command_options **(optional) | Command-Options | An object containing additional properties that apply to the command. |
+| 1 | **action** (required) | Action | The task or activity to be performed (i.e., the 'verb'). |
+| 2 | **target** (required) | Target | The object of the action. The action is performed on the target. |
+| 3 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
+| 4 | **command_options** (optional) | Command-Options | An object containing additional properties that apply to the command. |
 
 #### 3.2.1.2 Type Name: Action
 Base Type: Enumerated
