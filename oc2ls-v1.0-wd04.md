@@ -194,6 +194,8 @@ The TARGET of an OpenC2 Command may include a set of targets of the same type, a
 
 The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on the TARGET. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. Actuator-options indicate how an action is to be done in the context of the actuator.
 
+Actuator is optional. One case where the Actuator is not specified is the case if  the transport provides the mutual authentication so the OpenC2 Producer and Consumer both know the Consumer is the Actuator. One example of this would be an https API with mutual authentication. Another  example may be a pub/sub such as OpenDXL.  Another case where the actuator is not specified is when ‘effects-based actions’ are being used such as across trust boundaries - ie the Producer says the effect desired (eg deny ip, mitigate domain, etc) but leaves it up to decision making in the OpenC2 Consumer to determine what actuator to use to achieve the desired effect.
+
 COMMAND-OPTIONS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
 ### 2.2.2 Action Vocabulary
@@ -597,3 +599,14 @@ The following individuals have participated in the creation of this specificatio
 # Appendix C. Acronyms
 > Editor's Note - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
+# Appendix D. Examples
+> Editor's Note - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (eg one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
+
+Example 1:
+
+* Some TBSL OpenC2 Command in JSON
+* Some TBSL OpenC2 Response in JSON
+
+Example 2:
+
+* TBSL
