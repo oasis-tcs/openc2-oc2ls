@@ -439,9 +439,9 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **status **(required) | status-code |   |
-| 2 | **status_text **(optional) | string |   |
-| 3 | **results **(optional) | list of string |   |
+| 1 | **status** (required) | status-code |   |
+| 2 | **status_text** (optional) | string |   |
+| 3 | **results** (optional) | list of string |   |
 
 Example:
 
@@ -457,12 +457,12 @@ Base Type: Enumerated
 
 | **Value** | **Description** |
 |:---|:---|
-| 102 | **Processing **- an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
-| 200 | **OK **- the request has succeeded. |
+| 102 | **Processing** - an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
+| 200 | **OK** - the request has succeeded. |
 | 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
 | 400 | **Bad Request** - the server cannot process the request due to something that is perceived to be a client error (e.g., malformed request syntax). |
-| 401 | **Unauthorized **- the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
-| 403 | **Forbidden **- the server understood the request but refuses to authorize it. |
+| 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
+| 403 | **Forbidden** - the server understood the request but refuses to authorize it. |
 | 500 | **Server Error** - the server encountered an unexpected condition that prevented it from fulfilling the request. |
 | 501 | **Not Implemented** - the server does not support the functionality required to fulfill the request. |
 
