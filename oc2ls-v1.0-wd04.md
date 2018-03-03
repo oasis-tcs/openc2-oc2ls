@@ -81,7 +81,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 -------
 
-> **Editor's Note**: This document is NOT complete.
+> **Editor's Note** - This document is NOT complete.
 >
 > The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD).
 >
@@ -95,7 +95,7 @@ The OpenC2 Language Specification defines a language used to compose messages fo
 The OpenC2 language defines two message types:
 
 1. **Command**: An instruction from one system,the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
-2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked. I.e. the OpenC2 Consumer response to the OpenC2 Producer.
+2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
 
 The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command options, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command-options provide additional precision.
 
@@ -104,7 +104,7 @@ Additional detail regarding the TARGET and ACTUATOR may be included to increase 
 An OpenC2 Response is issued as a result of an OpenC2 command. OpenC2 responses are used to provide acknowledgement, status, results of command execution, or other information in conjunction with a particular command.
 
 ## 1.1 Goal
-> Editor's Note - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 ## 1.2 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
@@ -129,12 +129,12 @@ This Working Draft is being developed under the [Non-Assertion](https://www.oasi
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
 ## 1.5 Document Conventions
-> Editor's Note - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 ## 1.6 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 
-All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
+All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
 {   "action": "contain",
@@ -193,6 +193,8 @@ The following list summarizes the fields and subfields of an OpenC2 Command. Ope
 The TARGET of an OpenC2 Command may include a set of targets of the same type, a range of targets, or a particular target. Specifiers for TARGETs are optional and provide additional precision for the target.
 
 The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on the TARGET. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. Actuator-options indicate how an action is to be done in the context of the actuator.
+
+Actuator is optional. One case where the Actuator is not specified is the case if  the transport provides the mutual authentication so the OpenC2 Producer and Consumer both know the Consumer is the Actuator. One example of this would be an https API with mutual authentication. Another  example may be a pub/sub such as OpenDXL.  Another case where the actuator is not specified is when 'effects-based actions' are being used such as across trust boundaries - i.e., the Producer says the effect desired (e.g., deny ip, mitigate domain, etc.) but leaves it up to decision making in the OpenC2 Consumer to determine what actuator to use to achieve the desired effect.
 
 COMMAND-OPTIONS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
@@ -282,14 +284,14 @@ An ACTUATOR is an implementation of a cyber defense function that executes the A
 
 An Actuator Profile SHALL be composed in accordance with the framework in section 4.
 
-> Editor's Note - TBSL - More text be included in a future iteration (probably iteration 4) prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - More text be included in a future iteration (probably iteration 4) prior to submitting for Committee Specification.
 
 ### 2.2.5 Command-Option Vocabulary
 COMMAND-OPTIONS influence a command and are independent of the TARGET, ACTUATOR and ACTION itself. COMMAND-OPTIONS provide additional information to refine how the command is to be performed such as time, periodicity, or duration, or convey the need for status information such as a response is required. The requested status/information will be carried in a RESPONSE.
 
 Table 2-3 lists the valid command-options.
 
-> Editor's Note - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
 
 **Table 2-3. Summary of Command Options.**
 
@@ -298,7 +300,7 @@ Table 2-3 lists the valid command-options.
 | TBSL | TBSL | TBSL |
 
 ### 2.2.6 Extensibility
-> Editor's Note - TBSL - This section will be include in a future iteration. 
+> **Editor's Note** - TBSL - This section will be included in a future iteration. 
 
 ## 2.3 OpenC2 Response
 The OpenC2 Response is a message sent from an entity as the result of a command. Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command. Response messages are solicited and correspond to a command.
@@ -314,22 +316,22 @@ The following list summarizes the fields and subfields of an OpenC2 Response. Op
 ## 3.1 Terminology
 The syntax of valid OpenC2 messages is defined using the following datatypes:
 
-| **Type** | **Description** |
+| Type | Description |
 |:---|:---|
 | **Primitive Types** |   |
 | Binary | A sequence of octets or bytes. Serialized either as binary data or as a string using an encoding such as hex or base64. |
-| Boolean | A logical entity that can have two values: true, and false.  Serialized as either integer or keyword. |
+| Boolean | A logical entity that can have two values: `true` and `false`. Serialized as either integer or keyword. |
 | Date-Time | TBD, RFC XXXX |
-| Integer | A number that can be written without a fractional component.  Serialized either as binary data or a text string. |
-| Number | A real number.  Valid values include integers, rational numbers, and irrational numbers.  Serialized as either binary data or a text string. |
-| String | A sequence of characters.  Each character must have a valid Unicode codepoint. |
+| Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. |
+| Number | A real number. Valid values include integers, rational numbers, and irrational numbers. Serialized as either binary data or a text string. |
+| String | A sequence of characters. Each character must have a valid Unicode codepoint. |
 | **Structures** |   |
-| Array | An ordered list of unnamed fields.  Each field has an ordinal position and a type.  Serialized as a list. |
-| ArraryOf | An ordered list of unnamed fields of the same type.  Each field has an ordinal position and must be the specified type.  Serialized as a list. |
-| Choice | One field selected from a set of named fields.  The value has a name and a type. Serialized as a one-element map. |
-| Enumerated | A set of id:name pairs.  Serialized as either the integer id or the name string. |
-| Map | An unordered set of named fields.  Each field has a name and a type.  Serialized as a mapping type (referred to in various programming languages as: associative array, dict, dictionary, hash, map, object). |
-| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table.  Each field has an ordinal position, a name, and a type. Serialized as either a list or a map. |
+| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type.  Serialized as a list. |
+| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and must be the specified type. Serialized as a list. |
+| Choice | One field selected from a set of named fields. The value has a name and a type. Serialized as a one-element map. |
+| Enumerated | A set of id:name pairs. Serialized as either the integer id or the name string. |
+| Map | An unordered set of named fields. Each field has a name and a type.  Serialized as a mapping type (referred to in various programming languages as: associative array, dict, dictionary, hash, map, object). |
+| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, a name, and a type. Serialized as either a list or a map. |
 
 ## 3.2 OpenC2 Messages
 The following subsections provide the permitted values within an OpenC2 message.
@@ -350,7 +352,7 @@ Base Type: Record
 #### 3.2.1.2 Type Name: Action
 Base Type: Enumerated
 
-| ID | Element Name | Description |
+| ID | Property Name | Description |
 |:---|:---|:---|
 | 1 | **scan** | Systematic examination of some aspect of the entity or its environment in order to obtain information. |
 | 2 | **locate** | Find an object either physically, logically, functionally, or by organization. |
@@ -416,22 +418,31 @@ Base Type: Choice
 | 24 | **x509_certificate** | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 #### 3.2.1.4 Type Name: Actuator
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+Base Type: Choice
+
+| ID | Property Name | Type | Description |
+|:---|:---|:---|:---|
+| 1 | TBSL | TBSL | TBSL |
+| 2 | TBSL | TBSL | TBSL |
+
+> **Editor's Note** - The intent is to fill in this table with actuators as they are defined by the AP-SC. The AP-SC profiles will define the actuators and they will only be listed here. Once we have a lot of them (not an issue yet), we may figure out how to just put a reference here to a list maintained by the AP-SC.
+
+> **Editor's Note** - The intent is to for the actuators to be extensible. Ie if a vendor has a function that is not yet in an AP-SC profile, the extensibility would be used to add this new function.  The text to go here on how to do that is still under development
 
 #### 3.2.1.5 Type Name: Command-Options
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | start_time | date-time | The specific date/time to initiate the action  |
-| 2 | stop_time | date-time | The specific date/time to terminate the action |
-| 3 | duration | duration | The length of time for an action to be in effect |
-| 4 | response_requested | response-type | Indicate the type of response required for the action  |
-| 5 | command_id | string | Uniquely identifies a particular command |
+| 1 | **start_time** (optional) | date-time | The specific date/time to initiate the action  |
+| 2 | **stop_time** (optional) | date-time | The specific date/time to terminate the action |
+| 3 | **duration** (optional) | duration | The length of time for an action to be in effect |
+| 4 | **response_requested** (optional) | response-type | Indicate the type of response required for the action  |
+| 5 | **command_id** (optional) | string | Uniquely identifies a particular command |
 
-> Editor's Note - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
+> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
-> Editor's Note - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
+> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
 
 ### 3.2.2 OpenC2 Response
 #### 3.2.2.1 Type Name: OpenC2Response
@@ -439,9 +450,9 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **status **(required) | status-code |   |
-| 2 | **status_text **(optional) | string |   |
-| 3 | **results **(optional) | list of string |   |
+| 1 | **status** (required) | status-code |   |
+| 2 | **status_text** (optional) | string |   |
+| 3 | **results** (optional) | list of string |   |
 
 Example:
 
@@ -455,35 +466,35 @@ Example:
 #### 3.2.2.2 Type Name: status-code
 Base Type: Enumerated
 
-| **Value** | **Description** |
+| Value | Description |
 |:---|:---|
-| 102 | **Processing **- an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
-| 200 | **OK **- the request has succeeded. |
+| 102 | **Processing** - an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
+| 200 | **OK** - the request has succeeded. |
 | 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
 | 400 | **Bad Request** - the server cannot process the request due to something that is perceived to be a client error (e.g., malformed request syntax). |
-| 401 | **Unauthorized **- the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
-| 403 | **Forbidden **- the server understood the request but refuses to authorize it. |
+| 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
+| 403 | **Forbidden** - the server understood the request but refuses to authorize it. |
 | 500 | **Server Error** - the server encountered an unexpected condition that prevented it from fulfilling the request. |
 | 501 | **Not Implemented** - the server does not support the functionality required to fulfill the request. |
 
 ## 3.3 Property Details
-> Editor's Note - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
+> **Editor's Note** - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
 
 #### 3.3.0.1 Type Name: ip_connection
 Base Type: Record
 
-| ID | Element Name | Type | Description |
+| ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
 | 1 | src_addr | ip_addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
 | 2 | src_port | port | source service per RFC TBSL |
 | 3 | dst_addr | ip_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
 | 4 | dst_port | port | destination service per RFC TBSL |
-| 5 | protocol | l4_protocol | layer 4 protocol (eg TCP) - see l4_protocol section |
+| 5 | protocol | l4_protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 #### 3.3.0.2 Type Name: ip_addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ip_addr | string | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation. I.e colon notation per RFC 5952 with optional CIDR prefix |
+| ip_addr | string | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -508,7 +519,7 @@ Examples of invalid ipv6 (since violates RFC 5952):
 #### 3.3.0.4 Type Name: l4_protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
-| ID | Element Name | Description |
+| ID | Property Name | Description |
 |:---|:---|:---|
 | 1 | icmp | Internet Control Message Protocol - RFC 792 |
 | 6 | tcp | Transmission Control Protocol - RFC 793 |
@@ -518,7 +529,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 #### 3.3.0.5 Type Name: file
 Base Type: Record
 
-| ID | Element Name | Type | Description |
+| ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
 | 0 | **name** (optional) | string |   |
 | 1 | **path** (optional) | string |   |
@@ -530,14 +541,14 @@ Base Type: string
 |:---|:---|:---|
 | command_id | identifier | Uniquely identifies a particular command |
 
-> Editor's Note - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it’s type is defined.
+> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
 
 #### 3.3.0.7 Type Name: identifier
 Base Type: string
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a seqence number if a sequence of commands are being executed. |
+| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
 
 #### 3.3.0.8 Type Name: version
 Base Type: string
@@ -546,7 +557,7 @@ Base Type: string
 |:---|:---|:---|
 | version | string | TBSL |
 
-> Editor's Note - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it’s type is defined.
+> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
 
 #### 3.3.0.9 Type Name: domain_name
 Base Type: string
@@ -563,7 +574,7 @@ Base Type: string
 | email_message | string | per RFC TBSL |
 
 # 4 Foundational Actuator Profile
-> Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon. Conformant implementations of OpenC2:
@@ -575,14 +586,14 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
 * MAY implement actuator specifiers, actuator options, target specifiers and/or target options as specified in one or more Actuator Profiles.
 * MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
 
-> Editor's Note - TBSL - More conformance text will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - More conformance text will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 # Appendix A. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **Participants:**
 
-> Editor's Note - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
 # Appendix B. Revision History
 | Revision | Date | Editor | Changes Made |
@@ -595,5 +606,16 @@ The following individuals have participated in the creation of this specificatio
 | v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
 
 # Appendix C. Acronyms
-> Editor's Note - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
+> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
+# Appendix D. Examples
+> **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
+
+Example 1:
+
+* Some TBSL OpenC2 Command in JSON
+* Some TBSL OpenC2 Response in JSON
+
+Example 2:
+
+* TBSL
