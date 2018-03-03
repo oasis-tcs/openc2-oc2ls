@@ -458,7 +458,15 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | udp | User Datagram Protocol - RFC 768 |
 | 132 | sctp | Stream Control Transmission Protocol - RFC 4960 |
 
-#### 3.2.0.5 Type Name: domain_****name
+#### 3.2.0.5 Type Name: file
+Base Type: Record
+
+| ID | Element Name | Type | Description |
+|:---|:---|:---|:---|
+| 0 | **name** (optional) | string |   |
+| 1 | **path** (optional) | string |   |
+
+#### 3.2.0.6 Type Name: domain_name
 Base Type: string
 
 | Type Name | Type | Description |
