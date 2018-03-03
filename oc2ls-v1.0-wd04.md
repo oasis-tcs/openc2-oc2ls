@@ -137,13 +137,13 @@ RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 All type names, property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in type names and string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
-{ "action": "contain",
-  "target": {
-    "user_account": {
-      "user_id": "fjbloggs",
-      "account_type": "windows-local"
+{   "action": "contain",
+    "target": {
+        "user_account": {
+            "user_id": "fjbloggs",
+            "account_type": "windows-local"
+        }
     }
-  }
 }
 ```
 
@@ -297,30 +297,57 @@ Table 2-3 lists the valid command-options.
 |:---|:---|:---|
 | TBSL | TBSL | TBSL |
 
+### 2.2.6 Extensibility
+> Editor's Note - TBSL - This section will be include in a future iteration. 
+
 ## 2.3 OpenC2 Response
 The OpenC2 Response is a message sent from an entity as the result of a command. Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command. Response messages are solicited and correspond to a command.
 
 ### 2.3.1 Response Structure
-> Editor's Note - TBSL - This section be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
+The following list summarizes the fields and subfields of an OpenC2 Response. OpenC2 Responses MUST contain an STATUS and MAY contain an STATUS_TEXT and/or RESULTS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the responses.
+
+* **STATUS** (required): An integer containing a numerical status code
+* **STATUS_TEXT** (optional): A free-form string containing human-readable description of the response status. The string can contain more detail than is represented by the status code, but does not affect the meaning of the response.
+* **RESULTS** (optional): Contains the data or extended status code that was requested from an OpenC2 Command. If not present, the status code is a sufficient response.
 
 # 3 OpenC2 Property Tables
-## 3.1 OpenC2 Messages
+## 3.1 Terminology
+The syntax of valid OpenC2 messages is defined using the following datatypes:
+
+| **Type** | **Description** |
+|:---|:---|
+| **Primitive Types** |   |
+| Binary | A sequence of octets or bytes. Serialized either as binary data or as a string using an encoding such as hex or base64. |
+| Boolean | A logical entity that can have two values: true, and false.  Serialized as either integer or keyword. |
+| Date-Time | TBD, RFC XXXX |
+| Integer | A number that can be written without a fractional component.  Serialized either as binary data or a text string. |
+| Number | A real number.  Valid values include integers, rational numbers, and irrational numbers.  Serialized as either binary data or a text string. |
+| String | A sequence of characters.  Each character must have a valid Unicode codepoint. |
+| **Structures** |   |
+| Array | An ordered list of unnamed fields.  Each field has an ordinal position and a type.  Serialized as a list. |
+| ArraryOf | An ordered list of unnamed fields of the same type.  Each field has an ordinal position and must be the specified type.  Serialized as a list. |
+| Choice | One field selected from a set of named fields.  The value has a name and a type. Serialized as a one-element map. |
+| Enumerated | A set of id:name pairs.  Serialized as either the integer id or the name string. |
+| Map | An unordered set of named fields.  Each field has a name and a type.  Serialized as a mapping type (referred to in various programming languages as: associative array, dict, dictionary, hash, map, object). |
+| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table.  Each field has an ordinal position, a name, and a type. Serialized as either a list or a map. |
+
+## 3.2 OpenC2 Messages
 The following subsections provide the permitted values within an OpenC2 message.
 
-### 3.1.1 OpenC2 Command
+### 3.2.1 OpenC2 Command
 The OpenC2 Command describes an action performed on a target. It can be directive or descriptive depending on the context.
 
-#### 3.1.1.1 Type Name: OpenC2Command
+#### 3.2.1.1 Type Name: OpenC2Command
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **action **(required) | Action | The task or activity to be performed (i.e., the 'verb'). |
-| 2 | **target **(required) | Target | The object of the action. The action is performed on the target. |
-| 3 | **actuator **(optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
-| 4 | **command_options **(optional) | Command-Options | An object containing additional properties that apply to the command. |
+| 1 | **action** (required) | Action | The task or activity to be performed (i.e., the 'verb'). |
+| 2 | **target** (required) | Target | The object of the action. The action is performed on the target. |
+| 3 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
+| 4 | **command_options** (optional) | Command-Options | An object containing additional properties that apply to the command. |
 
-#### 3.1.1.2 Type Name: Action
+#### 3.2.1.2 Type Name: Action
 Base Type: Enumerated
 
 | ID | Element Name | Description |
@@ -358,7 +385,7 @@ Base Type: Enumerated
 | 31 | **mitigate** | Task the recipient to circumvent a problem without necessarily eliminating the vulnerability or attack point. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
-#### 3.1.1.3 Type Name: Target
+#### 3.2.1.3 Type Name: Target
 Base Type: Choice
 
 | ID | Property Name | Type | Description |
@@ -388,19 +415,61 @@ Base Type: Choice
 | 23 | **windows_registry_key** | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
 | 24 | **x509_certificate** | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
-#### 3.1.1.4 Type Name: Actuator
+#### 3.2.1.4 Type Name: Actuator
 > Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
 
-#### 3.1.1.5 Type Name: Command-Options
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+#### 3.2.1.5 Type Name: Command-Options
+Base Type: Record
 
-### 3.1.2 OpenC2 Response
-> Editor's Note - TBSL - This section be included in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+| ID | Property Name | Type | Description |
+|:---|:---|:---|:---|
+| 1 | start_time | date-time | The specific date/time to initiate the action  |
+| 2 | stop_time | date-time | The specific date/time to terminate the action |
+| 3 | duration | duration | The length of time for an action to be in effect |
+| 4 | response_requested | response-type | Indicate the type of response required for the action  |
+| 5 | command_id | string | Uniquely identifies a particular command |
 
-## 3.2 Property Details
+> Editor's Note - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
+
+> Editor's Note - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
+
+### 3.2.2 OpenC2 Response
+#### 3.2.2.1 Type Name: OpenC2Response
+Base Type: Record
+
+| ID | Property Name | Type | Description |
+|:---|:---|:---|:---|
+| 1 | **status **(required) | status-code |   |
+| 2 | **status_text **(optional) | string |   |
+| 3 | **results **(optional) | list of string |   |
+
+Example:
+
+```javascript
+{   "status": 200,
+    "status_text": "All endpoints successfully updated",
+    "results": ["wd-394", "sx-2497"]
+}
+```
+
+#### 3.2.2.2 Type Name: status-code
+Base Type: Enumerated
+
+| **Value** | **Description** |
+|:---|:---|
+| 102 | **Processing **- an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
+| 200 | **OK **- the request has succeeded. |
+| 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
+| 400 | **Bad Request** - the server cannot process the request due to something that is perceived to be a client error (e.g., malformed request syntax). |
+| 401 | **Unauthorized **- the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
+| 403 | **Forbidden **- the server understood the request but refuses to authorize it. |
+| 500 | **Server Error** - the server encountered an unexpected condition that prevented it from fulfilling the request. |
+| 501 | **Not Implemented** - the server does not support the functionality required to fulfill the request. |
+
+## 3.3 Property Details
 > Editor's Note - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
 
-#### 3.2.0.1 Type Name: ip_connection
+#### 3.3.0.1 Type Name: ip_connection
 Base Type: Record
 
 | ID | Element Name | Type | Description |
@@ -411,7 +480,7 @@ Base Type: Record
 | 4 | dst_port | port | destination service per RFC TBSL |
 | 5 | protocol | l4_protocol | layer 4 protocol (eg TCP) - see l4_protocol section |
 
-#### 3.2.0.2 Type Name: ip_addr
+#### 3.3.0.2 Type Name: ip_addr
 | Type Name | Type | Description |
 |:---|:---|:---|
 | ip_addr | string | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation. ie a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation. I.e colon notation per RFC 5952 with optional CIDR prefix |
@@ -431,12 +500,12 @@ Examples of invalid ipv6 (since violates RFC 5952):
 * "2001:db8:0:0:1:0:0:1" - the :: notation MUST be used for zero compression when possible
 * "2001:db8::1:1:1:1:1" - the :: notation MUST NOT be used when only one zero is present
 
-#### 3.2.0.3 Type Name: port
+#### 3.3.0.3 Type Name: port
 | Type Name | Type | Description |
 |:---|:---|:---|
 | port | string | Service Name or Transport Protocol Port Number, RFC 6335 |
 
-#### 3.2.0.4 Type Name: l4_protocol
+#### 3.3.0.4 Type Name: l4_protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
 | ID | Element Name | Description |
@@ -446,7 +515,52 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | udp | User Datagram Protocol - RFC 768 |
 | 132 | sctp | Stream Control Transmission Protocol - RFC 4960 |
 
-> Editor's Note - TBSL - This section be added to  in future iterations (probably iterations 3 & 4) prior to submitting for Committee Specification.
+#### 3.3.0.5 Type Name: file
+Base Type: Record
+
+| ID | Element Name | Type | Description |
+|:---|:---|:---|:---|
+| 0 | **name** (optional) | string |   |
+| 1 | **path** (optional) | string |   |
+
+#### 3.3.0.6 Type Name: command_id
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| command_id | identifier | Uniquely identifies a particular command |
+
+> Editor's Note - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it’s type is defined.
+
+#### 3.3.0.7 Type Name: identifier
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a seqence number if a sequence of commands are being executed. |
+
+#### 3.3.0.8 Type Name: version
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| version | string | TBSL |
+
+> Editor's Note - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it’s type is defined.
+
+#### 3.3.0.9 Type Name: domain_name
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| domain_name | string | per RFC 1034 |
+
+#### 3.3.0.10 Type Name: email_message
+Base Type: string
+
+| Type Name | Type | Description |
+|:---|:---|:---|
+| email_message | string | per RFC TBSL |
 
 # 4 Foundational Actuator Profile
 > Editor's Note - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
