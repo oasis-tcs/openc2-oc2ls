@@ -548,31 +548,44 @@ Base Type: Record
 | 0 | **name** (optional) | String |   |
 | 1 | **path** (optional) | String |   |
 
-#### 3.3.0.6 Type Name: Command-ID
+#### 3.3.0.6 Type Name: Response-Requested
+Base Type: Choice
+
+| ID | Name | Type | Description |
+|:---|:---|:---|:---|
+| 0 | None | TBSL | No response |
+| 1 | Ack | TBSL | Respond when command received |
+| 2 | Complete | TBSL | Respond when all aspects of command completed |
+| 3 | TBSL | TBSL | TBSL |
+| 4 | TBSL | TBSL | TBSL |
+
+> **Editor's Note** - Use cases are needed for the different types of responses needed.
+
+#### 3.3.0.7 Type Name: Command-ID
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Command-ID | Identifier | Uniquely identifies a particular command |
 
 > **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
 
-#### 3.3.0.7 Type Name: Identifier
+#### 3.3.0.8 Type Name: Identifier
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
 
-#### 3.3.0.8 Type Name: Version
+#### 3.3.0.9 Type Name: Version
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Version | String | TBSL |
 
 > **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
 
-#### 3.3.0.9 Type Name: Domain_Name
+#### 3.3.0.10 Type Name: Domain_Name
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Domain_Name | String | per RFC 1034 |
 
-#### 3.3.0.10 Type Name: Email_Message
+#### 3.3.0.11 Type Name: Email_Message
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Email_Message | String | per RFC TBSL |
