@@ -279,7 +279,7 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 | windows_registry_key | The Registry Key Object represents the properties of a Windows registry key. |
 | x509_certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
-> **Editor's Note** - There is agreement that targets be extensible. Ie if an implementor has a target that is not yet in the language, the extensibility would be used. Several alternatives are under considerations so the exact text to go here is still under development
+> **Editor's Note** - There is agreement that targets be extensible. That is, if an implementer has a target that is not yet in the language, the extensibility would be used. Several alternatives are under considerations so the exact text to go here is still under development.
 
 ### 2.2.4 Actuator
 An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional in the context of a particular ACTUATOR. An Actuator Profile also defines ACTUATOR-SPECIFIERS and ACTUATOR-OPTIONS that are meaningful and possibly unique to the actuator.
@@ -394,30 +394,30 @@ Base Type: Choice
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **artifact** | artifact | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | command | The Command Object represents a reference to a previously issued OpenC2 Command. |
-| 3 | **device** | device | The Device Object represents the properties of a hardware device. |
-| 4 | **directory** | directory | The Directory Object represents the properties common to a file system directory. |
-| 5 | **disk** | disk | The Disk Object represents a disk drive. |
-| 6 | **disk_partition** | disk-partition | The Disk Partition Object represents a single partition of a disk drive. |
-| 7 | **domain_name** | domain-name | The Domain Name represents the properties of a network domain name. |
-| 8 | **email_addr** | email-addr | The Email Address Object represents a single email address. |
-| 9 | **email_message** | email-message | The Email Message Object represents an instance of an email message, corresponding to the internet message format described in RFC 5322 and related RFCs. |
-| 10 | **file** | file | The File Object represents the properties of a file. |
-| 11 | **ipv4_addr** | ipv4-addr | The IPv4 Address Object represents one or more IPv4 addresses expressed using CIDR notation. |
-| 12 | **ipv6_addr** | ipv6-addr | The IPv6 Address Object represents one or more IPv6 addresses expressed using CIDR notation. |
-| 13 | **mac_addr** | mac-addr | The MAC Address Object represents a single Media Access Control (MAC) address. |
-| 14 | **memory** | memory | The Memory Object represents memory objects. |
-| 15 | **ip_connection** | ip-connection | The IP Connection Object represents a network connection that originates from a source and is addressed to a destination. |
-| 16 | **openc2** | openc2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
-| 17 | **process** | process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
-| 18 | **software** | software | The Software Object represents high-level properties associated with software, including software products. |
-| 19 | **url** | url | The URL Object represents the properties of a uniform resource locator (URL). |
-| 20 | **user_account** | user-account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
-| 21 | **user_session** | user-session | The User Session Object represents a user session. |
-| 22 | **volume** | volume | The Volume Object represents a generic drive volume. |
-| 23 | **windows_registry_key** | windows-registry-key | The Registry Key Object represents the properties of a Windows registry key. |
-| 24 | **x509_certificate** | x509-certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
+| 1 | **artifact** | Artifact | An array of bytes representing a file-like object or a link to that object. |
+| 2 | **command** | Command | The Command Object represents a reference to a previously issued OpenC2 Command. |
+| 3 | **device** | Device | The Device Object represents the properties of a hardware device. |
+| 4 | **directory** | Directory | The Directory Object represents the properties common to a file system directory. |
+| 5 | **disk** | Disk | The Disk Object represents a disk drive. |
+| 6 | **disk_partition** | Disk-Partition | The Disk Partition Object represents a single partition of a disk drive. |
+| 7 | **domain_name** | Domain-Name | The Domain Name represents the properties of a network domain name. |
+| 8 | **email_addr** | Email-Addr | The Email Address Object represents a single email address. |
+| 9 | **email_message** | Email-Message | The Email Message Object represents an instance of an email message, corresponding to the internet message format described in RFC 5322 and related RFCs. |
+| 10 | **file** | File | The File Object represents the properties of a file. |
+| 11 | **ipv4_addr** | IPv4-Addr | The IPv4 Address Object represents one or more IPv4 addresses expressed using CIDR notation. |
+| 12 | **ipv6_addr** | IPv6-Addr | The IPv6 Address Object represents one or more IPv6 addresses expressed using CIDR notation. |
+| 13 | **mac_addr** | Mac-Addr | The MAC Address Object represents a single Media Access Control (MAC) address. |
+| 14 | **memory** | Memory | The Memory Object represents memory objects. |
+| 15 | **ip_connection** | IP-Connection | The IP Connection Object represents a network connection that originates from a source and is addressed to a destination. |
+| 16 | **openc2** | OpenC2 | The OpenC2 object is the summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
+| 17 | **process** | Process | The Process Object represents common properties of an instance of a computer program as executed on an operating system. |
+| 18 | **software** | Software | The Software Object represents high-level properties associated with software, including software products. |
+| 19 | **url** | Url | The URL Object represents the properties of a uniform resource locator (URL). |
+| 20 | **user_account** | User-Account | The User Account Object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
+| 21 | **user_session** | User-Session | The User Session Object represents a user session. |
+| 22 | **volume** | Volume | The Volume Object represents a generic drive volume. |
+| 23 | **windows_registry_key** | Windows-Registry-Key | The Registry Key Object represents the properties of a Windows registry key. |
+| 24 | **x509_certificate** | X509-Certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
 #### 3.2.1.4 Type Name: Actuator
 Base Type: Choice
@@ -436,11 +436,11 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **start_time** (optional) | date-time | The specific date/time to initiate the action  |
-| 2 | **stop_time** (optional) | date-time | The specific date/time to terminate the action |
-| 3 | **duration** (optional) | duration | The length of time for an action to be in effect |
-| 4 | **response_requested** (optional) | response-type | Indicate the type of response required for the action  |
-| 5 | **command_id** (optional) | string | Uniquely identifies a particular command |
+| 1 | **start_time** (optional) | Date-Time | The specific date/time to initiate the action  |
+| 2 | **stop_time** (optional) | Date-Time | The specific date/time to terminate the action |
+| 3 | **duration** (optional) | Duration | The length of time for an action to be in effect |
+| 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
+| 5 | **command_id** (optional) | Command-ID | Uniquely identifies a particular command |
 
 > **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
@@ -452,9 +452,9 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **status** (required) | status-code |   |
-| 2 | **status_text** (optional) | string |   |
-| 3 | **results** (optional) | list of string |   |
+| 1 | **status** (required) | Status-Code |   |
+| 2 | **status_text** (optional) | String |   |
+| 3 | **results** (optional) | ArrayOf Strings |   |
 
 Example:
 
@@ -465,7 +465,7 @@ Example:
 }
 ```
 
-#### 3.2.2.2 Type Name: status-code
+#### 3.2.2.2 Type Name: Status-Code
 Base Type: Enumerated
 
 | Value | Description |
@@ -482,21 +482,21 @@ Base Type: Enumerated
 ## 3.3 Property Details
 > **Editor's Note** - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
 
-#### 3.3.0.1 Type Name: ip_connection
+#### 3.3.0.1 Type Name: IP_Connection
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | src_addr | ip_addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
-| 2 | src_port | port | source service per RFC TBSL |
-| 3 | dst_addr | ip_addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
-| 4 | dst_port | port | destination service per RFC TBSL |
-| 5 | protocol | l4_protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
+| 1 | src_addr | IP_Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 2 | src_port | Port | source service per RFC TBSL |
+| 3 | dst_addr | IP_Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 4 | dst_port | Port | destination service per RFC TBSL |
+| 5 | protocol | L4_Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-#### 3.3.0.2 Type Name: ip_addr
+#### 3.3.0.2 Type Name: IP_Addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| ip_addr | string | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
+| IP_Addr | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -513,12 +513,12 @@ Examples of invalid ipv6 (since violates RFC 5952):
 * "2001:db8:0:0:1:0:0:1" - the :: notation MUST be used for zero compression when possible
 * "2001:db8::1:1:1:1:1" - the :: notation MUST NOT be used when only one zero is present
 
-#### 3.3.0.3 Type Name: port
+#### 3.3.0.3 Type Name: Port
 | Type Name | Type | Description |
 |:---|:---|:---|
-| port | string | Service Name or Transport Protocol Port Number, RFC 6335 |
+| Port | String | Service Name or Transport Protocol Port Number, RFC 6335 |
 
-#### 3.3.0.4 Type Name: l4_protocol
+#### 3.3.0.4 Type Name: L4_Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
 | ID | Property Name | Description |
@@ -528,52 +528,52 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | udp | User Datagram Protocol - RFC 768 |
 | 132 | sctp | Stream Control Transmission Protocol - RFC 4960 |
 
-#### 3.3.0.5 Type Name: file
+#### 3.3.0.5 Type Name: File
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 0 | **name** (optional) | string |   |
-| 1 | **path** (optional) | string |   |
+| 0 | **name** (optional) | String |   |
+| 1 | **path** (optional) | String |   |
 
-#### 3.3.0.6 Type Name: command_id
-Base Type: string
+#### 3.3.0.6 Type Name: Command-ID
+				 
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| command_id | identifier | Uniquely identifies a particular command |
+| Command-ID | Identifier | Uniquely identifies a particular command |
 
 > **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
 
-#### 3.3.0.7 Type Name: identifier
-Base Type: string
+#### 3.3.0.7 Type Name: Identifier
+				 
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
+| Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
 
-#### 3.3.0.8 Type Name: version
-Base Type: string
+#### 3.3.0.8 Type Name: Version
+				 
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| version | string | TBSL |
+| Version | String | TBSL |
 
 > **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
 
-#### 3.3.0.9 Type Name: domain_name
-Base Type: string
+#### 3.3.0.9 Type Name: Domain_Name
+				 
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| domain_name | string | per RFC 1034 |
+| Domain_Name | String | per RFC 1034 |
 
-#### 3.3.0.10 Type Name: email_message
-Base Type: string
+#### 3.3.0.10 Type Name: Email_Message
+				 
 
 | Type Name | Type | Description |
 |:---|:---|:---|
-| email_message | string | per RFC TBSL |
+| Email_Message | String | per RFC TBSL |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
