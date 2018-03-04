@@ -361,6 +361,8 @@ Base Type: Record
 | 3 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
 | 4 | **command_options** (optional) | Command-Options | An object containing additional properties that apply to the command. |
 
+> **Editor's Note** - In a future working draft, we may reformat these tables to include a cardinality column instead of the required/optional tags on the property names.
+
 #### 3.2.1.2 Type Name: Action
 Base Type: Enumerated
 
