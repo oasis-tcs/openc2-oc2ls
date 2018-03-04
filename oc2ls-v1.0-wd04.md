@@ -279,6 +279,8 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 | windows_registry_key | The Registry Key Object represents the properties of a Windows registry key. |
 | x509_certificate | The X509 Certificate Object represents the properties of an X.509 certificate, as defined by ITU recommendation X.509. |
 
+> **Editor's Note** - There is agreement that targets be extensible. Ie if an implementor has a target that is not yet in the language, the extensibility would be used. Several alternatives are under considerations so the exact text to go here is still under development
+
 ### 2.2.4 Actuator
 An ACTUATOR is an implementation of a cyber defense function that executes the ACTION on the TARGET. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional in the context of a particular ACTUATOR. An Actuator Profile also defines ACTUATOR-SPECIFIERS and ACTUATOR-OPTIONS that are meaningful and possibly unique to the actuator.
 
