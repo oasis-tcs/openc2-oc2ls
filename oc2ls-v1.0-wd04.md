@@ -213,41 +213,41 @@ This section defines the set of OpenC2 actions grouped by their general activity
 | Action | Description |
 |:---|:---|
 |   | **Actions that Control Information** |
-| scan | The scan action is the systematic examination of some aspect of the entity or its environment in order to obtain information. |
-| locate | The locate action is used to find an object either physically, logically, functionally, or by organization. |
-| query | The query action initiates a request for information. |
-| report | The report action tasks an entity to provide information to a designated recipient of the information. |
-| notify | The notify action is used to set an entity's alerting preferences. |
+| scan | Systematic examination of some aspect of the entity or its environment in order to obtain information. |
+| locate | Find an object either physically, logically, functionally, or by organization. |
+| query | Initiate a request for information. |
+| report | Task an entity to provide information to a designated recipient of the information. |
+| notify | Set an entity's alerting preferences. |
 |   | **Actions that Control Access** |
 | deny | The deny action is used to prevent a certain event or action from completion, such as preventing a flow from reaching a destination (e.g., block) or preventing access. |
-| contain | The contain action stipulates the isolation of a file, process, or entity such that it cannot modify or access assets or processes that support the business and/or operations of the enclave. |
-| allow | The allow action permits the access to or execution of a target. |
+| contain | Isolate a file, process, or entity such that it cannot modify or access assets or processes. |
+| allow | Permit access to or execution of a target. |
 |   | **Actions that Control Activities/Devices** |
-| start | The start action initiates a process, application, system, or some other activity. |
-| stop | The stop action halts a system or ends an activity. |
-| restart | The restart action conducts a stop of a system or an activity followed by a start of a system or an activity. |
-| pause | The pause action ceases a system or activity while maintaining state. |
-| resume | The resume action starts a system or activity from a paused state. |
-| cancel | The cancel action invalidates a previously issued action. |
-| set | The set action changes a value, configuration, or state of a managed entity within an IT system. |
-| update | The update action instructs the component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
-| move | The move action changes the location of a file, subnet, or process. |
-| redirect | The redirect action changes the flow to a particular destination other than its original intended destination. |
+| start | Initiate a process, application, system, or some other activity. |
+| stop | Halt a system or ends an activity. |
+| restart | Stop then start a system or an activity. |
+| pause | Cease a system or activity while maintaining state. |
+| resume | Start a system or activity from a paused state. |
+| cancel | Invalidate a previously issued action. |
+| set | Change a value, configuration, or state of a managed entity within an IT system. |
+| update | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
+| move | Change the location of a file, subnet, network, or process. |
+| redirect | Change the flow to a particular destination other than its original intended destination. |
 | create | The create action adds a new entity of a known type (e.g., data, files, directories). |
-| delete | The delete action removes an entity of a known type (e.g., data, files, flows). |
-| snapshot | The snapshot action captures the state of a target at an instant in time. |
-| detonate | The detonate action executes and observes the behavior of a target (e.g., file, hyperlink) in a manner that is isolated from assets that support the business or operations of the enclave. |
-| restore | The restore action returns to an identical or similar known state. |
-| save | The save action commits data or system state to memory. |
-| throttle | The throttle action adjusts the rate of a process, function, or activity. |
-| delay | The delay action stops or holds up an activity or data transmittal. |
-| substitute | The substitute action replaces all or part of the data, content, or payload. |
-| copy | The copy action duplicates a file or data flow. |
-| sync | The sync action synchronizes an actuator with other system components. |
+| delete | Remove an entity (e.g., data, files, flows). |
+| snapshot | Record and store the state of a target at an instant in time. |
+| detonate | Execute and observe the behavior of a target (e.g., file, hyperlink) in an isolated environment. |
+| restore | Return a system to a previously known state. |
+| save | Commit data or system state to memory. |
+| throttle | Adjust the rate of a process, function, or activity. |
+| delay | Stop or hold up an activity or data transmittal. |
+| substitute | Replace all or part of the data, content, or payload. |
+| copy | Duplicate a file or data flow. |
+| sync | Synchronize a sensor or actuator with other system components. |
 |   | **Effects-Based Actions** |
-| investigate | The investigate action tasks the recipient to aggregate and report information as it pertains to a security event or incident. |
-| mitigate | The mitigate action tasks the recipient to circumvent the problem without necessarily eliminating the vulnerability or attack point. |
-| remediate | The remediate action tasks the recipient to eliminate the vulnerability or attack point. |
+| investigate | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
+| mitigate | Task the recipient to circumvent a problem without necessarily eliminating the vulnerability or attack point. |
+| remediate | Task the recipient to eliminate a vulnerability or attack point. |
 
 ### 2.2.3 Target Vocabulary
 The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET). The baseline set of TARGETs is summarized in Table 2-2 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
@@ -258,7 +258,7 @@ The TARGET is the object of the ACTION (or alternatively, the ACTION is performe
 
 | Target | Description |
 |:---|:---|
-| artifact | The Artifact Object permits capturing an array of bytes (8-bits), as a base64-encoded string or linking to a file-like payload. |
+| artifact | An array of bytes representing a file-like object or a link to that object. |
 | command | The Command Object represents a reference to a previously issued OpenC2 Command. |
 | device | The Device Object represents the properties of a hardware or virtual device. |
 | directory | The Directory Object represents the properties common to a file system directory. |
@@ -464,9 +464,9 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **status** (required) | Status-Code |   |
-| 2 | **status_text** (optional) | String |   |
-| 3 | **results** (optional) | ArrayOf Strings |   |
+| 1 | **status** (required) | Status-Code | An integer containing a numerical status code |
+| 2 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
+| 3 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
 
 Example:
 
