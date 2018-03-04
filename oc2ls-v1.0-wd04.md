@@ -206,6 +206,8 @@ This section defines the set of OpenC2 actions grouped by their general activity
 * _Actions that Control Activities/Devices_: These actions are used to control the state or the activity of a system, a process, a connection, a host, or a device. The actions are used to execute tasks, adjust configurations, set and update parameters, and modify attributes.
 * _Effects-Based Actions_: Effects-based actions are at a higher level of abstraction for purposes of communicating a desired impact rather than a command to execute specific tasks. This level of abstraction enables coordinated actions between enclaves, while permitting a local enclave to optimize its workflow for its specific environment. Effects-based action assumes that the recipient enclave has a decision-making capability because effects-based actions typically do not have a one-to-one mapping to the other actions.
 
+> **Editor's Note** - This table is largely duplicated in Section 3. The editors plan to defer comments about duplication of tables between Sections 2 and 3 until after enough of the spec is complete to see how to correctly organize it.
+
 **Table 2-1. Summary of Action Definitions**
 
 | Action | Description |
@@ -250,6 +252,8 @@ This section defines the set of OpenC2 actions grouped by their general activity
 ### 2.2.3 Target Vocabulary
 The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET). The baseline set of TARGETs is summarized in Table 2-2 and a full description of the targets and their associated specifiers is documented in the property tables (TBSL).
 
+> **Editor's Note** - This table is largely duplicated in Section 3. The editors plan to defer comments about duplication of tables between Sections 2 and 3 until after enough of the spec is complete to see how to correctly organize it.
+
 **Table 2-2. Summary of Targets.**
 
 | Target | Description |
@@ -293,13 +297,19 @@ COMMAND-OPTIONS influence a command and are independent of the TARGET, ACTUATOR 
 
 Table 2-3 lists the valid command-options.
 
-> **Editor's Note** - TBSL - This table be included in a future iteration (probably iteration 3) prior to submitting for Committee Specification.
+> **Editor's Note** - This table is largely duplicated in Section 3. The editors plan to defer comments about duplication of tables between Sections 2 and 3 until after enough of the spec is complete to see how to correctly organize it.
 
 **Table 2-3. Summary of Command Options.**
 
-| Command Option | Type | Description |
-|:---|:---|:---|
-| TBSL | TBSL | TBSL |
+| Command Option | Description |
+|:---|:---|
+| start_time | The specific date/time to initiate the action |
+| stop_time | The specific date/time to terminate the action |
+| duration | The length of time for an action to be in effect |
+| response_requested | Indicate the type of response required for the action |
+| command_id | Uniquely identifies a particular command |
+
+> **Editor's Note** - `command_id` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
 ### 2.2.6 Extensibility
 > **Editor's Note** - TBSL - This section will be included in a future iteration. 
@@ -442,9 +452,9 @@ Base Type: Record
 | 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
 | 5 | **command_id** (optional) | Command-ID | Uniquely identifies a particular command |
 
-> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
+> **Editor's Note** - `command_id` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
-> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
+> **Editor's Note** - `version` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
 
 ### 3.2.2 OpenC2 Response
 #### 3.2.2.1 Type Name: OpenC2Response
@@ -537,8 +547,6 @@ Base Type: Record
 | 1 | **path** (optional) | String |   |
 
 #### 3.3.0.6 Type Name: Command-ID
-				 
-
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Command-ID | Identifier | Uniquely identifies a particular command |
@@ -546,15 +554,11 @@ Base Type: Record
 > **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
 
 #### 3.3.0.7 Type Name: Identifier
-				 
-
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
 
 #### 3.3.0.8 Type Name: Version
-				 
-
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Version | String | TBSL |
@@ -562,15 +566,11 @@ Base Type: Record
 > **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
 
 #### 3.3.0.9 Type Name: Domain_Name
-				 
-
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Domain_Name | String | per RFC 1034 |
 
 #### 3.3.0.10 Type Name: Email_Message
-				 
-
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Email_Message | String | per RFC TBSL |
