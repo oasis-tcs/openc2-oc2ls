@@ -3,8 +3,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 04
-## 02 March 2018
+## Working Draft 05-wip
+## 12 March 2018
 **Specification URIs**
 
 **This version:**
@@ -16,9 +16,9 @@
 
 **Previous Version:**
 
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd01.pdf (Authoritative)
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd01.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd01.docx
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd02.pdf (Authoritative)
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd02.html
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/oc2ls-v1.0-csd02.docx
 
 **Technical Committee:**
 
@@ -621,6 +621,7 @@ The following individuals have participated in the creation of this specificatio
 | v1.0-wd03 |   | Romano, Sparrell | wd02 review comments |
 | v1.0-csd02 |   | Romano, Sparrell | approved wd03 |
 | v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
+| v1.0-wd05 | 0x/xx/2018 | Romano, Sparrell | wd04 review comments |
 
 # Appendix C. Acronyms
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
