@@ -308,8 +308,40 @@ Table 2-3 lists the valid command-options.
 | duration | The length of time for an action to be in effect |
 | response_requested | Indicate the type of response required for the action |
 
-### 2.2.6 Extensibility
-> **Editor's Note** - TBSL - This section will be included in a future iteration. 
+### 2.2.6 Imported Data
+> **Editor's Note** - This section was previously titled "Extensibility". 
+
+In addition to the targets, actuators, and other language elements defined in this specification, OpenC2 messages may contain data objects imported from other specifications.  The details are specified in a data profile which contains:
+
+1. a prefix indication the origin of the imported data object such as:
+    1. `ap-` (actuator profile)
+    2. `ip-` (implementation profile)
+    3. `vp-` (vendor specification)
+    4. `fs-` (external specification)
+2. a unique name for the specification being imported, e.g., /docs.oasis-open.org/kmip/spec/v1.4/kmip-spec-v1.4
+3. a namespace identifier - a short reference to the specification, e.g. `kmip_1.4`
+4. a list of object identifiers imported from that specification, e.g., Credential
+5. a definition of each imported object, either referenced or contained in the profile
+6. conformance requirements for implementations supporting the profile
+
+The data profile itself can be the specification being imported, or the data profile can reference an existing specification.
+
+A data profile can define imported objects using an abstract syntax, or it can reference content as defined in the specification being imported.
+
+An imported object is identified by namespace and object ids:
+
+```
+"target": {
+    "fs-kmip_1.4": {
+        "Credential": {
+            "uid_pwd": {
+                "Username": "johndoe",
+                "Password": "MyBigS3cret"
+            }
+        }
+    }
+}
+```
 
 ## 2.3 OpenC2 Response
 The OpenC2 Response is a message sent from an entity as the result of a command. Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command. Response messages are solicited and correspond to a command.
