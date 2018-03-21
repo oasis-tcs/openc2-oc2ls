@@ -384,7 +384,7 @@ Base Type: Enumerated
 | 16 | **update** | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
 | 17 | **move** | Change the location of a file, subnet, network, or process. |
 | 18 | **redirect** | Change the flow to a particular destination other than its original intended destination. |
-| 19 | **create** | The create action adds a new entity of a known type (e.g., data, files, directories). |
+| 19 | **create** | Add a new entity of a known type (e.g., data, files, directories). |
 | 20 | **delete** | Remove an entity (e.g., data, files, flows). |
 | 21 | **snapshot** | Record and store the state of a target at an instant in time. |
 | 22 | **detonate** | Execute and observe the behavior of a target (e.g., file, hyperlink) in an isolated environment. |
@@ -451,7 +451,7 @@ Base Type: Record
 | 3 | **duration** (optional) | Duration | The length of time for an action to be in effect |
 | 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
 
-> **Editor's Note** - `version` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
+> **Editor's Note** - `version` is agreed to be needed. It is still being deliberated where and how the OpenC2 Message will be documented. It may be documented in this Language Specification or within another standalone specification developed by the Implementation Considerations Subcommittee.
 
 ### 3.2.2 OpenC2 Response
 #### 3.2.2.1 Type Name: OpenC2-Response
@@ -462,14 +462,16 @@ Base Type: Record
 | 1 | **id** (required) | Command-ID | Id of the command that induced this response |
 | 2 | **status** (required) | Status-Code | An integer containing a numerical status code |
 | 3 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
-| 4 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
+| 4 | **results** (optional) | Results | Contains the data or extended status information that was requested from an OpenC2 Command |
 
 Example:
 
 ```javascript
 {   "status": 200,
     "status_text": "All endpoints successfully updated",
-    "results": ["wd-394", "sx-2497"]
+    "results": {
+        "strings": ["wd-394", "sx-2497"]
+    }
 }
 ```
 
@@ -510,7 +512,7 @@ Examples:
 
 * "192.168.10.11" - a single ipv4 address distinguishable because of the dots
 * "192.168.10.11/32" - a single ipv4 address in CIDR notation
-* "192.168.0.0/16" - a range of 256 ipv4 addresses in CIDR notation
+* "192.168.0.0/16" - a range of 65,536 ipv4 addresses in CIDR notation
 * "2001:db8::1" - a single ipv6 address distinguishable because of the colons
 * "2001:db8:aaaa:bbbb:cccc:dddd:0:1" - single ipv6 address
 * "2001:db8::0/120" - 256 ipv6 addresses
