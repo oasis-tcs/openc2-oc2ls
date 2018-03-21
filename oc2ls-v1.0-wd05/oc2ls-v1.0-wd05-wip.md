@@ -94,8 +94,8 @@ The OpenC2 Language Specification defines a language used to compose messages fo
 
 The OpenC2 language defines two message types:
 
-1. **Command**: An instruction from one system,the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
-2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
+1. **Command**: An instruction from one system known as the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
+2. **Response**: Any information captured or necessary to send back to the OpenC2 Producer  system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
 
 The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command options, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command-options provide additional precision.
 
@@ -233,7 +233,7 @@ This section defines the set of OpenC2 actions grouped by their general activity
 | update | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
 | move | Change the location of a file, subnet, network, or process. |
 | redirect | Change the flow to a particular destination other than its original intended destination. |
-| create | The create action adds a new entity of a known type (e.g., data, files, directories). |
+| create | Add a new entity of a known type (e.g., data, files, directories). |
 | delete | Remove an entity (e.g., data, files, flows). |
 | snapshot | Record and store the state of a target at an instant in time. |
 | detonate | Execute and observe the behavior of a target (e.g., file, hyperlink) in an isolated environment. |
