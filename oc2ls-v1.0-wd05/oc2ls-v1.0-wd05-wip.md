@@ -666,9 +666,24 @@ The following individuals have participated in the creation of this specificatio
 
 Example 1:
 
-* Some TBSL OpenC2 Command in JSON
-* Some TBSL OpenC2 Response in JSON
+> **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `command`. The `command` shows the recently relocated command ID field. The structure of the `options` is still being deliberated.
 
-Example 2:
+```
+{   "header": {
+        "version": "1.0",
+        "timestamp": "2018-01-30T18:25:43.511Z"
+    },
+    "command": {
+        "id": "CMD1234",
+        "action": "redirect",
+        "target": {
+            "url": {
+                "value": "[http://evil.com](http://evil.com)"
+        },
+        "options": {
+            "destination": "http://newdest.com/home"
+        }
+    }
+}
+```
 
-* TBSL
