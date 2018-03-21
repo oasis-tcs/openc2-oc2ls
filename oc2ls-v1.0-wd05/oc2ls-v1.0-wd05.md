@@ -648,14 +648,12 @@ Base Type: Map
 | **sha1** (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
 | **sha256** (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
 
-**3.3.0.14 Type Name: Hostname**
-
+#### 3.3.0.14 Type Name: Hostname
 | Type Name | Type | Description |
 |:---|:---|:---|
 |  Hostname | String | A legal Internet host name as specified in RFC 1123 |
 
-**3.3.0.15 Type Name: Device**
-
+#### 3.3.0.15 Type Name: Device
 Base Type: Map
 
 | Property Name | Type | Description |
