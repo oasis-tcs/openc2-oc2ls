@@ -134,7 +134,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 1.6 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 
-All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
+All words in type names are capitalized.  All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
 {   "action": "contain",
@@ -494,21 +494,21 @@ Base Type: Enumerated
 ## 3.3 Property Details
 > **Editor's Note** - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
 
-#### 3.3.0.1 Type Name: IP_Connection
+#### 3.3.0.1 Type Name: IP-Connection
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | src_addr | IP_Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 1 | src_addr | IP-Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
 | 2 | src_port | Port | source service per RFC TBSL |
-| 3 | dst_addr | IP_Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 3 | dst_addr | IP-Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
 | 4 | dst_port | Port | destination service per RFC TBSL |
-| 5 | protocol | L4_Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
+| 5 | protocol | L4-Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-#### 3.3.0.2 Type Name: IP_Addr
+#### 3.3.0.2 Type Name: IP-Addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| IP_Addr | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
+| IP-Addr | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -530,7 +530,7 @@ Examples of invalid ipv6 (since violates RFC 5952):
 |:---|:---|:---|
 | Port | String | Service Name or Transport Protocol Port Number, RFC 6335 |
 
-#### 3.3.0.4 Type Name: L4_Protocol
+#### 3.3.0.4 Type Name: L4-Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
 | ID | Property Name | Description |
@@ -580,15 +580,15 @@ Base Type: Choice
 
 > **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
 
-#### 3.3.0.10 Type Name: Domain_Name
+#### 3.3.0.10 Type Name: Domain-Name
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Domain_Name | String | per RFC 1034 |
+| Domain-Name | String | per RFC 1034 |
 
-#### 3.3.0.11 Type Name: Email_Message
+#### 3.3.0.11 Type Name: Email-Message
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Email_Message | String | per RFC TBSL |
+| Email-Message | String | per RFC TBSL |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
