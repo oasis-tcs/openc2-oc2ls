@@ -628,9 +628,10 @@ Base Type: Map
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
 # 5 Conformance
-OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon. Conformant implementations of OpenC2:
+OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  The tables in Section 3 of this document specify the normative rules for determining if an OpenC2 message (command or response) is syntactically valid.  All examples in this document are informative; in case of conflict between the tables and an example, the tables are authoritative.  Conformant implementations of OpenC2:
 
-* MUST support OpenC2 commands and responses as defined in this document.
+* MUST produce messages that are syntactically valid.
+* SHOULD reject messages that are syntactically invalid.
 * MUST implement the actions designated as mandatory in this document.
 * MUST implement the targets designated as mandatory in this document.
 * MAY implement optional targets defined in this document
