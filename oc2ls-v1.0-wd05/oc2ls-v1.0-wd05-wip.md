@@ -307,9 +307,6 @@ Table 2-3 lists the valid command-options.
 | stop_time | The specific date/time to terminate the action |
 | duration | The length of time for an action to be in effect |
 | response_requested | Indicate the type of response required for the action |
-| command_id | Uniquely identifies a particular command |
-
-> **Editor's Note** - `command_id` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
 ### 2.2.6 Extensibility
 > **Editor's Note** - TBSL - This section will be included in a future iteration. 
@@ -351,15 +348,16 @@ The following subsections provide the permitted values within an OpenC2 message.
 ### 3.2.1 OpenC2 Command
 The OpenC2 Command describes an action performed on a target. It can be directive or descriptive depending on the context.
 
-#### 3.2.1.1 Type Name: OpenC2Command
+#### 3.2.1.1 Type Name: OpenC2-Command
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **action** (required) | Action | The task or activity to be performed (i.e., the 'verb'). |
-| 2 | **target** (required) | Target | The object of the action. The action is performed on the target. |
-| 3 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
-| 4 | **command_options** (optional) | Command-Options | An object containing additional properties that apply to the command. |
+| 1 | **id** (required) | Command-ID | Identifier used to link responses to a command |
+| 2 | **action** (required) | Action | The task or activity to be performed (i.e., the 'verb') |
+| 3 | **target** (required) | Target | The object of the action. The action is performed on the target. |
+| 4 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
+| 5 | **options** (optional) | Command-Options | An object containing additional properties that apply to the command |
 
 > **Editor's Note** - In a future working draft, we may reformat these tables to include a cardinality column instead of the required/optional tags on the property names.
 
@@ -452,21 +450,19 @@ Base Type: Record
 | 2 | **stop_time** (optional) | Date-Time | The specific date/time to terminate the action |
 | 3 | **duration** (optional) | Duration | The length of time for an action to be in effect |
 | 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
-| 5 | **command_id** (optional) | Command-ID | Uniquely identifies a particular command |
-
-> **Editor's Note** - `command_id` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
 > **Editor's Note** - `version` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
 
 ### 3.2.2 OpenC2 Response
-#### 3.2.2.1 Type Name: OpenC2Response
+#### 3.2.2.1 Type Name: OpenC2-Response
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **status** (required) | Status-Code | An integer containing a numerical status code |
-| 2 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
-| 3 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
+| 1 | **id** (required) | Command-ID | Id of the command that induced this response |
+| 2 | **status** (required) | Status-Code | An integer containing a numerical status code |
+| 3 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
+| 4 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
 
 Example:
 
@@ -566,19 +562,17 @@ Base Type: Choice
 |:---|:---|:---|
 | Command-ID | Identifier | Uniquely identifies a particular command |
 
-> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
-
 #### 3.3.0.8 Type Name: Identifier
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
+| Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
 
 #### 3.3.0.9 Type Name: Version
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Version | String | TBSL |
 
-> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
+> **Editor's Note** - `version` is agreed to be needed. It will not appear directly in the OpenC2 Command, instead it will appear in a "header" field of an OpenC2 Message. The OpenC2 Message is a wrapper for an OpenC2 Command or OpenC2 Response. It is still being deliberated where and how the OpenC2 Message will be documented. It may be documented in this Language Specification or within another standalone specification developed by the Implementation Considerations Subcommittee.
 
 #### 3.3.0.10 Type Name: Domain-Name
 | Type Name | Type | Description |
