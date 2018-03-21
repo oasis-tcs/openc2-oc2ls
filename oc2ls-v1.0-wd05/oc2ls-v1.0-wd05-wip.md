@@ -451,7 +451,7 @@ Base Type: Record
 | 3 | **duration** (optional) | Duration | The length of time for an action to be in effect |
 | 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
 
-> **Editor's Note** - `version` is agreed to be needed. It is still being deliberated where and how the OpenC2 Message will be documented. It may be documented in this Language Specification or within another standalone specification developed by the Implementation Considerations Subcommittee.
+> **Editor's Note** - `version` is agreed to be needed. It will not appear directly in the OpenC2 Command, instead it will appear in a "header" field of an OpenC2 Message. The OpenC2 Message is a wrapper for an OpenC2 Command or OpenC2 Response. It is still being deliberated where and how the OpenC2 Message will be documented. It may be documented in this Language Specification or within another standalone specification developed by the Implementation Considerations Subcommittee.
 
 ### 3.2.2 OpenC2 Response
 #### 3.2.2.1 Type Name: OpenC2-Response
@@ -543,8 +543,9 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 0 | **name** (optional) | String |   |
-| 1 | **path** (optional) | String |   |
+| 0 | **name** (optional) | String | The name of the file as defined in the file system |
+| 1 | **path** (optional) | String | The absolute path to the location of the file in the file system |
+| 2 | **hashes** (optional) | Hashes | One or more cryptographic hash codes of the file contents |
 
 #### 3.3.0.6 Type Name: Response-Requested
 Base Type: Choice
@@ -585,6 +586,43 @@ Base Type: Choice
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Email-Message | String | per RFC TBSL |
+
+#### 3.3.0.12 Type Name: Process
+Base Type: Map
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| pid (optional) | Integer | Process ID of the process |
+| name (optional) | String | Name of the process |
+| cwd (optional) | String | Current working directory of the process |
+| executable (optional) | File | Executable that was executed to start the process |
+| parent (optional) | Process | Process that spawned this one |
+| command_line (optional) | String | The full command line invocation used to start this process, including all arguments |
+
+#### 3.3.0.13 Type Name: Hashes
+Base Type: Map
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| md5 (optional) | String | Hex-encoded MD5 hash as defined in RFC 1321 |
+| sha1 (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
+| sha256 (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
+
+**3.3.0.14 Type Name: Hostname**
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+|  hostname | String | A legal Internet host name as specified in RFC 1123 |
+
+**3.3.0.15 Type Name: Device**
+
+Base Type: Map
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+|  hostname (optional) | Hostname | A hostname that can be used to connect to this device over a network |
+| description (optional) | String | A human-readable description of the purpose, relevance, and/or properties of this device |
+| device_id (optional) | String | An identifier that refers to this device within an inventory or management system |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
