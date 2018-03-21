@@ -87,13 +87,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 -------
 
-> **Editor's Note** - This document is NOT complete.
->
-> The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD).
->
-> This is iteration 3 and the expectation is there will be 4 or 5 CSD iterations before this document is complete and ready to be submitted for approval as a Committee Specification.
->
-> Parenthetical "Editor's Notes" will be removed prior to submitting for Committee Specification. Sections that are expected to added in a later iteration (prior to 1.0) will be labeled with "TBSL" for "To Be Supplied Later", optionally with a guestimate as to which iteration it would be supplied in.
+> **Editor's Note** - This document is NOT complete.>> The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD).>> This is iteration 3 and the expectation is there will be 4 or 5 CSD iterations before this document is complete and ready to be submitted for approval as a Committee Specification.>> Parenthetical "Editor's Notes" will be removed prior to submitting for Committee Specification. Sections that are expected to added in a later iteration (prior to 1.0) will be labeled with "TBSL" for "To Be Supplied Later", optionally with a guestimate as to which iteration it would be supplied in.
 
 # 1 Introduction
 The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components.
@@ -509,9 +503,7 @@ Example:
 ```javascript
 {   "status": 200,
     "status_text": "All endpoints successfully updated",
-    "results": {
-        "strings": ["wd-394", "sx-2497"]
-    }
+    "results": {        "strings": ["wd-394", "sx-2497"]    }
 }
 ```
 
@@ -648,13 +640,13 @@ Base Type: Map
 | **sha1** (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
 | **sha256** (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
 
-**3.3.0.14 Type Name: Hostname**
+#### 3.3.0.14 Type Name: Hostname
 
 | Type Name | Type | Description |
 |:---|:---|:---|
 |  Hostname | String | A legal Internet host name as specified in RFC 1123 |
 
-**3.3.0.15 Type Name: Device**
+#### 3.3.0.15 Type Name: Device
 
 Base Type: Map
 
@@ -709,9 +701,7 @@ Example 1:
 > **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `command`. The `command` shows the recently relocated command ID field. The structure of the `options` is still being deliberated.
 
 ```
-{   "header": {
-        "version": "1.0",
-        "timestamp": "2018-01-30T18:25:43.511Z"
+{   "header": {        "version": "1.0",        "timestamp": "2018-01-30T18:25:43.511Z"
     },
     "command": {
         "id": "CMD1234",
