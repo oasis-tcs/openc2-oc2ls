@@ -94,8 +94,8 @@ The OpenC2 Language Specification defines a language used to compose messages fo
 
 The OpenC2 language defines two message types:
 
-1. **Command**: An instruction from one system,the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
-2. **Response**: Any information captured or necessary to send back to the invoking system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
+1. **Command**: An instruction from one system known as the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
+2. **Response**: Any information captured or necessary to send back to the OpenC2 Producer  system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
 
 The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command options, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command-options provide additional precision.
 
@@ -134,7 +134,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 1.6 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 
-All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
+All words in type names are capitalized.  All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
 ```javascript
 {   "action": "contain",
@@ -233,7 +233,7 @@ This section defines the set of OpenC2 actions grouped by their general activity
 | update | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
 | move | Change the location of a file, subnet, network, or process. |
 | redirect | Change the flow to a particular destination other than its original intended destination. |
-| create | The create action adds a new entity of a known type (e.g., data, files, directories). |
+| create | Add a new entity of a known type (e.g., data, files, directories). |
 | delete | Remove an entity (e.g., data, files, flows). |
 | snapshot | Record and store the state of a target at an instant in time. |
 | detonate | Execute and observe the behavior of a target (e.g., file, hyperlink) in an isolated environment. |
@@ -307,9 +307,6 @@ Table 2-3 lists the valid command-options.
 | stop_time | The specific date/time to terminate the action |
 | duration | The length of time for an action to be in effect |
 | response_requested | Indicate the type of response required for the action |
-| command_id | Uniquely identifies a particular command |
-
-> **Editor's Note** - `command_id` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
 ### 2.2.6 Extensibility
 > **Editor's Note** - TBSL - This section will be included in a future iteration. 
@@ -351,15 +348,16 @@ The following subsections provide the permitted values within an OpenC2 message.
 ### 3.2.1 OpenC2 Command
 The OpenC2 Command describes an action performed on a target. It can be directive or descriptive depending on the context.
 
-#### 3.2.1.1 Type Name: OpenC2Command
+#### 3.2.1.1 Type Name: OpenC2-Command
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **action** (required) | Action | The task or activity to be performed (i.e., the 'verb'). |
-| 2 | **target** (required) | Target | The object of the action. The action is performed on the target. |
-| 3 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
-| 4 | **command_options** (optional) | Command-Options | An object containing additional properties that apply to the command. |
+| 1 | **id** (required) | Command-ID | Identifier used to link responses to a command |
+| 2 | **action** (required) | Action | The task or activity to be performed (i.e., the 'verb') |
+| 3 | **target** (required) | Target | The object of the action. The action is performed on the target. |
+| 4 | **actuator** (optional) | Actuator | The subject of the action. The actuator executes the action on the target. |
+| 5 | **options** (optional) | Command-Options | An object containing additional properties that apply to the command |
 
 > **Editor's Note** - In a future working draft, we may reformat these tables to include a cardinality column instead of the required/optional tags on the property names.
 
@@ -452,21 +450,19 @@ Base Type: Record
 | 2 | **stop_time** (optional) | Date-Time | The specific date/time to terminate the action |
 | 3 | **duration** (optional) | Duration | The length of time for an action to be in effect |
 | 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
-| 5 | **command_id** (optional) | Command-ID | Uniquely identifies a particular command |
-
-> **Editor's Note** - `command_id` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options.
 
 > **Editor's Note** - `version` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
 
 ### 3.2.2 OpenC2 Response
-#### 3.2.2.1 Type Name: OpenC2Response
+#### 3.2.2.1 Type Name: OpenC2-Response
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **status** (required) | Status-Code | An integer containing a numerical status code |
-| 2 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
-| 3 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
+| 1 | **id** (required) | Command-ID | Id of the command that induced this response |
+| 2 | **status** (required) | Status-Code | An integer containing a numerical status code |
+| 3 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
+| 4 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
 
 Example:
 
@@ -494,21 +490,21 @@ Base Type: Enumerated
 ## 3.3 Property Details
 > **Editor's Note** - The organization of this section will get redone once more property tables exist  (probably iterations 5) prior to submitting for Committee Specification. For now placeholder section numbers will be used
 
-#### 3.3.0.1 Type Name: IP_Connection
+#### 3.3.0.1 Type Name: IP-Connection
 Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | src_addr | IP_Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 1 | src_addr | IP-Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
 | 2 | src_port | Port | source service per RFC TBSL |
-| 3 | dst_addr | IP_Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 3 | dst_addr | IP-Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
 | 4 | dst_port | Port | destination service per RFC TBSL |
-| 5 | protocol | L4_Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
+| 5 | protocol | L4-Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-#### 3.3.0.2 Type Name: IP_Addr
+#### 3.3.0.2 Type Name: IP-Addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| IP_Addr | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
+| IP-Addr | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -530,7 +526,7 @@ Examples of invalid ipv6 (since violates RFC 5952):
 |:---|:---|:---|
 | Port | String | Service Name or Transport Protocol Port Number, RFC 6335 |
 
-#### 3.3.0.4 Type Name: L4_Protocol
+#### 3.3.0.4 Type Name: L4-Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
 | ID | Property Name | Description |
@@ -566,29 +562,27 @@ Base Type: Choice
 |:---|:---|:---|
 | Command-ID | Identifier | Uniquely identifies a particular command |
 
-> **Editor's Note** - command-id is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need command_id and this is where it's type is defined.
-
 #### 3.3.0.8 Type Name: Identifier
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command. Identifiers MUST follow either the form action--UUIDv4, or the form action--UUIDv4--seq  where action is the exact value (all type names are lowercase strings, by definition) from the type property of the command being identified or referenced (eg "deny") and where the UUIDv4 is an RFC 4122-compliant Version 4 UUID. The UUID MUST be generated according to the algorithm(s) defined in RFC 4122, section 4.4 (Version 4 UUID) [RFC4122]. The optional seq is a sequence number if a sequence of commands are being executed. |
+| Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
 
 #### 3.3.0.9 Type Name: Version
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Version | String | TBSL |
 
-> **Editor's Note** - version is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of the command peering with action/target/actuator/command-options so the section referring to this type is still open. In any of the scenarios we need version and this is where it's type is defined.
+> **Editor's Note** - `version` is agreed to be needed. It will not appear directly in the OpenC2 Command, instead it will appear in a "header" field of an OpenC2 Message. The OpenC2 Message is a wrapper for an OpenC2 Command or OpenC2 Response. It is still being deliberated where and how the OpenC2 Message will be documented. It may be documented in this Language Specification or within another standalone specification developed by the Implementation Considerations Subcommittee.
 
-#### 3.3.0.10 Type Name: Domain_Name
+#### 3.3.0.10 Type Name: Domain-Name
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Domain_Name | String | per RFC 1034 |
+| Domain-Name | String | per RFC 1034 |
 
-#### 3.3.0.11 Type Name: Email_Message
+#### 3.3.0.11 Type Name: Email-Message
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Email_Message | String | per RFC TBSL |
+| Email-Message | String | per RFC TBSL |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
