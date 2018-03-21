@@ -384,7 +384,7 @@ Base Type: Enumerated
 | 16 | **update** | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or some other update. |
 | 17 | **move** | Change the location of a file, subnet, network, or process. |
 | 18 | **redirect** | Change the flow to a particular destination other than its original intended destination. |
-| 19 | **create** | The create action adds a new entity of a known type (e.g., data, files, directories). |
+| 19 | **create** | Add a new entity of a known type (e.g., data, files, directories). |
 | 20 | **delete** | Remove an entity (e.g., data, files, flows). |
 | 21 | **snapshot** | Record and store the state of a target at an instant in time. |
 | 22 | **detonate** | Execute and observe the behavior of a target (e.g., file, hyperlink) in an isolated environment. |
@@ -451,7 +451,7 @@ Base Type: Record
 | 3 | **duration** (optional) | Duration | The length of time for an action to be in effect |
 | 4 | **response_requested** (optional) | Response-Type | Indicate the type of response required for the action  |
 
-> **Editor's Note** - `version` is agreed to be needed. It is still being deliberated whether it is a command option, in a new header section, or as a top-level part of command peering with action/target/actuator/command-options.
+> **Editor's Note** - `version` is agreed to be needed. It will not appear directly in the OpenC2 Command, instead it will appear in a "header" field of an OpenC2 Message. The OpenC2 Message is a wrapper for an OpenC2 Command or OpenC2 Response. It is still being deliberated where and how the OpenC2 Message will be documented. It may be documented in this Language Specification or within another standalone specification developed by the Implementation Considerations Subcommittee.
 
 ### 3.2.2 OpenC2 Response
 #### 3.2.2.1 Type Name: OpenC2-Response
@@ -462,14 +462,16 @@ Base Type: Record
 | 1 | **id** (required) | Command-ID | Id of the command that induced this response |
 | 2 | **status** (required) | Status-Code | An integer containing a numerical status code |
 | 3 | **status_text** (optional) | String | A free-form string containing human-readable description of the response status |
-| 4 | **results** (optional) | ArrayOf Strings | Contains the data or extended status code that was requested from an OpenC2 Command |
+| 4 | **results** (optional) | Results | Contains the data or extended status information that was requested from an OpenC2 Command |
 
 Example:
 
 ```javascript
 {   "status": 200,
     "status_text": "All endpoints successfully updated",
-    "results": ["wd-394", "sx-2497"]
+    "results": {
+        "strings": ["wd-394", "sx-2497"]
+    }
 }
 ```
 
@@ -510,7 +512,7 @@ Examples:
 
 * "192.168.10.11" - a single ipv4 address distinguishable because of the dots
 * "192.168.10.11/32" - a single ipv4 address in CIDR notation
-* "192.168.0.0/16" - a range of 256 ipv4 addresses in CIDR notation
+* "192.168.0.0/16" - a range of 65,536 ipv4 addresses in CIDR notation
 * "2001:db8::1" - a single ipv6 address distinguishable because of the colons
 * "2001:db8:aaaa:bbbb:cccc:dddd:0:1" - single ipv6 address
 * "2001:db8::0/120" - 256 ipv6 addresses
@@ -541,8 +543,9 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 0 | **name** (optional) | String |   |
-| 1 | **path** (optional) | String |   |
+| 0 | **name** (optional) | String | The name of the file as defined in the file system |
+| 1 | **path** (optional) | String | The absolute path to the location of the file in the file system |
+| 2 | **hashes** (optional) | Hashes | One or more cryptographic hash codes of the file contents |
 
 #### 3.3.0.6 Type Name: Response-Requested
 Base Type: Choice
@@ -583,6 +586,43 @@ Base Type: Choice
 | Type Name | Type | Description |
 |:---|:---|:---|
 | Email-Message | String | per RFC TBSL |
+
+#### 3.3.0.12 Type Name: Process
+Base Type: Map
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| pid (optional) | Integer | Process ID of the process |
+| name (optional) | String | Name of the process |
+| cwd (optional) | String | Current working directory of the process |
+| executable (optional) | File | Executable that was executed to start the process |
+| parent (optional) | Process | Process that spawned this one |
+| command_line (optional) | String | The full command line invocation used to start this process, including all arguments |
+
+#### 3.3.0.13 Type Name: Hashes
+Base Type: Map
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+| md5 (optional) | String | Hex-encoded MD5 hash as defined in RFC 1321 |
+| sha1 (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
+| sha256 (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
+
+**3.3.0.14 Type Name: Hostname**
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+|  hostname | String | A legal Internet host name as specified in RFC 1123 |
+
+**3.3.0.15 Type Name: Device**
+
+Base Type: Map
+
+| Property Name | Type | Description |
+|:---|:---|:---|
+|  hostname (optional) | Hostname | A hostname that can be used to connect to this device over a network |
+| description (optional) | String | A human-readable description of the purpose, relevance, and/or properties of this device |
+| device_id (optional) | String | An identifier that refers to this device within an inventory or management system |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
