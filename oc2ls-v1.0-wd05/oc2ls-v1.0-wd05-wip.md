@@ -3,7 +3,7 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 05-wip
+## Working Draft 05
 ## 21 March 2018
 **Specification URIs**
 
@@ -51,7 +51,13 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 31 January 2018. OASIS Working Draft 03. oasis-to-fill-in-link.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_.
+
+Edited by Jason Romano and Duncan Sparrell.
+
+21 March 2018. OASIS Working Draft 05. oasis-to-fill-in-link.html.
+
+Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -308,8 +314,42 @@ Table 2-3 lists the valid command-options.
 | duration | The length of time for an action to be in effect |
 | response_requested | Indicate the type of response required for the action |
 
-### 2.2.6 Extensibility
-> **Editor's Note** - TBSL - This section will be included in a future iteration. 
+> **Editor's Note** - Additional usage guidance for these command options will be included in a future working draft.
+
+### 2.2.6 Imported Data
+> **Editor's Note** - This section was previously titled "Extensibility". 
+
+In addition to the targets, actuators, and other language elements defined in this specification, OpenC2 messages may contain data objects imported from other specifications.  The details are specified in a data profile which contains:
+
+1. a prefix indication the origin of the imported data object such as:
+    1. `ap-` (actuator profile)
+    2. `ip-` (implementation profile)
+    3. `vp-` (vendor specification)
+    4. `fs-` (external specification)
+2. a unique name for the specification being imported, e.g., `/docs.oasis-open.org/kmip/spec/v1.4/kmip-spec-v1.4`
+3. a namespace identifier - a short reference to the specification, e.g. `kmip_1.4`
+4. a list of object identifiers imported from that specification, e.g., `Credential`
+5. a definition of each imported object, either referenced or contained in the profile
+6. conformance requirements for implementations supporting the profile
+
+The data profile itself can be the specification being imported, or the data profile can reference an existing specification.
+
+A data profile can define imported objects using an abstract syntax, or it can reference content as defined in the specification being imported.
+
+An imported object is identified by namespace and object ids:
+
+```
+"target": {
+    "fs-kmip_1.4": {
+        "Credential": {
+            "uid_pwd": {
+                "Username": "johndoe",
+                "Password": "MyBigS3cret"
+            }
+        }
+    }
+}
+```
 
 ## 2.3 OpenC2 Response
 The OpenC2 Response is a message sent from an entity as the result of a command. Response messages provide acknowledgement, status, results from a query, or other information as requested from the issuer of the command. Response messages are solicited and correspond to a command.
@@ -497,11 +537,11 @@ Base Type: Record
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | src_addr | IP-Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
-| 2 | src_port | Port | source service per RFC TBSL |
-| 3 | dst_addr | IP-Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
-| 4 | dst_port | Port | destination service per RFC TBSL |
-| 5 | protocol | L4-Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
+| 1 | **src_addr** | IP-Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 2 | **src_port** | Port | source service per RFC TBSL |
+| 3 | **dst_addr** | IP-Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 4 | **dst_port** | Port | destination service per RFC TBSL |
+| 5 | **protocol** | L4-Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 #### 3.3.0.2 Type Name: IP-Addr
 | Type Name | Type | Description |
@@ -533,10 +573,10 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 
 | ID | Property Name | Description |
 |:---|:---|:---|
-| 1 | icmp | Internet Control Message Protocol - RFC 792 |
-| 6 | tcp | Transmission Control Protocol - RFC 793 |
-| 17 | udp | User Datagram Protocol - RFC 768 |
-| 132 | sctp | Stream Control Transmission Protocol - RFC 4960 |
+| 1 | **icmp** | Internet Control Message Protocol - RFC 792 |
+| 6 | **tcp** | Transmission Control Protocol - RFC 793 |
+| 17 | **udp** | User Datagram Protocol - RFC 768 |
+| 132 | **sctp** | Stream Control Transmission Protocol - RFC 4960 |
 
 #### 3.3.0.5 Type Name: File
 Base Type: Record
@@ -552,9 +592,9 @@ Base Type: Choice
 
 | ID | Name | Type | Description |
 |:---|:---|:---|:---|
-| 0 | None | TBSL | No response |
-| 1 | Ack | TBSL | Respond when command received |
-| 2 | Complete | TBSL | Respond when all aspects of command completed |
+| 0 | **None** | TBSL | No response |
+| 1 | **Ack** | TBSL | Respond when command received |
+| 2 | **Complete** | TBSL | Respond when all aspects of command completed |
 | 3 | TBSL | TBSL | TBSL |
 | 4 | TBSL | TBSL | TBSL |
 
@@ -592,27 +632,27 @@ Base Type: Map
 
 | Property Name | Type | Description |
 |:---|:---|:---|
-| pid (optional) | Integer | Process ID of the process |
-| name (optional) | String | Name of the process |
-| cwd (optional) | String | Current working directory of the process |
-| executable (optional) | File | Executable that was executed to start the process |
-| parent (optional) | Process | Process that spawned this one |
-| command_line (optional) | String | The full command line invocation used to start this process, including all arguments |
+| **pid** (optional) | Integer | Process ID of the process |
+| **name** (optional) | String | Name of the process |
+| **cwd** (optional) | String | Current working directory of the process |
+| **executable** (optional) | File | Executable that was executed to start the process |
+| **parent** (optional) | Process | Process that spawned this one |
+| **command_line** (optional) | String | The full command line invocation used to start this process, including all arguments |
 
 #### 3.3.0.13 Type Name: Hashes
 Base Type: Map
 
 | Property Name | Type | Description |
 |:---|:---|:---|
-| md5 (optional) | String | Hex-encoded MD5 hash as defined in RFC 1321 |
-| sha1 (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
-| sha256 (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
+| **md5** (optional) | String | Hex-encoded MD5 hash as defined in RFC 1321 |
+| **sha1** (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
+| **sha256** (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
 
 **3.3.0.14 Type Name: Hostname**
 
-| Property Name | Type | Description |
+| Type Name | Type | Description |
 |:---|:---|:---|
-|  hostname | String | A legal Internet host name as specified in RFC 1123 |
+|  Hostname | String | A legal Internet host name as specified in RFC 1123 |
 
 **3.3.0.15 Type Name: Device**
 
@@ -620,9 +660,9 @@ Base Type: Map
 
 | Property Name | Type | Description |
 |:---|:---|:---|
-|  hostname (optional) | Hostname | A hostname that can be used to connect to this device over a network |
-| description (optional) | String | A human-readable description of the purpose, relevance, and/or properties of this device |
-| device_id (optional) | String | An identifier that refers to this device within an inventory or management system |
+|  **hostname** (optional) | Hostname | A hostname that can be used to connect to this device over a network |
+| **description** (optional) | String | A human-readable description of the purpose, relevance, and/or properties of this device |
+| **device_id** (optional) | String | An identifier that refers to this device within an inventory or management system |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
@@ -656,7 +696,7 @@ The following individuals have participated in the creation of this specificatio
 | v1.0-wd03 |   | Romano, Sparrell | wd02 review comments |
 | v1.0-csd02 |   | Romano, Sparrell | approved wd03 |
 | v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
-| v1.0-wd05 | 0x/xx/2018 | Romano, Sparrell | wd04 review comments |
+| v1.0-wd05 | 03/21/2018 | Romano, Sparrell | wd04 review comments |
 
 # Appendix C. Acronyms
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
@@ -678,7 +718,7 @@ Example 1:
         "action": "redirect",
         "target": {
             "url": {
-                "value": "[http://evil.com](http://evil.com)"
+                "value": "http://evil.com"
         },
         "options": {
             "destination": "http://newdest.com/home"
