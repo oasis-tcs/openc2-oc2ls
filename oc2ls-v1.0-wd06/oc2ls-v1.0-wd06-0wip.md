@@ -411,12 +411,12 @@ The following types are defined as value constraints applied to String (text str
 The content of an OpenC2 message is defined in the OpenC2 message specification for a specific transport mechanism, for example OpenC2-HTTPS, OpenC2-MQTT, or OpenC2-CoAP.   A message contains the following information:
 
 * **HEAD** (required): Information associated with an OpenC2 command or response
-    * **VERSION **(required): Message protocol version.
-    * **COMMAND-ID **(optional): An identifier used to correlate responses to a command.
-    * **CREATED **(optional): Date and time the message was created.
-    * **SENDER **(optional): An identifier for the originator of the message.
+    * **VERSION** (required): Message protocol version.
+    * **COMMAND-ID** (optional): An identifier used to correlate responses to a command.
+    * **CREATED** (optional): Date and time the message was created.
+    * **SENDER** (optional): An identifier for the originator of the message.
     * **CONTENT-TYPE** (required): The type and version of the message body.
-* **BODY **(required): The message payload, either OpenC2-Command or OpenC2-Response
+* **BODY** (required): The message payload, either OpenC2-Command or OpenC2-Response
 
 Each message specification defines how all header information (required and optional) is represented using fields defined by the transport protocol.  The language specification (this document) defines the content of the message body.
 
@@ -497,7 +497,7 @@ Base Type: Choice
 | 15 | **ip_connection** | IP-Connection | A network connection that originates from a source and is addressed to a destination. |
 | 16 | **openc2** | OpenC2 | The summation of the actions, targets and profiles supported by the actuator. The target is used with the query action to determine an actuator's capabilities. |
 | 17 | **process** | Process | Common properties of an instance of a computer program as executed on an operating system. |
-| ## | **property** | Property | Data attribute associated with an actuator |
+| 25 | **property** | Property | Data attribute associated with an actuator |
 | 18 | **software** | Software | High-level properties associated with software, including software products. |
 | 19 | **url** | Url | The properties of a uniform resource locator (URL). |
 | 20 | **user_account** | User-Account | An instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. |
@@ -539,7 +539,7 @@ Base Type: Record
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
 | 1 | **id** (required) | Command-ID | ID of the response |
-|   | **id_ref** (required) | Command-ID | ID of the command that induced this response. |
+| 5 | **id_ref** (required) | Command-ID | ID of the command that induced this response. |
 | 2 | **status** (required) | Status-Code | An integer status code |
 | 3 | **status_text** (optional) | String | A free-form human-readable description of the response status |
 | 4 | **results** (optional) | Results | Data or extended status information that was requested from an OpenC2 Command |
@@ -603,12 +603,12 @@ TBSL
 #### 3.3.1.7 Target Type: Domain-Name
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Domain-Name | String | per RFC 1034 |
+| **Domain-Name** | String | per RFC 1034 |
 
 #### 3.3.1.8 Target Type: Email-Addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Email-Addr | String | Email address, RFC 5322, section 3.4.1 |
+| **Email-Addr** | String | Email address, RFC 5322, section 3.4.1 |
 
 #### 3.3.1.9 Target Type: Email-Message
 TBSL
@@ -625,7 +625,7 @@ Base Type: Map
 #### 3.3.1.11 Target Type: IP-Addr
 | Type Name | Type | Description |
 |:---|:---|:---|
-| IP-Addr | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
+| **IP-Addr** | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -712,7 +712,7 @@ TBSL
 #### 3.3.2.1 Type Name: Command-ID
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Command-ID | Identifier | Uniquely identifies a particular command |
+| **Command-ID** | Identifier | Uniquely identifies a particular command |
 
 #### 3.3.2.2 Type Name: Hashes
 Base Type: Map
@@ -726,12 +726,12 @@ Base Type: Map
 #### 3.3.2.3 Type Name: Hostname
 | Type Name | Type | Description |
 |:---|:---|:---|
-|  Hostname | String | A legal Internet host name as specified in RFC 1123 |
+|  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
 
 #### 3.3.2.4 Type Name: Identifier
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Identifier | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
+| **Identifier** | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
 
 #### 3.3.2.5 Type Name: L4-Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
@@ -754,7 +754,7 @@ Base Type: Choice
 #### 3.3.2.7 Type Name: Port
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Port | String | Service Name or Transport Protocol Port Number, RFC 6335 |
+| **Port** | String | Service Name or Transport Protocol Port Number, RFC 6335 |
 
 #### 3.3.2.8 Type Name: Query-Item
 Base Type: Enumerated
@@ -781,14 +781,14 @@ Base Type: Enumerated
 #### 3.3.2.10 Type Name: Version
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Version | String | TBSL |
+| **Version** | String | TBSL |
 
 > **Editor's Note** - `version will appear in the OpenC2 message header and in query responses for the OpenC2 version query"`
 
 #### 3.3.2.11 Type Name: Version_List
 | Type Name | Type | Description |
 |:---|:---|:---|
-| Version | List | A list of versions supported when a device supports more than one version of OpenC2 for backwards compatibility |
+| **Version_List** | List | A list of versions supported when a device supports more than one version of OpenC2 for backwards compatibility |
 
 # 4 Foundational Actuator Profile
 > **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
