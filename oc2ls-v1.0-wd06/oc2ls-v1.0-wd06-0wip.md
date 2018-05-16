@@ -10,9 +10,8 @@
 **This version:**
 
 * oasis-to-fill-in-link.md (Authoritative)
-* oasis-to-fill-in-link.html
 * oasis-to-fill-in-link.pdf
-* oasis-to-fill-in-link.docx
+* oasis-to-fill-in-link.html
 
 **Previous Version:**
 
@@ -318,11 +317,11 @@ Table 2-3 lists the valid Command Arguments.
 In addition to the targets, actuators, and other language elements defined in this specification, OpenC2 messages may contain data objects imported from other specifications and/or custom data objects defined by the implementers.  The details are specified in a data profile which contains:
 
 1. a prefix indicating the origin of the imported data object is outside OpenC2:
-    * `x_` (profile)
+    1. `x_` (profile)
 2. a unique name for the specification being imported, e.g.:
-    * For shortname `x_kmipv2.0` the full name would be `/docs.oasis-open.org/openc2/profiles/kmip-v2.0, `
-    * For shortname `x_sfslpf` the full name would be `/docs.sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
-3. a namespace identifier (nsid) - a short reference, e.g., `kmip_2.0,` to the unique name of the specification
+    2. For shortname `x_kmipv2.0` the full name would be `/docs.oasis-open.org/openc2/profiles/kmip-v2.0, `
+    3. For shortname `x_sfslpf` the full name would be `/docs.sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
+3. a namespace identifier (nsid) - a short reference, e.g., `kmipv2.0`, to the unique name of the specification
 4. a list of object identifiers imported from that specification, e.g., `Credential`
 5. a definition of each imported object, either referenced or contained in the profile
 6. conformance requirements for implementations supporting the profile
