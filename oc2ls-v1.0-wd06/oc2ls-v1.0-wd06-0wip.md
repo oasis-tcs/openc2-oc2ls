@@ -317,16 +317,16 @@ Table 2-3 lists the valid Command Arguments.
 In addition to the targets, actuators, and other language elements defined in this specification, OpenC2 messages may contain data objects imported from other specifications and/or custom data objects defined by the implementers.  The details are specified in a data profile which contains:
 
 1. a prefix indicating the origin of the imported data object is outside OpenC2:
-    1. `x_` (profile)
+    * `x_` (profile)
 2. a unique name for the specification being imported, e.g.:
-    2. For shortname `x_kmipv2.0` the full name would be `/docs.oasis-open.org/openc2/profiles/kmip-v2.0, `
-    3. For shortname `x_sfslpf` the full name would be `/docs.sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
+    * For shortname `x_kmipv2.0` the full name would be `/docs.oasis-open.org/openc2/profiles/kmip-v2.0, `
+    * For shortname `x_sfslpf` the full name would be `/docs.sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
 3. a namespace identifier (nsid) - a short reference, e.g., `kmipv2.0`, to the unique name of the specification
 4. a list of object identifiers imported from that specification, e.g., `Credential`
 5. a definition of each imported object, either referenced or contained in the profile
 6. conformance requirements for implementations supporting the profile
 
-The data profile itself can be the specification being imported, or the data profile can reference an existing specification.  For example 2.a, the data profile created by the OpenC2 TC to represent KMIP could have a unique name of `/docs.oasis-open.org/openc2/profiles/kmip-v1.4`.  The data profile would note that it is derived from the original specification `/docs.oasis-open.org/kmip/spec/v1.4/kmip-spec-v1.4`. For example 2.b, the profile itself could be defined in a manner directly compatible with OpenC2 and would not reference any other specification.
+The data profile itself can be the specification being imported or the data profile can reference an existing specification.  In the example above, the data profile created by the OpenC2 TC to represent KMIP could have a unique name of `/docs.oasis-open.org/openc2/profiles/kmip-v2.0`.  The data profile would note that it is derived from the original specification `/docs.oasis-open.org/kmip/spec/v2.0/kmip-spec-v2.0`. In the example for shortname `x_sfslpf`, the profile itself could be defined in a manner directly compatible with OpenC2 and would not reference any other specification.
 
 An imported object is identified by namespace identifier and object identifier. While the data profile may offer a suggested nsid, the containing schema defines the nsids that it uses to refer to objects imported from other specifications:
 
