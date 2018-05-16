@@ -16,10 +16,9 @@
 
 **Previous Version:**
 
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.pdf 
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.docx
-* Authoritative version (Markdown): http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/md/oc2ls-v1.0-wd05.md
+* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/md/oc2ls-v1.0-wd05.md](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/md/oc2ls-v1.0-wd05.md) (Authoritative)
+* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.pdf](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.pdf) 
+* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd03/oc2ls-v1.0-csd03.html)
 
 **Technical Committee:**
 
@@ -39,11 +38,11 @@
 Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is no longer tenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system or enterprise. Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber response. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
 ## Status
-This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
+This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at [https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical).
 
-TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the instructions at the "Send A Comment" button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
+TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the instructions at the "Send A Comment" button on the TC's web page at [https://www.oasis-open.org/committees/openc2/](https://www.oasis-open.org/committees/openc2/).
 
-This Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+This Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
 Note that any machine-readable content (Computer Language Definitions) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s), the content in the separate plain text file prevails.
 
@@ -56,9 +55,9 @@ _Open Command and Control (OpenC2) Language Specification Version 1.0_.
 
 Edited by Jason Romano and Duncan Sparrell.
 
-21 March 2018. OASIS Working Draft 05. oasis-to-fill-in-link.html.
+15 May 2018. OASIS Working Draft 06. oasis-to-fill-in-link.html.
 
-Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+Latest version: [http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html).
 
 -------
 
@@ -79,7 +78,7 @@ OASIS invites any party to contact the OASIS TC Administrator if it is aware of 
 
 OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Committee Specification or OASIS Standard, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.
 
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see [https://www.oasis-open.org/policies-guidelines/trademark](https://www.oasis-open.org/policies-guidelines/trademark) for above guidance.
 
 -------
 
@@ -124,7 +123,7 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies
 
 ## 1.3 IPR Policy
-This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
 ## 1.4 Terminology
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
@@ -320,20 +319,20 @@ In addition to the targets, actuators, and other language elements defined in th
 
 1. a prefix indicating the origin of the imported data object is outside OpenC2:
     * `x_` (profile)
-2. a unique name for the specification being imported, eg:
-    * `For shortname x_kmipv2.0 the full name would be /docs.oasis-open.org/openc2/profiles/kmip-v2.0, `
-    * `For shortname x_sfslpf the full name would be /docs.sfractal.com/slpf/v1.1/X_slpf-profile-v1.1, ...`
-3. a namespace identifier (nsid) - a short reference, e.g. `kmip_2.0,` to the unique name of the specification
+2. a unique name for the specification being imported, e.g.:
+    * For shortname `x_kmipv2.0` the full name would be `/docs.oasis-open.org/openc2/profiles/kmip-v2.0, `
+    * For shortname `x_sfslpf` the full name would be `/docs.sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
+3. a namespace identifier (nsid) - a short reference, e.g., `kmip_2.0,` to the unique name of the specification
 4. a list of object identifiers imported from that specification, e.g., `Credential`
 5. a definition of each imported object, either referenced or contained in the profile
 6. conformance requirements for implementations supporting the profile
 
-The data profile itself can be the specification being imported, or the data profile can reference an existing specification.  For example 2.a, the data profile created by the OpenC2 TC to represent KMIP could have a unique name of `/docs.oasis-open.org/openc2/profiles/kmip-v1.4.  The data profile would note that it is derived from the original specification` `/docs.oasis-open.org/kmip/spec/v1.4/kmip-spec-v1.4.` For example 2.b, the profile itself could be defined in a manner directly compatible with OpenC2 and would not reference any other specification.
+The data profile itself can be the specification being imported, or the data profile can reference an existing specification.  For example 2.a, the data profile created by the OpenC2 TC to represent KMIP could have a unique name of `/docs.oasis-open.org/openc2/profiles/kmip-v1.4`.  The data profile would note that it is derived from the original specification `/docs.oasis-open.org/kmip/spec/v1.4/kmip-spec-v1.4`. For example 2.b, the profile itself could be defined in a manner directly compatible with OpenC2 and would not reference any other specification.
 
 An imported object is identified by namespace identifier and object identifier. While the data profile may offer a suggested nsid, the containing schema defines the nsids that it uses to refer to objects imported from other specifications:
 
 ```
-import /docs.oasis-open.org/openc2/profiles/kmip-v2.0 as x-kmip_2.0
+import /docs.oasis-open.org/openc2/profiles/kmip-v2.0 as x_kmip_2.0
 ```
 
 An element using an imported object identifies it using the nsid:
@@ -341,7 +340,7 @@ An element using an imported object identifies it using the nsid:
 ```
 {   
     "target": {
-        "x-kmip_2.0": {
+        "x_kmip_2.0": {
             {"kmip_type": "json"},
             {"operation": "RekeyKeyPair"},
             {"name": "publicWebKey11DEC2017"}
