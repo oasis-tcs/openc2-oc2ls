@@ -802,8 +802,8 @@ Base Type: Map
 
 | ID | Property Name | Type | Description |
 |:---|:---|:---|:---|
-| 1 | **module **(required) | Uname | Unique name |
-| 2 | **title **(optional) | String | Title |
+| 1 | **module** (required) | Uname | Unique name |
+| 2 | **title** (optional) | String | Title |
 | 3 | **version** (optional) | Version | Module version |
 | 4 | **description** (optional) | String | Description |
 | 5 | **imports** (optional) | ArrayOf(Import) | Imported modules |
@@ -918,11 +918,7 @@ Base Type: String
 An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value.
 
 # 4 Core Actuator Profile
-> **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.> > This section defines the core functions applicable to every OpenC2 actuator.> > Command and resulting response:
-
-* One action: query
-* One target: openc2
-* Target specifiers: versions, profiles, schema
+> **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.> > This section defines the core functions applicable to every OpenC2 actuator.> > Command and resulting response:> * One action: query> * One target: openc2> * Target specifiers: versions, profiles, schema
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  The tables in Section 3 of this document specify the normative rules for determining if an OpenC2 message (command or response) is syntactically valid.  All examples in this document are informative; in case of conflict between the tables and an example, the tables are authoritative.  Conformant implementations of OpenC2:
