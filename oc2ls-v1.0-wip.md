@@ -3,8 +3,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 07
-## 11 July 2018
+## Working Draft 08
+## xx August 2018
 **Specification URIs**
 
 **This version:**
@@ -54,7 +54,7 @@ _Open Command and Control (OpenC2) Language Specification Version 1.0_.
 
 Edited by Jason Romano and Duncan Sparrell.
 
-11 July 2018. OASIS Working Draft 07. oasis-to-fill-in-link.html.
+xx August 2018. OASIS Working Draft 08. oasis-to-fill-in-link.html.
 
 Latest version: [http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html).
 
@@ -933,41 +933,21 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
 
 > **Editor's Note** - TBSL - More conformance text will be included in a future iteration (probably the next) prior to submitting for Committee Specification.
 
-# Appendix A. Acknowledgments
-The following individuals have participated in the creation of this specification and are gratefully acknowledged:
-
-**Participants:**
-
-> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification. The proposal is to include on the list the names of all members of the Language Subcommittee who made contributions to the document (defined very liberally as anyone who either attended a meeting, or sent a contributing email, or contributed text), and all members of the OpenC2 Language Subcommittee that voted on at least one of the drafts
-
-# Appendix B. Revision History
-| Revision | Date | Editor | Changes Made |
-|:---|:---|:---|:---|
-| v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
-| v1.0-csd01 | 11/14/2017 | Romano, Sparrell | approved wd01 |
-| v1.0-wd02 | 01/12/2018 | Romano, Sparrell | csd01 ballot comments<br>targets |
-| v1.0-wd03 | 01/31/2018 | Romano, Sparrell | wd02 review comments |
-| v1.0-csd02 | 02/14/2018 | Romano, Sparrell | approved wd03 |
-| v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
-| v1.0-wd05 | 03/21/2018 | Romano, Sparrell | wd04 review comments |
-| v1.0-csd03 | 04/03/2018 | Romano, Sparrell | approved wd05 |
-| v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’ |
-| v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
-| v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some actions and targets to reserved lists |
-
-# Appendix C. Acronyms
+# Annex 1. (Informative) Acronyms
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
-# 9 Annex 1. Examples
+# Annex 2. (Informative) Examples
 > **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
 
-## 9.1 Example 1
+## A2.1 Example 1
 > **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `body`. This example is for a transport where the header is included in the JSON (eg STIX).
 
-### 9.1.1 OpenC2 Message
+### A2.1.1 OpenC2 Message
 ```
 {   
-    "header": {        "version": "1.0",        "created": "2018-01-30T18:25:43.511Z"
+    "header": {
+        "version": "1.0",
+        "created": "2018-01-30T18:25:43.511Z"
     },
     "command": {
         "id": "9d43df98-7e34-43d3-bb25-4d1ea7a0a02a",
@@ -982,17 +962,17 @@ The following individuals have participated in the creation of this specificatio
 }
 ```
 
-## 9.2 Example 2
+## A2.2 Example 2
 This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.
 
 ```
 {     "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }}
 ```
 
-## 9.3 Example 3
+## A2.3 Example 3
 This example shows the OpenC2 Command and Response for retrieving data from an actuator.
 
-### 9.3.1 OpenC2 Command
+### A2.3.1 OpenC2 Command
 ```
 {
     "id": "71be3c32-188f-476d-9b20-35cb4eb60e52",
@@ -1011,7 +991,7 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 }
 ```
 
-### 9.3.2 OpenC2 Response
+### A2.3.2 OpenC2 Response
 ```
 {
     "id_ref": "71be3c32-188f-476d-9b20-35cb4eb60e52",
@@ -1021,4 +1001,26 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
     }
 }
 ```
+
+# Annex 3. (Informative) Acknowledgments
+The following individuals have participated in the creation of this specification and are gratefully acknowledged:
+
+**Participants:**
+
+> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification. The proposal is to include on the list the names of all members of the Language Subcommittee who made contributions to the document (defined very liberally as anyone who either attended a meeting, or sent a contributing email, or contributed text), and all members of the OpenC2 Language Subcommittee that voted on at least one of the drafts
+
+# Annex 4. (Informative) Revision History
+| Revision | Date | Editor | Changes Made |
+|:---|:---|:---|:---|
+| v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
+| v1.0-csd01 | 11/14/2017 | Romano, Sparrell | approved wd01 |
+| v1.0-wd02 | 01/12/2018 | Romano, Sparrell | csd01 ballot comments<br>targets |
+| v1.0-wd03 | 01/31/2018 | Romano, Sparrell | wd02 review comments |
+| v1.0-csd02 | 02/14/2018 | Romano, Sparrell | approved wd03 |
+| v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
+| v1.0-wd05 | 03/21/2018 | Romano, Sparrell | wd04 review comments |
+| v1.0-csd03 | 04/03/2018 | Romano, Sparrell | approved wd05 |
+| v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’ |
+| v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
+| v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some actions and targets to reserved lists |
 
