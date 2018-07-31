@@ -286,7 +286,7 @@ The syntax of valid OpenC2 messages is defined using the following datatypes:
 | **Primitive Types** |   |
 | Binary | A sequence of octets or bytes. Serialized either as binary data or as a string using an encoding such as hex or base64. |
 | Boolean | A logical entity that can have two values: `true` and `false`. Serialized as either integer or keyword. |
-| Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. |
+| Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. JSON serialization shall be in accordance with RFC 7493 |
 | Number | A real number. Valid values include integers, rational numbers, and irrational numbers. Serialized as either binary data or a text string. |
 | Null | Nothing, used to designate fields with no value. Serialized as a keyword or an empty string. |
 | String | A sequence of characters. Each character must have a valid Unicode codepoint. |
