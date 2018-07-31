@@ -16,7 +16,7 @@
 **Previous Version:**
 
 * [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/md/oc2ls-v1.0-wd06.md](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/md/oc2ls-v1.0-wd06.md) (Authoritative)
-* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf) 
+* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf)
 * [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.html)
 
 **Technical Committee:**
@@ -199,7 +199,7 @@ Actuator is optional. One case where the Actuator is not specified is the case i
 ARGS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command.
 
 ### 2.2.2 Action Vocabulary
-The normative list of actions is found in section 3.2.1.2.OpenC2 actions can be grouped by their general activity: 
+The normative list of actions is found in section 3.2.1.2.OpenC2 actions can be grouped by their general activity:
 
 * _Actions that Control Information_: These actions are used to gather information needed to determine the current state or enhance cyber situational awareness.
 * _Actions that Control Access_: These actions are used to control traffic flow and file permissions (e.g., allow/deny).
@@ -209,7 +209,7 @@ The normative list of actions is found in section 3.2.1.2.OpenC2 actions can be 
 Each command MUST contain one, and only one, action. Only the actions in Section 3.2.1.2 SHALL be used.
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET). The normative set of TARGETs is in Section 3.2.1.3 
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET). The normative set of TARGETs is in Section 3.2.1.3
 
 The target vocabulary is extensible - see Section 2.2.6.
 
@@ -364,18 +364,18 @@ An OpenC2 Message is a protocol data unit that is exchanged between OpenC2 produ
 
 The scope of this specification is to define the ACTION and TARGET portions of body (or payload) of the OpenC2 message.  An OpenC2 body is either a Command or a Responses where the properties of the OpenC2 command are defined in section 3.2.1 and the properties of the response are defined in section 3.2.2.    
 
-The message head is beyond the scope of this specification and is defined in transfer specifications such as OpenC2-HTTPS, OpenC2-MQTT, OpenC2-CoAP etc.  Transfer specifications SHOULD include the following information: 
+The message head is beyond the scope of this specification and is defined in transfer specifications such as OpenC2-HTTPS, OpenC2-MQTT, OpenC2-CoAP etc.  Transfer specifications SHOULD include the following information:
 
 * Version
 * Command id
 * Timestamp
 * Sender
-* Content type 
+* Content type
 
 In addition to the ACTION and TARGET, the body of the OpenC2 message has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the ACTUATOR specifiers and ACTUATOR arguments is beyond the scope of this specification.  The actuators are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filter Profile, Routing Profile etc.
 
 ### 3.2.1 OpenC2 Command
-The OpenC2 Command describes an action performed on a target. 
+The OpenC2 Command describes an action performed on a target.
 
 #### 3.2.1.1 Type Name: OpenC2-Command
 Base Type: Record
@@ -416,7 +416,7 @@ Base Type: Enumerated
 | 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
-The following actions are reserved for future use and are not valid actions  In this version of the Language Specification.
+The following actions are under consideration for use in future versions of the Language Specification. Implementors MAY use these actions with the understanding they may not be in future versions of the language unless use cases are presented and the TC accepts the action into the table. All commands MUST only use actions from this section (either the table or this list).
 
 * report - Task an entity to provide information to a designated recipient
 * pause - Cease operation of a system or activity while maintaining state.
@@ -918,7 +918,7 @@ Base Type: String
 An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value.
 
 # 4 Core Actuator Profile
-> **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.> > This section defines the core functions applicable to every OpenC2 actuator.> > Command and resulting response:> * One action: query> * One target: openc2> * Target specifiers: versions, profiles, schema
+> **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.>> This section defines the core functions applicable to every OpenC2 actuator.> > Command and resulting response:> * One action: query> * One target: openc2> * Target specifiers: versions, profiles, schema
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  The tables in Section 3 of this document specify the normative rules for determining if an OpenC2 message (command or response) is syntactically valid.  All examples in this document are informative; in case of conflict between the tables and an example, the tables are authoritative.  Conformant implementations of OpenC2:
@@ -966,7 +966,7 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
 This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.
 
 ```
-{     "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }}
+{    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }}
 ```
 
 ## A2.3 Example 3
@@ -1023,4 +1023,3 @@ The following individuals have participated in the creation of this specificatio
 | v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’ |
 | v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some actions and targets to reserved lists |
-
