@@ -935,6 +935,8 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
 6. MAY implement actuator specifiers, target specifiers and/or args as specified in one or more Actuator Profiles.
 7. MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
 
+In event of a conflict between JADN OpenC2 schema and the property tables, the property tables SHALL be the normative definition
+
 > **Editor's Note** - TBSL - More conformance text will be included in a future iteration (probably the next) prior to submitting for Committee Specification.
 
 # Annex A - (Informative) Acronyms
