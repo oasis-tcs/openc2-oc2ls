@@ -917,8 +917,12 @@ Base Type: String
 
 An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value.
 
-# 4 Core Actuator Profile
-> **Editor's Note** - TBSL - This section be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.>> This section defines the core functions applicable to every OpenC2 actuator.> > Command and resulting response:> * One action: query> * One target: openc2> * Target specifiers: versions, profiles, schema
+# 4 Intrinsic Commands
+All OpenC2 Consumers SHALL respond to a command with the fields:
+ * ACTION=query,
+ * TARGET=openc2,
+ * Target Specifiers of the query_items in section 3.3.2.8 (ie versions, profiles,
+schema, pairs).
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  The tables in Section 3 of this document specify the normative rules for determining if an OpenC2 message (command or response) is syntactically valid.  All examples in this document are informative; in case of conflict between the tables and an example, the tables are authoritative.  Conformant implementations of OpenC2:
@@ -933,16 +937,16 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
 
 > **Editor's Note** - TBSL - More conformance text will be included in a future iteration (probably the next) prior to submitting for Committee Specification.
 
-# Annex 1. (Informative) Acronyms
+# Annex A - (Informative) Acronyms
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
-# Annex 2. (Informative) Examples
+# Annex B - (Informative) Examples
 > **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
 
-## A2.1 Example 1
+## B.1 Example 1
 > **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `body`. This example is for a transport where the header is included in the JSON (eg STIX).
 
-### A2.1.1 OpenC2 Message
+### B.1.1 OpenC2 Message
 ```
 {   
     "header": {
@@ -962,17 +966,17 @@ OpenC2 is a command and control language that converges (i.e., common 'point of 
 }
 ```
 
-## A2.2 Example 2
+## B.2 Example 2
 This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.
 
 ```
 {    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }}
 ```
 
-## A2.3 Example 3
+## B.3 Example 3
 This example shows the OpenC2 Command and Response for retrieving data from an actuator.
 
-### A2.3.1 OpenC2 Command
+### B.3.1 OpenC2 Command
 ```
 {
     "id": "71be3c32-188f-476d-9b20-35cb4eb60e52",
@@ -991,7 +995,7 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 }
 ```
 
-### A2.3.2 OpenC2 Response
+### B.3.2 OpenC2 Response
 ```
 {
     "id_ref": "71be3c32-188f-476d-9b20-35cb4eb60e52",
@@ -1002,14 +1006,14 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 }
 ```
 
-# Annex 3. (Informative) Acknowledgments
+# Annex C. (Informative) Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **Participants:**
 
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification. The proposal is to include on the list the names of all members of the Language Subcommittee who made contributions to the document (defined very liberally as anyone who either attended a meeting, or sent a contributing email, or contributed text), and all members of the OpenC2 Language Subcommittee that voted on at least one of the drafts
 
-# Annex 4. (Informative) Revision History
+# Annex D. (Informative) Revision History
 | Revision | Date | Editor | Changes Made |
 |:---|:---|:---|:---|
 | v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
