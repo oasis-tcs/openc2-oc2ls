@@ -169,7 +169,9 @@ The OpenC2 language has two distinct message types: Command and Response. The Op
 The OpenC2 Command communicates an action to be performed on a target and may include information identifying the actuator(s) that is to execute the command. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
 ### 2.2.1 Command Structure
-An OpenC2 Command has four fields: ACTION, TARGET, ACTUATOR and ARGS.
+An OpenC2 Command has five fields: COMMAND-ID, ACTION, TARGET, ACTUATOR and ARGS.
+
+The optional COMMAND-ID field is an identifier used to link responses to a command.
 
 The ACTION and TARGET fields are required and are populated by one of the 'action-types' in Table 2-1 and the 'target-types' in Table 2-2. A particular target-type may be further refined by one or more 'target-specifiers'.
 
@@ -181,6 +183,7 @@ The optional ARGS field is populated by one or more 'command arguments' that pro
 
 The following list summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or ARGS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
+* **COMMAND-ID** (optional): An identifier used to link responses to a command.
 * **ACTION** (required): The task or activity to be performed.
 * **TARGET** (required): The object of the action. The ACTION is performed on the target.
     * **TARGET-NAME** (required): The name of the object of the action.
