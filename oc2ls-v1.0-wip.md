@@ -190,7 +190,7 @@ The following list summarizes the fields and subfields of an OpenC2 Command. Ope
     * **ACTUATOR-SPECIFIERS** (optional): The specifier identifies the actuator to some level of precision, such as a specific actuator, a list of actuators, or a group of actuators.
 * **ARGS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
 
-The TARGET of an OpenC2 Command may include a set of targets of the same type, a range of targets, or a particular target. Specifiers provide additional precision for the target.
+The TARGET field in an OpenC2 Command MUST only contain one type of target (e.g. ip_addr). The TARGET SPECIFIERS provide additional precision to specify the specific target (eg 10.1.2.3) and MAY specify a range of the same type (e.g. 10.1.0.0/16).
 
 The OpenC2 ACTUATOR field identifies the entity(ies) that execute the ACTION on the TARGET. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. Actuator-options indicate how an action is to be done in the context of the actuator.
 
