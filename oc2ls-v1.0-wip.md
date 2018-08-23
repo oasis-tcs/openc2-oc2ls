@@ -86,36 +86,76 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 -------
 
-> **Editor's Note** - This document is NOT complete.>> The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD).>> This is iteration 5 and the expectation is there will be at least another CSD iterations before this document is complete and ready to be submitted for approval as a Committee Specification.>> Parenthetical "Editor's Notes" will be removed prior to submitting for Committee Specification. Sections that are expected to added in a later iteration (prior to 1.0) will be labeled with "TBSL" for "To Be Supplied Later", optionally with a guestimate as to which iteration it would be supplied in.
+> **Editor's Note** - This document is NOT complete.>> The document development process is based on agile software development principles. Iterative, incremental working documents are being developed, reviewed by the Language Subcommittee, and then submitted to the Technical Committee for approval as a Committee Specification Drafts (CSD).>> This is iteration 6 and the expectation is there will be at least another CSD iterations before this document is complete and ready to be submitted for approval as a Committee Specification.>> Parenthetical "Editor's Notes" will be removed prior to submitting for Committee Specification. Sections that are expected to added in a later iteration (prior to 1.0) will be labeled with "TBSL" for "To Be Supplied Later", optionally with a guestimate as to which iteration it would be supplied in.
 
 # 1 Introduction
-The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components. The OpenC2 command and control interface for a system is defined by the transport used and the subset/extensions of this Language Specification as defined in an Actuator Profile. The transport MAY be specified by an OpenC2 Transport Specifications such as (Ed note - incl refs and links). An Actuator Profile MUST exist, MAY (or MUST?) follow the Actuator Profile Guidelines (Ed note incl refs), and MUST include which of the options in this Language Specification are conformed to, and what extensions (if any) are added.
+_Non-normative._
 
-A message consists of a set of headers and a body. The headers SHOULD be provided as part of transport.
+OpenC2 is a suite of specifications that enables  command and control of cyber defense systems and components.  OpenC2 typically  uses a request-response paradigm where a command is encoded by an OpenC2 producer (managing application)  and transfers it to an OpenC2 consumer  ( managed device or virtualized function) using a secure transport protocol, and the server responds with status and any requested information.  The contents of both the command and the response are fully described in schemas, allowing both parties to recognize the syntax constraints imposed on the exchange.
 
-The OpenC2 language defines two message body types:
+OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices.  These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device.  The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
+
+## 1.1 Protocol Overview
+Non-normative.
+
+OpenC2 is conceptually partitioned into four layers as shown in Figure 1.1.
+
+| Layer | Examples |
+|:---|:---|
+| Function-Specific Content | Actuator Profiles
+(standard and extensions) |
+| Common Content | Language Specification
+(this document) |
+| Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
+| Secure Transport | HTTPS, CoAP, MQTT, OpenDXL, ... |
+
+**Figure 1.1** - OpenC2 Protocol Layers
+
+1. The Secure Transport layer provides a communication path between the client and the server.  OpenC2 can be layered over any transport protocol for which a Transfer Specification exists.
+2. The Message layer provides a transport- and content- independent mechanism for conveying requests, responses, and notifications.  A transfer specification maps transport-specific protocol elements to a transport-independent set of message elements consisting of content and associated metadata.  The message elements supported by all Transfer Specifications are defined in Section 3.2.
+3. The Common Content layer defines the structure of OpenC2 commands and responses and a set of common language elements used to construct them.
+4. The Function-specific Content layer defines the  language elements used to support a particular cybersecurity function.   An actuator profile defines the implementation conformance requirements for that function.  An OpenC2 implementation supports one or more profiles.
+
+The OpenC2 command and control interface for a system is defined by the transport used and the subset/extensions of this Language Specification as defined in one or more Actuator Profile(s).
+
+The OpenC2 language defines two content types:
 
 1. **Command**: An instruction from one system known as the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command
 2. **Response**: Any information captured or necessary to send back to the OpenC2 Producer  system that requested the Command be invoked, i.e., the OpenC2 Consumer response to the OpenC2 Producer.
 
-The components of the body of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command arguments, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command arguments provide additional precision.
+The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command arguments, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. The inclusion of an actuator and/or command arguments provide additional precision.
 
 Additional detail regarding the TARGET and ACTUATOR may be included to increase the precision of the command. For example, which target (i.e., target specifier), , which actuator(s) (i.e., actuator specifier) .
 
 An OpenC2 Response is issued as a result of an OpenC2 command. OpenC2 responses are used to provide acknowledgement, status, results of command execution, or other information in conjunction with a particular command.
 
-## 1.1 Goal
-> **Editor's Note** - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
+## 1.2 Goal
+_This section is non-normative._
 
-## 1.2 Purpose and Scope
+The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyberdefense systems. This language used in conjunction with OpenC2 actuator profiles (add ref) and OpenC2 transport specifications allows for vendor-agnostic cybertime response to attacks.
+
+The Integrated Active Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop:
+
+* Sensing:  gathering of data regarding network activities
+* Sense Making:  evaluating data using analytics to understand what's happening
+* Decision Making:  determining a course-of-action to respond to network events
+* Acting:  Executing the course-of-action 
+
+The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions.  OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/ analytics have been provisioned and the decision to act has been made. This goal and these assumptions guides the design of OpenC2:
+
+* **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and product agnostic manner
+* **Concise:**  An OpenC2 command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
+* **Abstract:**  OpenC2 commands and responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
+* **Extensible:**  While OpenC2 defines a core set of actions and targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
+
+## 1.3 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
 
 1. the set of actions and options that may be used in OpenC2 commands
 2. the set of targets and target specifiers
 3. A syntax that defines the structure of commands and responses
-4. an organizational scheme that describes an Actuator Profile
-5. The MTI serialization of OpenC2 commands, and responses
-6. the procedures for extending the language
+4. The MTI serialization of OpenC2 commands, and responses
+5. the procedures for extending the language
 
 The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions. The following items are beyond the scope of this specification:
 
@@ -123,16 +163,16 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 2. Alternate serializations of OpenC2 commands
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies
 
-## 1.3 IPR Policy
+## 1.4 IPR Policy
 This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
-## 1.4 Terminology
+## 1.5 Terminology
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
-## 1.5 Document Conventions
+## 1.6 Document Conventions
 > **Editor's Note** - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
 
-## 1.6 Naming Conventions
+### 1.6.1 Naming Conventions
 RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
 
 All words in type names are capitalized.  All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
@@ -212,7 +252,7 @@ The normative list of actions is found in section 3.2.1.2.OpenC2 actions can be 
 Each command MUST contain one, and only one, action. Only the actions in Section 3.2.1.2 SHALL be used.
 
 ### 2.2.3 Target Vocabulary
-The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET). The normative set of TARGETs is in Section 3.2.1.3
+The TARGET is the object of the ACTION (or alternatively, the ACTION is performed on the TARGET). The normative set of TARGETs is in Section 3.2.1.3.
 
 The target vocabulary is extensible - see Section 2.2.6.
 
@@ -289,7 +329,7 @@ The syntax of valid OpenC2 messages is defined using the following datatypes:
 | **Primitive Types** |   |
 | Binary | A sequence of octets or bytes. Serialized either as binary data or as a string using an encoding such as hex or base64. |
 | Boolean | A logical entity that can have two values: `true` and `false`. Serialized as either integer or keyword. |
-| Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. JSON serialization shall be in accordance with RFC 7493 |
+| Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. JSON serialization shall be in accordance with RFC 7493. |
 | Number | A real number. Valid values include integers, rational numbers, and irrational numbers. Serialized as either binary data or a text string. |
 | Null | Nothing, used to designate fields with no value. Serialized as a keyword or an empty string. |
 | String | A sequence of characters. Each character must have a valid Unicode codepoint. |
@@ -392,6 +432,7 @@ Base Type: Record
 | 5 | **id** (optional) | Command-ID | Identifier used to link responses to a command |
 
 > **Editor's Note** - In a future working draft, we may reformat these tables to include a cardinality column instead of the required/optional tags on the property names.
+							   
 
 #### 3.2.1.2 Type Name: Action
 Base Type: Enumerated
@@ -483,6 +524,12 @@ Base Type: Choice
 Base Type: Map
 
 TBSL
+						  
+																						  
+																						 
+																						 
+																									 
+																										 
 
 #### 3.2.1.6 Type Name: Args
 Base Type: Map
@@ -922,6 +969,7 @@ An option string, minimum length = 1.  The first character is the option id.  Re
 
 # 4 Intrinsic Commands
 All OpenC2 Consumers SHALL respond to a command with the fields:
+
  * ACTION=query,
  * TARGET=openc2,
  * Target Specifiers of the query_items in section 3.3.2.8 (ie versions, profiles,
@@ -975,7 +1023,9 @@ In event of a conflict between JADN OpenC2 schema and the property tables, the p
 This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.
 
 ```
-{    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }}
+{    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }
+	 
+ 
 ```
 
 ## B.3 Example 3
