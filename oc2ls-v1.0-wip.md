@@ -207,7 +207,7 @@ The OpenC2 language has two distinct content types: Command and Response. The Op
 The OpenC2 Command communicates an action to be performed on a target and may include information identifying the actuator(s) that is to execute the command. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
 ### 2.2.1 Command Structure
-An OpenC2 Command has five fields: COMMAND-ID, ACTION, TARGET, ACTUATOR and ARGS.
+An OpenC2 Command has five fields: ACTION, TARGET, COMMAND-ID, ARGS, and ACTUATOR.
 
 The optional COMMAND-ID field is an identifier used to link responses to a command.
 
@@ -221,15 +221,15 @@ The optional ARGS field is populated by one or more 'command arguments' that pro
 
 The following list summarizes the fields and subfields of an OpenC2 Command. OpenC2 Commands MUST contain an ACTION and TARGET and MAY contain an ACTUATOR and/or ARGS. OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization of the commands.
 
-* **COMMAND-ID** (optional): An identifier used to link responses to a command.
 * **ACTION** (required): The task or activity to be performed.
 * **TARGET** (required): The object of the action. The ACTION is performed on the target.
     * **TARGET-NAME** (required): The name of the object of the action.
     * **TARGET-SPECIFIERS** (optional): The specifier further identifies the target to some level of precision, such as a specific target, a list of targets, or a class of targets.
+* **COMMAND-ID** (optional): An identifier used to link responses to a command.
+* **ARGS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
 * **ACTUATOR** (optional): The ACTUATOR may perform the ACTION on the TARGET. The ACTUATOR type will be defined within the context of an Actuator Profile.
     * **ACTUATOR-NAME** (required): The name of the set of functions (e.g., "slpf") performed by the actuator, and the name of the profile defining commands applicable to those functions.
     * **ACTUATOR-SPECIFIERS** (optional): The specifier identifies the actuator to some level of precision, such as a specific actuator, a list of actuators, or a group of actuators.
-* **ARGS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
 
 The TARGET field in an OpenC2 Command MUST only contain one type of target (e.g. ip_addr). The TARGET SPECIFIERS provide additional precision to specify the specific target (e.g., 10.1.2.3) and MAY specify a range of the same type (e.g., 10.1.0.0/16).
 
@@ -412,15 +412,15 @@ In addition to the ACTION and TARGET, the body of the OpenC2 message has an opti
 The OpenC2 Command describes an action performed on a target.
 
 #### 3.2.1.1 Type Name: OpenC2-Command
-Base Type: Record
+**_Type: OpenC2-Command (Record__)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **action** | Action | 1 | The task or activity to be performed (i.e., the 'verb') |
 | 2 | **target** | Target | 1 | The object of the action. The action is performed on the target. |
-| 3 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
+| 5 | **id** | Command-ID | 0..1 | Identifier used to link responses to a command. |
 | 4 | **args** | Args | 0..1 | An object containing additional properties that apply to the command |
-| 5 | **id** | Command-ID | 0..1 | Identifier used to link responses to a command |
+| 3 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
 
 #### 3.2.1.2 Type Name: Action
 Base Type: Enumerated
