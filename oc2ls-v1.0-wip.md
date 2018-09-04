@@ -168,12 +168,23 @@ This Working Draft is being developed under the [Non-Assertion](https://www.oasi
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
 
 ## 1.6 Document Conventions
-> **Editor's Note** - TBSL - This section will be included in a future iteration (probably iteration 5) prior to submitting for Committee Specification.
-
 ### 1.6.1 Naming Conventions
-RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
+* RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
+* All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
+* All words in structure component names are capitalized and are separated with a hyphen, e.g., ACTION, TARGET, TARGET-SPECIFIER.
+* Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
+* The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
+* All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
 
-All words in type names are capitalized.  All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry). Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-). All type names, property names, object names, and vocabulary terms are between three and 250 characters long.
+### 1.6.2 Font Colors and Style
+The following color, font and font style conventions are used in this document:
+
+* The `Consolas` font is used for all type names, property names, and literals.
+* Property names are in bold style – **`created_a**t`
+* All examples in this document are expressed in JSON. They are in Consolas 11-point font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](https://docs.google.com/document/d/1ShNq4c3e1CkfANmD9O--mdZ5H0O_GLnjN28a_yrEaco/edit#bookmark=id.mmt4e4p953r5)].
+* Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
+
+Example:
 
 ```javascript
 {   
