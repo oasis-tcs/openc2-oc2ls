@@ -356,7 +356,7 @@ The following types are defined as value constraints applied to String (text str
 | JSON | String  | JSON value, RFC 7159 Section 3.  Note that a JSON value carried in a JSON string requires every quote (") to be escaped. |
 | **Idioms** |   |   |
 | Date-Time | String | date-time, RFC 3339 Section 5.6 |
-|   | Integer | 32, 64, or 128 bit RFC 5905 NTP time value |
+|   | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970. |
 | Duration | String | duration, RFC 3339 Appendix A (ISO 8601) |
 |   | Integer | 32 or 64 bit RFC 5905 NTP time value |
 | IP-Addr | String | IPv4 or IPv6 address in CIDR notation, RFC 2673 Section 3.2 |
@@ -422,7 +422,6 @@ In addition to the ACTION and TARGET, the body of the OpenC2 message has an opti
 ### 3.2.1 OpenC2 Command
 The OpenC2 Command describes an action performed on a target.
 
-#### 3.2.1.1 Type Name: OpenC2-Command
 **_Type: OpenC2-Command (Record__)_**
 
 | ID | Name | Type | # | Description |
@@ -430,15 +429,15 @@ The OpenC2 Command describes an action performed on a target.
 | 1 | **action** | Action | 1 | The task or activity to be performed (i.e., the 'verb') |
 | 2 | **target** | Target | 1 | The object of the action. The action is performed on the target. |
 | 5 | **id** | Command-ID | 0..1 | Identifier used to link responses to a command. |
-| 4 | **args** | Args | 0..1 | An object containing additional properties that apply to the command |
+| 4 | **args** | Args | 0..1 | Additional information that applies to the command |
 | 3 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
 
 #### 3.2.1.2 Type Name: Action
-Base Type: Enumerated
+**_Type: Action (Enumerated)_**
 
 | ID | Name | Description |
 | :--- | :--- | :--- |
-| 1 | **scan** | Systematic examination of some aspect of the entity or its environment in order to obtain information. |
+| 1 | **scan** | Systematic examination of some aspect of the entity or its environment. |
 | 2 | **locate** | Find an object physically, logically, functionally, or by organization. |
 | 3 | **query** | Initiate a request for information. |
 | 6 | **deny** | Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access. |
@@ -455,11 +454,11 @@ Base Type: Enumerated
 | 20 | **delete** | Remove an entity (e.g., data, files, flows). |
 | 22 | **detonate** | Execute and observe the behavior of a target (e.g., file, hyperlink) in an isolated environment. |
 | 23 | **restore** | Return a system to a previously known state. |
-| 28 | **copy** | Duplicate a file or data flow. |
+| 28 | **copy** | Duplicate an object,  file, data flow or artifact. |
 | 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
-The following actions are under consideration for use in future versions of the Language Specification. Implementers MAY use these actions with the understanding that they may not be in future versions of the language unless use cases are presented and the TC accepts the action into the table. All commands MUST only use actions from this section (either the table or this list).
+The following actions are under consideration for use in future versions of the Language Specification. Implementers MAY use these actions with the understanding that they may not be in future versions of the language. All commands MUST only use actions from this section (either the table or this list).
 
 * **report** - Task an entity to provide information to a designated recipient
 * **pause** - Cease operation of a system or activity while maintaining state.
@@ -486,7 +485,7 @@ The following actions are under consideration for use in future versions of the 
 | 8 | **email_addr** | Email-Addr | A single email address. |
 | 9 | **email_message** | Email-Message | An instance of an email message, corresponding to the internet message format described in RFC 5322 and related RFCs. |
 | 10 | **file** | File | Properties of a file. |
-| 11 | **ip_addr** | IP-Addr | The representation of one or more IP addresses (either version 4 or version 6) expressed using CIDR notation. |
+| 11 | **ip_addr** | IP-Addr | An IP address (either version 4 or version 6). |
 | 13 | **mac_addr** | Mac-Addr | A single Media Access Control (MAC) address. |
 | 15 | **ip_connection** | IP-Connection | A network connection that originates from a source and is addressed to a destination. Source and destination addresses may be either IPv4 or IPv6; both should be the same version |
 | 16 | **openc2** | OpenC2 | A set of items used with the query action to determine an actuator's capabilities. |
@@ -495,7 +494,7 @@ The following actions are under consideration for use in future versions of the 
 | 18 | **software** | Software | High-level properties associated with software, including software products. |
 | 19 | **uri** | URI | A uniform resource identifier(URI). |
 | 23 | **windows_registry_key** | Windows-Registry-Key | The properties of a Windows registry key. |
-| 1024 | **slpf** | slpf:Target | Target defined in the Stateless Packet Filter profile |
+| 1000 | **extension** | PE-Target | Targets defined in a Private Enterprise profile. |
 
 The following targets are reserved for future use:
 
@@ -512,7 +511,7 @@ The following targets are reserved for future use:
 
 | ID | Name | Type | Description |
 | :--- | :--- | :--- | :--- |
-| 1024 | slpf | slpf:Specifiers | Actuator specifiers and options as defined in the Stateless Packet Filter profile, oasis-open.org/openc2/oc2ap-slpf/v1.0/csd01 |
+| 1000 | **extension** | PE-Specifiers | Specifiers defined in a Private Enterprise extension profile. |
 
 > **Editor's Note** - The intent is to fill in this table with actuators as they are defined by the AP-SC. The AP-SC profiles will define the actuators and they will only be listed here. Once we have a lot of them (not an issue yet), we may figure out how to just put a reference here to a list maintained by the AP-SC.
 
@@ -527,7 +526,7 @@ The following targets are reserved for future use:
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an action to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of response required for the action  |
-| 1024 | **slpf** | slpf:Args | 0..1 | Command arguments defined in the Stateless Packet Filter profile |
+| 1000 | **extension** | PE-Args | 0..1 | Command arguments defined in a Private Enterprise extension profile |
 
 ### 3.2.2 OpenC2 Response
 #### 3.2.2.1 Type Name: OpenC2-Response
@@ -535,11 +534,11 @@ The following targets are reserved for future use:
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **id** | Command-ID | 0..1 | ID of the response |
-| 5 | **id_ref** | Command-ID | 1 | ID of the command that induced this response. |
-| 2 | **status** | Status-Code | 1 | An integer status code |
-| 3 | **status_text** | String | 0..1 | A free-form human-readable description of the response status |
-| 4 | * | Results | 0..11 | Data or extended status information that was requested from an OpenC2 Command |
+| 1 | **status** | Status-Code | 1 | An integer status code |
+| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the response status |
+| 3 | * | Results | 0..1 | Data or extended status information that was requested from an OpenC2 Command |
+| 5 | **id_ref** | Command-ID | 0..1 | ID of the command that induced this response |
+| 6 | **actuator_id** | String | 0..1 | ID of the actuator sending the response |
 
 Example:
 
@@ -553,9 +552,9 @@ Example:
 ```
 
 #### 3.2.2.2 Type Name: Status-Code
-**_Type: Status-Code (Enumerated.Tag)_**
+**_Type: Status-Code (Enumerated.ID)_**
 
-| Value | Description |
+| ID | Description |
 | :--- | :--- |
 | 102 | **Processing** - an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
 | 200 | **OK** - the request has succeeded. |
@@ -595,12 +594,12 @@ TBSL
 #### 3.3.1.5 Target Type: Domain-Name
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Domain-Name** | String | per RFC 1034 |
+| **Domain-Name** | String (hostname) | RFC 1034, section 3.5 |
 
 #### 3.3.1.6 Target Type: Email-Addr
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String | Email address, RFC 5322, section 3.4.1 |
+| **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
 
 #### 3.3.1.7 Target Type: Email-Message
 TBSL
@@ -610,14 +609,14 @@ Base Type: Map
 
 | ID | Property Name | Type | Description |
 | :--- | :--- | :--- | :--- |
-| 0 | **name** (optional) | String | The name of the file as defined in the file system |
-| 1 | **path** (optional) | String | The absolute path to the location of the file in the file system |
-| 2 | **hashes** (optional) | Hashes | One or more cryptographic hash codes of the file contents |
+| 1 | **name** (optional) | String | The name of the file as defined in the file system |
+| 2 | **path** (optional) | String | The absolute path to the location of the file in the file system |
+| 3 | **hashes** (optional) | Hashes | One or more cryptographic hash codes of the file contents |
 
 #### 3.3.1.9 Target Type: IP-Addr
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **IP-Addr** | String | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
+| **IP-Addr** | String (ip) | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
 
 Examples:
 
@@ -643,9 +642,9 @@ Base Type: Record
 | ID | Property Name | Type | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | **src_addr** | IP-Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
-| 2 | **src_port** | Port | source service per RFC TBSL |
+| 2 | **src_port** | Port | source service per RFC 6335 |
 | 3 | **dst_addr** | IP-Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
-| 4 | **dst_port** | Port | destination service per RFC TBSL |
+| 4 | **dst_port** | Port | destination service per RFC 6335 |
 | 5 | **protocol** | L4-Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 #### 3.3.1.12 Target Type: OpenC2
@@ -669,7 +668,6 @@ Base Type: Record
 | Property Name | Type | Description |
 | :--- | :--- | :--- |
 | **name** (optional) | String | The name that uniquely identifies a property of an actuator. |
-| **query_string** (optional) | String | A query string that identifies a single property of an actuator. The syntax of the query string is defined in the actuator profile. |
 
 #### 3.3.1.15 Target Type: Software
 TBSL
@@ -689,6 +687,16 @@ TBSL
 | :--- | :--- | :--- |
 | **Command-ID** | String | Uniquely identifies a particular command |
 
+#### 3.4.2.2 Type Name: Date-Time
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Date-Time** | Integer (date-time) | Milliseconds since 00:00:00 UTC, 1 January 1970 |
+
+#### 3.4.2.3 Type Name: Duration
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Duration** | Integer (duration) | Milliseconds |
+
 #### 3.3.2.2 Type Name: Hashes
 Base Type: Map
 
@@ -706,10 +714,12 @@ Base Type: Map
 #### 3.3.2.4 Type Name: Identifier
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Identifier** | string = command--UUIDv4  | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
+| **Identifier** | String | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
 
 #### 3.3.2.5 Type Name: L4-Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
+
+Base Type: Enumerated
 
 | ID | Property Name | Description |
 | :--- | :--- | :--- |
@@ -729,7 +739,7 @@ Base Type: Choice
 #### 3.3.2.7 Type Name: Port
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
-| **Port** | String | Service Name or Transport Protocol Port Number, RFC 6335 |
+| **Port** | String (port) | Service Name or Transport Protocol Port Number, RFC 6335 |
 
 #### 3.3.2.8 Type Name: Query-Item
 Base Type: Enumerated
@@ -755,6 +765,11 @@ Base Type: Enumerated
 
 > **Editor's Note** - Use cases are needed for the different types of responses needed.
 
+#### 3.4.2.12 Type Name: URI
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **URI** | String (uri) | Uniform Resource Identifier |
+
 #### 3.3.2.10 Type Name: Version
 | Type Name | Type | Description |
 | :--- | :--- | :--- |
@@ -773,8 +788,8 @@ Base Type: Map
 | 4 | **versions** | Version | 0..n | The list of OpenC2 language versions supported by this actuator |
 | 5 | **profiles** | Uname | 0..n | The list of profiles supported by this actuator |
 | 6 | **schema** | Schema | 0..n | Syntax of the OpenC2 language elements supported by this actuator |
-| 7 | **actions** | ActionTargets | 0..n | List of actions and their supported targets |
-| 1024 | **slpf** | slpf:Results | 0..1 | Response data defined in the Stateless Packet Filtering Firewall profile |
+| 7 | **pairs** | ActionTargets | 0..n | List of targets applicable to each supported action |
+| 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise profile |
 
 #### 3.3.2.12 Type Name: KVP
 Base Type: Array
@@ -800,7 +815,7 @@ Command:
 {
     "action": "query",
     "target": {
-        "openc2": ["actions"]
+        "openc2": ["pairs"]
     }
 }
 ```
@@ -811,7 +826,7 @@ Response:
 {
     "status": 200,
     "results": {
-        "actions": [
+        "pairs": [
             ["allow", ["ip_addr", "ip_connection"]],
             ["deny", ["ip_addr", "ip_connection"]],
             ["query", ["openc2", "slpf:access_rules"]],
@@ -835,17 +850,7 @@ Meta-information about this schema
 
 Base Type: Map
 
-| ID | Property Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | **module** (required) | Uname | Unique name |
-| 2 | **title** (optional) | String | Title |
-| 3 | **version** (optional) | Version | Module version |
-| 4 | **description** (optional) | String | Description |
-| 5 | **imports** (optional) | ArrayOf(Import) | Imported modules |
-| 6 | **exports** (optional) | ArrayOf(Identifier) | Data types exported by this module |
-| 7 | **bounds** (optional) | Bounds | Schema-wide upper bounds |
-
-| ID | Property Name | Type | # | Description |
+| ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **module** | Uname | 1 | Unique name |
 | 2 | **title** | String | 0..1 | Title |
@@ -884,7 +889,7 @@ Base Type: Array
 | :--- | :--- | :--- | :--- |
 | 1 | Identifier | 1 | "tname": Name of this data type |
 | 2 | JADN-Type.* | 1 | "btype": Base type. Enumerated value derived from the list of JADN data types. |
-| 3 | Option | 1..n | "opts": Type options |
+| 3 | Option | 1..n | "topts": Type options |
 | 4 | String | 1 | "tdesc": Description of this data type |
 | 5 | JADN-Type.&2 | 1..n | "fields": List of fields for compound types.  Not present for primitive types. |
 
@@ -957,7 +962,7 @@ All OpenC2 Consumers SHALL respond to a command with the fields:
 
 * ACTION=query,
 * TARGET=openc2,
-* Target Specifiers of the query_items in section 3.3.2.8 (ie versions, profiles, schema, pairs).
+* Target Specifiers of the query_items in section 3.3.2.8 (i.e., versions, profiles, schema, pairs).
 
 # 5 Conformance
 OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  The tables in Section 3 of this document specify the normative rules for determining if an OpenC2 message (command or response) is syntactically valid.  All examples in this document are informative; in case of conflict between the tables and an example, the tables are authoritative.  Conformant implementations of OpenC2:
