@@ -1168,6 +1168,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [4, "args", "Args", ["[0"], ""],
     [5, "id", "Command-ID", ["[0"], ""]]
   ],
+
   ["Action", "Enumerated", [], "", [
     [1, "scan", ""],
     [2, "locate", ""],
@@ -1212,12 +1213,13 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [1000, "extension", "PE-Target", [], ""],
     [1024, "slpf", "slpf:Target", [], ""]]
   ],
+
   ["Actuator", "Choice", [], "", [
     [1000, "extension", "PE-Specifiers", [], ""],
     [1024, "slpf", "slpf:Specifiers", [], ""]]
   ],
 
- ["Args", "Map", [], "", [
+  ["Args", "Map", [], "", [
     [1, "start_time", "Date-Time", ["[0"], ""],
     [2, "stop_time", "Date-Time", ["[0"], ""],
     [3, "duration", "Duration", ["[0"], ""],
@@ -1225,6 +1227,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [1000, "extension", "PE-Args", ["[0"], ""],
     [1024, "slpf", "slpf:Args", ["[0"], ""]]
   ],
+
   ["OpenC2-Response", "Record", [], "", [
     [1, "status", "Status-Code", [], ""],
     [2, "status_text", "String", ["[0"], ""],
@@ -1249,12 +1252,12 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [32473, "Example", "32473:Target", [], ""]]
   ],
 
- ["PE-Specifiers", "Choice", ["="], "", [
- [32473, "Example", "32473:Specifiers", [], ""]]
+  ["PE-Specifiers", "Choice", ["="], "", [
+    [32473, "Example", "32473:Specifiers", [], ""]]
   ],
 
   ["PE-Args", "Map", ["="], "", [
- [32473, "Example", "32473:Args", [], ""]]
+    [32473, "Example", "32473:Args", [], ""]]
   ],
 
   ["PE-Results", "Map", ["="], "", [
@@ -1277,9 +1280,9 @@ This annex defines the information model used by conforming OpenC2 implementatio
 
   ["Email-Addr", "String", ["@email"], ""],
 
- ["File", "Map", [], "", [
+  ["File", "Map", [], "", [
     [1, "name", "String", ["[0"], ""],
- [2, "path", "String", ["[0"], ""],
+    [2, "path", "String", ["[0"], ""],
     [3, "hashes", "Hashes", ["[0"], ""]]
   ],
 
@@ -1288,7 +1291,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
   ["IP-Connection", "Record", [], "", [
     [1, "src_addr", "IP-Addr", ["[0"], ""],
     [2, "src_port", "Port", ["[0"], ""],
- [3, "dst_addr", "IP-Addr", ["[0"], ""],
+    [3, "dst_addr", "IP-Addr", ["[0"], ""],
     [4, "dst_port", "Port", ["[0"], ""],
     [5, "protocol", "L4-Protocol", ["[0"], ""]]
   ],
@@ -1299,7 +1302,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [1, "pid", "Integer", ["[0"], ""],
     [2, "name", "String", ["[0"], ""],
     [3, "cwd", "String", ["[0"], ""],
- [4, "executable", "File", ["[0"], ""],
+    [4, "executable", "File", ["[0"], ""],
     [5, "parent", "Process", ["[0"], ""],
     [6, "command_line", "String", ["[0"], ""]]
   ],
@@ -1314,9 +1317,10 @@ This annex defines the information model used by conforming OpenC2 implementatio
   ["Date-Time", "Integer", [], ""],
 
   ["Duration", "Integer", [], ""],
+
   ["Hashes", "Map", [], "", [
     [1, "md5", "Binary", ["[0"], ""],
- [4, "sha1", "Binary", ["[0"], ""],
+    [4, "sha1", "Binary", ["[0"], ""],
     [6, "sha256", "Binary", ["[0"], ""]]
   ],
 
@@ -1329,7 +1333,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [6, "tcp", ""],
     [17, "udp", ""],
     [132, "sctp", ""]]
- ],
+  ],
 
   ["Payload", "Choice", [], "", [
     [1, "payload_bin", "Binary", [], ""],
@@ -1344,9 +1348,10 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [3, "schema", ""],
     [4, "pairs", ""]]
   ],
+
   ["Response-Type", "Enumerated", [], "", [
     [0, "none", ""],
- [1, "ack", ""],
+    [1, "ack", ""],
     [2, "status", ""],
     [3, "complete", ""]]
   ],
@@ -1356,14 +1361,14 @@ This annex defines the information model used by conforming OpenC2 implementatio
   ["Version", "String", [], ""],
 
   ["Results", "Map", [], "", [
- [1, "strings", "String", ["[0", "]0"], ""],
+    [1, "strings", "String", ["[0", "]0"], ""],
     [2, "ints", "Integer", ["[0", "]0"], ""],
     [3, "kvps", "KVP", ["[0", "]0"], ""],
     [4, "versions", "Version", ["[0", "]0"], ""],
     [5, "profiles", "jadn:Uname", ["[0", "]0"], ""],
     [6, "schema", "jadn:Schema", ["[0"], ""],
     [7, "pairs", "ActionTargets", ["[0", "]0"], ""],
- [1000, "extension", "PE-Results", ["[0"], ""],
+    [1000, "extension", "PE-Results", ["[0"], ""],
     [1024, "slpf", "slpf:Results", ["[0"], ""]]
   ],
 
@@ -1376,7 +1381,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [1, "action", "Action", [], ""],
     [2, "targets", "Target.*", ["]0"], ""]]
   ]]
- }
+}
 ```
 
 ## A.2 JADN Syntax
@@ -1392,13 +1397,14 @@ This annex defines the information model used by conforming OpenC2 implementatio
  "meta": {
   "module": "oasis-open.org/openc2/v1.0/jadn",
   "patch": "wd01",
- "title": "JADN Syntax",
-   "description": "Syntax of a JSON Abstract Data Notation (JADN) module.",
+  "title": "JADN Syntax",
+  "description": "Syntax of a JSON Abstract Data Notation (JADN) module.",
   "exports": ["Schema", "Uname"]
  },
 
  "types": [
   ["Schema", "Record", [], "", [
+    [1, "meta", "Meta", [], ""],
     [2, "types", "Type", ["]0"], ""]]
   ],
 
@@ -1415,7 +1421,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
   ["Import", "Array", [], "", [
     [1, "nsid", "Nsid", [], ""],
     [2, "uname", "Uname", [], ""]]
-   ],
+  ],
 
   ["Bounds", "Array", [], "", [
     [1, "max_msg", "Integer", [], ""],
@@ -1430,7 +1436,8 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [3, "opts", "Option", ["]0"], ""],
     [4, "desc", "String", [], ""],
     [5, "fields", "JADN-Type", ["&btype", "]0"], ""]]
-   ],
+  ],
+
   ["JADN-Type", "Choice", [], "", [
     [1, "Binary", "Null", [], ""],
     [2, "Boolean", "Null", [], ""],
@@ -1459,6 +1466,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [4, "", "Options", [], ""],
     [5, "", "String", [], ""]]
   ],
+
   ["Identifier", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]32"], ""],
 
   ["Nsid", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]8"], ""],
@@ -1466,25 +1474,24 @@ This annex defines the information model used by conforming OpenC2 implementatio
   ["Uname", "String", ["[1", "]100"], ""],
 
   ["Options", "ArrayOf", ["*Option", "[0", "]10"], ""],
+
   ["Option", "String", ["[1", "]100"], ""]]
 }
 ```
 
-# Annex B. (Informative Examples)
-> **Editor's Note**` - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise`
-
+# Annex B. Examples
 ## B.1 Example 1
-> **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `body`. This example is for a transport where the header is included in the JSON (eg STIX).
+This example shows the structure of an OpenC2 Message containing an OpenC2 Command. This example is depicted where the header is included in the JSON (e.g., STIX).
 
 ### B.1.1 OpenC2 Message
 ```
 {   
     "header": {
         "version": "1.0",
- "created": "2018-01-30T18:25:43.511Z"
+        "created": "2018-01-30T18:25:43.511Z"
+        "request_id": "9d43df98-7e34-43d3-bb25-4d1ea7a0a02a",
     },
     "command": {
-        "id": "9d43df98-7e34-43d3-bb25-4d1ea7a0a02a",
         "action": "redirect",
         "target": {
             "url": "http://evil.com"
@@ -1497,12 +1504,10 @@ This annex defines the information model used by conforming OpenC2 implementatio
 ```
 
 ## B.2 Example 2
-`This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.`
+This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
 
 ```
 { 
-    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",
-    "action": "allow",
     "target": {
         "ip_addr": "1.2.3.4"
     },
@@ -1514,12 +1519,12 @@ This annex defines the information model used by conforming OpenC2 implementatio
 ```
 
 ## B.3 Example 3
-`This example shows the OpenC2 Command and Response for retrieving data from an actuator.`
+This example shows the OpenC2 Command and Response for retrieving data from an actuator.
 
-### B.3.1 OpenC2 Command
+**Command:**
+
 ```
 {
-    "id": "71be3c32-188f-476d-9b20-35cb4eb60e52",
     "action": "query",
     "target": {
         "property": {
@@ -1535,10 +1540,10 @@ This annex defines the information model used by conforming OpenC2 implementatio
 }
 ```
 
-### B.3.2 OpenC2 Response
+**Response:**
+
 ```
 {
-    "id_ref": "71be3c32-188f-476d-9b20-35cb4eb60e52",
     "status": 200,
     "results": {
         "battery_percentage": 0.577216
@@ -1547,62 +1552,52 @@ This annex defines the information model used by conforming OpenC2 implementatio
 ```
 
 ### B.3.3 'query openc2'
-`Command`
+**Command:**
 
 ```
 {
-  "id": "08f5396c-0c96-40ac-b028-07da1ba22992",
-  "action": "query",
-  "target": {
     "openc2": [ "version"]
-  }
 }
-
 ```
 
-`Response:`
+**Response:**
 
 ```
 {"version":"1.0"}
 ```
 
-`Command`
+**Command:**
 
 ```
 {
-  "id": "08f5396c-0c96-40ac-b028-07da1ba22992",
-  "action": "query",
   "target": {
-    "openc2": ["profile]
   }
-}
-
 ```
 
-`Response:`
-
-```
-{"slpf":"https://github.com/oasis-tcs/openc2-apsc-stateless-packet-filter/oc2slpf-v1.0-wip.md"}
-
-```
-
-`Command`
+**Response:**
 
 ```
 {
-  "id": "08f5396c-0c96-40ac-b028-07da1ba22992",
-  "action": "query",
-  "target": {
-    "openc2": ["schema"]
+  "status": 200,
+  "results": {
+    "slpf": "https://github.com/oasis-tcs/openc2-apsc-stateless-packet-filter/oc2slpf-v1.0-wip.md"
   }
 }
-
 ```
 
-`Response:`
+**Command:**
 
 ```
-{"someone put real slpf jadn schema here"}
+{
+  "action": "query",
+  "target": {
+}
+```
+
+**Response:**
+
+```
+{TBSL}
 
 ```
 
