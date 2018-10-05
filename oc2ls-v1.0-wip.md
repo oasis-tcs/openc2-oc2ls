@@ -1136,11 +1136,342 @@ A conformant OpenC2 Consumer
 1. MUST process OpenC2 Commands and issue OpenC2 Responses specified in Section 4
 2. MUST implement JSON serialization of generated OpenC2 Responses in accordance with RFC 7493
 
-# Annex A - (Informative) Acronyms
-> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
+# Annex A. Schemas
+This annex defines the information model used by conforming OpenC2 implementations in JSON Abstract Data Notation (JADN) format.  JADN is a structured textual representation of the tables shown in Section 3.  Schema files referenced by the URLs include descriptive text shown in the tables.  Descriptions are omitted from the figures in this section in order to: 1) illustrate that descriptive text is not part of the language syntax, 2) show what an actuator would return in response to a schema query, and 3) improve readability of the figures. 
 
-# Annex B - (Informative) Examples
-> **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
+## A.1 OpenC2 Language Syntax
+**Schema Files:**
+
+* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.jadn](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.jadn) (authoritative)
+* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf ](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf)
+
+**Schema:**
+
+```
+{
+ "meta": {
+  "module": "oasis-open.org/openc2/v1.0/openc2-lang",
+  "patch": "wd08",
+  "title": "OpenC2 Language Objects",
+  "description": "Datatypes that define the content of OpenC2 commands and responses.",
+  "exports": ["OpenC2-Command", "OpenC2-Response"],
+  "imports": [
+   ["slpf", "oasis-open.org/openc2/v1.0/ap-slpf"],
+   ["jadn", "oasis-open.org/openc2/v1.0/jadn"]]
+ },
+ 
+ "types": [
+  ["OpenC2-Command", "Record", [], "", [
+    [1, "action", "Action", [], ""],
+    [2, "target", "Target", [], ""],
+    [3, "actuator", "Actuator", ["[0"], ""],
+    [4, "args", "Args", ["[0"], ""],
+    [5, "id", "Command-ID", ["[0"], ""]]
+  ],
+  ["Action", "Enumerated", [], "", [
+    [1, "scan", ""],
+    [2, "locate", ""],
+    [3, "query", ""],
+    [6, "deny", ""],
+    [7, "contain", ""],
+    [8, "allow", ""],
+    [9, "start", ""],
+    [10, "stop", ""],
+    [11, "restart", ""],
+    [14, "cancel", ""],
+    [15, "set", ""],
+    [16, "update", ""],
+    [18, "redirect", ""],
+    [19, "create", ""],
+    [20, "delete", ""],
+    [22, "detonate", ""],
+    [23, "restore", ""],
+    [28, "copy", ""],
+    [30, "investigate", ""],
+    [32, "remediate", ""]]
+  ],
+
+  ["Target", "Choice", [], "", [
+    [1, "artifacts", "Artifact", ["]0"], ""],
+    [2, "commands", "Command-ID", ["]0"], ""],
+    [3, "devices", "Device", ["]0"], ""],
+    [4, "directories", "Directory", ["]0"], ""],
+    [7, "domain_names", "Domain-Name", ["]0"], ""],
+    [8, "email_addrs", "Email-Addr", ["]0"], ""],
+    [9, "email_messages", "Email-Message", ["]0"], ""],
+    [10, "files", "File", ["]0"], ""],
+    [11, "ip_addrs", "IP-Addr", ["]0"], ""],
+    [13, "mac_addrs", "Mac-Addr", ["]0"], ""],
+    [15, "ip_connections", "IP-Connection", ["]0"], ""],
+    [16, "features", "Features", [], ""],
+    [17, "processes", "Process", ["]0"], ""],
+    [25, "properties", "Property", ["]0"], ""],
+    [18, "software", "Software", ["]0"], ""],
+    [19, "uris", "URI", ["]0"], ""],
+    [23, "windows_registry_keys", "Windows-Registry-Key", ["]0"], ""],
+    [1000, "extension", "PE-Target", [], ""],
+    [1024, "slpf", "slpf:Target", [], ""]]
+  ],
+  ["Actuator", "Choice", [], "", [
+    [1000, "extension", "PE-Specifiers", [], ""],
+    [1024, "slpf", "slpf:Specifiers", [], ""]]
+  ],
+
+ ["Args", "Map", [], "", [
+    [1, "start_time", "Date-Time", ["[0"], ""],
+    [2, "stop_time", "Date-Time", ["[0"], ""],
+    [3, "duration", "Duration", ["[0"], ""],
+    [4, "response_requested", "Response-Type", ["[0"], ""],
+    [1000, "extension", "PE-Args", ["[0"], ""],
+    [1024, "slpf", "slpf:Args", ["[0"], ""]]
+  ],
+  ["OpenC2-Response", "Record", [], "", [
+    [1, "status", "Status-Code", [], ""],
+    [2, "status_text", "String", ["[0"], ""],
+    [3, "*", "Results", ["[0"], ""],
+    [4, "id", "Command-ID", ["[0"], ""],
+    [5, "id_ref", "Command-ID", ["[0"], ""],
+    [6, "actuator_id", "String", ["[0"], ""]]
+  ],
+
+  ["Status-Code", "Enumerated", ["="], "", [
+    [102, "Processing", ""],
+    [200, "OK", ""],
+    [301, "Moved Permanently", ""],
+    [400, "Bad Request", ""],
+    [401, "Unauthorized", ""],
+    [403, "Forbidden", ""],
+    [500, "Consumer Error", ""],
+    [501, "Not Implemented", ""]]
+  ],
+
+  ["PE-Target", "Choice", ["="], "", [
+    [32473, "Example", "32473:Target", [], ""]]
+  ],
+
+ ["PE-Specifiers", "Choice", ["="], "", [
+ [32473, "Example", "32473:Specifiers", [], ""]]
+  ],
+
+  ["PE-Args", "Map", ["="], "", [
+ [32473, "Example", "32473:Args", [], ""]]
+  ],
+
+  ["PE-Results", "Map", ["="], "", [
+    [32473, "Example", "32473:Results", [], ""]]
+  ],
+
+  ["Artifact", "Record", [], "", [
+    [1, "mime_type", "String", ["[0"], ""],
+    [2, "*", "Payload", ["[0"], ""],
+    [3, "hashes", "Hashes", ["[0"], ""]]
+  ],
+
+  ["Device", "Map", [], "", [
+    [1, "hostname", "Hostname", [], ""],
+    [2, "description", "String", ["[0"], ""],
+    [3, "device_id", "String", ["[0"], ""]]
+  ],
+
+  ["Domain-Name", "String", ["@hostname"], ""],
+
+  ["Email-Addr", "String", ["@email"], ""],
+
+ ["File", "Map", [], "", [
+    [1, "name", "String", ["[0"], ""],
+ [2, "path", "String", ["[0"], ""],
+    [3, "hashes", "Hashes", ["[0"], ""]]
+  ],
+
+  ["IP-Addr", "String", ["@ip"], ""],
+
+  ["IP-Connection", "Record", [], "", [
+    [1, "src_addr", "IP-Addr", ["[0"], ""],
+    [2, "src_port", "Port", ["[0"], ""],
+ [3, "dst_addr", "IP-Addr", ["[0"], ""],
+    [4, "dst_port", "Port", ["[0"], ""],
+    [5, "protocol", "L4-Protocol", ["[0"], ""]]
+  ],
+
+  ["Features", "ArrayOf", ["*Feature", "[0"], ""],
+
+  ["Process", "Map", [], "", [
+    [1, "pid", "Integer", ["[0"], ""],
+    [2, "name", "String", ["[0"], ""],
+    [3, "cwd", "String", ["[0"], ""],
+ [4, "executable", "File", ["[0"], ""],
+    [5, "parent", "Process", ["[0"], ""],
+    [6, "command_line", "String", ["[0"], ""]]
+  ],
+
+  ["Property", "Record", [], "", [
+    [1, "name", "String", [], ""],
+    [2, "query_string", "String", [], ""]]
+  ],
+
+  ["Command-ID", "String", [], ""],
+
+  ["Date-Time", "Integer", [], ""],
+
+  ["Duration", "Integer", [], ""],
+  ["Hashes", "Map", [], "", [
+    [1, "md5", "Binary", ["[0"], ""],
+ [4, "sha1", "Binary", ["[0"], ""],
+    [6, "sha256", "Binary", ["[0"], ""]]
+  ],
+
+  ["Hostname", "String", [], ""],
+
+  ["Identifier", "String", [], ""],
+
+  ["L4-Protocol", "Enumerated", [], "", [
+    [1, "icmp", ""],
+    [6, "tcp", ""],
+    [17, "udp", ""],
+    [132, "sctp", ""]]
+ ],
+
+  ["Payload", "Choice", [], "", [
+    [1, "payload_bin", "Binary", [], ""],
+    [2, "url", "URI", [], ""]]
+  ],
+
+  ["Port", "Integer", ["@port"], ""],
+
+  ["Feature", "Enumerated", [], "", [
+    [1, "versions", ""],
+    [2, "profiles", ""],
+    [3, "schema", ""],
+    [4, "pairs", ""]]
+  ],
+  ["Response-Type", "Enumerated", [], "", [
+    [0, "none", ""],
+ [1, "ack", ""],
+    [2, "status", ""],
+    [3, "complete", ""]]
+  ],
+
+  ["URI", "String", [], ""],
+
+  ["Version", "String", [], ""],
+
+  ["Results", "Map", [], "", [
+ [1, "strings", "String", ["[0", "]0"], ""],
+    [2, "ints", "Integer", ["[0", "]0"], ""],
+    [3, "kvps", "KVP", ["[0", "]0"], ""],
+    [4, "versions", "Version", ["[0", "]0"], ""],
+    [5, "profiles", "jadn:Uname", ["[0", "]0"], ""],
+    [6, "schema", "jadn:Schema", ["[0"], ""],
+    [7, "pairs", "ActionTargets", ["[0", "]0"], ""],
+ [1000, "extension", "PE-Results", ["[0"], ""],
+    [1024, "slpf", "slpf:Results", ["[0"], ""]]
+  ],
+
+  ["KVP", "Array", [], "", [
+    [1, "key", "Identifier", [], ""],
+    [2, "value", "String", [], ""]]
+  ],
+
+  ["ActionTargets", "Array", [], "", [
+    [1, "action", "Action", [], ""],
+    [2, "targets", "Target.*", ["]0"], ""]]
+  ]]
+ }
+```
+
+## A.2 JADN Syntax
+**Schema Files:**
+
+* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.jadn](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.jadn) (authoritative)
+* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf) 
+
+**Schema:**
+
+```
+{
+ "meta": {
+  "module": "oasis-open.org/openc2/v1.0/jadn",
+  "patch": "wd01",
+ "title": "JADN Syntax",
+   "description": "Syntax of a JSON Abstract Data Notation (JADN) module.",
+  "exports": ["Schema", "Uname"]
+ },
+
+ "types": [
+  ["Schema", "Record", [], "", [
+    [2, "types", "Type", ["]0"], ""]]
+  ],
+
+  ["Meta", "Map", [], "", [
+    [1, "module", "Uname", [], ""],
+    [2, "patch", "String", ["[0"], ""],
+    [3, "title", "String", ["[0"], ""],
+    [4, "description", "String", ["[0"], ""],
+    [5, "imports", "Import", ["[0", "]0"], ""],
+    [6, "exports", "Identifier", ["[0", "]0"], ""],
+    [7, "bounds", "Bounds", ["[0"], ""]]
+  ],
+
+  ["Import", "Array", [], "", [
+    [1, "nsid", "Nsid", [], ""],
+    [2, "uname", "Uname", [], ""]]
+   ],
+
+  ["Bounds", "Array", [], "", [
+    [1, "max_msg", "Integer", [], ""],
+    [2, "max_str", "Integer", [], ""],
+    [3, "max_bin", "Integer", [], ""],
+    [4, "max_fields", "Integer", [], ""]]
+  ],
+
+  ["Type", "Array", [], "", [
+    [1, "tname", "Identifier", [], ""],
+    [2, "btype", "JADN-Type", ["*"], ""],
+    [3, "opts", "Option", ["]0"], ""],
+    [4, "desc", "String", [], ""],
+    [5, "fields", "JADN-Type", ["&btype", "]0"], ""]]
+   ],
+  ["JADN-Type", "Choice", [], "", [
+    [1, "Binary", "Null", [], ""],
+    [2, "Boolean", "Null", [], ""],
+    [3, "Integer", "Null", [], ""],
+    [4, "Number", "Null", [], ""],
+    [5, "Null", "Null", [], ""],
+    [6, "String", "Null", [], ""],
+    [7, "Array", "FullField", ["]0"], ""],
+    [8, "ArrayOf", "Null", [], ""],
+    [9, "Choice", "FullField", ["]0"], ""],
+    [10, "Enumerated", "EnumField", ["]0"], ""],
+    [11, "Map", "FullField", ["]0"], ""],
+    [12, "Record", "FullField", ["]0"], ""]]
+  ],
+
+  ["EnumField", "Array", [], "", [
+    [1, "", "Integer", [], ""],
+    [2, "", "String", [], ""],
+    [3, "", "String", [], ""]]
+  ],
+
+  ["FullField", "Array", [], "", [
+    [1, "", "Integer", [], ""],
+    [2, "", "Identifier", [], ""],
+    [3, "", "Identifier", [], ""],
+    [4, "", "Options", [], ""],
+    [5, "", "String", [], ""]]
+  ],
+  ["Identifier", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]32"], ""],
+
+  ["Nsid", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]8"], ""],
+
+  ["Uname", "String", ["[1", "]100"], ""],
+
+  ["Options", "ArrayOf", ["*Option", "[0", "]10"], ""],
+  ["Option", "String", ["[1", "]100"], ""]]
+}
+```
+
+# Annex B. (Informative Examples)
+> **Editor's Note**` - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise`
 
 ## B.1 Example 1
 > **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `body`. This example is for a transport where the header is included in the JSON (eg STIX).
@@ -1150,7 +1481,7 @@ A conformant OpenC2 Consumer
 {   
     "header": {
         "version": "1.0",
-        "created": "2018-01-30T18:25:43.511Z"
+ "created": "2018-01-30T18:25:43.511Z"
     },
     "command": {
         "id": "9d43df98-7e34-43d3-bb25-4d1ea7a0a02a",
@@ -1166,16 +1497,24 @@ A conformant OpenC2 Consumer
 ```
 
 ## B.2 Example 2
-This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.
+`This example is for a transport where the header information is outside the JSON (eg HTTPS API) and only body is in JSON.`
 
 ```
-{    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",    "action": "allow",    "target": {        "ip_addr": "1.2.3.4"    },    "args" {        "start_time": "now",        "response_requested": "ack"     }
-	 
- 
+{ 
+    "id": "3cf4df44-1fbb-4b40-936c-b6139000d9d4",
+    "action": "allow",
+    "target": {
+        "ip_addr": "1.2.3.4"
+    },
+    "args": {
+        "start_time": "now",
+        "response_requested": "ack" 
+    }
+}
 ```
 
 ## B.3 Example 3
-This example shows the OpenC2 Command and Response for retrieving data from an actuator.
+`This example shows the OpenC2 Command and Response for retrieving data from an actuator.`
 
 ### B.3.1 OpenC2 Command
 ```
@@ -1207,72 +1546,72 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 }
 ```
 
-# Annex C. (Informative) Acknowledgments
-The following individuals have participated in the creation of this specification and are gratefully acknowledged:
+### B.3.3 'query openc2'
+`Command`
 
-**Participants:**
- 
-											   
-					
-			 
-						  
-   
- 
+```
+{
+  "id": "08f5396c-0c96-40ac-b028-07da1ba22992",
+  "action": "query",
+  "target": {
+    "openc2": [ "version"]
+  }
+}
 
-> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification. The proposal is to include on the list the names of all members of the Language Subcommittee who made contributions to the document (defined very liberally as anyone who either attended a meeting, or sent a contributing email, or contributed text), and all members of the OpenC2 Language Subcommittee that voted on at least one of the drafts
+```
 
-		   
+`Response:`
 
-   
-				 
-   
+```
+{"version":"1.0"}
+```
 
-		 
+`Command`
 
-   
- 
-											   
-					
-			 
-						
-   
- 
+```
+{
+  "id": "08f5396c-0c96-40ac-b028-07da1ba22992",
+  "action": "query",
+  "target": {
+    "openc2": ["profile]
+  }
+}
 
-   
+```
 
-		   
+`Response:`
 
-   
-																																			  
+```
+{"slpf":"https://github.com/oasis-tcs/openc2-apsc-stateless-packet-filter/oc2slpf-v1.0-wip.md"}
 
-   
+```
 
-		 
+`Command`
 
-   
- 
-											   
-					
-			 
-						
-   
- 
+```
+{
+  "id": "08f5396c-0c96-40ac-b028-07da1ba22992",
+  "action": "query",
+  "target": {
+    "openc2": ["schema"]
+  }
+}
 
-   
+```
 
-		   
+`Response:`
 
-   
-										  
+```
+{"someone put real slpf jadn schema here"}
 
-   
+```
 
-					 
-																																			  
+# Annex C. Acronyms
+> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification (public review). 
 
-# Annex D. (Informative) Revision History
+# Annex D. Revision History
 | Revision | Date | Editor | Changes Made |
-|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- |
 | v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
 | v1.0-csd01 | 11/14/2017 | Romano, Sparrell | approved wd01 |
 | v1.0-wd02 | 01/12/2018 | Romano, Sparrell | csd01 ballot comments<br>targets |
@@ -1284,11 +1623,11 @@ The following individuals have participated in the creation of this specificatio
 | v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’ |
 | v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some actions and targets to reserved lists |
-																								  
+| v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
 
-							 
-																												  
+# Annex E. Acknowledgments
+The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
-				 
+**Participants:**
 
-																																																																																																																				
+> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification (public review). The proposal is to include on the list the names of all members of the Language Subcommittee who made contributions to the document (defined very liberally as anyone who either attended a meeting, or sent a contributing email, or contributed text), and all members of the OpenC2 TC that voted on at least one of the drafts
