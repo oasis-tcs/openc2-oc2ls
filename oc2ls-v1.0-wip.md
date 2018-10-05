@@ -1105,394 +1105,42 @@ Field definition for compound types Array, Choice, Map, Record
 | :--- | :--- | :--- |
 | **Option** | String | An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value. |
 
-# 4 Intrinsic Commands
-All OpenC2 Consumers SHALL respond to a command with the fields:
+# 4 Mandatory Commands/Responses 
+An OpenC2 command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
 
-* ACTION=query,
-* TARGET=openc2,
-* Target Specifiers of the query_items in section 3.3.2.8 (i.e., versions, profiles, schema, pairs).
+An OpenC2 Consumer MUST process an OpenC2 Command where "query" is specified for the ACTION and "openc2" is specified for the TARGET, hereafter, referred to as a 'query openc2' command".
 
-								 
-																																																										 
-
-																																														  
-
-																																				  
+Upon processing a 'query openc2'  command, an OpenC2 Consumer MUST issue an OpenC2 Response to the OpenC2 Producer that issued the OpenC2 Command.
 
 # 5 Conformance
-OpenC2 is a command and control language that converges (i.e., common 'point of understanding') on a common syntax, and lexicon.  The tables in Section 3 of this document specify the normative rules for determining if an OpenC2 message (command or response) is syntactically valid.  All examples in this document are informative; in case of conflict between the tables and an example, the tables are authoritative.  Conformant implementations of OpenC2:
-							
+## 5.1 OpenC2 Message Content
+A conformant OpenC2 Command 
 
-1. MUST produce messages that are syntactically valid.
-2. SHOULD reject messages that are syntactically invalid.
-3. MUST implement the actions designated as mandatory in this document.
-4. MUST implement the targets designated as mandatory in this document.
-5. MAY implement optional targets defined in this document
-6. MAY implement actuator specifiers, target specifiers and/or args as specified in one or more Actuator Profiles.
-7. MUST implement JSON serialization of the commands and responses that are consistent with the syntax defined in this document.
+1. MUST be structured in accordance with Section 3.4.1, and 
+2. MUST include exactly one ACTION specified in Section 3.4.1.1.
 
-In event of a conflict between JADN OpenC2 schema and the property tables, the property tables SHALL be the normative definition
+A conformant OpenC2 Response
 
-> **Editor's Note** - TBSL - More conformance text will be included in a future iteration (probably the next) prior to submitting for Committee Specification.
-																
+1. MUST be structured in accordance with Section 3.4.2, and 
+2. MUST include exactly one STATUS specified in Section 3.4.2.1.
+
+## 5.2 OpenC2 Producer
+A conformant OpenC2 Producer 
+
+1. MUST issue OpenC2 Commands and process OpenC2 Responses specified in Section 4
+2. MUST implement JSON serialization of generated OpenC2 Commands in accordance with RFC 7493
+
+## 5.3 OpenC2 Consumer
+A conformant OpenC2 Consumer 
+
+1. MUST process OpenC2 Commands and issue OpenC2 Responses specified in Section 4
+2. MUST implement JSON serialization of generated OpenC2 Responses in accordance with RFC 7493
 
 # Annex A - (Informative) Acronyms
 > **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification.
 
 # Annex B - (Informative) Examples
 > **Editor's Note** - TBSL - This section will be populated with examples of json command and responses. The intent is to have each example serve multiple purposes (e.g., one example shows action=allow, command option=start_time, target=....) and then could be referenced with footnotes from several places in spec. This original draft was quite long due to all the inline examples and this is hoped to be a reasonable compromise
-
-					  
-							 
-
-																				 
-																							  
-
-					
-																																																																																																																																																												 
-
-							 
-				 
-
-																																																									 
-																																						   
-
-		   
-
-   
- 
-		  
-													 
-				  
-									 
-																					   
-												   
-			  
-												  
-											   
-   
- 
-		   
-										
-									
-									
-											
-									
-										
-	
-
-									
-					
-					  
-					 
-					
-					   
-					 
-					 
-					 
-						
-					   
-					
-					   
-						 
-					   
-					   
-						 
-						
-					 
-							
-						  
-	
-
-								
-											 
-											  
-										 
-												
-												   
-												 
-													   
-									  
-											
-											  
-														
-										 
-											 
-											   
-											 
-									
-																	  
-											 
-										  
-	
-
-								  
-												 
-											  
-	
-
-						   
-											   
-											  
-											
-														   
-											   
-											
-	
-
-										 
-										 
-											 
-									
-										
-											
-											 
-	
-
-											
-							
-					
-								   
-							 
-							  
-						   
-								
-								 
-	
-
-									  
-											   
-	
-
-										  
-												   
-	
-
-								 
-											 
-	
-
-									
-												
-	
-
-								  
-										   
-									
-										
-	
-
-							 
-										
-											 
-										   
-	
-
-											   
-
-										   
-
-						   
-									  
-									  
-										
-	
-
-									 
-
-									   
-										   
-										
-										   
-										
-											   
-	
-
-												  
-
-							  
-									  
-									  
-									 
-										  
-										 
-											  
-	
-
-								  
-								  
-										  
-	
-
-								   
-
-								   
-
-								  
-
-							 
-									 
-									  
-										
-	
-
-								 
-
-								   
-
-										 
-					
-				   
-					
-					  
-	
-
-								 
-										 
-							  
-	
-
-									 
-
-									 
-						
-						
-					  
-					 
-	
-
-										   
-					
-				   
-					  
-						
-	
-
-							
-
-								
-
-							  
-											   
-											 
-										 
-												 
-													
-											 
-													
-												  
-											   
-	
-
-							
-									 
-								   
-	
-
-									  
-									
-										   
-	
- 
-   
-
-				  
-				 
-
-																																																								
-																																																		 
-
-		   
-
-   
- 
-		  
-											  
-				  
-						 
-																		  
-								
-   
-
-		   
-								
-								
-									 
-	
-
-						   
-								   
-									   
-									   
-											 
-											   
-												   
-										
-	
-
-							   
-								
-								  
-	
-
-							   
-									  
-									  
-									  
-										 
-	
-
-							 
-									   
-										 
-									  
-								  
-													 
-	
-
-								   
-								  
-								   
-								   
-								  
-								
-								  
-										  
-								   
-										   
-												
-										 
-											
-	
-
-								  
-							   
-							  
-							  
-	
-
-								  
-							   
-								  
-								  
-							   
-							  
-	
-
-																	
-
-															 
-
-										  
-
-													   
-
-										   
- 
-   
-
-								   
-																																																																																																											   
 
 ## B.1 Example 1
 > **Editor's Note** - This example shows the structure of an OpenC2 Message containing a `header` and a `body`. This example is for a transport where the header is included in the JSON (eg STIX).
