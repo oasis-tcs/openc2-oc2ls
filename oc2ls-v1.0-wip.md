@@ -284,61 +284,47 @@ The following list summarizes the fields and subfields of an OpenC2 Response.
 * **STATUS_TEXT** (optional): A free-form string containing human-readable description of the response status. The string can contain more detail than is represented by the status code, but does not affect the meaning of the response.
 * **RESULTS** (optional): Contains the data or extended status code that was requested from an OpenC2 Command. 
 
-# 3 OpenC2 Property Tables
-## 3.1 Terminology
+# 3 OpenC2 Language Definition 
+## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
-The syntax of valid OpenC2 messages is defined using the following datatypes:
+The syntax of valid OpenC2 messages is defined using an information model constructed from the data types presented here:
 
 | Type | Description |
 | :--- | :--- |
 | **Primitive Types** |   |
-| Binary | A sequence of octets or bytes. Serialized either as binary data or as a string using an encoding such as hex or base64. |
-| Boolean | A logical entity that can have two values: `true` and `false`. Serialized as either integer or keyword. |
-| Integer | A number that can be written without a fractional component. Serialized either as binary data or a text string. JSON serialization shall be in accordance with RFC 7493. |
-| Number | A real number. Valid values include integers, rational numbers, and irrational numbers. Serialized as either binary data or a text string. |
-| Null | Nothing, used to designate fields with no value. Serialized as a keyword or an empty string. |
+| Binary | A sequence of octets or bytes. |
+| Boolean | A logical entity that can have two values: `true` and `false`. |
+| Integer | A number that can be written without a fractional component. |
+| Number | A real number. |
+| Null | Nothing, used to designate fields with no value. |
 | String | A sequence of characters. Each character must have a valid Unicode codepoint. |
 | **Structures** |   |
-| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type.  Serialized as a list. |
-| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and must be the specified type. Serialized as a list. |
-| Choice | One field selected from a set of named fields. The value has a name and a type. Serialized as a one-element map. |
-| Enumerated | A set of id:name pairs. Serialized as either the integer id or the name string. |
-| Map | An unordered set of named fields. Each field has a name and a type.  Serialized as a mapping type (referred to in various programming languages as: associative array, dict, dictionary, hash, map, object). |
-| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, a name, and a type. Serialized as either a list or a map. |
+| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
+| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and must be the specified type. |
+| Choice | One field selected from a set of named fields. The value has a name and a type. |
+| Enumerated | A set of id:name pairs where id is an integer. The Enumerated.ID subtype is a set of ids. |
+| Map | An unordered set of named fields. Each field has an id, name and type. |
+| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, a name, and a type. |
 
-### 3.1.2 Idioms
-The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  Idiomatic types have more than one natural representation within an implementation.  Interoperability is not affected by how these types are handled internally by an implementation, but the serialized representation must be specified.  For JSON format all idiomatic types shown here are converted (if necessary) to String representation before serialization.
+### 3.1.2 Derived Data Types
+The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of these types is specified in [Section 3.1.5](#heading=h.1s7wa079dayl), but there are no restrictions on how these types are handled internally by an implementation. 
 
 | Type | Base | Description |
 | :--- | :--- | :--- |
-| **Constraints** |   |   |
 | Domain-Name | String | RFC 1034 Section 3.5 |
-																		  
-									  
+| Date-Time | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970. |
+| Duration | Integer | Milliseconds. |
 | Email-Addr | String | RFC 5322 Section 3.4.1 |
-| Identifier | String | (TBD rules, e.g., initial alpha followed by alphanum or underscore) |
-																  
-																			 
-																   
-												   
+| Identifier | String | (TBD rules, e.g., initial alpha followed by alphanumeric or underscore) |
+| IP-Addr | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
+| MAC-Addr | Binary | 48 bit Media Access Code / Extended Unique Identifier |
+| Port | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
+| Request-Id | Binary | A value of up to 128 bits |
 | URI | String | RFC 3986 |
-| JSON | String  | JSON value, RFC 7159 Section 3.  Note that a JSON value carried in a JSON string requires every quote (") to be escaped. |
-| **Idioms** |   |   |
-| Date-Time | String | date-time, RFC 3339 Section 5.6 |
-|   | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970. |
-| Duration | String | duration, RFC 3339 Appendix A (ISO 8601) |
-|   | Integer | 32 or 64 bit RFC 5905 NTP time value |
-| IP-Addr | String | IPv4 or IPv6 address in CIDR notation, RFC 2673 Section 3.2 |
-|   | Integer | 32 bit IPv4 address or 128 bit IPv6 address |
-| MAC-Addr | String | 48 bit Media Access Code, hex encoded without separators |
-|   | Integer | 48 bit Media Access Code / Extended Unique Identifier |
-| Port | String | Service Name or Transport Protocol Port Number, RFC 6335 |
-|   | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
-| UUID | String | String representation of a UUID, RFC 4122 Section 3 |
-|   | Integer | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
+| UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
 
 ### 3.1.3 Cardinality
-Property tables for types based on Array, Map and Record include a cardinality column (#) that specifies the minimum and maximum number of values of a field.  The most commonly used cardinalities are:
+Property tables for types based on Array, Choice, Map and Record include a cardinality column (#) that specifies the minimum and maximum number of values of a field.  The most commonly used cardinalities are:
 
 * 1	Required and not repeatable
 * 0..1	Optional and not repeatable
@@ -349,103 +335,95 @@ The cardinality column may also specify a range of sizes, e.g.,:
 
 * 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
 
-> **Editor's Note** - The cardinality column will be applied to all of the Array, Map, and Record property tables in the next iteration of this specification.
-																													  
+### 3.1.4 Derived Enumerations and Selectors
+An Enumerated field may be derived from the fields of a Choice, Map or Record type by appending ".*" to the type name.
 
-### 3.1.4 Selectors
-A Choice field within an Array, Map or Record type may reference the contents of another field within that type to select which element of the choice is present.  The selector (key) field can be an enumeration autogenerated from a Choice type by appending ".*" to the type.  The Choice type can reference the selector by appending ".&selector-name" to the type.  For example:
+A Choice field within an Array, Map or Record type may reference the contents of another field within that type to select which element of the choice is present.  The selector (key) field can be either an explicitly defined Enumerated type or a derived Enumerated type. .  The Choice type can reference the selector field by appending ".&selector-name" to the type.  For example:
 
-**Type Name: Example**
+**Type Name: Example-sel**
 
 Base Type: Record
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | key | Animal.* | 1 | Selector autogenerated from choice |
-| 2 | date | String | 1 | … other fields in this record |
-| 3 | val | Animal.&key | 1 | Value of choice  selected by "key" field |
+| 1 | key | Target.* | 1 | Selector auto-generated from Choice |
+| 2 | date | Date-Time | 1 | … other fields in this record |
+| 3 | value | Target.&key | 1 | Type of value is selected by "key" field |
 
-**Type Name: Animal**
+A message of the "Example-sel" type would look like:
 
-Base Type: Choice
-	
-					 
-						  
-					 
- 
-   
+```
+{   
+    "key": "ip_addr",
+    "date": 1537392265000,
+    "value": "zIQomw"
+}
+```
 
-| ID | Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | dog | String | Coat color if animal is a dog |
-| 2 | fish | Number | Length in inches if animal is a fish |
+### 3.1.5 Serialization
+OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
 
-## 3.2 Messages
-An OpenC2 Message is a protocol data unit that is exchanged between OpenC2 producers and OpenC2 consumers for purposes of commanding.  An OpenC2 message consists of a ‘message body’ and ‘message head’.  The message body communicates the intended action on a target and associated response.  The message head provides metadata to support the transfer of the message body between the participants of the command/ response.  
+**JSON Serialization Requirements:**
 
-The scope of this specification is to define the ACTION and TARGET portions of body (or payload) of the OpenC2 message.  An OpenC2 body is either a Command or a Responses where the properties of the OpenC2 command are defined in section 3.2.1 and the properties of the response are defined in section 3.2.2.    
-			   
-																	  
-																						 
-						  
-							
-							
-																															   
-																																							  
-							
+| OpenC2 Data Type | JSON Serialization Requirement |
+| :--- | :--- |
+| **Binary** | Base64url string as defined in Section 5 of RFC 4648. |
+| **Integer** | Text string as described in [Section 3.1.5.2](#heading=h.rsvt22s6h7s1). |
+| **Array** | JSON Array |
+| **ArrayOf** | JSON Array |
+| **Choice** | JSON Object |
+| **Enumerated** | Either integer id or name string.  The Enumerated.ID subtype (section 3.1.6) is a set of unnamed integers. |
+| **Map** | JSON Object. Map keys are serialized as either integer ids or name strings. Keys for the Map.ID subtype (section 3.1.6) are unnamed integer ids. |
+| **Record** | JSON Object |
 
-The message head is beyond the scope of this specification and is defined in transfer specifications such as OpenC2-HTTPS, OpenC2-MQTT, OpenC2-CoAP etc.  Transfer specifications SHOULD include the following information:
-																																																																											 
+#### 3.1.5.1 ID and Name Serialization
+Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
-* Version
-* Command id
-* Timestamp
-* Sender
-* Content type
+1. The type definition and API value uses only the ID.  There is no corresponding name string except as an optional part of the description.
+2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
 
-In addition to the ACTION and TARGET, the body of the OpenC2 message has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the ACTUATOR specifiers and ACTUATOR arguments is beyond the scope of this specification.  The actuators are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filter Profile, Routing Profile etc.
-																																																																																																																												 
+#### 3.1.5.2 Integer Serialization
+For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.  For example, the JSON "number" type represents integers and real numbers as decimal strings without quotes, e.g., { "height": 68.2 }, and as noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
 
-																																																																																																																																																												  
+The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
-			  
-### 3.2.1 OpenC2 Command
-The OpenC2 Command describes an action performed on a target.
-																																																																																																																																								 
+## 3.2 Message
+As described in Section 1.1, this language specification and one or more actuator profiles define the content of OpenC2 commands and responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-									  
+A message is a content- and transport-independent set of elements conveyed between consumers and producers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#bookmark=id.802piptnpnjy) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required, while other message elements are not required by this specification but may be required by other documents.
 
-					  
-			   
-																		 
-																																																																																		   
-																																																																				 
-																																																																						   
-																															  
-																										  
-																									  
+**Table 3-1. Common Message Elements**
 
-																																																																																																																																																																																																																																	
+| Name | Description |
+| :--- | :--- |
+| **content** | Message body as specified by content_type and msg_type. |
+| **content_type** | String. Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type "**openc2**" identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
+| **msg_type** | Enumerated. One of "**request**", "**response**", or "**notification**".  For the **openc2 **content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
+| **request_id** | Request-Id. A unique identifier value of up to 128 bits that is attached to request and response messages. This value is assigned by the sender and is copied unmodified into all responses to support  reference to a particular command, transaction or event chain. |
+| **created** | Date-Time. Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
+| **from** | String. Authenticated identifier of the creator of or authority for execution of a message. |
+| **to** | ArrayOf(String). Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
-			  
-																																																																																		 
+Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
 
-																																																																																																								   
+## 3.3 Content
+The scope of this specification is to define the ACTION and TARGET portions of an OpenC2 command and the common portions of an OpenC2 response.  The properties of the OpenC2 command are defined in [Section 3.3.1](#heading=h.f3ahqel2q85i) and the properties of the response are defined in [Section 3.3.2](#heading=h.23b40yml0v2x).
 
-						
-															  
+In addition to the ACTION and TARGET, an OpenC2 command has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the ACTUATOR specifiers are beyond the scope of this specification.  The actuators and actuator-specific results contained in a response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
 
-**_Type: OpenC2-Command (Record__)_**
+### 3.3.1 OpenC2 Command
+The OpenC2 Command describes an action performed on a target. 
+
+**_Type: OpenC2-Command (Record)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **action** | Action | 1 | The task or activity to be performed (i.e., the 'verb') |
+| 1 | **action** | Action | 1 | The task or activity to be performed (i.e., the 'verb'). |
 | 2 | **target** | Target | 1 | The object of the action. The action is performed on the target. |
-| 5 | **id** | Command-ID | 0..1 | Identifier used to link responses to a command. |
-| 4 | **args** | Args | 0..1 | Additional information that applies to the command |
-| 3 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
+| 3 | **args** | Args | 0..1 | Additional information that applies to the command. |
+| 4 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
 
-#### 3.2.1.2 Type Name: Action
+#### 3.3.1.1 Action
 **_Type: Action (Enumerated)_**
 
 | ID | Name | Description |
@@ -471,7 +449,7 @@ The OpenC2 Command describes an action performed on a target.
 | 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
-The following actions are under consideration for use in future versions of the Language Specification. Implementers MAY use these actions with the understanding that they may not be in future versions of the language. All commands MUST only use actions from this section (either the table or this list).
+The following actions are under consideration for use in future versions of the Language Specification. Implementers may use these actions with the understanding that they may not be in future versions of the language.
 
 * **report** - Task an entity to provide information to a designated recipient
 * **pause** - Cease operation of a system or activity while maintaining state.
@@ -485,81 +463,62 @@ The following actions are under consideration for use in future versions of the 
 * **sync** - Synchronize a sensor or actuator with other system components
 * **mitigate** -  Task the recipient to circumvent a problem without necessarily eliminating the vulnerability or attack point
 
-#### 3.2.1.3 Type Name: Target
+**Usage Requirements:**
+
+* Each command MUST contain exactly one action. 
+* All commands MUST only use actions from this section (either the table or the list) 
+* Actions defined external to this section SHALL NOT be used.
+
+#### 3.3.1.2 Target
 **_Type: Target (Choice)_**
 
-| ID | Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | **artifact** | Artifact | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | Command-Id | A reference to a previously issued OpenC2 Command. |
-| 3 | **device** | Device | The properties of a hardware device. |
-| 4 | **directory** | Directory | The properties common to a file system directory. |
-| 7 | **domain_name** | Domain-Name | A network domain name. |
-| 8 | **email_addr** | Email-Addr | A single email address. |
-| 9 | **email_message** | Email-Message | An instance of an email message, corresponding to the internet message format described in RFC 5322 and related RFCs. |
-| 10 | **file** | File | Properties of a file. |
-| 11 | **ip_addr** | IP-Addr | An IP address (either version 4 or version 6). |
-| 13 | **mac_addr** | Mac-Addr | A single Media Access Control (MAC) address. |
-| 15 | **ip_connection** | IP-Connection | A network connection that originates from a source and is addressed to a destination. Source and destination addresses may be either IPv4 or IPv6; both should be the same version |
-| 16 | **openc2** | OpenC2 | A set of items used with the query action to determine an actuator's capabilities. |
-| 17 | **process** | Process | Common properties of an instance of a computer program as executed on an operating system. |
-| 25 | **property** | Property | Data attribute associated with an actuator |
-| 18 | **software** | Software | High-level properties associated with software, including software products. |
-| 19 | **uri** | URI | A uniform resource identifier(URI). |
-| 23 | **windows_registry_key** | Windows-Registry-Key | The properties of a Windows registry key. |
-| 1000 | **extension** | PE-Target | Targets defined in a Private Enterprise profile. |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
+| 2 | **command** | Request-Id | 1 | A reference to a previously issued OpenC2 Command. |
+| 3 | **device** | Device | 1 | The properties of a hardware device. |
+| 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
+| 8 | **email_addr** | Email-Addr | 1 | A single email address. |
+| 16 | **feature** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
+| 10 | **file** | File | 1 | Properties of a file. |
+| 11 | **ip_addr** | IP-Addr | 1 | An IP address (either version 4 or version 6). |
+| 15 | **ip_connection** | IP-Connection | 1 | A network connection that originates from a source and is addressed to a destination. Source and destination addresses may be either IPv4 or IPv6; both should be the same version |
+| 13 | **mac_addr** | Mac-Addr | 1 | A single Media Access Control (MAC) address. |
+| 17 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
+| 25 | **property** | Property | 1 | Data attribute associated with an actuator |
+| 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
+| 1000 | **extension** | PE-Target | 1 | Targets defined in a Private Enterprise extension profile. |
+| 1001 | **extension_unr** | Unr-Target | 1 | Targets defined in an Unregistered extension profile |
 
-The following targets are reserved for future use:
-							   
+The following targets are under consideration for use in future versions of the Language Specification. Implementers may use these targets with the understanding that they may not be in future versions of the language.
 
-									  
-									
-																												 
-																						 
-																	  
-																  
-																 
-																														
-													
-																				   
-																																																								   
-																				   
-																															   
-																				 
-																
-																									 
-																									
-
-																																																						  
-
-		   
+* directory
 * disk
 * disk_partition
-			   
+* email_message
 * memory
-		  
+* software
 * user_account
 * user_session
 * volume
-					  
+* windows_registry_key
 * x509_certificate
 
-#### 3.2.1.4 Type Name: Actuator
+**Usage Requirements:**
+
+* The TARGET field in an OpenC2 Command MUST contain exactly one type of target (e.g. ip_addr).
+* All commands MUST only use targets from this section (either the table or the list) 
+* Targets defined external to this section SHALL NOT be used.
+
+#### 3.3.1.3 Actuator
 **_Type: Actuator (Choice)_**
 
-| ID | Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1000 | **extension** | PE-Specifiers | Specifiers defined in a Private Enterprise extension profile. |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1000 | **extension** | PE-Specifiers | 0..1 | Specifiers defined in a Private Enterprise extension profile. |
+| 1001 | **extension_unr** | Unr-Specifiers | 0..1 | Specifiers defined in an Unregistered extension profile |
 
-> **Editor's Note** - The intent is to fill in this table with actuators as they are defined by the AP-SC. The AP-SC profiles will define the actuators and they will only be listed here. Once we have a lot of them (not an issue yet), we may figure out how to just put a reference here to a list maintained by the AP-SC.
-								 
-
-> **Editor's Note** - The intent is to for the actuators to be extensible. Ie if a vendor has a function that is not yet in an AP-SC profile, the extensibility would be used to add this new function.  The text to go here on how to do that is still under development
-									
-																											   
-																											  
-
-#### 3.2.1.6 Type Name: Args
+#### 3.3.1.4 Args
 **_Type: Args (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -567,403 +526,374 @@ The following targets are reserved for future use:
 | 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action  |
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an action to be in effect |
-| 4 | **response_requested** | Response-Type | 0..1 | The type of response required for the action  |
+| 4 | **response_requested** | Response-Type | 0..1 | The type of response required for the action: `none`, `ack`, `status`, `complete`. |
 | 1000 | **extension** | PE-Args | 0..1 | Command arguments defined in a Private Enterprise extension profile |
-																											   
+| 1001 | **extension_unr** | Unr-Args | 0..1 | Command arguments defined in an Unregistered extension profile |
 
-### 3.2.2 OpenC2 Response
+**Usage Requirements:**
 
-																																							 
+* When response_requested is not explicitly contained in an OpenC2 Command, a Consumer MUST respond in the same manner as {"response_requested": "complete"}.
 
-#### 3.2.2.1 Type Name: OpenC2-Response
+### 3.3.2 OpenC2 Response
 **_Type: OpenC2-Response (Record)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the response status |
-| 3 | * | Results | 0..1 | Data or extended status information that was requested from an OpenC2 Command |
-| 5 | **id_ref** | Command-ID | 0..1 | ID of the command that induced this response |
-| 6 | **actuator_id** | String | 0..1 | ID of the actuator sending the response |
+| 3 | **results** | Results | 0..1 | Data or extended status information that was requested from an OpenC2 Command |
 
-Example:
+**Example:**
 
 ```javascript
 {   
     "id_ref": "01076931758653239640628182951035",
     "status": 200,
     "status_text": "All endpoints successfully updated",
-    "results": {        "strings": ["wd-394", "sx-2497"]    }
+    "results": {
+        "strings": ["wd-394", "sx-2497"]
+    }
 }
 ```
 
-				   
+Usage Requirements:
 
-										
-													 
+* `All Responses must contain a status.`
+* `Responses MAY contain status_text and/or results.`
 
-#### 3.2.2.2 Type Name: Status-Code
+#### 3.3.2.1 Status-Code
 **_Type: Status-Code (Enumerated.ID)_**
 
 | ID | Description |
 | :--- | :--- |
-| 102 | **Processing** - an interim response used to inform the client that the server has accepted the request but has not yet completed it. |
+| 102 | **Processing** - an interim response used to inform the producer that the consumer has accepted the request but has not yet completed it. |
 | 200 | **OK** - the request has succeeded. |
 | 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
-| 400 | **Bad Request** - the server cannot process the request due to something that is perceived to be a client error (e.g., malformed request syntax). |
+| 400 | **Bad Request** - the consumer cannot process the request due to something that is perceived to be a producer error (e.g., malformed request syntax). |
 | 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
-| 403 | **Forbidden** - the server understood the request but refuses to authorize it. |
-																				   
-| 500 | **Server Error** - the server encountered an unexpected condition that prevented it from fulfilling the request. |
-| 501 | **Not Implemented** - the server does not support the functionality required to fulfill the request. |
-																																						 
+| 403 | **Forbidden** - the consumer understood the request but refuses to authorize it. |
+| 404 | **Not Found** - the consumer has not found anything matching the request. |
+| 500 | **Consumer Error** - the consumer encountered an unexpected condition that prevented it from fulfilling the request. |
+| 501 | **Not Implemented** - the consumer does not support the functionality required to fulfill the request. |
+| 503 | **Service Unavailable** - the consumer is currently unable to handle the request due to a temporary overloading or maintenance of the consumer. |
 
-## 3.3 Property Details
-### 3.3.1 Target Types
-#### 3.3.1.1 Target Type: Artifact
-Base Type: Record
+### 3.3.3 Imported Data
+In addition to the targets, actuators, arguments, and other language elements defined in this specification, OpenC2 messages may contain data objects imported from other specifications and/or custom data objects defined by the implementers.  The details are specified in a data profile which contains:
 
-																				
-					
-															
-																									
-																								  
-																											   
-																					
-																					  
-																	  
+1. a prefix indicating the origin of the imported data object is outside OpenC2:
+    * `x_` (profile)
+2. a unique name for the specification being imported, e.g.:
+    * For shortname `x_kmipv2.0` the full name would be `oasis-open.org/openc2/profiles/kmip-v2.0, `
+    * For shortname `x_sfslpf` the full name would be `sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
+3. a namespace identifier (nsid) - a short reference, e.g., `kmipv2.0`, to the unique name of the specification
+4. a list of object identifiers imported from that specification, e.g., `Credential`
+5. a definition of each imported object, either referenced or contained in the profile
+6. conformance requirements for implementations supporting the profile
 
-																																																																																																																																																 
+The data profile itself can be the specification being imported or the data profile can reference an existing specification.  In the example above, the data profile created by the OpenC2 TC to represent KMIP could have a unique name of `oasis-open.org/openc2/profiles/kmip-v2.0`.  The data profile would note that it is derived from the original specification `oasis-open.org/kmip/spec/v2.0/kmip-spec-v2.0`. In the example for shortname `x_sfslpf`, the profile itself could be defined in a manner directly compatible with OpenC2 and would not reference any other specification.
 
-																																																											   
+An imported object is identified by namespace identifier and object identifier. While the data profile may offer a suggested nsid, the containing schema defines the nsids that it uses to refer to objects imported from other specifications:
 
-   
-															 
-   
+```
+import oasis-open.org/openc2/profiles/kmip-v2.0 as x_kmip_2.0
+```
 
-																 
+An element using an imported object identifies it using the nsid:
 
-   
-	
-			   
-					   
-								  
-										  
-											 
-		 
-	 
- 
-   
+```
+{   
+    "target": {
+        "x_kmip_2.0": {
+            {"kmip_type": "json"},
+            {"operation": "RekeyKeyPair"},
+            {"name": "publicWebKey11DEC2017"}
+        }
+    }
+}
+```
 
-																																																																																																																																							  
+A data profile can define its own schema for imported objects, or it can reference content as defined in the specification being imported.  Defining an abstract syntax allows imported objects to be represented in the same format as the containing object.  Referencing content directly from an imported specification results in it being treated as an opaque blob if the imported and containing formats are not the same (e.g., an XML or TLV object imported into a JSON OpenC2 command, or a STIX JSON object imported into a CBOR OpenC2 command).
 
-																																																				 
+The OpenC2 Language MAY be extended using imported data objects for TARGET, TARGET_SPECIFIER, ACTUATOR, ACTUATOR_SPECIFIER, ARGUMENTS, and RESULTS. The list of ACTIONS in Section 3.2.1.2 SHALL NOT be extended.
 
-					
-																																																																																																	
+### 3.3.4 Extensions
+Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace or MAY use an unregistered namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
 
-	   
-												 
-				 
-							 
+| 32473
+  Example Enterprise Number for Documentation Use
+    See [RFC5612]
+      iana&iana.org || :--- |
 
 
-																																																																																																 
+OpenC2 contains four predefined extension points to support registered private enterprise profiles: PE-Target, PE-Specifiers, PE-Args, and PE-Results.  An organization can develop a profile that defines custom types, create an entry for their organization's namespace under each extension point used in the profile, and then use their custom types within OpenC2 commands and responses.
 
-																																																														
+By convention ID values of 1000 and above within OpenC2-defined data types are namespace identifiers, although there is no restriction against assigning non-namespaced IDs in that range.
 
-																																																														  
+Example target from a registered profile containing a "lens" extension defined by the organization with IANA Private Enterprise Number 32473. This target might be used with the "set" action to support a hypothetical IoT camera pan-tilt-zoom use case.
 
-   
- 
-			   
-					  
-					  
-																  
-			 
-		 
-	 
- 
-   
+```
+{
+    "target": {
+        "extension": {
+            "32473": {
+                "lens": {"focal_length": 240, "aperture": "f/1.6"}
+            }
+        }
+    }
+}
+```
 
-																																	
+Example of the same target from a profile defined by an organization that has not registered a Private Enterprise Number with IANA. 
 
-   
- 
-			   
-						 
-						  
-																  
-			 
-		 
-	 
- 
-   
+```
+{
+    "target": {
+        "unregistered": {
+            "x-foo.com": {
+                "lens": {"focal_length": 240, "aperture": "f/1.6"}
+            }
+        }
+    }
+}
+```
 
-																																																														
+Using DNS names provides collision resistance for names used in x- namespaces, but the corresponding IDs are not coordinated through a registration process and are subject to collisions.
 
-																																																																														 
+OpenC2 implementations MAY support registered and unregistered extension profiles regardless of whether those profiles are listed by the TC.  Implementations MUST NOT use the "Example" registered extension entries shown below, and MAY use one or more actual registered extensions by replacing the example entries.
 
-					  
-																																					 
+#### 3.3.4.1 PE-Target
+Because target is a required element, implementations receiving an OpenC2 Command with an unsupported target type MUST reject the command as invalid.
 
-								 
+**_Type: PE-Target (Choice.ID)_**
 
-| ID | Property Name | Type | Description |
+| ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | **mime_type** (optional) | String | Permitted values specified in the IANA Media Types registry, RFC 6838 |
-| 2 | * (optional) | Payload | Choice of literal content or URL |
-| 3 | **hashes** (optional) | Hashes | Hashes of the payload content |
+| 32473 | 32473:Target | 1 | "Example": Targets defined in the Example Inc. extension profile |
 
-#### 3.3.1.2 Target Type: Command
-TBSL
+#### 3.3.4.2 PE-Specifiers
+The behavior of an implementation receiving an OpenC2 Command with an unsupported actuator type is undefined.  It MAY ignore the actuator field or MAY reject the command as invalid.
 
-#### 3.3.1.3 Target Type: Device
-Base Type: Map
+**_Type: PE-Specifiers (Choice.ID)_**
 
-| Property Name | Type | Description |
+| ID | Type | # | Description |
+| :--- | :--- | :--- | :--- |
+| 32473 | 32473:Specifiers | 1 | "Example": Actuator Specifiers defined in the Example Inc. extension profile |
+
+#### 3.3.4.3 PE-Args
+The behavior of an implementation receiving an OpenC2 Command with an unsupported arg type is undefined.  It MAY ignore the unrecognized arg or MAY reject the command as invalid.
+
+**_Type: PE-Args (Map.ID)_**
+
+| ID | Type | # | Description |
+| :--- | :--- | :--- | :--- |
+| 32473 | 32473:Args | 1 | "Example": Command Arguments defined in the Example Inc. extension profile |
+
+#### 3.3.4.4 PE-Results
+The behavior of an implementation receiving an OpenC2 Response with an unsupported results type is undefined.  An unrecognized response has no effect on the OpenC2 protocol but implementations MAY log it as an error.
+
+**_Type: PE-Results (Map.ID)_**
+
+| ID | Type | # | Description |
+| :--- | :--- | :--- | :--- |
+| 32473 | 32473:Results | 1 | "Example": Results defined in the Example Inc. extension profile |
+
+## 3.4 Type Definitions
+### 3.4.1 Target Types
+#### 3.4.1.1 Artifact
+**_Type: Artifact (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, RFC 6838 |
+| 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
+| 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
+
+#### 3.4.1.2 Command
+**_Type: Command (Request-Id)_**
+
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **hostname** (optional) | Hostname | A hostname that can be used to connect to this device over a network |
-| **description** (optional) | String | A human-readable description of the purpose, relevance, and/or properties of this device |
-| **device_id** (optional) | String | An identifier that refers to this device within an inventory or management system |
+| **Command** | Request-Id | A reference to a previously issued OpenC2 command. |
 
-#### 3.3.1.4 Target Type: Directory
-TBSL
+#### 3.4.1.3 Device
+**_Type: Device (Map)_**
 
-#### 3.3.1.5 Target Type: Domain-Name
-| Type Name | Type | Description |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **hostname** | Hostname | 1 | A hostname that can be used to connect to this device over a network |
+| 2 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
+| 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
+
+#### 3.4.1.4 Domain-Name
+**_Type: Domain-Name (String)_**
+
+| Name | Type | Description |
 | :--- | :--- | :--- |
 | **Domain-Name** | String (hostname) | RFC 1034, section 3.5 |
 
-#### 3.3.1.6 Target Type: Email-Addr
-| Type Name | Type | Description |
+#### 3.4.1.5 Email-Addr
+**_Type: Email-Addr (String)_**
+
+| Name | Type | Description |
 | :--- | :--- | :--- |
 | **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
 
-#### 3.3.1.7 Target Type: Email-Message
-TBSL
+#### 3.4.1.6 Features
+**_Type: Features (ArrayOf(Feature))_**
 
-#### 3.3.1.8 Target Type: File
-Base Type: Map
+#### 3.4.1.7 File
+**_Type: File (Map)_**
 
-| ID | Property Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | **name** (optional) | String | The name of the file as defined in the file system |
-| 2 | **path** (optional) | String | The absolute path to the location of the file in the file system |
-| 3 | **hashes** (optional) | Hashes | One or more cryptographic hash codes of the file contents |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
+| 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
+| 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.3.1.9 Target Type: IP-Addr
-					  
-					 
-							 
+#### 3.4.1.8 IP-Addr
+**_Type: IP-Addr (Binary)_**
 
-									  
-									
-																											 
-																	   
-																  
-
-					
-								
-
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **IP-Addr** | String (ip) | IPv4 or IPv6 address or range in CIDR notation. IPv4 address or range in CIDR notation, i.e., a dotted decimal format per RFC TBSL with optional CIDR prefix. IPv6 address or range in CIDR notation, i.e., colon notation per RFC 5952 with optional CIDR prefix |
+| **IP-Addr** | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
 
-Examples:
-						
+#### 3.4.1.9 IP-Connection
+**_Type: IP-Connection (Record)_**
 
-* "192.168.10.11" - a single ipv4 address distinguishable because of the dots
-* "192.168.10.11/32" - a single ipv4 address in CIDR notation
-* "192.168.0.0/16" - a range of 65,536 ipv4 addresses in CIDR notation
-* "2001:db8::1" - a single ipv6 address distinguishable because of the colons
-* "2001:db8:aaaa:bbbb:cccc:dddd:0:1" - single ipv6 address
-* "2001:db8::0/120" - 256 ipv6 addresses
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **src_addr** | IP-Addr | 0..1 | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
+| 3 | **dst_addr** | IP-Addr | 0..1 | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-Examples of invalid ipv6 (since violates RFC 5952):
-								
+**Usage Requirements:**
 
-* "2001:DB8::1" - lower case MUST be used
-* "2001:db8:0:0:1:0:0:1" - the :: notation MUST be used for zero compression when possible
-* "2001:db8::1:1:1:1:1" - the :: notation MUST NOT be used when only one zero is present
+* src_addr and dst_addr MUST be the same version (ipv4 or ipv6) if both are present.
 
-#### 3.3.1.10 Target Type: Mac-Addr
-TBSL
+#### 3.4.1.10 Mac-Addr
+**_Type: Mac-Addr (Binary)_**
 
-#### 3.3.1.11 Target Type: IP-Connection
-Base Type: Record
-																			
-
-| ID | Property Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | **src_addr** | IP-Addr | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
-| 2 | **src_port** | Port | source service per RFC 6335 |
-| 3 | **dst_addr** | IP-Addr | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
-| 4 | **dst_port** | Port | destination service per RFC 6335 |
-| 5 | **protocol** | L4-Protocol | layer 4 protocol (e.g., TCP) - see l4_protocol section |
-
-#### 3.3.1.12 Target Type: OpenC2
-Base Type: ArrayOf(Query-Item)
-
-#### 3.3.1.13 Target Type: Process
-Base Type: Map
-																					 
-																								   
-																							  
-
-					
-							
-
-| Property Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **pid** (optional) | Integer | Process ID of the process |
-| **name** (optional) | String | Name of the process |
-| **cwd** (optional) | String | Current working directory of the process |
-| **executable** (optional) | File | Executable that was executed to start the process |
-| **parent** (optional) | Process | Process that spawned this one |
-| **command_line** (optional) | String | The full command line invocation used to start this process, including all arguments |
+| **Mac-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 
-#### 3.3.1.14 Target Type: Property
+#### 3.4.1.11 Process
+**_Type: Process (Map)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **pid** | Integer | 0..1 | Process ID of the process |
+| 2 | **name** | String | 0..1 | Name of the process |
+| 3 | **cwd** | String | 0..1 | Current working directory of the process |
+| 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
+| 5 | **parent** | Process | 0..1 | Process that spawned this one |
+| 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
+
+#### 3.4.1.12 Property
+**_Type: Property (Record)_**
+
 Base Type: Record
 
-| Property Name | Type | Description |
-									
-																									  
-																
-																										   
-																	 
-																								  
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **name** | String | 1 | The name that uniquely identifies a property of an actuator. |
 
-					   
+#### 3.4.1.13 Uri
+**_Type: URI (String)_**
 
-																					
-
-					  
-							 
-
-							 
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **name** (optional) | String | The name that uniquely identifies a property of an actuator. |
+| **URI** | String | Uniform Resource Identifier |
 
-#### 3.3.1.15 Target Type: Software
-TBSL
+### 3.4.2 Data Types
+#### 3.4.2.1 Request-Id
+**_Type: Request-Id (Binary)_**
 
-#### 3.3.1.16 Target Type: Uri
-TBSL
-															
-													  
-																		  
-																						
-																   
-																															   
-
-#### 3.3.1.17 Target Type: Windows-Registry-Key
-TBSL
-
-#### 3.3.1.18 Target Type: Slpf-Target
-TBSL
-
-### 3.3.2 Data Types
-#### 3.3.2.1 Type Name: Command-ID
-																							
-
-				 
-						
-
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **Command-ID** | String | Uniquely identifies a particular command |
+| **Request-Id** | Binary | A value of up to 128 bits that uniquely identifies a particular command |
 
-#### 3.4.2.2 Type Name: Date-Time
-					   
-							   
+#### 3.4.2.2 Date-Time
+**_Type: Date-Time (Integer)_**
 
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **Date-Time** | Integer (date-time) | Milliseconds since 00:00:00 UTC, 1 January 1970 |
+| **Date-Time** | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970 |
 
-#### 3.4.2.3 Type Name: Duration
-							   
+#### 3.4.2.3 Duration
+**_Type: Duration (Integer)_**
 
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **Duration** | Integer (duration) | Milliseconds |
+| **Duration** | Integer | Milliseconds |
 
-#### 3.3.2.2 Type Name: Hashes
-Base Type: Map
+#### 3.4.2.4 Hashes
+**_Type: Hashes (Map)_**
 
-| Property Name | Type | Description |
-| :--- | :--- | :--- |
-| **md5** (optional) | String | Hex-encoded MD5 hash as defined in RFC 1321 |
-| **sha1** (optional) | String | Hex-encoded SHA1 hash as defined in RFC 6234 |
-| **sha256** (optional) | String | Hex-encoded SHA256 hash as defined in RFC 6234 |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **md5** | Binary | 0..1 | MD5 hash as defined in RFC 1321 |
+| 2 | **sha1** | Binary | 0..1 | SHA1 hash as defined in RFC 6234 |
+| 3 | **sha256** | Binary | 0..1 | SHA256 hash as defined in RFC 6234 |
 
-#### 3.3.2.3 Type Name: Hostname
-						
+#### 3.4.2.5 Hostname
+**_Type: Hostname (String)_**
 
-									  
-									
-																 
-																   
-																	   
-
-					 
-							 
-
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
 |  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
 
-					   
-#### 3.3.2.4 Type Name: Identifier
+#### 3.4.2.6 Identifier
+**_Type: Identifier (String)_**
 
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
 | **Identifier** | String | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
 
-#### 3.3.2.5 Type Name: L4-Protocol
+#### 3.4.2.7 L4-Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
-Base Type: Enumerated
+**_Type: L4-Protocol (Enumerated)_**
 
-| ID | Property Name | Description |
+| ID | Name | Description |
 | :--- | :--- | :--- |
 | 1 | **icmp** | Internet Control Message Protocol - RFC 792 |
 | 6 | **tcp** | Transmission Control Protocol - RFC 793 |
 | 17 | **udp** | User Datagram Protocol - RFC 768 |
 | 132 | **sctp** | Stream Control Transmission Protocol - RFC 4960 |
 
-					
-#### 3.3.2.6 Type Name: Payload
-Base Type: Choice
+#### 3.4.2.8 Payload
+**_Type: Payload (Choice)_**
 
-| ID | Property Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | **payload_bin** (optional) | Binary | Specifies the data contained in the artifact |
-| 2 | **url** (optional) | uri | MUST be a valid URL that resolves to the un-encoded content |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
+| 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.3.2.7 Type Name: Port
-						  
+#### 3.4.2.9 Port
+**_Type: Port (Integer)_**
 
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
-| **Port** | String (port) | Service Name or Transport Protocol Port Number, RFC 6335 |
+| **Port** | Integer | Transport Protocol Port Number, RFC 6335 |
 
-#### 3.3.2.8 Type Name: Query-Item
-Base Type: Enumerated
+#### 3.4.2.10 Feature
+Specifies the results to be returned from a query features command.
 
-Specifies the results to be returned from a query openc2 command.
+**_Type: Feature (Enumerated)_**
 
-| ID | Property Name | Description |
+| ID | Name | Description |
 | :--- | :--- | :--- |
 | 1 | **versions** | List of OpenC2 Language versions supported by this actuator |
 | 2 | **profiles** | List of profiles supported by this actuator |
 | 3 | **schema** | Definition of the command syntax supported by this actuator |
 | 4 | **pairs** | List of supported actions and applicable targets |
-																							
+| 5 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
 
-#### 3.3.2.9 Type Name: Response-Type
-Base Type: Enumerated
+#### 3.4.2.11 Response-Type
+**_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
 | :--- | :--- | :--- |
@@ -972,55 +902,46 @@ Base Type: Enumerated
 | 2 | **status** | Respond with progress toward command completion |
 | 3 | **complete** | Respond when all aspects of command completed |
 
-> **Editor's Note** - Use cases are needed for the different types of responses needed.
+#### 3.4.2.12 Version
+**_Type: Version (String)_**
 
-#### 3.4.2.12 Type Name: URI
-| Type Name | Type | Description |
-| :--- | :--- | :--- |
-| **URI** | String (uri) | Uniform Resource Identifier |
-
-#### 3.3.2.10 Type Name: Version
-| Type Name | Type | Description |
+| Name | Type | Description |
 | :--- | :--- | :--- |
 | **Version** | String | TBSL |
 
-> **Editor's Note** - version will appear in the OpenC2 message header and in query responses for the OpenC2 version query"
-
-#### 3.3.2.11 Type Name: Results
-Base Type: Map
+#### 3.4.2.13 Results
+**_Type: Results (Map)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **strings** | String | 0..n | Generic set of string values |
 | 2 | **ints** | Integer | 0..n | Generic set of integer values |
 | 3 | **kvps** | KVP | 0..n | Generic set of key:value pairs |
-| 4 | **versions** | Version | 0..n | The list of OpenC2 language versions supported by this actuator |
-| 5 | **profiles** | Uname | 0..n | The list of profiles supported by this actuator |
-| 6 | **schema** | Schema | 0..n | Syntax of the OpenC2 language elements supported by this actuator |
-| 7 | **pairs** | ActionTargets | 0..n | List of targets applicable to each supported action |
-																											
-| 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise profile |
-																											  
+| 4 | **versions** | Version | 0..n | List of OpenC2 language versions supported by this actuator |
+| 5 | **profiles** | jadn:Uname | 0..n | List of profiles supported by this actuator |
+| 6 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
+| 7 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
+| 8 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise extension profile |
+| 1001 | **extension_unr** | Unr-Results | 0..1 | Response data defined in an unregistered extension profile |
 
-#### 3.3.2.12 Type Name: KVP
-Base Type: Array
+#### 3.4.2.14 Kvp
+**_Type: KVP (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | Identifier | 1 | "key": name of this item |
 | 2 | String | 1 | "value": string value of this item |
 
-#### 3.3.2.13 Type Name: ActionTargets
-Base Type: Array
+#### 3.4.2.15 Action-Targets
+**_Type: Action-Targets (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | Action | 1 | An action supported by this actuator. |
 | 2 | Target.* | 1..n | List of targets applicable to this action.  The targets are enumerated values derived from the set of Target types. |
 
-> **Editor's Note**: to be moved elsewhere.> Example from SLPF Profile Table 2.3-1 - Command Matrix:
-
-Command:
+**Command:**
 
 ```
 {
@@ -1031,7 +952,7 @@ Command:
 }
 ```
 
-Response:
+**Response:**
 
 ```
 {
@@ -1047,21 +968,20 @@ Response:
 }
 ```
 
-### 3.3.3 Schema Syntax
-				  
+### 3.4.3 Schema Syntax
+**3.4.3.1 Schema**
 
-#### 3.3.3.1 Type Name: Schema
-Base Type: Record
+**_Type: Schema (Record)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **meta** | Meta | 1 | Information about this schema module |
 | 2 | **types** | Type | 1..n | Types defined in this schema module |
 
-#### 3.3.3.2 Type Name: Meta
+#### 3.4.3.1 Meta
 Meta-information about this schema
 
-Base Type: Map
+**_Type: Meta (Map)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
@@ -1073,64 +993,63 @@ Base Type: Map
 | 6 | **exports** | Identifier | 0..n | Data types exported by this module |
 | 7 | **bounds** | Bounds | 0..1 | Schema-wide upper bounds |
 
-				   
-#### 3.3.3.3 Type Name: Import
-Base Type: Array
+#### 3.4.3.2 Import
+**_Type: Import (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | Nsid | 1 | "nsid": A short local identifier (namespace id) used within this module to refer to the imported module |
-| 2 | Uname | 1 | "uname": Unique name of the imported module |
+| 1 | Nsid | 1 | **nsid** - A short local identifier (namespace id) used within this module to refer to the imported module |
+| 2 | Uname | 1 | **uname** - Unique name of the imported module |
 
-#### 3.3.3.4 Type Name: Bounds
+#### 3.4.3.3 Bounds
 Schema-wide default upper bounds.   If included in a schema, these values override codec default values but are limited to the codec hard upper bounds. Sizes provided in individual type definitions override these defaults.
 
-Base Type: Array
+**_Type: Bounds (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | Integer | 1 | "max_msg": Maximum serialized message size in octets or characters |
-| 2 | Integer | 1 | "max_str": Maximum text string length in characters |
-| 3 | Integer | 1 | "max_bin": Maximum binary string length in octets |
-| 4 | Integer | 1 | "max_fields": Maximum number of elements in ArrayOf |
+| 1 | Integer | 1 | **max_msg** - Maximum serialized message size in octets or characters |
+| 2 | Integer | 1 | **max_str** - Maximum text string length in characters |
+| 3 | Integer | 1 | **max_bin** - Maximum binary string length in octets |
+| 4 | Integer | 1 | **max_fields** - Maximum number of elements in ArrayOf |
 
-#### 3.3.3.5 Type Name: Type
+#### 3.4.3.4 Type
 Definition of a data type.
 
-Base Type: Array
+**_Type: Type (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | Identifier | 1 | "tname": Name of this data type |
-| 2 | JADN-Type.* | 1 | "btype": Base type. Enumerated value derived from the list of JADN data types. |
-| 3 | Option | 1..n | "topts": Type options |
-| 4 | String | 1 | "tdesc": Description of this data type |
-| 5 | JADN-Type.&2 | 1..n | "fields": List of fields for compound types.  Not present for primitive types. |
+| 1 | Identifier | 1 | **tname** - Name of this data type |
+| 2 | JADN-Type.* | 1 | **btype** - Base type. Enumerated value derived from the list of JADN data types. |
+| 3 | Option | 1..n | **topts** - Type options |
+| 4 | String | 1 | **tdesc** - Description of this data type |
+| 5 | JADN-Type.&2 | 1..n | **fields** - List of fields for compound types.  Not present for primitive types. |
 
-#### 3.3.3.6 Type Name: JADN-Type
+#### 3.4.3.5 JADN-Type
 Field definitions applicable to the built-in data types (primitive and compound) used to construct a schema.
 
-Base Type: Choice
+**_Type: JADN-Type (Choice)_**
 
-| ID | Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Binary | Null | Octet (binary) string |
-| 2 | Boolean | Null | True or False |
-| 3 | Integer | Null | Whole number |
-| 4 | Number | Null | Real number |
-| 5 | Null | Null | Nothing |
-| 6 | String | Null | Character (text) string |
-| 7 | Array | FullField | Ordered list of unnamed fields |
-| 8 | ArrayOf | Null | Ordered list of fields of a specified type |
-| 9 | Choice | FullField | One of a set of named fields |
-| 10 | Enumerated | EnumField | One of a set of id:name pairs |
-| 11 | Map | FullField | Unordered set of named fields |
-| 12 | Record | FullField | Ordered list of named fields |
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Binary | Null |   | Octet (binary) string |
+| 2 | Boolean | Null |   | True or False |
+| 3 | Integer | Null |   | Whole number |
+| 4 | Number | Null |   | Real number |
+| 5 | Null | Null |   | Nothing |
+| 6 | String | Null |   | Character (text) string |
+| 7 | Array | FullField |   | Ordered list of unnamed fields |
+| 8 | ArrayOf | Null |   | Ordered list of fields of a specified type |
+| 9 | Choice | FullField |   | One of a set of named fields |
+| 10 | Enumerated | EnumField |   | One of a set of id:name pairs |
+| 11 | Map | FullField |   | Unordered set of named fields |
+| 12 | Record | FullField |   | Ordered list of named fields |
 
-#### 3.3.3.7 Type Name: Enum-Field
+#### 3.4.3.6 Enum Field
 Item definition for Enumerated types
 
-Base Type: Array
+**_Type: EnumField (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
@@ -1138,48 +1057,53 @@ Base Type: Array
 | 2 | Identifier | 1 | Item name |
 | 3 | String | 1 | Item description |
 
-#### 3.3.3.8 Type Name: Full-Field
+#### 3.4.3.7 Full Field
 Field definition for compound types Array, Choice, Map, Record
 
-Base Type: Array
+**_Type: FullField (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | Integer | 1 | Field ID or ordinal position |
 | 2 | Identifier | 1 | Field name |
 | 3 | Identifier | 1 | Field type |
-| 4 | Option | 0..n | Field options |
+| 4 | Options | 1 | Field options.  This field is an empty array (not omitted) if there are none. |
 | 5 | String | 1 | Field description |
 
-					   
-#### 3.3.3.9 Type Name: Identifier
-Base Type: String
+#### 3.4.3.8 Identifier
+**_Type: Identifier (String)_**
 
-								  
-					  
-A string beginning with an alpha character followed by zero or more alphanumeric | underscore | dash characters, max length 32 characters
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Identifier** | String | A string beginning with an alpha character followed by zero or more alphanumeric | underscore | dash characters, max length 32 characters |
 
-#### 3.3.3.10 Type Name: Nsid
-Base Type: String
+#### 3.4.3.9 Nsid
+**_Type: Nsid (String)_**
 
-								  
-					  
-Namespace ID - a short identifier, max length 8 characters
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Nsid** | String | Namespace ID - a short identifier, max length 8 characters |
 
-				   
-#### 3.3.3.11 Type Name: Uname
-Base Type: String
+#### 3.4.3.10 Uname
+**_Type: Uname (String)_**
 
-								  
-					  
-Unique name (e.g., of a schema) - typically a set of Identifiers separated by forward slashes
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Uname** | String | Unique name (e.g., of a schema) - typically a set of Identifiers separated by forward slashes |
 
-#### 3.3.3.12 Type Name: Option
-Base Type: String
+#### 3.4.3.11 Options
+**_Type: Options (ArrayOf(Option))_**
 
-An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value.
-					  
-																		   
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Options** | ArrayOf(Option) | An array of zero to ten option strings. |
+
+#### 3.4.3.12 Option
+**_Type: Option (String)_**
+
+| Type Name | Type | Description |
+| :--- | :--- | :--- |
+| **Option** | String | An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value. |
 
 # 4 Intrinsic Commands
 All OpenC2 Consumers SHALL respond to a command with the fields:
