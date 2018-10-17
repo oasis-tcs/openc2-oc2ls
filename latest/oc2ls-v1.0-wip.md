@@ -618,10 +618,10 @@ The OpenC2 Language MAY be extended using imported data objects for TARGET, TARG
 ### 3.3.4 Extensions
 Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. OpenC2 defines two methods for defining organization-specific profiles: using a registered namespace or an unregistered namespace. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
 
-32473
-  Example Enterprise Number for Documentation Use
-    See [RFC5612]
-      iana&iana.org
+* 32473
+  * Example Enterprise Number for Documentation Use
+    * See [RFC5612]
+      * iana&iana.org
 
 OpenC2 contains four predefined extension points to support registered private enterprise profiles: PE-Target, PE-Specifiers, PE-Args, and PE-Results.  An organization can develop a profile that defines custom types, create an entry for their organization's namespace under each extension point used in the profile, and then use their custom types within OpenC2 commands and responses.
 
