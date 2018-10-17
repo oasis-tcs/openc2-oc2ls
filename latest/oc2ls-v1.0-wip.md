@@ -353,8 +353,8 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 
 | OpenC2 Data Type | JSON Serialization Requirement |
 | :--- | :--- |
-| **Binary** | JSON **string **containing Base64url encoding of the binary value as defined in Section 5 of RFC 4648. |
-| **Boolean** | JSON **true **or **false** |
+| **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in Section 5 of RFC 4648. |
+| **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
 | **Null** | JSON **null** |
@@ -362,11 +362,11 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Array** | JSON **array** |
 | **ArrayOf** | JSON **array** |
 | **Choice** | JSON **object** with one member.  Member key is the field name.   |
-| Choice.ID | JSON object with one member. Member key is the integer field id converted to string. |
+| Choice.ID | JSON **object** with one member. Member key is the integer field id converted to string. |
 | **Enumerated** | JSON **string** |
 | **Enumerated.ID** | JSON **integer** |
 | **Map** | JSON **object**. Member keys are field names. |
-| **Map.ID** | JSON object. Member keys are integer field ids converted to strings. |
+| **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
 | **Record** | JSON **object**. Member keys are field names. |
 
 #### 3.1.5.1 ID and Name Serialization
@@ -391,7 +391,7 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | :--- | :--- |
 | **content** | Message body as specified by content_type and msg_type. |
 | **content_type** | String. Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
-| **msg_type** | Message-Type. One of **request**, **response**, or **notification**.  For the **application/openc2 **content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
+| **msg_type** | Message-Type. One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
 | **status** | Status-Code.  Populated with a numeric status code in response messages.  Not present in request or notification messages. |
 | **request_id** | Request-Id. A unique identifier value of up to 128 bits that is attached to request and response messages. This value is assigned by the sender and is copied unmodified into all responses to support  reference to a particular command, transaction or event chain. |
 | **created** | Date-Time. Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
@@ -618,10 +618,10 @@ The OpenC2 Language MAY be extended using imported data objects for TARGET, TARG
 ### 3.3.4 Extensions
 Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. OpenC2 defines two methods for defining organization-specific profiles: using a registered namespace or an unregistered namespace. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
 
-| 32473
-  Example Enterprise Number for Documentation Use
-    See [RFC5612]
-      iana&iana.org || :--- |
+> 32473
+>   Example Enterprise Number for Documentation Use
+>     See [RFC5612]
+>       iana&iana.org
 
 
 OpenC2 contains four predefined extension points to support registered private enterprise profiles: PE-Target, PE-Specifiers, PE-Args, and PE-Results.  An organization can develop a profile that defines custom types, create an entry for their organization's namespace under each extension point used in the profile, and then use their custom types within OpenC2 commands and responses.
@@ -1370,31 +1370,27 @@ This example, illustrating an internal representation of a message, is non-norma
 
 
 ### B.1.1 Command Message
-```
-**content-type**: 'application/openc2'
-**msg_type**: 'request'
-**request_id**: b'\xd97\xfc\xa9+dNq'
-**from**: 'nocc-3497'
-**to**: ['#filter-devices']
-**created**: 1539355895215
-**content**: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
-```
+content-type: 'application/openc2'
+msg_type: 'request'
+request_id: b'\xd97\xfc\xa9+dNq'
+from: 'nocc-3497'
+to: ['#filter-devices']
+created: 1539355895215
+content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
 
 ### B.1.2 Response Message
 The response message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the response content.  The request_id from the command message, if present, is returned unchanged in the response message.  The "to" element of the response normally echoes the "from" element of the command message, but the "from" element of the response is the actuator's identifier regardless of whether the command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to an openc2 command.  No actuator profiles currently define response content types other than openc2.
 
-```
-**status**: 200
-**content-type**: 'application/openc2'
-**msg_type**: 'response'
-**request_id**: b'\xd97\xfc\xa9+dNq'
-**from**: 'pf72394'
-**to**: ['nocc-3497']
-**created**: 1539355898000
-**content**: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
-```
+status: 200
+content-type: 'application/openc2'
+msg_type: 'response'
+request_id: b'\xd97\xfc\xa9+dNq'
+from: 'pf72394'
+to: ['nocc-3497']
+created: 1539355898000
+content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
 
 ## B.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
