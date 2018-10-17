@@ -3,8 +3,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 08
-## 05 October 2018
+## Working Draft 09
+## 17 October 2018
 **Specification URIs**
 
 **This version:**
@@ -18,6 +18,12 @@
 * [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/md/oc2ls-v1.0-wd06.md](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/md/oc2ls-v1.0-wd06.md) (Authoritative)
 * [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf)
 * [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.html)
+
+Latest version:
+
+* oasis-to-fill-in-link.md (Authoritative)
+* oasis-to-fill-in-link.pdf
+* oasis-to-fill-in-link.html
 
 **Technical Committee:**
 
@@ -34,7 +40,7 @@
 * Duncan Sparrell (duncan@sfractal.com), sFractal Consulting
 
 ## Abstract
-Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is no longer tenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber response. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
+Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine to machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
 ## Status
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at [https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical).
@@ -50,7 +56,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 05 October 2018. OASIS Working Draft 08. oasis-to-fill-in-link.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 17 October 2018. OASIS Working Draft 09. oasis-to-fill-in-link.html.
 
 Latest version: [http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html).
 
@@ -83,19 +89,19 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 -------
 
 # 1 Introduction
-OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a command is encoded by an OpenC2 producer (managing application) and transferred to an OpenC2 consumer (managed device or virtualized function) using a secure transport protocol, and the consumer can respond with status and any requested information.  The contents of both the command and the response are fully described in schemas, allowing both parties to recognize the syntax constraints imposed on the exchange.
+OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a command is encoded by an OpenC2 producer (managing application) and transferred to an OpenC2 consumer (managed device or virtualized function) using a secure transfer protocol. The consumer can respond with status and any requested information.  The contents of both the command and the response are fully defined in schemas, allowing both parties to recognize the syntax constraints imposed on the exchange.
 
 OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices.  These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device.  The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
 
 ## 1.1 IPR Policy
-This Working Draft is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
+This specification is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
 ## 1.2 Terminology
 * **Action**: The task or activity to be performed.
 * **Actuator**: The entity that performs the action.
 * **Command**: A message defined by an action-target pair that is sent from a producer and received by a consumer.
-* **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both consumer and producer capabilities.
-* **Producer**: A manager application that sends Commands.
+* **Consumer**: A managed device / application that receives commands.  Note that a single device / application can have both consumer and producer capabilities.
+* **Producer**: A manager application that sends commands.
 * **Response**: A message from a consumer to a producer acknowledging a command or returning the requested resources or status to a previously received request.
 * **Target**: The object of the action, i.e., the action is performed on the target.
 
@@ -130,7 +136,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ## 1.4 Non-Normative References
 |   |   |
 | :--- | :--- |
-| **[IACD]** | [Full reference citation] |
+| **[IACD]** | M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015 |
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
@@ -164,11 +170,11 @@ Example:
 ```
 
 ## 1.6 Overview
-OpenC2 is a set of specifications to command actuators that execute cyber defense functions.  These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications.  The OpenC2 Language Specification and Actuator Profile(s) specifications focus on the standard at the producer and consumer of the command and response while the transfer specifications focus on the protocols for their exchange.
+OpenC2 is a suite of specifications to command actuators that execute cyber defense functions in an unambiguous, standardized way.  These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications.  The OpenC2 Language Specification and Actuator Profile specifications focus on the standard at the producer and consumer of the command and response while the transfer specifications focus on the protocols for their exchange.
 
 * The OpenC2 Language Specification provides the semantics for the essential elements of the language, the structure for commands and responses, and the schema that defines the proper syntax for the language elements that represents the command or response.
 * OpenC2 Actuator Profiles specify the subset of the OpenC2 language relevant in the context of specific actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely) to implement multiple actuator profiles.  Actuator profiles extend the language by defining specifiers that identify the actuator to the required level of precision and may define command arguments that are relevant and/or unique to those actuator functions.
-* OpenC2 Transfer Specifications utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 messages.
+* OpenC2 Transfer Specifications utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transfer of OpenC2 messages.
 
 The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components.  A message consists of a header and a payload (_defined_ as a message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more actuator profiles). 
 
@@ -186,7 +192,7 @@ The language defines two payload structures:
 
 **Figure 1-1. OpenC2 Message Exchange**
 
-OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude, e.g., the use of an application-layer message signature function to provide message source authentication and integrity. 
+OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude the use of any particular protocol or standard.
 
 ![no alt title](image_2.png)
 
@@ -203,16 +209,12 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 | Common Content | Language Specification
 (this document) |
 | Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
-| Secure Transport | HTTPS, CoAP, MQTT, OpenDXL, ... |
+| Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
-* The **Secure Transport** layer provides a communication path between the producer and the consumer.  OpenC2 can be layered over any standard transport protocol.
-* The **Message** layer provides a transport- and content-independent mechanism for conveying requests, responses, and notifications.  A transfer specification maps transport-specific protocol elements to a transport-independent set of message elements consisting of content and associated metadata.  
+* The **Secure Transfer** layer provides a communication path between the producer and the consumer.  OpenC2 can be layered over any standard transfer protocol.
+* The **Message** layer provides a transfer- and content-independent mechanism for conveying requests, responses, and notifications.  A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.  
 * The **Common Content** layer defines the structure of OpenC2 commands and responses and a set of common language elements used to construct them.
 * The **Function-specific Content** layer defines the language elements used to support a particular cyber defense function.  An actuator profile defines the implementation conformance requirements for that function.  OpenC2 Producers and Consumers will support one or more profiles.
-
-The components of an OpenC2 Command are an action (what is to be done), a target (what is being acted upon), an optional actuator (what is performing the command), and command arguments, which influence how the command is to be performed. An action coupled with a target is sufficient to describe a complete OpenC2 Command. Though optional, the inclusion of an actuator and/or command arguments provides additional precision to a command, when needed.
-
-The components of an OpenC2 Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type or response being transferred. 
 
 ## 1.7 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
@@ -237,13 +239,13 @@ The OpenC2 Language Specification defines the set of components to assemble a co
 1. the set of actions and options that may be used in OpenC2 commands
 2. the set of targets and target specifiers
 3. a syntax that defines the structure of commands and responses
-4. the mandatory-to-implement (MTI) serialization of OpenC2 commands, and responses
+4. a JSON serialization of OpenC2 commands and responses
 5. the procedures for extending the language
 
 The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions. The following items are beyond the scope of this specification:
 
 1. Language extensions applicable to some actuators, which may be defined in individual actuator profiles.
-2. Alternate serializations of OpenC2 commands.
+2. Alternate serializations of OpenC2 commands and responses.
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies.
 
 # 2 OpenC2 Language Description
@@ -269,7 +271,7 @@ TARGET-SPECIFIERS provide additional precision to identify the target (e.g., 10.
 
 The ARGUMENTS component, if present, is populated by one or more 'command arguments' that determine how the command is executed. ARGUMENTS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command. The valid ARGUMENTS defined in this specification are in [Section 3.3.1.4](#heading=h.yd6fpfkpyn58).
 
-An ACTUATOR is an implementation of a cyber defense function that executes the command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional in the context of a particular ACTUATOR. An Actuator Profile also extends the language by defining additional ARGUMENTS and ACTUATOR-SPECIFIERS that are meaningful and possibly unique to the actuator.
+An ACTUATOR is an implementation of a cyber defense function that executes the command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional in the context of a particular ACTUATOR. An Actuator Profile may extend the language by defining additional ARGUMENTS, ACTUATOR-SPECIFIERS, and/or TARGETS that are meaningful and possibly unique to the actuator.
 
 The ACTUATOR optionally identifies the entity or entities that are tasked to execute the command. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. 
 
@@ -292,22 +294,22 @@ The syntax of valid OpenC2 messages is defined using an information model constr
 | Type | Description |
 | :--- | :--- |
 | **Primitive Types** |   |
-| Binary | A sequence of octets or bytes. |
+| Binary | A sequence of octets.  Length is the number of octets. |
 | Boolean | A logical entity that can have two values: `true` and `false`. |
-| Integer | A number that can be written without a fractional component. |
+| Integer | A whole number. |
 | Number | A real number. |
 | Null | Nothing, used to designate fields with no value. |
-| String | A sequence of characters. Each character must have a valid Unicode codepoint. |
+| String | A sequence of characters. Each character must have a valid Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
-| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
-| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and must be the specified type. |
-| Choice | One field selected from a set of named fields. The value has a name and a type. |
-| Enumerated | A set of id:name pairs where id is an integer. The Enumerated.ID subtype is a set of ids. |
+| Array | An ordered list of unnamed fields. Each field has an ordinal position and type. |
+| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and the specified type. |
+| Choice | One field selected from a set of named fields. The value has a name and type. |
+| Enumerated | A set of id:name pairs where id is an integer. The Enumerated.ID subtype is a set of ids only. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
-| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, a name, and a type. |
+| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
 ### 3.1.2 Derived Data Types
-The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of these types is specified in [Section 3.1.5](#heading=h.1s7wa079dayl), but there are no restrictions on how these types are handled internally by an implementation. 
+The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of the base types is specified in [Section 3.1.5](#heading=h.1s7wa079dayl), but there are no restrictions on how derived types are represented internally by an implementation. 
 
 | Type | Base | Description |
 | :--- | :--- | :--- |
@@ -317,7 +319,7 @@ The following types are defined as value constraints applied to String (text str
 | Email-Addr | String | RFC 5322 Section 3.4.1 |
 | Identifier | String | (TBD rules, e.g., initial alpha followed by alphanumeric or underscore) |
 | IP-Addr | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
-| MAC-Addr | Binary | 48 bit Media Access Code / Extended Unique Identifier |
+| MAC-Addr | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 | Port | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
 | Request-Id | Binary | A value of up to 128 bits |
 | URI | String | RFC 3986 |
@@ -335,30 +337,14 @@ The cardinality column may also specify a range of sizes, e.g.,:
 
 * 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
 
-### 3.1.4 Derived Enumerations and Selectors
-An Enumerated field may be derived from the fields of a Choice, Map or Record type by appending ".*" to the type name.
+### 3.1.4 Derived Enumerations
+An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
 
-A Choice field within an Array, Map or Record type may reference the contents of another field within that type to select which element of the choice is present.  The selector (key) field can be either an explicitly defined Enumerated type or a derived Enumerated type. .  The Choice type can reference the selector field by appending ".&selector-name" to the type.  For example:
-
-**Type Name: Example-sel**
-
-Base Type: Record
+**_Type: Example-sel (Record)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | key | Target.* | 1 | Selector auto-generated from Choice |
-| 2 | date | Date-Time | 1 | … other fields in this record |
-| 3 | value | Target.&key | 1 | Type of value is selected by "key" field |
-
-A message of the "Example-sel" type would look like:
-
-```
-{   
-    "key": "ip_addr",
-    "date": 1537392265000,
-    "value": "zIQomw"
-}
-```
+| 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
@@ -367,19 +353,26 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 
 | OpenC2 Data Type | JSON Serialization Requirement |
 | :--- | :--- |
-| **Binary** | Base64url string as defined in Section 5 of RFC 4648. |
-| **Integer** | Text string as described in [Section 3.1.5.2](#heading=h.rsvt22s6h7s1). |
-| **Array** | JSON Array |
-| **ArrayOf** | JSON Array |
-| **Choice** | JSON Object |
-| **Enumerated** | Either integer id or name string.  The Enumerated.ID subtype (section 3.1.6) is a set of unnamed integers. |
-| **Map** | JSON Object. Map keys are serialized as either integer ids or name strings. Keys for the Map.ID subtype (section 3.1.6) are unnamed integer ids. |
-| **Record** | JSON Object |
+| **Binary** | JSON **string **containing Base64url encoding of the binary value as defined in Section 5 of RFC 4648. |
+| **Boolean** | JSON **true **or **false** |
+| **Integer** | JSON **number** |
+| **Number** | JSON **number** |
+| **Null** | JSON **null** |
+| **String** | JSON **string** |
+| **Array** | JSON **array** |
+| **ArrayOf** | JSON **array** |
+| **Choice** | JSON **object** with one member.  Member key is the field name.   |
+| Choice.ID | JSON object with one member. Member key is the integer field id converted to string. |
+| **Enumerated** | JSON **string** |
+| **Enumerated.ID** | JSON **integer** |
+| **Map** | JSON **object**. Member keys are field names. |
+| **Map.ID** | JSON object. Member keys are integer field ids converted to strings. |
+| **Record** | JSON **object**. Member keys are field names. |
 
 #### 3.1.5.1 ID and Name Serialization
 Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
-1. The type definition and API value uses only the ID.  There is no corresponding name string except as an optional part of the description.
+1. Type definitions and application values use only the ID.  There is no corresponding name except as an optional part of the description.
 2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
 
 #### 3.1.5.2 Integer Serialization
@@ -397,8 +390,9 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | Name | Description |
 | :--- | :--- |
 | **content** | Message body as specified by content_type and msg_type. |
-| **content_type** | String. Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type "**openc2**" identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
-| **msg_type** | Enumerated. One of "**request**", "**response**", or "**notification**".  For the **openc2 **content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
+| **content_type** | String. Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
+| **msg_type** | Message-Type. One of **request**, **response**, or **notification**.  For the **application/openc2 **content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
+| **status** | Status-Code.  Populated with a numeric status code in response messages.  Not present in request or notification messages. |
 | **request_id** | Request-Id. A unique identifier value of up to 128 bits that is attached to request and response messages. This value is assigned by the sender and is copied unmodified into all responses to support  reference to a particular command, transaction or event chain. |
 | **created** | Date-Time. Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
 | **from** | String. Authenticated identifier of the creator of or authority for execution of a message. |
@@ -479,16 +473,17 @@ The following actions are under consideration for use in future versions of the 
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
-| 16 | **feature** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
+| 16 | **features** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
 | 10 | **file** | File | 1 | Properties of a file. |
 | 11 | **ip_addr** | IP-Addr | 1 | An IP address (either version 4 or version 6). |
 | 15 | **ip_connection** | IP-Connection | 1 | A network connection that originates from a source and is addressed to a destination. Source and destination addresses may be either IPv4 or IPv6; both should be the same version |
-| 13 | **mac_addr** | Mac-Addr | 1 | A single Media Access Control (MAC) address. |
+| 13 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
 | 17 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
-| 25 | **property** | Property | 1 | Data attribute associated with an actuator |
+| 25 | **properties** | Properties | 1 | Data attribute associated with an actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
 | 1000 | **extension** | PE-Target | 1 | Targets defined in a Private Enterprise extension profile. |
 | 1001 | **extension_unr** | Unr-Target | 1 | Targets defined in an Unregistered extension profile |
+| 1024 | **slpf** | slpf:Target | 1 | **Example Target Extension**: Targets defined in the Stateless Packet Filter profile |
 
 The following targets are under consideration for use in future versions of the Language Specification. Implementers may use these targets with the understanding that they may not be in future versions of the language.
 
@@ -507,8 +502,6 @@ The following targets are under consideration for use in future versions of the 
 **Usage Requirements:**
 
 * The TARGET field in an OpenC2 Command MUST contain exactly one type of target (e.g. ip_addr).
-* All commands MUST only use targets from this section (either the table or the list) 
-* Targets defined external to this section SHALL NOT be used.
 
 #### 3.3.1.3 Actuator
 **_Type: Actuator (Choice)_**
@@ -518,7 +511,7 @@ The following targets are under consideration for use in future versions of the 
 | 1000 | **extension** | PE-Specifiers | 0..1 | Specifiers defined in a Private Enterprise extension profile. |
 | 1001 | **extension_unr** | Unr-Specifiers | 0..1 | Specifiers defined in an Unregistered extension profile |
 
-#### 3.3.1.4 Args
+#### 3.3.1.4 Command Arguments
 **_Type: Args (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -541,27 +534,33 @@ The following targets are under consideration for use in future versions of the 
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the response status |
-| 3 | **results** | Results | 0..1 | Data or extended status information that was requested from an OpenC2 Command |
+| 3 | **strings** | String | 0..n | Generic set of string values |
+| 4 | **ints** | Integer | 0..n | Generic set of integer values |
+| 5 | **kvps** | KVP | 0..n | Generic set of key:value pairs |
+| 6 | **versions** | Version | 0..n | List of OpenC2 language versions supported by this actuator |
+| 7 | **profiles** | jadn:Uname | 0..n | List of profiles supported by this actuator |
+| 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
+| 9 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
+| 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise extension profile |
+| 1001 | **extension_unr** | Unr-Results | 0..1 | Response data defined in an unregistered extension profile |
 
 **Example:**
 
 ```javascript
 {   
-    "id_ref": "01076931758653239640628182951035",
     "status": 200,
     "status_text": "All endpoints successfully updated",
-    "results": {
-        "strings": ["wd-394", "sx-2497"]
-    }
+    "strings": ["wd-394", "sx-2497"]
 }
 ```
 
 Usage Requirements:
 
-* `All Responses must contain a status.`
-* `Responses MAY contain status_text and/or results.`
+* All Responses MUST contain a status.
+* Responses MAY contain status_text and/or results.
 
-#### 3.3.2.1 Status-Code
+#### 3.3.2.1 OpenC2 Response Status Code
 **_Type: Status-Code (Enumerated.ID)_**
 
 | ID | Description |
@@ -573,7 +572,7 @@ Usage Requirements:
 | 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
 | 403 | **Forbidden** - the consumer understood the request but refuses to authorize it. |
 | 404 | **Not Found** - the consumer has not found anything matching the request. |
-| 500 | **Consumer Error** - the consumer encountered an unexpected condition that prevented it from fulfilling the request. |
+| 500 | **Internal Error** - the consumer encountered an unexpected condition that prevented it from fulfilling the request. |
 | 501 | **Not Implemented** - the consumer does not support the functionality required to fulfill the request. |
 | 503 | **Service Unavailable** - the consumer is currently unable to handle the request due to a temporary overloading or maintenance of the consumer. |
 
@@ -617,7 +616,7 @@ A data profile can define its own schema for imported objects, or it can referen
 The OpenC2 Language MAY be extended using imported data objects for TARGET, TARGET_SPECIFIER, ACTUATOR, ACTUATOR_SPECIFIER, ARGUMENTS, and RESULTS. The list of ACTIONS in Section 3.2.1.2 SHALL NOT be extended.
 
 ### 3.3.4 Extensions
-Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace or MAY use an unregistered namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
+Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. OpenC2 defines two methods for defining organization-specific profiles: using a registered namespace or an unregistered namespace. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
 
 | 32473
   Example Enterprise Number for Documentation Use
@@ -629,7 +628,7 @@ OpenC2 contains four predefined extension points to support registered private e
 
 By convention ID values of 1000 and above within OpenC2-defined data types are namespace identifiers, although there is no restriction against assigning non-namespaced IDs in that range.
 
-Example target from a registered profile containing a "lens" extension defined by the organization with IANA Private Enterprise Number 32473. This target might be used with the "set" action to support a hypothetical IoT camera pan-tilt-zoom use case.
+This is an example target from a registered profile containing a "lens" extension defined by the organization with IANA Private Enterprise Number 32473. This hypothetical target might be used with the "set" action to support an IoT camera pan-tilt-zoom use case. This example is for illustrative purposes only and MUST NOT use this in actual implementations. 
 
 ```
 {
@@ -643,7 +642,7 @@ Example target from a registered profile containing a "lens" extension defined b
 }
 ```
 
-Example of the same target from a profile defined by an organization that has not registered a Private Enterprise Number with IANA. 
+This is an example of the same target from a profile defined by an organization that has not registered a Private Enterprise Number with IANA.  This example is for illustrative purposes only and MUST NOT use this in actual implementations.
 
 ```
 {
@@ -659,9 +658,9 @@ Example of the same target from a profile defined by an organization that has no
 
 Using DNS names provides collision resistance for names used in x- namespaces, but the corresponding IDs are not coordinated through a registration process and are subject to collisions.
 
-OpenC2 implementations MAY support registered and unregistered extension profiles regardless of whether those profiles are listed by the TC.  Implementations MUST NOT use the "Example" registered extension entries shown below, and MAY use one or more actual registered extensions by replacing the example entries.
+OpenC2 implementations MAY support registered and unregistered extension profiles regardless of whether those profiles are listed by OASIS.  Implementations MUST NOT use the "Example" registered extension entries shown below, and MAY use one or more actual registered extensions by replacing the example entries.
 
-#### 3.3.4.1 PE-Target
+#### 3.3.4.1 Private Enterprise Target
 Because target is a required element, implementations receiving an OpenC2 Command with an unsupported target type MUST reject the command as invalid.
 
 **_Type: PE-Target (Choice.ID)_**
@@ -670,7 +669,7 @@ Because target is a required element, implementations receiving an OpenC2 Comman
 | :--- | :--- | :--- | :--- |
 | 32473 | 32473:Target | 1 | "Example": Targets defined in the Example Inc. extension profile |
 
-#### 3.3.4.2 PE-Specifiers
+#### 3.3.4.2 Private Enterprise Specifiers
 The behavior of an implementation receiving an OpenC2 Command with an unsupported actuator type is undefined.  It MAY ignore the actuator field or MAY reject the command as invalid.
 
 **_Type: PE-Specifiers (Choice.ID)_**
@@ -679,7 +678,7 @@ The behavior of an implementation receiving an OpenC2 Command with an unsupporte
 | :--- | :--- | :--- | :--- |
 | 32473 | 32473:Specifiers | 1 | "Example": Actuator Specifiers defined in the Example Inc. extension profile |
 
-#### 3.3.4.3 PE-Args
+#### 3.3.4.3 Private Enterprise Command Arguments
 The behavior of an implementation receiving an OpenC2 Command with an unsupported arg type is undefined.  It MAY ignore the unrecognized arg or MAY reject the command as invalid.
 
 **_Type: PE-Args (Map.ID)_**
@@ -688,8 +687,8 @@ The behavior of an implementation receiving an OpenC2 Command with an unsupporte
 | :--- | :--- | :--- | :--- |
 | 32473 | 32473:Args | 1 | "Example": Command Arguments defined in the Example Inc. extension profile |
 
-#### 3.3.4.4 PE-Results
-The behavior of an implementation receiving an OpenC2 Response with an unsupported results type is undefined.  An unrecognized response has no effect on the OpenC2 protocol but implementations MAY log it as an error.
+#### 3.3.4.4 Private Enterprise Results
+The behavior of an implementation receiving an OpenC2 Response with an unsupported results type is undefined.  An unrecognized response has no effect on the OpenC2 protocol but implementations SHOULD log it as an error.
 
 **_Type: PE-Results (Map.ID)_**
 
@@ -708,13 +707,6 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
-#### 3.4.1.2 Command
-**_Type: Command (Request-Id)_**
-
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| **Command** | Request-Id | A reference to a previously issued OpenC2 command. |
-
 #### 3.4.1.3 Device
 **_Type: Device (Map)_**
 
@@ -724,22 +716,20 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 2 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
 | 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
 
-#### 3.4.1.4 Domain-Name
-**_Type: Domain-Name (String)_**
-
-| Name | Type | Description |
+#### 3.4.1.4 Domain Name
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Domain-Name** | String (hostname) | RFC 1034, section 3.5 |
 
-#### 3.4.1.5 Email-Addr
-**_Type: Email-Addr (String)_**
-
-| Name | Type | Description |
+#### 3.4.1.5 Email Address
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
 
 #### 3.4.1.6 Features
-**_Type: Features (ArrayOf(Feature))_**
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **Features** | ArrayOf(Feature) | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 #### 3.4.1.7 File
 **_Type: File (Map)_**
@@ -750,14 +740,12 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.4.1.8 IP-Addr
-**_Type: IP-Addr (Binary)_**
-
-| Name | Type | Description |
+#### 3.4.1.8 IP Address
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **IP-Addr** | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
 
-#### 3.4.1.9 IP-Connection
+#### 3.4.1.9 IP Connection
 **_Type: IP-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
@@ -772,12 +760,10 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 
 * src_addr and dst_addr MUST be the same version (ipv4 or ipv6) if both are present.
 
-#### 3.4.1.10 Mac-Addr
-**_Type: Mac-Addr (Binary)_**
-
-| Name | Type | Description |
+#### 3.4.1.10 MAC Address
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Mac-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
+| **MAC-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 
 #### 3.4.1.11 Process
 **_Type: Process (Map)_**
@@ -791,41 +777,29 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 5 | **parent** | Process | 0..1 | Process that spawned this one |
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
 
-#### 3.4.1.12 Property
-**_Type: Property (Record)_**
+#### 3.4.1.12 Properties
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an actuator. |
 
-Base Type: Record
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **name** | String | 1 | The name that uniquely identifies a property of an actuator. |
-
-#### 3.4.1.13 Uri
-**_Type: URI (String)_**
-
-| Name | Type | Description |
+#### 3.4.1.13 URI
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **URI** | String | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
-#### 3.4.2.1 Request-Id
-**_Type: Request-Id (Binary)_**
-
-| Name | Type | Description |
+#### 3.4.2.1 Request Identifier
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Request-Id** | Binary | A value of up to 128 bits that uniquely identifies a particular command |
 
 #### 3.4.2.2 Date-Time
-**_Type: Date-Time (Integer)_**
-
-| Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Date-Time** | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970 |
 
 #### 3.4.2.3 Duration
-**_Type: Duration (Integer)_**
-
-| Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Duration** | Integer | Milliseconds |
 
@@ -839,20 +813,11 @@ Base Type: Record
 | 3 | **sha256** | Binary | 0..1 | SHA256 hash as defined in RFC 6234 |
 
 #### 3.4.2.5 Hostname
-**_Type: Hostname (String)_**
-
-| Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 |  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
 
-#### 3.4.2.6 Identifier
-**_Type: Identifier (String)_**
-
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| **Identifier** | String | An identifier universally and uniquely identifies an OpenC2 command.  Value SHOULD be a UUID generated according to RFC 4122.  |
-
-#### 3.4.2.7 L4-Protocol
+#### 3.4.2.7 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
 
 **_Type: L4-Protocol (Enumerated)_**
@@ -873,9 +838,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
 #### 3.4.2.9 Port
-**_Type: Port (Integer)_**
-
-| Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer | Transport Protocol Port Number, RFC 6335 |
 
@@ -903,70 +866,25 @@ Specifies the results to be returned from a query features command.
 | 3 | **complete** | Respond when all aspects of command completed |
 
 #### 3.4.2.12 Version
-**_Type: Version (String)_**
-
-| Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Version** | String | TBSL |
+| **Version** | String | Major.Minor version number |
 
-#### 3.4.2.13 Results
-**_Type: Results (Map)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **strings** | String | 0..n | Generic set of string values |
-| 2 | **ints** | Integer | 0..n | Generic set of integer values |
-| 3 | **kvps** | KVP | 0..n | Generic set of key:value pairs |
-| 4 | **versions** | Version | 0..n | List of OpenC2 language versions supported by this actuator |
-| 5 | **profiles** | jadn:Uname | 0..n | List of profiles supported by this actuator |
-| 6 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
-| 7 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
-| 8 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise extension profile |
-| 1001 | **extension_unr** | Unr-Results | 0..1 | Response data defined in an unregistered extension profile |
-
-#### 3.4.2.14 Kvp
+#### 3.4.2.14 Key-Value Pair
 **_Type: KVP (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | Identifier | 1 | "key": name of this item |
+| 1 | String | 1 | "key": name of this item |
 | 2 | String | 1 | "value": string value of this item |
 
-#### 3.4.2.15 Action-Targets
+#### 3.4.2.15 Action-Targets Array
 **_Type: Action-Targets (Array)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | Action | 1 | An action supported by this actuator. |
 | 2 | Target.* | 1..n | List of targets applicable to this action.  The targets are enumerated values derived from the set of Target types. |
-
-**Command:**
-
-```
-{
-    "action": "query",
-    "target": {
-        "openc2": ["pairs"]
-    }
-}
-```
-
-**Response:**
-
-```
-{
-    "status": 200,
-    "results": {
-        "pairs": [
-            ["allow", ["ip_addr", "ip_connection"]],
-            ["deny", ["ip_addr", "ip_connection"]],
-            ["query", ["openc2", "slpf:access_rules"]],
-            ["delete", ["slpf:access_rules"]],
-            ["update", ["file"]]
-    ]}
-}
-```
 
 ### 3.4.3 Schema Syntax
 **3.4.3.1 Schema**
@@ -1026,7 +944,7 @@ Definition of a data type.
 | 4 | String | 1 | **tdesc** - Description of this data type |
 | 5 | JADN-Type.&2 | 1..n | **fields** - List of fields for compound types.  Not present for primitive types. |
 
-#### 3.4.3.5 JADN-Type
+#### 3.4.3.5 JADN Type
 Field definitions applicable to the built-in data types (primitive and compound) used to construct a schema.
 
 **_Type: JADN-Type (Choice)_**
@@ -1071,46 +989,36 @@ Field definition for compound types Array, Choice, Map, Record
 | 5 | String | 1 | Field description |
 
 #### 3.4.3.8 Identifier
-**_Type: Identifier (String)_**
-
-| Type Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Identifier** | String | A string beginning with an alpha character followed by zero or more alphanumeric | underscore | dash characters, max length 32 characters |
 
 #### 3.4.3.9 Nsid
-**_Type: Nsid (String)_**
-
-| Type Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String | Namespace ID - a short identifier, max length 8 characters |
 
 #### 3.4.3.10 Uname
-**_Type: Uname (String)_**
-
-| Type Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Uname** | String | Unique name (e.g., of a schema) - typically a set of Identifiers separated by forward slashes |
 
 #### 3.4.3.11 Options
-**_Type: Options (ArrayOf(Option))_**
-
-| Type Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Options** | ArrayOf(Option) | An array of zero to ten option strings. |
 
 #### 3.4.3.12 Option
-**_Type: Option (String)_**
-
-| Type Name | Type | Description |
+| Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Option** | String | An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value. |
 
 # 4 Mandatory Commands/Responses 
 An OpenC2 command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
 
-An OpenC2 Consumer MUST process an OpenC2 Command where "query" is specified for the ACTION and "openc2" is specified for the TARGET, hereafter, referred to as a 'query openc2' command".
+An OpenC2 Consumer MUST process an OpenC2 Command where "query" is specified for the ACTION and "features" is specified for the TARGET, hereafter, referred to as a 'query features' command".
 
-Upon processing a 'query openc2'  command, an OpenC2 Consumer MUST issue an OpenC2 Response to the OpenC2 Producer that issued the OpenC2 Command.
+Upon processing a 'query features'  command, an OpenC2 Consumer MUST issue an OpenC2 Response to the OpenC2 Producer that issued the OpenC2 Command.
 
 # 5 Conformance
 ## 5.1 OpenC2 Message Content
@@ -1143,7 +1051,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
 **Schema Files:**
 
 * [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.jadn](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.jadn) (authoritative)
-* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf ](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf)
+* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf) (formatted)
 
 **Schema:**
 
@@ -1151,24 +1059,32 @@ This annex defines the information model used by conforming OpenC2 implementatio
 {
  "meta": {
   "module": "oasis-open.org/openc2/v1.0/openc2-lang",
-  "patch": "wd08",
+  "patch": "wd09",
   "title": "OpenC2 Language Objects",
   "description": "Datatypes that define the content of OpenC2 commands and responses.",
-  "exports": ["OpenC2-Command", "OpenC2-Response"],
   "imports": [
    ["slpf", "oasis-open.org/openc2/v1.0/ap-slpf"],
-   ["jadn", "oasis-open.org/openc2/v1.0/jadn"]]
+   ["jadn", "oasis-open.org/openc2/v1.0/jadn"]
+  ],
+  "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "Request-Id", "Date-Time"]
  },
- 
  "types": [
+  ["Message", "Array", [], "", [
+    [1, "msg_type", "Message-Type", [], ""],
+    [2, "content_type", "String", [], ""],
+    [3, "content", "Null", [], ""],
+    [4, "status", "Status-Code", ["[0"], ""],
+    [5, "request_id", "Request-Id", ["[0"], ""],
+    [6, "to", "String", ["[0", "]0"], ""],
+    [7, "from", "String", ["[0"], ""],
+    [8, "created", "Date-Time", ["[0"], ""]
+  ]],
   ["OpenC2-Command", "Record", [], "", [
     [1, "action", "Action", [], ""],
     [2, "target", "Target", [], ""],
-    [3, "actuator", "Actuator", ["[0"], ""],
-    [4, "args", "Args", ["[0"], ""],
-    [5, "id", "Command-ID", ["[0"], ""]]
-  ],
-
+    [3, "args", "Args", ["[0"], ""],
+    [4, "actuator", "Actuator", ["[0"], ""]
+  ]],
   ["Action", "Enumerated", [], "", [
     [1, "scan", ""],
     [2, "locate", ""],
@@ -1189,54 +1105,52 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [23, "restore", ""],
     [28, "copy", ""],
     [30, "investigate", ""],
-    [32, "remediate", ""]]
-  ],
-
+    [32, "remediate", ""]
+  ]],
   ["Target", "Choice", [], "", [
-    [1, "artifacts", "Artifact", ["]0"], ""],
-    [2, "commands", "Command-ID", ["]0"], ""],
-    [3, "devices", "Device", ["]0"], ""],
-    [4, "directories", "Directory", ["]0"], ""],
-    [7, "domain_names", "Domain-Name", ["]0"], ""],
-    [8, "email_addrs", "Email-Addr", ["]0"], ""],
-    [9, "email_messages", "Email-Message", ["]0"], ""],
-    [10, "files", "File", ["]0"], ""],
-    [11, "ip_addrs", "IP-Addr", ["]0"], ""],
-    [13, "mac_addrs", "Mac-Addr", ["]0"], ""],
-    [15, "ip_connections", "IP-Connection", ["]0"], ""],
+    [1, "artifact", "Artifact", [], ""],
+    [2, "command", "Request-Id", [], ""],
+    [3, "device", "Device", [], ""],
+    [7, "domain_name", "Domain-Name", [], ""],
+    [8, "email_addr", "Email-Addr", [], ""],
     [16, "features", "Features", [], ""],
-    [17, "processes", "Process", ["]0"], ""],
-    [25, "properties", "Property", ["]0"], ""],
-    [18, "software", "Software", ["]0"], ""],
-    [19, "uris", "URI", ["]0"], ""],
-    [23, "windows_registry_keys", "Windows-Registry-Key", ["]0"], ""],
+    [10, "file", "File", [], ""],
+    [11, "ip_addr", "IP-Addr", [], ""],
+    [15, "ip_connection", "IP-Connection", [], ""],
+    [13, "mac_addr", "MAC-Addr", [], ""],
+    [17, "process", "Process", [], ""],
+    [25, "properties", "Properties", [], ""],
+    [19, "uri", "URI", [], ""],
     [1000, "extension", "PE-Target", [], ""],
-    [1024, "slpf", "slpf:Target", [], ""]]
-  ],
-
+    [1001, "extension_unr", "Unr-Target", [], ""],
+    [1024, "slpf", "slpf:Target", [], ""]
+  ]],
   ["Actuator", "Choice", [], "", [
     [1000, "extension", "PE-Specifiers", [], ""],
-    [1024, "slpf", "slpf:Specifiers", [], ""]]
-  ],
-
+    [1001, "extension_unr", "Unr-Specifiers", [], ""]
+  ]],
   ["Args", "Map", [], "", [
     [1, "start_time", "Date-Time", ["[0"], ""],
     [2, "stop_time", "Date-Time", ["[0"], ""],
     [3, "duration", "Duration", ["[0"], ""],
     [4, "response_requested", "Response-Type", ["[0"], ""],
     [1000, "extension", "PE-Args", ["[0"], ""],
-    [1024, "slpf", "slpf:Args", ["[0"], ""]]
-  ],
-
-  ["OpenC2-Response", "Record", [], "", [
-    [1, "status", "Status-Code", [], ""],
+    [1001, "extension_unr", "Unr-Args", ["[0"], ""]
+  ]],
+  ["OpenC2-Response", "Map", [], "", [
+    [1, "status", "Status-Code", ["[0"], ""],
     [2, "status_text", "String", ["[0"], ""],
-    [3, "*", "Results", ["[0"], ""],
-    [4, "id", "Command-ID", ["[0"], ""],
-    [5, "id_ref", "Command-ID", ["[0"], ""],
-    [6, "actuator_id", "String", ["[0"], ""]]
-  ],
-
+    [3, "strings", "String", ["[0", "]0"], ""],
+    [4, "ints", "Integer", ["[0", "]0"], ""],
+    [5, "kvps", "KVP", ["[0", "]0"], ""],
+    [6, "versions", "Version", ["[0", "]0"], ""],
+    [7, "profiles", "jadn:Uname", ["[0", "]0"], ""],
+    [8, "schema", "jadn:Schema", ["[0"], ""],
+    [9, "pairs", "Action-Targets", ["[0", "]0"], ""],
+    [10, "rate_limit", "Number", ["[0"], ""],
+    [1000, "extension", "PE-Results", ["[0"], ""],
+    [1001, "extension_unr", "Unr-Results", ["[0"], ""]
+  ]],
   ["Status-Code", "Enumerated", ["="], "", [
     [102, "Processing", ""],
     [200, "OK", ""],
@@ -1244,143 +1158,108 @@ This annex defines the information model used by conforming OpenC2 implementatio
     [400, "Bad Request", ""],
     [401, "Unauthorized", ""],
     [403, "Forbidden", ""],
-    [500, "Consumer Error", ""],
-    [501, "Not Implemented", ""]]
-  ],
-
+    [404, "Not Found", ""],
+    [500, "Internal Error", ""],
+    [501, "Not Implemented", ""],
+    [503, "Service Unavailable", ""]
+  ]],
   ["PE-Target", "Choice", ["="], "", [
-    [32473, "Example", "32473:Target", [], ""]]
-  ],
-
+    [32473, "Example", "32473:Target", [], ""]
+  ]],
   ["PE-Specifiers", "Choice", ["="], "", [
-    [32473, "Example", "32473:Specifiers", [], ""]]
-  ],
-
+    [32473, "Example", "32473:Specifiers", [], ""]
+  ]],
   ["PE-Args", "Map", ["="], "", [
-    [32473, "Example", "32473:Args", [], ""]]
-  ],
-
+    [32473, "Example", "32473:Args", [], ""]
+  ]],
   ["PE-Results", "Map", ["="], "", [
-    [32473, "Example", "32473:Results", [], ""]]
-  ],
-
+    [32473, "Example", "32473:Results", [], ""]
+  ]],
   ["Artifact", "Record", [], "", [
     [1, "mime_type", "String", ["[0"], ""],
-    [2, "*", "Payload", ["[0"], ""],
-    [3, "hashes", "Hashes", ["[0"], ""]]
-  ],
-
+    [2, "payload", "Payload", ["[0"], ""],
+    [3, "hashes", "Hashes", ["[0"], ""]
+  ]],
   ["Device", "Map", [], "", [
     [1, "hostname", "Hostname", [], ""],
     [2, "description", "String", ["[0"], ""],
-    [3, "device_id", "String", ["[0"], ""]]
-  ],
-
+    [3, "device_id", "String", ["[0"], ""]
+  ]],
   ["Domain-Name", "String", ["@hostname"], ""],
-
   ["Email-Addr", "String", ["@email"], ""],
-
+  ["Features", "ArrayOf", ["*Feature", "[0"], ""],
   ["File", "Map", [], "", [
     [1, "name", "String", ["[0"], ""],
     [2, "path", "String", ["[0"], ""],
-    [3, "hashes", "Hashes", ["[0"], ""]]
-  ],
-
-  ["IP-Addr", "String", ["@ip"], ""],
-
+    [3, "hashes", "Hashes", ["[0"], ""]
+  ]],
+  ["IP-Addr", "Binary", ["@ip-addr"], ""],
   ["IP-Connection", "Record", [], "", [
     [1, "src_addr", "IP-Addr", ["[0"], ""],
     [2, "src_port", "Port", ["[0"], ""],
     [3, "dst_addr", "IP-Addr", ["[0"], ""],
     [4, "dst_port", "Port", ["[0"], ""],
-    [5, "protocol", "L4-Protocol", ["[0"], ""]]
-  ],
-
-  ["Features", "ArrayOf", ["*Feature", "[0"], ""],
-
+    [5, "protocol", "L4-Protocol", ["[0"], ""]
+  ]],
+  ["MAC-Addr", "Binary", [], ""],
   ["Process", "Map", [], "", [
     [1, "pid", "Integer", ["[0"], ""],
     [2, "name", "String", ["[0"], ""],
     [3, "cwd", "String", ["[0"], ""],
     [4, "executable", "File", ["[0"], ""],
     [5, "parent", "Process", ["[0"], ""],
-    [6, "command_line", "String", ["[0"], ""]]
-  ],
-
-  ["Property", "Record", [], "", [
-    [1, "name", "String", [], ""],
-    [2, "query_string", "String", [], ""]]
-  ],
-
-  ["Command-ID", "String", [], ""],
-
+    [6, "command_line", "String", ["[0"], ""]
+  ]],
+  ["Properties", "ArrayOf", ["*String"], ""],
+  ["URI", "String", ["@uri"], ""],
+  ["Message-Type", "Enumerated", [], "", [
+    [0, "notification", ""],
+    [1, "request", ""],
+    [2, "response", ""]
+  ]],
+  ["Request-Id", "Binary", [], ""],
   ["Date-Time", "Integer", [], ""],
-
   ["Duration", "Integer", [], ""],
-
   ["Hashes", "Map", [], "", [
     [1, "md5", "Binary", ["[0"], ""],
     [4, "sha1", "Binary", ["[0"], ""],
-    [6, "sha256", "Binary", ["[0"], ""]]
-  ],
-
+    [6, "sha256", "Binary", ["[0"], ""]
+  ]],
   ["Hostname", "String", [], ""],
-
-  ["Identifier", "String", [], ""],
-
   ["L4-Protocol", "Enumerated", [], "", [
     [1, "icmp", ""],
     [6, "tcp", ""],
     [17, "udp", ""],
-    [132, "sctp", ""]]
-  ],
-
+    [132, "sctp", ""]
+  ]],
   ["Payload", "Choice", [], "", [
-    [1, "payload_bin", "Binary", [], ""],
-    [2, "url", "URI", [], ""]]
-  ],
-
-  ["Port", "Integer", ["@port"], ""],
-
+    [1, "bin", "Binary", [], ""],
+    [2, "url", "URI", [], ""]
+  ]],
+  ["Port", "Integer", ["[0", "]65535"], ""],
   ["Feature", "Enumerated", [], "", [
     [1, "versions", ""],
     [2, "profiles", ""],
     [3, "schema", ""],
-    [4, "pairs", ""]]
-  ],
-
+    [4, "pairs", ""],
+    [5, "rate_limit", ""]
+  ]],
   ["Response-Type", "Enumerated", [], "", [
     [0, "none", ""],
     [1, "ack", ""],
     [2, "status", ""],
-    [3, "complete", ""]]
-  ],
-
-  ["URI", "String", [], ""],
-
+    [3, "complete", ""]
+  ]],
   ["Version", "String", [], ""],
-
-  ["Results", "Map", [], "", [
-    [1, "strings", "String", ["[0", "]0"], ""],
-    [2, "ints", "Integer", ["[0", "]0"], ""],
-    [3, "kvps", "KVP", ["[0", "]0"], ""],
-    [4, "versions", "Version", ["[0", "]0"], ""],
-    [5, "profiles", "jadn:Uname", ["[0", "]0"], ""],
-    [6, "schema", "jadn:Schema", ["[0"], ""],
-    [7, "pairs", "ActionTargets", ["[0", "]0"], ""],
-    [1000, "extension", "PE-Results", ["[0"], ""],
-    [1024, "slpf", "slpf:Results", ["[0"], ""]]
-  ],
-
   ["KVP", "Array", [], "", [
-    [1, "key", "Identifier", [], ""],
-    [2, "value", "String", [], ""]]
-  ],
-
-  ["ActionTargets", "Array", [], "", [
+    [1, "key", "String", [], ""],
+    [2, "value", "String", [], ""]
+  ]],
+  ["Action-Targets", "Array", [], "", [
     [1, "action", "Action", [], ""],
-    [2, "targets", "Target.*", ["]0"], ""]]
+    [2, "targets", "Target", ["]0", "*"], ""]
   ]]
+ ]
 }
 ```
 
@@ -1388,7 +1267,7 @@ This annex defines the information model used by conforming OpenC2 implementatio
 **Schema Files:**
 
 * [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.jadn](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.jadn) (authoritative)
-* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf) 
+* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf) (formatted)
 
 **Schema:**
 
@@ -1481,45 +1360,44 @@ This annex defines the information model used by conforming OpenC2 implementatio
 
 # Annex B. Examples
 ## B.1 Example 1
-This example shows the structure of an OpenC2 Message containing an OpenC2 Command. This example is depicted where the header is included in the JSON (e.g., STIX).
+This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the message is the de-serialized command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the message.
 
-### B.1.1 OpenC2 Message
+The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:` 'd937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If OpenC2 producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.
+
+The created element is a Date-Time value of milliseconds since the epoch.  The example `1539355895215` may be displayed as` '12 October 2018 14:51:35 UTC'`.
+
+This example, illustrating an internal representation of a message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how message elements are represented internally within an implementation.  Only the serialized values of the message elements embedded within a protocol is relevant to interoperability.
+
+
+### B.1.1 Command Message
 ```
-{   
-    "header": {
-        "version": "1.0",
-        "created": "2018-01-30T18:25:43.511Z"
-        "request_id": "9d43df98-7e34-43d3-bb25-4d1ea7a0a02a",
-    },
-    "command": {
-        "action": "redirect",
-        "target": {
-            "url": "http://evil.com"
-        },
-        "args": {
-            "destination": "http://newdest.com/home"
-        }
-    }
-}
+**content-type**: 'application/openc2'
+**msg_type**: 'request'
+**request_id**: b'\xd97\xfc\xa9+dNq'
+**from**: 'nocc-3497'
+**to**: ['#filter-devices']
+**created**: 1539355895215
+**content**: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
+```
+
+### B.1.2 Response Message
+The response message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the response content.  The request_id from the command message, if present, is returned unchanged in the response message.  The "to" element of the response normally echoes the "from" element of the command message, but the "from" element of the response is the actuator's identifier regardless of whether the command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the response.
+
+A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to an openc2 command.  No actuator profiles currently define response content types other than openc2.
+
+```
+**status**: 200
+**content-type**: 'application/openc2'
+**msg_type**: 'response'
+**request_id**: b'\xd97\xfc\xa9+dNq'
+**from**: 'pf72394'
+**to**: ['nocc-3497']
+**created**: 1539355898000
+**content**: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
 ```
 
 ## B.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
-
-```
-{ 
-    "target": {
-        "ip_addr": "1.2.3.4"
-    },
-    "args": {
-        "start_time": "now",
-        "response_requested": "ack" 
-    }
-}
-```
-
-## B.3 Example 3
-This example shows the OpenC2 Command and Response for retrieving data from an actuator.
 
 **Command:**
 
@@ -1527,16 +1405,13 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 {
     "action": "query",
     "target": {
-        "property": {
-            "name": "battery_percentage"
-        }
+        "properties": ["battery_percentage"]
     },
     "actuator": {
-        "endpoint_smart_meter": {
-            "actuator_id": "TSLA-00101111",
+        "esm": {
             "asset_id": "TGEadsasd"
         }
-    }
+    }:
 }
 ```
 
@@ -1545,64 +1420,204 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 ```
 {
     "status": 200,
-    "results": {
-        "battery_percentage": 0.577216
-    }
+    "kvps": [["battery_percentage", "0.577216"]]
 }
 ```
 
-### B.3.3 'query openc2'
-**Command:**
-
-```
-{
-    "openc2": [ "version"]
-}
-```
-
-**Response:**
-
-```
-{"version":"1.0"}
-```
-
-**Command:**
-
-```
-{
-  "target": {
-  }
-```
-
-**Response:**
-
-```
-{
-  "status": 200,
-  "results": {
-    "slpf": "https://github.com/oasis-tcs/openc2-apsc-stateless-packet-filter/oc2slpf-v1.0-wip.md"
-  }
-}
-```
-
+## B.3 Example 3
 **Command:**
 
 ```
 {
   "action": "query",
   "target": {
+    "features": ["versions", "profiles"]
+  }
 }
 ```
 
 **Response:**
 
 ```
-{TBSL}
+{
+  "status_text": "ACME Corp Internet Toaster",
+  "versions": ["1.0"],
+  "profiles": []
+}
+```
 
+**Command:**
+
+This command queries the actuator for the syntax of its supported commands.
+
+```
+{
+  "action": "query",
+  "target": {
+    "features": ["pairs", "schema"]
+  }
+}
+```
+
+**Response:**
+
+This example illustrates how actuator developers tailor the OpenC2 schema to communicate the capabilities of their products to producers.  This example actuator supports the mandatory requirements of the language specification plus a random subset of optional language elements (cancel, create, and delete actions, and the command, ip_addr, and properties targets).  The example actuator supports a subset of the core OpenC2 language but no profile-defined targets, actuator specifiers, command arguments, or responses.
+
+The example do-nothing actuator appears to support create and delete  ip_addr commands, but without a profile there is no definition of what the actuator would do to "create" an IP address.  The schema is used by producers to determine what commands are syntactically valid for an actuator, but it does not assign meaning to those commands.
+
+```
+{
+  "pairs": [
+    ["query", ["features", "properties"]],
+    ["cancel", ["command"]],
+    ["create", ["ip_addr"]],
+    ["delete", ["ip_addr"]]
+  ],
+  "schema": {
+     "meta": {
+      "module": "oasis-open.org/openc2/v1.0/openc2-lang",
+      "patch": "wd09_example",
+      "title": "OpenC2 Language Objects",
+      "description": "Example Actuator",
+      "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "Request-Id", "Date-Time"]
+     },
+     "types": [
+      ["OpenC2-Command", "Record", [], "", [
+        [1, "action", "Action", [], ""],
+        [2, "target", "Target", [], ""],
+        [3, "args", "Args", ["[0"], ""]
+      ]],
+      ["Action", "Enumerated", [], "", [
+        [3, "query", ""],
+        [14, "cancel", ""],
+        [19, "create", ""],
+        [20, "delete", ""]
+      ]],
+      ["Target", "Choice", [], "", [
+        [2, "command", "Request-Id", [], ""],
+        [16, "features", "Features", [], ""],
+        [11, "ip_addr", "IP-Addr", [], ""],
+        [25, "properties", "Properties", [], ""]
+      ]],
+      ["Args", "Map", [], "", [
+        [1, "start_time", "Date-Time", ["[0"], ""],
+        [4, "response_requested", "Response-Type", ["[0"], ""]
+      ]],
+      ["OpenC2-Response", "Map", [], "", [
+        [2, "status_text", "String", ["[0"], ""],
+        [3, "strings", "String", ["[0", "]0"], ""],
+        [4, "ints", "Integer", ["[0", "]0"], ""],
+        [5, "kvps", "KVP", ["[0", "]0"], ""],
+        [6, "versions", "Version", ["[0", "]0"], ""],
+        [7, "profiles", "jadn:Uname", ["[0", "]0"], ""],
+        [8, "schema", "jadn:Schema", ["[0"], ""],
+        [9, "pairs", "Action-Targets", ["[0", "]0"], ""],
+        [10, "rate_limit", "Number", ["[0"], ""]
+      ]],
+      ["Status-Code", "Enumerated", ["="], "", [
+        [200, "OK", ""],
+        [400, "Bad Request", ""],
+        [404, "Not Found", ""],
+        [500, "Internal Error", ""],
+        [501, "Not Implemented", ""]
+      ]],
+      ["Features", "ArrayOf", ["*Feature", "[0"], ""],
+      ["IP-Addr", "Binary", ["@ip-addr"], ""],
+      ["Properties", "ArrayOf", ["*String"], ""],
+      ["Message-Type", "Enumerated", [], "", [
+        [1, "request", ""],
+        [2, "response", ""]
+      ]],
+      ["Request-Id", "Binary", [], ""],
+      ["Date-Time", "Integer", [], ""],
+      ["Feature", "Enumerated", [], "", [
+        [1, "versions", ""],
+        [2, "profiles", ""],
+        [3, "schema", ""],
+        [4, "pairs", ""]
+      ]],
+      ["Response-Type", "Enumerated", [], "", [
+        [0, "none", ""],
+        [1, "ack", ""],
+        [3, "complete", ""]
+      ]],
+      ["Version", "String", [], ""],
+      ["KVP", "Array", [], "", [
+        [1, "key", "String", [], ""],
+        [2, "value", "String", [], ""]
+      ]],
+      ["Action-Targets", "Array", [], "", [
+        [1, "action", "Action", [], ""],
+        [2, "targets", "Target", ["]0", "*"], ""]
+      ]],
+      ["jadn:Schema", "Record", [], "", [
+        [1, "meta", "jadn:Meta", [], ""],
+        [2, "types", "jadn:Type", ["]0"], ""]
+      ]],
+      ["jadn:Meta", "Map", [], "", [
+        [1, "module", "jadn:Uname", [], ""],
+        [2, "patch", "String", ["[0"], ""],
+        [3, "title", "String", ["[0"], ""],
+        [4, "description", "String", ["[0"], ""],
+        [5, "imports", "jadn:Import", ["[0", "]0"], ""],
+        [6, "exports", "jadn:Identifier", ["[0", "]0"], ""],
+        [7, "bounds", "jadn:Bounds", ["[0"], ""]
+      ]],
+      ["jadn:Import", "Array", [], "", [
+        [1, "nsid", "jadn:Nsid", [], ""],
+        [2, "uname", "jadn:Uname", [], ""]
+      ]],
+      ["jadn:Bounds", "Array", [], "", [
+        [1, "max_msg", "Integer", [], ""],
+        [2, "max_str", "Integer", [], ""],
+        [3, "max_bin", "Integer", [], ""],
+        [4, "max_fields", "Integer", [], ""]
+      ]],
+      ["jadn:Type", "Array", [], "", [
+        [1, "tname", "jadn:Identifier", [], ""],
+        [2, "btype", "jadn:JADN-Type", ["*"], ""],
+        [3, "opts", "jadn:Option", ["]0"], ""],
+        [4, "desc", "String", [], ""],
+        [5, "fields", "jadn:JADN-Type", ["&btype", "]0"], ""]
+      ]],
+      ["jadn:JADN-Type", "Choice", [], "", [
+        [1, "Binary", "Null", [], ""],
+        [2, "Boolean", "Null", [], ""],
+        [3, "Integer", "Null", [], ""],
+        [4, "Number", "Null", [], ""],
+        [5, "Null", "Null", [], ""],
+        [6, "String", "Null", [], ""],
+        [7, "Array", "jadn:FullField", ["]0"], ""],
+        [8, "ArrayOf", "Null", [], ""],
+        [9, "Choice", "jadn:FullField", ["]0"], ""],
+        [10, "Enumerated", "jadn:EnumField", ["]0"], ""],
+        [11, "Map", "jadn:FullField", ["]0"], ""],
+        [12, "Record", "jadn:FullField", ["]0"], ""]
+      ]],
+      ["jadn:EnumField", "Array", [], "", [
+        [1, "", "Integer", [], ""],
+        [2, "", "String", [], ""],
+        [3, "", "String", [], ""]
+      ]],
+      ["jadn:FullField", "Array", [], "", [
+        [1, "", "Integer", [], ""],
+        [2, "", "jadn:Identifier", [], ""],
+        [3, "", "jadn:Identifier", [], ""],
+        [4, "", "jadn:Options", [], ""],
+        [5, "", "String", [], ""]
+      ]],
+      ["jadn:Identifier", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]32"], ""],
+      ["jadn:Nsid", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]8"], ""],
+      ["jadn:Uname", "String", ["[1", "]100"], ""],
+      ["jadn:Options", "ArrayOf", ["*jadn:Option", "[0", "]10"], ""],
+      ["jadn:Option", "String", ["[1", "]100"], ""]
+     ]
+  }
+}
 ```
 
 # Annex C. Acronyms
-> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification (public review). 
+> **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
 
 # Annex D. Revision History
 | Revision | Date | Editor | Changes Made |
@@ -1619,10 +1634,11 @@ This example shows the OpenC2 Command and Response for retrieving data from an a
 | v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some actions and targets to reserved lists |
 | v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
+| v1.0-wd09 | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review. |
 
 # Annex E. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **Participants:**
 
-> **Editor's Note** - TBSL - This section be included in the final iteration prior to submitting for Committee Specification (public review). The proposal is to include on the list the names of all members of the Language Subcommittee who made contributions to the document (defined very liberally as anyone who either attended a meeting, or sent a contributing email, or contributed text), and all members of the OpenC2 TC that voted on at least one of the drafts
+> **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
