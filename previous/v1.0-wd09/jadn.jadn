@@ -1,0 +1,85 @@
+{
+ "meta": {
+  "module": "oasis-open.org/openc2/oc2ls/v1.0/jadn-v1.0",
+  "patch": "0",
+  "title": "JADN Syntax",
+  "description": "Syntax of a JSON Abstract Data Notation (JADN) module.",
+  "exports": ["Schema", "Uname"]
+ },
+
+ "types": [
+  ["Schema", "Record", [], "", [
+    [1, "meta", "Meta", [], ""],
+    [2, "types", "Type", ["]0"], ""]
+  ]],
+
+  ["Meta", "Map", [], "", [
+    [1, "module", "Uname", [], ""],
+    [2, "patch", "String", ["[0"], ""],
+    [3, "title", "String", ["[0"], ""],
+    [4, "description", "String", ["[0"], ""],
+    [5, "imports", "Import", ["[0", "]0"], ""],
+    [6, "exports", "Identifier", ["[0", "]0"], ""],
+    [7, "bounds", "Bounds", ["[0"], ""]
+  ]],
+
+  ["Import", "Array", [], "", [
+    [1, "nsid", "Nsid", [], ""],
+    [2, "uname", "Uname", [], ""]
+  ]],
+
+  ["Bounds", "Array", [], "", [
+    [1, "max_msg", "Integer", [], ""],
+    [2, "max_str", "Integer", [], ""],
+    [3, "max_bin", "Integer", [], ""],
+    [4, "max_fields", "Integer", [], ""]
+  ]],
+
+  ["Type", "Array", [], "", [
+    [1, "tname", "Identifier", [], ""],
+    [2, "btype", "JADN-Type", ["*"], ""],
+    [3, "opts", "Option", ["]0"], ""],
+    [4, "desc", "String", [], ""],
+    [5, "fields", "JADN-Type", ["&btype", "]0"], ""]
+  ]],
+
+  ["JADN-Type", "Choice", [], "", [
+    [1, "Binary", "Null", [], ""],
+    [2, "Boolean", "Null", [], ""],
+    [3, "Integer", "Null", [], ""],
+    [4, "Number", "Null", [], ""],
+    [5, "Null", "Null", [], ""],
+    [6, "String", "Null", [], ""],
+    [7, "Array", "FullField", ["]0"], ""],
+    [8, "ArrayOf", "Null", [], ""],
+    [9, "Choice", "FullField", ["]0"], ""],
+    [10, "Enumerated", "EnumField", ["]0"], ""],
+    [11, "Map", "FullField", ["]0"], ""],
+    [12, "Record", "FullField", ["]0"], ""]
+  ]],
+
+  ["EnumField", "Array", [], "", [
+    [1, "", "Integer", [], ""],
+    [2, "", "String", [], ""],
+    [3, "", "String", [], ""]
+  ]],
+
+  ["FullField", "Array", [], "", [
+    [1, "", "Integer", [], ""],
+    [2, "", "Identifier", [], ""],
+    [3, "", "Identifier", [], ""],
+    [4, "", "Options", [], ""],
+    [5, "", "String", [], ""]
+  ]],
+
+  ["Identifier", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]32"], ""],
+
+  ["Nsid", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]8"], ""],
+
+  ["Uname", "String", ["[1", "]100"], ""],
+
+  ["Options", "ArrayOf", ["*Option", "[0", "]10"], ""],
+
+  ["Option", "String", ["[1", "]100"], ""]
+]
+}
