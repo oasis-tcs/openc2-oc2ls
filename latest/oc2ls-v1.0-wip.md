@@ -1,64 +1,63 @@
-![OASIS Logo](image_0.png)
-
+![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 09
+## Committee Specification Draft 07 /<br>Public Review Draft 01
 ## 17 October 2018
-**Specification URIs**
+### Specification URIs
+#### This version:
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md (Authoritative)
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.pdf
 
-**This version:**
+#### Previous version:
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/md/oc2ls-v1.0-wd07.md (Authoritative)
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/oc2ls-v1.0-csd05.html
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/oc2ls-v1.0-csd05.pdf
 
-* oasis-to-fill-in-link.md (Authoritative)
-* oasis-to-fill-in-link.pdf
-* oasis-to-fill-in-link.html
+#### Latest version:
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.md (Authoritative)
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.pdf
 
-**Previous Version:**
+#### Technical Committee:
+* [OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
-* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/md/oc2ls-v1.0-wd06.md](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/md/oc2ls-v1.0-wd06.md) (Authoritative)
-* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.pdf)
-* [http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd04/oc2ls-v1.0-csd04.html)
+#### Chairs:
+* Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/)
+* Sounil Yu (sounil.yu@bankofamerica.com), [Bank of America](http://www.bankofamerica.com/)
 
-Latest version:
+#### Editors:
+* Jason Romano (jdroman@nsa.gov), [National Security Agency](https://www.nsa.gov/)
+* Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
-* oasis-to-fill-in-link.md (Authoritative)
-* oasis-to-fill-in-link.pdf
-* oasis-to-fill-in-link.html
+#### Additional artifacts:
+This prose specification is one component of a Work Product that also includes:
+* OpenC2 Language Syntax JSON/JADN schema ([Annex A.1](#a1-openc2-language-syntax)):
+    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/oc2ls.json
+    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/oc2ls.pdf
+* JADN Syntax JSON/JADN schema ([Annex A.2](#a2-jadn-syntax)):
+    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/jadn.json
+    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/jadn.pdf
 
-**Technical Committee:**
-
-* [OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2)
-
-**Chairs**
-
-* Joe Brule (jmbrule@nsa.gov), National Security Agency
-* Sounil Yu (sounil.yu@bankofamerica.com), Bank of America
-
-**Editors**
-
-* Jason Romano (jdroman@nsa.gov), National Security Agency
-* Duncan Sparrell (duncan@sfractal.com), sFractal Consulting
-
-## Abstract
+#### Abstract:
 Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine to machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
-## Status
-This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at [https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical).
+#### Status:
+This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
 
-TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the instructions at the "Send A Comment" button on the TC's web page at [https://www.oasis-open.org/committees/openc2/](https://www.oasis-open.org/committees/openc2/).
+TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the instructions at the "Send A Comment" button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
 
-This Draft is provided under the Non-Assertion Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
+This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
-Note that any machine-readable content (Computer Language Definitions) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s), the content in the separate plain text file prevails.
+Note that any machine-readable content ([Computer Language Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang)) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s), the content in the separate plain text file prevails.
 
-### Citation format:
+#### Citation format:
 When referencing this specification the following citation format should be used:
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 17 October 2018. OASIS Working Draft 09. oasis-to-fill-in-link.html.
-
-Latest version: [http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html](http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html).
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 17 October 2018. OASIS Committee Specification Draft 07 / Public Review Draft 01. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -79,7 +78,7 @@ OASIS invites any party to contact the OASIS TC Administrator if it is aware of 
 
 OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this document or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Committee Specification or OASIS Standard, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.
 
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see [https://www.oasis-open.org/policies-guidelines/trademark](https://www.oasis-open.org/policies-guidelines/trademark) for above guidance.
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
 
 -------
 
@@ -94,7 +93,7 @@ OpenC2 is a suite of specifications that enables command and control of cyber de
 OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices.  These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device.  The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
 
 ## 1.1 IPR Policy
-This specification is being developed under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
+This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
 ## 1.2 Terminology
 * **Action**: The task or activity to be performed.
@@ -105,42 +104,62 @@ This specification is being developed under the [Non-Assertion](https://www.oasi
 * **Response**: A message from a consumer to a producer acknowledging a command or returning the requested resources or status to a previously received request.
 * **Target**: The object of the action, i.e., the action is performed on the target.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119] and [RFC8174].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)].
 
 ## 1.3 Normative References
-|   |   |
-| :--- | :--- |
-| **[OpenC2-HTTPS-v1.0]** | _Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. 09 August 2018. OASIS Working Draft 02. [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd01.html](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/csd01/open-impl-https-v1.0-csd01.html). <br>Latest version: [http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html](http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html). |
-| **[OpenC2-SLPF-v1.0]** | _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell, and Alex Everett. 19 September 2018. OASIS Working Draft 04. oasis-to-fill-in-link.html. <br>Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html  |
-| **[RFC768]** | Postel, J., "User Datagram Protocol", STD 6, RFC 768, August 1980, http://www.rfc-editor.org/info/rfc768. |
-| **[RFC792]** | Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, September 1981, http://www.rfc-editor.org/info/rfc792. |
-| **[RFC793]** | Postel, J., "Transmission Control Protocol", STD 7, RFC 793, September 1981, http://www.rfc-editor.org/info/rfc793. |
-| **[RFC1034]** | Mockapetris, P. V., "Domain names - concepts and facilities", STD 13, RFC 1034, November 1987, http://www.rfc-editor.org/info/rfc1034. |
-| **[RFC1123]** | Braden, R., "Requirements for Internet Hosts - Application and Support", STD 3, RFC 1123, October 1989, http://www.rfc-editor.org/info/rfc1123. |
-| **[RFC1321]** | Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, April 1992, http://www.rfc-editor.org/info/rfc1321. |
-| **[RFC2119]** | Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, http://www.rfc-editor.org/info/rfc2119. |
-| **[RFC3986]** | Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005, http://www.rfc-editor.org/info/rfc3986. |
-| **[RFC4122]** | Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122. |
-| **[RFC4648]** | Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, October 2006, http://www.rfc-editor.org/info/rfc4648. |
-| **[RFC4960]** | Stewart, R. "Stream Control Transmission Protocol", RFC 4960, September 2007, http://www.rfc-editor.org/info/rfc4960. |
-| **[RFC5237]** | Arkko, J., Bradner, S., "IANA Allocation Guidelines for the Protocol Field", BCP 37, RFC 5237, February 2008, http://www.rfc-editor.org/info/rfc5237. |
-| **[RFC5322]** | Resnick, P., "Internet Message Format", RFC 5322, October 2008, http://www.rfc-editor.org/info/rfc5322. |
-| **[RFC5612]** | Eronen, P., Harrington, D., "Enterprise Number for Documentation Use", RFC 5612, August 2009, http://www.rfc-editor.org/info/rfc5612. |
-| **[RFC6234]** | Eastlake 3rd, D., Hansen, T., "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, May 2011, http://www.rfc-editor.org/info/rfc6234. |
-| **[RFC6335]** | Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", BCP 165, RFC 6335, August 2011, http://www.rfc-editor.org/info/rfc6335. |
-| **[RFC6838]** | Freed, N., Klensin, J., Hansen, T., "Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, http://www.rfc-editor.org/info/rfc6838. |
-| **[RFC7493]** | Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-editor.org/info/rfc7493. |
-| **[RFC8174]** | Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174. |
-| **[RFC8259]** | Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259. |
+
+###### [OpenC2-HTTPS-v1.0]
+_Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. Latest version: http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html
+###### [OpenC2-SLPF-v1.0]
+_Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell, and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html
+###### [RFC768]
+Postel, J., "User Datagram Protocol", STD 6, RFC 768, August 1980, http://www.rfc-editor.org/info/rfc768.
+###### [RFC792]
+Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, September 1981, http://www.rfc-editor.org/info/rfc792.
+###### [RFC793]
+Postel, J., "Transmission Control Protocol", STD 7, RFC 793, September 1981, http://www.rfc-editor.org/info/rfc793.
+###### [RFC1034]
+Mockapetris, P. V., "Domain names - concepts and facilities", STD 13, RFC 1034, November 1987, http://www.rfc-editor.org/info/rfc1034.
+###### [RFC1123]
+Braden, R., "Requirements for Internet Hosts - Application and Support", STD 3, RFC 1123, October 1989, http://www.rfc-editor.org/info/rfc1123.
+###### [RFC1321]
+Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, April 1992, http://www.rfc-editor.org/info/rfc1321.
+###### [RFC2119]
+Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, http://www.rfc-editor.org/info/rfc2119.
+###### [RFC3986]
+Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005, http://www.rfc-editor.org/info/rfc3986.
+###### [RFC4122]
+Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122.
+###### [RFC4648]
+Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, October 2006, http://www.rfc-editor.org/info/rfc4648.
+###### [RFC4960]
+Stewart, R. "Stream Control Transmission Protocol", RFC 4960, September 2007, http://www.rfc-editor.org/info/rfc4960.
+###### [RFC5237]
+Arkko, J., Bradner, S., "IANA Allocation Guidelines for the Protocol Field", BCP 37, RFC 5237, February 2008, http://www.rfc-editor.org/info/rfc5237.
+###### [RFC5322]
+Resnick, P., "Internet Message Format", RFC 5322, October 2008, http://www.rfc-editor.org/info/rfc5322.
+###### [RFC5612]
+Eronen, P., Harrington, D., "Enterprise Number for Documentation Use", RFC 5612, August 2009, http://www.rfc-editor.org/info/rfc5612.
+###### [RFC6234]
+Eastlake 3rd, D., Hansen, T., "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, May 2011, http://www.rfc-editor.org/info/rfc6234.
+###### [RFC6335]
+Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", BCP 165, RFC 6335, August 2011, http://www.rfc-editor.org/info/rfc6335.
+###### [RFC6838]
+Freed, N., Klensin, J., Hansen, T., "Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, http://www.rfc-editor.org/info/rfc6838.
+###### [RFC7493]
+Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-editor.org/info/rfc7493.
+###### [RFC8174]
+Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
+###### [RFC8259]
+Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259.
 
 ## 1.4 Non-Normative References
-|   |   |
-| :--- | :--- |
-| **[IACD]** | M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015 |
+###### [IACD]
+M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
-* RFC2119/RFC8174 key words (see section 1.4) are in all uppercase.
+* [RFC2119](#rfc2119)/[RFC8174](#rfc8174) key words (see [section 1.4](#14-non-normative-references)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
 * All words in structure component names are capitalized and are separated with a hyphen, e.g., ACTION, TARGET, TARGET-SPECIFIER.
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
@@ -152,7 +171,7 @@ The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
 * Property names are in bold style – **`created_a**t`
-* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](https://docs.google.com/document/d/1ShNq4c3e1CkfANmD9O--mdZ5H0O_GLnjN28a_yrEaco/edit#bookmark=id.mmt4e4p953r5)].
+* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](#rfc8259)].
 * Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
 
 Example:
@@ -188,13 +207,13 @@ The language defines two payload structures:
 1. **Command**: An instruction from one system known as the OpenC2 "Producer", to one or more systems, the OpenC2 "Consumer(s)", to act on the content of the command.
 2. **Response**: Any information captured or necessary to send back to the OpenC2 Producer  that issued the Command, i.e., the OpenC2 Consumer’s response to the OpenC2 Producer.
 
-![no alt title](image_1.png)
+![no alt title](images/image_1.png)
 
 **Figure 1-1. OpenC2 Message Exchange**
 
 OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude the use of any particular protocol or standard.
 
-![no alt title](image_2.png)
+![no alt title](images/image_2.png)
 
 **Figure 1-2. OpenC2 Documentation and Layering Model**
 
@@ -204,10 +223,8 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles
-(standard and extensions) |
-| Common Content | Language Specification
-(this document) |
+| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
+| Common Content | Language Specification<br>(this document) |
 | Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
@@ -219,7 +236,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 ## 1.7 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
 
-The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [IACD]:
+The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD](#iacd)]:
 
 * Sensing:  gathering of data regarding system activities
 * Sense Making:  evaluating data using analytics to understand what's happening
@@ -248,6 +265,8 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 2. Alternate serializations of OpenC2 commands and responses.
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies.
 
+-------
+
 # 2 OpenC2 Language Description
 The OpenC2 language has two distinct content types: command and response. The command is sent from a producer to a consumer and describes an action to be performed by an actuator on a target. The response is sent from a consumer, usually back to the producer, and is a means to provide information (such as acknowledgement, status, etc.) as a result of a command.
 
@@ -265,11 +284,11 @@ A command has four main components: ACTION, TARGET, ARGUMENTS, and ACTUATOR. The
     * **ACTUATOR-NAME** (required): The name of the set of functions (e.g., "slpf") performed by the actuator, and the name of the profile defining commands applicable to those functions.
     * **ACTUATOR-SPECIFIERS** (optional): The specifier identifies the actuator to some level of precision, such as a specific actuator, a list of actuators, or a group of actuators.
 
-The ACTION and TARGET components are required and are populated by one of the actions in [Section 3.3.1.1](#heading=h.fgpzeiwrbrt8) and the targets in [Section 3.3.1.2](#heading=h.mjtczoggleyu). A particular target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the targets are described in [Section 3.3.4](#heading=h.uaduotfdxeoo).
+The ACTION and TARGET components are required and are populated by one of the actions in [Section 3.3.1.1](#3311-action) and the targets in [Section 3.3.1.2](#3312-target). A particular target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the targets are described in [Section 3.3.4](#334-extensions).
 
 TARGET-SPECIFIERS provide additional precision to identify the target (e.g., 10.1.2.3) and may include a method of identifying multiple targets of the same type (e.g., 10.1.0.0/16).
 
-The ARGUMENTS component, if present, is populated by one or more 'command arguments' that determine how the command is executed. ARGUMENTS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command. The valid ARGUMENTS defined in this specification are in [Section 3.3.1.4](#heading=h.yd6fpfkpyn58).
+The ARGUMENTS component, if present, is populated by one or more 'command arguments' that determine how the command is executed. ARGUMENTS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command. The valid ARGUMENTS defined in this specification are in [Section 3.3.1.4](#3314-command-arguments).
 
 An ACTUATOR is an implementation of a cyber defense function that executes the command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional in the context of a particular ACTUATOR. An Actuator Profile may extend the language by defining additional ARGUMENTS, ACTUATOR-SPECIFIERS, and/or TARGETS that are meaningful and possibly unique to the actuator.
 
@@ -285,6 +304,8 @@ The following list summarizes the fields and subfields of an OpenC2 Response.
 * **STATUS** (required): An integer containing a numerical status code
 * **STATUS_TEXT** (optional): A free-form string containing human-readable description of the response status. The string can contain more detail than is represented by the status code, but does not affect the meaning of the response.
 * **RESULTS** (optional): Contains the data or extended status code that was requested from an OpenC2 Command. 
+
+-------
 
 # 3 OpenC2 Language Definition 
 ## 3.1 Base Components and Structures
@@ -309,7 +330,7 @@ The syntax of valid OpenC2 messages is defined using an information model constr
 | Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
 ### 3.1.2 Derived Data Types
-The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of the base types is specified in [Section 3.1.5](#heading=h.1s7wa079dayl), but there are no restrictions on how derived types are represented internally by an implementation. 
+The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of the base types is specified in [Section 3.1.5](#315-serialization), but there are no restrictions on how derived types are represented internally by an implementation. 
 
 | Type | Base | Description |
 | :--- | :--- | :--- |
@@ -383,9 +404,9 @@ The default representation of Integer types in text serializations is the native
 ## 3.2 Message
 As described in Section 1.1, this language specification and one or more actuator profiles define the content of OpenC2 commands and responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-A message is a content- and transport-independent set of elements conveyed between consumers and producers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#bookmark=id.802piptnpnjy) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required, while other message elements are not required by this specification but may be required by other documents.
+A message is a content- and transport-independent set of elements conveyed between consumers and producers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required, while other message elements are not required by this specification but may be required by other documents.
 
-**Table 3-1. Common Message Elements**
+###### Table 3-1. Common Message Elements
 
 | Name | Description |
 | :--- | :--- |
@@ -401,7 +422,7 @@ A message is a content- and transport-independent set of elements conveyed betwe
 Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
 
 ## 3.3 Content
-The scope of this specification is to define the ACTION and TARGET portions of an OpenC2 command and the common portions of an OpenC2 response.  The properties of the OpenC2 command are defined in [Section 3.3.1](#heading=h.f3ahqel2q85i) and the properties of the response are defined in [Section 3.3.2](#heading=h.23b40yml0v2x).
+The scope of this specification is to define the ACTION and TARGET portions of an OpenC2 command and the common portions of an OpenC2 response.  The properties of the OpenC2 command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the response are defined in [Section 3.3.2](#332-openc2-response).
 
 In addition to the ACTION and TARGET, an OpenC2 command has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the ACTUATOR specifiers are beyond the scope of this specification.  The actuators and actuator-specific results contained in a response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
 
@@ -1012,12 +1033,16 @@ Field definition for compound types Array, Choice, Map, Record
 | :--- | :--- | :--- |
 | **Option** | String | An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value. |
 
+-------
+
 # 4 Mandatory Commands/Responses 
 An OpenC2 command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
 
 An OpenC2 Consumer MUST process an OpenC2 Command where "query" is specified for the ACTION and "features" is specified for the TARGET, hereafter, referred to as a 'query features' command".
 
 Upon processing a 'query features'  command, an OpenC2 Consumer MUST issue an OpenC2 Response to the OpenC2 Producer that issued the OpenC2 Command.
+
+-------
 
 # 5 Conformance
 ## 5.1 OpenC2 Message Content
@@ -1043,14 +1068,15 @@ A conformant OpenC2 Consumer
 1. MUST process OpenC2 Commands and issue OpenC2 Responses specified in Section 4
 2. MUST implement JSON serialization of generated OpenC2 Responses in accordance with RFC 7493
 
+-------
+
 # Annex A. Schemas
 This annex defines the information model used by conforming OpenC2 implementations in JSON Abstract Data Notation (JADN) format.  JADN is a structured textual representation of the tables shown in Section 3.  Schema files referenced by the URLs include descriptive text shown in the tables.  Descriptions are omitted from the figures in this section in order to: 1) illustrate that descriptive text is not part of the language syntax, 2) show what an actuator would return in response to a schema query, and 3) improve readability of the figures. 
 
 ## A.1 OpenC2 Language Syntax
-**Schema Files:**
+**Schema File:**
 
-* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.jadn](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.jadn) (authoritative)
-* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/openc2.pdf) (formatted)
+The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be found at the link under [Additional artifacts](#additional-artifacts) above.
 
 **Schema:**
 
@@ -1263,10 +1289,9 @@ This annex defines the information model used by conforming OpenC2 implementatio
 ```
 
 ## A.2 JADN Syntax
-**Schema Files:**
+**Schema File:**
 
-* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.jadn](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.jadn) (authoritative)
-* [https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf](https://github.com/oasis-tcs/openc2-oc2ls/tree/master/v1.0-wd08/jadn.pdf) (formatted)
+The normative schema file (jadn.json) and formatted version (jadn.pdf) may be found at the link under [Additional artifacts](#additional-artifacts) above.
 
 **Schema:**
 
@@ -1356,6 +1381,8 @@ This annex defines the information model used by conforming OpenC2 implementatio
   ["Option", "String", ["[1", "]100"], ""]]
 }
 ```
+
+-------
 
 # Annex B. Examples
 ## B.1 Example 1
@@ -1611,8 +1638,12 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
 }
 ```
 
+-------
+
 # Annex C. Acronyms
 > **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
+
+-------
 
 # Annex D. Revision History
 | Revision | Date | Editor | Changes Made |
@@ -1631,9 +1662,146 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
 | v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
 | v1.0-wd09 | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review. |
 
+-------
+
 # Annex E. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
-**Participants:**
+**OpenC2 TC Members:**
 
-> **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
+| First Name | Last Name | Company |
+| :--- | :--- | :--- |
+Philippe | Alcoy | Arbor Networks
+Alex | Amirnovin | Viasat
+Kris | Anderson | Trend Micro
+Darren | Anstee | Arbor Networks
+Jonathan | Baker | Mitre Corporation
+Theodor | Balanescu | TELUS
+Stephen | Banghart | NIST
+Sean | Barnum | FireEye Inc.
+Michelle | Barry | AT&T
+Omer | Ben-Shalom | Intel Corporation
+Brian | Berliner | Symantec Corp.
+Adrian | Bishop | Huntsman Security
+Tom | Blauvelt | Symantec Corp.
+Phillip | Boles | FireEye Inc.
+Adam | Bradbury | EclecticIQ
+Sarah | Brown | NCI Agency
+Joe | Brule | National Security Agency
+Michael | Butt | NC4
+Toby | Considine | University of North Carolina at Chapel Hill
+Gus | Creedon | Logistics Management Institute
+James | Crossland | Northrop Grumman
+Trey | Darley | New Context Services Inc.
+David | Darnell | North American Energy Standards Board
+Sudeep | Das | McAfee
+Mark | Davidson | NC4
+Stefano | De Crescenzo | Cisco Systems
+Michele | Drgon | Individual
+Alexandre | Dulaunoy | CIRCL
+Daniel | Dye | NC4
+Chet | Ensign | OASIS
+Blake | Essing | AT&T
+Alex | Everett | University of North Carolina at Chapel Hill
+Travis | Farral | Anomali
+Jessica | Fitzgerald-McKay | National Security Agency
+Jim | Fowler | US Department of Defense (DoD)
+David | Girard | Trend Micro
+Russell | Glenn | Viasat
+Juan | Gonzalez | DHS Office of Cybersecurity and Communications (CS&C)
+Andy | Gray | ForeScout
+John-Mark | Gurney | New Context Services Inc.
+Pavel | Gutin | G2
+Allen | Hadden | IBM
+Stefan | Hagen | Individual
+David | Hamilton | AT&T
+Daichi | Hasumi | NEC Corporation
+Tim | Hudson | Cryptsoft Pty Ltd.
+Nick | Humphrey | Huntsman Security
+Christian | Hunt | New Context Services Inc.
+Andras | Iklody | CIRCL
+Erick | Ingleby | ForeScout
+Sridhar | Jayanthi | Individual
+Tim | Jones | ForeScout
+Bret | Jordan | Symantec Corp.
+Takahiro | Kakumaru | NEC Corporation
+Kirill | Kasavchenko | Arbor Networks
+David | Kemp | National Security Agency
+Himanshu | Kesar | LookingGlass
+Ivan | Kirillov | Mitre Corporation
+Lauri | Korts-Pärn | NEC Corporation
+Anuj | Kumar | FireEye Inc.
+Kent | Landfield | McAfee
+Cheolho | Lee | NSRI
+David | Lemire | G2
+ChangKun | Li | 360 Enterprise Security Group
+Anthony | Librera | AT&T
+Jason | Liu | Northrop Grumman
+Terry | MacDonald | Individual
+Scott | MacGregor | McAfee
+Radu | Marian | Bank of America
+Danny | Martinez | G2
+Web | Master | OASIS
+Ryusuke | Masuoka | Fujitsu Limited
+Lisa | Mathews | National Security Agency
+Vasileios | Mavroeidis | IFI
+Andrew | May | Viasat
+James | Meck | FireEye Inc.
+Andrew | Mellinger | Carnegie Mellon University
+Adam | Montville | CIS
+Christopher | O'Brien | EclecticIQ
+Efrain | Ortiz | Symantec Corp.
+Paul | Patrick | FireEye Inc.
+Andrew | Pendergast | ThreatConnect, Inc.
+Michael | Pepin | NC4
+Wende | Peters | Bank of America
+Hugh | Pyle | IBM
+Nirmal | Rajarathnam | ForeScout
+Greg | Reaume | TELUS
+Joe | Reese | ThreatConnect, Inc.
+Brennen | Reynolds | ForeScout
+Chris | Ricard | Financial Services Information Sharing and Analysis Center (FS-ISAC)
+Daniel | Riedel | New Context Services Inc.
+Robert | Roll | Arizona Supreme Court
+Jason | Romano | National Security Agency
+Michael | Rosa | DHS Office of Cybersecurity and Communications (CS&C)
+Philip | Royer | Splunk Inc.
+Anthony | Rutkowski | Yanna Technologies LLC
+Steven | Ryan | Individual
+Omar | Santos | Cisco Systems
+Sourabh | Satish | Splunk Inc.
+Aleksandra | Scalco | US Department of Defense (DoD)
+Thomas | Schreck | Siemens AG
+Dee | Schur | OASIS
+Randall | Sharo | US Department of Defense (DoD)
+Eric | Shulze | Trend Micro
+Duane | Skeen | Northrop Grumman
+Calvin | Smith | Northrop Grumman
+Dan | Solero | AT&T
+Ben | Sooter | Electric Power Research Institute (EPRI)
+Duncan | Sparrell | sFractal Consulting LLC
+Michael | Stair | AT&T
+Andrew | Storms | New Context Services Inc.
+Gerald | Stueve | Fornetix
+Natalie | Suarez | NC4
+Rodney | Sullivan | NCI Agency
+Sam | Taghavi Zargar | Cisco Systems
+Allan | Thomson | LookingGlass
+Bill | Trost | AT&T
+Ryan | Trost | ThreatQuotient, Inc.
+Raymon | van der Velde | EclecticIQ
+Drew | Varner | NineFX, Inc.
+Tom | Vaughan | EclecticIQ
+Jyoti | Verma | Cisco Systems
+Kamer | Vishi | IFI
+Eric | Voit | Cisco Systems
+David | Waltermire | NIST
+Jason | Webb | LookingGlass
+David | Webber | Huawei Technologies Co., Ltd.
+Sean | Welsh | AT&T
+Remko | Weterings | FireEye Inc.
+Charles | White | Fornetix
+Koji | Yamada | Fujitsu Limited
+Sounil | Yu | Bank of America
+Paolo | Zaino | LookingGlass
+
