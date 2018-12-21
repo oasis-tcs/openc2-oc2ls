@@ -1214,7 +1214,7 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
   ]],
   ["Domain-Name", "String", ["@hostname"], ""],
   ["Email-Addr", "String", ["@email"], ""],
-  ["Features", "ArrayOf", ["*Feature", "[0"], ""],
+  ["Features", "ArrayOf", ["*Feature", "[0", "]10"], ""],
   ["File", "Map", [], "", [
     [1, "name", "String", ["[0"], ""],
     [2, "path", "String", ["[0"], ""],
