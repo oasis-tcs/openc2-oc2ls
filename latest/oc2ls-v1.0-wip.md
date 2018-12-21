@@ -751,7 +751,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 #### 3.4.1.6 Features
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) | An array of zero to ten names used to query an actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 #### 3.4.1.7 File
 **_Type: File (Map)_**
