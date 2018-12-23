@@ -3,7 +3,7 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
 ## Committee Specification Draft 07 /<br>Public Review Draft 01
-## 17 October 2018
+## ?? December 2018
 ### Specification URIs
 #### This version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md (Authoritative)
