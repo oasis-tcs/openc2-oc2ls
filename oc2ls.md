@@ -358,6 +358,10 @@ The cardinality column may also specify a range of sizes, e.g.,:
 
 * 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
 
+A cardinality of 0..1 denotes a single optional value of the specified type.  A cardinality of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
+
+An array containing zero or more values of a specified type cannot be created implicitly using cardinality, it must be defined explicitly as a named ArrayOf type.  The named type can then be used as the type of a required field (cardinality 1).  Results are unspecified if an optional field (cardinality 0..1) is a named ArrayOf type with a minimum length of zero.
+
 ### 3.1.4 Derived Enumerations
 An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
 
@@ -749,7 +753,16 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 #### 3.4.1.6 Features
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) | An array of zero to ten names used to query an actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
+
+**Usage Requirements:**
+
+* A Producer MUST NOT send a list containing more than one instance of any Feature.
+* A Consumer receiving a list containing more than one instance of any Feature MUST behave as if the duplicate(s) were not present.
+
+**Usage Notes:**
+
+* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keepalive command).  An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keepalive functions.
 
 #### 3.4.1.7 File
 **_Type: File (Map)_**
@@ -1212,7 +1225,7 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
   ]],
   ["Domain-Name", "String", ["@hostname"], ""],
   ["Email-Addr", "String", ["@email"], ""],
-  ["Features", "ArrayOf", ["*Feature", "[0"], ""],
+  ["Features", "ArrayOf", ["*Feature", "[0", "]10"], ""],
   ["File", "Map", [], "", [
     [1, "name", "String", ["[0"], ""],
     [2, "path", "String", ["[0"], ""],
@@ -1543,7 +1556,7 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
         [500, "Internal Error", ""],
         [501, "Not Implemented", ""]
       ]],
-      ["Features", "ArrayOf", ["*Feature", "[0"], ""],
+      ["Features", "ArrayOf", ["*Feature", "[0", "]10], ""],
       ["IP-Addr", "Binary", ["@ip-addr"], ""],
       ["Properties", "ArrayOf", ["*String"], ""],
       ["Message-Type", "Enumerated", [], "", [
