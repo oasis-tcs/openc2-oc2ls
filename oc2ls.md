@@ -1556,7 +1556,7 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
         [500, "Internal Error", ""],
         [501, "Not Implemented", ""]
       ]],
-      ["Features", "ArrayOf", ["*Feature", "[0", "]10], ""],
+      ["Features", "ArrayOf", ["*Feature", "[0", "]10"], ""],
       ["IP-Addr", "Binary", ["@ip-addr"], ""],
       ["Properties", "ArrayOf", ["*String"], ""],
       ["Message-Type", "Enumerated", [], "", [
