@@ -861,9 +861,8 @@ Specifies the results to be returned from a query features command.
 | :--- | :--- | :--- |
 | 1 | **versions** | List of OpenC2 Language versions supported by this actuator |
 | 2 | **profiles** | List of profiles supported by this actuator |
-| 3 | **schema** | Definition of the command syntax supported by this actuator |
-| 4 | **pairs** | List of supported actions and applicable targets |
-| 5 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
+| 3 | **pairs** | List of supported actions and applicable targets |
+| 4 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
 
 #### 3.4.2.11 Response-Type
 **_Type: Response-Type (Enumerated)_**
