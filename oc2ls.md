@@ -130,6 +130,10 @@ Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14,
 Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005, http://www.rfc-editor.org/info/rfc3986.
 ###### [RFC4122]
 Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122.
+###### [RFC4291]
+Hinden, R., Nokia, Deering, S., "IP Version 6 Addressing Architecture", RFC 4291, February 2006, http://www.rfc-editor.org/info/rfc4291.
+###### [RFC4632]
+Fuller, V., "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", RFC 4632, August 2006, http://www.rfc-editor.org/info/rfc4632.
 ###### [RFC4648]
 Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, October 2006, http://www.rfc-editor.org/info/rfc4648.
 ###### [RFC4960]
@@ -763,7 +767,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 #### 3.4.1.8 IP Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IP-Addr** | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
+| **IP-Addr** | String | IPv4 or IPv6 Address, RFC 4632, RFC 4291 |
 
 #### 3.4.1.9 IP Connection
 **_Type: IP-Connection (Record)_**
