@@ -932,8 +932,8 @@ A conformant OpenC2 Consumer
 
 -------
 
-# Annex B. Examples
-## B.1 Example 1
+# Annex A. Examples
+## A.1 Example 1
 This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the message is the de-serialized command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the message.
 
 The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:` 'd937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If OpenC2 producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.
@@ -943,7 +943,7 @@ The created element is a Date-Time value of milliseconds since the epoch.  The e
 This example, illustrating an internal representation of a message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how message elements are represented internally within an implementation.  Only the serialized values of the message elements embedded within a protocol is relevant to interoperability.
 
 
-### B.1.1 Command Message
+### A.1.1 Command Message
 content-type: 'application/openc2'
 msg_type: 'request'
 request_id: b'\xd97\xfc\xa9+dNq'
@@ -952,7 +952,7 @@ to: ['#filter-devices']
 created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
 
-### B.1.2 Response Message
+### A.1.2 Response Message
 The response message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the response content.  The request_id from the command message, if present, is returned unchanged in the response message.  The "to" element of the response normally echoes the "from" element of the command message, but the "from" element of the response is the actuator's identifier regardless of whether the command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to an openc2 command.  No actuator profiles currently define response content types other than openc2.
@@ -966,7 +966,7 @@ to: ['nocc-3497']
 created: 1539355898000
 content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
 
-## B.2 Example 2
+## A.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
 
 **Command:**
@@ -994,7 +994,7 @@ This example is for a transport where the header information is outside the JSON
 }
 ```
 
-## B.3 Example 3
+## A.3 Example 3
 **Command:**
 
 ```
@@ -1018,12 +1018,12 @@ This example is for a transport where the header information is outside the JSON
 
 -------
 
-# Annex C. Acronyms
+# Annex B. Acronyms
 > **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
 
 -------
 
-# Annex D. Revision History
+# Annex C. Revision History
 | Revision | Date | Editor | Changes Made |
 | :--- | :--- | :--- | :--- |
 | v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
@@ -1042,7 +1042,7 @@ This example is for a transport where the header information is outside the JSON
 
 -------
 
-# Annex E. Acknowledgments
+# Annex D. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **OpenC2 TC Members:**
