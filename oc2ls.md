@@ -550,9 +550,8 @@ The following targets are under consideration for use in future versions of the 
 | 4 | **ints** | Integer | 0..n | Generic set of integer values |
 | 5 | **kvps** | KVP | 0..n | Generic set of key:value pairs |
 | 6 | **versions** | Version | 0..n | List of OpenC2 language versions supported by this actuator |
-| 7 | **profiles** | jadn:Uname | 0..n | List of profiles supported by this actuator |
-| 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
-| 9 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
+| 7 | **profiles** | String | 0..n | List of profiles supported by this actuator |
+| 8 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise extension profile |
 | 1001 | **extension_unr** | Unr-Results | 0..1 | Response data defined in an unregistered extension profile |
