@@ -31,15 +31,6 @@
 * Jason Romano (jdroman@nsa.gov), [National Security Agency](https://www.nsa.gov/)
 * Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
-#### Additional artifacts:
-This prose specification is one component of a Work Product that also includes:
-* OpenC2 Language Syntax JSON/JADN schema ([Annex A.1](#a1-openc2-language-syntax)):
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/oc2ls.json
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/oc2ls.pdf
-* JADN Syntax JSON/JADN schema ([Annex A.2](#a2-jadn-syntax)):
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/jadn.json
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/jadn.pdf
-
 #### Abstract:
 Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine to machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
