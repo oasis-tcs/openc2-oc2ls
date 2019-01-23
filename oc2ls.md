@@ -1641,7 +1641,42 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
 -------
 
 # Annex C. Acronyms
-> **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
+
+| Acroynm | Definition |
+| :--- | :--- |
+API | Application Programming Interface
+CBOR | Concise Binary Object Representation
+CoAP | Constrained Application Protocol
+DNS | Domain Name Server
+HTTP | Hyper Text Transfer Protocol
+IACD | Iintegrated Adaptive Cyber Defense
+IANA | Internet Assigned Numbers Authority 
+ICMP | Internet Control Message Protocol
+IP | Internet Protocol
+IPR | Intellectual Property Rights
+JSON | Java Script Notation
+KMIP | Key Management Interface Protocol
+KVP | Key Value Pairs
+MAC | Media Access Control
+MD5 | Message Digest
+MIME | Multipurpose Internet Mail Extensions 
+MQTT | Message Queuing Telemetry Transfer 
+NSID | Namespace Identifier
+OASIS | Organization for the Advancement of Structured Information Standards
+OpenC2 | Open  Command and Control
+OpenDXL | Open Data eXchange Layer
+RFC | Request for Comment
+SCTP | Straem Control Transmission Protocol
+SHA | Security Hash Algorithm
+SLPF | StateLess Packet Filtering
+STIX | Structured Threat Intel eXchange
+TC | Technical Committee
+TCP | Tranmission Control Protocol
+TLV | Type Length Value
+UDP | User Datagram Control Protocol
+Uname | Unique Name
+URI | Uniform Resource Identifier
+XML | eXtensibel Markup Language
 
 -------
 
