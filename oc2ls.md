@@ -284,7 +284,7 @@ A command has four main components: ACTION, TARGET, ARGUMENTS, and ACTUATOR. The
     * **ACTUATOR-NAME** (required): The name of the set of functions (e.g., "slpf") performed by the actuator, and the name of the profile defining commands applicable to those functions.
     * **ACTUATOR-SPECIFIERS** (optional): The specifier identifies the actuator to some level of precision, such as a specific actuator, a list of actuators, or a group of actuators.
 
-The ACTION and TARGET components are required and are populated by one of the actions in [Section 3.3.1.1](#3311-action) and the targets in [Section 3.3.1.2](#3312-target). A particular target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the targets are described in [Section 3.3.4](#334-extensions).
+The ACTION and TARGET components are required and are populated by one of the actions in [Section 3.3.1.1](#3311-action) and the targets in [Section 3.3.1.2](#3312-target). A particular target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the targets are described in [Section 3.3.3](#334-extensions).
 
 TARGET-SPECIFIERS provide additional precision to identify the target (e.g., 10.1.2.3) and may include a method of identifying multiple targets of the same type (e.g., 10.1.0.0/16).
 
@@ -367,7 +367,15 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
-### 3.1.5 Serialization
+### 3.1.5 Imported Types
+Types defined in other documents can be imported and used by types defined in this document.  Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single schema without risk of ambiguity or name collisions. A namespace consists of:
+
+* a namespace identifier (nsid) that is used in data instances
+* a namespace prefix that that is prepended to the names of imported types
+
+In this document type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output.  In both cases the base schema locally assigns a namespace to each schema that it imports, and importing a schema means to prepend the namespace prefix to all type names defined in that schema.
+
+### 3.1.6 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
 
 **JSON Serialization Requirements:**
@@ -390,13 +398,13 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
 | **Record** | JSON **object**. Member keys are field names. |
 
-#### 3.1.5.1 ID and Name Serialization
+#### 3.1.6.1 ID and Name Serialization
 Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
 1. Type definitions and application values use only the ID.  There is no corresponding name except as an optional part of the description.
 2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
 
-#### 3.1.5.2 Integer Serialization
+#### 3.1.6.2 Integer Serialization
 For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.  For example, the JSON "number" type represents integers and real numbers as decimal strings without quotes, e.g., { "height": 68.2 }, and as noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
 
 The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
@@ -597,46 +605,7 @@ Usage Requirements:
 | 501 | **Not Implemented** - the consumer does not support the functionality required to fulfill the request. |
 | 503 | **Service Unavailable** - the consumer is currently unable to handle the request due to a temporary overloading or maintenance of the consumer. |
 
-### 3.3.3 Imported Data
-In addition to the targets, actuators, arguments, and other language elements defined in this specification, OpenC2 messages may contain data objects imported from other specifications and/or custom data objects defined by the implementers.  The details are specified in a data profile which contains:
-
-1. a prefix indicating the origin of the imported data object is outside OpenC2:
-    * `x_` (profile)
-2. a unique name for the specification being imported, e.g.:
-    * For shortname `x_kmipv2.0` the full name would be `oasis-open.org/openc2/profiles/kmip-v2.0, `
-    * For shortname `x_sfslpf` the full name would be `sfractal.com/slpf/v1.1/x_slpf-profile-v1.1`
-3. a namespace identifier (nsid) - a short reference, e.g., `kmipv2.0`, to the unique name of the specification
-4. a list of object identifiers imported from that specification, e.g., `Credential`
-5. a definition of each imported object, either referenced or contained in the profile
-6. conformance requirements for implementations supporting the profile
-
-The data profile itself can be the specification being imported or the data profile can reference an existing specification.  In the example above, the data profile created by the OpenC2 TC to represent KMIP could have a unique name of `oasis-open.org/openc2/profiles/kmip-v2.0`.  The data profile would note that it is derived from the original specification `oasis-open.org/kmip/spec/v2.0/kmip-spec-v2.0`. In the example for shortname `x_sfslpf`, the profile itself could be defined in a manner directly compatible with OpenC2 and would not reference any other specification.
-
-An imported object is identified by namespace identifier and object identifier. While the data profile may offer a suggested nsid, the containing schema defines the nsids that it uses to refer to objects imported from other specifications:
-
-```
-import oasis-open.org/openc2/profiles/kmip-v2.0 as x_kmip_2.0
-```
-
-An element using an imported object identifies it using the nsid:
-
-```
-{   
-    "target": {
-        "x_kmip_2.0": {
-            {"kmip_type": "json"},
-            {"operation": "RekeyKeyPair"},
-            {"name": "publicWebKey11DEC2017"}
-        }
-    }
-}
-```
-
-A data profile can define its own schema for imported objects, or it can reference content as defined in the specification being imported.  Defining an abstract syntax allows imported objects to be represented in the same format as the containing object.  Referencing content directly from an imported specification results in it being treated as an opaque blob if the imported and containing formats are not the same (e.g., an XML or TLV object imported into a JSON OpenC2 command, or a STIX JSON object imported into a CBOR OpenC2 command).
-
-The OpenC2 Language MAY be extended using imported data objects for TARGET, TARGET_SPECIFIER, ACTUATOR, ACTUATOR_SPECIFIER, ARGUMENTS, and RESULTS. The list of ACTIONS in Section 3.2.1.2 SHALL NOT be extended.
-
-### 3.3.4 Extensions
+### 3.3.3 Extensions
 Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. OpenC2 defines two methods for defining organization-specific profiles: using a registered namespace or an unregistered namespace. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
 
 * 32473
@@ -680,7 +649,7 @@ Using DNS names provides collision resistance for names used in x- namespaces, b
 
 OpenC2 implementations MAY support registered and unregistered extension profiles regardless of whether those profiles are listed by OASIS.  Implementations MUST NOT use the "Example" registered extension entries shown below, and MAY use one or more actual registered extensions by replacing the example entries.
 
-#### 3.3.4.1 Private Enterprise Target
+#### 3.3.3.1 Private Enterprise Target
 Because target is a required element, implementations receiving an OpenC2 Command with an unsupported target type MUST reject the command as invalid.
 
 **_Type: PE-Target (Choice.ID)_**
@@ -689,7 +658,7 @@ Because target is a required element, implementations receiving an OpenC2 Comman
 | :--- | :--- | :--- | :--- |
 | 32473 | 32473:Target | 1 | "Example": Targets defined in the Example Inc. extension profile |
 
-#### 3.3.4.2 Private Enterprise Specifiers
+#### 3.3.3.2 Private Enterprise Specifiers
 The behavior of an implementation receiving an OpenC2 Command with an unsupported actuator type is undefined.  It MAY ignore the actuator field or MAY reject the command as invalid.
 
 **_Type: PE-Specifiers (Choice.ID)_**
@@ -698,7 +667,7 @@ The behavior of an implementation receiving an OpenC2 Command with an unsupporte
 | :--- | :--- | :--- | :--- |
 | 32473 | 32473:Specifiers | 1 | "Example": Actuator Specifiers defined in the Example Inc. extension profile |
 
-#### 3.3.4.3 Private Enterprise Command Arguments
+#### 3.3.3.3 Private Enterprise Command Arguments
 The behavior of an implementation receiving an OpenC2 Command with an unsupported arg type is undefined.  It MAY ignore the unrecognized arg or MAY reject the command as invalid.
 
 **_Type: PE-Args (Map.ID)_**
@@ -707,7 +676,7 @@ The behavior of an implementation receiving an OpenC2 Command with an unsupporte
 | :--- | :--- | :--- | :--- |
 | 32473 | 32473:Args | 1 | "Example": Command Arguments defined in the Example Inc. extension profile |
 
-#### 3.3.4.4 Private Enterprise Results
+#### 3.3.3.4 Private Enterprise Results
 The behavior of an implementation receiving an OpenC2 Response with an unsupported results type is undefined.  An unrecognized response has no effect on the OpenC2 protocol but implementations SHOULD log it as an error.
 
 **_Type: PE-Results (Map.ID)_**
