@@ -588,7 +588,6 @@ Usage Requirements:
 | :--- | :--- |
 | 102 | **Processing** - an interim response used to inform the producer that the consumer has accepted the request but has not yet completed it. |
 | 200 | **OK** - the request has succeeded. |
-| 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
 | 400 | **Bad Request** - the consumer cannot process the request due to something that is perceived to be a producer error (e.g., malformed request syntax). |
 | 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
 | 403 | **Forbidden** - the consumer understood the request but refuses to authorize it. |
@@ -1179,7 +1178,6 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
   ["Status-Code", "Enumerated", ["="], "", [
     [102, "Processing", ""],
     [200, "OK", ""],
-    [301, "Moved Permanently", ""],
     [400, "Bad Request", ""],
     [401, "Unauthorized", ""],
     [403, "Forbidden", ""],
