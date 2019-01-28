@@ -342,7 +342,7 @@ The following types are defined as value constraints applied to String (text str
 | IP-Addr | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
 | MAC-Addr | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 | Port | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
-| Request-Id | Binary | A value of up to 128 bits |
+| RCID | Binary | Request/Command Identifier - a value of 0-128 bits |
 | URI | String | RFC 3986 |
 | UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
 
@@ -408,16 +408,16 @@ A message is a content- and transport-independent set of elements conveyed betwe
 
 ###### Table 3-1. Common Message Elements
 
-| Name | Description |
-| :--- | :--- |
-| **content** | Message body as specified by content_type and msg_type. |
-| **content_type** | String. Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
-| **msg_type** | Message-Type. One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
-| **status** | Status-Code.  Populated with a numeric status code in response messages.  Not present in request or notification messages. |
-| **request_id** | Request-Id. A unique identifier value of up to 128 bits that is attached to request and response messages. This value is assigned by the sender and is copied unmodified into all responses to support  reference to a particular command, transaction or event chain. |
-| **created** | Date-Time. Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
-| **from** | String. Authenticated identifier of the creator of or authority for execution of a message. |
-| **to** | ArrayOf(String). Authenticated identifier(s) of the authorized recipient(s) of a message. |
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| **content** | | Message body as specified by content_type and msg_type. |
+| **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
+| **msg_type** | Message-Type | One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
+| **status** | Status-Code | Populated with a numeric status code in response messages.  Not present in request or notification messages. |
+| **request_id** | RCID | A unique identifier value of up to 128 bits that is created by the originator of a request and is copied unmodified by the responder into all responses to support reference to a particular command, transaction or event chain. |
+| **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
+| **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
+| **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
 Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
 
@@ -437,6 +437,13 @@ The OpenC2 Command describes an action performed on a target.
 | 2 | **target** | Target | 1 | The object of the action. The action is performed on the target. |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the command. |
 | 4 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
+| 5 | **command_id** | RCID | 0..1 | An identifier of this command |
+
+**Usage Requirements:**
+
+* If the command_id field is present, Producers SHOULD populate it with a Version 4 UUID as specified in RFC 4122 section 4.4
+* If the command_id field is absent, Consumers MUST use the request_id of the message containing the command as the value of command_id.
+* Consumers MUST accept any valid RCID as the value of command_id
 
 #### 3.3.1.1 Action
 **_Type: Action (Enumerated)_**
@@ -490,7 +497,7 @@ The following actions are under consideration for use in future versions of the 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | Request-Id | 1 | A reference to a previously issued OpenC2 Command. |
+| 2 | **command** | RCID | 1 | A reference to a previously issued OpenC2 Command. |
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
@@ -808,10 +815,10 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | **URI** | String | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
-#### 3.4.2.1 Request Identifier
+#### 3.4.2.1 Request/Command Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Request-Id** | Binary | A value of up to 128 bits that uniquely identifies a particular command |
+| **RCID** | Binary | A value of up to 128 bits that uniquely identifies a particular request or command |
 
 #### 3.4.2.2 Date-Time
 | Type Name | Base Type | Description |
@@ -1091,7 +1098,7 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
    ["slpf", "oasis-open.org/openc2/v1.0/ap-slpf"],
    ["jadn", "oasis-open.org/openc2/v1.0/jadn"]
   ],
-  "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "Request-Id", "Date-Time"]
+  "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "RCID", "Date-Time"]
  },
  "types": [
   ["Message", "Array", [], "", [
@@ -1099,7 +1106,7 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
     [2, "content_type", "String", [], ""],
     [3, "content", "Null", [], ""],
     [4, "status", "Status-Code", ["[0"], ""],
-    [5, "request_id", "Request-Id", ["[0"], ""],
+    [5, "request_id", "RCID", ["[0"], ""],
     [6, "to", "String", ["[0", "]0"], ""],
     [7, "from", "String", ["[0"], ""],
     [8, "created", "Date-Time", ["[0"], ""]
@@ -1134,7 +1141,7 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
   ]],
   ["Target", "Choice", [], "", [
     [1, "artifact", "Artifact", [], ""],
-    [2, "command", "Request-Id", [], ""],
+    [2, "command", "RCID", [], ""],
     [3, "device", "Device", [], ""],
     [7, "domain_name", "Domain-Name", [], ""],
     [8, "email_addr", "Email-Addr", [], ""],
@@ -1242,7 +1249,7 @@ The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be 
     [1, "request", ""],
     [2, "response", ""]
   ]],
-  ["Request-Id", "Binary", [], ""],
+  ["RCID", "Binary", [], ""],
   ["Date-Time", "Integer", [], ""],
   ["Duration", "Integer", [], ""],
   ["Hashes", "Map", [], "", [
@@ -1501,7 +1508,7 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
       "patch": "wd09_example",
       "title": "OpenC2 Language Objects",
       "description": "Example Actuator",
-      "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "Request-Id", "Date-Time"]
+      "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "RCID", "Date-Time"]
      },
      "types": [
       ["OpenC2-Command", "Record", [], "", [
@@ -1516,7 +1523,7 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
         [20, "delete", ""]
       ]],
       ["Target", "Choice", [], "", [
-        [2, "command", "Request-Id", [], ""],
+        [2, "command", "RCID", [], ""],
         [16, "features", "Features", [], ""],
         [11, "ip_addr", "IP-Addr", [], ""],
         [25, "properties", "Properties", [], ""]
@@ -1550,7 +1557,7 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
         [1, "request", ""],
         [2, "response", ""]
       ]],
-      ["Request-Id", "Binary", [], ""],
+      ["RCID", "Binary", [], ""],
       ["Date-Time", "Integer", [], ""],
       ["Feature", "Enumerated", [], "", [
         [1, "versions", ""],
