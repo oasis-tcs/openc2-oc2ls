@@ -404,7 +404,7 @@ The default representation of Integer types in text serializations is the native
 ## 3.2 Message
 As described in Section 1.1, this language specification and one or more actuator profiles define the content of OpenC2 commands and responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-A message is a content- and transport-independent set of elements conveyed between consumers and producers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required, while other message elements are not required by this specification but may be required by other documents.
+A message is a content- and transport-independent set of elements conveyed between producers and consumers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required in all messages. Other message elements are not required by this specification but may be required by other specifications.
 
 ###### Table 3-1. Common Message Elements
 
@@ -414,12 +414,19 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
 | **msg_type** | Message-Type | One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
 | **status** | Status-Code | Populated with a numeric status code in response messages.  Not present in request or notification messages. |
-| **request_id** | RCID | A unique identifier value of up to 128 bits that is created by the originator of a request and is copied unmodified by the responder into all responses to support reference to a particular command, transaction or event chain. |
+| **request_id** | RCID | A unique identifier value of up to 128 bits that is created by the producer and is copied unmodified into all responses, in order to support reference to a particular command, transaction or event chain. |
 | **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
 | **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
 | **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
 Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
+
+**Usage Requirements:**
+
+* A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
+* The request_id of a request message SHOULD be a Version 4 UUID as specified in RFC 4122 section 4.4.
+* A consumer MUST copy the request_id from a request message into each response to that request.
+* A consumer MUST accept any valid RCID as the value of request_id.
 
 ## 3.3 Content
 The scope of this specification is to define the ACTION and TARGET portions of an OpenC2 command and the common portions of an OpenC2 response.  The properties of the OpenC2 command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the response are defined in [Section 3.3.2](#332-openc2-response).
@@ -441,8 +448,8 @@ The OpenC2 Command describes an action performed on a target.
 
 **Usage Requirements:**
 
-* If the command_id field is present, Producers SHOULD populate it with a Version 4 UUID as specified in RFC 4122 section 4.4
-* If the command_id field is absent, Consumers MUST use the request_id of the message containing the command as the value of command_id.
+* If the command_id field is present, a producer SHOULD populate it with a Version 4 UUID as specified in RFC 4122 section 4.4
+* If the command_id field is absent, a consumer MUST use the request_id of the message containing the command as the value of command_id.
 * Consumers MUST accept any valid RCID as the value of command_id
 
 #### 3.3.1.1 Action
