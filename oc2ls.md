@@ -373,7 +373,9 @@ Types defined in other documents can be imported and used by types defined in th
 * A unique name for the schema being imported
 * A namespace identifier (nsid) used as a short reference to that schema
 
-In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output.  In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means to prepend the namespace identifier to all type names defined in that schema.
+In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means to prepend the namespace identifier to all type names defined in that schema.
+
+An OpenC2 implementation MUST support the syntax defined by the merged schema, regardless of whether that implementation is based on conceptually merging tables from a set of documents or physically merging a set of schema files.
 
 **Example - Import a Schema**
 
