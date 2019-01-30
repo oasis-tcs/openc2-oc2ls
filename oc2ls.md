@@ -500,8 +500,10 @@ The following actions are under consideration for use in future versions of the 
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
 | 16 | **features** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
 | 10 | **file** | File | 1 | Properties of a file. |
-| 11 | **ip_addr** | IP-Addr | 1 | An IP address (either version 4 or version 6). |
-| 15 | **ip_connection** | IP-Connection | 1 | A network connection that originates from a source and is addressed to a destination. Source and destination addresses may be either IPv4 or IPv6; both should be the same version |
+| 11 | **ipv4_addr** | IPv4-Addr | 1 | An IPv4 address |
+| 12 | **ipv6_addr** | IPv6-Addr | 1 | An IPv6 address |
+| 14 | **ipv4_connection** | IPv4-Connection | 1 | A network connection that originates from a source and is addressed to a destination. Source and destination addresses are IPv4. |
+| 15 | **ipv6_connection** | IPv6-Connection | 1 | A network connection that originates from a source and is addressed to a destination. Source and destination addresses are IPv6. |
 | 13 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
 | 17 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an actuator |
@@ -764,32 +766,44 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.4.1.8 IP Address
+#### 3.4.1.8 IPv4 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IP-Addr** | String | IPv4 or IPv6 Address, RFC 4632, RFC 4291 |
+| **IPv4-Addr** | String | IPv4 Address, RFC 4632 |
 
-#### 3.4.1.9 IP Connection
-**_Type: IP-Connection (Record)_**
+#### 3.4.1.9 IPv6 Address
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **IPv6-Addr** | String | IPv6 Address, RFC 4291 |
+
+#### 3.4.1.10 IPv4 Connection
+**_Type: IPv4-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **src_addr** | IP-Addr | 0..1 | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 1 | **src_addr** | IPv4-Addr | 0..1 | IPv4 address of source |
 | 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
-| 3 | **dst_addr** | IP-Addr | 0..1 | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 3 | **dst_addr** | IPv4-Addr | 0..1 | IPv4 address of destination |
 | 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-**Usage Requirements:**
+#### 3.4.1.11 IPv6 Connection
+**_Type: IPv6-Connection (Record)_**
 
-* src_addr and dst_addr MUST be the same version (ipv4 or ipv6) if both are present.
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **src_addr** | IPv6-Addr | 0..1 | IPv6 address source |
+| 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
+| 3 | **dst_addr** | IPv6-Addr | 0..1 | IPv6 address of destination |
+| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-#### 3.4.1.10 MAC Address
+#### 3.4.1.12 MAC Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **MAC-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 
-#### 3.4.1.11 Process
+#### 3.4.1.13 Process
 **_Type: Process (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -801,12 +815,12 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 5 | **parent** | Process | 0..1 | Process that spawned this one |
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
 
-#### 3.4.1.12 Properties
+#### 3.4.1.14 Properties
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an actuator. |
 
-#### 3.4.1.13 URI
+#### 3.4.1.15 URI
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **URI** | String | Uniform Resource Identifier |
