@@ -504,7 +504,7 @@ The following actions are under consideration for use in future versions of the 
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
 | 1000 | **extension** | PE-Target | 1 | Targets defined in a Private Enterprise extension profile. |
 | 1001 | **extension_unr** | Unr-Target | 1 | Targets defined in an Unregistered extension profile |
-| 1024 | **slpf** | slpf:Target | 1 | **Example Profile Target**: Targets defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | slpf:Target | 1 | **Example Profile-defined Target**: Targets defined in the Stateless Packet Filter profile |
 
 The following targets are under consideration for use in future versions of the Language Specification. Implementers may use these targets with the understanding that they may not be in future versions of the language.
 
