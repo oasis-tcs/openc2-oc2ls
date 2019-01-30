@@ -771,10 +771,22 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | :--- | :--- | :--- |
 | **IPv4-Addr** | String | IPv4 Address, RFC 4632 |
 
+**Examples:**
+
+* "192.168.10.11" - a single ipv4 address distinguishable because of the dots
+* "192.168.10.11/32" - a single ipv4 address in CIDR notation
+* "192.168.0.0/16" - a range of 65,536 ipv4 addresses in CIDR notation
+
 #### 3.4.1.9 IPv6 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **IPv6-Addr** | String | IPv6 Address, RFC 4291 |
+
+**Examples:**
+
+* "2001:db8::1" - a single ipv6 address distinguishable because of the colons
+* "2001:db8:aaaa:bbbb:cccc:dddd:0:1" - single ipv6 address
+* "2001:db8::0/120" - 256 ipv6 addresses
 
 #### 3.4.1.10 IPv4 Connection
 **_Type: IPv4-Connection (Record)_**
