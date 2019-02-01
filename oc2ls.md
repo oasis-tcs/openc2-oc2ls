@@ -191,8 +191,8 @@ Example:
 ## 1.6 Overview
 OpenC2 is a suite of specifications to command actuators that execute cyber defense functions in an unambiguous, standardized way.  These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications.  The OpenC2 Language Specification and Actuator Profile specifications focus on the standard at the producer and consumer of the command and response while the transfer specifications focus on the protocols for their exchange.
 
-* The OpenC2 Language Specification provides the semantics for the essential elements of the language, the structure for commands and responses, and the schema that defines the proper syntax for the language elements that represents the command or response.
-* OpenC2 Actuator Profiles specify the subset of the OpenC2 language relevant in the context of specific actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely) to implement multiple actuator profiles.  Actuator profiles extend the language by defining specifiers that identify the actuator to the required level of precision and may define command arguments that are relevant and/or unique to those actuator functions.
+* The OpenC2 Language Specification provides the semantics for the essential elements of the language, the structure for commands and responses, and the schema that defines the proper syntax for the language elements that represent the command or response.
+* OpenC2 Actuator Profiles specify the subset of the OpenC2 language relevant in the context of specific actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely) to implement multiple actuator profiles.  Actuator profiles define the requirements for performing a specific function, and may define new language elements if needed to perform that function.
 * OpenC2 Transfer Specifications utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transfer of OpenC2 messages.
 
 The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components.  A message consists of a header and a payload (_defined_ as a message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more actuator profiles). 
@@ -368,10 +368,12 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 | 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Imported Types
+Actuator profiles define the requirements for performing specific functions, and may if necessary define new language elements needed by those functions.  Each actuator profile has a unique name ...
+
 Types defined in other documents can be imported and used by types defined in this document.  Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single schema without risk of ambiguity or name collisions. A namespace consists of:
 
 * A unique name for the schema being imported
-* A namespace identifier (nsid) used as a short reference to that schema
+* A short namespace identifier (**nsid**) assigned locally within the base schema to refer to the unique name
 
 In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means to prepend the namespace identifier to all type names defined in that schema.
 
