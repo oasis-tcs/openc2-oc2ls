@@ -368,7 +368,7 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 | 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Serialization
-OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
+OpenC2 is agnostic of any particular serialization; however, OpenC2 Consumers MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
 
 **JSON Serialization Requirements:**
 
