@@ -1705,136 +1705,61 @@ The following individuals have participated in the creation of this specificatio
 | First Name | Last Name | Company |
 | :--- | :--- | :--- |
 Philippe | Alcoy | Arbor Networks
-Alex | Amirnovin | Viasat
-Kris | Anderson | Trend Micro
 Darren | Anstee | Arbor Networks
-Jonathan | Baker | Mitre Corporation
-Theodor | Balanescu | TELUS
-Stephen | Banghart | NIST
-Sean | Barnum | FireEye Inc.
 Michelle | Barry | AT&T
-Omer | Ben-Shalom | Intel Corporation
 Brian | Berliner | Symantec Corp.
-Adrian | Bishop | Huntsman Security
-Tom | Blauvelt | Symantec Corp.
-Phillip | Boles | FireEye Inc.
 Adam | Bradbury | EclecticIQ
-Sarah | Brown | NCI Agency
 Joe | Brule | National Security Agency
 Michael | Butt | NC4
 Toby | Considine | University of North Carolina at Chapel Hill
-Gus | Creedon | Logistics Management Institute
-James | Crossland | Northrop Grumman
 Trey | Darley | New Context Services Inc.
 David | Darnell | North American Energy Standards Board
 Sudeep | Das | McAfee
-Mark | Davidson | NC4
-Stefano | De Crescenzo | Cisco Systems
-Michele | Drgon | Individual
-Alexandre | Dulaunoy | CIRCL
-Daniel | Dye | NC4
-Chet | Ensign | OASIS
+Andrea | De Bernardi | Moviri SPA
 Blake | Essing | AT&T
 Alex | Everett | University of North Carolina at Chapel Hill
+Joyce | Fai | National Security Agency
 Travis | Farral | Anomali
-Jessica | Fitzgerald-McKay | National Security Agency
-Jim | Fowler | US Department of Defense (DoD)
 David | Girard | Trend Micro
-Russell | Glenn | Viasat
-Juan | Gonzalez | DHS Office of Cybersecurity and Communications (CS&C)
 Andy | Gray | ForeScout
 John-Mark | Gurney | New Context Services Inc.
-Pavel | Gutin | G2
-Allen | Hadden | IBM
 Stefan | Hagen | Individual
 David | Hamilton | AT&T
-Daichi | Hasumi | NEC Corporation
-Tim | Hudson | Cryptsoft Pty Ltd.
 Nick | Humphrey | Huntsman Security
 Christian | Hunt | New Context Services Inc.
-Andras | Iklody | CIRCL
-Erick | Ingleby | ForeScout
+April | Jackson | G2
 Sridhar | Jayanthi | Individual
-Tim | Jones | ForeScout
 Bret | Jordan | Symantec Corp.
-Takahiro | Kakumaru | NEC Corporation
-Kirill | Kasavchenko | Arbor Networks
+Jason | Keirstead | IBM
 David | Kemp | National Security Agency
-Himanshu | Kesar | LookingGlass
-Ivan | Kirillov | Mitre Corporation
-Lauri | Korts-Pärn | NEC Corporation
-Anuj | Kumar | FireEye Inc.
-Kent | Landfield | McAfee
-Cheolho | Lee | NSRI
 David | Lemire | G2
-ChangKun | Li | 360 Enterprise Security Group
-Anthony | Librera | AT&T
 Jason | Liu | Northrop Grumman
-Terry | MacDonald | Individual
-Scott | MacGregor | McAfee
 Radu | Marian | Bank of America
 Danny | Martinez | G2
-Web | Master | OASIS
-Ryusuke | Masuoka | Fujitsu Limited
 Lisa | Mathews | National Security Agency
-Vasileios | Mavroeidis | IFI
-Andrew | May | Viasat
 James | Meck | FireEye Inc.
-Andrew | Mellinger | Carnegie Mellon University
-Adam | Montville | CIS
-Christopher | O'Brien | EclecticIQ
 Efrain | Ortiz | Symantec Corp.
 Paul | Patrick | FireEye Inc.
-Andrew | Pendergast | ThreatConnect, Inc.
 Michael | Pepin | NC4
-Wende | Peters | Bank of America
-Hugh | Pyle | IBM
 Nirmal | Rajarathnam | ForeScout
-Greg | Reaume | TELUS
-Joe | Reese | ThreatConnect, Inc.
-Brennen | Reynolds | ForeScout
 Chris | Ricard | Financial Services Information Sharing and Analysis Center (FS-ISAC)
 Daniel | Riedel | New Context Services Inc.
-Robert | Roll | Arizona Supreme Court
 Jason | Romano | National Security Agency
-Michael | Rosa | DHS Office of Cybersecurity and Communications (CS&C)
 Philip | Royer | Splunk Inc.
-Anthony | Rutkowski | Yanna Technologies LLC
-Steven | Ryan | Individual
-Omar | Santos | Cisco Systems
-Sourabh | Satish | Splunk Inc.
-Aleksandra | Scalco | US Department of Defense (DoD)
 Thomas | Schreck | Siemens AG
-Dee | Schur | OASIS
-Randall | Sharo | US Department of Defense (DoD)
-Eric | Shulze | Trend Micro
 Duane | Skeen | Northrop Grumman
-Calvin | Smith | Northrop Grumman
-Dan | Solero | AT&T
-Ben | Sooter | Electric Power Research Institute (EPRI)
 Duncan | Sparrell | sFractal Consulting LLC
 Michael | Stair | AT&T
 Andrew | Storms | New Context Services Inc.
 Gerald | Stueve | Fornetix
-Natalie | Suarez | NC4
 Rodney | Sullivan | NCI Agency
-Sam | Taghavi Zargar | Cisco Systems
 Allan | Thomson | LookingGlass
 Bill | Trost | AT&T
-Ryan | Trost | ThreatQuotient, Inc.
 Raymon | van der Velde | EclecticIQ
-Drew | Varner | NineFX, Inc.
-Tom | Vaughan | EclecticIQ
 Jyoti | Verma | Cisco Systems
-Kamer | Vishi | IFI
-Eric | Voit | Cisco Systems
 David | Waltermire | NIST
 Jason | Webb | LookingGlass
-David | Webber | Huawei Technologies Co., Ltd.
 Sean | Welsh | AT&T
-Remko | Weterings | FireEye Inc.
 Charles | White | Fornetix
-Koji | Yamada | Fujitsu Limited
 Sounil | Yu | Bank of America
-Paolo | Zaino | LookingGlass
 
