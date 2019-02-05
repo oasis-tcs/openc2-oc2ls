@@ -114,6 +114,8 @@ _Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell, and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html
 ###### [RFC768]
 Postel, J., "User Datagram Protocol", STD 6, RFC 768, August 1980, http://www.rfc-editor.org/info/rfc768.
+###### [RFC791]
+Postel, J., "Internet Protocol", RFC 791, September 1981, http://www.rfc-editor.org/info/rfc791.
 ###### [RFC792]
 Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, September 1981, http://www.rfc-editor.org/info/rfc792.
 ###### [RFC793]
@@ -130,6 +132,10 @@ Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14,
 Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005, http://www.rfc-editor.org/info/rfc3986.
 ###### [RFC4122]
 Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122.
+###### [RFC4291]
+Hinden, R., Deering, S., "IP Version 6 Addressing Architecture", RFC 4291, February 2006, http://www.rfc-editor.org/info/rfc4291.
+###### [RFC4632]
+Fuller, V., Li, T., "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", RFC 4632, August 2006, http://www.rfc-editor.org/info/rfc4632.
 ###### [RFC4648]
 Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, October 2006, http://www.rfc-editor.org/info/rfc4648.
 ###### [RFC4960]
@@ -140,6 +146,8 @@ Arkko, J., Bradner, S., "IANA Allocation Guidelines for the Protocol Field", BCP
 Resnick, P., "Internet Message Format", RFC 5322, October 2008, http://www.rfc-editor.org/info/rfc5322.
 ###### [RFC5612]
 Eronen, P., Harrington, D., "Enterprise Number for Documentation Use", RFC 5612, August 2009, http://www.rfc-editor.org/info/rfc5612.
+###### [RFC5952]
+Kawamura S., Kawashima M., "A Recommendation for IPv6 Address Text Representation", RFC 5952, August 2010, http://www.rfc-editor.org/info/rfc5952.
 ###### [RFC6234]
 Eastlake 3rd, D., Hansen, T., "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, May 2011, http://www.rfc-editor.org/info/rfc6234.
 ###### [RFC6335]
@@ -148,10 +156,16 @@ Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., "Internet Assig
 Freed, N., Klensin, J., Hansen, T., "Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, http://www.rfc-editor.org/info/rfc6838.
 ###### [RFC7493]
 Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-editor.org/info/rfc7493.
+###### [RFC7608]
+Boucadair, M., Petrescu, A., Baker F., "IPv6 Prefix Length Recommendation for Forwarding", RFC 7608, July 2015, http://www.rfc-editor.org/info/rfc7608.
 ###### [RFC8174]
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
+###### [RFC8200]
+Deering, S., Hinden, R., "Internet Protocol, Version 6 (IPv6) Specification", RFC 8200, July 2017, http://www.rfc-editor.org/info/rfc8200.
 ###### [RFC8259]
 Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259.
+###### [TEXTREP]
+Main, A., "Textual Representation of IPv4 and IPv6 Addresses", February 2005, https://tools.ietf.org/html/draft-main-ipaddr-text-rep-02
 
 ## 1.4 Non-Normative References
 ###### [IACD]
@@ -401,6 +415,17 @@ For machine-to-machine serialization formats, integers are represented as binary
 
 The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
+#### 3.1.5.3 Binary and Multipart Serialization
+Most serialization methods define a standard way of representing binary data.  JSON (RFC 7159) does not, so this specification defines both a standard way of formatting binary data as JSON strings (base64url) and a subtype notation that can be used to specify alternate string formats in cases where the JSON data is intended to be human-readable.   The subtype is ignored when using serialization methods that support binary data.
+
+| Subtype | Description |
+| :--- | :--- |
+| **Binary.x** | Base16 (hex) encoding of a binary value as defined in Section 8 of RFC 4648, https://tools.ietf.org/html/rfc4648#section-8.   Note that the Base16 alphabet does not include lower-case letters. |
+| **Binary.ipv4-addr** | String representation of an IPv4 address as specified in Section 3 of "Textual Representation of IPv4 and IPv6 Addresses", https://tools.ietf.org/html/draft-main-ipaddr-text-rep-02#section-3 |
+| **Binary.ipv6-addr** | String representation of an IPv6 address as specified in Section 4 of RFC 5952, https://tools.ietf.org/html/rfc5952#section-4 |
+| **Array.ipv4-net** | String representation of an IPv4 address range as specified in Section 3.1 of RFC 4632, https://tools.ietf.org/html/rfc4632#section-3.1 An ipv4-net value consists of two parts encoded into a single string: ipv4-addr + "/" + prefix-length, or just ipv4-addr if prefix-length is not present. |
+| **Array.ipv6-net** | String representation of an IPv6 address range as specified in Section 2.3 of RFC 4291, https://tools.ietf.org/html/rfc4291#section-2.3. An ipv6-net value consists of two parts encoded into a single string: ipv6-addr + "/" + prefix-length, or just ipv6-addr if prefix-length is not present. |
+
 ## 3.2 Message
 As described in Section 1.1, this language specification and one or more actuator profiles define the content of OpenC2 commands and responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
@@ -494,12 +519,16 @@ The following actions are under consideration for use in future versions of the 
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
-| 16 | **features** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
+| 9 | **features** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
 | 10 | **file** | File | 1 | Properties of a file. |
-| 11 | **ip_addr** | IP-Addr | 1 | An IP address (either version 4 or version 6). |
-| 15 | **ip_connection** | IP-Connection | 1 | A network connection that originates from a source and is addressed to a destination. Source and destination addresses may be either IPv4 or IPv6; both should be the same version |
-| 13 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
-| 17 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
+| 11 | **ipv4_addr** | IPv4-Addr | 1 | An IPv4 address. |
+| 12 | **ipv6_addr** | IPv6-Addr | 1 | An IPv6 address. |
+| 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
+| 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
+| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of src and dst v4 address range, src and dst port, and protocol |
+| 16 | **ipv6_connection** | IPv4-Connection | 1 | A 5-tuple of src and dst v6 address range, src and dst port, and protocol |
+| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
+| 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
 | 1000 | **extension** | PE-Target | 1 | Targets defined in a Private Enterprise extension profile. |
@@ -760,25 +789,53 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.4.1.8 IP Address
+#### 3.4.1.8 IPv4 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IP-Addr** | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
+| **IPv4-Addr** | Binary.ipv4-addr | 32 bit IPv4 address as defined in RFC 791 |
 
-#### 3.4.1.9 IP Connection
-**_Type: IP-Connection (Record)_**
+#### 3.4.1.x IPv6 Address
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **IPv6-Addr** | Binary.ipv6-addr | 128 bit IPv6 address as defined in RFC 8200 |
+
+#### 3.4.1.x IPv4 Address Range
+**_Type: IPv4-Net (Array.ipv4-net)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **src_addr** | IP-Addr | 0..1 | ip_addr of source, could be ipv4 or ipv6 - see ip_addr section |
+| 1 | **addr** | IPv4-Addr | 1 | IPv4 network address |
+| 2 | **prefix-len** | Integer | 0..1 | CIDR netmask prefix length as defined in RFC 4632.  If omitted, refers to a single host address. |
+
+#### 3.4.1.x IPv6 Address Range
+**_Type: IPv6-Net (Array.ipv6-net)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **addr** | IPv6-Addr | 1 | IPv6 network address |
+| 2 | **prefix-len** | Integer | 0..1 | Netmask prefix length as defined in RFC 7608. If omitted, refers to a single host address. |
+
+#### 3.4.1.x IPv4 Connection
+**_Type: IPv4-Connection (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
 | 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
-| 3 | **dst_addr** | IP-Addr | 0..1 | ip_addr of destination, could be ipv4 or ipv6 - see ip_addr section |
+| 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
-**Usage Requirements:**
+#### 3.4.1.x IPv6 Connection
+**_Type: IPv6-Connection (Record)_**
 
-* src_addr and dst_addr MUST be the same version (ipv4 or ipv6) if both are present.
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
+| 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
+| 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
+| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 #### 3.4.1.10 MAC Address
 | Type Name | Base Type | Description |
