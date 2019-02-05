@@ -389,12 +389,17 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | OpenC2 Data Type | JSON Serialization Requirement |
 | :--- | :--- |
 | **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in Section 5 of RFC 4648. |
+| **Binary.x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in Section 8 of RFC 4648. Note that the Base16 alphabet does not include lower-case letters. |
+| **Binary.ipv4-addr** | JSON **string** containing the text representation of an IPv4 address as specified in Section 3 of "Textual Representation of IPv4 and IPv6 Addresses" [TEXTREP]. |
+| **Binary.ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in Section 4 of RFC 5952. |
 | **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
 | **Null** | JSON **null** |
 | **String** | JSON **string** |
 | **Array** | JSON **array** |
+| **Array.ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in Section 3.1 of RFC 4632. |
+| **Array.ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in Section 2.3 of RFC 4291. | 
 | **ArrayOf** | JSON **array** |
 | **Choice** | JSON **object** with one member.  Member key is the field name.   |
 | Choice.ID | JSON **object** with one member. Member key is the integer field id converted to string. |
@@ -403,6 +408,12 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Map** | JSON **object**. Member keys are field names. |
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
 | **Record** | JSON **object**. Member keys are field names. |
+
+**Usage Note:**
+For the Array.ipv4-net type, RFC 4632 Section 3.1 says:
+> In CIDR notation, a prefix is shown as a 4-octet quantity, just like a traditional IPv4 address or network number, followed by the "/" (slash) character, followed by a decimal value between 0 and 32 that describes the number of significant bits.
+
+The definition of IPv4-Net (Section 3.4.1.x) has two values, **addr** and **prefix_len**, corresponding to the values before and after the slash described in RFC 4632.  If the optional prefix_len is not present in an IPv4-Net instance, the slash character and decimal number are not present in the serialized string.
 
 #### 3.1.5.1 ID and Name Serialization
 Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
@@ -414,17 +425,6 @@ Instances of Enumerated types and keys for Choice and Map types are serialized a
 For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.  For example, the JSON "number" type represents integers and real numbers as decimal strings without quotes, e.g., { "height": 68.2 }, and as noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
 
 The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
-
-#### 3.1.5.3 Binary and Multipart Serialization
-Most serialization methods define a standard way of representing binary data.  JSON (RFC 7159) does not, so this specification defines both a standard way of formatting binary data as JSON strings (base64url) and a subtype notation that can be used to specify alternate string formats in cases where the JSON data is intended to be human-readable.   The subtype is ignored when using serialization methods that support binary data.
-
-| Subtype | Description |
-| :--- | :--- |
-| **Binary.x** | Base16 (hex) encoding of a binary value as defined in Section 8 of RFC 4648, https://tools.ietf.org/html/rfc4648#section-8.   Note that the Base16 alphabet does not include lower-case letters. |
-| **Binary.ipv4-addr** | String representation of an IPv4 address as specified in Section 3 of "Textual Representation of IPv4 and IPv6 Addresses", https://tools.ietf.org/html/draft-main-ipaddr-text-rep-02#section-3 |
-| **Binary.ipv6-addr** | String representation of an IPv6 address as specified in Section 4 of RFC 5952, https://tools.ietf.org/html/rfc5952#section-4 |
-| **Array.ipv4-net** | String representation of an IPv4 address range as specified in Section 3.1 of RFC 4632, https://tools.ietf.org/html/rfc4632#section-3.1 An ipv4-net value consists of two parts encoded into a single string: ipv4-addr + "/" + prefix-length, or just ipv4-addr if prefix-length is not present. |
-| **Array.ipv6-net** | String representation of an IPv6 address range as specified in Section 2.3 of RFC 4291, https://tools.ietf.org/html/rfc4291#section-2.3. An ipv6-net value consists of two parts encoded into a single string: ipv6-addr + "/" + prefix-length, or just ipv6-addr if prefix-length is not present. |
 
 ## 3.2 Message
 As described in Section 1.1, this language specification and one or more actuator profiles define the content of OpenC2 commands and responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
