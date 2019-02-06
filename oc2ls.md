@@ -276,7 +276,7 @@ The command describes an action to be performed on a target and may include info
 A command has four main components: ACTION, TARGET, ARGUMENTS, and ACTUATOR. The following list summarizes the components of a command. 
 
 * **ACTION** (required): The task or activity to be performed.
-* **TARGET** (required): The object of the action. The ACTION is performed on the target.
+* **TARGET** (required): The object of the action. The ACTION is performed on the TARGET.
     * **TARGET-NAME** (required): The name of the object of the action.
     * **TARGET-SPECIFIERS** (optional): The specifier further identifies the target to some level of precision, such as a specific target, a list of targets, or a class of targets.
 * **ARGUMENTS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
