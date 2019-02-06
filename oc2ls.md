@@ -342,7 +342,6 @@ The following types are defined as value constraints applied to String (text str
 | IP-Addr | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
 | MAC-Addr | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 | Port | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
-| RCID | Binary | Request/Command Identifier - a value of 0-128 bits |
 | URI | String | RFC 3986 |
 | UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
 
@@ -414,7 +413,7 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
 | **msg_type** | Message-Type | One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
 | **status** | Status-Code | Populated with a numeric status code in response messages.  Not present in request or notification messages. |
-| **request_id** | RCID | A unique identifier value of up to 128 bits that is created by the producer and is copied unmodified into all responses, in order to support reference to a particular command, transaction or event chain. |
+| **request_id** | String | A unique identifier created by the producer and copied by consumer into all responses, in order to support reference to a particular command, transaction or event chain. |
 | **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
 | **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
 | **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
@@ -426,7 +425,6 @@ Implementations may use environment variables, private APIs, data structures, cl
 * A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
 * The request_id of a request message SHOULD be a Version 4 UUID as specified in RFC 4122 section 4.4.
 * A consumer MUST copy the request_id from a request message into each response to that request.
-* A consumer MUST accept any valid RCID as the value of request_id.
 
 ## 3.3 Content
 The scope of this specification is to define the ACTION and TARGET portions of an OpenC2 command and the common portions of an OpenC2 response.  The properties of the OpenC2 command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the response are defined in [Section 3.3.2](#332-openc2-response).
@@ -444,13 +442,11 @@ The OpenC2 Command describes an action performed on a target.
 | 2 | **target** | Target | 1 | The object of the action. The action is performed on the target. |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the command. |
 | 4 | **actuator** | Actuator | 0..1 | The subject of the action. The actuator executes the action on the target. |
-| 5 | **command_id** | RCID | 0..1 | An identifier of this command |
+| 5 | **command_id** | String | 0..1 | An identifier of this command |
 
 **Usage Requirements:**
 
-* If the command_id field is present, a producer SHOULD populate it with a Version 4 UUID as specified in RFC 4122 section 4.4
-* If the command_id field is absent, a consumer MUST use the request_id of the message containing the command as the value of command_id.
-* Consumers MUST accept any valid RCID as the value of command_id
+* A Consumer receiving a command with command_id absent and request_id present MUST use the value of request_id as the command_id.
 
 #### 3.3.1.1 Action
 **_Type: Action (Enumerated)_**
@@ -504,7 +500,7 @@ The following actions are under consideration for use in future versions of the 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | RCID | 1 | A reference to a previously issued OpenC2 Command. |
+| 2 | **command** | String | 1 | A reference to a previously issued OpenC2 Command. |
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
@@ -822,12 +818,8 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | **URI** | String | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
-#### 3.4.2.1 Request/Command Identifier
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **RCID** | Binary | A value of up to 128 bits that uniquely identifies a particular request or command |
 
-#### 3.4.2.2 Date-Time
+#### 3.4.2.* Date-Time
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Date-Time** | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970 |
