@@ -310,7 +310,9 @@ The following list summarizes the fields and subfields of an OpenC2 Response.
 # 3 OpenC2 Language Definition 
 ## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
-The syntax of valid OpenC2 messages is defined using an information model constructed from the data types presented here:
+OpenC2 data types are defined **abstractly**.  "*API*" values within an application are "*serialized*" for transmission between applications according to "*serialization rules*" for each data type.
+
+The data types used in OpenC2 messages are:
 
 | Type | Description |
 | :--- | :--- |
@@ -325,9 +327,18 @@ The syntax of valid OpenC2 messages is defined using an information model constr
 | Array | An ordered list of unnamed fields. Each field has an ordinal position and type. |
 | ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and the specified type. |
 | Choice | One field selected from a set of named fields. The value has a name and type. |
-| Enumerated | A set of id:name pairs where id is an integer. The Enumerated.ID subtype is a set of ids only. |
+| Enumerated | A set of named integral constants. The API value is a name. |
+| Enumerated.ID | A set of named integral constants. The API value is an id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
 | Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, name, and type. |
+
+The OpenC2 type definitions in Section 3.3 and 3.4 are presented in table format.  For types without individual fields, the definition includes the name of the type being defined, the definition of the type, and a non-normative description, e.g.:
+
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
+
+ blah blah
 
 ### 3.1.2 Derived Data Types
 The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of the base types is specified in [Section 3.1.5](#315-serialization), but there are no restrictions on how derived types are represented internally by an implementation. 
@@ -383,7 +394,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Array** | JSON **array** |
 | **ArrayOf** | JSON **array** |
 | **Choice** | JSON **object** with one member.  Member key is the field name.   |
-| Choice.ID | JSON **object** with one member. Member key is the integer field id converted to string. |
+| **Choice.ID** | JSON **object** with one member. Member key is the integer field id converted to string. |
 | **Enumerated** | JSON **string** |
 | **Enumerated.ID** | JSON **integer** |
 | **Map** | JSON **object**. Member keys are field names. |
