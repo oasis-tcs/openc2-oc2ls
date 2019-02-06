@@ -156,6 +156,8 @@ Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 9
 ## 1.4 Non-Normative References
 ###### [IACD]
 M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
+###### [UML]
+"UML Multiplicity and Collections", https://www.uml-diagrams.org/multiplicity.html
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
@@ -346,17 +348,22 @@ The following types are defined as value constraints applied to String (text str
 | URI | String | RFC 3986 |
 | UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
 
-### 3.1.3 Cardinality
-Property tables for types based on Array, Choice, Map and Record include a cardinality column (#) that specifies the minimum and maximum number of values of a field.  The most commonly used cardinalities are:
+### 3.1.3 Multiplicity
+Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field.  As used in the Unified Modeling Language ([UML](#uml)), typical examples of multiplicity are:
 
-* 1	Required and not repeatable
-* 0..1	Optional and not repeatable
-* 1..n	Required and repeatable
-* 0..n	Optional and repeatable
+| Multiplicity | Description | Keywords |
+| :--- | :--- | :--- |
+| 1 | Exactly one instance | Required |
+| 0..1 | No instances or one instance | Optional |
+| 1..* | At least one instance | Required, Repeatable |
+| 0..* | Zero or more instances | Optional, Repeatable |
+| m..n | At least m but no more than n instances | Required, Repeatable |
 
-The cardinality column may also specify a range of sizes, e.g.,:
+When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 
-* 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 ### 3.1.4 Derived Enumerations
 An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
@@ -365,7 +372,7 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
+| 1 | targets | Target.* | 1..* | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
@@ -555,13 +562,13 @@ The following targets are under consideration for use in future versions of the 
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the response status |
-| 3 | **strings** | String | 0..n | Generic set of string values |
-| 4 | **ints** | Integer | 0..n | Generic set of integer values |
-| 5 | **kvps** | KVP | 0..n | Generic set of key:value pairs |
-| 6 | **versions** | Version | 0..n | List of OpenC2 language versions supported by this actuator |
-| 7 | **profiles** | jadn:Uname | 0..n | List of profiles supported by this actuator |
+| 3 | **strings** | String | 0..* | Generic set of string values |
+| 4 | **ints** | Integer | 0..* | Generic set of integer values |
+| 5 | **kvps** | KVP | 0..* | Generic set of key:value pairs |
+| 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this actuator |
+| 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this actuator |
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
-| 9 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
+| 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise extension profile |
 | 1001 | **extension_unr** | Unr-Results | 0..1 | Response data defined in an unregistered extension profile |
@@ -903,7 +910,7 @@ Specifies the results to be returned from a query features command.
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | Action | 1 | An action supported by this actuator. |
-| 2 | Target.* | 1..n | List of targets applicable to this action.  The targets are enumerated values derived from the set of Target types. |
+| 2 | Target.* | 1..* | List of targets applicable to this action.  The targets are enumerated values derived from the set of Target types. |
 
 ### 3.4.3 Schema Syntax
 **3.4.3.1 Schema**
@@ -913,7 +920,7 @@ Specifies the results to be returned from a query features command.
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **meta** | Meta | 1 | Information about this schema module |
-| 2 | **types** | Type | 1..n | Types defined in this schema module |
+| 2 | **types** | Type | 1..* | Types defined in this schema module |
 
 #### 3.4.3.1 Meta
 Meta-information about this schema
@@ -926,8 +933,8 @@ Meta-information about this schema
 | 2 | **title** | String | 0..1 | Title |
 | 3 | **version** | String | 0..1 | Patch version (module includes major.minor version) |
 | 4 | **description** | String | 0..1 | Description |
-| 5 | **imports** | Import | 0..n | Imported schema modules |
-| 6 | **exports** | Identifier | 0..n | Data types exported by this module |
+| 5 | **imports** | Import | 0..* | Imported schema modules |
+| 6 | **exports** | Identifier | 0..* | Data types exported by this module |
 | 7 | **bounds** | Bounds | 0..1 | Schema-wide upper bounds |
 
 #### 3.4.3.2 Import
@@ -959,9 +966,9 @@ Definition of a data type.
 | :--- | :--- | :--- | :--- |
 | 1 | Identifier | 1 | **tname** - Name of this data type |
 | 2 | JADN-Type.* | 1 | **btype** - Base type. Enumerated value derived from the list of JADN data types. |
-| 3 | Option | 1..n | **topts** - Type options |
+| 3 | Option | 1..* | **topts** - Type options |
 | 4 | String | 1 | **tdesc** - Description of this data type |
-| 5 | JADN-Type.&2 | 1..n | **fields** - List of fields for compound types.  Not present for primitive types. |
+| 5 | JADN-Type.&2 | 1..* | **fields** - List of fields for compound types.  Not present for primitive types. |
 
 #### 3.4.3.5 JADN Type
 Field definitions applicable to the built-in data types (primitive and compound) used to construct a schema.
