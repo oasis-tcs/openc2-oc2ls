@@ -156,8 +156,6 @@ Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., "Internet Assig
 Freed, N., Klensin, J., Hansen, T., "Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, http://www.rfc-editor.org/info/rfc6838.
 ###### [RFC7493]
 Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-editor.org/info/rfc7493.
-###### [RFC7608]
-Boucadair, M., Petrescu, A., Baker F., "IPv6 Prefix Length Recommendation for Forwarding", RFC 7608, July 2015, http://www.rfc-editor.org/info/rfc7608.
 ###### [RFC8174]
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
 ###### [RFC8200]
