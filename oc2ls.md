@@ -409,12 +409,6 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
 | **Record** | JSON **object**. Member keys are field names. |
 
-**Usage Note:**
-For the Array.ipv4-net type, RFC 4632 Section 3.1 says:
-> In CIDR notation, a prefix is shown as a 4-octet quantity, just like a traditional IPv4 address or network number, followed by the "/" (slash) character, followed by a decimal value between 0 and 32 that describes the number of significant bits.
-
-The definition of IPv4-Net (Section 3.4.1.x) has two values, **addr** and **prefix_len**, corresponding to the values before and after the slash described in RFC 4632.  If the optional prefix_len is not present in an IPv4-Net instance, the slash character and decimal number are not present in the serialized string.
-
 #### 3.1.5.1 ID and Name Serialization
 Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
@@ -521,8 +515,6 @@ The following actions are under consideration for use in future versions of the 
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
 | 9 | **features** | Features | 1 | A set of items used with the query action to determine an actuator's capabilities. |
 | 10 | **file** | File | 1 | Properties of a file. |
-| 11 | **ipv4_addr** | IPv4-Addr | 1 | An IPv4 address. |
-| 12 | **ipv6_addr** | IPv6-Addr | 1 | An IPv6 address. |
 | 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
 | 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of src and dst v4 address range, src and dst port, and protocol |
@@ -789,31 +781,21 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.4.1.8 IPv4 Address
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **IPv4-Addr** | Binary.ipv4-addr | 32 bit IPv4 address as defined in RFC 791 |
-
-#### 3.4.1.x IPv6 Address
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **IPv6-Addr** | Binary.ipv6-addr | 128 bit IPv6 address as defined in RFC 8200 |
-
 #### 3.4.1.x IPv4 Address Range
 **_Type: IPv4-Net (Array.ipv4-net)_**
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **addr** | IPv4-Addr | 1 | IPv4 network address |
-| 2 | **prefix-len** | Integer | 0..1 | CIDR netmask prefix length as defined in RFC 4632.  If omitted, refers to a single host address. |
+| ID | Type | # | Description |
+| :--- | :--- | :--- | :--- |
+| 1 | IPv4-Addr | 1 | ipv4-address - as defined in RFC 4632 Section 3.1 |
+| 2 | Integer | 0..1 | CIDR prefix-length.  If omitted, refers to a single host address. |
 
 #### 3.4.1.x IPv6 Address Range
 **_Type: IPv6-Net (Array.ipv6-net)_**
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **addr** | IPv6-Addr | 1 | IPv6 network address |
-| 2 | **prefix-len** | Integer | 0..1 | Netmask prefix length as defined in RFC 7608. If omitted, refers to a single host address. |
+| ID | Type | # | Description |
+| :--- | :--- | :--- | :--- |
+| 1 | IPv6-Addr | 1 | ipv6-address - as defined in RFC 4291 Section 2.3 |
+| 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.x IPv4 Connection
 **_Type: IPv4-Connection (Record)_**
@@ -893,6 +875,16 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 |  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
+
+#### 3.4.2.x IPv4 Address
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **IPv4-Addr** | Binary.ipv4-addr | 32 bit IPv4 address as defined in RFC 791 |
+
+#### 3.4.2.x IPv6 Address
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **IPv6-Addr** | Binary.ipv6-addr | 128 bit IPv6 address as defined in RFC 8200 |
 
 #### 3.4.2.7 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
