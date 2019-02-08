@@ -332,15 +332,15 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and the specified type. |
 | Choice | One field selected from a set of named fields. The value has a name and type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
-| Enumerated.ID | A set of named integral constants. The API value is an id. |
+| Enumerated.ID | A set of unnamed integral constants. The API value is an id. A name, if specified, is a non-normative description of the id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
-| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, name, and type. |
+| Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
 API values do not affect interoperabilty, and the representation of the above types within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-Serialized values are critical to interoperability, and this specification defines a set of *serialization rules* that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
+Serialized values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
   
-OpenC2 type definitions are presented in table format. Normative requirements are contained in the table (excluding Description), and for some types, Usage Requirements that follow the table.  All text in the Description column of type definition tables is Non-normative.
+OpenC2 type definitions are presented in table format. All table columns except Description are Normative. All material in the Description column is Non-normative.
 
 For types without individual fields, the definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
 
@@ -816,7 +816,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 #### 3.4.1.13 URI
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **URI** | String | Uniform Resource Identifier |
+| **URI** | String (uri) | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
 #### 3.4.2.1 Request Identifier
@@ -852,7 +852,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 #### 3.4.2.5 Hostname
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-|  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
+|  **Hostname** | String (hostname) | A legal Internet host name as specified in RFC 1123 |
 
 #### 3.4.2.7 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
