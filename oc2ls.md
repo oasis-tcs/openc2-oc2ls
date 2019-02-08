@@ -155,7 +155,13 @@ Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 9
 
 ## 1.4 Non-Normative References
 ###### [IACD]
-M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
+M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense", Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
+
+###### [RFC3470]
+Hollenbeck S., Rose, M., Masinter L., "Guidelines for the Use of Extensible Markup Language (XML) within IETF Protocols", BCP 70, RFC 3470, January 2003, https://tools.ietf.org/html/rfc3470.
+
+###### [RFC7049]
+Bormann, C., Hoffman, P., "Concise Binary Object Representation (CBOR)", RFC 7049, October 2013, https://tools.ietf.org/html/rfc7049.
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
@@ -310,9 +316,7 @@ The following list summarizes the fields and subfields of an OpenC2 Response.
 # 3 OpenC2 Language Definition 
 ## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
-OpenC2 data types are defined **abstractly**.  "*API*" values within an application are "*serialized*" for transmission between applications according to "*serialization rules*" for each data type.
-
-The data types used in OpenC2 messages are:
+OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values).  The data types used in OpenC2 messages are:
 
 | Type | Description |
 | :--- | :--- |
@@ -332,30 +336,26 @@ The data types used in OpenC2 messages are:
 | Map | An unordered set of named fields. Each field has an id, name and type. |
 | Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
-The OpenC2 type definitions in Section 3.3 and 3.4 are presented in table format.  For types without individual fields, the definition includes the name of the type being defined, the definition of the type, and a non-normative description, e.g.:
+API values do not affect interoperabilty, and the representation of the above types within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
+
+Serialized values are critical to interoperability, and this specification defines a set of *serialization rules* that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
+  
+OpenC2 type definitions are presented in table format. Normative requirements are contained in the table (excluding Description), and for some types, Usage Requirements that follow the table.  All text in the Description column of type definition tables is Non-normative.
+
+For types without individual fields, the definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
+| **Email-Addr** | String (email) | Email address |
 
- blah blah
+### 3.1.2 Semantic Value Constraints
+Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
 
-### 3.1.2 Derived Data Types
-The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of the base types is specified in [Section 3.1.5](#315-serialization), but there are no restrictions on how derived types are represented internally by an implementation. 
-
-| Type | Base | Description |
-| :--- | :--- | :--- |
-| Domain-Name | String | RFC 1034 Section 3.5 |
-| Date-Time | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970. |
-| Duration | Integer | Milliseconds. |
-| Email-Addr | String | RFC 5322 Section 3.4.1 |
-| Identifier | String | (TBD rules, e.g., initial alpha followed by alphanumeric or underscore) |
-| IP-Addr | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
-| MAC-Addr | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
-| Port | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
-| Request-Id | Binary | A value of up to 128 bits |
-| URI | String | RFC 3986 |
-| UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
+| Keyword | Constraint |
+| :--- | :--- |
+| **email** | Value must be an email address as defined in RFC 5322, section 3.4.1 |
+| **hostname** | Value must be a hostname as defined in RFC 1034 section 3.1 |
+| **uri** | Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986 |
 
 ### 3.1.3 Cardinality
 Property tables for types based on Array, Choice, Map and Record include a cardinality column (#) that specifies the minimum and maximum number of values of a field.  The most commonly used cardinalities are:
@@ -748,17 +748,17 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
 
 #### 3.4.1.4 Domain Name
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Domain-Name** | String (hostname) | RFC 1034, section 3.5 |
 
 #### 3.4.1.5 Email Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
+| **Email-Addr** | String (email) | Email address |
 
 #### 3.4.1.6 Features
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Features** | ArrayOf(Feature) | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
@@ -772,7 +772,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
 #### 3.4.1.8 IP Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **IP-Addr** | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
 
@@ -792,7 +792,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 * src_addr and dst_addr MUST be the same version (ipv4 or ipv6) if both are present.
 
 #### 3.4.1.10 MAC Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **MAC-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 
@@ -809,30 +809,36 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
 
 #### 3.4.1.12 Properties
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an actuator. |
 
 #### 3.4.1.13 URI
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **URI** | String | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
 #### 3.4.2.1 Request Identifier
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Request-Id** | Binary | A value of up to 128 bits that uniquely identifies a particular command |
 
 #### 3.4.2.2 Date-Time
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Date-Time** | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970 |
+| **Date-Time** | Integer | Date and Time |
+
+**Usage Requirements:**
+* Value is the number of milliseconds since 00:00:00 UTC, 1 January 1970
 
 #### 3.4.2.3 Duration
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Duration** | Integer | Milliseconds |
+| **Duration** | Integer | A length of time |
+
+**Usage Requirements:**
+* Value is a number of milliseconds
 
 #### 3.4.2.4 Hashes
 **_Type: Hashes (Map)_**
@@ -844,7 +850,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 3 | **sha256** | Binary | 0..1 | SHA256 hash as defined in RFC 6234 |
 
 #### 3.4.2.5 Hostname
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 |  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
 
@@ -869,7 +875,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
 #### 3.4.2.9 Port
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer | Transport Protocol Port Number, RFC 6335 |
 
@@ -897,7 +903,7 @@ Specifies the results to be returned from a query features command.
 | 3 | **complete** | Respond when all aspects of command completed |
 
 #### 3.4.2.12 Version
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
 
@@ -1020,27 +1026,27 @@ Field definition for compound types Array, Choice, Map, Record
 | 5 | String | 1 | Field description |
 
 #### 3.4.3.8 Identifier
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Identifier** | String | A string beginning with an alpha character followed by zero or more alphanumeric | underscore | dash characters, max length 32 characters |
 
 #### 3.4.3.9 Nsid
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String | Namespace ID - a short identifier, max length 8 characters |
 
 #### 3.4.3.10 Uname
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Uname** | String | Unique name (e.g., of a schema) - typically a set of Identifiers separated by forward slashes |
 
 #### 3.4.3.11 Options
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Options** | ArrayOf(Option) | An array of zero to ten option strings. |
 
 #### 3.4.3.12 Option
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Option** | String | An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value. |
 
