@@ -328,20 +328,25 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Null | Nothing, used to designate fields with no value. |
 | String | A sequence of characters. Each character must have a valid Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
-| Array | An ordered list of unnamed fields. Each field has an ordinal position and type. |
-| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and the specified type. |
-| Choice | One field selected from a set of named fields. The value has a name and type. |
+| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
+| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and its value has type *vtype*. |
+| Choice | One field selected from a set of named fields. The value has a name and a type. |
 | Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
-| Enumerated.ID | A set of unnamed integral constants. The API value is an id. A name, if specified, is a non-normative description of the id. |
+| Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
 | Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
 | Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
-API values do not affect interoperabilty, and the representation of the above types within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
+API values do not affect interoperabilty, and the representation of the above types within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.  "API values" above are referenced by serialization rules but do not constrain how applications may represent those values internally.
 
 Serialized values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
-  
+
+Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
+
+1. Field definitions and API values are identified only by ID.  The non-normative description may include a suggested name.
+2. Serialized values of Enumerated types and keys of Choice/Map types are IDs regardless of serialization format.
+
 OpenC2 type definitions are presented in table format. All table columns except Description are Normative. All material in the Description column is Non-normative.
 
 For types without individual field definitions (Primitive types and ArrayOf), the type definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
@@ -368,6 +373,8 @@ The field columns present in a structure definition depends on the base type:
 | Enumerated | ID, Name, Description |
 | Array, Choice.ID, Map.ID | ID, Type, Multiplicity (#), Description |
 | Choice, Map, Record | ID, Name, Type, Multiplicity (#), Description |
+
+The ID column of Array and Record types contains the ordinal position of the field, numbered sequentially starting at 1.  The ID column of Choice, Enumerated, and Map types contains tags with arbitrary integer values that are unique within the type definition.
 
 ### 3.1.2 Semantic Value Constraints
 Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
@@ -400,7 +407,7 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 | 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Serialization
-OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
+OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 using the following types:
 
 **JSON Serialization Requirements:**
 
@@ -421,17 +428,6 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Map** | JSON **object**. Member keys are field names. |
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
 | **Record** | JSON **object**. Member keys are field names. |
-
-#### 3.1.5.1 ID and Name Serialization
-Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
-
-1. Type definitions and application values use only the ID.  There is no corresponding name except as an optional part of the description.
-2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
-
-#### 3.1.5.2 Integer Serialization
-For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.  For example, the JSON "number" type represents integers and real numbers as decimal strings without quotes, e.g., { "height": 68.2 }, and as noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
-
-The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
 ## 3.2 Message
 As described in Section 1.1, this language specification and one or more actuator profiles define the content of OpenC2 commands and responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
