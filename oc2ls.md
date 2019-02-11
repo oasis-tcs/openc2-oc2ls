@@ -331,9 +331,11 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Array | An ordered list of unnamed fields. Each field has an ordinal position and type. |
 | ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and the specified type. |
 | Choice | One field selected from a set of named fields. The value has a name and type. |
+| Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
 | Enumerated.ID | A set of unnamed integral constants. The API value is an id. A name, if specified, is a non-normative description of the id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
+| Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
 | Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
 API values do not affect interoperabilty, and the representation of the above types within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
@@ -342,11 +344,30 @@ Serialized values are critical to interoperability, and this document defines a 
   
 OpenC2 type definitions are presented in table format. All table columns except Description are Normative. All material in the Description column is Non-normative.
 
-For types without individual fields, the definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
+For types without individual field definitions (Primitive types and ArrayOf), the type definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Email-Addr** | String (email) | Email address |
+
+For Structure types, the definition includes the name of the type being defined, the built-in type (from Section 3.1.1) on which it is based, and options applicable to the type as a whole.  This is followed by a table defining each of the fields in the structure.  This table defines a type called *Args* that is a *Map* containing at least one field.  Each of the fields has an integer Tag/ID, a Name, and a Type.  Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
+
+**_Type: Args (Map) [1..*]_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action  |
+| 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the action |
+| 3 | **duration** | Duration | 0..1 | The length of time for an action to be in effect |
+
+The field columns present in a structure definition depends on the base type:
+
+| Base Type | Field Definition Columns |
+| :--- | :--- |
+| Enumerated.ID | ID, Description |
+| Enumerated | ID, Name, Description |
+| Array, Choice.ID, Map.ID | ID, Type, Multiplicity (#), Description |
+| Choice, Map, Record | ID, Name, Type, Multiplicity (#), Description |
 
 ### 3.1.2 Semantic Value Constraints
 Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
