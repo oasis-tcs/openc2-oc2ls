@@ -561,9 +561,7 @@ The following actions are under consideration for use in future versions of the 
 | 17 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
-| 1000 | **extension** | PE-Target | 1 | Targets defined in a Private Enterprise extension profile. |
-| 1001 | **extension_unr** | Unr-Target | 1 | Targets defined in an Unregistered extension profile |
-| 1024 | **slpf** | slpf:Target | 1 | **Example Target Extension**: Targets defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | slpf:Target | 1 | **Example**: Targets defined in the Stateless Packet Filter profile |
 
 The following targets are under consideration for use in future versions of the Language Specification. Implementers may use these targets with the understanding that they may not be in future versions of the language.
 
@@ -588,8 +586,7 @@ The following targets are under consideration for use in future versions of the 
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1000 | **extension** | PE-Specifiers | 0..1 | Specifiers defined in a Private Enterprise extension profile. |
-| 1001 | **extension_unr** | Unr-Specifiers | 0..1 | Specifiers defined in an Unregistered extension profile |
+| 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filter profile |
 
 #### 3.3.1.4 Command Arguments
 **_Type: Args (Map)_**
@@ -600,8 +597,7 @@ The following targets are under consideration for use in future versions of the 
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an action to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of response required for the action: `none`, `ack`, `status`, `complete`. |
-| 1000 | **extension** | PE-Args | 0..1 | Command arguments defined in a Private Enterprise extension profile |
-| 1001 | **extension_unr** | Unr-Args | 0..1 | Command arguments defined in an Unregistered extension profile |
+| 1024 | **slpf** | slpf:Args | 1 | **Example**: Command Arguments defined in the Stateless Packet Filter profile |
 
 **Usage Requirements:**
 
@@ -622,8 +618,7 @@ The following targets are under consideration for use in future versions of the 
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
 | 9 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1000 | **extension** | PE-Results | 0..1 | Response data defined in a Private Enterprise extension profile |
-| 1001 | **extension_unr** | Unr-Results | 0..1 | Response data defined in an unregistered extension profile |
+| 1024 | **slpf** | slpf:Response | 1 | **Example**: Response types defined in the Stateless Packet Filter profile |
 
 **Example:**
 
@@ -655,86 +650,6 @@ Usage Requirements:
 | 500 | **Internal Error** - the consumer encountered an unexpected condition that prevented it from fulfilling the request. |
 | 501 | **Not Implemented** - the consumer does not support the functionality required to fulfill the request. |
 | 503 | **Service Unavailable** - the consumer is currently unable to handle the request due to a temporary overloading or maintenance of the consumer. |
-
-### 3.3.3 Extensions
-Organizations may extend the functionality of OpenC2 by defining organization-specific profiles. OpenC2 defines two methods for defining organization-specific profiles: using a registered namespace or an unregistered namespace. Organizations wishing to create non-standardized OpenC2 profiles SHOULD use a registered Private Enterprise Number namespace.  Private Enterprise Numbers are managed by the Internet Assigned Numbers Authority (IANA) as described in RFC 5612, for example:
-
-* 32473
-  * Example Enterprise Number for Documentation Use
-    * See [RFC5612]
-      * iana&iana.org
-
-OpenC2 contains four predefined extension points to support registered private enterprise profiles: PE-Target, PE-Specifiers, PE-Args, and PE-Results.  An organization can develop a profile that defines custom types, create an entry for their organization's namespace under each extension point used in the profile, and then use their custom types within OpenC2 commands and responses.
-
-By convention ID values of 1000 and above within OpenC2-defined data types are namespace identifiers, although there is no restriction against assigning non-namespaced IDs in that range.
-
-This is an example target from a registered profile containing a "lens" extension defined by the organization with IANA Private Enterprise Number 32473. This hypothetical target might be used with the "set" action to support an IoT camera pan-tilt-zoom use case. This example is for illustrative purposes only and MUST NOT use this in actual implementations. 
-
-```
-{
-    "target": {
-        "extension": {
-            "32473": {
-                "lens": {"focal_length": 240, "aperture": "f/1.6"}
-            }
-        }
-    }
-}
-```
-
-This is an example of the same target from a profile defined by an organization that has not registered a Private Enterprise Number with IANA.  This example is for illustrative purposes only and MUST NOT use this in actual implementations.
-
-```
-{
-    "target": {
-        "unregistered": {
-            "x-foo.com": {
-                "lens": {"focal_length": 240, "aperture": "f/1.6"}
-            }
-        }
-    }
-}
-```
-
-Using DNS names provides collision resistance for names used in x- namespaces, but the corresponding IDs are not coordinated through a registration process and are subject to collisions.
-
-OpenC2 implementations MAY support registered and unregistered extension profiles regardless of whether those profiles are listed by OASIS.  Implementations MUST NOT use the "Example" registered extension entries shown below, and MAY use one or more actual registered extensions by replacing the example entries.
-
-#### 3.3.3.1 Private Enterprise Target
-Because target is a required element, implementations receiving an OpenC2 Command with an unsupported target type MUST reject the command as invalid.
-
-**_Type: PE-Target (Choice.ID)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 32473 | 32473:Target | 1 | "Example": Targets defined in the Example Inc. extension profile |
-
-#### 3.3.3.2 Private Enterprise Specifiers
-The behavior of an implementation receiving an OpenC2 Command with an unsupported actuator type is undefined.  It MAY ignore the actuator field or MAY reject the command as invalid.
-
-**_Type: PE-Specifiers (Choice.ID)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 32473 | 32473:Specifiers | 1 | "Example": Actuator Specifiers defined in the Example Inc. extension profile |
-
-#### 3.3.3.3 Private Enterprise Command Arguments
-The behavior of an implementation receiving an OpenC2 Command with an unsupported arg type is undefined.  It MAY ignore the unrecognized arg or MAY reject the command as invalid.
-
-**_Type: PE-Args (Map.ID)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 32473 | 32473:Args | 1 | "Example": Command Arguments defined in the Example Inc. extension profile |
-
-#### 3.3.3.4 Private Enterprise Results
-The behavior of an implementation receiving an OpenC2 Response with an unsupported results type is undefined.  An unrecognized response has no effect on the OpenC2 protocol but implementations SHOULD log it as an error.
-
-**_Type: PE-Results (Map.ID)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 32473 | 32473:Results | 1 | "Example": Results defined in the Example Inc. extension profile |
 
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
