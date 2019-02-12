@@ -368,14 +368,14 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 | 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Imported Types
-Actuator profiles define the requirements for performing specific functions, and may if necessary define new language elements needed by those functions.  Each actuator profile has a unique name that unambiguously identifies the *base schema* (Language subset) and the conformance requirements for that actuator type.
+Each Actuator profile defines a *base schema* - the subset of the OpenC2 language relevant in the context of specific actuator functions.  Each profile has a unique name used to unambiguously identify the profile document (and it's base schema).
 
-An actuator profile does not necessarily use language elements other than those defined in this document.  But if it does define additional types, they can be *imported* and used by types defined in this document.  Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single schema without risk of ambiguity or name collisions. A namespace consists of:
+In addition, a profile may define profile-specific types that are *imported* by its base schema. Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single merged schema without risk of ambiguity or name collisions. A namespace consists of:
 
 * The unique name of the schema being imported
 * A short namespace identifier (**nsid**) assigned locally within the base schema to refer to the unique name
 
-In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means to prepend the namespace identifier to all type names defined in that schema.
+In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means prepending the namespace identifier to all type names defined in that schema.
 
 Producers and Consumers MUST support the syntax defined by the merged schema, regardless of whether the implementation is based on conceptually merging tables from a set of documents or physically merging a set of schema files.
 
@@ -424,7 +424,7 @@ A Consumer lists the profiles it supports in response to the "query features imp
 
 The **device** target and the **abc** target have different Types, and even though the combined schema includes type definitions for both Device and abc:Device, those definitions do not conflict.
 
-The ID and Name of a field whose Type is imported are arbitrary, but because there may not be a way for a Producer to query the schema used by a Consumer, the field Name used for an imported type SHOULD be the nsid of that type. 
+The ID and Name of a field whose Type is imported are arbitrary, but because there may not be a way for a Producer to determine the schema used by a Consumer, the field Name assigned to an imported type SHOULD equal the nsid of that type. 
 
 ### 3.1.6 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
