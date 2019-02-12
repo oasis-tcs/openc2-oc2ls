@@ -340,9 +340,9 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
 | Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
-API values do not affect interoperabilty, and the representation of the above types within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.  "API values" above are referenced by serialization rules but do not constrain how applications may represent those values internally.
+* **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-Serialized values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
+* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
 
 Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
 
