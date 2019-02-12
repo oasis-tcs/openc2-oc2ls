@@ -152,6 +152,8 @@ Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-edit
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
 ###### [RFC8259]
 Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259.
+###### [EUI]
+"IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE, August 2017, https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
 
 ## 1.4 Non-Normative References
 ###### [IACD]
@@ -379,11 +381,12 @@ The ID column of Array and Record types contains the ordinal position of the fie
 ### 3.1.2 Semantic Value Constraints
 Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
 
-| Keyword | Constraint |
-| :--- | :--- |
-| **email** | Value must be an email address as defined in RFC 5322, section 3.4.1 |
-| **hostname** | Value must be a hostname as defined in RFC 1034 section 3.1 |
-| **uri** | Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986 |
+| Keyword | Applies to Type | Constraint |
+| :--- | :--- | :--- |
+| **email** | String | Value must be an email address as defined in RFC 5322, section 3.4.1 |
+| **hostname** | String | Value must be a hostname as defined in RFC 1034 section 3.1 |
+| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986 |
+| **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in EUI |
 
 ### 3.1.3 Cardinality
 Property tables for types based on Array, Choice, Map and Record include a cardinality column (#) that specifies the minimum and maximum number of values of a field.  The most commonly used cardinalities are:
@@ -811,7 +814,7 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 #### 3.4.1.10 MAC Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **MAC-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
+| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 
 #### 3.4.1.11 Process
 **_Type: Process (Map)_**
