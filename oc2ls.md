@@ -347,7 +347,7 @@ Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equiva
 1. Field definitions and API values are identified only by ID.  The non-normative description may include a suggested name.
 2. Serialized values of Enumerated types and keys of Choice/Map types are IDs regardless of serialization format.
 
-OpenC2 type definitions are presented in table format. All table columns except Description are Normative. All material in the Description column is Non-normative.
+OpenC2 type definitions are presented in table format. All table columns except Description are Normative. The Description column is always Non-normative.
 
 For types without individual field definitions (Primitive types and ArrayOf), the type definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
 
@@ -355,7 +355,7 @@ For types without individual field definitions (Primitive types and ArrayOf), th
 | :--- | :--- | :--- |
 | **Email-Addr** | String (email) | Email address |
 
-For Structure types, the definition includes the name of the type being defined, the built-in type (from Section 3.1.1) on which it is based, and options applicable to the type as a whole.  This is followed by a table defining each of the fields in the structure.  This table defines a type called *Args* that is a *Map* containing at least one field.  Each of the fields has an integer Tag/ID, a Name, and a Type.  Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
+For Structure types, the definition includes the name of the type being defined, the built-in type on which it is based, and options applicable to the type as a whole.  This is followed by a table defining each of the fields in the structure.  This table defines a type called *Args* that is a *Map* containing at least one field.  Each of the fields has an integer Tag/ID, a Name, and a Type.  Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
 
 **_Type: Args (Map) [1..*]_**
 
@@ -374,7 +374,7 @@ The field columns present in a structure definition depends on the base type:
 | Array, Choice.ID, Map.ID | ID, Type, Multiplicity (#), Description |
 | Choice, Map, Record | ID, Name, Type, Multiplicity (#), Description |
 
-The ID column of Array and Record types contains the ordinal position of the field, numbered sequentially starting at 1.  The ID column of Choice, Enumerated, and Map types contains tags with arbitrary integer values that are unique within the type definition.
+The ID column of Array and Record types contains the ordinal position of the field, numbered sequentially starting at 1.  The ID column of Choice, Enumerated, and Map types contains tags with arbitrary integer values. IDs and Names are unique within each type definition.
 
 ### 3.1.2 Semantic Value Constraints
 Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
