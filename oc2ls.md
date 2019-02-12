@@ -368,11 +368,11 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 | 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Imported Types
-Actuator profiles define the requirements for performing specific functions, and may if necessary define new language elements needed by those functions.  Each actuator profile has a unique name ...
+Actuator profiles define the requirements for performing specific functions, and may if necessary define new language elements needed by those functions.  Each actuator profile has a unique name that unambiguously identifies the profile document containing the subset of Language elements used by that profile (the *base schema* for that actuator type).
 
-Types defined in other documents can be imported and used by types defined in this document.  Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single schema without risk of ambiguity or name collisions. A namespace consists of:
+An actuator profile does not necessarily use language elements other than those defined in this document.  But if it does define additional types, they can be *imported* and used by types defined in this document.  Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single schema without risk of ambiguity or name collisions. A namespace consists of:
 
-* A unique name for the schema being imported
+* The unique name of the schema being imported
 * A short namespace identifier (**nsid**) assigned locally within the base schema to refer to the unique name
 
 In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means to prepend the namespace identifier to all type names defined in that schema.
@@ -396,7 +396,7 @@ Assume that a schema being imported includes the following type definitions:
 | 1 | **model** | String | 0..1 | |
 | 2 | **manufacturer** | String | 0..1 | |
 
-After conceptually importing that schema under the "abc" namespace identifier, the base schema (this document) would be interpreted as if it contained the following definitions:
+After conceptually importing that schema under the "abc" namespace identifier, the base schema would be interpreted as if it contained the following definitions:
 
 **_Type: abc:Target (Choice)_**
 
@@ -411,7 +411,7 @@ After conceptually importing that schema under the "abc" namespace identifier, t
 | 1 | **model** | String | 0..1 | |
 | 2 | **manufacturer** | String | 0..1 | |
 
-The imported definitions would then be used by including references to them in the base schema:
+A Consumer lists the profiles it supports in response to the "query features imports" command. The Producer then knows the unique names of all imported profiles and the nsids assigned to each profile by that Consumer. The Target type defined in the profile's base schema contains a subset of the Target fields defined in this document, plus a field for each imported profile:
 
 **_Type: Target (Choice)_**
 
@@ -422,7 +422,9 @@ The imported definitions would then be used by including references to them in t
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 1030 | **abc** | abc:Target | 1 | Imported targets defined in the "abc" profile |
 
-Note that the ID and Name of a field whose Type is imported are arbitrary.  For convenience the name of the field can be the same as the nsid of the imported type, but any name can be used. Type names (including nsids) never appear in data instances, so using the nsid as the field name can serve as a hint for where the type is defined.  The **device** target and the **abc** target have different Types, and even though the combined schema includes type definitions for both Device and abc:Device, those definitions do not conflict and can be used together.
+The **device** target and the **abc** target have different Types, and even though the combined schema includes type definitions for both Device and abc:Device, those definitions do not conflict.
+
+The ID and Name of a field whose Type is imported are arbitrary, but because there may not be a way for a Producer to query the schema used by a Consumer, the field Name used for an imported type SHOULD be the nsid of that type. 
 
 ### 3.1.6 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
