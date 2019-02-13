@@ -780,6 +780,25 @@ The behavior of an implementation receiving an OpenC2 Response with an unsupport
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
 #### 3.4.1.x IPv4 Address Range
+As stated in Section 3.1.1, all OpenC2 data types are defined abstractly, independently of both how they are represented within an application and how they are communicated between applications.  The critical distinction is that an abstract type represents what an item **is**, not how it is implemented.
+
+Two criteria are used to determine what an item **is**:
+1. Is there a *standard* that defines the item, and if so, what does the standard say, and
+2. Is the definition *unambiguous*, i.e. how easy is it to determine if an instance of that item is valid.
+
+The IPv4 standard [RFC791] defines what an IPv4 address **is** - a 32 bit number. [TEXTREP], an Internet-Draft that expired in 2005, is the most authoritative definition available for the **"Textual Representation of IPv4 and IPv6 addresses"**.
+
+By criterion 1, both documents agree that an IPv4 address is a 32 bit Binary value, not a String, and the abstract definition of IPv4-Address is based on those standards.  And by criterion 2, defining an IPv4 Address to be a 32 bit value is entirely unambiguous - it is trivial to determine if an instance is valid, and there is no disagreement among implementations.  By comparison, determining if a String fits the definition in [TEXTREP] is not as trivial.  The ABNF definition is 7 lines of text that requires a bit of thought to interpret, and most implementations do not even follow the ABNF.  Is "129.034.215.162" a valid IP address? If so, explain why, and if not, explain why not.
+
+By the same logic, an IPv4 address range **is not** an IPv4 address. The standard "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [RFC4632] defines what the address range **is**:
+> "the "/16" indicating that the mask to extract the network portion of the prefix is a 32-bit value where the most
+   significant 16 bits are ones and the least significant 16 bits are zeros."
+
+and how it is **shown** in CIDR notation:
+> "a 4-octet quantity followed by the "/" (slash) character, followed by a decimal value between 0 and 32".
+
+The abstract definition of an address range is the two parts defined by the standard. The serialization rule "Array.ipv4-net" says that it is transmitted between applications as a single string in CIDR notation.  Neither the type definition nor the serialization rule says anything about how implementations represent an IPv4 address range internally - they may use strings or any other variables or classes as they see fit.
+
 **_Type: IPv4-Net (Array.ipv4-net)_**
 
 | ID | Type | # | Description |
