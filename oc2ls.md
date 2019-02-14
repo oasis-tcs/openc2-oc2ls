@@ -797,7 +797,7 @@ By the same logic, an IPv4 address range is not an IPv4 address. The standard "C
 and how it is **shown** in CIDR notation:
 > "a 4-octet quantity followed by the "/" (slash) character, followed by a decimal value between 0 and 32".
 
-The abstract definition of an address range is the two parts defined by the standard. The serialization rule "Array.ipv4-net" says that it is transmitted between applications as a single string in CIDR notation.  Neither the type definition nor the serialization rule say anything about how implementations represent an IPv4 address range internally - they may use strings or other variables or structures or classes as determined by their developers.
+The abstract definition of an address range is the two parts defined by the standard. The serialization rule "Array.ipv4-net" says that it is transmitted between applications as a single string in CIDR notation.  Neither the type definition nor the serialization rule say anything about how implementations represent IPv4 address ranges internally - they may use strings or other variables or structures or classes as determined by their developers.
 
 **_Type: IPv4-Net (Array.ipv4-net)_**
 
