@@ -143,10 +143,19 @@ Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-edit
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
 ###### [RFC8259]
 Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259.
+###### [EUI]
+"IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE, August 2017, https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
 
 ## 1.4 Non-Normative References
 ###### [IACD]
-M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
+M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense", Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
+
+###### [RFC3470]
+Hollenbeck S., Rose, M., Masinter L., "Guidelines for the Use of Extensible Markup Language (XML) within IETF Protocols", BCP 70, RFC 3470, January 2003, https://tools.ietf.org/html/rfc3470.
+
+###### [RFC7049]
+Bormann, C., Hoffman, P., "Concise Binary Object Representation (CBOR)", RFC 7049, October 2013, https://tools.ietf.org/html/rfc7049.
+
 ###### [UML]
 "UML Multiplicity and Collections", https://www.uml-diagrams.org/multiplicity.html
 
@@ -303,7 +312,7 @@ The following list summarizes the fields and subfields of an OpenC2 Response.
 # 3 OpenC2 Language Definition 
 ## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
-The syntax of valid OpenC2 messages is defined using an information model constructed from the data types presented here:
+OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values).  The data types used in OpenC2 messages are:
 
 | Type | Description |
 | :--- | :--- |
@@ -315,29 +324,63 @@ The syntax of valid OpenC2 messages is defined using an information model constr
 | Null | Nothing, used to designate fields with no value. |
 | String | A sequence of characters. Each character must have a valid Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
-| Array | An ordered list of unnamed fields. Each field has an ordinal position and type. |
-| ArrayOf | An ordered list of unnamed fields of the same type. Each field has an ordinal position and the specified type. |
-| Choice | One field selected from a set of named fields. The value has a name and type. |
-| Enumerated | A set of id:name pairs where id is an integer. The Enumerated.ID subtype is a set of ids only. |
+| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
+| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and its value has type *vtype*. |
+| Choice | One field selected from a set of named fields. The value has a name and a type. |
+| Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
+| Enumerated | A set of named integral constants. The API value is a name. |
+| Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
-| Record | An ordered list of named fields, e.g. a message, record, structure, or row in a table. Each field has an ordinal position, name, and type. |
+| Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
+| Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
-### 3.1.2 Derived Data Types
-The following types are defined as value constraints applied to String (text string), Binary (octet string) or Integer values.  The serialized representation of the base types is specified in [Section 3.1.5](#315-serialization), but there are no restrictions on how derived types are represented internally by an implementation. 
+* **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-| Type | Base | Description |
+* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
+
+Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
+
+1. Field definitions and API values are identified only by ID.  The non-normative description may include a suggested name.
+2. Serialized values of Enumerated types and keys of Choice/Map types are IDs regardless of serialization format.
+
+OpenC2 type definitions are presented in table format. All table columns except Description are Normative. The Description column is always Non-normative.
+
+For types without individual field definitions (Primitive types and ArrayOf), the type definition includes the name of the type being defined and the definition of that type. This table defines a type called *Email-Addr* that is a *String* that has a semantic value constraint of *email*:
+
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| Domain-Name | String | RFC 1034 Section 3.5 |
-| Date-Time | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970. |
-| Duration | Integer | Milliseconds. |
-| Email-Addr | String | RFC 5322 Section 3.4.1 |
-| Identifier | String | (TBD rules, e.g., initial alpha followed by alphanumeric or underscore) |
-| IP-Addr | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
-| MAC-Addr | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
-| Port | Integer | 16 bit RFC 6335 Transport Protocol Port Number |
-| Request-Id | Binary | A value of up to 128 bits |
-| URI | String | RFC 3986 |
-| UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
+| **Email-Addr** | String (email) | Email address |
+
+For Structure types, the definition includes the name of the type being defined, the built-in type on which it is based, and options applicable to the type as a whole.  This is followed by a table defining each of the fields in the structure.  This table defines a type called *Args* that is a *Map* containing at least one field.  Each of the fields has an integer Tag/ID, a Name, and a Type.  Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
+
+**_Type: Args (Map) [1..*]_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action  |
+| 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the action |
+| 3 | **duration** | Duration | 0..1 | The length of time for an action to be in effect |
+
+The field columns present in a structure definition depends on the base type:
+
+| Base Type | Field Definition Columns |
+| :--- | :--- |
+| Enumerated.ID | ID, Description |
+| Enumerated | ID, Name, Description |
+| Array, Choice.ID, Map.ID | ID, Type, Multiplicity (#), Description |
+| Choice, Map, Record | ID, Name, Type, Multiplicity (#), Description |
+
+The ID column of Array and Record types contains the ordinal position of the field, numbered sequentially starting at 1.  The ID column of Choice, Enumerated, and Map types contains tags with arbitrary integer values. IDs and Names are unique within each type definition.
+
+### 3.1.2 Semantic Value Constraints
+Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
+
+| Keyword | Applies to Type | Constraint |
+| :--- | :--- | :--- |
+| **email** | String | Value must be an email address as defined in RFC 5322, section 3.4.1 |
+| **hostname** | String | Value must be a hostname as defined in RFC 1034 section 3.1 |
+| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986 |
+| **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in EUI |
 
 ### 3.1.3 Multiplicity
 Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field.  As used in the Unified Modeling Language ([UML](#uml)), typical examples of multiplicity are:
@@ -440,7 +483,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Array** | JSON **array** |
 | **ArrayOf** | JSON **array** |
 | **Choice** | JSON **object** with one member.  Member key is the field name.   |
-| Choice.ID | JSON **object** with one member. Member key is the integer field id converted to string. |
+| **Choice.ID** | JSON **object** with one member. Member key is the integer field id converted to string. |
 | **Enumerated** | JSON **string** |
 | **Enumerated.ID** | JSON **integer** |
 | **Map** | JSON **object**. Member keys are field names. |
@@ -669,17 +712,17 @@ Usage Requirements:
 | 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
 
 #### 3.4.1.4 Domain Name
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Domain-Name** | String (hostname) | RFC 1034, section 3.5 |
 
 #### 3.4.1.5 Email Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String (email) | Email address, RFC 5322, section 3.4.1 |
+| **Email-Addr** | String (email) | Email address |
 
 #### 3.4.1.6 Features
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Features** | ArrayOf(Feature) | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
@@ -693,7 +736,7 @@ Usage Requirements:
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
 #### 3.4.1.8 IP Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **IP-Addr** | Binary | 32 bit IPv4 address or 128 bit IPv6 address |
 
@@ -713,9 +756,9 @@ Usage Requirements:
 * src_addr and dst_addr MUST be the same version (ipv4 or ipv6) if both are present.
 
 #### 3.4.1.10 MAC Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **MAC-Addr** | Binary | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
+| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64. |
 
 #### 3.4.1.11 Process
 **_Type: Process (Map)_**
@@ -730,30 +773,36 @@ Usage Requirements:
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
 
 #### 3.4.1.12 Properties
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an actuator. |
 
 #### 3.4.1.13 URI
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **URI** | String | Uniform Resource Identifier |
+| **URI** | String (uri) | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
 #### 3.4.2.1 Request Identifier
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Request-Id** | Binary | A value of up to 128 bits that uniquely identifies a particular command |
 
 #### 3.4.2.2 Date-Time
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Date-Time** | Integer | Milliseconds since 00:00:00 UTC, 1 January 1970 |
+| **Date-Time** | Integer | Date and Time |
+
+**Usage Requirements:**
+* Value is the number of milliseconds since 00:00:00 UTC, 1 January 1970
 
 #### 3.4.2.3 Duration
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Duration** | Integer | Milliseconds |
+| **Duration** | Integer | A length of time |
+
+**Usage Requirements:**
+* Value is a number of milliseconds
 
 #### 3.4.2.4 Hashes
 **_Type: Hashes (Map)_**
@@ -765,9 +814,9 @@ Usage Requirements:
 | 3 | **sha256** | Binary | 0..1 | SHA256 hash as defined in RFC 6234 |
 
 #### 3.4.2.5 Hostname
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-|  **Hostname** | String | A legal Internet host name as specified in RFC 1123 |
+|  **Hostname** | String (hostname) | A legal Internet host name as specified in RFC 1123 |
 
 #### 3.4.2.7 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
@@ -790,7 +839,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
 #### 3.4.2.9 Port
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer | Transport Protocol Port Number, RFC 6335 |
 
@@ -817,7 +866,7 @@ Specifies the results to be returned from a query features command.
 | 3 | **complete** | Respond when all aspects of command completed |
 
 #### 3.4.2.12 Version
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
 
