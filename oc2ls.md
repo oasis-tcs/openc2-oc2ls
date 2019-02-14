@@ -31,15 +31,6 @@
 * Jason Romano (jdroman@nsa.gov), [National Security Agency](https://www.nsa.gov/)
 * Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
-#### Additional artifacts:
-This prose specification is one component of a Work Product that also includes:
-* OpenC2 Language Syntax JSON/JADN schema ([Annex A.1](#a1-openc2-language-syntax)):
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/oc2ls.json
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/oc2ls.pdf
-* JADN Syntax JSON/JADN schema ([Annex A.2](#a2-jadn-syntax)):
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/jadn.json
-    * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/schemas/jadn.pdf
-
 #### Abstract:
 Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine to machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
@@ -156,6 +147,8 @@ Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 9
 ## 1.4 Non-Normative References
 ###### [IACD]
 M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense," Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
+###### [UML]
+"UML Multiplicity and Collections", https://www.uml-diagrams.org/multiplicity.html
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
@@ -223,7 +216,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
+| Function-Specific Content | Actuator Profiles<br>(standard and extension) |
 | Common Content | Language Specification<br>(this document) |
 | Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
@@ -248,7 +241,7 @@ The goal of OpenC2 is to enable coordinated defense in cyber-relevant time betwe
 * **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and product agnostic manner
 * **Concise:**  An OpenC2 command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
 * **Abstract:**  OpenC2 commands and responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
-* **Extensible:**  While OpenC2 defines a core set of actions and targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
+* **Extensible:**  While the OpenC2 language defines a core set of actions and targets for cyber defense, it supports separate definition of additional language elements to accommodate new cyber defense technologies.
 
 ## 1.8 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
@@ -261,7 +254,7 @@ The OpenC2 Language Specification defines the set of components to assemble a co
 
 The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions. The following items are beyond the scope of this specification:
 
-1. Language extensions applicable to some actuators, which may be defined in individual actuator profiles.
+1. Language elements applicable to some actuators, which may be defined in individual actuator profiles.
 2. Alternate serializations of OpenC2 commands and responses.
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies.
 
@@ -276,7 +269,7 @@ The command describes an action to be performed on a target and may include info
 A command has four main components: ACTION, TARGET, ARGUMENTS, and ACTUATOR. The following list summarizes the components of a command. 
 
 * **ACTION** (required): The task or activity to be performed.
-* **TARGET** (required): The object of the action. The ACTION is performed on the target.
+* **TARGET** (required): The object of the action. The ACTION is performed on the TARGET.
     * **TARGET-NAME** (required): The name of the object of the action.
     * **TARGET-SPECIFIERS** (optional): The specifier further identifies the target to some level of precision, such as a specific target, a list of targets, or a class of targets.
 * **ARGUMENTS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
@@ -290,7 +283,7 @@ TARGET-SPECIFIERS provide additional precision to identify the target (e.g., 10.
 
 The ARGUMENTS component, if present, is populated by one or more 'command arguments' that determine how the command is executed. ARGUMENTS influence the command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a command. The valid ARGUMENTS defined in this specification are in [Section 3.3.1.4](#3314-command-arguments).
 
-An ACTUATOR is an implementation of a cyber defense function that executes the command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are mandatory to implement or optional in the context of a particular ACTUATOR. An Actuator Profile may extend the language by defining additional ARGUMENTS, ACTUATOR-SPECIFIERS, and/or TARGETS that are meaningful and possibly unique to the actuator.
+An ACTUATOR is an implementation of a cyber defense function that executes the command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are required or optional in the context of a particular ACTUATOR. An Actuator Profile may extend the language by defining additional ARGUMENTS, ACTUATOR-SPECIFIERS, and/or TARGETS that are meaningful and possibly unique to the actuator.
 
 The ACTUATOR optionally identifies the entity or entities that are tasked to execute the command. Specifiers for actuators refine the command so that a particular function, system, class of devices, or specific device can be identified. 
 
@@ -346,17 +339,22 @@ The following types are defined as value constraints applied to String (text str
 | URI | String | RFC 3986 |
 | UUID | Binary | 128 bit Universal Unique Identifier, RFC 4122 Section 4 |
 
-### 3.1.3 Cardinality
-Property tables for types based on Array, Choice, Map and Record include a cardinality column (#) that specifies the minimum and maximum number of values of a field.  The most commonly used cardinalities are:
+### 3.1.3 Multiplicity
+Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field.  As used in the Unified Modeling Language ([UML](#uml)), typical examples of multiplicity are:
 
-* 1	Required and not repeatable
-* 0..1	Optional and not repeatable
-* 1..n	Required and repeatable
-* 0..n	Optional and repeatable
+| Multiplicity | Description | Keywords |
+| :--- | :--- | :--- |
+| 1 | Exactly one instance | Required |
+| 0..1 | No instances or one instance | Optional |
+| 1..* | At least one instance | Required, Repeatable |
+| 0..* | Zero or more instances | Optional, Repeatable |
+| m..n | At least m but no more than n instances | Required, Repeatable |
 
-The cardinality column may also specify a range of sizes, e.g.,:
+When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 
-* 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 ### 3.1.4 Derived Enumerations
 An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
@@ -365,7 +363,7 @@ An Enumerated field may be derived ("auto-generated") from the fields of a Choic
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
+| 1 | targets | Target.* | 1..* | Enumeration auto-generated from a Choice |
 
 ### 3.1.5 Imported Types
 Each Actuator profile defines a *base schema* - the subset of the OpenC2 language relevant in the context of specific actuator functions.  Each profile has a unique name used to unambiguously identify the profile document (and it's base schema).
@@ -610,13 +608,13 @@ The following targets are under consideration for use in future versions of the 
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the response status |
-| 3 | **strings** | String | 0..n | Generic set of string values |
-| 4 | **ints** | Integer | 0..n | Generic set of integer values |
-| 5 | **kvps** | KVP | 0..n | Generic set of key:value pairs |
-| 6 | **versions** | Version | 0..n | List of OpenC2 language versions supported by this actuator |
-| 7 | **profiles** | jadn:Uname | 0..n | List of profiles supported by this actuator |
+| 3 | **strings** | String | 0..* | Generic set of string values |
+| 4 | **ints** | Integer | 0..* | Generic set of integer values |
+| 5 | **kvps** | KVP | 0..* | Generic set of key:value pairs |
+| 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this actuator |
+| 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this actuator |
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this actuator |
-| 9 | **pairs** | Action-Targets | 0..n | List of targets applicable to each supported action |
+| 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | slpf:Response | 1 | **Example**: Response types defined in the Stateless Packet Filter profile |
 
@@ -642,7 +640,6 @@ Usage Requirements:
 | :--- | :--- |
 | 102 | **Processing** - an interim response used to inform the producer that the consumer has accepted the request but has not yet completed it. |
 | 200 | **OK** - the request has succeeded. |
-| 301 | **Moved Permanently** - the target resource has been assigned a new permanent URI. |
 | 400 | **Bad Request** - the consumer cannot process the request due to something that is perceived to be a producer error (e.g., malformed request syntax). |
 | 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
 | 403 | **Forbidden** - the consumer understood the request but refuses to authorize it. |
@@ -806,9 +803,8 @@ Specifies the results to be returned from a query features command.
 | :--- | :--- | :--- |
 | 1 | **versions** | List of OpenC2 Language versions supported by this actuator |
 | 2 | **profiles** | List of profiles supported by this actuator |
-| 3 | **schema** | Definition of the command syntax supported by this actuator |
-| 4 | **pairs** | List of supported actions and applicable targets |
-| 5 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
+| 3 | **pairs** | List of supported actions and applicable targets |
+| 4 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
 
 #### 3.4.2.11 Response-Type
 **_Type: Response-Type (Enumerated)_**
@@ -839,138 +835,11 @@ Specifies the results to be returned from a query features command.
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
 | 1 | Action | 1 | An action supported by this actuator. |
-| 2 | Target.* | 1..n | List of targets applicable to this action.  The targets are enumerated values derived from the set of Target types. |
-
-### 3.4.3 Schema Syntax
-**3.4.3.1 Schema**
-
-**_Type: Schema (Record)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **meta** | Meta | 1 | Information about this schema module |
-| 2 | **types** | Type | 1..n | Types defined in this schema module |
-
-#### 3.4.3.1 Meta
-Meta-information about this schema
-
-**_Type: Meta (Map)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **module** | Uname | 1 | Unique name |
-| 2 | **title** | String | 0..1 | Title |
-| 3 | **version** | String | 0..1 | Patch version (module includes major.minor version) |
-| 4 | **description** | String | 0..1 | Description |
-| 5 | **imports** | Import | 0..n | Imported schema modules |
-| 6 | **exports** | Identifier | 0..n | Data types exported by this module |
-| 7 | **bounds** | Bounds | 0..1 | Schema-wide upper bounds |
-
-#### 3.4.3.2 Import
-**_Type: Import (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Nsid | 1 | **nsid** - A short local identifier (namespace id) used within this module to refer to the imported module |
-| 2 | Uname | 1 | **uname** - Unique name of the imported module |
-
-#### 3.4.3.3 Bounds
-Schema-wide default upper bounds.   If included in a schema, these values override codec default values but are limited to the codec hard upper bounds. Sizes provided in individual type definitions override these defaults.
-
-**_Type: Bounds (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Integer | 1 | **max_msg** - Maximum serialized message size in octets or characters |
-| 2 | Integer | 1 | **max_str** - Maximum text string length in characters |
-| 3 | Integer | 1 | **max_bin** - Maximum binary string length in octets |
-| 4 | Integer | 1 | **max_fields** - Maximum number of elements in ArrayOf |
-
-#### 3.4.3.4 Type
-Definition of a data type.
-
-**_Type: Type (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Identifier | 1 | **tname** - Name of this data type |
-| 2 | JADN-Type.* | 1 | **btype** - Base type. Enumerated value derived from the list of JADN data types. |
-| 3 | Option | 1..n | **topts** - Type options |
-| 4 | String | 1 | **tdesc** - Description of this data type |
-| 5 | JADN-Type.&2 | 1..n | **fields** - List of fields for compound types.  Not present for primitive types. |
-
-#### 3.4.3.5 JADN Type
-Field definitions applicable to the built-in data types (primitive and compound) used to construct a schema.
-
-**_Type: JADN-Type (Choice)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | Binary | Null |   | Octet (binary) string |
-| 2 | Boolean | Null |   | True or False |
-| 3 | Integer | Null |   | Whole number |
-| 4 | Number | Null |   | Real number |
-| 5 | Null | Null |   | Nothing |
-| 6 | String | Null |   | Character (text) string |
-| 7 | Array | FullField |   | Ordered list of unnamed fields |
-| 8 | ArrayOf | Null |   | Ordered list of fields of a specified type |
-| 9 | Choice | FullField |   | One of a set of named fields |
-| 10 | Enumerated | EnumField |   | One of a set of id:name pairs |
-| 11 | Map | FullField |   | Unordered set of named fields |
-| 12 | Record | FullField |   | Ordered list of named fields |
-
-#### 3.4.3.6 Enum Field
-Item definition for Enumerated types
-
-**_Type: EnumField (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Integer | 1 | Item ID |
-| 2 | Identifier | 1 | Item name |
-| 3 | String | 1 | Item description |
-
-#### 3.4.3.7 Full Field
-Field definition for compound types Array, Choice, Map, Record
-
-**_Type: FullField (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Integer | 1 | Field ID or ordinal position |
-| 2 | Identifier | 1 | Field name |
-| 3 | Identifier | 1 | Field type |
-| 4 | Options | 1 | Field options.  This field is an empty array (not omitted) if there are none. |
-| 5 | String | 1 | Field description |
-
-#### 3.4.3.8 Identifier
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **Identifier** | String | A string beginning with an alpha character followed by zero or more alphanumeric | underscore | dash characters, max length 32 characters |
-
-#### 3.4.3.9 Nsid
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **Nsid** | String | Namespace ID - a short identifier, max length 8 characters |
-
-#### 3.4.3.10 Uname
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **Uname** | String | Unique name (e.g., of a schema) - typically a set of Identifiers separated by forward slashes |
-
-#### 3.4.3.11 Options
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **Options** | ArrayOf(Option) | An array of zero to ten option strings. |
-
-#### 3.4.3.12 Option
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **Option** | String | An option string, minimum length = 1.  The first character is the option id.  Remaining characters if any are the option value. |
+| 2 | Target.* | 1..* | List of targets applicable to this action.  The targets are enumerated values derived from the set of Target types. |
 
 -------
 
-# 4 Mandatory Commands/Responses 
+# 4 Required Commands/Responses 
 An OpenC2 command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
 
 An OpenC2 Consumer MUST process an OpenC2 Command where "query" is specified for the ACTION and "features" is specified for the TARGET, hereafter, referred to as a 'query features' command".
@@ -1005,322 +874,8 @@ A conformant OpenC2 Consumer
 
 -------
 
-# Annex A. Schemas
-This annex defines the information model used by conforming OpenC2 implementations in JSON Abstract Data Notation (JADN) format.  JADN is a structured textual representation of the tables shown in Section 3.  Schema files referenced by the URLs include descriptive text shown in the tables.  Descriptions are omitted from the figures in this section in order to: 1) illustrate that descriptive text is not part of the language syntax, 2) show what an actuator would return in response to a schema query, and 3) improve readability of the figures. 
-
-## A.1 OpenC2 Language Syntax
-**Schema File:**
-
-The normative schema file (oc2ls.json) and formatted version (oc2ls.pdf) may be found at the link under [Additional artifacts](#additional-artifacts) above.
-
-**Schema:**
-
-```
-{
- "meta": {
-  "module": "oasis-open.org/openc2/v1.0/openc2-lang",
-  "patch": "wd09",
-  "title": "OpenC2 Language Objects",
-  "description": "Datatypes that define the content of OpenC2 commands and responses.",
-  "imports": [
-   ["slpf", "oasis-open.org/openc2/v1.0/ap-slpf"],
-   ["jadn", "oasis-open.org/openc2/v1.0/jadn"]
-  ],
-  "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "Request-Id", "Date-Time"]
- },
- "types": [
-  ["Message", "Array", [], "", [
-    [1, "msg_type", "Message-Type", [], ""],
-    [2, "content_type", "String", [], ""],
-    [3, "content", "Null", [], ""],
-    [4, "status", "Status-Code", ["[0"], ""],
-    [5, "request_id", "Request-Id", ["[0"], ""],
-    [6, "to", "String", ["[0", "]0"], ""],
-    [7, "from", "String", ["[0"], ""],
-    [8, "created", "Date-Time", ["[0"], ""]
-  ]],
-  ["OpenC2-Command", "Record", [], "", [
-    [1, "action", "Action", [], ""],
-    [2, "target", "Target", [], ""],
-    [3, "args", "Args", ["[0"], ""],
-    [4, "actuator", "Actuator", ["[0"], ""]
-  ]],
-  ["Action", "Enumerated", [], "", [
-    [1, "scan", ""],
-    [2, "locate", ""],
-    [3, "query", ""],
-    [6, "deny", ""],
-    [7, "contain", ""],
-    [8, "allow", ""],
-    [9, "start", ""],
-    [10, "stop", ""],
-    [11, "restart", ""],
-    [14, "cancel", ""],
-    [15, "set", ""],
-    [16, "update", ""],
-    [18, "redirect", ""],
-    [19, "create", ""],
-    [20, "delete", ""],
-    [22, "detonate", ""],
-    [23, "restore", ""],
-    [28, "copy", ""],
-    [30, "investigate", ""],
-    [32, "remediate", ""]
-  ]],
-  ["Target", "Choice", [], "", [
-    [1, "artifact", "Artifact", [], ""],
-    [2, "command", "Request-Id", [], ""],
-    [3, "device", "Device", [], ""],
-    [7, "domain_name", "Domain-Name", [], ""],
-    [8, "email_addr", "Email-Addr", [], ""],
-    [16, "features", "Features", [], ""],
-    [10, "file", "File", [], ""],
-    [11, "ip_addr", "IP-Addr", [], ""],
-    [15, "ip_connection", "IP-Connection", [], ""],
-    [13, "mac_addr", "MAC-Addr", [], ""],
-    [17, "process", "Process", [], ""],
-    [25, "properties", "Properties", [], ""],
-    [19, "uri", "URI", [], ""],
-    [1000, "extension", "PE-Target", [], ""],
-    [1001, "extension_unr", "Unr-Target", [], ""],
-    [1024, "slpf", "slpf:Target", [], ""]
-  ]],
-  ["Actuator", "Choice", [], "", [
-    [1000, "extension", "PE-Specifiers", [], ""],
-    [1001, "extension_unr", "Unr-Specifiers", [], ""]
-  ]],
-  ["Args", "Map", [], "", [
-    [1, "start_time", "Date-Time", ["[0"], ""],
-    [2, "stop_time", "Date-Time", ["[0"], ""],
-    [3, "duration", "Duration", ["[0"], ""],
-    [4, "response_requested", "Response-Type", ["[0"], ""],
-    [1000, "extension", "PE-Args", ["[0"], ""],
-    [1001, "extension_unr", "Unr-Args", ["[0"], ""]
-  ]],
-  ["OpenC2-Response", "Map", [], "", [
-    [1, "status", "Status-Code", ["[0"], ""],
-    [2, "status_text", "String", ["[0"], ""],
-    [3, "strings", "String", ["[0", "]0"], ""],
-    [4, "ints", "Integer", ["[0", "]0"], ""],
-    [5, "kvps", "KVP", ["[0", "]0"], ""],
-    [6, "versions", "Version", ["[0", "]0"], ""],
-    [7, "profiles", "jadn:Uname", ["[0", "]0"], ""],
-    [8, "schema", "jadn:Schema", ["[0"], ""],
-    [9, "pairs", "Action-Targets", ["[0", "]0"], ""],
-    [10, "rate_limit", "Number", ["[0"], ""],
-    [1000, "extension", "PE-Results", ["[0"], ""],
-    [1001, "extension_unr", "Unr-Results", ["[0"], ""]
-  ]],
-  ["Status-Code", "Enumerated", ["="], "", [
-    [102, "Processing", ""],
-    [200, "OK", ""],
-    [301, "Moved Permanently", ""],
-    [400, "Bad Request", ""],
-    [401, "Unauthorized", ""],
-    [403, "Forbidden", ""],
-    [404, "Not Found", ""],
-    [500, "Internal Error", ""],
-    [501, "Not Implemented", ""],
-    [503, "Service Unavailable", ""]
-  ]],
-  ["PE-Target", "Choice", ["="], "", [
-    [32473, "Example", "32473:Target", [], ""]
-  ]],
-  ["PE-Specifiers", "Choice", ["="], "", [
-    [32473, "Example", "32473:Specifiers", [], ""]
-  ]],
-  ["PE-Args", "Map", ["="], "", [
-    [32473, "Example", "32473:Args", [], ""]
-  ]],
-  ["PE-Results", "Map", ["="], "", [
-    [32473, "Example", "32473:Results", [], ""]
-  ]],
-  ["Artifact", "Record", [], "", [
-    [1, "mime_type", "String", ["[0"], ""],
-    [2, "payload", "Payload", ["[0"], ""],
-    [3, "hashes", "Hashes", ["[0"], ""]
-  ]],
-  ["Device", "Map", [], "", [
-    [1, "hostname", "Hostname", [], ""],
-    [2, "description", "String", ["[0"], ""],
-    [3, "device_id", "String", ["[0"], ""]
-  ]],
-  ["Domain-Name", "String", ["@hostname"], ""],
-  ["Email-Addr", "String", ["@email"], ""],
-  ["Features", "ArrayOf", ["*Feature", "[0"], ""],
-  ["File", "Map", [], "", [
-    [1, "name", "String", ["[0"], ""],
-    [2, "path", "String", ["[0"], ""],
-    [3, "hashes", "Hashes", ["[0"], ""]
-  ]],
-  ["IP-Addr", "Binary", ["@ip-addr"], ""],
-  ["IP-Connection", "Record", [], "", [
-    [1, "src_addr", "IP-Addr", ["[0"], ""],
-    [2, "src_port", "Port", ["[0"], ""],
-    [3, "dst_addr", "IP-Addr", ["[0"], ""],
-    [4, "dst_port", "Port", ["[0"], ""],
-    [5, "protocol", "L4-Protocol", ["[0"], ""]
-  ]],
-  ["MAC-Addr", "Binary", [], ""],
-  ["Process", "Map", [], "", [
-    [1, "pid", "Integer", ["[0"], ""],
-    [2, "name", "String", ["[0"], ""],
-    [3, "cwd", "String", ["[0"], ""],
-    [4, "executable", "File", ["[0"], ""],
-    [5, "parent", "Process", ["[0"], ""],
-    [6, "command_line", "String", ["[0"], ""]
-  ]],
-  ["Properties", "ArrayOf", ["*String"], ""],
-  ["URI", "String", ["@uri"], ""],
-  ["Message-Type", "Enumerated", [], "", [
-    [0, "notification", ""],
-    [1, "request", ""],
-    [2, "response", ""]
-  ]],
-  ["Request-Id", "Binary", [], ""],
-  ["Date-Time", "Integer", [], ""],
-  ["Duration", "Integer", [], ""],
-  ["Hashes", "Map", [], "", [
-    [1, "md5", "Binary", ["[0"], ""],
-    [4, "sha1", "Binary", ["[0"], ""],
-    [6, "sha256", "Binary", ["[0"], ""]
-  ]],
-  ["Hostname", "String", [], ""],
-  ["L4-Protocol", "Enumerated", [], "", [
-    [1, "icmp", ""],
-    [6, "tcp", ""],
-    [17, "udp", ""],
-    [132, "sctp", ""]
-  ]],
-  ["Payload", "Choice", [], "", [
-    [1, "bin", "Binary", [], ""],
-    [2, "url", "URI", [], ""]
-  ]],
-  ["Port", "Integer", ["[0", "]65535"], ""],
-  ["Feature", "Enumerated", [], "", [
-    [1, "versions", ""],
-    [2, "profiles", ""],
-    [3, "schema", ""],
-    [4, "pairs", ""],
-    [5, "rate_limit", ""]
-  ]],
-  ["Response-Type", "Enumerated", [], "", [
-    [0, "none", ""],
-    [1, "ack", ""],
-    [2, "status", ""],
-    [3, "complete", ""]
-  ]],
-  ["Version", "String", [], ""],
-  ["KVP", "Array", [], "", [
-    [1, "key", "String", [], ""],
-    [2, "value", "String", [], ""]
-  ]],
-  ["Action-Targets", "Array", [], "", [
-    [1, "action", "Action", [], ""],
-    [2, "targets", "Target", ["]0", "*"], ""]
-  ]]
- ]
-}
-```
-
-## A.2 JADN Syntax
-**Schema File:**
-
-The normative schema file (jadn.json) and formatted version (jadn.pdf) may be found at the link under [Additional artifacts](#additional-artifacts) above.
-
-**Schema:**
-
-```
-{
- "meta": {
-  "module": "oasis-open.org/openc2/v1.0/jadn",
-  "patch": "wd01",
-  "title": "JADN Syntax",
-  "description": "Syntax of a JSON Abstract Data Notation (JADN) module.",
-  "exports": ["Schema", "Uname"]
- },
-
- "types": [
-  ["Schema", "Record", [], "", [
-    [1, "meta", "Meta", [], ""],
-    [2, "types", "Type", ["]0"], ""]]
-  ],
-
-  ["Meta", "Map", [], "", [
-    [1, "module", "Uname", [], ""],
-    [2, "patch", "String", ["[0"], ""],
-    [3, "title", "String", ["[0"], ""],
-    [4, "description", "String", ["[0"], ""],
-    [5, "imports", "Import", ["[0", "]0"], ""],
-    [6, "exports", "Identifier", ["[0", "]0"], ""],
-    [7, "bounds", "Bounds", ["[0"], ""]]
-  ],
-
-  ["Import", "Array", [], "", [
-    [1, "nsid", "Nsid", [], ""],
-    [2, "uname", "Uname", [], ""]]
-  ],
-
-  ["Bounds", "Array", [], "", [
-    [1, "max_msg", "Integer", [], ""],
-    [2, "max_str", "Integer", [], ""],
-    [3, "max_bin", "Integer", [], ""],
-    [4, "max_fields", "Integer", [], ""]]
-  ],
-
-  ["Type", "Array", [], "", [
-    [1, "tname", "Identifier", [], ""],
-    [2, "btype", "JADN-Type", ["*"], ""],
-    [3, "opts", "Option", ["]0"], ""],
-    [4, "desc", "String", [], ""],
-    [5, "fields", "JADN-Type", ["&btype", "]0"], ""]]
-  ],
-
-  ["JADN-Type", "Choice", [], "", [
-    [1, "Binary", "Null", [], ""],
-    [2, "Boolean", "Null", [], ""],
-    [3, "Integer", "Null", [], ""],
-    [4, "Number", "Null", [], ""],
-    [5, "Null", "Null", [], ""],
-    [6, "String", "Null", [], ""],
-    [7, "Array", "FullField", ["]0"], ""],
-    [8, "ArrayOf", "Null", [], ""],
-    [9, "Choice", "FullField", ["]0"], ""],
-    [10, "Enumerated", "EnumField", ["]0"], ""],
-    [11, "Map", "FullField", ["]0"], ""],
-    [12, "Record", "FullField", ["]0"], ""]]
-  ],
-
-  ["EnumField", "Array", [], "", [
-    [1, "", "Integer", [], ""],
-    [2, "", "String", [], ""],
-    [3, "", "String", [], ""]]
-  ],
-
-  ["FullField", "Array", [], "", [
-    [1, "", "Integer", [], ""],
-    [2, "", "Identifier", [], ""],
-    [3, "", "Identifier", [], ""],
-    [4, "", "Options", [], ""],
-    [5, "", "String", [], ""]]
-  ],
-
-  ["Identifier", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]32"], ""],
-
-  ["Nsid", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]8"], ""],
-
-  ["Uname", "String", ["[1", "]100"], ""],
-
-  ["Options", "ArrayOf", ["*Option", "[0", "]10"], ""],
-
-  ["Option", "String", ["[1", "]100"], ""]]
-}
-```
-
--------
-
-# Annex B. Examples
-## B.1 Example 1
+# Annex A. Examples
+## A.1 Example 1
 This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the message is the de-serialized command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the message.
 
 The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:` 'd937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If OpenC2 producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.
@@ -1330,7 +885,7 @@ The created element is a Date-Time value of milliseconds since the epoch.  The e
 This example, illustrating an internal representation of a message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how message elements are represented internally within an implementation.  Only the serialized values of the message elements embedded within a protocol is relevant to interoperability.
 
 
-### B.1.1 Command Message
+### A.1.1 Command Message
 content-type: 'application/openc2'
 msg_type: 'request'
 request_id: b'\xd97\xfc\xa9+dNq'
@@ -1339,7 +894,7 @@ to: ['#filter-devices']
 created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
 
-### B.1.2 Response Message
+### A.1.2 Response Message
 The response message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the response content.  The request_id from the command message, if present, is returned unchanged in the response message.  The "to" element of the response normally echoes the "from" element of the command message, but the "from" element of the response is the actuator's identifier regardless of whether the command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to an openc2 command.  No actuator profiles currently define response content types other than openc2.
@@ -1353,7 +908,7 @@ to: ['nocc-3497']
 created: 1539355898000
 content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
 
-## B.2 Example 2
+## A.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
 
 **Command:**
@@ -1381,7 +936,7 @@ This example is for a transport where the header information is outside the JSON
 }
 ```
 
-## B.3 Example 3
+## A.3 Example 3
 **Command:**
 
 ```
@@ -1403,184 +958,49 @@ This example is for a transport where the header information is outside the JSON
 }
 ```
 
-**Command:**
-
-This command queries the actuator for the syntax of its supported commands.
-
-```
-{
-  "action": "query",
-  "target": {
-    "features": ["pairs", "schema"]
-  }
-}
-```
-
-**Response:**
-
-This example illustrates how actuator developers tailor the OpenC2 schema to communicate the capabilities of their products to producers.  This example actuator supports the mandatory requirements of the language specification plus a random subset of optional language elements (cancel, create, and delete actions, and the command, ip_addr, and properties targets).  The example actuator supports a subset of the core OpenC2 language but no profile-defined targets, actuator specifiers, command arguments, or responses.
-
-The example do-nothing actuator appears to support create and delete  ip_addr commands, but without a profile there is no definition of what the actuator would do to "create" an IP address.  The schema is used by producers to determine what commands are syntactically valid for an actuator, but it does not assign meaning to those commands.
-
-```
-{
-  "pairs": [
-    ["query", ["features", "properties"]],
-    ["cancel", ["command"]],
-    ["create", ["ip_addr"]],
-    ["delete", ["ip_addr"]]
-  ],
-  "schema": {
-     "meta": {
-      "module": "oasis-open.org/openc2/v1.0/openc2-lang",
-      "patch": "wd09_example",
-      "title": "OpenC2 Language Objects",
-      "description": "Example Actuator",
-      "exports": ["OpenC2-Command", "OpenC2-Response", "Message-Type", "Status-Code", "Request-Id", "Date-Time"]
-     },
-     "types": [
-      ["OpenC2-Command", "Record", [], "", [
-        [1, "action", "Action", [], ""],
-        [2, "target", "Target", [], ""],
-        [3, "args", "Args", ["[0"], ""]
-      ]],
-      ["Action", "Enumerated", [], "", [
-        [3, "query", ""],
-        [14, "cancel", ""],
-        [19, "create", ""],
-        [20, "delete", ""]
-      ]],
-      ["Target", "Choice", [], "", [
-        [2, "command", "Request-Id", [], ""],
-        [16, "features", "Features", [], ""],
-        [11, "ip_addr", "IP-Addr", [], ""],
-        [25, "properties", "Properties", [], ""]
-      ]],
-      ["Args", "Map", [], "", [
-        [1, "start_time", "Date-Time", ["[0"], ""],
-        [4, "response_requested", "Response-Type", ["[0"], ""]
-      ]],
-      ["OpenC2-Response", "Map", [], "", [
-        [2, "status_text", "String", ["[0"], ""],
-        [3, "strings", "String", ["[0", "]0"], ""],
-        [4, "ints", "Integer", ["[0", "]0"], ""],
-        [5, "kvps", "KVP", ["[0", "]0"], ""],
-        [6, "versions", "Version", ["[0", "]0"], ""],
-        [7, "profiles", "jadn:Uname", ["[0", "]0"], ""],
-        [8, "schema", "jadn:Schema", ["[0"], ""],
-        [9, "pairs", "Action-Targets", ["[0", "]0"], ""],
-        [10, "rate_limit", "Number", ["[0"], ""]
-      ]],
-      ["Status-Code", "Enumerated", ["="], "", [
-        [200, "OK", ""],
-        [400, "Bad Request", ""],
-        [404, "Not Found", ""],
-        [500, "Internal Error", ""],
-        [501, "Not Implemented", ""]
-      ]],
-      ["Features", "ArrayOf", ["*Feature", "[0"], ""],
-      ["IP-Addr", "Binary", ["@ip-addr"], ""],
-      ["Properties", "ArrayOf", ["*String"], ""],
-      ["Message-Type", "Enumerated", [], "", [
-        [1, "request", ""],
-        [2, "response", ""]
-      ]],
-      ["Request-Id", "Binary", [], ""],
-      ["Date-Time", "Integer", [], ""],
-      ["Feature", "Enumerated", [], "", [
-        [1, "versions", ""],
-        [2, "profiles", ""],
-        [3, "schema", ""],
-        [4, "pairs", ""]
-      ]],
-      ["Response-Type", "Enumerated", [], "", [
-        [0, "none", ""],
-        [1, "ack", ""],
-        [3, "complete", ""]
-      ]],
-      ["Version", "String", [], ""],
-      ["KVP", "Array", [], "", [
-        [1, "key", "String", [], ""],
-        [2, "value", "String", [], ""]
-      ]],
-      ["Action-Targets", "Array", [], "", [
-        [1, "action", "Action", [], ""],
-        [2, "targets", "Target", ["]0", "*"], ""]
-      ]],
-      ["jadn:Schema", "Record", [], "", [
-        [1, "meta", "jadn:Meta", [], ""],
-        [2, "types", "jadn:Type", ["]0"], ""]
-      ]],
-      ["jadn:Meta", "Map", [], "", [
-        [1, "module", "jadn:Uname", [], ""],
-        [2, "patch", "String", ["[0"], ""],
-        [3, "title", "String", ["[0"], ""],
-        [4, "description", "String", ["[0"], ""],
-        [5, "imports", "jadn:Import", ["[0", "]0"], ""],
-        [6, "exports", "jadn:Identifier", ["[0", "]0"], ""],
-        [7, "bounds", "jadn:Bounds", ["[0"], ""]
-      ]],
-      ["jadn:Import", "Array", [], "", [
-        [1, "nsid", "jadn:Nsid", [], ""],
-        [2, "uname", "jadn:Uname", [], ""]
-      ]],
-      ["jadn:Bounds", "Array", [], "", [
-        [1, "max_msg", "Integer", [], ""],
-        [2, "max_str", "Integer", [], ""],
-        [3, "max_bin", "Integer", [], ""],
-        [4, "max_fields", "Integer", [], ""]
-      ]],
-      ["jadn:Type", "Array", [], "", [
-        [1, "tname", "jadn:Identifier", [], ""],
-        [2, "btype", "jadn:JADN-Type", ["*"], ""],
-        [3, "opts", "jadn:Option", ["]0"], ""],
-        [4, "desc", "String", [], ""],
-        [5, "fields", "jadn:JADN-Type", ["&btype", "]0"], ""]
-      ]],
-      ["jadn:JADN-Type", "Choice", [], "", [
-        [1, "Binary", "Null", [], ""],
-        [2, "Boolean", "Null", [], ""],
-        [3, "Integer", "Null", [], ""],
-        [4, "Number", "Null", [], ""],
-        [5, "Null", "Null", [], ""],
-        [6, "String", "Null", [], ""],
-        [7, "Array", "jadn:FullField", ["]0"], ""],
-        [8, "ArrayOf", "Null", [], ""],
-        [9, "Choice", "jadn:FullField", ["]0"], ""],
-        [10, "Enumerated", "jadn:EnumField", ["]0"], ""],
-        [11, "Map", "jadn:FullField", ["]0"], ""],
-        [12, "Record", "jadn:FullField", ["]0"], ""]
-      ]],
-      ["jadn:EnumField", "Array", [], "", [
-        [1, "", "Integer", [], ""],
-        [2, "", "String", [], ""],
-        [3, "", "String", [], ""]
-      ]],
-      ["jadn:FullField", "Array", [], "", [
-        [1, "", "Integer", [], ""],
-        [2, "", "jadn:Identifier", [], ""],
-        [3, "", "jadn:Identifier", [], ""],
-        [4, "", "jadn:Options", [], ""],
-        [5, "", "String", [], ""]
-      ]],
-      ["jadn:Identifier", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]32"], ""],
-      ["jadn:Nsid", "String", ["$^[a-zA-Z][\\w-]*$", "[1", "]8"], ""],
-      ["jadn:Uname", "String", ["[1", "]100"], ""],
-      ["jadn:Options", "ArrayOf", ["*jadn:Option", "[0", "]10"], ""],
-      ["jadn:Option", "String", ["[1", "]100"], ""]
-     ]
-  }
-}
-```
-
 -------
 
 # Annex C. Acronyms
-> **Editor's Note** - TBSL - This section be included in the final version of the initial Committee Specification.
+
+| Acroynm | Definition |
+| :--- | :--- |
+API | Application Programming Interface
+CBOR | Concise Binary Object Representation
+CoAP | Constrained Application Protocol
+DNS | Domain Name Server
+HTTP | Hyper Text Transfer Protocol
+IACD | Iintegrated Adaptive Cyber Defense
+IANA | Internet Assigned Numbers Authority 
+ICMP | Internet Control Message Protocol
+IP | Internet Protocol
+IPR | Intellectual Property Rights
+JSON | Java Script Notation
+KMIP | Key Management Interface Protocol
+KVP | Key Value Pairs
+MAC | Media Access Control
+MD5 | Message Digest
+MIME | Multipurpose Internet Mail Extensions 
+MQTT | Message Queuing Telemetry Transfer 
+NSID | Namespace Identifier
+OASIS | Organization for the Advancement of Structured Information Standards
+OpenC2 | Open  Command and Control
+OpenDXL | Open Data eXchange Layer
+RFC | Request for Comment
+SCTP | Straem Control Transmission Protocol
+SHA | Security Hash Algorithm
+SLPF | StateLess Packet Filtering
+STIX | Structured Threat Intel eXchange
+TC | Technical Committee
+TCP | Tranmission Control Protocol
+TLV | Type Length Value
+UDP | User Datagram Control Protocol
+Uname | Unique Name
+URI | Uniform Resource Identifier
+XML | eXtensibel Markup Language
 
 -------
 
-# Annex D. Revision History
+# Annex C. Revision History
 | Revision | Date | Editor | Changes Made |
 | :--- | :--- | :--- | :--- |
 | v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
@@ -1599,7 +1019,7 @@ The example do-nothing actuator appears to support create and delete  ip_addr co
 
 -------
 
-# Annex E. Acknowledgments
+# Annex D. Acknowledgments
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **OpenC2 TC Members:**
@@ -1607,136 +1027,61 @@ The following individuals have participated in the creation of this specificatio
 | First Name | Last Name | Company |
 | :--- | :--- | :--- |
 Philippe | Alcoy | Arbor Networks
-Alex | Amirnovin | Viasat
-Kris | Anderson | Trend Micro
 Darren | Anstee | Arbor Networks
-Jonathan | Baker | Mitre Corporation
-Theodor | Balanescu | TELUS
-Stephen | Banghart | NIST
-Sean | Barnum | FireEye Inc.
 Michelle | Barry | AT&T
-Omer | Ben-Shalom | Intel Corporation
 Brian | Berliner | Symantec Corp.
-Adrian | Bishop | Huntsman Security
-Tom | Blauvelt | Symantec Corp.
-Phillip | Boles | FireEye Inc.
 Adam | Bradbury | EclecticIQ
-Sarah | Brown | NCI Agency
 Joe | Brule | National Security Agency
 Michael | Butt | NC4
 Toby | Considine | University of North Carolina at Chapel Hill
-Gus | Creedon | Logistics Management Institute
-James | Crossland | Northrop Grumman
 Trey | Darley | New Context Services Inc.
 David | Darnell | North American Energy Standards Board
 Sudeep | Das | McAfee
-Mark | Davidson | NC4
-Stefano | De Crescenzo | Cisco Systems
-Michele | Drgon | Individual
-Alexandre | Dulaunoy | CIRCL
-Daniel | Dye | NC4
-Chet | Ensign | OASIS
+Andrea | De Bernardi | Moviri SPA
 Blake | Essing | AT&T
 Alex | Everett | University of North Carolina at Chapel Hill
+Joyce | Fai | National Security Agency
 Travis | Farral | Anomali
-Jessica | Fitzgerald-McKay | National Security Agency
-Jim | Fowler | US Department of Defense (DoD)
 David | Girard | Trend Micro
-Russell | Glenn | Viasat
-Juan | Gonzalez | DHS Office of Cybersecurity and Communications (CS&C)
 Andy | Gray | ForeScout
 John-Mark | Gurney | New Context Services Inc.
-Pavel | Gutin | G2
-Allen | Hadden | IBM
 Stefan | Hagen | Individual
 David | Hamilton | AT&T
-Daichi | Hasumi | NEC Corporation
-Tim | Hudson | Cryptsoft Pty Ltd.
 Nick | Humphrey | Huntsman Security
 Christian | Hunt | New Context Services Inc.
-Andras | Iklody | CIRCL
-Erick | Ingleby | ForeScout
+April | Jackson | G2
 Sridhar | Jayanthi | Individual
-Tim | Jones | ForeScout
 Bret | Jordan | Symantec Corp.
-Takahiro | Kakumaru | NEC Corporation
-Kirill | Kasavchenko | Arbor Networks
+Jason | Keirstead | IBM
 David | Kemp | National Security Agency
-Himanshu | Kesar | LookingGlass
-Ivan | Kirillov | Mitre Corporation
-Lauri | Korts-Pärn | NEC Corporation
-Anuj | Kumar | FireEye Inc.
-Kent | Landfield | McAfee
-Cheolho | Lee | NSRI
 David | Lemire | G2
-ChangKun | Li | 360 Enterprise Security Group
-Anthony | Librera | AT&T
 Jason | Liu | Northrop Grumman
-Terry | MacDonald | Individual
-Scott | MacGregor | McAfee
 Radu | Marian | Bank of America
 Danny | Martinez | G2
-Web | Master | OASIS
-Ryusuke | Masuoka | Fujitsu Limited
 Lisa | Mathews | National Security Agency
-Vasileios | Mavroeidis | IFI
-Andrew | May | Viasat
 James | Meck | FireEye Inc.
-Andrew | Mellinger | Carnegie Mellon University
-Adam | Montville | CIS
-Christopher | O'Brien | EclecticIQ
 Efrain | Ortiz | Symantec Corp.
 Paul | Patrick | FireEye Inc.
-Andrew | Pendergast | ThreatConnect, Inc.
 Michael | Pepin | NC4
-Wende | Peters | Bank of America
-Hugh | Pyle | IBM
 Nirmal | Rajarathnam | ForeScout
-Greg | Reaume | TELUS
-Joe | Reese | ThreatConnect, Inc.
-Brennen | Reynolds | ForeScout
 Chris | Ricard | Financial Services Information Sharing and Analysis Center (FS-ISAC)
 Daniel | Riedel | New Context Services Inc.
-Robert | Roll | Arizona Supreme Court
 Jason | Romano | National Security Agency
-Michael | Rosa | DHS Office of Cybersecurity and Communications (CS&C)
 Philip | Royer | Splunk Inc.
-Anthony | Rutkowski | Yanna Technologies LLC
-Steven | Ryan | Individual
-Omar | Santos | Cisco Systems
-Sourabh | Satish | Splunk Inc.
-Aleksandra | Scalco | US Department of Defense (DoD)
 Thomas | Schreck | Siemens AG
-Dee | Schur | OASIS
-Randall | Sharo | US Department of Defense (DoD)
-Eric | Shulze | Trend Micro
 Duane | Skeen | Northrop Grumman
-Calvin | Smith | Northrop Grumman
-Dan | Solero | AT&T
-Ben | Sooter | Electric Power Research Institute (EPRI)
 Duncan | Sparrell | sFractal Consulting LLC
 Michael | Stair | AT&T
 Andrew | Storms | New Context Services Inc.
 Gerald | Stueve | Fornetix
-Natalie | Suarez | NC4
 Rodney | Sullivan | NCI Agency
-Sam | Taghavi Zargar | Cisco Systems
 Allan | Thomson | LookingGlass
 Bill | Trost | AT&T
-Ryan | Trost | ThreatQuotient, Inc.
 Raymon | van der Velde | EclecticIQ
-Drew | Varner | NineFX, Inc.
-Tom | Vaughan | EclecticIQ
 Jyoti | Verma | Cisco Systems
-Kamer | Vishi | IFI
-Eric | Voit | Cisco Systems
 David | Waltermire | NIST
 Jason | Webb | LookingGlass
-David | Webber | Huawei Technologies Co., Ltd.
 Sean | Welsh | AT&T
-Remko | Weterings | FireEye Inc.
 Charles | White | Fornetix
-Koji | Yamada | Fujitsu Limited
 Sounil | Yu | Bank of America
-Paolo | Zaino | LookingGlass
 
