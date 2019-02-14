@@ -216,7 +216,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
+| Function-Specific Content | Actuator Profiles<br>(standard and extension) |
 | Common Content | Language Specification<br>(this document) |
 | Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
@@ -241,7 +241,7 @@ The goal of OpenC2 is to enable coordinated defense in cyber-relevant time betwe
 * **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and product agnostic manner
 * **Concise:**  An OpenC2 command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
 * **Abstract:**  OpenC2 commands and responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
-* **Extensible:**  While OpenC2 defines a core set of actions and targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
+* **Extensible:**  While the OpenC2 language defines a core set of actions and targets for cyber defense, it supports separate definition of additional language elements to accommodate new cyber defense technologies.
 
 ## 1.8 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
@@ -254,7 +254,7 @@ The OpenC2 Language Specification defines the set of components to assemble a co
 
 The OpenC2 language assumes that the event has been detected, a decision to act has been made, the act is warranted, and the initiator and recipient of the commands are authenticated and authorized. The OpenC2 language was designed to be agnostic of the other aspects of cyber defense implementations that realize these assumptions. The following items are beyond the scope of this specification:
 
-1. Language extensions applicable to some actuators, which may be defined in individual actuator profiles.
+1. Language elements applicable to some actuators, which may be defined in individual actuator profiles.
 2. Alternate serializations of OpenC2 commands and responses.
 3. The enumeration of the protocols required for transport, information assurance, sensing, analytics and other external dependencies.
 
@@ -502,7 +502,7 @@ The following actions are under consideration for use in future versions of the 
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
 | 1000 | **extension** | PE-Target | 1 | Targets defined in a Private Enterprise extension profile. |
 | 1001 | **extension_unr** | Unr-Target | 1 | Targets defined in an Unregistered extension profile |
-| 1024 | **slpf** | slpf:Target | 1 | **Example Target Extension**: Targets defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | slpf:Target | 1 | **Example Profile-defined Target**: Targets defined in the Stateless Packet Filter profile |
 
 The following targets are under consideration for use in future versions of the Language Specification. Implementers may use these targets with the understanding that they may not be in future versions of the language.
 
