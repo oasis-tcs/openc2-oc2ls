@@ -358,9 +358,9 @@ The cardinality column may also specify a range of sizes, e.g.,:
 
 * 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
 
-A cardinality of 0..1 denotes a single optional value of the specified type.  A cardinality of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
+A multiplicity of 0..1 denotes a single optional value of the specified type.  A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
 
-An array containing zero or more values of a specified type cannot be created implicitly using cardinality, it must be defined explicitly as a named ArrayOf type.  The named type can then be used as the type of a required field (cardinality 1).  Results are unspecified if an optional field (cardinality 0..1) is a named ArrayOf type with a minimum length of zero.
+An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type.  The named type can then be used as the type of a required field (multiplicity 1).  Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
 
 ### 3.1.4 Derived Enumerations
 An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
