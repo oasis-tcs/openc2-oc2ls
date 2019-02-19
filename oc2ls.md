@@ -359,13 +359,46 @@ The cardinality column may also specify a range of sizes, e.g.,:
 * 3..5	Required and repeatable with a minimum of 3 and maximum of 5 values
 
 ### 3.1.4 Derived Enumerations
-An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type.  A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
 
-**_Type: Example-sel (Record)_**
+This example includes a type representing the value of a single picture element ("pixel") in an image, and an operation "SetValue" to set one of the color values of a pixel.  It would be possible validate a SetValue operation against an explicit enumeration of the Pixel fields:
+
+**_Type: Pixel (Map)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | targets | Target.* | 1..n | Enumeration auto-generated from a Choice |
+| 1 | red | Integer | 1 | |
+| 2 | green | Integer | 1 | |
+| 3 | blue | Integer | 1 | |
+
+**_Type: SetValue (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | channel | Channel | 1 | |
+| 2 | value | Integer | 1 | |
+
+**_Type: Channel (Enumerated)_**
+
+| ID | Name | Description |
+| :--- | :--- | :--- |
+| 1 | red | |
+| 2 | green | |
+| 3 | blue | |
+
+Example **SetValue** operation:
+```
+{"channel": "green", "value": 95}
+```
+
+But it is both easier and more reliable to use a derived enumeration to validate the reference directly against the type being referenced:
+
+**_Type: SetValue (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | channel | Pixel.Enum | 1 | |
+| 2 | value | Integer | 1 | |
 
 ### 3.1.5 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
