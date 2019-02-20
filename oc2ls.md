@@ -527,7 +527,7 @@ The purpose of this specification is to define the ACTION and TARGET portions of
 In addition to the ACTION and TARGET, a Command has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the Actuator specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
 
 ### 3.3.1 OpenC2 Command
-The Command describes an Action performed on a Target. 
+The Command defines an Action to be performed on a Target.
 
 **_Type: OpenC2-Command (Record)_**
 
