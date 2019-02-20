@@ -524,7 +524,7 @@ Implementations may use environment variables, private APIs, data structures, cl
 ## 3.3 Content
 The purpose of this specification is to define the ACTION and TARGET portions of a Command and the common portions of a Response.  The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
 
-In addition to the ACTION and TARGET, a Command has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the ACTUATOR specifiers are beyond the scope of this specification.  The Actuators and Actuator-specific results contained in a Response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
+In addition to the ACTION and TARGET, a Command has an optional ACTUATOR. Other than identification of namespace identifier, the semantics associated with the Actuator specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
 
 ### 3.3.1 OpenC2 Command
 The Command describes an Action performed on a Target. 
