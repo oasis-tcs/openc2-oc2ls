@@ -419,6 +419,8 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | **from** | String. Authenticated identifier of the creator of or authority for execution of a message. |
 | **to** | ArrayOf(String). Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
+**Note:**
+
 Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
 
 ## 3.3 Content
