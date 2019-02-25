@@ -506,20 +506,6 @@ The following actions are under consideration for use in future versions of the 
 | 1001 | **extension_unr** | Unr-Target | 1 | Targets defined in an Unregistered extension profile |
 | 1024 | **slpf** | slpf:Target | 1 | **Example Target Extension**: Targets defined in the Stateless Packet Filter profile |
 
-The following targets are under consideration for use in future versions of the Language Specification. Implementers may use these targets with the understanding that they may not be in future versions of the language.
-
-* directory
-* disk
-* disk_partition
-* email_message
-* memory
-* software
-* user_account
-* user_session
-* volume
-* windows_registry_key
-* x509_certificate
-
 **Usage Requirements:**
 
 * The TARGET field in an OpenC2 Command MUST contain exactly one type of target (e.g. ip_addr).
