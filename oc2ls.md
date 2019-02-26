@@ -387,17 +387,17 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | OpenC2 Data Type | JSON Serialization Requirement |
 | :--- | :--- |
 | **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in Section 5 of RFC 4648. |
-| **Binary.x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in Section 8 of RFC 4648. Note that the Base16 alphabet does not include lower-case letters. |
-| **Binary.ipv4-addr** | JSON **string** containing the text representation of an IPv4 address as specified in Section 3 of "Textual Representation of IPv4 and IPv6 Addresses" [TEXTREP]. |
-| **Binary.ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in Section 4 of RFC 5952. |
+| **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in Section 8 of RFC 4648. Note that the Base16 alphabet does not include lower-case letters. |
+| **Binary /ipv4-addr** | JSON **string** containing the text representation of an IPv4 address as specified in Section 3 of "Textual Representation of IPv4 and IPv6 Addresses" [TEXTREP]. |
+| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in Section 4 of RFC 5952. |
 | **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
 | **Null** | JSON **null** |
 | **String** | JSON **string** |
 | **Array** | JSON **array** |
-| **Array.ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in Section 3.1 of RFC 4632. |
-| **Array.ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in Section 2.3 of RFC 4291. | 
+| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in Section 3.1 of RFC 4632. |
+| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in Section 2.3 of RFC 4291. | 
 | **ArrayOf** | JSON **array** |
 | **Choice** | JSON **object** with one member.  Member key is the field name.   |
 | Choice.ID | JSON **object** with one member. Member key is the integer field id converted to string. |
@@ -797,9 +797,9 @@ By the same logic, an IPv4 address range is not an IPv4 address. The standard "C
 and how it is **shown** in CIDR notation:
 > "a 4-octet quantity followed by the "/" (slash) character, followed by a decimal value between 0 and 32".
 
-The abstract definition of an address range is the two parts defined by the standard. The serialization rule "Array.ipv4-net" says that it is transmitted between applications as a single string in CIDR notation.  Neither the type definition nor the serialization rule say anything about how implementations represent IPv4 address ranges internally - they may use strings or other variables or structures or classes as determined by their developers.
+The abstract definition of an address range is the two parts defined by the standard. The serialization rule "Array /ipv4-net" says that it is transmitted between applications as a single string in CIDR notation.  Neither the type definition nor the serialization rule say anything about how implementations represent IPv4 address ranges internally - they may use strings or other variables or structures or classes as determined by their developers.
 
-**_Type: IPv4-Net (Array.ipv4-net)_**
+**_Type: IPv4-Net (Array /ipv4-net)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
@@ -807,7 +807,7 @@ The abstract definition of an address range is the two parts defined by the stan
 | 2 | Integer | 0..1 | CIDR prefix-length.  If omitted, refers to a single host address. |
 
 #### 3.4.1.x IPv6 Address Range
-**_Type: IPv6-Net (Array.ipv6-net)_**
+**_Type: IPv6-Net (Array /ipv6-net)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
@@ -884,9 +884,9 @@ The abstract definition of an address range is the two parts defined by the stan
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **md5** | Binary | 0..1 | MD5 hash as defined in RFC 1321 |
-| 2 | **sha1** | Binary | 0..1 | SHA1 hash as defined in RFC 6234 |
-| 3 | **sha256** | Binary | 0..1 | SHA256 hash as defined in RFC 6234 |
+| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in RFC 1321 |
+| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in RFC 6234 |
+| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in RFC 6234 |
 
 #### 3.4.2.5 Hostname
 | Type Name | Base Type | Description |
@@ -896,12 +896,12 @@ The abstract definition of an address range is the two parts defined by the stan
 #### 3.4.2.x IPv4 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IPv4-Addr** | Binary.ipv4-addr | 32 bit IPv4 address as defined in RFC 791 |
+| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in RFC 791 |
 
 #### 3.4.2.x IPv6 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IPv6-Addr** | Binary.ipv6-addr | 128 bit IPv6 address as defined in RFC 8200 |
+| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in RFC 8200 |
 
 #### 3.4.2.7 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, RFC 5237
