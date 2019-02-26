@@ -1049,7 +1049,58 @@ The 'query features' Command MAY include one or more Specifiers as defined in ta
 The 'query features' Command MAY include the "response_type":"complete" ARGUMENT. 
 The 'query features' Command MUST NOT include any other ARGUMENT. 
 
+The 'query features' Command is REQUIRED for all OpenC2 Consumers. 
+OpenC2 Consumers that receive and parse the 'query features':  
+*  With any ARGUMENT other than "response_type:complete"  
+    *  MUST NOT respond with OK/200.
+    *  SHOULD respond with Bad Request/400.
+    *  MAY respond with the 500 status code.
+*  With no target specifiers MUST respond with response code 200.
+*  With the [versions] target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Langauge Versions supported by the consumer. 
+*  With the [profiles] target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
+*  With the [pairs] target specifier MUST respond with status 200 and populuate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
+* With the [rate_limit] target specifier populated: 
+    * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of commands per minute that the Consumer may support. 
+    * MAY respond with status 200 and with the rate_limit field unpopulated.  
 
+## 4.2 Sample Commands and Responses  
+_This subsection is non-normative_   
+
+This sub-section provides examples and associated responses of 'query features' Commands. The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.  Lines preceded with # are comments, however it should be noted that the OpenC2 language does not support comments.  
+
+``` 
+# No target specifiers. Useful for a heartbeat function  
+
+{  
+  "action": "query",  
+  "target": {  
+    "features": []  
+  }  
+}  
+
+# indicates the actuator is alive  
+
+{"status": 200}  
+
+# Multiple specifiers populated in the command  
+{  
+  "action": "query",  
+  "target": {  
+    "features": ["versions", "profiles", "rate_limit"]  
+  }  
+}  
+
+#    
+{  
+  "status": 200,  
+  "versions": ["1.0"],  
+  "profiles": [  
+    "oasis-open.org/openc2/v1.0/ap-slpf",  
+    "example.com/openc2/products/iot-front-door-lock"  
+    ]  
+  "rate_limit": 30  
+}
+```
 
 -------
 
