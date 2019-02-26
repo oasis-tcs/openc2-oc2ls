@@ -1036,11 +1036,20 @@ Field definition for compound types Array, Choice, Map, Record
 -------
 
 # 4 Mandatory Commands/Responses 
-An OpenC2 command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
+_This section is normative_  
+A Command MUST have exactly one Action and exactly one Target.  A Command MAY have one or more Arguments and a Target MAY have one or more Specifiers.  Valid commands are defined in accordance with one or more Actuator Profiles that MAY be implemented by Producers and Consumers. 
 
-An OpenC2 Consumer MUST process an OpenC2 Command where "query" is specified for the ACTION and "features" is specified for the TARGET, hereafter, referred to as a 'query features' command".
+## 4.1 Implementation of 'query features' Command  
+_This subsection is normative_  
 
-Upon processing a 'query features'  command, an OpenC2 Consumer MUST issue an OpenC2 Response to the OpenC2 Producer that issued the OpenC2 Command.
+The 'query features' command is REQUIRED for all Producers and Consumers implementing OpenC2.  This section defines the REQUIRED and OPTIONAL aspects of the 'query features' command and associated response for Producers and Consumers.  
+
+The 'query features' Command is REQUIRED for all OpenC2 Producers. 
+The 'query features' Command MAY include one or more Specifiers as defined in table 3.4.2.10 of this specification.  
+The 'query features' Command MAY include the "response_type":"complete" ARGUMENT. 
+The 'query features' Command MUST NOT include any other ARGUMENT. 
+
+
 
 -------
 
