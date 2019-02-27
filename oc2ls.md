@@ -566,25 +566,9 @@ The Command defines an Action to be performed on a Target.
 | 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
-The following Actions are under consideration for use in future versions of the Language Specification. Implementers may use these Actions with the understanding that they may not be in future versions of the language.
-
-* **report** - Task an entity to provide information to a designated recipient
-* **pause** - Cease operation of a system or activity while maintaining state.
-* **resume** - Start a system or activity from a paused state
-* **move** - Change the location of a file, subnet, network, or process
-* **snapshot** - Record and store the state of a Target at an instant in time
-* **save** - Commit data or system state to memory
-* **throttle** - Adjust the rate of a process, function, or activity
-* **delay** - Stop or hold up an activity or data transmittal
-* **substitute** - Replace all or part of the payload
-* **sync** - Synchronize a sensor or Actuator with other system components
-* **mitigate** -  Task the recipient to circumvent a problem without necessarily eliminating the vulnerability or attack point
-
 **Usage Requirements:**
 
-* Each Command MUST contain exactly one Action. 
-* All Commands MUST only use Actions from this section (either the table or the list) 
-* Actions defined external to this section SHALL NOT be used.
+* Each Command MUST contain exactly one Action defined in Section 3.3.1.1. 
 
 #### 3.3.1.2 Target
 **_Type: Target (Choice)_**
