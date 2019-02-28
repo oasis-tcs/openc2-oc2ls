@@ -127,7 +127,10 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 -------
 
 # 1 Introduction
-OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a Command is encoded by a _Producer_ (managing application) and transferred to a _Consumer_ (managed device or virtualized function) using a secure transfer protocol. The Consumer can respond with status and any requested information.  The contents of both the _Command_ and the _Response_ are fully defined in schemas, allowing both parties to recognize the syntax constraints imposed on the exchange.
+
+_This section is non-normative_
+
+OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a Command is encoded by a _Producer_ (managing application) and transferred to a _Consumer_ (managed device or virtualized function) using a secure transfer protocol, and the Consumer can respond with status and any requested information.
 
 OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices.  These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device.  The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
 
@@ -135,15 +138,15 @@ OpenC2 allows the application producing the commands to discover the set of capa
 This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
 ## 1.2 Terminology
-* **Action**: The task or activity to be performed.
-* **Actuator**: The entity that performs the action.
+* **Action**: The task or activity to be performed (e.g., 'deny').
+* **Actuator**: The entity that performs the action (e.g., 'Stateless Packet Filtering').
 * **Command**: A message defined by an action-target pair that is sent from a Producer and received by a Consumer.
 * **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both Consumer and Producer capabilities.
 * **Producer**: A manager application that sends Commands.
 * **Response**: A message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received request.
-* **Target**: The object of the Action, i.e., the Action is performed on the Target.
+* **Target**: The object of the Action, i.e., the Action is performed on the Target (e.g., IP Address).
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)].
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
 
 ## 1.3 Normative References
 
@@ -220,7 +223,9 @@ Bormann, C., Hoffman, P., "Concise Binary Object Representation (CBOR)", RFC 704
 The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
-* Property names are in bold style – **`created_a**t`
+
+* Property names are in bold style – **'created_at'**.
+
 * All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](#rfc8259)].
 * Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
 
@@ -273,7 +278,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>(standard and extension) |
+| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
 | Common Content | Language Specification<br>(this document) |
 | Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
@@ -295,10 +300,10 @@ The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of a
 
 The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions.  OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/ analytics have been provisioned and the decision to act has been made. This goal and these assumptions guides the design of OpenC2:
 
-* **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and product agnostic manner
+* **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and implementation agnostic manner
 * **Concise:**  A Command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
 * **Abstract:**  Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
-* **Extensible:**  While the OpenC2 language defines a core set of Actions and Targets for cyber defense, it supports separate definition of additional language elements to accommodate new cyber defense technologies.
+* **Extensible:**  While the OpenC2 language defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
 
 ## 1.8 Purpose and Scope
 The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
