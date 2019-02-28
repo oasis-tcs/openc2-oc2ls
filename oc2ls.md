@@ -623,20 +623,6 @@ The Command defines an Action to be performed on a Target.
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
 | 1024 | **slpf** | slpf:Target | 1 | **Example**: Targets defined in the Stateless Packet Filter profile |
 
-The following Targets are under consideration for use in future versions of the Language Specification. Implementers may use these Targets with the understanding that they may not be in future versions of the language.
-
-* directory
-* disk
-* disk_partition
-* email_message
-* memory
-* software
-* user_account
-* user_session
-* volume
-* windows_registry_key
-* x509_certificate
-
 **Usage Requirements:**
 
 * The TARGET field in a Command MUST contain exactly one type of Target (e.g. ip_addr).
