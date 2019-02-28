@@ -400,13 +400,46 @@ When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 | **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 ### 3.1.4 Derived Enumerations
-An Enumerated field may be derived ("auto-generated") from the fields of a Choice, Map or Record type by appending ".*" to the type name.
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type.  A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
 
-**_Type: Example-sel (Record)_**
+This example includes a type representing the value of a single picture element ("pixel") in an image, and an operation "SetValue" to set one of the color values of a pixel.  It would be possible validate a SetValue operation against an explicit enumeration of the Pixel fields:
+
+**_Type: Pixel (Map)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | targets | Target.* | 1..* | Enumeration auto-generated from a Choice |
+| 1 | red | Integer | 1 | |
+| 2 | green | Integer | 1 | |
+| 3 | blue | Integer | 1 | |
+
+**_Type: SetValue (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | channel | Channel | 1 | |
+| 2 | value | Integer | 1 | |
+
+**_Type: Channel (Enumerated)_**
+
+| ID | Name | Description |
+| :--- | :--- | :--- |
+| 1 | red | |
+| 2 | green | |
+| 3 | blue | |
+
+Example **SetValue** operation:
+```
+{"channel": "green", "value": 95}
+```
+
+But it is both easier and more reliable to use a derived enumeration to validate the reference directly against the type being referenced:
+
+**_Type: SetValue (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | channel | Pixel.Enum | 1 | |
+| 2 | value | Integer | 1 | |
 
 ### 3.1.5 Imported Types
 Each Actuator profile defines a *base schema* - the subset of the OpenC2 language relevant in the context of specific actuator functions.  Each profile has a unique name used to unambiguously identify the profile document (and it's base schema).
