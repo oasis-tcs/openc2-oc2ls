@@ -2,18 +2,13 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Committee Specification Draft 07 /<br>Public Review Draft 01
-## 17 October 2018
+## Working Draft 10
+## 04 March 2019
 ### Specification URIs
-#### This version:
+#### Previous version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md (Authoritative)
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.pdf
-
-#### Previous version:
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/md/oc2ls-v1.0-wd07.md (Authoritative)
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/oc2ls-v1.0-csd05.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/oc2ls-v1.0-csd05.pdf
 
 #### Latest version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.md (Authoritative)
@@ -111,18 +106,15 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [5.1 OpenC2 Message Content](#51-openc2-message-content)
     -   [5.2 OpenC2 Producer](#52-openc2-producer)
     -   [5.3 OpenC2 Consumer](#53-openc2-consumer)
--   [Annex A. Schemas](#annex-a-schemas)
-    -   [A.1 OpenC2 Language Syntax](#a1-openc2-language-syntax)
-    -   [A.2 JADN Syntax](#a2-jadn-syntax)
--   [Annex B. Examples](#annex-b-examples)
-    -   [B.1 Example 1](#b1-example-1)
-        -   [B.1.1 Command Message](#b11-command-message)
-        -   [B.1.2 Response Message](#b12-response-message)
-    -   [B.2 Example 2](#b2-example-2)
-    -   [B.3 Example 3](#b3-example-3)
--   [Annex C. Acronyms](#annex-c-acronyms)
--   [Annex D. Revision History](#annex-d-revision-history)
--   [Annex E. Acknowledgments](#annex-e-acknowledgments)
+-   [Annex A. Examples](#annex-a-examples)
+    -   [A.1 Example 1](#a1-example-1)
+        -   [A.1.1 Command Message](#a11-command-message)
+        -   [A.1.2 Response Message](#a12-response-message)
+    -   [A.2 Example 2](#a2-example-2)
+    -   [A.3 Example 3](#a3-example-3)
+-   [Annex B. Acronyms](#annex-b-acronyms)
+-   [Annex C. Revision History](#annex-c-revision-history)
+-   [Annex D. Acknowledgments](#annex-d-acknowledgments)
 
 -------
 
@@ -1062,7 +1054,7 @@ This example is for a transport where the header information is outside the JSON
 
 -------
 
-# Annex C. Acronyms
+# Annex B. Acronyms
 
 | Acroynm | Definition |
 | :--- | :--- |
@@ -1118,6 +1110,7 @@ XML | eXtensibel Markup Language
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some Actions and Targets to reserved lists |
 | v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
 | v1.0-wd09 | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review. |
+| v1.0-wd10 | 03/04/2019 | Romano, Sparrell | Produce interim working draft. |
 
 -------
 
