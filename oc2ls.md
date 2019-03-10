@@ -377,13 +377,14 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | String | A sequence of characters. Each character must have a valid Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
 | Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
-| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and its value has type *vtype*. |
+| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and a value of type *vtype*. |
 | Choice | One field selected from a set of named fields. The value has a name and a type. |
 | Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
 | Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
 | Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
+| MapOf(*enum, vtype*) | An unordered set of named fields. Each field has an id and name from Enumerated type *enum* and a value of type *vtype*. |
 | Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
@@ -573,6 +574,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Enumerated.ID** | JSON **integer** |
 | **Map** | JSON **object**. Member keys are field names. |
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
+| **MapOf** | JSON **object**. Member keys are as defined in the specified Enumerated type. |
 | **Record** | JSON **object**. Member keys are field names. |
 
 #### 3.1.6.1 ID and Name Serialization
@@ -935,13 +937,14 @@ Specifies the results to be returned from a query features Command.
 | 1 | String | 1 | "key": name of this item |
 | 2 | String | 1 | "value": string value of this item |
 
-#### 3.4.2.15 Action-Targets Array
-**_Type: Action-Targets (Array)_**
+#### 3.4.2.15 Action-Targets
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
 
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Action | 1 | An Action supported by this Actuator. |
-| 2 | Target.* | 1..* | List of Targets applicable to this Action.  The Targets are enumerated values derived from the set of Target types. |
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
 
 -------
 
