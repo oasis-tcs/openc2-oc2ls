@@ -695,7 +695,12 @@ The Command defines an Action to be performed on a Target.
 
 **Usage Requirements:**
 
-* When response_requested is not explicitly contained in a Command, a Consumer MUST respond in the same manner as {"response_requested": "complete"}.
+* `response_requested`:
+    * If `response_requested` is specified as `none` then the Consumer SHOULD NOT send a Response.
+    * If `response_requested` is specified as `ack` then the Consumer SHOULD send a Response acknowledging receipt of the Command: `{"status": 102}`.
+    * If `response_requested` is specified as `status` then the Consumer SHOULD send a Response containing the current status of Command execution.
+    * If `response_requested` is specified as `complete` then the Consumer SHOULD send a Response containing the status or results upon completion of Command execution.
+    * If `response_requested` is not explicitly specified then the Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
 **_Type: OpenC2-Response (Record)_**
