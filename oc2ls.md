@@ -702,7 +702,7 @@ The Command defines an Action to be performed on a Target.
     * If only `end_time` is specified then `start_time` is now and `duration` is derived.
     * If only `duration` is specified then `start_time` is now and `end-time` is derived.
 * `response_requested`:
-    * When response_requested is not explicitly contained in a Command, a Consumer MUST respond in the same manner as {"response_requested": "complete"}.
+    * When response_requested is not explicitly contained in a Command, a Consumer MUST respond in the same manner as `{"response_requested": "complete"}`.
 
 ### 3.3.2 OpenC2 Response
 **_Type: OpenC2-Response (Record)_**
