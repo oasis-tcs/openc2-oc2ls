@@ -956,6 +956,7 @@ A conformant Command
 
 1. MUST be structured in accordance with Section 3.3.1, and 
 2. MUST include exactly one ACTION specified in Section 3.3.1.1.
+3. MUST include exactly one TARGET specified in Section 3.3.1.1.
 
 A conformant Response
 
