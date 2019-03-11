@@ -954,13 +954,13 @@ Upon processing a 'query features' Command, an Consumer MUST issue a Response to
 ## 5.1 Message Content
 A conformant Command 
 
-1. MUST be structured in accordance with Section 3.4.1, and 
-2. MUST include exactly one ACTION specified in Section 3.4.1.1.
+1. MUST be structured in accordance with Section 3.3.1, and 
+2. MUST include exactly one ACTION specified in Section 3.3.1.1.
 
 A conformant Response
 
-1. MUST be structured in accordance with Section 3.4.2, and 
-2. MUST include exactly one STATUS specified in Section 3.4.2.1.
+1. MUST be structured in accordance with Section 3.3.2, and 
+2. MUST include exactly one STATUS specified in Section 3.3.2.1.
 
 ## 5.2 Producer
 A conformant Producer 
