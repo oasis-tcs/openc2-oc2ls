@@ -964,28 +964,39 @@ Upon processing a 'query features' Command, an Consumer MUST issue a Response to
 -------
 
 # 5 Conformance
-## 5.1 Message Content
-A conformant Command 
 
-1. MUST be structured in accordance with Section 3.4.1, and 
-2. MUST include exactly one ACTION specified in Section 3.4.1.1.
+_This section is normative._
+
+### 5.1 Conformance Clause 1: Command
+
+A conformant Command
+
+* 5.1-1 MUST be structured in accordance with Section 3.3.1.
+* 5.1-2 MUST include exactly one `action` property defined in accordance with Section 3.3.1.1.
+* 5.1-3 MUST include exactly one `target` property defined in accordance with Section 3.3.1.2 or exactly one imported `target` property defined in accordance with Section 3.1.5.
+* 5.1-4 MUST include zero or one `actuator` property defined in accordance with Section 3.3.1.3 or zero or one imported `actuator` property defined in accordance with Section 3.1.5.
+* 5.1-5 MUST include zero or one `args` property defined in accordance with Section 3.3.1.4 or zero or one imported `args` property defined in accordance with Section 3.1.5.
+
+### 5.2 Conformance Clause 2: Response
 
 A conformant Response
 
-1. MUST be structured in accordance with Section 3.4.2, and 
-2. MUST include exactly one STATUS specified in Section 3.4.2.1.
+* 5.2-1 MUST be structured in accordance with Section 3.3.2.
+* 5.2-2 MUST include exactly one `status` property defined in accordance with Section 3.3.2.1.
 
-## 5.2 Producer
+## 5.3 Conformance Clause 3: Producer
+
 A conformant Producer 
 
-1. MUST issue Commands and process Responses specified in Section 4
-2. MUST implement JSON serialization of generated Commands in accordance with RFC 7493
+* 5.3-1 MUST issue Commands and process Responses in accordance with Section 4.
+* 5.3-2 MUST implement JSON serialization of generated Commands in accordance with RFC 7493.
 
-## 5.3 Consumer
+## 5.4 Conformance Clause 4: Consumer
+
 A conformant Consumer 
 
-1. MUST process Commands and issue Responses specified in Section 4
-2. MUST implement JSON serialization of generated Responses in accordance with RFC 7493
+* 5.4-1 MUST process Commands and issue Responses in accordance with Section 4.
+* 5.4-2 MUST implement JSON serialization of generated Responses in accordance with RFC 7493.
 
 -------
 
