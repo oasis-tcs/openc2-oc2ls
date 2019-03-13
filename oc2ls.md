@@ -792,7 +792,7 @@ Usage Requirements:
 **Usage Requirements:**
 
 * A Producer MUST NOT send a list containing more than one instance of any Feature.
-* A Consumer receiving a list containing more than one instance of any Feature MUST behave as if the duplicate(s) were not present.
+* A Consumer receiving a list containing more than one instance of any Feature SHOULD behave as if the duplicate(s) were not present.
 
 **Usage Notes:**
 
