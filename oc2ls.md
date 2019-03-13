@@ -127,23 +127,30 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 -------
 
 # 1 Introduction
-OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components.  OpenC2 typically uses a request-response paradigm where a Command is encoded by a _Producer_ (managing application) and transferred to a _Consumer_ (managed device or virtualized function) using a secure transfer protocol. The Consumer can respond with status and any requested information.  The contents of both the _Command_ and the _Response_ are fully defined in schemas, allowing both parties to recognize the syntax constraints imposed on the exchange.
 
-OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices.  These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device.  The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
+_The content in this section is non-normative, except where it is marked_ normative.
+
+OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components. OpenC2 typically uses a request-response paradigm where a _Command_ is encoded by a _Producer_ (managing application) and transferred to a _Consumer_ (managed device or virtualized function) using a secure transfer protocol, and the Consumer can respond with status and any requested information.
+
+OpenC2 allows the application producing the commands to discover the set of capabilities supported by the managed devices. These capabilities permit the managing application to adjust its behavior to take advantage of the features exposed by the managed device. The capability definitions can be easily extended in a noncentralized manner, allowing standard and non-standard capabilities to be defined with semantic and syntactic rigor.
 
 ## 1.1 IPR Policy
 This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) Mode of the [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr), the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page ([https://www.oasis-open.org/committees/openc2/ipr.php](https://www.oasis-open.org/committees/openc2/ipr.php)).
 
 ## 1.2 Terminology
-* **Action**: The task or activity to be performed.
-* **Actuator**: The entity that performs the action.
-* **Command**: A message defined by an action-target pair that is sent from a Producer and received by a Consumer.
-* **Consumer**: A managed device / application that receives Commands.  Note that a single device / application can have both Consumer and Producer capabilities.
-* **Producer**: A manager application that sends Commands.
-* **Response**: A message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received request.
-* **Target**: The object of the Action, i.e., the Action is performed on the Target.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)].
+_This section is normative._
+
+* **Action**: The task or activity to be performed (e.g., 'deny').
+* **Actuator**: The entity that performs the Action (e.g., 'Stateless Packet Filtering').
+* **Command**: A Message defined by an Action-Target pair that is sent from a Producer and received by a Consumer.
+* **Consumer**: A managed device / application that receives Commands. Note that a single device / application can have both Consumer and Producer capabilities.
+* **Message**: A content- and transport-independent set of elements conveyed between Consumers and Producers
+* **Producer**: A manager application that sends Commands.
+* **Response**: A Message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received request.
+* **Target**: The object of the Action, i.e., the Action is performed on the Target (e.g., IP Address).
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
 
 ## 1.3 Normative References
 
@@ -197,30 +204,26 @@ Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 9
 ## 1.4 Non-Normative References
 ###### [IACD]
 M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense", Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
-
 ###### [RFC3470]
 Hollenbeck S., Rose, M., Masinter L., "Guidelines for the Use of Extensible Markup Language (XML) within IETF Protocols", BCP 70, RFC 3470, January 2003, https://tools.ietf.org/html/rfc3470.
-
 ###### [RFC7049]
 Bormann, C., Hoffman, P., "Concise Binary Object Representation (CBOR)", RFC 7049, October 2013, https://tools.ietf.org/html/rfc7049.
-
 ###### [UML]
 "UML Multiplicity and Collections", https://www.uml-diagrams.org/multiplicity.html
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
-* [RFC2119](#rfc2119)/[RFC8174](#rfc8174) key words (see [section 1.4](#14-non-normative-references)) are in all uppercase.
+* [RFC2119](#rfc2119)/[RFC8174](#rfc8174) key words (see [section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
 * All words in structure component names are capitalized and are separated with a hyphen, e.g., ACTION, TARGET, TARGET-SPECIFIER.
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
-* All type names, property names, object names, and vocabulary terms are between three and 40 characters long.
 
 ### 1.5.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
-* Property names are in bold style – **`created_a**t`
+* Property names are in bold style – **'created_at'**.
 * All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](#rfc8259)].
 * Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
 
@@ -239,31 +242,28 @@ Example:
 ```
 
 ## 1.6 Overview
-OpenC2 is a suite of specifications to command actuators that execute cyber defense functions in an unambiguous, standardized way.  These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications.  The OpenC2 Language Specification and Actuator Profile specifications focus on the standard at the Producer and Consumer of the Command and Response while the transfer specifications focus on the protocols for their exchange.
+In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:
+1. **Producers**: A Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. A Producer may receive and process Responses in conjunction with a Command.
+2. **Consumers**: A Consumer is an entity that receives and may act upon a Command. A Consumer may create Responses that provide any information captured or necessary to send back to the Producer.
 
-* The OpenC2 Language Specification provides the semantics for the essential elements of the language, the structure for Commands and Responses, and the schema that defines the proper syntax for the language elements that represents the Command or Response.
-* OpenC2 Actuator Profiles specify the subset of the OpenC2 language relevant in the context of specific Actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely) to implement multiple Actuator profiles.  Actuator profiles define the requirements for performing a specific function, and may define new language elements if needed to perform that function.
-* OpenC2 Transfer Specifications utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transfer of OpenC2 messages.
-
-The OpenC2 Language Specification defines a language used to compose messages for command and control of cyber defense systems and components.  A message consists of a header and a payload (_defined_ as a message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more Actuator profiles). 
-
-In general, there are two types of participants involved in the exchange of OpenC2 messages, as depicted in Figure 1-1:
-
-1. **Producer**: A Producer is an entity that creates Commands to provide instruction to one or more systems to act in accordance with the content of the Command. A Producer may receive and process Responses in conjunction with a Command.
-2. **Consumer**: A Consumer is an entity that receives and may act upon a Command.  A Consumer may create Responses that provide any information captured or necessary to send back to the Producer. 
-
-The language defines two payload structures:
-
-1. **Command**: An instruction from one system known as the Producer, to one or more systems, the Consumer(s), to act on the content of the Command.
-2. **Response**: Any information captured or necessary to send back to the Producer that issued the Command, i.e., the Consumer’s Response to the Producer.
-
-![no alt title](images/image_1.png)
+![OpenC2 Message Exchange](images/image_1.png)
 
 **Figure 1-1. OpenC2 Message Exchange**
 
-OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude the use of any particular protocol or standard.
+OpenC2 is a suite of specifications for Producers and Consumers to command and execute cyber defense functions. These specifications include the OpenC2 Language Specification, Actuator Profiles, and Transfer Specifications. The OpenC2 Language Specification and Actuator Profile specifications focus on the language content and meaning at the Producer and Consumer of the Command and Response while the transfer specifications focus on the protocols for their exchange.
+* The **OpenC2 Language Specification** provides the semantics for the essential elements of the language, the structure for Commands and Responses, and the schema that defines the proper syntax for the language elements that represents the Command or Response.
+* **OpenC2 Actuator Profiles** specify the subset of the OpenC2 language relevant in the context of specific Actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely to) implement multiple Actuator profiles. Actuator profiles extend the language by defining specifiers that identify the Actuator to the required level of precision. Actuator Profiles may define Command arguments and Targets that are relevant and/or unique to those Actuator functions.
+* **OpenC2 Transfer Specifications** utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 messages.
 
-![no alt title](images/image_2.png)
+The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (_defined_ as a Message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more Actuator profiles). 
+The language defines two payload structures:
+
+1. **Command**: An instruction from one system known as the Producer, to one or more systems, the Consumer(s), to act on the content of the Command.
+2. **Response**: Any information sent back to the Producer as a result of the Command.
+
+OpenC2 implementations integrate the related OpenC2 specifications described above with related industry specifications, protocols, and standards. Figure 1-2 depicts the relationships among OpenC2 specifications, and their relationships to other industry standards and environment-specific implementations of OpenC2. Note that the layering of implementation aspects in the diagram is notional, and not intended to preclude any particular approach to implementing the needed functionality (for example, the use of an application-layer message signature function to provide message source authentication and integrity).
+
+![OpenC2 Documentation and Layering Model](images/image_2.png)
 
 **Figure 1-2. OpenC2 Documentation and Layering Model**
 
@@ -273,15 +273,19 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>(standard and extension) |
+| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
 | Common Content | Language Specification<br>(this document) |
 | Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
-* The **Secure Transfer** layer provides a communication path between the Producer and the Consumer.  OpenC2 can be layered over any standard transfer protocol.
-* The **Message** layer provides a transfer- and content-independent mechanism for conveying requests, responses, and notifications.  A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.  
+* The **Secure Transfer** layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.
+* The **Message** layer provides a transfer- and content-independent mechanism for conveying requests, responses, and notifications. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata. 
 * The **Common Content** layer defines the structure of Commands and Responses and a set of common language elements used to construct them.
-* The **Function-specific Content** layer defines the language elements used to support a particular cyber defense function.  An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.
+* The **Function-specific Content** layer defines the language elements used to support a particular cyber defense function. An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.
+
+The components of a Command are an Action (what is to be done), a Target (what is being acted upon), an optional Actuator (what is performing the command), and Command arguments, which influence how the Command is to be performed. An Action coupled with a Target is sufficient to describe a complete Command. Though optional, the inclusion of an Actuator and/or Command arguments provides additional precision to a Command.
+
+The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred. 
 
 ## 1.7 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
@@ -293,15 +297,15 @@ The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of a
 * Decision Making:  determining a course-of-action to respond to system events
 * Acting:  Executing the course-of-action 
 
-The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions.  OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/ analytics have been provisioned and the decision to act has been made. This goal and these assumptions guides the design of OpenC2:
+The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions. OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/analytics have been provisioned and the decision to act has been made. This goal and these assumptions guide the design of OpenC2:
 
-* **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and product agnostic manner
+* **Technology Agnostic:**  The OpenC2 language defines a set of abstract atomic cyber defense actions in a platform and implementation agnostic manner
 * **Concise:**  A Command is intended to convey only the essential information required to describe the action required and can be represented in a very compact form for communications-constrained environments
 * **Abstract:**  Commands and Responses are defined abstractly and can be encoded and transferred via multiple schemes as dictated by the needs of different implementation environments
-* **Extensible:**  While the OpenC2 language defines a core set of Actions and Targets for cyber defense, it supports separate definition of additional language elements to accommodate new cyber defense technologies.
+* **Extensible:**  While OpenC2 defines a core set of Actions and Targets for cyber defense, the language is expected to evolve with cyber defense technologies, and permits extensions to accommodate new cyber defense technologies.
 
 ## 1.8 Purpose and Scope
-The OpenC2 Language Specification defines the set of components to assemble a complete command and control message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
+The OpenC2 Language Specification defines the set of components to assemble a complete command and control Message and provides a framework so that the language can be extended. To achieve this purpose, the scope of this specification includes:
 
 1. the set of Actions and options that may be used in Commands
 2. the set of Targets and Target specifiers
@@ -334,7 +338,7 @@ A Command has four main components: ACTION, TARGET, ARGUMENTS, and ACTUATOR. The
     * **ACTUATOR-NAME** (required): The name of the set of functions (e.g., "slpf") performed by the Actuator, and the name of the profile defining Commands applicable to those functions.
     * **ACTUATOR-SPECIFIERS** (optional): The specifier identifies the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
-The ACTION and TARGET components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the Targets are described in [Section 3.3.3](#334-extensions).
+The ACTION and TARGET components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the Targets are described in [Section 3.1.5](#315-imported-types).
 
 TARGET-SPECIFIERS provide additional precision to identify the Target (e.g., 10.1.2.3) and may include a method of identifying multiple Targets of the same type (e.g., 10.1.0.0/16).
 
@@ -347,7 +351,7 @@ The ACTUATOR optionally identifies the entity or entities that are tasked to exe
 The ACTUATOR component may be omitted from a Command and typically will not be included in implementations where the identities of the endpoints are unambiguous or when a high-level effects-based Command is desired and the tactical decisions on how the effect is achieved is left to the recipient.  
 
 ## 2.2 OpenC2 Response
-The Response is a message sent from the recipient of a Command. Response messages provide acknowledgement, status, results from a query, or other information.
+The Response is a Message sent from the recipient of a Command. Response messages provide acknowledgement, status, results from a query, or other information.
 
 The following list summarizes the fields and subfields of a Response. 
 
@@ -373,13 +377,14 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | String | A sequence of characters. Each character must have a valid Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
 | Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
-| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and its value has type *vtype*. |
+| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and a value of type *vtype*. |
 | Choice | One field selected from a set of named fields. The value has a name and a type. |
 | Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
 | Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
 | Map | An unordered set of named fields. Each field has an id, name and type. |
 | Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
+| MapOf(*enum, vtype*) | An unordered set of named fields. Each field has an id and name from Enumerated type *enum* and a value of type *vtype*. |
 | Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
@@ -569,6 +574,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Enumerated.ID** | JSON **integer** |
 | **Map** | JSON **object**. Member keys are field names. |
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
+| **MapOf** | JSON **object**. Member keys are as defined in the specified Enumerated type. |
 | **Record** | JSON **object**. Member keys are field names. |
 
 #### 3.1.6.1 ID and Name Serialization
@@ -583,26 +589,32 @@ For machine-to-machine serialization formats, integers are represented as binary
 The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
 ## 3.2 Message
-As described in Section 1.1, this language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
+As described in Section 1.1, this language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-A message is a content- and transport-independent set of elements conveyed between Consumers and Producers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required, while other message elements are not required by this specification but may be required by other documents.
+A message is a content- and transport-independent set of elements conveyed between producers and consumers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required in all messages. Other message elements are not required by this specification but may be required by other specifications.
 
 ###### Table 3-1. Common Message Elements
 
-| Name | Description |
-| :--- | :--- |
-| **content** | Message body as specified by content_type and msg_type. |
-| **content_type** | String. Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
-| **msg_type** | Message-Type. One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the Response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
-| **status** | Status-Code.  Populated with a numeric status code in Response messages.  Not present in request or notification messages. |
-| **request_id** | Request-Id. A unique identifier value of up to 128 bits that is attached to request and Response messages. This value is assigned by the sender and is copied unmodified into all Responses to support  reference to a particular Command, transaction or event chain. |
-| **created** | Date-Time. Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
-| **from** | String. Authenticated identifier of the creator of or authority for execution of a message. |
-| **to** | ArrayOf(String). Authenticated identifier(s) of the authorized recipient(s) of a message. |
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| **content** | | Message body as specified by content_type and msg_type. |
+| **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
+| **msg_type** | Message-Type | One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
+| **status** | Status-Code | Populated with a numeric status code in response messages.  Not present in request or notification messages. |
+| **request_id** | String | A unique identifier created by the producer and copied by consumer into all responses, in order to support reference to a particular command, transaction or event chain. |
+| **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
+| **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
+| **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
 **Note:**
 
-Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
+Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the Message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
+
+**Usage Requirements:**
+
+* A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
+* The request_id of a request message SHOULD be a Version 4 UUID as specified in RFC 4122 section 4.4.
+* A consumer MUST copy the request_id from a request message into each response to that request.
 
 ## 3.3 Content
 The purpose of this specification is to define the ACTION and TARGET portions of a Command and the common portions of a Response.  The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
@@ -620,6 +632,11 @@ The Command defines an Action to be performed on a Target.
 | 2 | **target** | Target | 1 | The object of the Action. The Action is performed on the Target. |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the Command. |
 | 4 | **actuator** | Actuator | 0..1 | The subject of the Action. The Actuator executes the Action on the Target. |
+| 5 | **command_id** | String | 0..1 | An identifier of this Command. |
+
+**Usage Requirements:**
+
+* A Consumer receiving a command with command_id absent and request_id present MUST use the value of request_id as the command_id.
 
 #### 3.3.1.1 Action
 **_Type: Action (Enumerated)_**
@@ -657,7 +674,7 @@ The Command defines an Action to be performed on a Target.
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | Request-Id | 1 | A reference to a previously issued Command. |
+| 2 | **command** | String | 1 | A reference to a previously issued Command. |
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
@@ -695,6 +712,12 @@ The Command defines an Action to be performed on a Target.
 
 **Usage Requirements:**
 
+* `start_time`, `end_time`, `duration`:
+    * If none are specified, then `start_time` is now, `end_time` is never, and `duration` is infinity.
+    * Only two of the three are allowed on any given Command and the third is derived from the equation `end_time` = `start_time` + `duration`.
+    * If only `start_time` is specified then `end_time` is never and `duration` is infinity.
+    * If only `end_time` is specified then `start_time` is now and `duration` is derived.
+    * If only `duration` is specified then `start_time` is now and `end-time` is derived.
 * `response_requested`:
     * If `response_requested` is specified as `none` then the Consumer SHOULD NOT send a Response.
     * If `response_requested` is specified as `ack` then the Consumer SHOULD send a Response acknowledging receipt of the Command: `{"status": 102}`.
@@ -841,11 +864,6 @@ Usage Requirements:
 | **URI** | String (uri) | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
-#### 3.4.2.1 Request Identifier
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Request-Id** | Binary | A value of up to 128 bits that uniquely identifies a particular Command |
-
 #### 3.4.2.2 Date-Time
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
@@ -936,13 +954,14 @@ Specifies the results to be returned from a query features Command.
 | 1 | String | 1 | "key": name of this item |
 | 2 | String | 1 | "value": string value of this item |
 
-#### 3.4.2.15 Action-Targets Array
-**_Type: Action-Targets (Array)_**
+#### 3.4.2.15 Action-Targets
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
 
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | Action | 1 | An Action supported by this Actuator. |
-| 2 | Target.* | 1..* | List of Targets applicable to this Action.  The Targets are enumerated values derived from the set of Target types. |
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
 
 -------
 
@@ -956,40 +975,51 @@ Upon processing a 'query features' Command, an Consumer MUST issue a Response to
 -------
 
 # 5 Conformance
-## 5.1 Message Content
-A conformant Command 
 
-1. MUST be structured in accordance with Section 3.4.1, and 
-2. MUST include exactly one ACTION specified in Section 3.4.1.1.
+_This section is normative._
+
+### 5.1 Conformance Clause 1: Command
+
+A conformant Command
+
+* 5.1-1 MUST be structured in accordance with Section 3.3.1.
+* 5.1-2 MUST include exactly one `action` property defined in accordance with Section 3.3.1.1.
+* 5.1-3 MUST include exactly one `target` property defined in accordance with Section 3.3.1.2 or exactly one imported `target` property defined in accordance with Section 3.1.5.
+* 5.1-4 MUST include zero or one `actuator` property defined in accordance with Section 3.3.1.3 or zero or one imported `actuator` property defined in accordance with Section 3.1.5.
+* 5.1-5 MUST include zero or one `args` property defined in accordance with Section 3.3.1.4 or zero or one imported `args` property defined in accordance with Section 3.1.5.
+
+### 5.2 Conformance Clause 2: Response
 
 A conformant Response
 
-1. MUST be structured in accordance with Section 3.4.2, and 
-2. MUST include exactly one STATUS specified in Section 3.4.2.1.
+* 5.2-1 MUST be structured in accordance with Section 3.3.2.
+* 5.2-2 MUST include exactly one `status` property defined in accordance with Section 3.3.2.1.
 
-## 5.2 Producer
+## 5.3 Conformance Clause 3: Producer
+
 A conformant Producer 
 
-1. MUST issue Commands and process Responses specified in Section 4
-2. MUST implement JSON serialization of generated Commands in accordance with RFC 7493
+* 5.3-1 MUST issue Commands and process Responses in accordance with Section 4.
+* 5.3-2 MUST implement JSON serialization of generated Commands in accordance with RFC 7493.
 
-## 5.3 Consumer
+## 5.4 Conformance Clause 4: Consumer
+
 A conformant Consumer 
 
-1. MUST process Commands and issue Responses specified in Section 4
-2. MUST implement JSON serialization of generated Responses in accordance with RFC 7493
+* 5.4-1 MUST process Commands and issue Responses in accordance with Section 4.
+* 5.4-2 MUST implement JSON serialization of generated Responses in accordance with RFC 7493.
 
 -------
 
 # Annex A. Examples
 ## A.1 Example 1
-This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the message.
+This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the Message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the Message.
 
 The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:` 'd937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.
 
 The created element is a Date-Time value of milliseconds since the epoch.  The example `1539355895215` may be displayed as` '12 October 2018 14:51:35 UTC'`.
 
-This example, illustrating an internal representation of a message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how message elements are represented internally within an implementation.  Only the serialized values of the message elements embedded within a protocol is relevant to interoperability.
+This example, illustrating an internal representation of a Message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how Message elements are represented internally within an implementation.  Only the serialized values of the Message elements embedded within a protocol is relevant to interoperability.
 
 
 ### A.1.1 Command Message
@@ -1002,7 +1032,7 @@ created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
 
 ### A.1.2 Response Message
-The response message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content.  The request_id from the Command message, if present, is returned unchanged in the Response message.  The "to" element of the Response normally echoes the "from" element of the Command message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the Response.
+The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content.  The request_id from the Command Message, if present, is returned unchanged in the Response Message.  The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the Response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command.  No Actuator profiles currently define response content types other than openc2.
 
