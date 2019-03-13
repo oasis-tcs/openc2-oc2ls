@@ -452,6 +452,10 @@ When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 | :--- | :--- | :--- |
 | **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
+A multiplicity of 0..1 denotes a single optional value of the specified type.  A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
+
+An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type.  The named type can then be used as the type of a required field (multiplicity 1).  Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
+
 ### 3.1.4 Derived Enumerations
 It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type.  A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
 
@@ -805,7 +809,16 @@ Usage Requirements:
 #### 3.4.1.6 Features
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) | An array of zero to ten names used to query an Actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
+
+**Usage Requirements:**
+
+* A Producer MUST NOT send a list containing more than one instance of any Feature.
+* A Consumer receiving a list containing more than one instance of any Feature SHOULD behave as if the duplicate(s) were not present.
+
+**Usage Notes:**
+
+* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keepalive command).  An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keepalive functions.
 
 #### 3.4.1.7 File
 **_Type: File (Map)_**
