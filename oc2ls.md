@@ -738,7 +738,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
 | 3 | **strings** | String | 0..* | Generic set of string values |
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **kvps** | KVP | 0..* | Generic set of key:value pairs |
+| 5 | **results** | Map | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this Actuator |
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this Actuator |
@@ -959,14 +959,6 @@ Specifies the results to be returned from a query features Command.
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
 
-#### 3.4.2.14 Key-Value Pair
-**_Type: KVP (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | String | 1 | "key": name of this item |
-| 2 | String | 1 | "value": string value of this item |
-
 #### 3.4.2.15 Action-Targets
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
@@ -1067,13 +1059,13 @@ This example is for a transport where the header information is outside the JSON
 {
     "action": "query",
     "target": {
-        "properties": ["battery_percentage"]
+        "properties": ["battery"]
     },
     "actuator": {
-        "esm": {
+        "x-esm": {
             "asset_id": "TGEadsasd"
         }
-    }:
+    }
 }
 ```
 
@@ -1082,7 +1074,19 @@ This example is for a transport where the header information is outside the JSON
 ```
 {
     "status": 200,
-    "kvps": [["battery_percentage", "0.577216"]]
+    "results": {
+        "battery": {
+            "capacity": 0.577216,
+            "charged_at": 1547506988,
+            "status": 12,
+            "mode": {
+                "output": high",
+                "supported": [ "high", "trickle" ]
+            }
+            "visible_on_display": true
+        },
+        "asset_id": "TGEadsasd"
+    }
 }
 ```
 
@@ -1126,7 +1130,6 @@ IP | Internet Protocol
 IPR | Intellectual Property Rights
 JSON | Java Script Notation
 KMIP | Key Management Interface Protocol
-KVP | Key Value Pairs
 MAC | Media Access Control
 MD5 | Message Digest
 MIME | Multipurpose Internet Mail Extensions 
