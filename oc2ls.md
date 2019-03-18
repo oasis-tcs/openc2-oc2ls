@@ -128,7 +128,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
 
 # 1 Introduction
 
-_The content in this section is non-normative, except where it is marked_ normative.
+_The content in this section is non-normative, except where it is marked normative._
 
 OpenC2 is a suite of specifications that enables command and control of cyber defense systems and components. OpenC2 typically uses a request-response paradigm where a _Command_ is encoded by a _Producer_ (managing application) and transferred to a _Consumer_ (managed device or virtualized function) using a secure transfer protocol, and the Consumer can respond with status and any requested information.
 
@@ -322,6 +322,9 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 -------
 
 # 2 OpenC2 Language Description
+
+_The content in this section is non-normative._
+
 The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgement, status, etc.) as a result of a Command.
 
 ## 2.1 OpenC2 Command
@@ -362,6 +365,9 @@ The following list summarizes the fields and subfields of a Response.
 -------
 
 # 3 OpenC2 Language Definition 
+
+_The content in this section is normative._
+
 ## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
 OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values).  The data types used in OpenC2 messages are:
@@ -588,7 +594,15 @@ Instances of Enumerated types and keys for Choice and Map types are serialized a
 2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
 
 #### 3.1.6.2 Integer Serialization
-For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.  For example, the JSON "number" type represents integers and real numbers as decimal strings without quotes, e.g., { "height": 68.2 }, and as noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
+For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.
+
+**Example:**
+The JSON "number" type represents integers and real numbers as decimal strings without quotes.
+```
+{ "height": 68.2 }
+```
+
+As noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
 
 The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
@@ -979,6 +993,9 @@ Specifies the results to be returned from a query features Command.
 -------
 
 # 4 Required Commands/Responses 
+
+_The content in this section is normative._
+
 An OpenC2 Command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
 
 A Consumer MUST process a Command where "query" is specified for the ACTION and "features" is specified for the TARGET, hereafter, referred to as a 'query features' Command".
@@ -989,7 +1006,7 @@ Upon processing a 'query features' Command, an Consumer MUST issue a Response to
 
 # 5 Conformance
 
-_This section is normative._
+_This content in this section is normative._
 
 ### 5.1 Conformance Clause 1: Command
 
@@ -1025,6 +1042,9 @@ A conformant Consumer
 -------
 
 # Annex A. Examples
+
+_The content in this section is non-normative._
+
 ## A.1 Example 1
 This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the Message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the Message.
 
@@ -1112,6 +1132,8 @@ This example is for a transport where the header information is outside the JSON
 
 # Annex C. Acronyms
 
+_The content in this section is non-normative._
+
 | Acroynm | Definition |
 | :--- | :--- |
 API | Application Programming Interface
@@ -1151,6 +1173,9 @@ XML | eXtensibel Markup Language
 -------
 
 # Annex C. Revision History
+
+_The content in this section is non-normative._
+
 | Revision | Date | Editor | Changes Made |
 | :--- | :--- | :--- | :--- |
 | v1.0-wd01 | 10/31/2017 | Romano, Sparrell | Initial working draft |
@@ -1170,6 +1195,9 @@ XML | eXtensibel Markup Language
 -------
 
 # Annex D. Acknowledgments
+
+_The content in this section is non-normative._
+
 The following individuals have participated in the creation of this specification and are gratefully acknowledged:
 
 **OpenC2 TC Members:**
