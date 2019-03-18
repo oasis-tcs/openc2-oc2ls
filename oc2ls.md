@@ -515,8 +515,8 @@ The following actions are under consideration for use in future versions of the 
 | 10 | **file** | File | 1 | Properties of a file. |
 | 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
-| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of src and dst v4 address range, src and dst port, and protocol |
-| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of src and dst v6 address range, src and dst port, and protocol |
+| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
+| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
 | 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an actuator |
