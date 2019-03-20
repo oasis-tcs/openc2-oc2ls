@@ -738,7 +738,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
 | 3 | **strings** | String | 0..* | Generic set of string values |
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **results** | Map | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
+| 5 | **results** | MapOf(key, value) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this Actuator |
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this Actuator |
