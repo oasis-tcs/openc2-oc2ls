@@ -971,12 +971,74 @@ Specifies the results to be returned from a query features Command.
 
 -------
 
-# 4 Required Commands/Responses 
-An OpenC2 Command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
+# 4 Mandatory Commands/Responses 
 
-A Consumer MUST process a Command where "query" is specified for the ACTION and "features" is specified for the TARGET, hereafter, referred to as a 'query features' Command".
+_The content in this section is normative, except where it is marked non-normative._
 
-Upon processing a 'query features' Command, an Consumer MUST issue a Response to the Producer that issued the Command.
+A Command consists of an ACTION/TARGET pair and associated SPECIFIERS and ARGUMENTs. This section enumerates the allowed Commands, identifies which are required or optional to implement, and presents the associated responses.
+
+## 4.1 Implementation of 'query features' Command
+
+The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2.  This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.  
+
+The 'query features' Command is REQUIRED for all Producers. 
+The 'query features' Command MAY include one or more Specifiers as defined in table 3.4.2.10 of this specification.  
+The 'query features' Command MAY include the "response_type":"complete" ARGUMENT. 
+The 'query features' Command MUST NOT include any other ARGUMENT. 
+
+The 'query features' Command is REQUIRED for all Consumers. 
+Consumers that receive and parse the 'query features':  
+*  With any ARGUMENT other than "response_type:complete"  
+    *  MUST NOT respond with OK/200.
+    *  SHOULD respond with Bad Request/400.
+    *  MAY respond with the 500 status code.
+*  With no Target specifiers MUST respond with response code 200.
+*  With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Langauge Versions supported by the consumer. 
+*  With the [profiles] Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
+*  With the [pairs] Target specifier MUST respond with status 200 and populuate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
+* With the [rate_limit] Target specifier populated: 
+    * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support. 
+    * MAY respond with status 200 and with the rate_limit field unpopulated.  
+
+## 4.2 Sample Commands and Responses
+
+_This section is non-normative._
+
+This sub-section provides examples and associated responses of 'query features' Commands. The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.  Lines preceded with # are comments, however it should be noted that the OpenC2 language does not support comments.  
+
+``` 
+# No target specifiers. Useful for a heartbeat function  
+
+{  
+  "action": "query",  
+  "target": {  
+    "features": []  
+  }  
+}  
+
+# indicates the actuator is alive  
+
+{"status": 200}  
+
+# Multiple specifiers populated in the command  
+{  
+  "action": "query",  
+  "target": {  
+    "features": ["versions", "profiles", "rate_limit"]  
+  }  
+}  
+
+#    
+{  
+  "status": 200,  
+  "versions": ["1.0"],  
+  "profiles": [  
+    "oasis-open.org/openc2/v1.0/ap-slpf",  
+    "example.com/openc2/products/iot-front-door-lock"  
+    ]  
+  "rate_limit": 30  
+}
+```
 
 -------
 
