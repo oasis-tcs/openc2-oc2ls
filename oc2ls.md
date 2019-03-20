@@ -32,7 +32,7 @@
 * Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Abstract:
-Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine to machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
+Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
 #### Status:
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
@@ -333,18 +333,18 @@ A Command has four main components: ACTION, TARGET, ARGUMENTS, and ACTUATOR. The
 * **TARGET** (required): The object of the action. The ACTION is performed on the TARGET.
     * **TARGET-NAME** (required): The name of the object of the Action.
     * **TARGET-SPECIFIERS** (optional): The specifier further identifies the Target to some level of precision, such as a specific Target, a list of Targets, or a class of Targets.
-* **ARGUMENTS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
+* **ARGUMENTS** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **ACTUATOR** (optional): The ACTUATOR executes the Command (the ACTION and TARGET). The ACTUATOR type will be defined within the context of an Actuator Profile.
-    * **ACTUATOR-NAME** (required): The name of the set of functions (e.g., "slpf") performed by the Actuator, and the name of the profile defining Commands applicable to those functions.
+    * **ACTUATOR-NAME** (required): The name of the set of functions (e.g., "slpf") performed by the Actuator, and the name of the corresponding profile defining Commands applicable to those functions.
     * **ACTUATOR-SPECIFIERS** (optional): The specifier identifies the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
 The ACTION and TARGET components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by one or more TARGET-SPECIFIERS. Procedures to extend the Targets are described in [Section 3.1.5](#315-imported-types).
 
 TARGET-SPECIFIERS provide additional precision to identify the Target (e.g., 10.1.2.3) and may include a method of identifying multiple Targets of the same type (e.g., 10.1.0.0/16).
 
-The ARGUMENTS component, if present, is populated by one or more 'command arguments' that determine how the Command is executed. ARGUMENTS influence the Command by providing information such as time, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a Command. The valid ARGUMENTS defined in this specification are in [Section 3.3.1.4](#3314-command-arguments).
+The ARGUMENTS component, if present, is populated by one or more 'command arguments' that determine how the Command is executed. ARGUMENTS influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a Command. The valid ARGUMENTS defined in this specification are in [Section 3.3.1.4](#3314-command-arguments).
 
-An ACTUATOR is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are required or optional in the context of a particular ACTUATOR. An Actuator Profile may extend the language by defining additional ARGUMENTS, ACTUATOR-SPECIFIERS, and/or TARGETS that are meaningful and possibly unique to the Actuator.
+An ACTUATOR is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of ACTIONS, TARGETS and other aspects of this language specification that are meaningful, whether required or optional in the context of a particular ACTUATOR. An Actuator Profile may extend the language by defining additional ARGUMENTS, ACTUATOR-SPECIFIERS, and/or TARGETS that are meaningful and possibly unique to the Actuator.
 
 The ACTUATOR optionally identifies the entity or entities that are tasked to execute the Command. Specifiers for Actuators refine the Command so that a particular function, system, class of devices, or specific device can be identified. 
 
@@ -1111,6 +1111,7 @@ This example, illustrating an internal representation of a Message, is non-norma
 
 
 ### A.1.1 Command Message
+```
 content-type: 'application/openc2'
 msg_type: 'request'
 request_id: b'\xd97\xfc\xa9+dNq'
@@ -1118,12 +1119,14 @@ from: 'nocc-3497'
 to: ['#filter-devices']
 created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
+```
 
 ### A.1.2 Response Message
 The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content.  The request_id from the Command Message, if present, is returned unchanged in the Response Message.  The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the Response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command.  No Actuator profiles currently define response content types other than openc2.
 
+```
 status: 200
 content-type: 'application/openc2'
 msg_type: 'response'
@@ -1132,6 +1135,7 @@ from: 'pf72394'
 to: ['nocc-3497']
 created: 1539355898000
 content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
+```
 
 ## A.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
