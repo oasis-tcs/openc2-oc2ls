@@ -32,7 +32,7 @@
 * Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Abstract:
-Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine to machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
+Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
 #### Status:
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
@@ -337,7 +337,7 @@ The following list summarizes the main four components of a Command.
 
 * **Action** (required): The task or activity to be performed.
 * **Target** (required): The object of the action. The Action is performed on the Target. Properties of the Target, called Target Specifiers, further identify the Target to some level of precision, such as a specific Target, a list of Targets, or a class of Targets.
-* **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration etc.
+* **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **Actuator** (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
 The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-imported-types).
@@ -490,64 +490,84 @@ But it is both easier and more reliable to use a derived enumeration to validate
 | 1 | channel | Pixel.Enum | 1 | |
 | 2 | value | Integer | 1 | |
 
-### 3.1.5 Imported Types
-Each Actuator profile defines a *base schema* - the subset of the OpenC2 language relevant in the context of specific actuator functions.  Each profile has a unique name used to unambiguously identify the profile document (and it's base schema).
+### 3.1.5 Extensions
+One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
-In addition, a profile may define profile-specific types that are *imported* by its base schema. Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single merged schema without risk of ambiguity or name collisions. A namespace consists of:
+Each Actuator profile has a unique name used to identify the profile document. This unique name is called a namespace identifier. This namespace identifier is used to separate extensions from the core language defined in this specification.
 
-* The unique name of the schema being imported
-* A short namespace identifier (**nsid**) assigned locally within the base schema to refer to the unique name
+The namespace identifier for non-standard extensions MUST be prefixed with "x-".
 
-In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means prepending the namespace identifier to all type names defined in that schema.
+The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
-Producers and Consumers MUST support the syntax defined by the merged schema, regardless of whether the implementation is based on conceptually merging tables from a set of documents or physically merging a set of schema files.
+The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended using the namespace identifier as the Target name, called an extended Target namespace. One or more extended Targets for an Actuator MUST be defined within the extended Target namespace.
 
-**Example - Import a Schema**
+**For example:**
+In this example, the extended Target `rule_number` is defined within the extended Target namespace `slpf`.
 
-Assume that a schema being imported includes the following type definitions:
+```
+{
+    "action": "delete",
+    "target": {
+        "slpf": {
+            "rule_number": 1234
+        }
+    }
+}
+```
 
-**_Type: Target (Choice)_**
+The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. One or more extended Arguments for an Actuator MUST be defined within the extended Argument namespace.
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **device** | Device | 1 | |
+**For example:**
+In this example, the extended Argument `direction` is defined within the extended Argument namespace `slpf`.
 
-**_Type: Device (Map)_**
+```
+{
+    "action": "deny",
+    "target": {
+        "ipv6_net": {...}
+    },
+    "args": {
+        "slpf": {
+            "direction": "ingress"
+        }
+    }
+}
+````
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **model** | String | 0..1 | |
-| 2 | **manufacturer** | String | 0..1 | |
+The Actuators defined in [Section 3.3.1.3](#3313-actuator) MAY be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
-After conceptually importing that schema under the "abc" namespace identifier, the base schema would be interpreted as if it contained the following definitions:
+**For example:**
+In this example, the Actuator Specifier `asset_id` is defined within the extended Actuator namespace `slpf`.
 
-**_Type: abc:Target (Choice)_**
+```
+{
+    "action": "deny",
+    "target": {
+        "ipv4_connection": {...}
+    },
+    "actuator": {
+        "slpf": {
+            "asset_id": "30"
+        }
+    }
+}
+````
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **device** | abc:Device | 1 | |
+The `results` property of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
 
-**_Type: abc:Device (Map)_**
+**For example:**
+In this example, the Response result `rule_number` is defined within the extended results namespace `slpf`.
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **model** | String | 0..1 | |
-| 2 | **manufacturer** | String | 0..1 | |
-
-A Consumer lists the profiles it supports in response to the "query features imports" command. The Producer then knows the unique names of all imported profiles and the nsids assigned to each profile by that Consumer. The Target type defined in the profile's base schema contains a subset of the Target fields defined in this document, plus a field for each imported profile:
-
-**_Type: Target (Choice)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 3 | **device** | Device | 1 | The properties of a hardware device. |
-| 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
-| 1030 | **abc** | abc:Target | 1 | Imported targets defined in the "abc" profile |
-
-The **device** target and the **abc** target have different Types, and even though the combined schema includes type definitions for both Device and abc:Device, those definitions do not conflict.
-
-The ID and Name of a field whose Type is imported are arbitrary, but because there may not be a way for a Producer to determine the schema used by a Consumer, the field Name assigned to an imported type SHOULD equal the nsid of that type. 
+```
+{
+    "status": 200,
+    "results": {
+        "slpf": {
+            "rule_number": 1234
+        }
+    }
+}
+````
 
 ### 3.1.6 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
@@ -633,6 +653,7 @@ The Command defines an Action to be performed on a Target.
 **Usage Requirements:**
 
 * A Consumer receiving a command with command_id absent and request_id present MUST use the value of request_id as the command_id.
+* If present, the `args` property MUST contain at least one element defined in [Section 3.3.1.4](#3314-command-arguments).
 
 #### 3.3.1.1 Action
 **_Type: Action (Enumerated)_**
@@ -704,7 +725,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Action to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Action: `none`, `ack`, `status`, `complete`. |
-| 1024 | **slpf** | slpf:Args | 1 | **Example**: Command Arguments defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | slpf:Args | 0..1 | **Example**: Command Arguments defined in the Stateless Packet Filter profile |
 
 **Usage Requirements:**
 
@@ -730,7 +751,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
 | 3 | **strings** | String | 0..* | Generic set of string values |
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **kvps** | KVP | 0..* | Generic set of key:value pairs |
+| 5 | **results** | MapOf(key, value) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this Actuator |
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this Actuator |
@@ -951,14 +972,6 @@ Specifies the results to be returned from a query features Command.
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
 
-#### 3.4.2.14 Key-Value Pair
-**_Type: KVP (Array)_**
-
-| ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
-| 1 | String | 1 | "key": name of this item |
-| 2 | String | 1 | "value": string value of this item |
-
 #### 3.4.2.15 Action-Targets
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
@@ -970,12 +983,74 @@ Specifies the results to be returned from a query features Command.
 
 -------
 
-# 4 Required Commands/Responses 
-An OpenC2 Command consists of an Action/Target pair and associated Specifiers and Arguments.  This section enumerates the allowed commands, identify which are required or optional to implement, and present the associated responses.  
+# 4 Mandatory Commands/Responses 
 
-A Consumer MUST process a Command where "query" is specified for the Action and "features" is specified for the Target, hereafter, referred to as a 'query features' Command".
+_The content in this section is normative, except where it is marked non-normative._
 
-Upon processing a 'query features' Command, an Consumer MUST issue a Response to the Producer that issued the Command.
+A Command consists of an Action/Target pair and associated Specifiers and Arguments. This section enumerates the allowed Commands, identifies which are required or optional to implement, and presents the associated responses.
+
+## 4.1 Implementation of 'query features' Command
+
+The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2.  This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.  
+
+The 'query features' Command is REQUIRED for all Producers. 
+The 'query features' Command MAY include one or more Specifiers as defined in table 3.4.2.10 of this specification.  
+The 'query features' Command MAY include the "response_type":"complete" ARGUMENT. 
+The 'query features' Command MUST NOT include any other ARGUMENT. 
+
+The 'query features' Command is REQUIRED for all Consumers. 
+Consumers that receive and parse the 'query features':  
+*  With any ARGUMENT other than "response_type:complete"  
+    *  MUST NOT respond with OK/200.
+    *  SHOULD respond with Bad Request/400.
+    *  MAY respond with the 500 status code.
+*  With no Target specifiers MUST respond with response code 200.
+*  With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Langauge Versions supported by the consumer. 
+*  With the [profiles] Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
+*  With the [pairs] Target specifier MUST respond with status 200 and populuate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
+* With the [rate_limit] Target specifier populated: 
+    * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support. 
+    * MAY respond with status 200 and with the rate_limit field unpopulated.  
+
+## 4.2 Sample Commands and Responses
+
+_This section is non-normative._
+
+This sub-section provides examples and associated responses of 'query features' Commands. The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.  Lines preceded with # are comments, however it should be noted that the OpenC2 language does not support comments.  
+
+``` 
+# No target specifiers. Useful for a heartbeat function  
+
+{  
+  "action": "query",  
+  "target": {  
+    "features": []  
+  }  
+}  
+
+# indicates the actuator is alive  
+
+{"status": 200}  
+
+# Multiple specifiers populated in the command  
+{  
+  "action": "query",  
+  "target": {  
+    "features": ["versions", "profiles", "rate_limit"]  
+  }  
+}  
+
+#    
+{  
+  "status": 200,  
+  "versions": ["1.0"],  
+  "profiles": [  
+    "oasis-open.org/openc2/v1.0/ap-slpf",  
+    "example.com/openc2/products/iot-front-door-lock"  
+    ]  
+  "rate_limit": 30  
+}
+```
 
 -------
 
@@ -1028,6 +1103,7 @@ This example, illustrating an internal representation of a Message, is non-norma
 
 
 ### A.1.1 Command Message
+```
 content-type: 'application/openc2'
 msg_type: 'request'
 request_id: b'\xd97\xfc\xa9+dNq'
@@ -1035,12 +1111,14 @@ from: 'nocc-3497'
 to: ['#filter-devices']
 created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
+```
 
 ### A.1.2 Response Message
 The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content.  The request_id from the Command Message, if present, is returned unchanged in the Response Message.  The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the Response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command.  No Actuator profiles currently define response content types other than openc2.
 
+```
 status: 200
 content-type: 'application/openc2'
 msg_type: 'response'
@@ -1049,6 +1127,7 @@ from: 'pf72394'
 to: ['nocc-3497']
 created: 1539355898000
 content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
+```
 
 ## A.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
@@ -1059,13 +1138,13 @@ This example is for a transport where the header information is outside the JSON
 {
     "action": "query",
     "target": {
-        "properties": ["battery_percentage"]
+        "properties": ["battery"]
     },
     "actuator": {
-        "esm": {
+        "x-esm": {
             "asset_id": "TGEadsasd"
         }
-    }:
+    }
 }
 ```
 
@@ -1074,7 +1153,19 @@ This example is for a transport where the header information is outside the JSON
 ```
 {
     "status": 200,
-    "kvps": [["battery_percentage", "0.577216"]]
+    "results": {
+        "battery": {
+            "capacity": 0.577216,
+            "charged_at": 1547506988,
+            "status": 12,
+            "mode": {
+                "output": high",
+                "supported": [ "high", "trickle" ]
+            }
+            "visible_on_display": true
+        },
+        "asset_id": "TGEadsasd"
+    }
 }
 ```
 
@@ -1118,7 +1209,6 @@ IP | Internet Protocol
 IPR | Intellectual Property Rights
 JSON | Java Script Notation
 KMIP | Key Management Interface Protocol
-KVP | Key Value Pairs
 MAC | Media Access Control
 MD5 | Message Digest
 MIME | Multipurpose Internet Mail Extensions 
