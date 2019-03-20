@@ -498,64 +498,84 @@ But it is both easier and more reliable to use a derived enumeration to validate
 | 1 | channel | Pixel.Enum | 1 | |
 | 2 | value | Integer | 1 | |
 
-### 3.1.5 Imported Types
-Each Actuator profile defines a *base schema* - the subset of the OpenC2 language relevant in the context of specific actuator functions.  Each profile has a unique name used to unambiguously identify the profile document (and it's base schema).
+### 3.1.5 Extensions
+One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
-In addition, a profile may define profile-specific types that are *imported* by its base schema. Type definitions are imported under a *namespace* to allow profiles to be developed independently and their definitions brought together into a single merged schema without risk of ambiguity or name collisions. A namespace consists of:
+Each Actuator profile has a unique name used to identify the profile document. This unique name is called a namespace identifier. This namespace identifier is used to separate extensions from the core language defined in this specification.
 
-* The unique name of the schema being imported
-* A short namespace identifier (**nsid**) assigned locally within the base schema to refer to the unique name
+The namespace identifier for non-standard extensions MUST be prefixed with "x-".
 
-In this document, type definitions are represented as tables and importing is a conceptual process.  When using a schema language, importing is an actual process that takes a base schema and a set of imported schemas as inputs and produces a single merged schema as output. In both cases the base schema locally assigns a namespace identifier to each schema that it imports, and importing a schema means prepending the namespace identifier to all type names defined in that schema.
+The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
-Producers and Consumers MUST support the syntax defined by the merged schema, regardless of whether the implementation is based on conceptually merging tables from a set of documents or physically merging a set of schema files.
+The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended using the namespace identifier as the Target name, called an extended Target namespace. One or more extended Targets for an Actuator MUST be defined within the extended Target namespace.
 
-**Example - Import a Schema**
+**For example:**
+In this example, the extended Target `rule_number` is defined within the extended Target namespace `slpf`.
 
-Assume that a schema being imported includes the following type definitions:
+```
+{
+    "action": "delete",
+    "target": {
+        "slpf": {
+            "rule_number": 1234
+        }
+    }
+}
+```
 
-**_Type: Target (Choice)_**
+The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. One or more extended Arguments for an Actuator MUST be defined within the extended Argument namespace.
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **device** | Device | 1 | |
+**For example:**
+In this example, the extended Argument `direction` is defined within the extended Argument namespace `slpf`.
 
-**_Type: Device (Map)_**
+```
+{
+    "action": "deny",
+    "target": {
+        "ipv6_net": {...}
+    },
+    "args": {
+        "slpf": {
+            "direction": "ingress"
+        }
+    }
+}
+````
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **model** | String | 0..1 | |
-| 2 | **manufacturer** | String | 0..1 | |
+The Actuators defined in [Section 3.3.1.3](#3313-actuator) MAY be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
-After conceptually importing that schema under the "abc" namespace identifier, the base schema would be interpreted as if it contained the following definitions:
+**For example:**
+In this example, the Actuator Specifier `asset_id` is defined within the extended Actuator namespace `slpf`.
 
-**_Type: abc:Target (Choice)_**
+```
+{
+    "action": "deny",
+    "target": {
+        "ipv4_connection": {...}
+    },
+    "actuator": {
+        "slpf": {
+            "asset_id": "30"
+        }
+    }
+}
+````
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **device** | abc:Device | 1 | |
+The `results` property of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
 
-**_Type: abc:Device (Map)_**
+**For example:**
+In this example, the Response result `rule_number` is defined within the extended results namespace `slpf`.
 
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **model** | String | 0..1 | |
-| 2 | **manufacturer** | String | 0..1 | |
-
-A Consumer lists the profiles it supports in response to the "query features imports" command. The Producer then knows the unique names of all imported profiles and the nsids assigned to each profile by that Consumer. The Target type defined in the profile's base schema contains a subset of the Target fields defined in this document, plus a field for each imported profile:
-
-**_Type: Target (Choice)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 3 | **device** | Device | 1 | The properties of a hardware device. |
-| 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
-| 1030 | **abc** | abc:Target | 1 | Imported targets defined in the "abc" profile |
-
-The **device** target and the **abc** target have different Types, and even though the combined schema includes type definitions for both Device and abc:Device, those definitions do not conflict.
-
-The ID and Name of a field whose Type is imported are arbitrary, but because there may not be a way for a Producer to determine the schema used by a Consumer, the field Name assigned to an imported type SHOULD equal the nsid of that type. 
+```
+{
+    "status": 200,
+    "results": {
+        "slpf": {
+            "rule_number": 1234
+        }
+    }
+}
+````
 
 ### 3.1.6 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
