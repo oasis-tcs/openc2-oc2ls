@@ -641,6 +641,7 @@ The Command defines an Action to be performed on a Target.
 **Usage Requirements:**
 
 * A Consumer receiving a command with command_id absent and request_id present MUST use the value of request_id as the command_id.
+* If present, the `args` property MUST contain at least one element defined in [Section 3.3.1.4](#3314-command-arguments).
 
 #### 3.3.1.1 Action
 **_Type: Action (Enumerated)_**
@@ -712,7 +713,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Action to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Action: `none`, `ack`, `status`, `complete`. |
-| 1024 | **slpf** | slpf:Args | 1 | **Example**: Command Arguments defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | slpf:Args | 0..1 | **Example**: Command Arguments defined in the Stateless Packet Filter profile |
 
 **Usage Requirements:**
 
