@@ -142,7 +142,7 @@ This specification is provided under the [Non-Assertion](https://www.oasis-open.
 _This section is normative._
 
 * **Action**: The task or activity to be performed (e.g., 'deny').
-* **Actuator**: The entity that performs the Action (e.g., 'Stateless Packet Filtering').
+* **Actuator**: The function performed by the Consumer that executes the Command (e.g., 'Stateless Packet Filtering').
 * **Argument**: A property of a Command that provides additional information on how to perform the Command, such as date/time, periodicity, duration, etc.
 * **Command**: A Message defined by an Action-Target pair that is sent from a Producer and received by a Consumer.
 * **Consumer**: A managed device / application that receives Commands. Note that a single device / application can have both Consumer and Producer capabilities.
