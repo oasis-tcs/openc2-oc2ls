@@ -770,7 +770,7 @@ each in their own field.
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | IPv4-Addr | 1 | ipv4-address - as defined in [RFC 4632](#rfc4632) Section 3.1 |
+| 1 | IPv4-Addr | 1 | ipv4-address as defined in [RFC 791](#rfc791) |
 | 2 | Integer | 0..1 | CIDR prefix-length.  If omitted, refers to a single host address. |
 
 #### 3.4.1.9 IPv6 Address Range
@@ -778,7 +778,7 @@ each in their own field.
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | IPv6-Addr | 1 | ipv6-address - as defined in [RFC 4291](#rfc4291) Section 2.3 |
+| 1 | IPv6-Addr | 1 | ipv6-address as defined in [RFC 8200](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv4 Connection
