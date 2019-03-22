@@ -791,7 +791,7 @@ The Command defines an Action to be performed on a Target.
 | 7 | **profiles** | Import | 0..* | List of profiles supported by this Actuator |
 | 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1024 | **slpf** | <slpf:Response | 1 | **Example**: Response types defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | <slpf:Results | 1 | **Example**: Results types defined in the Stateless Packet Filter profile |
 
 **Example:**
 
