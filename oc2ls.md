@@ -184,6 +184,8 @@ Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI):
 Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122.
 ###### [RFC4291]
 Hinden, R., Deering, S., "IP Version 6 Addressing Architecture", RFC 4291, February 2006, http://www.rfc-editor.org/info/rfc4291.
+###### [RFC4443]
+Conta, A., Deering, S., Gupta Ed., M., "Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification", RFC 4443, March 2006, http://www.rfc-editor.org/info/rfc4443.
 ###### [RFC4632]
 Fuller, V., Li, T., "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", RFC 4632, August 2006, http://www.rfc-editor.org/info/rfc4632.
 ###### [RFC4648]
@@ -905,9 +907,9 @@ each in their own field.
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [RFC 6335](#rfc6335) |
+| 2 | **src_port** | Port | 0..1 | source service per [RFC 6335](#rfc6335) or ICMP Type per [RFC 792](#rfc792) if protocol is 1 |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 4 | **dst_port** | Port | 0..1 | destination service per [RFC 6335](#rfc6335) or ICMP Code per [RFC 792](#rfc792) if protocol is 1|
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 #### 3.4.1.11 IPv6 Connection
@@ -916,9 +918,9 @@ each in their own field.
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
+| 2 | **src_port** | Port | 0..1 | source service per [RFC 6335](#rfc6335) or ICMP Type per [RFC 4443](#rfc4443) if protocol is 58 |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 4 | **dst_port** | Port | 0..1 | destination service per [RFC 6335](#rfc6335) or ICMP Code per [RFC 4443](#rfc4443) if protocol is 58 |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
 
 *Editor's Note: Renumber*
