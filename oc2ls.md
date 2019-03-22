@@ -831,7 +831,7 @@ Usage Requirements:
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, RFC 6838 |
-| 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
+| 2 | **payload** | <Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
 #### 3.4.1.3 Device
