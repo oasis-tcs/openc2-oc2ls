@@ -2,18 +2,13 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Committee Specification Draft 07 /<br>Public Review Draft 01
-## 17 October 2018
+## Working Draft 11
+## 21 March 2019
 ### Specification URIs
-#### This version:
+#### Previous version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md (Authoritative)
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.pdf
-
-#### Previous version:
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/md/oc2ls-v1.0-wd07.md (Authoritative)
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/oc2ls-v1.0-csd05.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd05/oc2ls-v1.0-csd05.pdf
 
 #### Latest version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.md (Authoritative)
@@ -111,18 +106,15 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [5.1 OpenC2 Message Content](#51-openc2-message-content)
     -   [5.2 OpenC2 Producer](#52-openc2-producer)
     -   [5.3 OpenC2 Consumer](#53-openc2-consumer)
--   [Annex A. Schemas](#annex-a-schemas)
-    -   [A.1 OpenC2 Language Syntax](#a1-openc2-language-syntax)
-    -   [A.2 JADN Syntax](#a2-jadn-syntax)
--   [Annex B. Examples](#annex-b-examples)
-    -   [B.1 Example 1](#b1-example-1)
-        -   [B.1.1 Command Message](#b11-command-message)
-        -   [B.1.2 Response Message](#b12-response-message)
-    -   [B.2 Example 2](#b2-example-2)
-    -   [B.3 Example 3](#b3-example-3)
--   [Annex C. Acronyms](#annex-c-acronyms)
--   [Annex D. Revision History](#annex-d-revision-history)
--   [Annex E. Acknowledgments](#annex-e-acknowledgments)
+-   [Annex A. Examples](#annex-a-examples)
+    -   [A.1 Example 1](#a1-example-1)
+        -   [A.1.1 Command Message](#a11-command-message)
+        -   [A.1.2 Response Message](#a12-response-message)
+    -   [A.2 Example 2](#a2-example-2)
+    -   [A.3 Example 3](#a3-example-3)
+-   [Annex B. Acronyms](#annex-b-acronyms)
+-   [Annex C. Revision History](#annex-c-revision-history)
+-   [Annex D. Acknowledgments](#annex-d-acknowledgments)
 
 -------
 
@@ -354,7 +346,7 @@ The following list summarizes the main four components of a Command.
 
 The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-imported-types).
 
-Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgement or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-imported-types).
+Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-imported-types).
 
 An Actuator is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of Actions, Targets and other aspects of this language specification that are required or optional in the context of a particular Actuator. An Actuator Profile may extend the language by defining additional Targets, Arguments, and Actuator Specifiers that are meaningful and possibly unique to the Actuator.
 
@@ -1078,9 +1070,9 @@ Consumers that receive and parse the 'query features':
     *  SHOULD respond with Bad Request/400.
     *  MAY respond with the 500 status code.
 *  With no Target specifiers MUST respond with response code 200.
-*  With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Langauge Versions supported by the consumer. 
+*  With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer. 
 *  With the [profiles] Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
-*  With the [pairs] Target specifier MUST respond with status 200 and populuate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
+*  With the [pairs] Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
 * With the [rate_limit] Target specifier populated: 
     * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support. 
     * MAY respond with status 200 and with the rate_limit field unpopulated.  
@@ -1269,18 +1261,18 @@ This example is for a transport where the header information is outside the JSON
 
 -------
 
-# Annex C. Acronyms
+# Annex B. Acronyms
 
 _The content in this section is non-normative._
 
-| Acroynm | Definition |
+| Acronym | Definition |
 | :--- | :--- |
 API | Application Programming Interface
 CBOR | Concise Binary Object Representation
 CoAP | Constrained Application Protocol
 DNS | Domain Name Server
 HTTP | Hyper Text Transfer Protocol
-IACD | Iintegrated Adaptive Cyber Defense
+IACD | Integrated Adaptive Cyber Defense
 IANA | Internet Assigned Numbers Authority 
 ICMP | Internet Control Message Protocol
 IP | Internet Protocol
@@ -1296,12 +1288,12 @@ OASIS | Organization for the Advancement of Structured Information Standards
 OpenC2 | Open  Command and Control
 OpenDXL | Open Data eXchange Layer
 RFC | Request for Comment
-SCTP | Straem Control Transmission Protocol
+SCTP | Stream Control Transmission Protocol
 SHA | Security Hash Algorithm
 SLPF | StateLess Packet Filtering
 STIX | Structured Threat Intel eXchange
 TC | Technical Committee
-TCP | Tranmission Control Protocol
+TCP | Transmission Control Protocol
 TLV | Type Length Value
 UDP | User Datagram Control Protocol
 Uname | Unique Name
@@ -1329,6 +1321,8 @@ _The content in this section is non-normative._
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some Actions and Targets to reserved lists |
 | v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
 | v1.0-wd09 | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review. |
+| v1.0-wd10 | 03/04/2019 | Romano, Sparrell | Produce interim working draft. |
+| v1.0-wd11 | 03/21/2019 | Romano, Sparrell | Produce interim working draft. |
 
 -------
 
