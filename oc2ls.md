@@ -377,12 +377,12 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | **Structures** |   |
 | Array | An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type. |
 | ArrayOf(*vtype*) | An ordered list of fields with the same semantics. Each field has a position and type *vtype*. |
-| Choice | One field selected from a set of named fields. The value has a name and a type. |
+| Choice | One field selected from a set of named fields. The API value has a name and a type. |
 | Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
 | Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
 | Map | An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type. |
-| Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
+| Map.ID | An unordered set of fields.  The API value of each field has an id, label, and type. |
 | MapOf(*ktype*, *vtype*) | An unordered set of keys to values with the same semantics. Each key has key type *ktype* and is mapped to value type *vtype*. |
 | Record | An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
 
