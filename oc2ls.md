@@ -1017,7 +1017,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [RFC 768](#rfc768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [RFC 4960](#rfc4960) |
 
-#### 3.4.2.8 Nsid
+#### 3.4.2.8 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | Namespace ID - a short identifier, max length 16 characters |
