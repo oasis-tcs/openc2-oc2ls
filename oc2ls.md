@@ -1020,7 +1020,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 #### 3.4.2.8 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Nsid** | String [1..16] | Namespace ID - a short identifier, max length 16 characters |
+| **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
 #### 3.4.2.8 Payload
 **_Type: Payload (Choice)_**
