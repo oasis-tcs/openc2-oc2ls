@@ -27,7 +27,7 @@
 * Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Abstract:
-Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
+Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyber defense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
 #### Status:
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
@@ -330,7 +330,7 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 
 _The content in this section is non-normative._
 
-The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgement, status, etc.) as a result of a Command.
+The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgment, status, etc.) as a result of a Command.
 
 ## 2.1 OpenC2 Command
 The Command describes an Action to be performed on a Target and may include information identifying the Actuator or Actuators that are to execute the Command.
@@ -853,7 +853,7 @@ Usage Requirements:
 
 **Usage Notes:**
 
-* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keepalive command).  An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keepalive functions.
+* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command).  An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
 #### 3.4.1.7 File
 **_Type: File (Map)_**
