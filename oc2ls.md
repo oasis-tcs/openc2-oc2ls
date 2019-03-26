@@ -87,7 +87,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [3.1 Base Components and
         Structures](#31-base-components-and-structures)
         -   [3.1.1 Data Types](#311-data-types)
-        -   [3.1.2 Semantic Vlaue Constraints](#312-semantic-value-constraints)
+        -   [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
         -   [3.1.3 Multiplicity](#313-multiplicity)
         -   [3.1.4 Derived Enumerations](#314-derived-enumerations)
         -   [3.1.5 Extensions](#315-extensions)
@@ -1288,43 +1288,46 @@ This example is for a transport where the header information is outside the JSON
 
 -------
 
-# Annex B. Acronyms
-
-_The content in this section is non-normative._
-
 | Acronym | Definition |
 | :--- | :--- |
 API | Application Programming Interface
+ASCII | American Standard Code for Information Interchange
+BCP | Best Current Practice
 CBOR | Concise Binary Object Representation
+CIDR | Classless Inter-Domain Routing
 CoAP | Constrained Application Protocol
-DNS | Domain Name Server
+DOI | Digital Object Identifier
+EUI | Extended Unique Identifier
 HTTP | Hyper Text Transfer Protocol
+HTTPS | Hyper Text Transfer Protocol Secure
 IACD | Integrated Adaptive Cyber Defense
 IANA | Internet Assigned Numbers Authority 
 ICMP | Internet Control Message Protocol
+ID | Identifier
 IP | Internet Protocol
 IPR | Intellectual Property Rights
-JSON | Java Script Notation
-KMIP | Key Management Interface Protocol
+JSON | JavaScript Object Notation
 MAC | Media Access Control
 MD5 | Message Digest
-MIME | Multipurpose Internet Mail Extensions 
 MQTT | Message Queuing Telemetry Transfer 
-NSID | Namespace Identifier
 OASIS | Organization for the Advancement of Structured Information Standards
+OODA | Observe-Orient-Decide-Act
 OpenC2 | Open  Command and Control
 OpenDXL | Open Data eXchange Layer
+PDF | Portable Document Format
 RFC | Request for Comment
 SCTP | Stream Control Transmission Protocol
 SHA | Security Hash Algorithm
 SLPF | StateLess Packet Filtering
-STIX | Structured Threat Intel eXchange
+STD | Standard
 TC | Technical Committee
 TCP | Transmission Control Protocol
-TLV | Type Length Value
 UDP | User Datagram Control Protocol
+UML | Unified Modeling Language
 Uname | Unique Name
 URI | Uniform Resource Identifier
+UTC | Coordinated Universal Time
+UUID | Universally Unique IDentifier
 XML | eXtensibel Markup Language
 
 -------
