@@ -191,74 +191,68 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 _Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. Latest version: http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html
 ###### [OpenC2-SLPF-v1.0]
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell, and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html
-###### [RFC768]
-Postel, J., "User Datagram Protocol", STD 6, RFC 768, August 1980, http://www.rfc-editor.org/info/rfc768.
-###### [RFC791]
-Postel, J., "Internet Protocol", RFC 791, September 1981, http://www.rfc-editor.org/info/rfc791.
-###### [RFC792]
-Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, September 1981, http://www.rfc-editor.org/info/rfc792.
-###### [RFC793]
-Postel, J., "Transmission Control Protocol", STD 7, RFC 793, September 1981, http://www.rfc-editor.org/info/rfc793.
+###### [RFC0768]
+Postel, J., "User Datagram Protocol", STD 6, RFC 768, DOI 10.17487/RFC0768, August 1980, <https://www.rfc-editor.org/info/rfc768>.
+###### [RFC0791]
+Postel, J., "Internet Protocol", STD 5, RFC 791, DOI 10.17487/RFC0791, September 1981, <https://www.rfc-editor.org/info/rfc791>.
+###### [RFC0792]
+Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, DOI 10.17487/RFC0792, September 1981, <https://www.rfc-editor.org/info/rfc792>.
+###### [RFC0793]
+Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI 10.17487/RFC0793, September 1981, <https://www.rfc-editor.org/info/rfc793>.
 ###### [RFC1034]
-Mockapetris, P. V., "Domain names - concepts and facilities", STD 13, RFC 1034, November 1987, http://www.rfc-editor.org/info/rfc1034.
+Mockapetris, P., "Domain names - concepts and facilities", STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987, <https://www.rfc-editor.org/info/rfc1034>.
 ###### [RFC1123]
-Braden, R., "Requirements for Internet Hosts - Application and Support", STD 3, RFC 1123, October 1989, http://www.rfc-editor.org/info/rfc1123.
+Braden, R., Ed., "Requirements for Internet Hosts - Application and Support", STD 3, RFC 1123, DOI 10.17487/RFC1123, October 1989, <https://www.rfc-editor.org/info/rfc1123>.
 ###### [RFC1321]
-Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, April 1992, http://www.rfc-editor.org/info/rfc1321.
+Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, DOI 10.17487/RFC1321, April 1992, <https://www.rfc-editor.org/info/rfc1321>.
 ###### [RFC2119]
-Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, http://www.rfc-editor.org/info/rfc2119.
+Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <https://www.rfc-editor.org/info/rfc2119>.
 ###### [RFC2673]
 Crawford, M., *"Binary Labels in the Domain Name System"*, RFC 2673, August 1999, https://tools.ietf.org/html/rfc2673
 ###### [RFC3986]
-Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005, http://www.rfc-editor.org/info/rfc3986.
+Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, DOI 10.17487/RFC3986, January 2005, <https://www.rfc-editor.org/info/rfc3986>.
 ###### [RFC4122]
-Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122.
+Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
 ###### [RFC4291]
-Hinden, R., Deering, S., "IP Version 6 Addressing Architecture", RFC 4291, February 2006, http://www.rfc-editor.org/info/rfc4291.
+Hinden, R. and S. Deering, "IP Version 6 Addressing Architecture", RFC 4291, DOI 10.17487/RFC4291, February 2006, <https://www.rfc-editor.org/info/rfc4291>.
 ###### [RFC4632]
-Fuller, V., Li, T., "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", RFC 4632, August 2006, http://www.rfc-editor.org/info/rfc4632.
+Fuller, V. and T. Li, "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", BCP 122, RFC 4632, DOI 10.17487/RFC4632, August 2006, <https://www.rfc-editor.org/info/rfc4632>.
 ###### [RFC4648]
-Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, October 2006, http://www.rfc-editor.org/info/rfc4648.
+Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006, <https://www.rfc-editor.org/info/rfc4648>.
 ###### [RFC4960]
-Stewart, R. "Stream Control Transmission Protocol", RFC 4960, September 2007, http://www.rfc-editor.org/info/rfc4960.
+Stewart, R., Ed., "Stream Control Transmission Protocol", RFC 4960, DOI 10.17487/RFC4960, September 2007, <https://www.rfc-editor.org/info/rfc4960>.
 ###### [RFC5237]
-Arkko, J., Bradner, S., "IANA Allocation Guidelines for the Protocol Field", BCP 37, RFC 5237, February 2008, http://www.rfc-editor.org/info/rfc5237.
+Arkko, J. and S. Bradner, "IANA Allocation Guidelines for the Protocol Field", BCP 37, RFC 5237, DOI 10.17487/RFC5237, February 2008, <https://www.rfc-editor.org/info/rfc5237>.
 ###### [RFC5322]
-Resnick, P., "Internet Message Format", RFC 5322, October 2008, http://www.rfc-editor.org/info/rfc5322.
-###### [RFC5612]
-Eronen, P., Harrington, D., "Enterprise Number for Documentation Use", RFC 5612, August 2009, http://www.rfc-editor.org/info/rfc5612.
+Resnick, P., Ed., "Internet Message Format", RFC 5322, DOI 10.17487/RFC5322, October 2008, <https://www.rfc-editor.org/info/rfc5322>.
 ###### [RFC5952]
-Kawamura S., Kawashima M., "A Recommendation for IPv6 Address Text Representation", RFC 5952, August 2010, http://www.rfc-editor.org/info/rfc5952.
+Kawamura, S. and M. Kawashima, "A Recommendation for IPv6 Address Text Representation", RFC 5952, DOI 10.17487/RFC5952, August 2010, <https://www.rfc-editor.org/info/rfc5952>.
 ###### [RFC6234]
-Eastlake 3rd, D., Hansen, T., "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, May 2011, http://www.rfc-editor.org/info/rfc6234.
+Eastlake 3rd, D. and T. Hansen, "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, DOI 10.17487/RFC6234, May 2011, <https://www.rfc-editor.org/info/rfc6234>.
 ###### [RFC6335]
-Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", BCP 165, RFC 6335, August 2011, http://www.rfc-editor.org/info/rfc6335.
+Cotton, M., Eggert, L., Touch, J., Westerlund, M., and S. Cheshire, "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", BCP 165, RFC 6335, DOI 10.17487/RFC6335, August 2011, <https://www.rfc-editor.org/info/rfc6335>.
 ###### [RFC6838]
-Freed, N., Klensin, J., Hansen, T., "Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, http://www.rfc-editor.org/info/rfc6838.
+Freed, N., Klensin, J., and T. Hansen, "Media Type Specifications and Registration Procedures", BCP 13, RFC 6838, DOI 10.17487/RFC6838, January 2013, <https://www.rfc-editor.org/info/rfc6838>.
 ###### [RFC7493]
-Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-editor.org/info/rfc7493.
+Bray, T., Ed., "The I-JSON Message Format", RFC 7493, DOI 10.17487/RFC7493, March 2015, <https://www.rfc-editor.org/info/rfc7493>.
 ###### [RFC8174]
-Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
+Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 ###### [RFC8200]
-Deering, S., Hinden, R., "Internet Protocol, Version 6 (IPv6) Specification", RFC 8200, July 2017, http://www.rfc-editor.org/info/rfc8200.
+Deering, S. and R. Hinden, "Internet Protocol, Version 6 (IPv6) Specification", STD 86, RFC 8200, DOI 10.17487/RFC8200, July 2017, <https://www.rfc-editor.org/info/rfc8200>.
 ###### [RFC8259]
-Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259.
+Bray, T., Ed., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, <https://www.rfc-editor.org/info/rfc8259>.
 ###### [EUI]
 "IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE, August 2017, https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
 
 ## 1.4 Non-Normative References
 ###### [IACD]
 M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense", Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
-###### [RFC3470]
-Hollenbeck S., Rose, M., Masinter L., "Guidelines for the Use of Extensible Markup Language (XML) within IETF Protocols", BCP 70, RFC 3470, January 2003, https://tools.ietf.org/html/rfc3470.
-###### [RFC7049]
-Bormann, C., Hoffman, P., "Concise Binary Object Representation (CBOR)", RFC 7049, October 2013, https://tools.ietf.org/html/rfc7049.
 ###### [UML]
 "UML Multiplicity and Collections", https://www.uml-diagrams.org/multiplicity.html
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
-* [RFC2119](#rfc2119)/[RFC8174](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
+* [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
@@ -268,7 +262,7 @@ The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
 * Property names are in bold style – **'created_at'**.
-* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](#rfc8259)].
+* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259]](#rfc8259).
 * Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
 
 Example:
@@ -317,9 +311,9 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
+| Function-Specific Content | Actuator Profiles<br>([[OpenC2-SLPF-v1.0]](#openc2-slpf-v10), ...) |
 | Common Content | Language Specification<br>(this document) |
-| Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
+| Message | Transfer Specifications<br>([[OpenC2-HTTPS-v1.0]](#openc2-https-v10), OpenC2-over-CoAP, ...) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
 * The **Secure Transfer** layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.
@@ -334,7 +328,7 @@ The components of a Response are a numerical status code, an optional status tex
 ## 1.7 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
 
-The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD](#iacd)]:
+The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD]](#iacd):
 
 * Sensing:  gathering of data regarding system activities
 * Sense Making:  evaluating data using analytics to understand what's happening
@@ -468,13 +462,13 @@ Structural validation alone may be insufficient to validate that an instance mee
 
 | Keyword | Applies to Type | Constraint |
 | :--- | :--- | :--- |
-| **email** | String | Value must be an email address as defined in RFC 5322, Section 3.4.1 |
-| **hostname** | String | Value must be a hostname as defined in RFC 1034, Section 3.1 |
-| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986 |
-| **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in EUI |
+| **email** | String | Value must be an email address as defined in [[RFC5322]](#rfc5322), Section 3.4.1 |
+| **hostname** | String | Value must be a hostname as defined in [[RFC1034]](#rfc1034), Section 3.1 |
+| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986) |
+| **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
 
 ### 3.1.3 Multiplicity
-Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field.  As used in the Unified Modeling Language ([UML](#uml)), typical examples of multiplicity are:
+Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field.  As used in the Unified Modeling Language ([[UML]](#uml)), typical examples of multiplicity are:
 
 | Multiplicity | Description | Keywords |
 | :--- | :--- | :--- |
@@ -616,24 +610,24 @@ In this example, the Response result `rule_number` is defined within the extende
 ````
 
 ### 3.1.6 Serialization
-OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
+OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and additional requirements specified in the following table.
 
 **JSON Serialization Requirements:**
 
 | OpenC2 Data Type | JSON Serialization Requirement |
 | :--- | :--- |
-| **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in [RFC 4648](#rfc4648), Section 5. |
-| **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [RFC 4648](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
-| **Binary /ipv4-addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [RFC 2673](#rfc2673), Section 3.2. |
-| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in [RFC 5952](#rfc5952), Section 4. |
+| **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5. |
+| **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
+| **Binary /ipv4-addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2. |
+| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4. |
 | **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
 | **Null** | JSON **null** |
 | **String** | JSON **string** |
 | **Array** | JSON **array** |
-| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in [RFC 4632](#rfc4632), Section 3.1. |
-| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in [RFC 4291](#rfc4291), Section 2.3. | 
+| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in [[RFC4632]](#rfc4632), Section 3.1. |
+| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in [[RFC4291]](#rfc4291), Section 2.3. | 
 | **ArrayOf** | JSON **array** |
 | **Choice** | JSON **object** with one member.  Member key is the field name.   |
 | **Choice.ID** | JSON **object** with one member. Member key is the integer field id converted to string. |
@@ -659,7 +653,7 @@ The JSON "number" type represents integers and real numbers as decimal strings w
 { "height": 68.2 }
 ```
 
-As noted in RFC 7493, Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
+As noted in [[RFC7493]](#rfc7493), Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
 
 The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
@@ -688,7 +682,7 @@ Implementations may use environment variables, private APIs, data structures, cl
 **Usage Requirements:**
 
 * A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
-* The request_id of a request message SHOULD be a Version 4 UUID as specified in RFC 4122, Section 4.4.
+* The request_id of a request message SHOULD be a Version 4 UUID as specified in [[RFC4122]](#rfc4122), Section 4.4.
 * A consumer MUST copy the request_id from a request message into each response to that request.
 
 ## 3.3 Content
@@ -760,7 +754,7 @@ The Command defines an Action to be performed on a Target.
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
 | 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
 | 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
-| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
+| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
@@ -857,7 +851,7 @@ Usage Requirements:
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, RFC 6838 |
+| 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
@@ -873,7 +867,7 @@ Usage Requirements:
 #### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Domain-Name** | String (hostname) | RFC 1034, Section 3.5 |
+| **Domain-Name** | String (hostname) | [[RFC1034]](#rfc1034), Section 3.5 |
 
 #### 3.4.1.4 Email Address
 | Type Name | Type Definition | Description |
@@ -905,12 +899,12 @@ Usage Requirements:
 
 #### 3.4.1.7 IPv4 Address Range
 An IPv4 address range is a CIDR block per 
-"Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan"[RFC4632] 
+"Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) 
 and consists of two values, an IPv4 address and a prefix. 
 For example, "192.168.17.0/24" is range of IP addresses
 with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255). 
 JSON serialization of an IPv4 address range 
-SHALL use the 'dotted/slash' textual representation of RFC4632. 
+SHALL use the 'dotted/slash' textual representation of [[RFC4632]](#rfc4632). 
 CBOR serialization of an IPv4 address range
 SHALL use a binary representation of the IP address and the prefix, 
 each in their own field.
@@ -919,7 +913,7 @@ each in their own field.
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | IPv4-Addr | 1 | ipv4-address as defined in [RFC 791](#rfc791) |
+| 1 | IPv4-Addr | 1 | ipv4-address as defined in [[RFC0791]](#rfc0791) |
 | 2 | Integer | 0..1 | CIDR prefix-length.  If omitted, refers to a single host address. |
 
 #### 3.4.1.8 IPv4 Connection
@@ -928,9 +922,9 @@ each in their own field.
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [RFC 6335](#rfc6335) |
+| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#3429-l4-protocol) |
 
 #### 3.4.1.9 IPv6 Address Range
@@ -938,7 +932,7 @@ each in their own field.
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | IPv6-Addr | 1 | ipv6-address as defined in [RFC 8200](#rfc8200) |
+| 1 | IPv6-Addr | 1 | ipv6-address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv6 Connection
@@ -947,9 +941,9 @@ each in their own field.
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
+| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
+| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#3429-l4-protocol) |
 
 *Editor's Note: Renumber*
@@ -957,7 +951,7 @@ each in their own field.
 #### 3.4.1.11 MAC Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [EUI](*eui). |
+| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.12 Process
 **_Type: Process (Map)_**
@@ -1024,36 +1018,36 @@ Specifies the results to be returned from a query features Command.
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [RFC 1321](#rfc1321) |
-| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [RFC 6234](#rfc6234) |
-| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [RFC 6234](#rfc6234) |
+| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
+| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
+| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
 
 #### 3.4.2.6 Hostname
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-|  **Hostname** | String (hostname) | Internet host name as specified in [RFC 1123](#rfc1123) |
+|  **Hostname** | String (hostname) | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
 #### 3.4.2.7 IPv4 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [RFC 791](#rfc791) |
+| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
 #### 3.4.2.8 IPv6 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [RFC 8200](#rfc8200) |
+| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
 #### 3.4.2.9 L4 Protocol
-Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC 5237](#rfc5237)
+Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
 
 **_Type: L4-Protocol (Enumerated)_**
 
 | ID | Name | Description |
 | :--- | :--- | :--- |
-| 1 | **icmp** | Internet Control Message Protocol - [RFC 792](#rfc792) |
-| 6 | **tcp** | Transmission Control Protocol - [RFC 793](#rfc793) |
-| 17 | **udp** | User Datagram Protocol - [RFC 768](#rfc768) |
-| 132 | **sctp** | Stream Control Transmission Protocol - [RFC 4960](#rfc4960) |
+| 1 | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792) |
+| 6 | **tcp** | Transmission Control Protocol - [[RFC0793]](#rfc0793) |
+| 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
+| 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
 #### 3.4.2.10 Payload
 **_Type: Payload (Choice)_**
@@ -1066,7 +1060,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 #### 3.4.2.11 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Port** | Integer [0..65535] | Transport Protocol Port Number, [RFC 6335](#rfc6335) |
+| **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
 #### 3.4.2.12 Response-Type
 **_Type: Response-Type (Enumerated)_**
@@ -1182,14 +1176,14 @@ A conformant Response
 A conformant Producer 
 
 * 5.3-1 MUST issue Commands and process Responses in accordance with [Section 4](#4-mandatory-commandsresponses).
-* 5.3-2 MUST implement JSON serialization of generated Commands in accordance with RFC 7493.
+* 5.3-2 MUST implement JSON serialization of generated Commands in accordance with [[RFC7493]](#rfc7493).
 
 ## 5.4 Conformance Clause 4: Consumer
 
 A conformant Consumer 
 
 * 5.4-1 MUST process Commands and issue Responses in accordance with [Section 4](#4-mandatory-commandsresponses).
-* 5.4-2 MUST implement JSON serialization of generated Responses in accordance with RFC 7493.
+* 5.4-2 MUST implement JSON serialization of generated Responses in accordance with [[RFC7493]](#rfc7493).
 
 -------
 
