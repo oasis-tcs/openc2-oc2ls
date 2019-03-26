@@ -655,7 +655,7 @@ Implementations may use environment variables, private APIs, data structures, cl
 ## 3.3 Content
 The purpose of this specification is to define the Action and Target portions of a Command and the common portions of a Response.  The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
 
-In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
+In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in 'Actuator Profile Specifications' such as StateLess Packet Filtering Profile, Routing Profile etc.
 
 ### 3.3.1 OpenC2 Command
 The Command defines an Action to be performed on a Target.
@@ -868,10 +868,10 @@ Usage Requirements:
 An IPv4 address range is a CIDR block per 
 "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan"[RFC4632] 
 and consists of two values, an IPv4 address and a prefix. 
-For example, “192.168.17.0/24” is range of IP addresses
+For example, "192.168.17.0/24" is range of IP addresses
 with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255). 
 JSON serialization of an IPv4 address range 
-SHALL use the ‘dotted/slash’ textual representation of RFC4632. 
+SHALL use the 'dotted/slash' textual representation of RFC4632. 
 CBOR serialization of an IPv4 address range
 SHALL use a binary representation of the IP address and the prefix, 
 each in their own field.
@@ -1316,7 +1316,7 @@ _The content in this section is non-normative._
 | v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
 | v1.0-wd05 | 03/21/2018 | Romano, Sparrell | wd04 review comments |
 | v1.0-csd03 | 04/03/2018 | Romano, Sparrell | approved wd05 |
-| v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’ |
+| v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word 'arguments' instead of 'options' |
 | v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some Actions and Targets to reserved lists |
 | v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
