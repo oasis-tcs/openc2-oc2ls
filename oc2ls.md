@@ -368,6 +368,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Type | Description |
 | :--- | :--- |
 | **Primitive Types** |   |
+| Any | Anything, used to designate fields with an unspecified value. |
 | Binary | A sequence of octets.  Length is the number of octets. |
 | Boolean | A logical entity that can have two values: `true` and `false`. |
 | Integer | A whole number. |
@@ -596,7 +597,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Enumerated.ID** | JSON **integer** |
 | **Map** | JSON **object**. Member keys are field names. |
 | **Map.ID** | JSON **object**. Member keys are integer field ids converted to strings. |
-| **MapOf** | JSON **object**. Member keys are as defined in the specified Enumerated type. |
+| **MapOf** | JSON **object**. Member keys are as defined in the specified key type. |
 | **Record** | JSON **object**. Member keys are field names. |
 
 #### 3.1.6.1 ID and Name Serialization
@@ -766,7 +767,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
 | 3 | **strings** | String | 0..* | Generic set of string values |
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **results** | MapOf(key, value) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
+| 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this Actuator |
 | 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this Actuator |
