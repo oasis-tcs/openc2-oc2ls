@@ -1112,10 +1112,7 @@ This sub-section provides examples and associated responses of 'query features' 
 {  
   "status": 200,  
   "versions": ["1.0"],  
-  "profiles": [  
-    ["slpf", "http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md"],
-    ["x-lock", "http://example.com/openc2/products/iot-front-door-lock"]
-  ],  
+  "profiles": ["slpf", "x-lock"]
   "rate_limit": 30  
 }
 ```
@@ -1197,7 +1194,7 @@ request_id: b'\xd97\xfc\xa9+dNq'
 from: 'pf72394'
 to: ['nocc-3497']
 created: 1539355898000
-content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
+content: {'status': 200, 'versions': ['1.3'], 'profiles': ['slpf']}
 ```
 
 ## A.2 Example 2
@@ -1258,10 +1255,7 @@ This example is for a transport where the header information is outside the JSON
 {
   "status_text": "ACME Corp Internet Toaster",
   "versions": ["1.0"],
-  "profiles": [
-    ["slpf", "http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md"],
-    ["x-acme", "http://www.acme.com/openc2/superwidget-v1.0.html"]
-  ]
+  "profiles": ["slpf", "x-acme"]
 }
 ```
 
