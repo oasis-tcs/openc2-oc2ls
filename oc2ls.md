@@ -368,6 +368,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Type | Description |
 | :--- | :--- |
 | **Primitive Types** |   |
+| Any | Anything, used to designate fields with an unspecified value. |
 | Binary | A sequence of octets.  Length is the number of octets. |
 | Boolean | An element with one of two values: `true` and `false`. |
 | Integer | A whole number. |
@@ -500,28 +501,32 @@ But it is both easier and more reliable to use a derived enumeration to validate
 ### 3.1.5 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.  For example, the OASIS standard Stateless Packet Filtering actuator profile has:
+Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.  
+
+All extension names MUST begin with a namespace identifier followed by a colon (":").
+
+For example, the OASIS standard Stateless Packet Filtering actuator profile has:
 * **Unique Name**: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
 * **NSID**: slpf
 
 The namespace identifier for non-standard extensions MUST be prefixed with "x-".
+
+For example, the fictional, non-standard Superwidget actuator profile has:
 * **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
 * **NSID**: x-acme
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
-The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended using the namespace identifier as the Target name, called an extended Target namespace. One or more extended Targets for an Actuator MUST be defined within the extended Target namespace.
+The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended.
 
 **For example:**
-In this example, the extended Target `rule_number` is defined within the extended Target namespace `slpf`.
+In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
 {
     "action": "delete",
     "target": {
-        "slpf": {
-            "rule_number": 1234
-        }
+        "slpf:rule_number": 1234
     }
 }
 ```
@@ -535,10 +540,10 @@ If in the list of Targets ([Section 3.3.1.2](#3312-target)) the imported Type is
 }
 ```
 
-The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. One or more extended Arguments for an Actuator MUST be defined within the extended Argument namespace.
+The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended.
 
 **For example:**
-In this example, the extended Argument `direction` is defined within the extended Argument namespace `slpf`.
+In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
 {
@@ -547,17 +552,15 @@ In this example, the extended Argument `direction` is defined within the extende
         "ipv6_net": {...}
     },
     "args": {
-        "slpf": {
-            "direction": "ingress"
-        }
+        "slpf:direction": "ingress"
     }
 }
 ````
 
-The Actuators defined in [Section 3.3.1.3](#3313-actuator) MAY be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
+The Actuator property of a Command defined in [Section 3.3.1.3](#3313-actuator) MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
 **For example:**
-In this example, the Actuator Specifier `asset_id` is defined within the extended Actuator namespace `slpf`.
+In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace `slpf`.
 
 ```
 {
@@ -573,19 +576,15 @@ In this example, the Actuator Specifier `asset_id` is defined within the extende
 }
 ````
 
-The `results` property of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
+The properties of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
 
 **For example:**
-In this example, the Response result `rule_number` is defined within the extended results namespace `slpf`.
+In this example Response, the Response property, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
 {
     "status": 200,
-    "results": {
-        "slpf": {
-            "rule_number": 1234
-        }
-    }
+    "slpf:rule_number": 1234
 }
 ````
 
@@ -738,18 +737,17 @@ The Command defines an Action to be performed on a Target.
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
-| 1024 | **slpf** | <slpf:Target | 1 | **Example**: Targets defined in the Stateless Packet Filter profile |
 
 **Usage Requirements:**
 
-* The `target` field in a Command MUST contain exactly one type of Target (e.g. ip_addr).
+* The `target` field in a Command MUST contain exactly one type of Target (e.g., ipv4_net).
 
 #### 3.3.1.3 Actuator
-**_Type: Actuator (Choice)_**
+-**_Type: Actuator (Choice)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1024 | **slpf** | <slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filter profile |
+| 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
 
 #### 3.3.1.4 Command Arguments
 **_Type: Args (Map)_**
@@ -760,7 +758,6 @@ The Command defines an Action to be performed on a Target.
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Action to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Action: `none`, `ack`, `status`, `complete`. |
-| 1024 | **slpf** | <slpf:Args | 0..1 | **Example**: Command Arguments defined in the Stateless Packet Filter profile |
 
 **Usage Requirements:**
 
@@ -786,12 +783,11 @@ The Command defines an Action to be performed on a Target.
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
 | 3 | **strings** | String | 0..* | Generic set of string values |
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **results** | MapOf(String, Null) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
+| 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 7 | **profiles** | Import | 0..* | List of profiles supported by this Actuator |
 | 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1024 | **slpf** | <slpf:Results | 1 | **Example**: Results types defined in the Stateless Packet Filter profile |
 
 **Example:**
 
@@ -806,7 +802,6 @@ The Command defines an Action to be performed on a Target.
 Usage Requirements:
 
 * All Responses MUST contain a status.
-* Responses MAY contain status_text and/or results.
 
 #### 3.3.2.1 OpenC2 Response Status Code
 **_Type: Status-Code (Enumerated.ID)_**
