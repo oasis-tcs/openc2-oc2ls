@@ -530,15 +530,6 @@ In this example Command, the extended Target, `rule_number`, is defined within t
     }
 }
 ```
-If in the list of Targets ([Section 3.3.1.2](#3312-target)) the imported Type is prefixed with a "<" ("indent left") indicator, the nsid is concatenated with a ":" separator and the imported target name to bring the imported target value to the same nesting level as non-imported targets:
-```
-{
-    "action": "delete",
-    "target": {
-        "slpf:rule_number": 1234
-    }
-}
-```
 
 The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended.
 
@@ -826,7 +817,7 @@ Usage Requirements:
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, RFC 6838 |
-| 2 | **payload** | <Payload | 0..1 | Choice of literal content or URL |
+| 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
 #### 3.4.1.3 Device
