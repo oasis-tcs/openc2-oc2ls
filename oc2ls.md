@@ -1112,7 +1112,7 @@ This sub-section provides examples and associated responses of 'query features' 
 {  
   "status": 200,  
   "versions": ["1.0"],  
-  "profiles": ["slpf", "x-lock"]
+  "profiles": ["slpf", "x-lock"],
   "rate_limit": 30  
 }
 ```
