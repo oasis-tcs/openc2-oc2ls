@@ -372,7 +372,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Boolean | An element with one of two values: `true` and `false`. |
 | Integer | A whole number. |
 | Number | A real number. |
-| Null | An unspecified or non-existent value. |
+| Null | Nothing, used to designate fields with no value. |
 | String | A sequence of characters, each of which has a Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
 | Array | An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type. |
