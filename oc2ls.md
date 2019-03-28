@@ -136,7 +136,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.14 Version](#34214-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
     -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
-    -   [4.2 Sample Commands and Responses](#42-sample-commands-and-responses)
+    -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
 -   [5 Conformance](#5-conformance)
     -   [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
     -   [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
@@ -553,7 +553,7 @@ The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
 The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended.
 
-**For example:**
+**Example:**
 In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
@@ -567,7 +567,7 @@ In this example Command, the extended Target, `rule_number`, is defined within t
 
 The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended.
 
-**For example:**
+**Example:**
 In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
@@ -584,7 +584,7 @@ In this example Command, the extended Argument, `direction`, is defined within t
 
 The Actuator property of a Command defined in [Section 3.3.1.3](#3313-actuator) MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
-**For example:**
+**Example:**
 In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace `slpf`.
 
 ```
@@ -603,7 +603,7 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
 
 The properties of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
 
-**For example:**
+**Example:**
 In this example Response, the Response property, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
@@ -897,16 +897,13 @@ Usage Requirements:
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
 #### 3.4.1.7 IPv4 Address Range
-An IPv4 address range is a CIDR block per 
-"Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) 
-and consists of two values, an IPv4 address and a prefix. 
-For example, "192.168.17.0/24" is range of IP addresses
-with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255). 
-JSON serialization of an IPv4 address range 
-SHALL use the 'dotted/slash' textual representation of [[RFC4632]](#rfc4632). 
-CBOR serialization of an IPv4 address range
-SHALL use a binary representation of the IP address and the prefix, 
-each in their own field.
+An IPv4 address range is a CIDR block per "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) and consists of two values, an IPv4 address and a prefix.
+
+For example, "192.168.17.0/24" is range of IP addresses with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255).
+
+JSON serialization of an IPv4 address range SHALL use the 'dotted/slash' textual representation of [[RFC4632]](#rfc4632). 
+
+CBOR serialization of an IPv4 address range SHALL use a binary representation of the IP address and the prefix, each in their own field.
 
 **_Type: IPv4-Net (Array /ipv4-net)_**
 
@@ -1093,22 +1090,22 @@ A Command consists of an Action/Target pair and associated Specifiers and Argume
 
 The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2.  This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.  
 
-The 'query features' Command is REQUIRED for all Producers. 
-The 'query features' Command MAY include one or more Specifiers as defined in table 3.4.2.10 of this specification.  
-The 'query features' Command MAY include the "response_type":"complete" ARGUMENT. 
-The 'query features' Command MUST NOT include any other ARGUMENT. 
+The 'query features' Command is REQUIRED for all Producers.
+The 'query features' Command MAY include one or more Features as defined in [Section 3.4.2.4](#3424-feature).
+The 'query features' Command MAY include the `"response_type": "complete"` Argument.
+The 'query features' Command MUST NOT include any other Argument.
 
-The 'query features' Command is REQUIRED for all Consumers. 
-Consumers that receive and parse the 'query features':  
-*  With any ARGUMENT other than "response_type:complete"  
+The 'query features' Command is REQUIRED for all Consumers.
+Consumers that receive and parse the 'query features':
+*  With any Argument other than `"response_type": "complete"`
     *  MUST NOT respond with OK/200.
     *  SHOULD respond with Bad Request/400.
     *  MAY respond with the 500 status code.
 *  With no Target specifiers MUST respond with response code 200.
-*  With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer. 
-*  With the [profiles] Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
-*  With the [pairs] Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
-* With the [rate_limit] Target specifier populated: 
+*  With the "versions" Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer. 
+*  With the "profiles" Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
+*  With the "pairs" Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
+* With the "rate_limit" Target specifier populated: 
     * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support. 
     * MAY respond with status 200 and with the rate_limit field unpopulated.  
 
