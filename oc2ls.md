@@ -1112,40 +1112,53 @@ Consumers that receive and parse the 'query features':
     * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support. 
     * MAY respond with status 200 and with the rate_limit field unpopulated.  
 
-## 4.2 Sample Commands and Responses
+## 4.2 Examples of 'query features' Commands and Responses
 
 _This section is non-normative._
 
-This sub-section provides examples and associated responses of 'query features' Commands. The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.  Lines preceded with # are comments, however it should be noted that the OpenC2 language does not support comments.  
+This sub-section provides examples of 'query features' Commands and Responses. The examples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.
 
-``` 
-# No target specifiers. Useful for a heartbeat function  
+### 4.2.1 Sample 1
+There are no features specified in the 'query features' Command. A simple "OK" Response message is returned.
 
-{  
-  "action": "query",  
-  "target": {  
-    "features": []  
-  }  
-}  
+**Command:**
+```
+{
+    "action": "query",
+    "target": {
+        "features": []
+    }
+}
+```
 
-# indicates the actuator is alive  
+**Response:**
+```
+{
+    "status": 200
+}
+```
 
-{"status": 200}  
+### 4.2.2 Sample 2
+There are several features requested in the 'query features' Command. All requested features can be returned in a single Response message.
 
-# Multiple specifiers populated in the command  
-{  
-  "action": "query",  
-  "target": {  
-    "features": ["versions", "profiles", "rate_limit"]  
-  }  
-}  
+**Command:**
 
-#    
-{  
-  "status": 200,  
-  "versions": ["1.0"],  
-  "profiles": ["slpf", "x-lock"],
-  "rate_limit": 30  
+```
+{
+    "action": "query",
+    "target": {
+        "features": ["versions", "profiles", "rate_limit"]
+    }
+}
+```
+
+**Response:**
+```
+{
+    "status": 200,
+    "versions": ["1.0"],
+    "profiles": ["slpf", "x-lock"],
+    "rate_limit": 30
 }
 ```
 
@@ -1195,9 +1208,9 @@ _The content in this section is non-normative._
 ## A.1 Example 1
 This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the Message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the Message.
 
-The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:` 'd937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.
+The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex: `'d937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: `'6670 2d31 3932 352d 3337 3632 3864 3663'`, base64url: `'ZnAtMTkyNS0zNzYyOGQ2Yw'`, byte string: `b'fp-1925-37628d6c'`.
 
-The created element is a Date-Time value of milliseconds since the epoch.  The example `1539355895215` may be displayed as` '12 October 2018 14:51:35 UTC'`.
+The created element is a Date-Time value of milliseconds since the epoch.  The example `1539355895215` may be displayed as `'12 October 2018 14:51:35 UTC'`.
 
 This example, illustrating an internal representation of a Message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how Message elements are represented internally within an implementation.  Only the serialized values of the Message elements embedded within a protocol is relevant to interoperability.
 
@@ -1271,19 +1284,19 @@ This example is for a transport where the header information is outside the JSON
 ### A.3.1 Example 3: Command
 ```
 {
-  "action": "query",
-  "target": {
-    "features": ["versions", "profiles"]
-  }
+    "action": "query",
+    "target": {
+        "features": ["versions", "profiles"]
+    }
 }
 ```
 
 ### A.3.2 Example 3: Response
 ```
 {
-  "status_text": "ACME Corp Internet Toaster",
-  "versions": ["1.0"],
-  "profiles": ["slpf", "x-acme"]
+    "status_text": "ACME Corp Internet Toaster",
+    "versions": ["1.0"],
+    "profiles": ["slpf", "x-acme"]
 }
 ```
 
