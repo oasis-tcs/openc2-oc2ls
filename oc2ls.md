@@ -370,22 +370,22 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | **Primitive Types** |   |
 | Any | Anything, used to designate fields with an unspecified value. |
 | Binary | A sequence of octets.  Length is the number of octets. |
-| Boolean | A logical entity that can have two values: `true` and `false`. |
+| Boolean | An element with one of two values: `true` and `false`. |
 | Integer | A whole number. |
 | Number | A real number. |
 | Null | Nothing, used to designate fields with no value. |
-| String | A sequence of characters. Each character must have a valid Unicode codepoint.  Length is the number of characters. |
+| String | A sequence of characters, each of which has a Unicode codepoint.  Length is the number of characters. |
 | **Structures** |   |
-| Array | An ordered list of unnamed fields. Each field has an ordinal position and a type. |
-| ArrayOf(*vtype*) | An ordered list of unnamed fields. Each field has an ordinal position and a value of type *vtype*. |
-| Choice | One field selected from a set of named fields. The value has a name and a type. |
+| Array | An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type. |
+| ArrayOf(*vtype*) | An ordered list of fields with the same semantics. Each field has a position and type *vtype*. |
+| Choice | One field selected from a set of named fields. The API value has a name and a type. |
 | Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
 | Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
-| Map | An unordered set of named fields. Each field has an id, name and type. |
-| Map.ID | An unordered set of fields.  The API value of each field has an id and type. |
-| MapOf(*enum, vtype*) | An unordered set of named fields. Each field has an id and name from Enumerated type *enum* and a value of type *vtype*. |
-| Record | An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type. |
+| Map | An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type. |
+| Map.ID | An unordered set of fields.  The API value of each field has an id, label, and type. |
+| MapOf(*ktype*, *vtype*) | An unordered set of keys to values with the same semantics. Each key has key type *ktype* and is mapped to value type *vtype*. |
+| Record | An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
@@ -501,11 +501,19 @@ But it is both easier and more reliable to use a derived enumeration to validate
 ### 3.1.5 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document. This unique name is called a namespace identifier. This namespace identifier is used to separate extensions from the core language defined in this specification. 
+Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.  
 
 All extension names MUST begin with a namespace identifier followed by a colon (":").
 
+For example, the OASIS standard Stateless Packet Filtering actuator profile has:
+* **Unique Name**: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
+* **NSID**: slpf
+
 The namespace identifier for non-standard extensions MUST be prefixed with "x-".
+
+For example, the fictional, non-standard Superwidget actuator profile has:
+* **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
+* **NSID**: x-acme
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
@@ -728,10 +736,9 @@ The Command defines an Action to be performed on a Target.
 #### 3.3.1.3 Actuator
 -**_Type: Actuator (Choice)_**
 
--| ID | Name | Type | # | Description |
--| :--- | :--- | :--- | :--- | :--- |
--| 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
-
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
 
 #### 3.3.1.4 Command Arguments
 **_Type: Args (Map)_**
@@ -769,8 +776,7 @@ The Command defines an Action to be performed on a Target.
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
 | 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 7 | **profiles** | jadn:Uname | 0..* | List of profiles supported by this Actuator |
-| 8 | **schema** | jadn:Schema | 0..1 | Syntax of the OpenC2 language elements supported by this Actuator |
+| 7 | **profiles** | ArrayOf(Nsid) | 0..* | List of profiles supported by this Actuator |
 | 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 
@@ -989,6 +995,11 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [RFC 768](#rfc768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [RFC 4960](#rfc4960) |
 
+#### 3.4.2.8 Namespace Identifier
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
+
 #### 3.4.2.8 Payload
 **_Type: Payload (Choice)_**
 
@@ -1101,10 +1112,7 @@ This sub-section provides examples and associated responses of 'query features' 
 {  
   "status": 200,  
   "versions": ["1.0"],  
-  "profiles": [  
-    "oasis-open.org/openc2/v1.0/ap-slpf",  
-    "example.com/openc2/products/iot-front-door-lock"  
-    ]  
+  "profiles": ["slpf", "x-lock"],
   "rate_limit": 30  
 }
 ```
@@ -1186,7 +1194,7 @@ request_id: b'\xd97\xfc\xa9+dNq'
 from: 'pf72394'
 to: ['nocc-3497']
 created: 1539355898000
-content: {'status': 200, 'versions': ['1.3'], 'profiles': ['oasis-open.org/openc2/v1.0/ap-slpf']}
+content: {'status': 200, 'versions': ['1.3'], 'profiles': ['slpf']}
 ```
 
 ## A.2 Example 2
@@ -1247,7 +1255,7 @@ This example is for a transport where the header information is outside the JSON
 {
   "status_text": "ACME Corp Internet Toaster",
   "versions": ["1.0"],
-  "profiles": []
+  "profiles": ["slpf", "x-acme"]
 }
 ```
 
@@ -1288,7 +1296,6 @@ TC | Technical Committee
 TCP | Transmission Control Protocol
 TLV | Type Length Value
 UDP | User Datagram Control Protocol
-Uname | Unique Name
 URI | Uniform Resource Identifier
 XML | eXtensibel Markup Language
 
