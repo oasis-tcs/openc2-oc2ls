@@ -2,9 +2,14 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 11
-## 21 March 2019
+## Working Draft 12
+## 27 March 2019
 ### Specification URIs
+#### This version:
+* TBD.md (Authoritative)
+* TBD.html
+* TBD.pdf
+
 #### Previous version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md (Authoritative)
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html
@@ -27,7 +32,7 @@
 * Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Abstract:
-Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
+Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyber defense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
 
 #### Status:
 This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest version" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
@@ -43,7 +48,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 17 October 2018. OASIS Committee Specification Draft 07 / Public Review Draft 01. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 27 March 2019. OASIS Working Draft 12. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -87,31 +92,71 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [3.1 Base Components and
         Structures](#31-base-components-and-structures)
         -   [3.1.1 Data Types](#311-data-types)
-        -   [3.1.2 Derived Data Types](#312-derived-data-types)
-        -   [3.1.3 Cardinality](#313-cardinality)
+        -   [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
+        -   [3.1.3 Multiplicity](#313-multiplicity)
         -   [3.1.4 Derived Enumerations](#314-derived-enumerations)
-        -   [3.1.5 Serialization](#315-serialization)
+        -   [3.1.5 Extensions](#315-extensions)
+        -   [3.1.6 Serialization](#316-serialization)
+            -   [3.1.6.1 ID and Name Serialization](#3161-id-and-name-serialization)
+            -   [3.1.6.2 Integer Serialization](#3162-integer-serialization)
     -   [3.2 Message](#32-message)
     -   [3.3 Content](#33-content)
         -   [3.3.1 OpenC2 Command](#331-openc2-command)
+            -   [3.3.1.1 Action](#3311-action)
+            -   [3.3.1.2 Target](#3312-target)
+            -   [3.3.1.3 Actuator](#3313-actuator)
+            -   [3.3.1.4 Command Arguments](#3314-command-arguments)
         -   [3.3.2 OpenC2 Response](#332-openc2-response)
-        -   [3.3.3 Imported Data](#333-imported-data)
-        -   [3.3.4 Extensions](#334-extensions)
+            -   [3.3.2.1 Response Status Code](#3321-response-status-code)
     -   [3.4 Type Definitions](#34-type-definitions)
         -   [3.4.1 Target Types](#341-target-types)
+            -   [3.4.1.1 Artifact](#3411-artifact)
+            -   [3.4.1.2 Device](#3412-device)
+            -   [3.4.1.3 Domain Name](#3413-domain-name)
+            -   [3.4.1.4 Email Address](#3414-email-address)
+            -   [3.4.1.5 Features](#3415-features)
+            -   [3.4.1.6 File](#3416-file)
+            -   [3.4.1.7 IPv4 Address Range](#3417-ipv4-address-range)
+            -   [3.4.1.8 IPv4 Connection](#3418-ipv4-connection)
+            -   [3.4.1.9 IPv6 Address Range](#3419-ipv6-address-range)
+            -   [3.4.1.10 IPv6 Connection](#34110-ipv6-connection)
+            -   [3.4.1.11 MAC Address](#34111-mac-address)
+            -   [3.4.1.12 Process](#34112-process)
+            -   [3.4.1.13 Properties](#34113-properties)
+            -   [3.4.1.14 URI](#34114-uri)
         -   [3.4.2 Data Types](#342-data-types)
-        -   [3.4.3 Schema Syntax](#343-schema-syntax)
+            -   [3.4.2.1 Action-Targets](#3421-action-targets)
+            -   [3.4.2.2 Date-Time](#3422-date-time)
+            -   [3.4.2.3 Duration](#3423-duration)
+            -   [3.4.2.4 Feature](#3424-feature)
+            -   [3.4.2.5 Hashes](#3425-hashes)
+            -   [3.4.2.6 Hostname](#3426-hostname)
+            -   [3.4.2.7 IPv4 Address](#3427-ipv4-address)
+            -   [3.4.2.8 IPv6 Address](#3428-ipv6-address)
+            -   [3.4.2.9 L4 Protocol](#3429-l4-protocol)
+            -   [3.4.2.10 Namespace Identifier](#34210-namespace-identifier)
+            -   [3.4.2.11 Payload](#34211-payload)
+            -   [3.4.2.12 Port](#34212-port)
+            -   [3.4.2.13 Response-Type](#34213-response-type)
+            -   [3.4.2.14 Version](#34214-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
+    -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
+    -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
 -   [5 Conformance](#5-conformance)
-    -   [5.1 OpenC2 Message Content](#51-openc2-message-content)
-    -   [5.2 OpenC2 Producer](#52-openc2-producer)
-    -   [5.3 OpenC2 Consumer](#53-openc2-consumer)
+    -   [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
+    -   [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
+    -   [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
+    -   [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 -   [Annex A. Examples](#annex-a-examples)
     -   [A.1 Example 1](#a1-example-1)
-        -   [A.1.1 Command Message](#a11-command-message)
-        -   [A.1.2 Response Message](#a12-response-message)
+        -   [A.1.1 Example 1: Command](#a11-example-1-command)
+        -   [A.1.2 Example 1: Response](#a12-example-1-response)
     -   [A.2 Example 2](#a2-example-2)
+        -   [A.2.1 Example 2: Command](#a21-example-2-command)
+        -   [A.2.2 Example 2: Response](#a22-example-2-response)
     -   [A.3 Example 3](#a3-example-3)
+        -   [A.3.1 Example 3: Command](#a31-example-3-command)
+        -   [A.3.2 Example 3: Response](#a32-example-3-response)
 -   [Annex B. Acronyms](#annex-b-acronyms)
 -   [Annex C. Revision History](#annex-c-revision-history)
 -   [Annex D. Acknowledgments](#annex-d-acknowledgments)
@@ -152,74 +197,68 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 _Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0_. Edited by David Lemire. Latest version: http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html
 ###### [OpenC2-SLPF-v1.0]
 _Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0_. Edited by Joe Brule, Duncan Sparrell, and Alex Everett. Latest version: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html
-###### [RFC768]
-Postel, J., "User Datagram Protocol", STD 6, RFC 768, August 1980, http://www.rfc-editor.org/info/rfc768.
-###### [RFC791]
-Postel, J., "Internet Protocol", RFC 791, September 1981, http://www.rfc-editor.org/info/rfc791.
-###### [RFC792]
-Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, September 1981, http://www.rfc-editor.org/info/rfc792.
-###### [RFC793]
-Postel, J., "Transmission Control Protocol", STD 7, RFC 793, September 1981, http://www.rfc-editor.org/info/rfc793.
+###### [RFC0768]
+Postel, J., "User Datagram Protocol", STD 6, RFC 768, DOI 10.17487/RFC0768, August 1980, <https://www.rfc-editor.org/info/rfc768>.
+###### [RFC0791]
+Postel, J., "Internet Protocol", STD 5, RFC 791, DOI 10.17487/RFC0791, September 1981, <https://www.rfc-editor.org/info/rfc791>.
+###### [RFC0792]
+Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, DOI 10.17487/RFC0792, September 1981, <https://www.rfc-editor.org/info/rfc792>.
+###### [RFC0793]
+Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI 10.17487/RFC0793, September 1981, <https://www.rfc-editor.org/info/rfc793>.
 ###### [RFC1034]
-Mockapetris, P. V., "Domain names - concepts and facilities", STD 13, RFC 1034, November 1987, http://www.rfc-editor.org/info/rfc1034.
+Mockapetris, P., "Domain names - concepts and facilities", STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987, <https://www.rfc-editor.org/info/rfc1034>.
 ###### [RFC1123]
-Braden, R., "Requirements for Internet Hosts - Application and Support", STD 3, RFC 1123, October 1989, http://www.rfc-editor.org/info/rfc1123.
+Braden, R., Ed., "Requirements for Internet Hosts - Application and Support", STD 3, RFC 1123, DOI 10.17487/RFC1123, October 1989, <https://www.rfc-editor.org/info/rfc1123>.
 ###### [RFC1321]
-Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, April 1992, http://www.rfc-editor.org/info/rfc1321.
+Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321, DOI 10.17487/RFC1321, April 1992, <https://www.rfc-editor.org/info/rfc1321>.
 ###### [RFC2119]
-Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, http://www.rfc-editor.org/info/rfc2119.
+Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <https://www.rfc-editor.org/info/rfc2119>.
 ###### [RFC2673]
 Crawford, M., *"Binary Labels in the Domain Name System"*, RFC 2673, August 1999, https://tools.ietf.org/html/rfc2673
 ###### [RFC3986]
-Berners-Lee, T., Fielding, R., Masinter, L., "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, January 2005, http://www.rfc-editor.org/info/rfc3986.
+Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, DOI 10.17487/RFC3986, January 2005, <https://www.rfc-editor.org/info/rfc3986>.
 ###### [RFC4122]
-Leach, P., Mealling, M., Salz, R., "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, July 2005, http://www.rfc-editor.org/info/rfc4122.
+Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
 ###### [RFC4291]
-Hinden, R., Deering, S., "IP Version 6 Addressing Architecture", RFC 4291, February 2006, http://www.rfc-editor.org/info/rfc4291.
+Hinden, R. and S. Deering, "IP Version 6 Addressing Architecture", RFC 4291, DOI 10.17487/RFC4291, February 2006, <https://www.rfc-editor.org/info/rfc4291>.
 ###### [RFC4632]
-Fuller, V., Li, T., "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", RFC 4632, August 2006, http://www.rfc-editor.org/info/rfc4632.
+Fuller, V. and T. Li, "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan", BCP 122, RFC 4632, DOI 10.17487/RFC4632, August 2006, <https://www.rfc-editor.org/info/rfc4632>.
 ###### [RFC4648]
-Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, October 2006, http://www.rfc-editor.org/info/rfc4648.
+Josefsson, S., "The Base16, Base32, and Base64 Data Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006, <https://www.rfc-editor.org/info/rfc4648>.
 ###### [RFC4960]
-Stewart, R. "Stream Control Transmission Protocol", RFC 4960, September 2007, http://www.rfc-editor.org/info/rfc4960.
+Stewart, R., Ed., "Stream Control Transmission Protocol", RFC 4960, DOI 10.17487/RFC4960, September 2007, <https://www.rfc-editor.org/info/rfc4960>.
 ###### [RFC5237]
-Arkko, J., Bradner, S., "IANA Allocation Guidelines for the Protocol Field", BCP 37, RFC 5237, February 2008, http://www.rfc-editor.org/info/rfc5237.
+Arkko, J. and S. Bradner, "IANA Allocation Guidelines for the Protocol Field", BCP 37, RFC 5237, DOI 10.17487/RFC5237, February 2008, <https://www.rfc-editor.org/info/rfc5237>.
 ###### [RFC5322]
-Resnick, P., "Internet Message Format", RFC 5322, October 2008, http://www.rfc-editor.org/info/rfc5322.
-###### [RFC5612]
-Eronen, P., Harrington, D., "Enterprise Number for Documentation Use", RFC 5612, August 2009, http://www.rfc-editor.org/info/rfc5612.
+Resnick, P., Ed., "Internet Message Format", RFC 5322, DOI 10.17487/RFC5322, October 2008, <https://www.rfc-editor.org/info/rfc5322>.
 ###### [RFC5952]
-Kawamura S., Kawashima M., "A Recommendation for IPv6 Address Text Representation", RFC 5952, August 2010, http://www.rfc-editor.org/info/rfc5952.
+Kawamura, S. and M. Kawashima, "A Recommendation for IPv6 Address Text Representation", RFC 5952, DOI 10.17487/RFC5952, August 2010, <https://www.rfc-editor.org/info/rfc5952>.
 ###### [RFC6234]
-Eastlake 3rd, D., Hansen, T., "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, May 2011, http://www.rfc-editor.org/info/rfc6234.
+Eastlake 3rd, D. and T. Hansen, "US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)", RFC 6234, DOI 10.17487/RFC6234, May 2011, <https://www.rfc-editor.org/info/rfc6234>.
 ###### [RFC6335]
-Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", BCP 165, RFC 6335, August 2011, http://www.rfc-editor.org/info/rfc6335.
+Cotton, M., Eggert, L., Touch, J., Westerlund, M., and S. Cheshire, "Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry", BCP 165, RFC 6335, DOI 10.17487/RFC6335, August 2011, <https://www.rfc-editor.org/info/rfc6335>.
 ###### [RFC6838]
-Freed, N., Klensin, J., Hansen, T., "Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, http://www.rfc-editor.org/info/rfc6838.
+Freed, N., Klensin, J., and T. Hansen, "Media Type Specifications and Registration Procedures", BCP 13, RFC 6838, DOI 10.17487/RFC6838, January 2013, <https://www.rfc-editor.org/info/rfc6838>.
 ###### [RFC7493]
-Bray, T., "The I-JSON Message Format", RFC 7493, March 2015, http://www.rfc-editor.org/info/rfc7493.
+Bray, T., Ed., "The I-JSON Message Format", RFC 7493, DOI 10.17487/RFC7493, March 2015, <https://www.rfc-editor.org/info/rfc7493>.
 ###### [RFC8174]
-Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174.
+Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 ###### [RFC8200]
-Deering, S., Hinden, R., "Internet Protocol, Version 6 (IPv6) Specification", RFC 8200, July 2017, http://www.rfc-editor.org/info/rfc8200.
+Deering, S. and R. Hinden, "Internet Protocol, Version 6 (IPv6) Specification", STD 86, RFC 8200, DOI 10.17487/RFC8200, July 2017, <https://www.rfc-editor.org/info/rfc8200>.
 ###### [RFC8259]
-Bray, T., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, December 2017, http://www.rfc-editor.org/info/rfc8259.
+Bray, T., Ed., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, <https://www.rfc-editor.org/info/rfc8259>.
 ###### [EUI]
 "IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE, August 2017, https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
 
 ## 1.4 Non-Normative References
 ###### [IACD]
 M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cyber Defense", Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., "Integrated Adaptive Cyberspace Defense: Secure Orchestration", International Command and Control Research and Technology Symposium, June 2015.
-###### [RFC3470]
-Hollenbeck S., Rose, M., Masinter L., "Guidelines for the Use of Extensible Markup Language (XML) within IETF Protocols", BCP 70, RFC 3470, January 2003, https://tools.ietf.org/html/rfc3470.
-###### [RFC7049]
-Bormann, C., Hoffman, P., "Concise Binary Object Representation (CBOR)", RFC 7049, October 2013, https://tools.ietf.org/html/rfc7049.
 ###### [UML]
 "UML Multiplicity and Collections", https://www.uml-diagrams.org/multiplicity.html
 
 ## 1.5 Document Conventions
 ### 1.5.1 Naming Conventions
-* [RFC2119](#rfc2119)/[RFC8174](#rfc8174) key words (see [section 1.2](#12-terminology)) are in all uppercase.
+* [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
 * Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
 * The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
@@ -229,13 +268,13 @@ The following color, font and font style conventions are used in this document:
 
 * A fixed width font is used for all type names, property names, and literals.
 * Property names are in bold style – **'created_at'**.
-* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259](#rfc8259)].
+* All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [[RFC8259]](#rfc8259).
 * Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).
 
 Example:
 
 ```javascript
-{   
+{
     "action": "contain",
     "target": {
         "user_account": {
@@ -260,7 +299,7 @@ OpenC2 is a suite of specifications for Producers and Consumers to command and e
 * **OpenC2 Actuator Profiles** specify the subset of the OpenC2 language relevant in the context of specific Actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely to) implement multiple Actuator profiles. Actuator profiles extend the language by defining Specifiers that identify the Actuator to the required level of precision. Actuator Profiles may define Command Arguments and Targets that are relevant and/or unique to those Actuator functions.
 * **OpenC2 Transfer Specifications** utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 messages.
 
-The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (_defined_ as a Message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more Actuator profiles). 
+The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (_defined_ as a Message body in the OpenC2 Language Specification Version 1.0 and _specified_ in one or more Actuator profiles).
 The language defines two payload structures:
 
 1. **Command**: An instruction from one system known as the Producer, to one or more systems, the Consumer(s), to act on the content of the Command.
@@ -278,29 +317,29 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 
 | Layer | Examples |
 | :--- | :--- |
-| Function-Specific Content | Actuator Profiles<br>(standard and extensions) |
+| Function-Specific Content | Actuator Profiles<br>([[OpenC2-SLPF-v1.0]](#openc2-slpf-v10), ...) |
 | Common Content | Language Specification<br>(this document) |
-| Message | Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …) |
+| Message | Transfer Specifications<br>([[OpenC2-HTTPS-v1.0]](#openc2-https-v10), OpenC2-over-CoAP, ...) |
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
 * The **Secure Transfer** layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.
-* The **Message** layer provides a transfer- and content-independent mechanism for conveying requests, responses, and notifications. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata. 
+* The **Message** layer provides a transfer- and content-independent mechanism for conveying requests, responses, and notifications. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.
 * The **Common Content** layer defines the structure of Commands and Responses and a set of common language elements used to construct them.
 * The **Function-specific Content** layer defines the language elements used to support a particular cyber defense function. An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.
 
 The components of a Command are an Action (what is to be done), a Target (what is being acted upon), an optional Actuator (what is performing the command), and Command Arguments, which influence how the Command is to be performed. An Action coupled with a Target is sufficient to describe a complete Command. Though optional, the inclusion of an Actuator and/or Command Arguments provides additional precision to a Command.
 
-The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred. 
+The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred.
 
 ## 1.7 Goal
 The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.
 
-The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD](#iacd)]:
+The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [[IACD]](#iacd):
 
 * Sensing:  gathering of data regarding system activities
 * Sense Making:  evaluating data using analytics to understand what's happening
 * Decision Making:  determining a course-of-action to respond to system events
-* Acting:  Executing the course-of-action 
+* Acting:  Executing the course-of-action
 
 The goal of OpenC2 is to enable coordinated defense in cyber-relevant time between decoupled blocks that perform cyber defense functions. OpenC2 focuses on the Acting portion of the IACD framework; the assumption that underlies the design of OpenC2 is that the sensing/analytics have been provisioned and the decision to act has been made. This goal and these assumptions guide the design of OpenC2:
 
@@ -330,7 +369,7 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 
 _The content in this section is non-normative._
 
-The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgement, status, etc.) as a result of a Command.
+The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgment, status, etc.) as a result of a Command.
 
 ## 2.1 OpenC2 Command
 The Command describes an Action to be performed on a Target and may include information identifying the Actuator or Actuators that are to execute the Command.
@@ -344,9 +383,9 @@ The following list summarizes the main four components of a Command.
 * **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **Actuator** (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
-The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-imported-types).
+The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-extensions).
 
-Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-imported-types).
+Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-extensions).
 
 An Actuator is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of Actions, Targets and other aspects of this language specification that are required or optional in the context of a particular Actuator. An Actuator Profile may extend the language by defining additional Targets, Arguments, and Actuator Specifiers that are meaningful and possibly unique to the Actuator.
 
@@ -357,43 +396,43 @@ The Response is a Message sent from the recipient of a Command. Response message
 
 -------
 
-# 3 OpenC2 Language Definition 
+# 3 OpenC2 Language Definition
 
 _The content in this section is normative._
 
 ## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
-OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values).  The data types used in OpenC2 messages are:
+OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values). The data types used in OpenC2 messages are:
 
 | Type | Description |
 | :--- | :--- |
 | **Primitive Types** |   |
 | Any | Anything, used to designate fields with an unspecified value. |
-| Binary | A sequence of octets.  Length is the number of octets. |
+| Binary | A sequence of octets. Length is the number of octets. |
 | Boolean | An element with one of two values: `true` and `false`. |
 | Integer | A whole number. |
 | Number | A real number. |
 | Null | Nothing, used to designate fields with no value. |
-| String | A sequence of characters, each of which has a Unicode codepoint.  Length is the number of characters. |
+| String | A sequence of characters, each of which has a Unicode codepoint. Length is the number of characters. |
 | **Structures** |   |
 | Array | An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type. |
 | ArrayOf(*vtype*) | An ordered list of fields with the same semantics. Each field has a position and type *vtype*. |
 | Choice | One field selected from a set of named fields. The API value has a name and a type. |
-| Choice.ID | One field selected from a set of fields.  The API value has an id and a type. |
+| Choice.ID | One field selected from a set of fields. The API value has an id and a type. |
 | Enumerated | A set of named integral constants. The API value is a name. |
 | Enumerated.ID | A set of unnamed integral constants. The API value is an id. |
 | Map | An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type. |
-| Map.ID | An unordered set of fields.  The API value of each field has an id, label, and type. |
+| Map.ID | An unordered set of fields. The API value of each field has an id, label, and type. |
 | MapOf(*ktype*, *vtype*) | An unordered set of keys to values with the same semantics. Each key has key type *ktype* and is mapped to value type *vtype*. |
 | Record | An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
 
-* **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified.  A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
+* **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format.  Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document.  Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.
+* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.6](#316-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
 
 Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
 
-1. Field definitions and API values are identified only by ID.  The non-normative description may include a suggested name.
+1. Field definitions and API values are identified only by ID. The non-normative description may include a suggested name.
 2. Serialized values of Enumerated types and keys of Choice/Map types are IDs regardless of serialization format.
 
 OpenC2 type definitions are presented in table format. All table columns except Description are Normative. The Description column is always Non-normative.
@@ -404,13 +443,13 @@ For types without individual field definitions (Primitive types and ArrayOf), th
 | :--- | :--- | :--- |
 | **Email-Addr** | String (email) | Email address |
 
-For Structure types, the definition includes the name of the type being defined, the built-in type on which it is based, and options applicable to the type as a whole.  This is followed by a table defining each of the fields in the structure.  This table defines a type called *Args* that is a *Map* containing at least one field.  Each of the fields has an integer Tag/ID, a Name, and a Type.  Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
+For Structure types, the definition includes the name of the type being defined, the built-in type on which it is based, and options applicable to the type as a whole. This is followed by a table defining each of the fields in the structure. This table defines a type called *Args* that is a *Map* containing at least one field. Each of the fields has an integer Tag/ID, a Name, and a Type. Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
 
 **_Type: Args (Map) [1..*]_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action  |
+| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action |
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an action to be in effect |
 
@@ -423,20 +462,20 @@ The field columns present in a structure definition depends on the base type:
 | Array, Choice.ID, Map.ID | ID, Type, Multiplicity (#), Description |
 | Choice, Map, Record | ID, Name, Type, Multiplicity (#), Description |
 
-The ID column of Array and Record types contains the ordinal position of the field, numbered sequentially starting at 1.  The ID column of Choice, Enumerated, and Map types contains tags with arbitrary integer values. IDs and Names are unique within each type definition.
+The ID column of Array and Record types contains the ordinal position of the field, numbered sequentially starting at 1. The ID column of Choice, Enumerated, and Map types contains tags with arbitrary integer values. IDs and Names are unique within each type definition.
 
 ### 3.1.2 Semantic Value Constraints
 Structural validation alone may be insufficient to validate that an instance meets all the requirements of an application. Semantic validation keywords specify value constraints for which an authoritative definition exists.
 
 | Keyword | Applies to Type | Constraint |
 | :--- | :--- | :--- |
-| **email** | String | Value must be an email address as defined in RFC 5322, section 3.4.1 |
-| **hostname** | String | Value must be a hostname as defined in RFC 1034 section 3.1 |
-| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986 |
-| **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in EUI |
+| **email** | String | Value must be an email address as defined in [[RFC5322]](#rfc5322), Section 3.4.1 |
+| **hostname** | String | Value must be a hostname as defined in [[RFC1034]](#rfc1034), Section 3.1 |
+| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986) |
+| **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
 
 ### 3.1.3 Multiplicity
-Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field.  As used in the Unified Modeling Language ([UML](#uml)), typical examples of multiplicity are:
+Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field. As used in the Unified Modeling Language ([[UML]](#uml)), typical examples of multiplicity are:
 
 | Multiplicity | Description | Keywords |
 | :--- | :--- | :--- |
@@ -452,14 +491,14 @@ When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 | :--- | :--- | :--- |
 | **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
-A multiplicity of 0..1 denotes a single optional value of the specified type.  A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
+A multiplicity of 0..1 denotes a single optional value of the specified type. A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
 
-An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type.  The named type can then be used as the type of a required field (multiplicity 1).  Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
+An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type. The named type can then be used as the type of a required field (multiplicity 1). Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
 
 ### 3.1.4 Derived Enumerations
-It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type.  A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
 
-This example includes a type representing the value of a single picture element ("pixel") in an image, and an operation "SetValue" to set one of the color values of a pixel.  It would be possible validate a SetValue operation against an explicit enumeration of the Pixel fields:
+This example includes a type representing the value of a single picture element ("pixel") in an image, and an operation "SetValue" to set one of the color values of a pixel. It would be possible validate a SetValue operation against an explicit enumeration of the Pixel fields:
 
 **_Type: Pixel (Map)_**
 
@@ -501,7 +540,7 @@ But it is both easier and more reliable to use a derived enumeration to validate
 ### 3.1.5 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.  
+Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.
 
 All extension names MUST begin with a namespace identifier followed by a colon (":").
 
@@ -519,7 +558,7 @@ The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
 The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended.
 
-**For example:**
+**Example:**
 In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
@@ -533,7 +572,7 @@ In this example Command, the extended Target, `rule_number`, is defined within t
 
 The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended.
 
-**For example:**
+**Example:**
 In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
@@ -550,7 +589,7 @@ In this example Command, the extended Argument, `direction`, is defined within t
 
 The Actuator property of a Command defined in [Section 3.3.1.3](#3313-actuator) MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
-**For example:**
+**Example:**
 In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace `slpf`.
 
 ```
@@ -569,7 +608,7 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
 
 The properties of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
 
-**For example:**
+**Example:**
 In this example Response, the Response property, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
 
 ```
@@ -580,26 +619,26 @@ In this example Response, the Response property, `rule_number`, is defined withi
 ````
 
 ### 3.1.6 Serialization
-OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.
+OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and additional requirements specified in the following table.
 
 **JSON Serialization Requirements:**
 
 | OpenC2 Data Type | JSON Serialization Requirement |
 | :--- | :--- |
-| **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in Section 5 of [RFC 4648](#rfc4648). |
-| **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in Section 8 of [RFC 4648](#rfc4648). Note that the Base16 alphabet does not include lower-case letters. |
-| **Binary /ipv4-addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in Section 3.2 of [RFC 2673](#rfc2673). |
-| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in Section 4 of [RFC 5952](#rfc5952). |
+| **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5. |
+| **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
+| **Binary /ipv4-addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2. |
+| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4. |
 | **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
 | **Null** | JSON **null** |
 | **String** | JSON **string** |
 | **Array** | JSON **array** |
-| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in Section 3.1 of [RFC 4632](#rfc4632). |
-| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in Section 2.3 of [RFC 4291](#rfc4291). | 
+| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in [[RFC4632]](#rfc4632), Section 3.1. |
+| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in [[RFC4291]](#rfc4291), Section 2.3. |
 | **ArrayOf** | JSON **array** |
-| **Choice** | JSON **object** with one member.  Member key is the field name.   |
+| **Choice** | JSON **object** with one member. Member key is the field name. |
 | **Choice.ID** | JSON **object** with one member. Member key is the integer field id converted to string. |
 | **Enumerated** | JSON **string** |
 | **Enumerated.ID** | JSON **integer** |
@@ -609,13 +648,13 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **Record** | JSON **object**. Member keys are field names. |
 
 #### 3.1.6.1 ID and Name Serialization
-Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead.  Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
+Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead. Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
-1. Type definitions and application values use only the ID.  There is no corresponding name except as an optional part of the description.
+1. Type definitions and application values use only the ID. There is no corresponding name except as an optional part of the description.
 2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
 
 #### 3.1.6.2 Integer Serialization
-For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits.   But for human-readable serialization formats (XML and JSON), integers are converted to strings.
+For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits. But for human-readable serialization formats (XML and JSON), integers are converted to strings.
 
 **Example:**
 The JSON "number" type represents integers and real numbers as decimal strings without quotes.
@@ -623,23 +662,23 @@ The JSON "number" type represents integers and real numbers as decimal strings w
 { "height": 68.2 }
 ```
 
-As noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
+As noted in [[RFC7493]](#rfc7493), Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
 
-The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON.   Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*.  All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types.  Integer values support arithmetic operations; Binary values are not intended for that purpose.
+The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON. Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*. All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types. Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
 ## 3.2 Message
-As described in Section 1.1, this language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols.  Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol.  This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
+This language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols. Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol. This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-A message is a content- and transport-independent set of elements conveyed between producers and consumers.  To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages.  Content, content_type, and msg_type are required in all messages. Other message elements are not required by this specification but may be required by other specifications.
+A message is a content- and transport-independent set of elements conveyed between producers and consumers. To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages. Content, content_type, and msg_type are required in all messages. Other message elements are not required by this specification but may be required by other specifications.
 
 ###### Table 3-1. Common Message Elements
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | **content** | | Message body as specified by content_type and msg_type. |
-| **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types.  Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
-| **msg_type** | Message-Type | One of **request**, **response**, or **notification**.  For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response.  OpenC2 does not currently define any notification content. |
-| **status** | Status-Code | Populated with a numeric status code in response messages.  Not present in request or notification messages. |
+| **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types. Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
+| **msg_type** | Message-Type | One of **request**, **response**, or **notification**. For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response. OpenC2 does not currently define any notification content. |
+| **status** | Status-Code | Populated with a numeric status code in response messages. Not present in request or notification messages. |
 | **request_id** | String | A unique identifier created by the producer and copied by consumer into all responses, in order to support reference to a particular command, transaction or event chain. |
 | **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
 | **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
@@ -647,18 +686,18 @@ A message is a content- and transport-independent set of elements conveyed betwe
 
 **Note:**
 
-Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment.  However the internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2.  This means that the Message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure.  Content is the input provided to a serializer or the output of a de-serializer.  Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field.  The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
+Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment. However the internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2. This means that the Message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure. Content is the input provided to a serializer or the output of a de-serializer. Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field. The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
 
 **Usage Requirements:**
 
 * A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
-* The request_id of a request message SHOULD be a Version 4 UUID as specified in RFC 4122 section 4.4.
+* The request_id of a request message SHOULD be a Version 4 UUID as specified in [[RFC4122]](#rfc4122), Section 4.4.
 * A consumer MUST copy the request_id from a request message into each response to that request.
 
 ## 3.3 Content
-The purpose of this specification is to define the Action and Target portions of a Command and the common portions of a Response.  The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
+The purpose of this specification is to define the Action and Target portions of a Command and the common portions of a Response. The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
 
-In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.
+In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in 'Actuator Profile Specifications' such as StateLess Packet Filtering Profile, Routing Profile etc.
 
 ### 3.3.1 OpenC2 Command
 The Command defines an Action to be performed on a Target.
@@ -700,13 +739,13 @@ The Command defines an Action to be performed on a Target.
 | 20 | **delete** | Remove an entity (e.g., data, files, flows). |
 | 22 | **detonate** | Execute and observe the behavior of a Target (e.g., file, hyperlink) in an isolated environment. |
 | 23 | **restore** | Return a system to a previously known state. |
-| 28 | **copy** | Duplicate an object,  file, data flow or artifact. |
+| 28 | **copy** | Duplicate an object, file, data flow or artifact. |
 | 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
 **Usage Requirements:**
 
-* Each Command MUST contain exactly one Action defined in Section 3.3.1.1. 
+* Each Command MUST contain exactly one Action defined in [Section 3.3.1.1](#3311-action).
 
 #### 3.3.1.2 Target
 **_Type: Target (Choice)_**
@@ -724,7 +763,7 @@ The Command defines an Action to be performed on a Target.
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
 | 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
 | 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
-| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 |
+| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
 | 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
@@ -745,7 +784,7 @@ The Command defines an Action to be performed on a Target.
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the Action  |
+| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the Action |
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Action to be in effect |
 | 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Action: `none`, `ack`, `status`, `complete`. |
@@ -783,7 +822,7 @@ The Command defines an Action to be performed on a Target.
 **Example:**
 
 ```javascript
-{   
+{
     "status": 200,
     "status_text": "All endpoints successfully updated",
     "strings": ["wd-394", "sx-2497"]
@@ -794,7 +833,7 @@ Usage Requirements:
 
 * All Responses MUST contain a status.
 
-#### 3.3.2.1 OpenC2 Response Status Code
+#### 3.3.2.1 Response Status Code
 **_Type: Status-Code (Enumerated.ID)_**
 
 | ID | Description |
@@ -816,11 +855,11 @@ Usage Requirements:
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, RFC 6838 |
+| 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
-#### 3.4.1.3 Device
+#### 3.4.1.2 Device
 **_Type: Device (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -829,17 +868,17 @@ Usage Requirements:
 | 2 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
 | 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
 
-#### 3.4.1.4 Domain Name
+#### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Domain-Name** | String (hostname) | RFC 1034, section 3.5 |
+| **Domain-Name** | String (hostname) | [[RFC1034]](#rfc1034), Section 3.5 |
 
-#### 3.4.1.5 Email Address
+#### 3.4.1.4 Email Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Email-Addr** | String (email) | Email address |
 
-#### 3.4.1.6 Features
+#### 3.4.1.5 Features
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
@@ -851,9 +890,9 @@ Usage Requirements:
 
 **Usage Notes:**
 
-* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keepalive command).  An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keepalive functions.
+* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
-#### 3.4.1.7 File
+#### 3.4.1.6 File
 **_Type: File (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -862,63 +901,60 @@ Usage Requirements:
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.4.1.8 IPv4 Address Range
-An IPv4 address range is a CIDR block per 
-"Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan"[RFC4632] 
-and consists of two values, an IPv4 address and a prefix. 
-For example, “192.168.17.0/24” is range of IP addresses
-with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255). 
-JSON serialization of an IPv4 address range 
-SHALL use the ‘dotted/slash’ textual representation of RFC4632. 
-CBOR serialization of an IPv4 address range
-SHALL use a binary representation of the IP address and the prefix, 
-each in their own field.
+#### 3.4.1.7 IPv4 Address Range
+An IPv4 address range is a CIDR block per "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) and consists of two values, an IPv4 address and a prefix.
+
+For example, "192.168.17.0/24" is range of IP addresses with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255).
+
+JSON serialization of an IPv4 address range SHALL use the 'dotted/slash' textual representation of [[RFC4632]](#rfc4632).
+
+CBOR serialization of an IPv4 address range SHALL use a binary representation of the IP address and the prefix, each in their own field.
 
 **_Type: IPv4-Net (Array /ipv4-net)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | IPv4-Addr | 1 | ipv4-address as defined in [RFC 791](#rfc791) |
-| 2 | Integer | 0..1 | CIDR prefix-length.  If omitted, refers to a single host address. |
+| 1 | IPv4-Addr | 1 | ipv4-address as defined in [[RFC0791]](#rfc0791) |
+| 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
+
+#### 3.4.1.8 IPv4 Connection
+**_Type: IPv4-Connection (Record)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
+| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
+| 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
+| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#3429-l4-protocol) |
 
 #### 3.4.1.9 IPv6 Address Range
 **_Type: IPv6-Net (Array /ipv6-net)_**
 
 | ID | Type | # | Description |
 | :--- | :--- | :--- | :--- |
-| 1 | IPv6-Addr | 1 | ipv6-address as defined in [RFC 8200](#rfc8200) |
+| 1 | IPv6-Addr | 1 | ipv6-address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
-#### 3.4.1.10 IPv4 Connection
-**_Type: IPv4-Connection (Record)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [RFC 6335](#rfc6335) |
-| 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
-
-#### 3.4.1.11 IPv6 Connection
+#### 3.4.1.10 IPv6 Connection
 **_Type: IPv6-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per RFC 6335 |
+| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per RFC 6335 |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see l4_protocol section |
+| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#3429-l4-protocol) |
 
 *Editor's Note: Renumber*
 
-#### 3.4.1.10 MAC Address
+#### 3.4.1.11 MAC Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [EUI](*eui). |
+| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
-#### 3.4.1.11 Process
+#### 3.4.1.12 Process
 **_Type: Process (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -930,17 +966,26 @@ each in their own field.
 | 5 | **parent** | Process | 0..1 | Process that spawned this one |
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
 
-#### 3.4.1.12 Properties
+#### 3.4.1.13 Properties
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an Actuator. |
 
-#### 3.4.1.13 URI
+#### 3.4.1.14 URI
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **URI** | String (uri) | Uniform Resource Identifier |
 
 ### 3.4.2 Data Types
+#### 3.4.2.1 Action-Targets
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
+
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+
 #### 3.4.2.2 Date-Time
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
@@ -957,63 +1002,7 @@ each in their own field.
 **Usage Requirements:**
 * Value is a number of milliseconds
 
-#### 3.4.2.4 Hashes
-**_Type: Hashes (Map)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [RFC 1321](#rfc1321) |
-| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [RFC 6234](#rfc6234) |
-| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [RFC 6234](#rfc6234) |
-
-#### 3.4.2.5 Hostname
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-|  **Hostname** | String (hostname) | Internet host name as specified in [RFC 1123](#rfc1123) |
-
-#### 3.4.2.6 IPv4 Address
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [RFC 791](#rfc791) |
-
-#### 3.4.2.7 IPv6 Address
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [RFC 8200](#rfc8200) |
-
-*Editor's Note: Renumber*
-
-#### 3.4.2.7 L4 Protocol
-Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [RFC 5237](#rfc5237)
-
-**_Type: L4-Protocol (Enumerated)_**
-
-| ID | Name | Description |
-| :--- | :--- | :--- |
-| 1 | **icmp** | Internet Control Message Protocol - [RFC 792](#rfc792) |
-| 6 | **tcp** | Transmission Control Protocol - [RFC 793](#rfc793) |
-| 17 | **udp** | User Datagram Protocol - [RFC 768](#rfc768) |
-| 132 | **sctp** | Stream Control Transmission Protocol - [RFC 4960](#rfc4960) |
-
-#### 3.4.2.8 Namespace Identifier
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
-
-#### 3.4.2.8 Payload
-**_Type: Payload (Choice)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
-| 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
-
-#### 3.4.2.9 Port
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Port** | Integer [0..65535] | Transport Protocol Port Number, [RFC 6335](#rfc6335) |
-
-#### 3.4.2.10 Feature
+#### 3.4.2.4 Feature
 Specifies the results to be returned from a query features Command.
 
 **_Type: Feature (Enumerated)_**
@@ -1025,7 +1014,61 @@ Specifies the results to be returned from a query features Command.
 | 3 | **pairs** | List of supported Actions and applicable Targets |
 | 4 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
 
-#### 3.4.2.11 Response-Type
+#### 3.4.2.5 Hashes
+**_Type: Hashes (Map)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
+| 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
+| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
+
+#### 3.4.2.6 Hostname
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Hostname** | String (hostname) | Internet host name as specified in [[RFC1123]](#rfc1123) |
+
+#### 3.4.2.7 IPv4 Address
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
+
+#### 3.4.2.8 IPv6 Address
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
+
+#### 3.4.2.9 L4 Protocol
+Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
+
+**_Type: L4-Protocol (Enumerated)_**
+
+| ID | Name | Description |
+| :--- | :--- | :--- |
+| 1 | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792) |
+| 6 | **tcp** | Transmission Control Protocol - [[RFC0793]](#rfc0793) |
+| 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
+| 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
+
+#### 3.4.2.10 Namespace Identifier
+| Type Name | Base Type | Description |
+| :--- | :--- | :--- |
+| **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
+
+#### 3.4.2.11 Payload
+**_Type: Payload (Choice)_**
+
+| ID | Name | Type | # | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
+| 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
+
+#### 3.4.2.12 Port
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
+
+#### 3.4.2.13 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1035,23 +1078,14 @@ Specifies the results to be returned from a query features Command.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.12 Version
+#### 3.4.2.14 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
 
-#### 3.4.2.15 Action-Targets
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
-
-| Type Name | Type Definition | Description |
-| :--- | :--- | :--- |
-| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
-
 -------
 
-# 4 Mandatory Commands/Responses 
+# 4 Mandatory Commands/Responses
 
 _The content in this section is normative, except where it is marked non-normative._
 
@@ -1059,61 +1093,74 @@ A Command consists of an Action/Target pair and associated Specifiers and Argume
 
 ## 4.1 Implementation of 'query features' Command
 
-The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2.  This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.  
+The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2. This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.
 
-The 'query features' Command is REQUIRED for all Producers. 
-The 'query features' Command MAY include one or more Specifiers as defined in table 3.4.2.10 of this specification.  
-The 'query features' Command MAY include the "response_type":"complete" ARGUMENT. 
-The 'query features' Command MUST NOT include any other ARGUMENT. 
+The 'query features' Command is REQUIRED for all Producers.
+The 'query features' Command MAY include one or more Features as defined in [Section 3.4.2.4](#3424-feature).
+The 'query features' Command MAY include the `"response_type": "complete"` Argument.
+The 'query features' Command MUST NOT include any other Argument.
 
-The 'query features' Command is REQUIRED for all Consumers. 
-Consumers that receive and parse the 'query features':  
-*  With any ARGUMENT other than "response_type:complete"  
+The 'query features' Command is REQUIRED for all Consumers.
+Consumers that receive and parse the 'query features':
+*  With any Argument other than `"response_type": "complete"`
     *  MUST NOT respond with OK/200.
     *  SHOULD respond with Bad Request/400.
     *  MAY respond with the 500 status code.
 *  With no Target specifiers MUST respond with response code 200.
-*  With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer. 
-*  With the [profiles] Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.  
-*  With the [pairs] Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer. 
-* With the [rate_limit] Target specifier populated: 
-    * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support. 
-    * MAY respond with status 200 and with the rate_limit field unpopulated.  
+*  With the "versions" Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.
+*  With the "profiles" Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.
+*  With the "pairs" Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.
+* With the "rate_limit" Target specifier populated:
+    * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support.
+    * MAY respond with status 200 and with the rate_limit field unpopulated.
 
-## 4.2 Sample Commands and Responses
+## 4.2 Examples of 'query features' Commands and Responses
 
 _This section is non-normative._
 
-This sub-section provides examples and associated responses of 'query features' Commands. The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.  Lines preceded with # are comments, however it should be noted that the OpenC2 language does not support comments.  
+This sub-section provides examples of 'query features' Commands and Responses. The examples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.
 
-``` 
-# No target specifiers. Useful for a heartbeat function  
+### 4.2.1 Sample 1
+There are no features specified in the 'query features' Command. A simple "OK" Response message is returned.
 
-{  
-  "action": "query",  
-  "target": {  
-    "features": []  
-  }  
-}  
+**Command:**
+```
+{
+    "action": "query",
+    "target": {
+        "features": []
+    }
+}
+```
 
-# indicates the actuator is alive  
+**Response:**
+```
+{
+    "status": 200
+}
+```
 
-{"status": 200}  
+### 4.2.2 Sample 2
+There are several features requested in the 'query features' Command. All requested features can be returned in a single Response message.
 
-# Multiple specifiers populated in the command  
-{  
-  "action": "query",  
-  "target": {  
-    "features": ["versions", "profiles", "rate_limit"]  
-  }  
-}  
+**Command:**
 
-#    
-{  
-  "status": 200,  
-  "versions": ["1.0"],  
-  "profiles": ["slpf", "x-lock"],
-  "rate_limit": 30  
+```
+{
+    "action": "query",
+    "target": {
+        "features": ["versions", "profiles", "rate_limit"]
+    }
+}
+```
+
+**Response:**
+```
+{
+    "status": 200,
+    "versions": ["1.0"],
+    "profiles": ["slpf", "x-lock"],
+    "rate_limit": 30
 }
 ```
 
@@ -1127,32 +1174,32 @@ _This content in this section is normative._
 
 A conformant Command
 
-* 5.1-1 MUST be structured in accordance with Section 3.3.1.
-* 5.1-2 MUST include exactly one `action` property defined in accordance with Section 3.3.1.1.
-* 5.1-3 MUST include exactly one `target` property defined in accordance with Section 3.3.1.2 or exactly one imported `target` property defined in accordance with Section 3.1.5.
-* 5.1-4 MUST include zero or one `actuator` property defined in accordance with Section 3.3.1.3 or zero or one imported `actuator` property defined in accordance with Section 3.1.5.
-* 5.1-5 MUST include zero or one `args` property defined in accordance with Section 3.3.1.4 or zero or one imported `args` property defined in accordance with Section 3.1.5.
+* 5.1-1 MUST be structured in accordance with [Section 3.3.1](#331-openc2-command).
+* 5.1-2 MUST include exactly one `action` property defined in accordance with [Section 3.3.1.1](#3311-action).
+* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.5](#315-extensions).
+* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.5](#315-extensions).
+* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.5](#315-extensions).
 
 ### 5.2 Conformance Clause 2: Response
 
 A conformant Response
 
-* 5.2-1 MUST be structured in accordance with Section 3.3.2.
-* 5.2-2 MUST include exactly one `status` property defined in accordance with Section 3.3.2.1.
+* 5.2-1 MUST be structured in accordance with [Section 3.3.2](#332-openc2-response).
+* 5.2-2 MUST include exactly one `status` property defined in accordance with [Section 3.3.2.1](#3321-response-status-code).
 
 ## 5.3 Conformance Clause 3: Producer
 
-A conformant Producer 
+A conformant Producer
 
-* 5.3-1 MUST issue Commands and process Responses in accordance with Section 4.
-* 5.3-2 MUST implement JSON serialization of generated Commands in accordance with RFC 7493.
+* 5.3-1 MUST issue Commands and process Responses in accordance with [Section 4](#4-mandatory-commandsresponses).
+* 5.3-2 MUST implement JSON serialization of generated Commands in accordance with [[RFC7493]](#rfc7493).
 
 ## 5.4 Conformance Clause 4: Consumer
 
-A conformant Consumer 
+A conformant Consumer
 
-* 5.4-1 MUST process Commands and issue Responses in accordance with Section 4.
-* 5.4-2 MUST implement JSON serialization of generated Responses in accordance with RFC 7493.
+* 5.4-1 MUST process Commands and issue Responses in accordance with [Section 4](#4-mandatory-commandsresponses).
+* 5.4-2 MUST implement JSON serialization of generated Responses in accordance with [[RFC7493]](#rfc7493).
 
 -------
 
@@ -1163,14 +1210,14 @@ _The content in this section is non-normative._
 ## A.1 Example 1
 This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the Message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the Message.
 
-The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:` 'd937 fca9 2b64 4e71'`,  base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`.  If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.
+The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex: `'d937 fca9 2b64 4e71'`, base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`. If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: `'6670 2d31 3932 352d 3337 3632 3864 3663'`, base64url: `'ZnAtMTkyNS0zNzYyOGQ2Yw'`, byte string: `b'fp-1925-37628d6c'`.
 
-The created element is a Date-Time value of milliseconds since the epoch.  The example `1539355895215` may be displayed as` '12 October 2018 14:51:35 UTC'`.
+The created element is a Date-Time value of milliseconds since the epoch. The example `1539355895215` may be displayed as `'12 October 2018 14:51:35 UTC'`.
 
-This example, illustrating an internal representation of a Message, is non-normative.  Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values.  There are no interoperability considerations or conformance requirements for how Message elements are represented internally within an implementation.  Only the serialized values of the Message elements embedded within a protocol is relevant to interoperability.
+This example, illustrating an internal representation of a Message, is non-normative. Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values. There are no interoperability considerations or conformance requirements for how Message elements are represented internally within an implementation. Only the serialized values of the Message elements embedded within a protocol is relevant to interoperability.
 
 
-### A.1.1 Command Message
+### A.1.1 Example 1: Command
 ```
 content-type: 'application/openc2'
 msg_type: 'request'
@@ -1181,10 +1228,10 @@ created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
 ```
 
-### A.1.2 Response Message
-The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content.  The request_id from the Command Message, if present, is returned unchanged in the Response Message.  The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the Response.
+### A.1.2 Example 1: Response
+The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content. The request_id from the Command Message, if present, is returned unchanged in the Response Message. The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group. The "created" element, if present, contains the creation time of the Response.
 
-A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command.  No Actuator profiles currently define response content types other than openc2.
+A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command. No Actuator profiles currently define response content types other than openc2.
 
 ```
 status: 200
@@ -1200,8 +1247,7 @@ content: {'status': 200, 'versions': ['1.3'], 'profiles': ['slpf']}
 ## A.2 Example 2
 This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
 
-**Command:**
-
+### A.2.1 Example 2: Command
 ```
 {
     "action": "query",
@@ -1216,8 +1262,7 @@ This example is for a transport where the header information is outside the JSON
 }
 ```
 
-**Response:**
-
+### A.2.2 Example 2: Response
 ```
 {
     "status": 200,
@@ -1238,24 +1283,22 @@ This example is for a transport where the header information is outside the JSON
 ```
 
 ## A.3 Example 3
-**Command:**
-
+### A.3.1 Example 3: Command
 ```
 {
-  "action": "query",
-  "target": {
-    "features": ["versions", "profiles"]
-  }
+    "action": "query",
+    "target": {
+        "features": ["versions", "profiles"]
+    }
 }
 ```
 
-**Response:**
-
+### A.3.2 Example 3: Response
 ```
 {
-  "status_text": "ACME Corp Internet Toaster",
-  "versions": ["1.0"],
-  "profiles": ["slpf", "x-acme"]
+    "status_text": "ACME Corp Internet Toaster",
+    "versions": ["1.0"],
+    "profiles": ["slpf", "x-acme"]
 }
 ```
 
@@ -1263,40 +1306,45 @@ This example is for a transport where the header information is outside the JSON
 
 # Annex B. Acronyms
 
-_The content in this section is non-normative._
-
 | Acronym | Definition |
 | :--- | :--- |
 API | Application Programming Interface
+ASCII | American Standard Code for Information Interchange
+BCP | Best Current Practice
 CBOR | Concise Binary Object Representation
+CIDR | Classless Inter-Domain Routing
 CoAP | Constrained Application Protocol
-DNS | Domain Name Server
+DOI | Digital Object Identifier
+EUI | Extended Unique Identifier
 HTTP | Hyper Text Transfer Protocol
+HTTPS | Hyper Text Transfer Protocol Secure
 IACD | Integrated Adaptive Cyber Defense
-IANA | Internet Assigned Numbers Authority 
+IANA | Internet Assigned Numbers Authority
 ICMP | Internet Control Message Protocol
+ID | Identifier
 IP | Internet Protocol
 IPR | Intellectual Property Rights
-JSON | Java Script Notation
-KMIP | Key Management Interface Protocol
+JSON | JavaScript Object Notation
 MAC | Media Access Control
 MD5 | Message Digest
-MIME | Multipurpose Internet Mail Extensions 
-MQTT | Message Queuing Telemetry Transfer 
-NSID | Namespace Identifier
+MQTT | Message Queuing Telemetry Transfer
 OASIS | Organization for the Advancement of Structured Information Standards
-OpenC2 | Open  Command and Control
+OODA | Observe-Orient-Decide-Act
+OpenC2 | Open Command and Control
 OpenDXL | Open Data eXchange Layer
+PDF | Portable Document Format
 RFC | Request for Comment
 SCTP | Stream Control Transmission Protocol
 SHA | Security Hash Algorithm
 SLPF | StateLess Packet Filtering
-STIX | Structured Threat Intel eXchange
+STD | Standard
 TC | Technical Committee
 TCP | Transmission Control Protocol
-TLV | Type Length Value
 UDP | User Datagram Control Protocol
+UML | Unified Modeling Language
 URI | Uniform Resource Identifier
+UTC | Coordinated Universal Time
+UUID | Universally Unique IDentifier
 XML | eXtensibel Markup Language
 
 -------
@@ -1315,13 +1363,14 @@ _The content in this section is non-normative._
 | v1.0-wd04 | 03/02/2018 | Romano, Sparrell | Property tables<br>threads (cmd/resp) from use cases<br>previous comments |
 | v1.0-wd05 | 03/21/2018 | Romano, Sparrell | wd04 review comments |
 | v1.0-csd03 | 04/03/2018 | Romano, Sparrell | approved wd05 |
-| v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’ |
+| v1.0-wd06 | 05/15/2018 | Romano, Sparrell | Finalizing message structure<br>message=header+body<br>Review comments<br>Using word 'arguments' instead of 'options' |
 | v1.0-csd04 | 5/31/2018 | Romano, Sparrell | approved wd06 |
 | v1.0-wd07 | 7/11/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments<br>Moved some Actions and Targets to reserved lists |
 | v1.0-wd08 | 10/05/2018 | Romano, Sparrell | Continued refinement of details<br>Review comments |
 | v1.0-wd09 | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review. |
 | v1.0-wd10 | 03/04/2019 | Romano, Sparrell | Produce interim working draft. |
 | v1.0-wd11 | 03/21/2019 | Romano, Sparrell | Produce interim working draft. |
+| v1.0-wd12 | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review. |
 
 -------
 
