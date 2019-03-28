@@ -141,7 +141,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
     -   [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
     -   [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
-    -   [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-3-consumer)
+    -   [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 -   [Annex A. Examples](#annex-a-examples)
     -   [A.1 Example 1](#a1-example-1)
         -   [A.1.1 Example 1: Command](#a11-example-1-command)
@@ -378,7 +378,7 @@ The following list summarizes the main four components of a Command.
 * **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **Actuator** (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
-The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-imported-types).
+The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-extensions).
 
 Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-extensions).
 
@@ -1213,7 +1213,7 @@ created: 1539355895215
 content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
 ```
 
-### A.1.2 Example 2: Response
+### A.1.2 Example 1: Response
 The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content.  The request_id from the Command Message, if present, is returned unchanged in the Response Message.  The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group.  The "created" element, if present, contains the creation time of the Response.
 
 A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command.  No Actuator profiles currently define response content types other than openc2.
@@ -1288,6 +1288,8 @@ This example is for a transport where the header information is outside the JSON
 ```
 
 -------
+
+# Annex B. Acronyms
 
 | Acronym | Definition |
 | :--- | :--- |
