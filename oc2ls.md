@@ -1370,6 +1370,7 @@ _The content in this section is non-normative._
 | v1.0-wd09 | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review. |
 | v1.0-wd10 | 03/04/2019 | Romano, Sparrell | Produce interim working draft. |
 | v1.0-wd11 | 03/21/2019 | Romano, Sparrell | Produce interim working draft. |
+| v1.0-wd12 | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review. |
 
 -------
 
