@@ -85,9 +85,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body>
 <p><img src="http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg" alt="OASIS Logo" /></p>
 <h1 id="open-command-and-control-openc2-language-specification-version-10">Open Command and Control (OpenC2) Language Specification Version 1.0</h1>
-<h2 id="working-draft-11">Working Draft 11</h2>
-<h2 id="21-march-2019">21 March 2019</h2>
+<h2 id="working-draft-12">Working Draft 12</h2>
+<h2 id="27-march-2019">27 March 2019</h2>
 <h3 id="specification-uris">Specification URIs</h3>
+<h4 id="this-version">This version:</h4>
+<ul>
+<li>TBD.md (Authoritative)</li>
+<li>TBD.html</li>
+<li>TBD.pdf</li>
+</ul>
 <h4 id="previous-version">Previous version:</h4>
 <ul>
 <li><a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md</a> (Authoritative)</li>
@@ -115,7 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Duncan Sparrell (<a href="mailto:duncan@sfractal.com">duncan@sfractal.com</a>), <a href="http://www.sfractal.com/">sFractal Consulting LLC</a></li>
 </ul>
 <h4 id="abstract">Abstract:</h4>
-<p>Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyberdefense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.</p>
+<p>Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyber defense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.</p>
 <h4 id="status">Status:</h4>
 <p>This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the &quot;Latest version&quot; location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at <a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical" class="uri">https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical</a>.</p>
 <p>TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the instructions at the &quot;Send A Comment&quot; button on the TC's web page at <a href="https://www.oasis-open.org/committees/openc2/" class="uri">https://www.oasis-open.org/committees/openc2/</a>.</p>
@@ -124,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 id="citation-format">Citation format:</h4>
 <p>When referencing this specification the following citation format should be used:</p>
 <p><strong>[OpenC2-Lang-v1.0]</strong></p>
-<p><em>Open Command and Control (OpenC2) Language Specification Version 1.0</em>. Edited by Jason Romano and Duncan Sparrell. 17 October 2018. OASIS Committee Specification Draft 07 / Public Review Draft 01. <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html</a>. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html</a>.</p>
+<p><em>Open Command and Control (OpenC2) Language Specification Version 1.0</em>. Edited by Jason Romano and Duncan Sparrell. 27 March 2019. OASIS Working Draft 12. <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html</a>. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html</a>.</p>
 <hr />
 <h2 id="notices">Notices</h2>
 <p>Copyright © OASIS Open 2018. All Rights Reserved.</p>
@@ -164,42 +170,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#31-base-components-and-structures">3.1 Base Components and Structures</a>
 <ul>
 <li><a href="#311-data-types">3.1.1 Data Types</a></li>
-<li><a href="#312-derived-data-types">3.1.2 Derived Data Types</a></li>
-<li><a href="#313-cardinality">3.1.3 Cardinality</a></li>
+<li><a href="#312-semantic-value-constraints">3.1.2 Semantic Value Constraints</a></li>
+<li><a href="#313-multiplicity">3.1.3 Multiplicity</a></li>
 <li><a href="#314-derived-enumerations">3.1.4 Derived Enumerations</a></li>
-<li><a href="#315-serialization">3.1.5 Serialization</a></li>
+<li><a href="#315-extensions">3.1.5 Extensions</a></li>
+<li><a href="#316-serialization">3.1.6 Serialization</a>
+<ul>
+<li><a href="#3161-id-and-name-serialization">3.1.6.1 ID and Name Serialization</a></li>
+<li><a href="#3162-integer-serialization">3.1.6.2 Integer Serialization</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#32-message">3.2 Message</a></li>
 <li><a href="#33-content">3.3 Content</a>
 <ul>
-<li><a href="#331-openc2-command">3.3.1 OpenC2 Command</a></li>
-<li><a href="#332-openc2-response">3.3.2 OpenC2 Response</a></li>
-<li><a href="#333-imported-data">3.3.3 Imported Data</a></li>
-<li><a href="#334-extensions">3.3.4 Extensions</a></li>
+<li><a href="#331-openc2-command">3.3.1 OpenC2 Command</a>
+<ul>
+<li><a href="#3311-action">3.3.1.1 Action</a></li>
+<li><a href="#3312-target">3.3.1.2 Target</a></li>
+<li><a href="#3313-actuator">3.3.1.3 Actuator</a></li>
+<li><a href="#3314-command-arguments">3.3.1.4 Command Arguments</a></li>
+</ul></li>
+<li><a href="#332-openc2-response">3.3.2 OpenC2 Response</a>
+<ul>
+<li><a href="#3321-response-status-code">3.3.2.1 Response Status Code</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#34-type-definitions">3.4 Type Definitions</a>
 <ul>
-<li><a href="#341-target-types">3.4.1 Target Types</a></li>
-<li><a href="#342-data-types">3.4.2 Data Types</a></li>
-<li><a href="#343-schema-syntax">3.4.3 Schema Syntax</a></li>
+<li><a href="#341-target-types">3.4.1 Target Types</a>
+<ul>
+<li><a href="#3411-artifact">3.4.1.1 Artifact</a></li>
+<li><a href="#3412-device">3.4.1.2 Device</a></li>
+<li><a href="#3413-domain-name">3.4.1.3 Domain Name</a></li>
+<li><a href="#3414-email-address">3.4.1.4 Email Address</a></li>
+<li><a href="#3415-features">3.4.1.5 Features</a></li>
+<li><a href="#3416-file">3.4.1.6 File</a></li>
+<li><a href="#3417-ipv4-address-range">3.4.1.7 IPv4 Address Range</a></li>
+<li><a href="#3418-ipv4-connection">3.4.1.8 IPv4 Connection</a></li>
+<li><a href="#3419-ipv6-address-range">3.4.1.9 IPv6 Address Range</a></li>
+<li><a href="#34110-ipv6-connection">3.4.1.10 IPv6 Connection</a></li>
+<li><a href="#34111-mac-address">3.4.1.11 MAC Address</a></li>
+<li><a href="#34112-process">3.4.1.12 Process</a></li>
+<li><a href="#34113-properties">3.4.1.13 Properties</a></li>
+<li><a href="#34114-uri">3.4.1.14 URI</a></li>
+</ul></li>
+<li><a href="#342-data-types">3.4.2 Data Types</a>
+<ul>
+<li><a href="#3421-action-targets">3.4.2.1 Action-Targets</a></li>
+<li><a href="#3422-date-time">3.4.2.2 Date-Time</a></li>
+<li><a href="#3423-duration">3.4.2.3 Duration</a></li>
+<li><a href="#3424-feature">3.4.2.4 Feature</a></li>
+<li><a href="#3425-hashes">3.4.2.5 Hashes</a></li>
+<li><a href="#3426-hostname">3.4.2.6 Hostname</a></li>
+<li><a href="#3427-ipv4-address">3.4.2.7 IPv4 Address</a></li>
+<li><a href="#3428-ipv6-address">3.4.2.8 IPv6 Address</a></li>
+<li><a href="#3429-l4-protocol">3.4.2.9 L4 Protocol</a></li>
+<li><a href="#34210-namespace-identifier">3.4.2.10 Namespace Identifier</a></li>
+<li><a href="#34211-payload">3.4.2.11 Payload</a></li>
+<li><a href="#34212-port">3.4.2.12 Port</a></li>
+<li><a href="#34213-response-type">3.4.2.13 Response-Type</a></li>
+<li><a href="#34214-version">3.4.2.14 Version</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#4-mandatory-commandsresponses">4 Mandatory Commands/Responses</a></li>
+</ul></li>
+<li><a href="#4-mandatory-commandsresponses">4 Mandatory Commands/Responses</a>
+<ul>
+<li><a href="#41-implementation-of-query-features-command">4.1 Implementation of 'query features' Command</a></li>
+<li><a href="#42-examples-of-query-features-commands-and-responses">4.2 Examples of 'query features' Commands and Responses</a></li>
+</ul></li>
 <li><a href="#5-conformance">5 Conformance</a>
 <ul>
-<li><a href="#51-openc2-message-content">5.1 OpenC2 Message Content</a></li>
-<li><a href="#52-openc2-producer">5.2 OpenC2 Producer</a></li>
-<li><a href="#53-openc2-consumer">5.3 OpenC2 Consumer</a></li>
+<li><a href="#51-conformance-clause-1-command">5.1 Conformance Clause 1: Command</a></li>
+<li><a href="#52-conformance-clause-2-response">5.2 Conformance Clause 2: Response</a></li>
+<li><a href="#53-conformance-clause-3-producer">5.3 Conformance Clause 3: Producer</a></li>
+<li><a href="#54-conformance-clause-4-consumer">5.4 Conformance Clause 4: Consumer</a></li>
 </ul></li>
 <li><a href="#annex-a-examples">Annex A. Examples</a>
 <ul>
 <li><a href="#a1-example-1">A.1 Example 1</a>
 <ul>
-<li><a href="#a11-command-message">A.1.1 Command Message</a></li>
-<li><a href="#a12-response-message">A.1.2 Response Message</a></li>
+<li><a href="#a11-example-1-command">A.1.1 Example 1: Command</a></li>
+<li><a href="#a12-example-1-response">A.1.2 Example 1: Response</a></li>
 </ul></li>
-<li><a href="#a2-example-2">A.2 Example 2</a></li>
-<li><a href="#a3-example-3">A.3 Example 3</a></li>
+<li><a href="#a2-example-2">A.2 Example 2</a>
+<ul>
+<li><a href="#a21-example-2-command">A.2.1 Example 2: Command</a></li>
+<li><a href="#a22-example-2-response">A.2.2 Example 2: Response</a></li>
+</ul></li>
+<li><a href="#a3-example-3">A.3 Example 3</a>
+<ul>
+<li><a href="#a31-example-3-command">A.3.1 Example 3: Command</a></li>
+<li><a href="#a32-example-3-response">A.3.2 Example 3: Response</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#annex-b-acronyms">Annex B. Acronyms</a></li>
 <li><a href="#annex-c-revision-history">Annex C. Revision History</a></li>
@@ -232,73 +294,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0</em>. Edited by David Lemire. Latest version: <a href="http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html" class="uri">http://docs.oasis-open.org/openc2/open-impl-https/v1.0/open-impl-https-v1.0.html</a></p>
 <h6 id="openc2-slpf-v10">[OpenC2-SLPF-v1.0]</h6>
 <p><em>Open Command and Control (OpenC2) Profile for Stateless Packet Filtering Version 1.0</em>. Edited by Joe Brule, Duncan Sparrell, and Alex Everett. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html" class="uri">http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.html</a></p>
-<h6 id="rfc768">[RFC768]</h6>
-<p>Postel, J., &quot;User Datagram Protocol&quot;, STD 6, RFC 768, August 1980, <a href="http://www.rfc-editor.org/info/rfc768" class="uri">http://www.rfc-editor.org/info/rfc768</a>.</p>
-<h6 id="rfc791">[RFC791]</h6>
-<p>Postel, J., &quot;Internet Protocol&quot;, RFC 791, September 1981, <a href="http://www.rfc-editor.org/info/rfc791" class="uri">http://www.rfc-editor.org/info/rfc791</a>.</p>
-<h6 id="rfc792">[RFC792]</h6>
-<p>Postel, J., &quot;Internet Control Message Protocol&quot;, STD 5, RFC 792, September 1981, <a href="http://www.rfc-editor.org/info/rfc792" class="uri">http://www.rfc-editor.org/info/rfc792</a>.</p>
-<h6 id="rfc793">[RFC793]</h6>
-<p>Postel, J., &quot;Transmission Control Protocol&quot;, STD 7, RFC 793, September 1981, <a href="http://www.rfc-editor.org/info/rfc793" class="uri">http://www.rfc-editor.org/info/rfc793</a>.</p>
+<h6 id="rfc0768">[RFC0768]</h6>
+<p>Postel, J., &quot;User Datagram Protocol&quot;, STD 6, RFC 768, DOI 10.17487/RFC0768, August 1980, <a href="https://www.rfc-editor.org/info/rfc768" class="uri">https://www.rfc-editor.org/info/rfc768</a>.</p>
+<h6 id="rfc0791">[RFC0791]</h6>
+<p>Postel, J., &quot;Internet Protocol&quot;, STD 5, RFC 791, DOI 10.17487/RFC0791, September 1981, <a href="https://www.rfc-editor.org/info/rfc791" class="uri">https://www.rfc-editor.org/info/rfc791</a>.</p>
+<h6 id="rfc0792">[RFC0792]</h6>
+<p>Postel, J., &quot;Internet Control Message Protocol&quot;, STD 5, RFC 792, DOI 10.17487/RFC0792, September 1981, <a href="https://www.rfc-editor.org/info/rfc792" class="uri">https://www.rfc-editor.org/info/rfc792</a>.</p>
+<h6 id="rfc0793">[RFC0793]</h6>
+<p>Postel, J., &quot;Transmission Control Protocol&quot;, STD 7, RFC 793, DOI 10.17487/RFC0793, September 1981, <a href="https://www.rfc-editor.org/info/rfc793" class="uri">https://www.rfc-editor.org/info/rfc793</a>.</p>
 <h6 id="rfc1034">[RFC1034]</h6>
-<p>Mockapetris, P. V., &quot;Domain names - concepts and facilities&quot;, STD 13, RFC 1034, November 1987, <a href="http://www.rfc-editor.org/info/rfc1034" class="uri">http://www.rfc-editor.org/info/rfc1034</a>.</p>
+<p>Mockapetris, P., &quot;Domain names - concepts and facilities&quot;, STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987, <a href="https://www.rfc-editor.org/info/rfc1034" class="uri">https://www.rfc-editor.org/info/rfc1034</a>.</p>
 <h6 id="rfc1123">[RFC1123]</h6>
-<p>Braden, R., &quot;Requirements for Internet Hosts - Application and Support&quot;, STD 3, RFC 1123, October 1989, <a href="http://www.rfc-editor.org/info/rfc1123" class="uri">http://www.rfc-editor.org/info/rfc1123</a>.</p>
+<p>Braden, R., Ed., &quot;Requirements for Internet Hosts - Application and Support&quot;, STD 3, RFC 1123, DOI 10.17487/RFC1123, October 1989, <a href="https://www.rfc-editor.org/info/rfc1123" class="uri">https://www.rfc-editor.org/info/rfc1123</a>.</p>
 <h6 id="rfc1321">[RFC1321]</h6>
-<p>Rivest, R., &quot;The MD5 Message-Digest Algorithm&quot;, RFC 1321, April 1992, <a href="http://www.rfc-editor.org/info/rfc1321" class="uri">http://www.rfc-editor.org/info/rfc1321</a>.</p>
+<p>Rivest, R., &quot;The MD5 Message-Digest Algorithm&quot;, RFC 1321, DOI 10.17487/RFC1321, April 1992, <a href="https://www.rfc-editor.org/info/rfc1321" class="uri">https://www.rfc-editor.org/info/rfc1321</a>.</p>
 <h6 id="rfc2119">[RFC2119]</h6>
-<p>Bradner, S., &quot;Key words for use in RFCs to Indicate Requirement Levels&quot;, BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p>
+<p>Bradner, S., &quot;Key words for use in RFCs to Indicate Requirement Levels&quot;, BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, <a href="https://www.rfc-editor.org/info/rfc2119" class="uri">https://www.rfc-editor.org/info/rfc2119</a>.</p>
 <h6 id="rfc2673">[RFC2673]</h6>
 <p>Crawford, M., <em>&quot;Binary Labels in the Domain Name System&quot;</em>, RFC 2673, August 1999, <a href="https://tools.ietf.org/html/rfc2673" class="uri">https://tools.ietf.org/html/rfc2673</a></p>
 <h6 id="rfc3986">[RFC3986]</h6>
-<p>Berners-Lee, T., Fielding, R., Masinter, L., &quot;Uniform Resource Identifier (URI): Generic Syntax&quot;, STD 66, RFC 3986, January 2005, <a href="http://www.rfc-editor.org/info/rfc3986" class="uri">http://www.rfc-editor.org/info/rfc3986</a>.</p>
+<p>Berners-Lee, T., Fielding, R., and L. Masinter, &quot;Uniform Resource Identifier (URI): Generic Syntax&quot;, STD 66, RFC 3986, DOI 10.17487/RFC3986, January 2005, <a href="https://www.rfc-editor.org/info/rfc3986" class="uri">https://www.rfc-editor.org/info/rfc3986</a>.</p>
 <h6 id="rfc4122">[RFC4122]</h6>
-<p>Leach, P., Mealling, M., Salz, R., &quot;A Universally Unique IDentifier (UUID) URN Namespace&quot;, RFC 4122, July 2005, <a href="http://www.rfc-editor.org/info/rfc4122" class="uri">http://www.rfc-editor.org/info/rfc4122</a>.</p>
+<p>Leach, P., Mealling, M., and R. Salz, &quot;A Universally Unique IDentifier (UUID) URN Namespace&quot;, RFC 4122, DOI 10.17487/RFC4122, July 2005, <a href="https://www.rfc-editor.org/info/rfc4122" class="uri">https://www.rfc-editor.org/info/rfc4122</a>.</p>
 <h6 id="rfc4291">[RFC4291]</h6>
-<p>Hinden, R., Deering, S., &quot;IP Version 6 Addressing Architecture&quot;, RFC 4291, February 2006, <a href="http://www.rfc-editor.org/info/rfc4291" class="uri">http://www.rfc-editor.org/info/rfc4291</a>.</p>
+<p>Hinden, R. and S. Deering, &quot;IP Version 6 Addressing Architecture&quot;, RFC 4291, DOI 10.17487/RFC4291, February 2006, <a href="https://www.rfc-editor.org/info/rfc4291" class="uri">https://www.rfc-editor.org/info/rfc4291</a>.</p>
 <h6 id="rfc4632">[RFC4632]</h6>
-<p>Fuller, V., Li, T., &quot;Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan&quot;, RFC 4632, August 2006, <a href="http://www.rfc-editor.org/info/rfc4632" class="uri">http://www.rfc-editor.org/info/rfc4632</a>.</p>
+<p>Fuller, V. and T. Li, &quot;Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan&quot;, BCP 122, RFC 4632, DOI 10.17487/RFC4632, August 2006, <a href="https://www.rfc-editor.org/info/rfc4632" class="uri">https://www.rfc-editor.org/info/rfc4632</a>.</p>
 <h6 id="rfc4648">[RFC4648]</h6>
-<p>Josefsson, S., &quot;The Base16, Base32, and Base64 Data Encodings&quot;, RFC 4648, October 2006, <a href="http://www.rfc-editor.org/info/rfc4648" class="uri">http://www.rfc-editor.org/info/rfc4648</a>.</p>
+<p>Josefsson, S., &quot;The Base16, Base32, and Base64 Data Encodings&quot;, RFC 4648, DOI 10.17487/RFC4648, October 2006, <a href="https://www.rfc-editor.org/info/rfc4648" class="uri">https://www.rfc-editor.org/info/rfc4648</a>.</p>
 <h6 id="rfc4960">[RFC4960]</h6>
-<p>Stewart, R. &quot;Stream Control Transmission Protocol&quot;, RFC 4960, September 2007, <a href="http://www.rfc-editor.org/info/rfc4960" class="uri">http://www.rfc-editor.org/info/rfc4960</a>.</p>
+<p>Stewart, R., Ed., &quot;Stream Control Transmission Protocol&quot;, RFC 4960, DOI 10.17487/RFC4960, September 2007, <a href="https://www.rfc-editor.org/info/rfc4960" class="uri">https://www.rfc-editor.org/info/rfc4960</a>.</p>
 <h6 id="rfc5237">[RFC5237]</h6>
-<p>Arkko, J., Bradner, S., &quot;IANA Allocation Guidelines for the Protocol Field&quot;, BCP 37, RFC 5237, February 2008, <a href="http://www.rfc-editor.org/info/rfc5237" class="uri">http://www.rfc-editor.org/info/rfc5237</a>.</p>
+<p>Arkko, J. and S. Bradner, &quot;IANA Allocation Guidelines for the Protocol Field&quot;, BCP 37, RFC 5237, DOI 10.17487/RFC5237, February 2008, <a href="https://www.rfc-editor.org/info/rfc5237" class="uri">https://www.rfc-editor.org/info/rfc5237</a>.</p>
 <h6 id="rfc5322">[RFC5322]</h6>
-<p>Resnick, P., &quot;Internet Message Format&quot;, RFC 5322, October 2008, <a href="http://www.rfc-editor.org/info/rfc5322" class="uri">http://www.rfc-editor.org/info/rfc5322</a>.</p>
-<h6 id="rfc5612">[RFC5612]</h6>
-<p>Eronen, P., Harrington, D., &quot;Enterprise Number for Documentation Use&quot;, RFC 5612, August 2009, <a href="http://www.rfc-editor.org/info/rfc5612" class="uri">http://www.rfc-editor.org/info/rfc5612</a>.</p>
+<p>Resnick, P., Ed., &quot;Internet Message Format&quot;, RFC 5322, DOI 10.17487/RFC5322, October 2008, <a href="https://www.rfc-editor.org/info/rfc5322" class="uri">https://www.rfc-editor.org/info/rfc5322</a>.</p>
 <h6 id="rfc5952">[RFC5952]</h6>
-<p>Kawamura S., Kawashima M., &quot;A Recommendation for IPv6 Address Text Representation&quot;, RFC 5952, August 2010, <a href="http://www.rfc-editor.org/info/rfc5952" class="uri">http://www.rfc-editor.org/info/rfc5952</a>.</p>
+<p>Kawamura, S. and M. Kawashima, &quot;A Recommendation for IPv6 Address Text Representation&quot;, RFC 5952, DOI 10.17487/RFC5952, August 2010, <a href="https://www.rfc-editor.org/info/rfc5952" class="uri">https://www.rfc-editor.org/info/rfc5952</a>.</p>
 <h6 id="rfc6234">[RFC6234]</h6>
-<p>Eastlake 3rd, D., Hansen, T., &quot;US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)&quot;, RFC 6234, May 2011, <a href="http://www.rfc-editor.org/info/rfc6234" class="uri">http://www.rfc-editor.org/info/rfc6234</a>.</p>
+<p>Eastlake 3rd, D. and T. Hansen, &quot;US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)&quot;, RFC 6234, DOI 10.17487/RFC6234, May 2011, <a href="https://www.rfc-editor.org/info/rfc6234" class="uri">https://www.rfc-editor.org/info/rfc6234</a>.</p>
 <h6 id="rfc6335">[RFC6335]</h6>
-<p>Cotton, M., Eggert, L., Touch, J., Westerlund, M., Cheshire, S., &quot;Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry&quot;, BCP 165, RFC 6335, August 2011, <a href="http://www.rfc-editor.org/info/rfc6335" class="uri">http://www.rfc-editor.org/info/rfc6335</a>.</p>
+<p>Cotton, M., Eggert, L., Touch, J., Westerlund, M., and S. Cheshire, &quot;Internet Assigned Numbers Authority (IANA) Procedures for the Management of the Service Name and Transport Protocol Port Number Registry&quot;, BCP 165, RFC 6335, DOI 10.17487/RFC6335, August 2011, <a href="https://www.rfc-editor.org/info/rfc6335" class="uri">https://www.rfc-editor.org/info/rfc6335</a>.</p>
 <h6 id="rfc6838">[RFC6838]</h6>
-<p>Freed, N., Klensin, J., Hansen, T., &quot;Media Type Specifications and Registration Procedures, BCP 13, RFC 6838, January 2013, <a href="http://www.rfc-editor.org/info/rfc6838" class="uri">http://www.rfc-editor.org/info/rfc6838</a>.</p>
+<p>Freed, N., Klensin, J., and T. Hansen, &quot;Media Type Specifications and Registration Procedures&quot;, BCP 13, RFC 6838, DOI 10.17487/RFC6838, January 2013, <a href="https://www.rfc-editor.org/info/rfc6838" class="uri">https://www.rfc-editor.org/info/rfc6838</a>.</p>
 <h6 id="rfc7493">[RFC7493]</h6>
-<p>Bray, T., &quot;The I-JSON Message Format&quot;, RFC 7493, March 2015, <a href="http://www.rfc-editor.org/info/rfc7493" class="uri">http://www.rfc-editor.org/info/rfc7493</a>.</p>
+<p>Bray, T., Ed., &quot;The I-JSON Message Format&quot;, RFC 7493, DOI 10.17487/RFC7493, March 2015, <a href="https://www.rfc-editor.org/info/rfc7493" class="uri">https://www.rfc-editor.org/info/rfc7493</a>.</p>
 <h6 id="rfc8174">[RFC8174]</h6>
-<p>Leiba, B., &quot;Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words&quot;, BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <a href="http://www.rfc-editor.org/info/rfc8174" class="uri">http://www.rfc-editor.org/info/rfc8174</a>.</p>
+<p>Leiba, B., &quot;Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words&quot;, BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <a href="https://www.rfc-editor.org/info/rfc8174" class="uri">https://www.rfc-editor.org/info/rfc8174</a>.</p>
 <h6 id="rfc8200">[RFC8200]</h6>
-<p>Deering, S., Hinden, R., &quot;Internet Protocol, Version 6 (IPv6) Specification&quot;, RFC 8200, July 2017, <a href="http://www.rfc-editor.org/info/rfc8200" class="uri">http://www.rfc-editor.org/info/rfc8200</a>.</p>
+<p>Deering, S. and R. Hinden, &quot;Internet Protocol, Version 6 (IPv6) Specification&quot;, STD 86, RFC 8200, DOI 10.17487/RFC8200, July 2017, <a href="https://www.rfc-editor.org/info/rfc8200" class="uri">https://www.rfc-editor.org/info/rfc8200</a>.</p>
 <h6 id="rfc8259">[RFC8259]</h6>
-<p>Bray, T., &quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;, STD 90, RFC 8259, December 2017, <a href="http://www.rfc-editor.org/info/rfc8259" class="uri">http://www.rfc-editor.org/info/rfc8259</a>.</p>
+<p>Bray, T., Ed., &quot;The JavaScript Object Notation (JSON) Data Interchange Format&quot;, STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, <a href="https://www.rfc-editor.org/info/rfc8259" class="uri">https://www.rfc-editor.org/info/rfc8259</a>.</p>
 <h6 id="eui">[EUI]</h6>
 <p>&quot;IEEE Registration Authority Guidelines for use of EUI, OUI, and CID&quot;, IEEE, August 2017, <a href="https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf" class="uri">https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf</a></p>
 <h2 id="14-non-normative-references">1.4 Non-Normative References</h2>
 <h6 id="iacd">[IACD]</h6>
 <p>M. J. Herring, K. D. Willett, &quot;Active Cyber Defense: A Vision for Real-Time Cyber Defense&quot;, Journal of Information Warfare, vol. 13, Issue 2, p. 80, April 2014.<br>Willett, Keith D., &quot;Integrated Adaptive Cyberspace Defense: Secure Orchestration&quot;, International Command and Control Research and Technology Symposium, June 2015.</p>
-<h6 id="rfc3470">[RFC3470]</h6>
-<p>Hollenbeck S., Rose, M., Masinter L., &quot;Guidelines for the Use of Extensible Markup Language (XML) within IETF Protocols&quot;, BCP 70, RFC 3470, January 2003, <a href="https://tools.ietf.org/html/rfc3470" class="uri">https://tools.ietf.org/html/rfc3470</a>.</p>
-<h6 id="rfc7049">[RFC7049]</h6>
-<p>Bormann, C., Hoffman, P., &quot;Concise Binary Object Representation (CBOR)&quot;, RFC 7049, October 2013, <a href="https://tools.ietf.org/html/rfc7049" class="uri">https://tools.ietf.org/html/rfc7049</a>.</p>
 <h6 id="uml">[UML]</h6>
 <p>&quot;UML Multiplicity and Collections&quot;, <a href="https://www.uml-diagrams.org/multiplicity.html" class="uri">https://www.uml-diagrams.org/multiplicity.html</a></p>
 <h2 id="15-document-conventions">1.5 Document Conventions</h2>
 <h3 id="151-naming-conventions">1.5.1 Naming Conventions</h3>
 <ul>
-<li><a href="#rfc2119">RFC2119</a>/<a href="#rfc8174">RFC8174</a> key words (see <a href="#12-terminology">section 1.2</a>) are in all uppercase.</li>
+<li><a href="#rfc2119">[RFC2119]</a>/<a href="#rfc8174">[RFC8174]</a> key words (see <a href="#12-terminology">Section 1.2</a>) are in all uppercase.</li>
 <li>All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).</li>
 <li>Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).</li>
 <li>The term &quot;hyphen&quot; used here refers to the ASCII hyphen or minus character, which in Unicode is &quot;hyphen-minus&quot;, U+002D.</li>
@@ -308,11 +364,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>A fixed width font is used for all type names, property names, and literals.</li>
 <li>Property names are in bold style – <strong>'created_at'</strong>.</li>
-<li>All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant [<a href="#rfc8259">RFC8259</a>].</li>
+<li>All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant <a href="#rfc8259">[RFC8259]</a>.</li>
 <li>Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).</li>
 </ul>
 <p>Example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="op">{</span>   </a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="op">{</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="st">&quot;action&quot;</span><span class="op">:</span> <span class="st">&quot;contain&quot;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="st">&quot;target&quot;</span><span class="op">:</span> <span class="op">{</span></a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">        <span class="st">&quot;user_account&quot;</span><span class="op">:</span> <span class="op">{</span></a>
@@ -355,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Function-Specific Content</td>
-<td style="text-align: left;">Actuator Profiles<br>(standard and extensions)</td>
+<td style="text-align: left;">Actuator Profiles<br>(<a href="#openc2-slpf-v10">[OpenC2-SLPF-v1.0]</a>, ...)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Common Content</td>
@@ -363,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Message</td>
-<td style="text-align: left;">Transfer Specifications<br>(OpenC2-over-HTTPS, OpenC2-over-CoAP, …)</td>
+<td style="text-align: left;">Transfer Specifications<br>(<a href="#openc2-https-v10">[OpenC2-HTTPS-v1.0]</a>, OpenC2-over-CoAP, ...)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Secure Transfer</td>
@@ -381,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The components of a Response are a numerical status code, an optional status text string, and optional results. The format of the results, if included, depend on the type of Response being transferred.</p>
 <h2 id="17-goal">1.7 Goal</h2>
 <p>The goal of the OpenC2 Language Specification is to provide a language for interoperating between functional elements of cyber defense systems. This language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer Specifications allows for vendor-agnostic cybertime response to attacks.</p>
-<p>The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop [<a href="#iacd">IACD</a>]:</p>
+<p>The Integrated Adaptive Cyber Defense (IACD) framework defines a collection of activities, based on the traditional OODA (Observe–Orient–Decide–Act) Loop <a href="#iacd">[IACD]</a>:</p>
 <ul>
 <li>Sensing: gathering of data regarding system activities</li>
 <li>Sense Making: evaluating data using analytics to understand what's happening</li>
@@ -413,7 +469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <h1 id="2-openc2-language-description">2 OpenC2 Language Description</h1>
 <p><em>The content in this section is non-normative.</em></p>
-<p>The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgement, status, etc.) as a result of a Command.</p>
+<p>The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgment, status, etc.) as a result of a Command.</p>
 <h2 id="21-openc2-command">2.1 OpenC2 Command</h2>
 <p>The Command describes an Action to be performed on a Target and may include information identifying the Actuator or Actuators that are to execute the Command.</p>
 <p>A Command has four main components, two required and two optional. The required components are the Action and the Target. The optional components are Command Arguments and the Actuator. A Command can also contain an optional Command identifier, if necessary. <a href="#331-openc2-command">Section 3.3.1</a> defines the syntax of an OpenC2 Command.</p>
@@ -424,8 +480,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Arguments</strong> (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.</li>
 <li><strong>Actuator</strong> (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.</li>
 </ul>
-<p>The Action and Target components are required and are populated by one of the Actions in <a href="#3311-action">Section 3.3.1.1</a> and the Targets in <a href="#3312-target">Section 3.3.1.2</a>. A particular Target may be further refined by the Target type definitions in <a href="#341-target-types">Section 3.4.1</a>. Procedures to extend the Targets are described in <a href="#315-imported-types">Section 3.1.5</a>.</p>
-<p>Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in <a href="#3314-command-arguments">Section 3.3.1.4</a>. Procedures to extend Arguments are described in <a href="#315-imported-types">Section 3.1.5</a>.</p>
+<p>The Action and Target components are required and are populated by one of the Actions in <a href="#3311-action">Section 3.3.1.1</a> and the Targets in <a href="#3312-target">Section 3.3.1.2</a>. A particular Target may be further refined by the Target type definitions in <a href="#341-target-types">Section 3.4.1</a>. Procedures to extend the Targets are described in <a href="#315-extensions">Section 3.1.5</a>.</p>
+<p>Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in <a href="#3314-command-arguments">Section 3.3.1.4</a>. Procedures to extend Arguments are described in <a href="#315-extensions">Section 3.1.5</a>.</p>
 <p>An Actuator is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of Actions, Targets and other aspects of this language specification that are required or optional in the context of a particular Actuator. An Actuator Profile may extend the language by defining additional Targets, Arguments, and Actuator Specifiers that are meaningful and possibly unique to the Actuator.</p>
 <p>The Actuator may be omitted from a Command and typically will not be included in implementations where the identities of the endpoints are unambiguous or when a high-level effects-based Command is desired and the tactical decisions on how the effect is achieved is left to the recipient.</p>
 <h2 id="22-openc2-response">2.2 OpenC2 Response</h2>
@@ -449,78 +505,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Any</td>
+<td style="text-align: left;">Anything, used to designate fields with an unspecified value.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Binary</td>
 <td style="text-align: left;">A sequence of octets. Length is the number of octets.</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Boolean</td>
-<td style="text-align: left;">A logical entity that can have two values: <code>true</code> and <code>false</code>.</td>
-</tr>
 <tr class="even">
+<td style="text-align: left;">Boolean</td>
+<td style="text-align: left;">An element with one of two values: <code>true</code> and <code>false</code>.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Integer</td>
 <td style="text-align: left;">A whole number.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Number</td>
 <td style="text-align: left;">A real number.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Null</td>
 <td style="text-align: left;">Nothing, used to designate fields with no value.</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">String</td>
-<td style="text-align: left;">A sequence of characters. Each character must have a valid Unicode codepoint. Length is the number of characters.</td>
-</tr>
 <tr class="even">
+<td style="text-align: left;">String</td>
+<td style="text-align: left;">A sequence of characters, each of which has a Unicode codepoint. Length is the number of characters.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><strong>Structures</strong></td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Array</td>
-<td style="text-align: left;">An ordered list of unnamed fields. Each field has an ordinal position and a type.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ArrayOf(<em>vtype</em>)</td>
-<td style="text-align: left;">An ordered list of unnamed fields. Each field has an ordinal position and a value of type <em>vtype</em>.</td>
+<td style="text-align: left;">An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Choice</td>
-<td style="text-align: left;">One field selected from a set of named fields. The value has a name and a type.</td>
+<td style="text-align: left;">ArrayOf(<em>vtype</em>)</td>
+<td style="text-align: left;">An ordered list of fields with the same semantics. Each field has a position and type <em>vtype</em>.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Choice</td>
+<td style="text-align: left;">One field selected from a set of named fields. The API value has a name and a type.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Choice.ID</td>
 <td style="text-align: left;">One field selected from a set of fields. The API value has an id and a type.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Enumerated</td>
 <td style="text-align: left;">A set of named integral constants. The API value is a name.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Enumerated.ID</td>
 <td style="text-align: left;">A set of unnamed integral constants. The API value is an id.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Map</td>
-<td style="text-align: left;">An unordered set of named fields. Each field has an id, name and type.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Map.ID</td>
-<td style="text-align: left;">An unordered set of fields. The API value of each field has an id and type.</td>
+<td style="text-align: left;">An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">MapOf(<em>enum, vtype</em>)</td>
-<td style="text-align: left;">An unordered set of named fields. Each field has an id and name from Enumerated type <em>enum</em> and a value of type <em>vtype</em>.</td>
+<td style="text-align: left;">Map.ID</td>
+<td style="text-align: left;">An unordered set of fields. The API value of each field has an id, label, and type.</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">MapOf(<em>ktype</em>, <em>vtype</em>)</td>
+<td style="text-align: left;">An unordered set of keys to values with the same semantics. Each key has key type <em>ktype</em> and is mapped to value type <em>vtype</em>.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Record</td>
-<td style="text-align: left;">An ordered list of named fields, e.g. an OrderedMap, structure, or row in a table. Each field has an ordinal position, name, and type.</td>
+<td style="text-align: left;">An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table.</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li><p><strong>API</strong> values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.</p></li>
-<li><p><strong>Serialized</strong> values are critical to interoperability, and this document defines a set of <strong>serialization rules</strong> that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in Section 3.1.5 and the format-agnostic type definitions in Sections 3.2, 3.3 and 3.4 are Normative.</p></li>
+<li><p><strong>Serialized</strong> values are critical to interoperability, and this document defines a set of <strong>serialization rules</strong> that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in <a href="#316-serialization">Section 3.1.6</a> and the format-agnostic type definitions in <a href="#34-type-definitions">Section 3.4</a> are Normative.</p></li>
 </ul>
 <p>Types defined with an &quot;.ID&quot; suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:</p>
 <ol>
@@ -623,27 +683,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>email</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">Value must be an email address as defined in RFC 5322, section 3.4.1</td>
+<td style="text-align: left;">Value must be an email address as defined in <a href="#rfc5322">[RFC5322]</a>, Section 3.4.1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>hostname</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">Value must be a hostname as defined in RFC 1034 section 3.1</td>
+<td style="text-align: left;">Value must be a hostname as defined in <a href="#rfc1034">[RFC1034]</a>, Section 3.1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>uri</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">Value must be a Uniform Resource Identifier (URI) as defined in RFC 3986</td>
+<td style="text-align: left;">Value must be a Uniform Resource Identifier (URI) as defined in <a href="#rfc3986">[RFC3986]</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>eui</strong></td>
 <td style="text-align: left;">Binary</td>
-<td style="text-align: left;">Value must be an EUI-48 or EUI-64 as defined in EUI</td>
+<td style="text-align: left;">Value must be an EUI-48 or EUI-64 as defined in <a href="#eui">[EUI]</a></td>
 </tr>
 </tbody>
 </table>
 <h3 id="313-multiplicity">3.1.3 Multiplicity</h3>
-<p>Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field. As used in the Unified Modeling Language (<a href="#uml">UML</a>), typical examples of multiplicity are:</p>
+<p>Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field. As used in the Unified Modeling Language (<a href="#uml">[UML]</a>), typical examples of multiplicity are:</p>
 <table>
 <thead>
 <tr class="header">
@@ -826,36 +886,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <h3 id="315-extensions">3.1.5 Extensions</h3>
 <p>One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.</p>
-<p>Each Actuator profile has a unique name used to identify the profile document. This unique name is called a namespace identifier. This namespace identifier is used to separate extensions from the core language defined in this specification.</p>
+<p>Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.</p>
+<p>All extension names MUST begin with a namespace identifier followed by a colon (&quot;:&quot;).</p>
+<p>For example, the OASIS standard Stateless Packet Filtering actuator profile has:</p>
+<ul>
+<li><strong>Unique Name</strong>: <a href="http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md" class="uri">http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md</a></li>
+<li><strong>NSID</strong>: slpf</li>
+</ul>
 <p>The namespace identifier for non-standard extensions MUST be prefixed with &quot;x-&quot;.</p>
+<p>For example, the fictional, non-standard Superwidget actuator profile has:</p>
+<ul>
+<li><strong>Unique Name</strong>: <a href="http://www.acme.com/openc2/superwidget-v1.0.html" class="uri">http://www.acme.com/openc2/superwidget-v1.0.html</a></li>
+<li><strong>NSID</strong>: x-acme</li>
+</ul>
 <p>The list of Actions in <a href="#3311-action">Section 3.3.1.1</a> SHALL NOT be extended.</p>
-<p>The Targets defined in <a href="#3312-target">Section 3.3.1.2</a> MAY be extended using the namespace identifier as the Target name, called an extended Target namespace. One or more extended Targets for an Actuator MUST be defined within the extended Target namespace.</p>
-<p><strong>For example:</strong> In this example, the extended Target <code>rule_number</code> is defined within the extended Target namespace <code>slpf</code>.</p>
+<p>The Targets defined in <a href="#3312-target">Section 3.3.1.2</a> MAY be extended.</p>
+<p><strong>Example:</strong> In this example Command, the extended Target, <code>rule_number</code>, is defined within the Stateless Packet Filtering Profile with the namespace identifier <code>slpf</code>.</p>
 <pre><code>{
     &quot;action&quot;: &quot;delete&quot;,
     &quot;target&quot;: {
-        &quot;slpf&quot;: {
-            &quot;rule_number&quot;: 1234
-        }
+        &quot;slpf:rule_number&quot;: 1234
     }
 }
 </code></pre>
-<p>The Arguments defined in <a href="#3314-command-arguments">Section 3.3.1.4</a> MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. One or more extended Arguments for an Actuator MUST be defined within the extended Argument namespace.</p>
-<p><strong>For example:</strong> In this example, the extended Argument <code>direction</code> is defined within the extended Argument namespace <code>slpf</code>.</p>
+<p>The Arguments defined in <a href="#3314-command-arguments">Section 3.3.1.4</a> MAY be extended.</p>
+<p><strong>Example:</strong> In this example Command, the extended Argument, <code>direction</code>, is defined within the Stateless Packet Filtering Profile with the namespace identifier <code>slpf</code>.</p>
 <pre><code>{
     &quot;action&quot;: &quot;deny&quot;,
     &quot;target&quot;: {
         &quot;ipv6_net&quot;: {...}
     },
     &quot;args&quot;: {
-        &quot;slpf&quot;: {
-            &quot;direction&quot;: &quot;ingress&quot;
-        }
+        &quot;slpf:direction&quot;: &quot;ingress&quot;
     }
 }
 </code></pre>
-<p>The Actuators defined in <a href="#3313-actuator">Section 3.3.1.3</a> MAY be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.</p>
-<p><strong>For example:</strong> In this example, the Actuator Specifier <code>asset_id</code> is defined within the extended Actuator namespace <code>slpf</code>.</p>
+<p>The Actuator property of a Command defined in <a href="#3313-actuator">Section 3.3.1.3</a> MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.</p>
+<p><strong>Example:</strong> In this example Command, the Actuator Specifier <code>asset_id</code> is defined within the Stateless Packet Filtering Profile namespace <code>slpf</code>.</p>
 <pre><code>{
     &quot;action&quot;: &quot;deny&quot;,
     &quot;target&quot;: {
@@ -868,19 +935,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     }
 }
 </code></pre>
-<p>The <code>results</code> property of a Response defined in <a href="#332-openc2-response">Section 3.3.2</a> MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.</p>
-<p><strong>For example:</strong> In this example, the Response result <code>rule_number</code> is defined within the extended results namespace <code>slpf</code>.</p>
+<p>The properties of a Response defined in <a href="#332-openc2-response">Section 3.3.2</a> MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.</p>
+<p><strong>Example:</strong> In this example Response, the Response property, <code>rule_number</code>, is defined within the Stateless Packet Filtering Profile with the namespace identifier <code>slpf</code>.</p>
 <pre><code>{
     &quot;status&quot;: 200,
-    &quot;results&quot;: {
-        &quot;slpf&quot;: {
-            &quot;rule_number&quot;: 1234
-        }
-    }
+    &quot;slpf:rule_number&quot;: 1234
 }
 </code></pre>
 <h3 id="316-serialization">3.1.6 Serialization</h3>
-<p>OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with RFC 7493 and additional requirements specified in the following table.</p>
+<p>OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with <a href="#rfc7493">[RFC7493]</a> and additional requirements specified in the following table.</p>
 <p><strong>JSON Serialization Requirements:</strong></p>
 <table>
 <thead>
@@ -892,19 +955,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>Binary</strong></td>
-<td style="text-align: left;">JSON <strong>string</strong> containing Base64url encoding of the binary value as defined in Section 5 of <a href="#rfc4648">RFC 4648</a>.</td>
+<td style="text-align: left;">JSON <strong>string</strong> containing Base64url encoding of the binary value as defined in <a href="#rfc4648">[RFC4648]</a>, Section 5.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Binary /x</strong></td>
-<td style="text-align: left;">JSON <strong>string</strong> containing Base16 (hex) encoding of a binary value as defined in Section 8 of <a href="#rfc4648">RFC 4648</a>. Note that the Base16 alphabet does not include lower-case letters.</td>
+<td style="text-align: left;">JSON <strong>string</strong> containing Base16 (hex) encoding of a binary value as defined in <a href="#rfc4648">[RFC4648]</a>, Section 8. Note that the Base16 alphabet does not include lower-case letters.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Binary /ipv4-addr</strong></td>
-<td style="text-align: left;">JSON <strong>string</strong> containing the &quot;dotted-quad&quot; representation of an IPv4 address as specified in Section 3.2 of <a href="#rfc2673">RFC 2673</a>.</td>
+<td style="text-align: left;">JSON <strong>string</strong> containing the &quot;dotted-quad&quot; representation of an IPv4 address as specified in <a href="#rfc2673">[RFC2673]</a>, Section 3.2.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Binary /ipv6-addr</strong></td>
-<td style="text-align: left;">JSON <strong>string</strong> containing the text representation of an IPv6 address as specified in Section 4 of <a href="#rfc5952">RFC 5952</a>.</td>
+<td style="text-align: left;">JSON <strong>string</strong> containing the text representation of an IPv6 address as specified in <a href="#rfc5952">[RFC5952]</a>, Section 4.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Boolean</strong></td>
@@ -932,11 +995,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Array /ipv4-net</strong></td>
-<td style="text-align: left;">JSON <strong>string</strong> containing the text representation of an IPv4 address range as specified in Section 3.1 of <a href="#rfc4632">RFC 4632</a>.</td>
+<td style="text-align: left;">JSON <strong>string</strong> containing the text representation of an IPv4 address range as specified in <a href="#rfc4632">[RFC4632]</a>, Section 3.1.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Array /ipv6-net</strong></td>
-<td style="text-align: left;">JSON <strong>string</strong> containing the text representation of an IPv6 address range as specified in Section 2.3 of <a href="#rfc4291">RFC 4291</a>.</td>
+<td style="text-align: left;">JSON <strong>string</strong> containing the text representation of an IPv6 address range as specified in <a href="#rfc4291">[RFC4291]</a>, Section 2.3.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>ArrayOf</strong></td>
@@ -968,7 +1031,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>MapOf</strong></td>
-<td style="text-align: left;">JSON <strong>object</strong>. Member keys are as defined in the specified Enumerated type.</td>
+<td style="text-align: left;">JSON <strong>object</strong>. Member keys are as defined in the specified key type.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Record</strong></td>
@@ -987,10 +1050,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Example:</strong> The JSON &quot;number&quot; type represents integers and real numbers as decimal strings without quotes.</p>
 <pre><code>{ &quot;height&quot;: 68.2 }
 </code></pre>
-<p>As noted in RFC 7493 Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.</p>
+<p>As noted in <a href="#rfc7493">[RFC7493]</a>, Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.</p>
 <p>The default representation of Integer types in text serializations is the native integer type for that format, e.g., &quot;number&quot; for JSON. Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending &quot;.<bit-size>&quot; or &quot;.<em>&quot; to the type, e.g. Integer.64 or Integer.</em>. All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types. Integer values support arithmetic operations; Binary values are not intended for that purpose.</p>
 <h2 id="32-message">3.2 Message</h2>
-<p>As described in Section 1.1, this language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols. Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol. This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.</p>
+<p>This language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols. Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol. This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.</p>
 <p>A message is a content- and transport-independent set of elements conveyed between producers and consumers. To ensure interoperability all transfer specifications must unambiguously define how the message elements in <a href="#table-3-1-common-message-elements">Table 3-1</a> are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages. Content, content_type, and msg_type are required in all messages. Other message elements are not required by this specification but may be required by other specifications.</p>
 <h6 id="table-3-1-common-message-elements">Table 3-1. Common Message Elements</h6>
 <table>
@@ -1049,59 +1112,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Usage Requirements:</strong></p>
 <ul>
 <li>A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.</li>
-<li>The request_id of a request message SHOULD be a Version 4 UUID as specified in RFC 4122 section 4.4.</li>
+<li>The request_id of a request message SHOULD be a Version 4 UUID as specified in <a href="#rfc4122">[RFC4122]</a>, Section 4.4.</li>
 <li>A consumer MUST copy the request_id from a request message into each response to that request.</li>
 </ul>
 <h2 id="33-content">3.3 Content</h2>
 <p>The purpose of this specification is to define the Action and Target portions of a Command and the common portions of a Response. The properties of the Command are defined in <a href="#331-openc2-command">Section 3.3.1</a> and the properties of the Response are defined in <a href="#332-openc2-response">Section 3.3.2</a>.</p>
-<p>In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in ‘Actuator Profile Specifications’ such as StateLess Packet Filtering Profile, Routing Profile etc.</p>
+<p>In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in 'Actuator Profile Specifications' such as StateLess Packet Filtering Profile, Routing Profile etc.</p>
 <h3 id="331-openc2-command">3.3.1 OpenC2 Command</h3>
 <p>The Command defines an Action to be performed on a Target.</p>
 <p><strong><em>Type: OpenC2-Command (Record)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>action</strong></td>
 <td style="text-align: left;">Action</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">The task or activity to be performed (i.e., the 'verb').</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>target</strong></td>
 <td style="text-align: left;">Target</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">The object of the Action. The Action is performed on the Target.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>args</strong></td>
 <td style="text-align: left;">Args</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Additional information that applies to the Command.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: left;"><strong>actuator</strong></td>
 <td style="text-align: left;">Actuator</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The subject of the Action. The Actuator executes the Action on the Target.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: left;"><strong>command_id</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">An identifier of this Command.</td>
 </tr>
 </tbody>
@@ -1116,109 +1179,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>scan</strong></td>
 <td style="text-align: left;">Systematic examination of some aspect of the entity or its environment.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>locate</strong></td>
 <td style="text-align: left;">Find an object physically, logically, functionally, or by organization.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>query</strong></td>
 <td style="text-align: left;">Initiate a request for information.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;"><strong>deny</strong></td>
 <td style="text-align: left;">Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">7</td>
+<td style="text-align: right;">7</td>
 <td style="text-align: left;"><strong>contain</strong></td>
 <td style="text-align: left;">Isolate a file, process, or entity so that it cannot modify or access assets or processes.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">8</td>
+<td style="text-align: right;">8</td>
 <td style="text-align: left;"><strong>allow</strong></td>
 <td style="text-align: left;">Permit access to or execution of a Target.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">9</td>
+<td style="text-align: right;">9</td>
 <td style="text-align: left;"><strong>start</strong></td>
 <td style="text-align: left;">Initiate a process, application, system, or activity.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">10</td>
+<td style="text-align: right;">10</td>
 <td style="text-align: left;"><strong>stop</strong></td>
 <td style="text-align: left;">Halt a system or end an activity.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">11</td>
+<td style="text-align: right;">11</td>
 <td style="text-align: left;"><strong>restart</strong></td>
 <td style="text-align: left;">Stop then start a system or an activity.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">14</td>
+<td style="text-align: right;">14</td>
 <td style="text-align: left;"><strong>cancel</strong></td>
 <td style="text-align: left;">Invalidate a previously issued Action.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">15</td>
+<td style="text-align: right;">15</td>
 <td style="text-align: left;"><strong>set</strong></td>
 <td style="text-align: left;">Change a value, configuration, or state of a managed entity.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">16</td>
+<td style="text-align: right;">16</td>
 <td style="text-align: left;"><strong>update</strong></td>
 <td style="text-align: left;">Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">18</td>
+<td style="text-align: right;">18</td>
 <td style="text-align: left;"><strong>redirect</strong></td>
 <td style="text-align: left;">Change the flow of traffic to a destination other than its original destination.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">19</td>
+<td style="text-align: right;">19</td>
 <td style="text-align: left;"><strong>create</strong></td>
 <td style="text-align: left;">Add a new entity of a known type (e.g., data, files, directories).</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">20</td>
+<td style="text-align: right;">20</td>
 <td style="text-align: left;"><strong>delete</strong></td>
 <td style="text-align: left;">Remove an entity (e.g., data, files, flows).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">22</td>
+<td style="text-align: right;">22</td>
 <td style="text-align: left;"><strong>detonate</strong></td>
 <td style="text-align: left;">Execute and observe the behavior of a Target (e.g., file, hyperlink) in an isolated environment.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">23</td>
+<td style="text-align: right;">23</td>
 <td style="text-align: left;"><strong>restore</strong></td>
 <td style="text-align: left;">Return a system to a previously known state.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">28</td>
+<td style="text-align: right;">28</td>
 <td style="text-align: left;"><strong>copy</strong></td>
-<td style="text-align: left;">Duplicate an object, file, data flow or artifact.</td>
+<td style="text-align: left;">Duplicate an object, file, data flow, or artifact.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">30</td>
+<td style="text-align: right;">30</td>
 <td style="text-align: left;"><strong>investigate</strong></td>
 <td style="text-align: left;">Task the recipient to aggregate and report information as it pertains to a security event or incident.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">32</td>
+<td style="text-align: right;">32</td>
 <td style="text-align: left;"><strong>remediate</strong></td>
 <td style="text-align: left;">Task the recipient to eliminate a vulnerability or attack point.</td>
 </tr>
@@ -1226,158 +1289,151 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p><strong>Usage Requirements:</strong></p>
 <ul>
-<li>Each Command MUST contain exactly one Action defined in Section 3.3.1.1.</li>
+<li>Each Command MUST contain exactly one Action defined in <a href="#3311-action">Section 3.3.1.1</a>.</li>
 </ul>
 <h4 id="3312-target">3.3.1.2 Target</h4>
 <p><strong><em>Type: Target (Choice)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>artifact</strong></td>
 <td style="text-align: left;">Artifact</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">An array of bytes representing a file-like object or a link to that object.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>command</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A reference to a previously issued Command.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>device</strong></td>
 <td style="text-align: left;">Device</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">The properties of a hardware device.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">7</td>
+<td style="text-align: right;">7</td>
 <td style="text-align: left;"><strong>domain_name</strong></td>
 <td style="text-align: left;">Domain-Name</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A network domain name.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">8</td>
+<td style="text-align: right;">8</td>
 <td style="text-align: left;"><strong>email_addr</strong></td>
 <td style="text-align: left;">Email-Addr</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A single email address.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">9</td>
+<td style="text-align: right;">9</td>
 <td style="text-align: left;"><strong>features</strong></td>
 <td style="text-align: left;">Features</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A set of items used with the query Action to determine an Actuator's capabilities.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">10</td>
+<td style="text-align: right;">10</td>
 <td style="text-align: left;"><strong>file</strong></td>
 <td style="text-align: left;">File</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">Properties of a file.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">13</td>
+<td style="text-align: right;">13</td>
 <td style="text-align: left;"><strong>ipv4_net</strong></td>
 <td style="text-align: left;">IPv4-Net</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">An IPv4 address range including CIDR prefix length.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">14</td>
+<td style="text-align: right;">14</td>
 <td style="text-align: left;"><strong>ipv6_net</strong></td>
 <td style="text-align: left;">IPv6-Net</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">An IPv6 address range including prefix length.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">15</td>
+<td style="text-align: right;">15</td>
 <td style="text-align: left;"><strong>ipv4_connection</strong></td>
 <td style="text-align: left;">IPv4-Connection</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">16</td>
+<td style="text-align: right;">16</td>
 <td style="text-align: left;"><strong>ipv6_connection</strong></td>
 <td style="text-align: left;">IPv6-Connection</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">17</td>
+<td style="text-align: right;">17</td>
 <td style="text-align: left;"><strong>mac_addr</strong></td>
 <td style="text-align: left;">MAC-Addr</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">A Media Access Control (MAC) address - EUI-48 or EUI-64</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in <a href="#eui">[EUI]</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">18</td>
+<td style="text-align: right;">18</td>
 <td style="text-align: left;"><strong>process</strong></td>
 <td style="text-align: left;">Process</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">Common properties of an instance of a computer program as executed on an operating system.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">25</td>
+<td style="text-align: right;">25</td>
 <td style="text-align: left;"><strong>properties</strong></td>
 <td style="text-align: left;">Properties</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">Data attribute associated with an Actuator</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">19</td>
+<td style="text-align: right;">19</td>
 <td style="text-align: left;"><strong>uri</strong></td>
 <td style="text-align: left;">URI</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">A uniform resource identifier(URI).</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1024</td>
-<td style="text-align: left;"><strong>slpf</strong></td>
-<td style="text-align: left;">slpf:Target</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>Example</strong>: Targets defined in the Stateless Packet Filter profile</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">A uniform resource identifier (URI).</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Usage Requirements:</strong></p>
 <ul>
-<li>The <code>target</code> field in a Command MUST contain exactly one type of Target (e.g. ip_addr).</li>
+<li>The <code>target</code> field in a Command MUST contain exactly one type of Target (e.g., ipv4_net).</li>
 </ul>
 <h4 id="3313-actuator">3.3.1.3 Actuator</h4>
 <p><strong><em>Type: Actuator (Choice)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1024</td>
+<td style="text-align: right;">1024</td>
 <td style="text-align: left;"><strong>slpf</strong></td>
 <td style="text-align: left;">slpf:Actuator</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>Example</strong>: Actuator Specifiers defined in the Stateless Packet Filter profile</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><strong>Example</strong>: Actuator Specifiers defined in the Stateless Packet Filtering Profile</td>
 </tr>
 </tbody>
 </table>
@@ -1386,48 +1442,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>start_time</strong></td>
 <td style="text-align: left;">Date-Time</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The specific date/time to initiate the Action</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>stop_time</strong></td>
 <td style="text-align: left;">Date-Time</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The specific date/time to terminate the Action</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>duration</strong></td>
 <td style="text-align: left;">Duration</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The length of time for an Action to be in effect</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: left;"><strong>response_requested</strong></td>
 <td style="text-align: left;">Response-Type</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The type of Response required for the Action: <code>none</code>, <code>ack</code>, <code>status</code>, <code>complete</code>.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1024</td>
-<td style="text-align: left;"><strong>slpf</strong></td>
-<td style="text-align: left;">slpf:Args</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;"><strong>Example</strong>: Command Arguments defined in the Stateless Packet Filter profile</td>
 </tr>
 </tbody>
 </table>
@@ -1455,95 +1504,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>status</strong></td>
 <td style="text-align: left;">Status-Code</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">An integer status code</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>status_text</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">A free-form human-readable description of the Response status</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>strings</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..*</td>
+<td style="text-align: right;">0..*</td>
 <td style="text-align: left;">Generic set of string values</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: left;"><strong>ints</strong></td>
 <td style="text-align: left;">Integer</td>
-<td style="text-align: left;">0..*</td>
+<td style="text-align: right;">0..*</td>
 <td style="text-align: left;">Generic set of integer values</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: left;"><strong>results</strong></td>
-<td style="text-align: left;">MapOf(key, value)</td>
-<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">MapOf(String, Any)</td>
+<td style="text-align: right;">0..*</td>
 <td style="text-align: left;">Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;"><strong>versions</strong></td>
 <td style="text-align: left;">Version</td>
-<td style="text-align: left;">0..*</td>
+<td style="text-align: right;">0..*</td>
 <td style="text-align: left;">List of OpenC2 language versions supported by this Actuator</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">7</td>
+<td style="text-align: right;">7</td>
 <td style="text-align: left;"><strong>profiles</strong></td>
-<td style="text-align: left;">jadn:Uname</td>
-<td style="text-align: left;">0..*</td>
+<td style="text-align: left;">ArrayOf(Nsid)</td>
+<td style="text-align: right;">0..*</td>
 <td style="text-align: left;">List of profiles supported by this Actuator</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">8</td>
-<td style="text-align: left;"><strong>schema</strong></td>
-<td style="text-align: left;">jadn:Schema</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">Syntax of the OpenC2 language elements supported by this Actuator</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">9</td>
+<td style="text-align: right;">9</td>
 <td style="text-align: left;"><strong>pairs</strong></td>
 <td style="text-align: left;">Action-Targets</td>
-<td style="text-align: left;">0..*</td>
+<td style="text-align: right;">0..*</td>
 <td style="text-align: left;">List of targets applicable to each supported Action</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">10</td>
+<tr class="odd">
+<td style="text-align: right;">10</td>
 <td style="text-align: left;"><strong>rate_limit</strong></td>
 <td style="text-align: left;">Number</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Maximum number of requests per minute supported by design or policy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1024</td>
-<td style="text-align: left;"><strong>slpf</strong></td>
-<td style="text-align: left;">slpf:Response</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>Example</strong>: Response types defined in the Stateless Packet Filter profile</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Example:</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">{</span>   </a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="op">{</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">    <span class="st">&quot;status&quot;</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="st">&quot;status_text&quot;</span><span class="op">:</span> <span class="st">&quot;All endpoints successfully updated&quot;</span><span class="op">,</span></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">    <span class="st">&quot;strings&quot;</span><span class="op">:</span> [<span class="st">&quot;wd-394&quot;</span><span class="op">,</span> <span class="st">&quot;sx-2497&quot;</span>]</a>
@@ -1551,52 +1586,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Usage Requirements:</p>
 <ul>
 <li>All Responses MUST contain a status.</li>
-<li>Responses MAY contain status_text and/or results.</li>
 </ul>
-<h4 id="3321-openc2-response-status-code">3.3.2.1 OpenC2 Response Status Code</h4>
+<h4 id="3321-response-status-code">3.3.2.1 Response Status Code</h4>
 <p><strong><em>Type: Status-Code (Enumerated.ID)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">102</td>
+<td style="text-align: right;">102</td>
 <td style="text-align: left;"><strong>Processing</strong> - an interim Response used to inform the Producer that the Consumer has accepted the request but has not yet completed it.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">200</td>
+<td style="text-align: right;">200</td>
 <td style="text-align: left;"><strong>OK</strong> - the request has succeeded.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">400</td>
+<td style="text-align: right;">400</td>
 <td style="text-align: left;"><strong>Bad Request</strong> - the Consumer cannot process the request due to something that is perceived to be a Producer error (e.g., malformed request syntax).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">401</td>
+<td style="text-align: right;">401</td>
 <td style="text-align: left;"><strong>Unauthorized</strong> - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">403</td>
+<td style="text-align: right;">403</td>
 <td style="text-align: left;"><strong>Forbidden</strong> - the Consumer understood the request but refuses to authorize it.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">404</td>
+<td style="text-align: right;">404</td>
 <td style="text-align: left;"><strong>Not Found</strong> - the Consumer has not found anything matching the request.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">500</td>
+<td style="text-align: right;">500</td>
 <td style="text-align: left;"><strong>Internal Error</strong> - the Consumer encountered an unexpected condition that prevented it from fulfilling the request.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">501</td>
+<td style="text-align: right;">501</td>
 <td style="text-align: left;"><strong>Not Implemented</strong> - the Consumer does not support the functionality required to fulfill the request.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">503</td>
+<td style="text-align: right;">503</td>
 <td style="text-align: left;"><strong>Service Unavailable</strong> - the Consumer is currently unable to handle the request due to a temporary overloading or maintenance of the Consumer.</td>
 </tr>
 </tbody>
@@ -1608,74 +1642,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>mime_type</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">Permitted values specified in the IANA Media Types registry, RFC 6838</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">Permitted values specified in the IANA Media Types registry, <a href="#rfc6838">[RFC6838]</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>payload</strong></td>
 <td style="text-align: left;">Payload</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Choice of literal content or URL</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>hashes</strong></td>
 <td style="text-align: left;">Hashes</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Hashes of the payload content</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3413-device">3.4.1.3 Device</h4>
+<h4 id="3412-device">3.4.1.2 Device</h4>
 <p><strong><em>Type: Device (Map)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>hostname</strong></td>
 <td style="text-align: left;">Hostname</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">A hostname that can be used to connect to this device over a network</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>description</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">A human-readable description of the purpose, relevance, and/or properties of this device</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>device_id</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">An identifier that refers to this device within an inventory or management system</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3414-domain-name">3.4.1.4 Domain Name</h4>
+<h4 id="3413-domain-name">3.4.1.3 Domain Name</h4>
 <table>
 <thead>
 <tr class="header">
@@ -1688,11 +1722,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>Domain-Name</strong></td>
 <td style="text-align: left;">String (hostname)</td>
-<td style="text-align: left;">RFC 1034, section 3.5</td>
+<td style="text-align: left;"><a href="#rfc1034">[RFC1034]</a>, Section 3.5</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3415-email-address">3.4.1.5 Email Address</h4>
+<h4 id="3414-email-address">3.4.1.4 Email Address</h4>
 <table>
 <thead>
 <tr class="header">
@@ -1705,11 +1739,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>Email-Addr</strong></td>
 <td style="text-align: left;">String (email)</td>
-<td style="text-align: left;">Email address</td>
+<td style="text-align: left;">Email address, <a href="#rfc5322">[RFC5322]</a>, Section 3.4.1</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3416-features">3.4.1.6 Features</h4>
+<h4 id="3415-features">3.4.1.5 Features</h4>
 <table>
 <thead>
 <tr class="header">
@@ -1722,7 +1756,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>Features</strong></td>
 <td style="text-align: left;">ArrayOf(Feature) [0..10]</td>
-<td style="text-align: left;">An array of zero to ten names used to query an actuator for its supported capabilities.</td>
+<td style="text-align: left;">An array of zero to ten names used to query an Actuator for its supported capabilities.</td>
 </tr>
 </tbody>
 </table>
@@ -1733,68 +1767,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Usage Notes:</strong></p>
 <ul>
-<li>A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keepalive command). An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keepalive functions.</li>
+<li>A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.</li>
 </ul>
-<h4 id="3417-file">3.4.1.7 File</h4>
+<h4 id="3416-file">3.4.1.6 File</h4>
 <p><strong><em>Type: File (Map)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>name</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The name of the file as defined in the file system</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>path</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The absolute path to the location of the file in the file system</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>hashes</strong></td>
 <td style="text-align: left;">Hashes</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">One or more cryptographic hash codes of the file contents</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3418-ipv4-address-range">3.4.1.8 IPv4 Address Range</h4>
-<p>An IPv4 address range is a CIDR block per &quot;Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan&quot;[RFC4632] and consists of two values, an IPv4 address and a prefix. For example, “192.168.17.0/24” is range of IP addresses with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255). JSON serialization of an IPv4 address range SHALL use the ‘dotted/slash’ textual representation of RFC4632. CBOR serialization of an IPv4 address range SHALL use a binary representation of the IP address and the prefix, each in their own field.</p>
+<h4 id="3417-ipv4-address-range">3.4.1.7 IPv4 Address Range</h4>
+<p>An IPv4 address range is a CIDR block per &quot;Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan&quot; <a href="#rfc4632">[RFC4632]</a> and consists of two values, an IPv4 address and a prefix.</p>
+<p>For example, &quot;192.168.17.0/24&quot; is range of IP addresses with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255).</p>
+<p>JSON serialization of an IPv4 address range SHALL use the 'dotted/slash' textual representation of <a href="#rfc4632">[RFC4632]</a>.</p>
+<p>CBOR serialization of an IPv4 address range SHALL use a binary representation of the IP address and the prefix, each in their own field.</p>
 <p><strong><em>Type: IPv4-Net (Array /ipv4-net)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">IPv4-Addr</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">ipv4-address as defined in <a href="#rfc791">RFC 791</a></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">ipv4-address as defined in <a href="#rfc0791">[RFC0791]</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;">Integer</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">CIDR prefix-length. If omitted, refers to a single host address.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3418-ipv4-connection">3.4.1.8 IPv4 Connection</h4>
+<p><strong><em>Type: IPv4-Connection (Record)</em></strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ID</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: right;">#</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><strong>src_addr</strong></td>
+<td style="text-align: left;">IPv4-Net</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">IPv4 source address range</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"><strong>src_port</strong></td>
+<td style="text-align: left;">Port</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">source service per <a href="#rfc6335">[RFC6335]</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"><strong>dst_addr</strong></td>
+<td style="text-align: left;">IPv4-Net</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">IPv4 destination address range</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;"><strong>dst_port</strong></td>
+<td style="text-align: left;">Port</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">destination service per <a href="#rfc6335">[RFC6335]</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"><strong>protocol</strong></td>
+<td style="text-align: left;">L4-Protocol</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">layer 4 protocol (e.g., TCP) - see <a href="#3429-l4-protocol">Section 3.4.2.9</a></td>
 </tr>
 </tbody>
 </table>
@@ -1803,129 +1890,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">IPv6-Addr</td>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">ipv6-address as defined in <a href="#rfc8200">RFC 8200</a></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">ipv6-address as defined in <a href="#rfc8200">[RFC8200]</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;">Integer</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">prefix-length. If omitted, refers to a single host address.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="34110-ipv4-connection">3.4.1.10 IPv4 Connection</h4>
-<p><strong><em>Type: IPv4-Connection (Record)</em></strong></p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">Name</th>
-<th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>src_addr</strong></td>
-<td style="text-align: left;">IPv4-Net</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">IPv4 source address range</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;"><strong>src_port</strong></td>
-<td style="text-align: left;">Port</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">source service per <a href="#rfc6335">RFC 6335</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;"><strong>dst_addr</strong></td>
-<td style="text-align: left;">IPv4-Net</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">IPv4 destination address range</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;"><strong>dst_port</strong></td>
-<td style="text-align: left;">Port</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">destination service per RFC 6335</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;"><strong>protocol</strong></td>
-<td style="text-align: left;">L4-Protocol</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">layer 4 protocol (e.g., TCP) - see l4_protocol section</td>
-</tr>
-</tbody>
-</table>
-<h4 id="34111-ipv6-connection">3.4.1.11 IPv6 Connection</h4>
+<h4 id="34110-ipv6-connection">3.4.1.10 IPv6 Connection</h4>
 <p><strong><em>Type: IPv6-Connection (Record)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>src_addr</strong></td>
 <td style="text-align: left;">IPv6-Net</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">IPv6 source address range</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>src_port</strong></td>
 <td style="text-align: left;">Port</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">source service per RFC 6335</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">source service per <a href="#rfc6335">[RFC6335]</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>dst_addr</strong></td>
 <td style="text-align: left;">IPv6-Net</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">IPv6 destination address range</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: left;"><strong>dst_port</strong></td>
 <td style="text-align: left;">Port</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">destination service per RFC 6335</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">destination service per <a href="#rfc6335">[RFC6335]</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: left;"><strong>protocol</strong></td>
 <td style="text-align: left;">L4-Protocol</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">layer 4 protocol (e.g., TCP) - see l4_protocol section</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">layer 4 protocol (e.g., TCP) - <a href="#3429-l4-protocol">Section 3.4.2.9</a></td>
 </tr>
 </tbody>
 </table>
 <p><em>Editor's Note: Renumber</em></p>
-<h4 id="34110-mac-address">3.4.1.10 MAC Address</h4>
+<h4 id="34111-mac-address">3.4.1.11 MAC Address</h4>
 <table>
 <thead>
 <tr class="header">
@@ -1938,68 +1975,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>MAC-Addr</strong></td>
 <td style="text-align: left;">Binary (eui)</td>
-<td style="text-align: left;">Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in <a href="*eui">EUI</a>.</td>
+<td style="text-align: left;">Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in <a href="#eui">[EUI]</a>.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="34111-process">3.4.1.11 Process</h4>
+<h4 id="34112-process">3.4.1.12 Process</h4>
 <p><strong><em>Type: Process (Map)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>pid</strong></td>
 <td style="text-align: left;">Integer</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Process ID of the process</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>name</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Name of the process</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>cwd</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Current working directory of the process</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">4</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: left;"><strong>executable</strong></td>
 <td style="text-align: left;">File</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Executable that was executed to start the process</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">5</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: left;"><strong>parent</strong></td>
 <td style="text-align: left;">Process</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">Process that spawned this one</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;"><strong>command_line</strong></td>
 <td style="text-align: left;">String</td>
-<td style="text-align: left;">0..1</td>
+<td style="text-align: right;">0..1</td>
 <td style="text-align: left;">The full command line invocation used to start this process, including all arguments</td>
 </tr>
 </tbody>
 </table>
-<h4 id="34112-properties">3.4.1.12 Properties</h4>
+<h4 id="34113-properties">3.4.1.13 Properties</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2016,7 +2053,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<h4 id="34113-uri">3.4.1.13 URI</h4>
+<h4 id="34114-uri">3.4.1.14 URI</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2034,6 +2071,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <h3 id="342-data-types">3.4.2 Data Types</h3>
+<h4 id="3421-action-targets">3.4.2.1 Action-Targets</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type Name</th>
+<th style="text-align: left;">Type Definition</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Action-Targets</strong></td>
+<td style="text-align: left;">MapOf(Action, Targets)</td>
+<td style="text-align: left;">Map of each action supported by this actuator to the list of targets applicable to that action.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type Name</th>
+<th style="text-align: left;">Type Definition</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Targets</strong></td>
+<td style="text-align: left;">ArrayOf(Target.Enum) [1..*]</td>
+<td style="text-align: left;">List of Target fields</td>
+</tr>
+</tbody>
+</table>
 <h4 id="3422-date-time">3.4.2.2 Date-Time</h4>
 <table>
 <thead>
@@ -2076,43 +2146,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Value is a number of milliseconds</li>
 </ul>
-<h4 id="3424-hashes">3.4.2.4 Hashes</h4>
-<p><strong><em>Type: Hashes (Map)</em></strong></p>
+<h4 id="3424-feature">3.4.2.4 Feature</h4>
+<p>Specifies the results to be returned from a query features Command.</p>
+<p><strong><em>Type: Feature (Enumerated)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
-<th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>md5</strong></td>
-<td style="text-align: left;">Binary /x</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">MD5 hash as defined in <a href="#rfc1321">RFC 1321</a></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><strong>versions</strong></td>
+<td style="text-align: left;">List of OpenC2 Language versions supported by this Actuator</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;"><strong>sha1</strong></td>
-<td style="text-align: left;">Binary /x</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">SHA1 hash as defined in <a href="#rfc6234">RFC 6234</a></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"><strong>profiles</strong></td>
+<td style="text-align: left;">List of profiles supported by this Actuator</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;"><strong>sha256</strong></td>
-<td style="text-align: left;">Binary /x</td>
-<td style="text-align: left;">0..1</td>
-<td style="text-align: left;">SHA256 hash as defined in <a href="#rfc6234">RFC 6234</a></td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"><strong>pairs</strong></td>
+<td style="text-align: left;">List of supported Actions and applicable Targets</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;"><strong>rate_limit</strong></td>
+<td style="text-align: left;">Maximum number of requests per minute supported by design or policy</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3425-hostname">3.4.2.5 Hostname</h4>
+<h4 id="3425-hashes">3.4.2.5 Hashes</h4>
+<p><strong><em>Type: Hashes (Map)</em></strong></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">ID</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: right;">#</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"><strong>md5</strong></td>
+<td style="text-align: left;">Binary /x</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">MD5 hash as defined in <a href="#rfc1321">[RFC1321]</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;"><strong>sha1</strong></td>
+<td style="text-align: left;">Binary /x</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">SHA1 hash as defined in <a href="#rfc6234">[RFC6234]</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;"><strong>sha256</strong></td>
+<td style="text-align: left;">Binary /x</td>
+<td style="text-align: right;">0..1</td>
+<td style="text-align: left;">SHA256 hash as defined in <a href="#rfc6234">[RFC6234]</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="3426-hostname">3.4.2.6 Hostname</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2125,11 +2229,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>Hostname</strong></td>
 <td style="text-align: left;">String (hostname)</td>
-<td style="text-align: left;">Internet host name as specified in <a href="#rfc1123">RFC 1123</a></td>
+<td style="text-align: left;">Internet host name as specified in <a href="#rfc1123">[RFC1123]</a></td>
 </tr>
 </tbody>
 </table>
-<h4 id="3426-ipv4-address">3.4.2.6 IPv4 Address</h4>
+<h4 id="3427-ipv4-address">3.4.2.7 IPv4 Address</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2142,11 +2246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>IPv4-Addr</strong></td>
 <td style="text-align: left;">Binary /ipv4-addr</td>
-<td style="text-align: left;">32 bit IPv4 address as defined in <a href="#rfc791">RFC 791</a></td>
+<td style="text-align: left;">32 bit IPv4 address as defined in <a href="#rfc0791">[RFC0791]</a></td>
 </tr>
 </tbody>
 </table>
-<h4 id="3427-ipv6-address">3.4.2.7 IPv6 Address</h4>
+<h4 id="3428-ipv6-address">3.4.2.8 IPv6 Address</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2159,75 +2263,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>IPv6-Addr</strong></td>
 <td style="text-align: left;">Binary /ipv6-addr</td>
-<td style="text-align: left;">128 bit IPv6 address as defined in <a href="#rfc8200">RFC 8200</a></td>
+<td style="text-align: left;">128 bit IPv6 address as defined in <a href="#rfc8200">[RFC8200]</a></td>
 </tr>
 </tbody>
 </table>
-<p><em>Editor's Note: Renumber</em></p>
-<h4 id="3427-l4-protocol">3.4.2.7 L4 Protocol</h4>
-<p>Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, <a href="#rfc5237">RFC 5237</a></p>
+<h4 id="3429-l4-protocol">3.4.2.9 L4 Protocol</h4>
+<p>Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, <a href="#rfc5237">[RFC5237]</a></p>
 <p><strong><em>Type: L4-Protocol (Enumerated)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>icmp</strong></td>
-<td style="text-align: left;">Internet Control Message Protocol - <a href="#rfc792">RFC 792</a></td>
+<td style="text-align: left;">Internet Control Message Protocol - <a href="#rfc0792">[RFC0792]</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">6</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;"><strong>tcp</strong></td>
-<td style="text-align: left;">Transmission Control Protocol - <a href="#rfc793">RFC 793</a></td>
+<td style="text-align: left;">Transmission Control Protocol - <a href="#rfc0793">[RFC0793]</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">17</td>
+<td style="text-align: right;">17</td>
 <td style="text-align: left;"><strong>udp</strong></td>
-<td style="text-align: left;">User Datagram Protocol - <a href="#rfc768">RFC 768</a></td>
+<td style="text-align: left;">User Datagram Protocol - <a href="#rfc0768">[RFC0768]</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">132</td>
+<td style="text-align: right;">132</td>
 <td style="text-align: left;"><strong>sctp</strong></td>
-<td style="text-align: left;">Stream Control Transmission Protocol - <a href="#rfc4960">RFC 4960</a></td>
+<td style="text-align: left;">Stream Control Transmission Protocol - <a href="#rfc4960">[RFC4960]</a></td>
 </tr>
 </tbody>
 </table>
-<h4 id="3428-payload">3.4.2.8 Payload</h4>
+<h4 id="34210-namespace-identifier">3.4.2.10 Namespace Identifier</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type Name</th>
+<th style="text-align: left;">Base Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Nsid</strong></td>
+<td style="text-align: left;">String [1..16]</td>
+<td style="text-align: left;">A short identifier that refers to a namespace.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="34211-payload">3.4.2.11 Payload</h4>
 <p><strong><em>Type: Payload (Choice)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Type</th>
-<th style="text-align: left;">#</th>
+<th style="text-align: right;">#</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>bin</strong></td>
 <td style="text-align: left;">Binary</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">Specifies the data contained in the artifact</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>url</strong></td>
 <td style="text-align: left;">URI</td>
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">MUST be a valid URL that resolves to the un-encoded content</td>
 </tr>
 </tbody>
 </table>
-<h4 id="3429-port">3.4.2.9 Port</h4>
+<h4 id="34212-port">3.4.2.12 Port</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2240,78 +2360,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td style="text-align: left;"><strong>Port</strong></td>
 <td style="text-align: left;">Integer [0..65535]</td>
-<td style="text-align: left;">Transport Protocol Port Number, <a href="#rfc6335">RFC 6335</a></td>
+<td style="text-align: left;">Transport Protocol Port Number, <a href="#rfc6335">[RFC6335]</a></td>
 </tr>
 </tbody>
 </table>
-<h4 id="34210-feature">3.4.2.10 Feature</h4>
-<p>Specifies the results to be returned from a query features Command.</p>
-<p><strong><em>Type: Feature (Enumerated)</em></strong></p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">Name</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;"><strong>versions</strong></td>
-<td style="text-align: left;">List of OpenC2 Language versions supported by this Actuator</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;"><strong>profiles</strong></td>
-<td style="text-align: left;">List of profiles supported by this Actuator</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;"><strong>pairs</strong></td>
-<td style="text-align: left;">List of supported Actions and applicable Targets</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;"><strong>rate_limit</strong></td>
-<td style="text-align: left;">Maximum number of requests per minute supported by design or policy</td>
-</tr>
-</tbody>
-</table>
-<h4 id="34211-response-type">3.4.2.11 Response-Type</h4>
+<h4 id="34213-response-type">3.4.2.13 Response-Type</h4>
 <p><strong><em>Type: Response-Type (Enumerated)</em></strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">ID</th>
+<th style="text-align: right;">ID</th>
 <th style="text-align: left;">Name</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">0</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: left;"><strong>none</strong></td>
 <td style="text-align: left;">No response</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;"><strong>ack</strong></td>
 <td style="text-align: left;">Respond when Command received</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2</td>
+<td style="text-align: right;">2</td>
 <td style="text-align: left;"><strong>status</strong></td>
 <td style="text-align: left;">Respond with progress toward Command completion</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">3</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: left;"><strong>complete</strong></td>
 <td style="text-align: left;">Respond when all aspects of Command completed</td>
 </tr>
 </tbody>
 </table>
-<h4 id="34212-version">3.4.2.12 Version</h4>
+<h4 id="34214-version">3.4.2.14 Version</h4>
 <table>
 <thead>
 <tr class="header">
@@ -2328,98 +2414,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<h4 id="34215-action-targets">3.4.2.15 Action-Targets</h4>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Type Name</th>
-<th style="text-align: left;">Type Definition</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Action-Targets</strong></td>
-<td style="text-align: left;">MapOf(Action, Targets)</td>
-<td style="text-align: left;">Map of each action supported by this actuator to the list of targets applicable to that action.</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Type Name</th>
-<th style="text-align: left;">Type Definition</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Targets</strong></td>
-<td style="text-align: left;">ArrayOf(Target.Enum) [1..*]</td>
-<td style="text-align: left;">List of Target fields</td>
-</tr>
-</tbody>
-</table>
 <hr />
 <h1 id="4-mandatory-commandsresponses">4 Mandatory Commands/Responses</h1>
 <p><em>The content in this section is normative, except where it is marked non-normative.</em></p>
 <p>A Command consists of an Action/Target pair and associated Specifiers and Arguments. This section enumerates the allowed Commands, identifies which are required or optional to implement, and presents the associated responses.</p>
 <h2 id="41-implementation-of-query-features-command">4.1 Implementation of 'query features' Command</h2>
 <p>The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2. This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.</p>
-<p>The 'query features' Command is REQUIRED for all Producers. The 'query features' Command MAY include one or more Specifiers as defined in table 3.4.2.10 of this specification.<br />
-The 'query features' Command MAY include the &quot;response_type&quot;:&quot;complete&quot; ARGUMENT. The 'query features' Command MUST NOT include any other ARGUMENT.</p>
+<p>The 'query features' Command is REQUIRED for all Producers. The 'query features' Command MAY include one or more Features as defined in <a href="#3424-feature">Section 3.4.2.4</a>. The 'query features' Command MAY include the <code>&quot;response_type&quot;: &quot;complete&quot;</code> Argument. The 'query features' Command MUST NOT include any other Argument.</p>
 <p>The 'query features' Command is REQUIRED for all Consumers. Consumers that receive and parse the 'query features':</p>
 <ul>
-<li>With any ARGUMENT other than &quot;response_type:complete&quot;
+<li>With any Argument other than <code>&quot;response_type&quot;: &quot;complete&quot;</code>
 <ul>
 <li>MUST NOT respond with OK/200.</li>
 <li>SHOULD respond with Bad Request/400.</li>
 <li>MAY respond with the 500 status code.</li>
 </ul></li>
 <li>With no Target specifiers MUST respond with response code 200.</li>
-<li>With the [versions] Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.</li>
-<li>With the [profiles] Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.</li>
-<li>With the [pairs] Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.</li>
-<li>With the [rate_limit] Target specifier populated:
+<li>With the &quot;versions&quot; Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.</li>
+<li>With the &quot;profiles&quot; Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.</li>
+<li>With the &quot;pairs&quot; Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.</li>
+<li>With the &quot;rate_limit&quot; Target specifier populated:
 <ul>
 <li>SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support.</li>
 <li>MAY respond with status 200 and with the rate_limit field unpopulated.</li>
 </ul></li>
 </ul>
-<h2 id="42-sample-commands-and-responses">4.2 Sample Commands and Responses</h2>
+<h2 id="42-examples-of-query-features-commands-and-responses">4.2 Examples of 'query features' Commands and Responses</h2>
 <p><em>This section is non-normative.</em></p>
-<p>This sub-section provides examples and associated responses of 'query features' Commands. The samples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems. Lines preceded with # are comments, however it should be noted that the OpenC2 language does not support comments.</p>
-<pre><code># No target specifiers. Useful for a heartbeat function  
-
-{  
-  &quot;action&quot;: &quot;query&quot;,  
-  &quot;target&quot;: {  
-    &quot;features&quot;: []  
-  }  
-}  
-
-# indicates the actuator is alive  
-
-{&quot;status&quot;: 200}  
-
-# Multiple specifiers populated in the command  
-{  
-  &quot;action&quot;: &quot;query&quot;,  
-  &quot;target&quot;: {  
-    &quot;features&quot;: [&quot;versions&quot;, &quot;profiles&quot;, &quot;rate_limit&quot;]  
-  }  
-}  
-
-#    
-{  
-  &quot;status&quot;: 200,  
-  &quot;versions&quot;: [&quot;1.0&quot;],  
-  &quot;profiles&quot;: [  
-    &quot;oasis-open.org/openc2/v1.0/ap-slpf&quot;,  
-    &quot;example.com/openc2/products/iot-front-door-lock&quot;  
-    ]  
-  &quot;rate_limit&quot;: 30  
+<p>This sub-section provides examples of 'query features' Commands and Responses. The examples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.</p>
+<h3 id="421-sample-1">4.2.1 Sample 1</h3>
+<p>There are no features specified in the 'query features' Command. A simple &quot;OK&quot; Response message is returned.</p>
+<p><strong>Command:</strong></p>
+<pre><code>{
+    &quot;action&quot;: &quot;query&quot;,
+    &quot;target&quot;: {
+        &quot;features&quot;: []
+    }
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code>{
+    &quot;status&quot;: 200
+}
+</code></pre>
+<h3 id="422-sample-2">4.2.2 Sample 2</h3>
+<p>There are several features requested in the 'query features' Command. All requested features can be returned in a single Response message.</p>
+<p><strong>Command:</strong></p>
+<pre><code>{
+    &quot;action&quot;: &quot;query&quot;,
+    &quot;target&quot;: {
+        &quot;features&quot;: [&quot;versions&quot;, &quot;profiles&quot;, &quot;rate_limit&quot;]
+    }
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code>{
+    &quot;status&quot;: 200,
+    &quot;versions&quot;: [&quot;1.0&quot;],
+    &quot;profiles&quot;: [&quot;slpf&quot;, &quot;x-lock&quot;],
+    &quot;rate_limit&quot;: 30
 }
 </code></pre>
 <hr />
@@ -2428,39 +2481,39 @@ The 'query features' Command MAY include the &quot;response_type&quot;:&quot;com
 <h3 id="51-conformance-clause-1-command">5.1 Conformance Clause 1: Command</h3>
 <p>A conformant Command</p>
 <ul>
-<li>5.1-1 MUST be structured in accordance with Section 3.3.1.</li>
-<li>5.1-2 MUST include exactly one <code>action</code> property defined in accordance with Section 3.3.1.1.</li>
-<li>5.1-3 MUST include exactly one <code>target</code> property defined in accordance with Section 3.3.1.2 or exactly one imported <code>target</code> property defined in accordance with Section 3.1.5.</li>
-<li>5.1-4 MUST include zero or one <code>actuator</code> property defined in accordance with Section 3.3.1.3 or zero or one imported <code>actuator</code> property defined in accordance with Section 3.1.5.</li>
-<li>5.1-5 MUST include zero or one <code>args</code> property defined in accordance with Section 3.3.1.4 or zero or one imported <code>args</code> property defined in accordance with Section 3.1.5.</li>
+<li>5.1-1 MUST be structured in accordance with <a href="#331-openc2-command">Section 3.3.1</a>.</li>
+<li>5.1-2 MUST include exactly one <code>action</code> property defined in accordance with <a href="#3311-action">Section 3.3.1.1</a>.</li>
+<li>5.1-3 MUST include exactly one <code>target</code> property defined in accordance with <a href="#3312-target">Section 3.3.1.2</a> or exactly one imported <code>target</code> property defined in accordance with <a href="#315-extensions">Section 3.1.5</a>.</li>
+<li>5.1-4 MUST include zero or one <code>actuator</code> property defined in accordance with <a href="#3313-actuator">Section 3.3.1.3</a> or zero or one imported <code>actuator</code> property defined in accordance with <a href="#315-extensions">Section 3.1.5</a>.</li>
+<li>5.1-5 MUST include zero or one <code>args</code> property defined in accordance with <a href="#3314-command-arguments">Section 3.3.1.4</a> or zero or one imported <code>args</code> property defined in accordance with <a href="#315-extensions">Section 3.1.5</a>.</li>
 </ul>
 <h3 id="52-conformance-clause-2-response">5.2 Conformance Clause 2: Response</h3>
 <p>A conformant Response</p>
 <ul>
-<li>5.2-1 MUST be structured in accordance with Section 3.3.2.</li>
-<li>5.2-2 MUST include exactly one <code>status</code> property defined in accordance with Section 3.3.2.1.</li>
+<li>5.2-1 MUST be structured in accordance with <a href="#332-openc2-response">Section 3.3.2</a>.</li>
+<li>5.2-2 MUST include exactly one <code>status</code> property defined in accordance with <a href="#3321-response-status-code">Section 3.3.2.1</a>.</li>
 </ul>
 <h2 id="53-conformance-clause-3-producer">5.3 Conformance Clause 3: Producer</h2>
 <p>A conformant Producer</p>
 <ul>
-<li>5.3-1 MUST issue Commands and process Responses in accordance with Section 4.</li>
-<li>5.3-2 MUST implement JSON serialization of generated Commands in accordance with RFC 7493.</li>
+<li>5.3-1 MUST issue Commands and process Responses in accordance with <a href="#4-mandatory-commandsresponses">Section 4</a>.</li>
+<li>5.3-2 MUST implement JSON serialization of generated Commands in accordance with <a href="#rfc7493">[RFC7493]</a>.</li>
 </ul>
 <h2 id="54-conformance-clause-4-consumer">5.4 Conformance Clause 4: Consumer</h2>
 <p>A conformant Consumer</p>
 <ul>
-<li>5.4-1 MUST process Commands and issue Responses in accordance with Section 4.</li>
-<li>5.4-2 MUST implement JSON serialization of generated Responses in accordance with RFC 7493.</li>
+<li>5.4-1 MUST process Commands and issue Responses in accordance with <a href="#4-mandatory-commandsresponses">Section 4</a>.</li>
+<li>5.4-2 MUST implement JSON serialization of generated Responses in accordance with <a href="#rfc7493">[RFC7493]</a>.</li>
 </ul>
 <hr />
 <h1 id="annex-a-examples">Annex A. Examples</h1>
 <p><em>The content in this section is non-normative.</em></p>
 <h2 id="a1-example-1">A.1 Example 1</h2>
 <p>This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the Message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the Message.</p>
-<p>The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex:<code>'d937 fca9 2b64 4e71'</code>, base64url: <code>'2Tf8qStkTnE'</code>, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: <code>b'\xd97\xfc\xa9+dNq'</code>. If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: '6670 2d31 3932 352d 3337 3632 3864 3663', base64url: 'ZnAtMTkyNS0zNzYyOGQ2Yw', byte string: b'fp-1925-37628d6c'.</p>
-<p>The created element is a Date-Time value of milliseconds since the epoch. The example <code>1539355895215</code> may be displayed as<code>'12 October 2018 14:51:35 UTC'</code>.</p>
+<p>The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex: <code>'d937 fca9 2b64 4e71'</code>, base64url: <code>'2Tf8qStkTnE'</code>, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: <code>b'\xd97\xfc\xa9+dNq'</code>. If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: <code>'6670 2d31 3932 352d 3337 3632 3864 3663'</code>, base64url: <code>'ZnAtMTkyNS0zNzYyOGQ2Yw'</code>, byte string: <code>b'fp-1925-37628d6c'</code>.</p>
+<p>The created element is a Date-Time value of milliseconds since the epoch. The example <code>1539355895215</code> may be displayed as <code>'12 October 2018 14:51:35 UTC'</code>.</p>
 <p>This example, illustrating an internal representation of a Message, is non-normative. Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values. There are no interoperability considerations or conformance requirements for how Message elements are represented internally within an implementation. Only the serialized values of the Message elements embedded within a protocol is relevant to interoperability.</p>
-<h3 id="a11-command-message">A.1.1 Command Message</h3>
+<h3 id="a11-example-1-command">A.1.1 Example 1: Command</h3>
 <pre><code>content-type: &#39;application/openc2&#39;
 msg_type: &#39;request&#39;
 request_id: b&#39;\xd97\xfc\xa9+dNq&#39;
@@ -2469,7 +2522,7 @@ to: [&#39;#filter-devices&#39;]
 created: 1539355895215
 content: {&#39;action&#39;: &#39;query&#39;, &#39;target&#39;: {&#39;features&#39;: [&#39;versions&#39;, &#39;profiles&#39;]}}
 </code></pre>
-<h3 id="a12-response-message">A.1.2 Response Message</h3>
+<h3 id="a12-example-1-response">A.1.2 Example 1: Response</h3>
 <p>The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of <code>'response'</code>, and the Response content. The request_id from the Command Message, if present, is returned unchanged in the Response Message. The &quot;to&quot; element of the Response normally echoes the &quot;from&quot; element of the Command Message, but the &quot;from&quot; element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group. The &quot;created&quot; element, if present, contains the creation time of the Response.</p>
 <p>A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command. No Actuator profiles currently define response content types other than openc2.</p>
 <pre><code>status: 200
@@ -2479,11 +2532,11 @@ request_id: b&#39;\xd97\xfc\xa9+dNq&#39;
 from: &#39;pf72394&#39;
 to: [&#39;nocc-3497&#39;]
 created: 1539355898000
-content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profiles&#39;: [&#39;oasis-open.org/openc2/v1.0/ap-slpf&#39;]}
+content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profiles&#39;: [&#39;slpf&#39;]}
 </code></pre>
 <h2 id="a2-example-2">A.2 Example 2</h2>
 <p>This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.</p>
-<p><strong>Command:</strong></p>
+<h3 id="a21-example-2-command">A.2.1 Example 2: Command</h3>
 <pre><code>{
     &quot;action&quot;: &quot;query&quot;,
     &quot;target&quot;: {
@@ -2496,7 +2549,7 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
     }
 }
 </code></pre>
-<p><strong>Response:</strong></p>
+<h3 id="a22-example-2-response">A.2.2 Example 2: Response</h3>
 <pre><code>{
     &quot;status&quot;: 200,
     &quot;results&quot;: {
@@ -2515,24 +2568,23 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
 }
 </code></pre>
 <h2 id="a3-example-3">A.3 Example 3</h2>
-<p><strong>Command:</strong></p>
+<h3 id="a31-example-3-command">A.3.1 Example 3: Command</h3>
 <pre><code>{
-  &quot;action&quot;: &quot;query&quot;,
-  &quot;target&quot;: {
-    &quot;features&quot;: [&quot;versions&quot;, &quot;profiles&quot;]
-  }
+    &quot;action&quot;: &quot;query&quot;,
+    &quot;target&quot;: {
+        &quot;features&quot;: [&quot;versions&quot;, &quot;profiles&quot;]
+    }
 }
 </code></pre>
-<p><strong>Response:</strong></p>
+<h3 id="a32-example-3-response">A.3.2 Example 3: Response</h3>
 <pre><code>{
-  &quot;status_text&quot;: &quot;ACME Corp Internet Toaster&quot;,
-  &quot;versions&quot;: [&quot;1.0&quot;],
-  &quot;profiles&quot;: []
+    &quot;status_text&quot;: &quot;ACME Corp Internet Toaster&quot;,
+    &quot;versions&quot;: [&quot;1.0&quot;],
+    &quot;profiles&quot;: [&quot;slpf&quot;, &quot;x-acme&quot;]
 }
 </code></pre>
 <hr />
 <h1 id="annex-b-acronyms">Annex B. Acronyms</h1>
-<p><em>The content in this section is non-normative.</em></p>
 <table>
 <thead>
 <tr class="header">
@@ -2546,32 +2598,56 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
 <td style="text-align: left;">Application Programming Interface</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">ASCII</td>
+<td style="text-align: left;">American Standard Code for Information Interchange</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BCP</td>
+<td style="text-align: left;">Best Current Practice</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">CBOR</td>
 <td style="text-align: left;">Concise Binary Object Representation</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">CIDR</td>
+<td style="text-align: left;">Classless Inter-Domain Routing</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">CoAP</td>
 <td style="text-align: left;">Constrained Application Protocol</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">DOI</td>
+<td style="text-align: left;">Digital Object Identifier</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">DNS</td>
-<td style="text-align: left;">Domain Name Server</td>
+<td style="text-align: left;">EUI</td>
+<td style="text-align: left;">Extended Unique Identifier</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">HTTP</td>
 <td style="text-align: left;">Hyper Text Transfer Protocol</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">HTTPS</td>
+<td style="text-align: left;">Hyper Text Transfer Protocol Secure</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">IACD</td>
 <td style="text-align: left;">Integrated Adaptive Cyber Defense</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">IANA</td>
 <td style="text-align: left;">Internet Assigned Numbers Authority</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">ICMP</td>
 <td style="text-align: left;">Internet Control Message Protocol</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">Identifier</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">IP</td>
@@ -2583,35 +2659,27 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
 </tr>
 <tr class="odd">
 <td style="text-align: left;">JSON</td>
-<td style="text-align: left;">Java Script Notation</td>
+<td style="text-align: left;">JavaScript Object Notation</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">KMIP</td>
-<td style="text-align: left;">Key Management Interface Protocol</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">MAC</td>
 <td style="text-align: left;">Media Access Control</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">MD5</td>
 <td style="text-align: left;">Message Digest</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">MIME</td>
-<td style="text-align: left;">Multipurpose Internet Mail Extensions</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">MQTT</td>
 <td style="text-align: left;">Message Queuing Telemetry Transfer</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">NSID</td>
-<td style="text-align: left;">Namespace Identifier</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">OASIS</td>
 <td style="text-align: left;">Organization for the Advancement of Structured Information Standards</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OODA</td>
+<td style="text-align: left;">Observe-Orient-Decide-Act</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">OpenC2</td>
@@ -2622,48 +2690,56 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
 <td style="text-align: left;">Open Data eXchange Layer</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">PDF</td>
+<td style="text-align: left;">Portable Document Format</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">RFC</td>
 <td style="text-align: left;">Request for Comment</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">SCTP</td>
 <td style="text-align: left;">Stream Control Transmission Protocol</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">SHA</td>
 <td style="text-align: left;">Security Hash Algorithm</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">SLPF</td>
 <td style="text-align: left;">StateLess Packet Filtering</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">STIX</td>
-<td style="text-align: left;">Structured Threat Intel eXchange</td>
-</tr>
 <tr class="even">
+<td style="text-align: left;">STD</td>
+<td style="text-align: left;">Standard</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">TC</td>
 <td style="text-align: left;">Technical Committee</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">TCP</td>
 <td style="text-align: left;">Transmission Control Protocol</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TLV</td>
-<td style="text-align: left;">Type Length Value</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">UDP</td>
 <td style="text-align: left;">User Datagram Control Protocol</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Uname</td>
-<td style="text-align: left;">Unique Name</td>
+<td style="text-align: left;">UML</td>
+<td style="text-align: left;">Unified Modeling Language</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">URI</td>
 <td style="text-align: left;">Uniform Resource Identifier</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UTC</td>
+<td style="text-align: left;">Coordinated Universal Time</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UUID</td>
+<td style="text-align: left;">Universally Unique IDentifier</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">XML</td>
@@ -2736,7 +2812,7 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
 <td style="text-align: left;">v1.0-wd06</td>
 <td style="text-align: left;">05/15/2018</td>
 <td style="text-align: left;">Romano, Sparrell</td>
-<td style="text-align: left;">Finalizing message structure<br>message=header+body<br>Review comments<br>Using word ‘arguments’ instead of ‘options’</td>
+<td style="text-align: left;">Finalizing message structure<br>message=header+body<br>Review comments<br>Using word 'arguments' instead of 'options'</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">v1.0-csd04</td>
@@ -2773,6 +2849,12 @@ content: {&#39;status&#39;: 200, &#39;versions&#39;: [&#39;1.3&#39;], &#39;profi
 <td style="text-align: left;">03/21/2019</td>
 <td style="text-align: left;">Romano, Sparrell</td>
 <td style="text-align: left;">Produce interim working draft.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">v1.0-wd12</td>
+<td style="text-align: left;">03/27/2019</td>
+<td style="text-align: left;">Romano, Sparrell</td>
+<td style="text-align: left;">Produce candidate working draft for next public review.</td>
 </tr>
 </tbody>
 </table>
