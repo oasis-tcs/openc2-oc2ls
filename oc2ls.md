@@ -705,7 +705,7 @@ The Command defines an Action to be performed on a Target.
 **_Type: OpenC2-Command (Record)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **action** | Action | 1 | The task or activity to be performed (i.e., the 'verb'). |
 | 2 | **target** | Target | 1 | The object of the Action. The Action is performed on the Target. |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the Command. |
@@ -721,7 +721,7 @@ The Command defines an Action to be performed on a Target.
 **_Type: Action (Enumerated)_**
 
 | ID | Name | Description |
-| :--- | :--- | :--- |
+| ---: | :--- | :--- |
 | 1 | **scan** | Systematic examination of some aspect of the entity or its environment. |
 | 2 | **locate** | Find an object physically, logically, functionally, or by organization. |
 | 3 | **query** | Initiate a request for information. |
@@ -739,7 +739,7 @@ The Command defines an Action to be performed on a Target.
 | 20 | **delete** | Remove an entity (e.g., data, files, flows). |
 | 22 | **detonate** | Execute and observe the behavior of a Target (e.g., file, hyperlink) in an isolated environment. |
 | 23 | **restore** | Return a system to a previously known state. |
-| 28 | **copy** | Duplicate an object, file, data flow or artifact. |
+| 28 | **copy** | Duplicate an object, file, data flow, or artifact. |
 | 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident. |
 | 32 | **remediate** | Task the recipient to eliminate a vulnerability or attack point. |
 
@@ -751,7 +751,7 @@ The Command defines an Action to be performed on a Target.
 **_Type: Target (Choice)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
 | 2 | **command** | String | 1 | A reference to a previously issued Command. |
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
@@ -766,24 +766,24 @@ The Command defines an Action to be performed on a Target.
 | 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
-| 19 | **uri** | URI | 1 | A uniform resource identifier(URI). |
+| 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
 
 **Usage Requirements:**
 
 * The `target` field in a Command MUST contain exactly one type of Target (e.g., ipv4_net).
 
 #### 3.3.1.3 Actuator
--**_Type: Actuator (Choice)_**
+**_Type: Actuator (Choice)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
 
 #### 3.3.1.4 Command Arguments
 **_Type: Args (Map)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the Action |
 | 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Action |
 | 3 | **duration** | Duration | 0..1 | The length of time for an Action to be in effect |
@@ -808,7 +808,7 @@ The Command defines an Action to be performed on a Target.
 **_Type: OpenC2-Response (Record)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
 | 3 | **strings** | String | 0..* | Generic set of string values |
@@ -837,7 +837,7 @@ Usage Requirements:
 **_Type: Status-Code (Enumerated.ID)_**
 
 | ID | Description |
-| :--- | :--- |
+| ---: | :--- |
 | 102 | **Processing** - an interim Response used to inform the Producer that the Consumer has accepted the request but has not yet completed it. |
 | 200 | **OK** - the request has succeeded. |
 | 400 | **Bad Request** - the Consumer cannot process the request due to something that is perceived to be a Producer error (e.g., malformed request syntax). |
@@ -854,7 +854,7 @@ Usage Requirements:
 **_Type: Artifact (Record)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **mime_type** | String | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
@@ -863,7 +863,7 @@ Usage Requirements:
 **_Type: Device (Map)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **hostname** | Hostname | 1 | A hostname that can be used to connect to this device over a network |
 | 2 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
 | 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
@@ -876,12 +876,12 @@ Usage Requirements:
 #### 3.4.1.4 Email Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String (email) | Email address |
+| **Email-Addr** | String (email) | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
 
 #### 3.4.1.5 Features
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an Actuator for its supported capabilities. |
 
 **Usage Requirements:**
 
@@ -896,7 +896,7 @@ Usage Requirements:
 **_Type: File (Map)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
@@ -913,7 +913,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 **_Type: IPv4-Net (Array /ipv4-net)_**
 
 | ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
+| ---: | :--- | ---: | :--- |
 | 1 | IPv4-Addr | 1 | ipv4-address as defined in [[RFC0791]](#rfc0791) |
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
@@ -921,7 +921,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 **_Type: IPv4-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
@@ -932,7 +932,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 **_Type: IPv6-Net (Array /ipv6-net)_**
 
 | ID | Type | # | Description |
-| :--- | :--- | :--- | :--- |
+| ---: | :--- | ---: | :--- |
 | 1 | IPv6-Addr | 1 | ipv6-address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
@@ -940,7 +940,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 **_Type: IPv6-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
@@ -958,7 +958,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 **_Type: Process (Map)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **pid** | Integer | 0..1 | Process ID of the process |
 | 2 | **name** | String | 0..1 | Name of the process |
 | 3 | **cwd** | String | 0..1 | Current working directory of the process |
@@ -1008,7 +1008,7 @@ Specifies the results to be returned from a query features Command.
 **_Type: Feature (Enumerated)_**
 
 | ID | Name | Description |
-| :--- | :--- | :--- |
+| ---: | :--- | :--- |
 | 1 | **versions** | List of OpenC2 Language versions supported by this Actuator |
 | 2 | **profiles** | List of profiles supported by this Actuator |
 | 3 | **pairs** | List of supported Actions and applicable Targets |
@@ -1018,7 +1018,7 @@ Specifies the results to be returned from a query features Command.
 **_Type: Hashes (Map)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
 | 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
 | 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
@@ -1044,7 +1044,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 **_Type: L4-Protocol (Enumerated)_**
 
 | ID | Name | Description |
-| :--- | :--- | :--- |
+| ---: | :--- | :--- |
 | 1 | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792) |
 | 6 | **tcp** | Transmission Control Protocol - [[RFC0793]](#rfc0793) |
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
@@ -1059,7 +1059,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
+| ---: | :--- | :--- | ---: | :--- |
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
@@ -1072,7 +1072,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
-| :--- | :--- | :--- |
+| ---: | :--- | :--- |
 | 0 | **none** | No response |
 | 1 | **ack** | Respond when Command received |
 | 2 | **status** | Respond with progress toward Command completion |
