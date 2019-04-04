@@ -2,8 +2,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 12
-## 27 March 2019
+## Working Draft 13
+## 04 April 2019
 ### Specification URIs
 #### This version:
 * TBD.md (Authoritative)
@@ -48,7 +48,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 27 March 2019. OASIS Working Draft 12. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 04 April 2019. OASIS Working Draft 13. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -134,11 +134,12 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.7 IPv4 Address](#3427-ipv4-address)
             -   [3.4.2.8 IPv6 Address](#3428-ipv6-address)
             -   [3.4.2.9 L4 Protocol](#3429-l4-protocol)
-            -   [3.4.2.10 Namespace Identifier](#34210-namespace-identifier)
-            -   [3.4.2.11 Payload](#34211-payload)
-            -   [3.4.2.12 Port](#34212-port)
-            -   [3.4.2.13 Response-Type](#34213-response-type)
-            -   [3.4.2.14 Version](#34214-version)
+            -   [3.4.2.10 Message-Type](#34210-message-type)
+            -   [3.4.2.11 Namespace Identifier](#34211-namespace-identifier)
+            -   [3.4.2.12 Payload](#34212-payload)
+            -   [3.4.2.13 Port](#34213-port)
+            -   [3.4.2.14 Response-Type](#34214-response-type)
+            -   [3.4.2.15 Version](#34215-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
     -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
     -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
@@ -424,7 +425,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Map | An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type. |
 | Map.ID | An unordered set of fields. The API value of each field has an id, label, and type. |
 | MapOf(*ktype*, *vtype*) | An unordered set of keys to values with the same semantics. Each key has key type *ktype* and is mapped to value type *vtype*. |
-| Record | An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
+| Record | An ordered map from a list of keys with positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
@@ -805,7 +806,7 @@ The Command defines an Action to be performed on a Target.
     * If `response_requested` is not explicitly specified then the Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
-**_Type: OpenC2-Response (Record)_**
+**_Type: OpenC2-Response (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -815,7 +816,7 @@ The Command defines an Action to be performed on a Target.
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
 | 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 7 | **profiles** | ArrayOf(Nsid) | 0..* | List of profiles supported by this Actuator |
+| 7 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
 | 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
 | 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 
@@ -1050,12 +1051,22 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.10 Namespace Identifier
+#### 3.4.2.10 Message-Type
+Identifies the type of Message.
+
+**_Type: Message-Type (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **request** | The Message content is an OpenC2 Command |
+| 2 | **response** | The Message content is an OpenC2 Response |
+
+#### 3.4.2.11 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
-#### 3.4.2.11 Payload
+#### 3.4.2.12 Payload
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
@@ -1063,12 +1074,12 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.12 Port
+#### 3.4.2.13 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.13 Response-Type
+#### 3.4.2.14 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1078,7 +1089,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.14 Version
+#### 3.4.2.15 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
