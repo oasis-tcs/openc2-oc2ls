@@ -806,7 +806,7 @@ The Command defines an Action to be performed on a Target.
     * If `response_requested` is not explicitly specified then the Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
-**_Type: OpenC2-Response (Record)_**
+**_Type: OpenC2-Response (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
