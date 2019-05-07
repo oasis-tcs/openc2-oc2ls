@@ -681,7 +681,7 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | **msg_type** | Message-Type | The type of OpenC2 Message. |
 | **status** | Status-Code | Populated with a numeric status code in Responses. |
 | **request_id** | String | A unique identifier created by the Producer and copied by Consumer into all Responses, in order to support reference to a particular Command, transaction, or event chain. |
-| **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
+| **created** | Date-Time | Creation date/time of the content. |
 | **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
 | **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
