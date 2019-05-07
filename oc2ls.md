@@ -819,7 +819,9 @@ The Command defines an Action to be performed on a Target.
 {
     "status": 200,
     "status_text": "All endpoints successfully updated",
-    "strings": ["wd-394", "sx-2497"]
+    "results": {
+        "endpoints": ["wd-394", "sx-2497"]
+    }
 }
 ```
 
