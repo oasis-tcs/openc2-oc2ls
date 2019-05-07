@@ -2,8 +2,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 13
-## 04 April 2019
+## Working Draft 12
+## 27 March 2019
 ### Specification URIs
 #### This version:
 * TBD.md (Authoritative)
@@ -48,7 +48,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 04 April 2019. OASIS Working Draft 13. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 27 March 2019. OASIS Working Draft 12. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -134,12 +134,11 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.7 IPv4 Address](#3427-ipv4-address)
             -   [3.4.2.8 IPv6 Address](#3428-ipv6-address)
             -   [3.4.2.9 L4 Protocol](#3429-l4-protocol)
-            -   [3.4.2.10 Message-Type](#34210-message-type)
-            -   [3.4.2.11 Namespace Identifier](#34211-namespace-identifier)
-            -   [3.4.2.12 Payload](#34212-payload)
-            -   [3.4.2.13 Port](#34213-port)
-            -   [3.4.2.14 Response-Type](#34214-response-type)
-            -   [3.4.2.15 Version](#34215-version)
+            -   [3.4.2.10 Namespace Identifier](#34210-namespace-identifier)
+            -   [3.4.2.11 Payload](#34211-payload)
+            -   [3.4.2.12 Port](#34212-port)
+            -   [3.4.2.13 Response-Type](#34213-response-type)
+            -   [3.4.2.14 Version](#34214-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
     -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
     -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
@@ -1051,22 +1050,12 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.10 Message-Type
-Identifies the type of Message.
-
-**_Type: Message-Type (Enumerated)_**
-
-| ID | Name | Description |
-| ---: | :--- | :--- |
-| 1 | **request** | The Message content is an OpenC2 Command |
-| 2 | **response** | The Message content is an OpenC2 Response |
-
-#### 3.4.2.11 Namespace Identifier
+#### 3.4.2.10 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
-#### 3.4.2.12 Payload
+#### 3.4.2.11 Payload
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
@@ -1074,12 +1063,12 @@ Identifies the type of Message.
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.13 Port
+#### 3.4.2.12 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.14 Response-Type
+#### 3.4.2.13 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1089,7 +1078,7 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.15 Version
+#### 3.4.2.14 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
