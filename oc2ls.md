@@ -851,7 +851,7 @@ Usage Requirements:
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
 #### 3.4.1.1 Artifact
-**_Type: Artifact (Record)_**
+**_Type: Artifact (Record) [1..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -859,14 +859,21 @@ Usage Requirements:
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
+**Usage Requirement:**
+
+* An "Artifact" Target MUST contain at least one property.
+
 #### 3.4.1.2 Device
-**_Type: Device (Map)_**
+**_Type: Device (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **hostname** | Hostname | 1 | A hostname that can be used to connect to this device over a network |
-| 2 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
-| 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
+| 1 | **hostname** | Hostname | 0..1 | A hostname that can be used to connect to this device over a network |
+| 2 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
+
+**Usage Requirement:**
+
+* A "Device" Target MUST contain at least one property.
 
 #### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
@@ -893,13 +900,17 @@ Usage Requirements:
 * A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
 #### 3.4.1.6 File
-**_Type: File (Map)_**
+**_Type: File (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
+
+**Usage Requirement:**
+
+* A "File" Target MUST contain at least one property.
 
 #### 3.4.1.7 IPv4 Address Range
 An IPv4 address range is a CIDR block per "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) and consists of two values, an IPv4 address and a prefix.
@@ -918,7 +929,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.8 IPv4 Connection
-**_Type: IPv4-Connection (Record)_**
+**_Type: IPv4-Connection (Record) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -927,6 +938,10 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#3429-l4-protocol) |
+
+**Usage Requirement:**
+
+* An "IPv4-Connection" MUST contain at least one property.
 
 #### 3.4.1.9 IPv6 Address Range
 **_Type: IPv6-Net (Array /ipv6-net)_**
@@ -937,7 +952,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv6 Connection
-**_Type: IPv6-Connection (Record)_**
+**_Type: IPv6-Connection (Record) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -947,7 +962,9 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#3429-l4-protocol) |
 
-*Editor's Note: Renumber*
+**Usage Requirement:**
+
+* An "IPv6-Connection" Target MUST contain at least one property.
 
 #### 3.4.1.11 MAC Address
 | Type Name | Type Definition | Description |
@@ -955,7 +972,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.12 Process
-**_Type: Process (Map)_**
+**_Type: Process (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -965,6 +982,10 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
 | 5 | **parent** | Process | 0..1 | Process that spawned this one |
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
+
+**Usage Requirement:**
+
+* A "Process" Target MUST contain at least one property.
 
 #### 3.4.1.13 Properties
 | Type Name | Type Definition | Description |
@@ -1015,13 +1036,17 @@ Specifies the results to be returned from a query features Command.
 | 4 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
 
 #### 3.4.2.5 Hashes
-**_Type: Hashes (Map)_**
+**_Type: Hashes (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
 | 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
 | 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
+
+**Usage Requirement:**
+
+* A "Hashes" data type MUST contain at least one key.
 
 #### 3.4.2.6 Hostname
 | Type Name | Type Definition | Description |
