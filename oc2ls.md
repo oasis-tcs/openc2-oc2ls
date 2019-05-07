@@ -98,7 +98,6 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [3.1.5 Extensions](#315-extensions)
         -   [3.1.6 Serialization](#316-serialization)
             -   [3.1.6.1 ID and Name Serialization](#3161-id-and-name-serialization)
-            -   [3.1.6.2 Integer Serialization](#3162-integer-serialization)
     -   [3.2 Message](#32-message)
     -   [3.3 Content](#33-content)
         -   [3.3.1 OpenC2 Command](#331-openc2-command)
@@ -652,19 +651,6 @@ Instances of Enumerated types and keys for Choice and Map types are serialized a
 
 1. Type definitions and application values use only the ID. There is no corresponding name except as an optional part of the description.
 2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
-
-#### 3.1.6.2 Integer Serialization
-For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits. But for human-readable serialization formats (XML and JSON), integers are converted to strings.
-
-**Example:**
-The JSON "number" type represents integers and real numbers as decimal strings without quotes.
-```
-{ "height": 68.2 }
-```
-
-As noted in [[RFC7493]](#rfc7493), Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
-
-The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON. Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*. All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types. Integer values support arithmetic operations; Binary values are not intended for that purpose.
 
 ## 3.2 Message
 This language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols. Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol. This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
