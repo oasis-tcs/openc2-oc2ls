@@ -690,9 +690,9 @@ Implementations may use environment variables, private APIs, data structures, cl
 
 **Usage Requirements:**
 
-* A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
+* A Producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
 * The request_id of a request message SHOULD be a Version 4 UUID as specified in [[RFC4122]](#rfc4122), Section 4.4.
-* A consumer MUST copy the request_id from a request message into each response to that request.
+* A Consumer MUST copy the request_id from a request message into each response to that request.
 
 ## 3.3 Content
 The purpose of this specification is to define the Action and Target portions of a Command and the common portions of a Response. The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
@@ -829,7 +829,7 @@ The Command defines an Action to be performed on a Target.
 }
 ```
 
-Usage Requirements:
+**Usage Requirements:**
 
 * All Responses MUST contain a status.
 
@@ -887,10 +887,7 @@ Usage Requirements:
 
 * A Producer MUST NOT send a list containing more than one instance of any Feature.
 * A Consumer receiving a list containing more than one instance of any Feature SHOULD behave as if the duplicate(s) were not present.
-
-**Usage Notes:**
-
-* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
+* A Producer MAY send a 'query' Command containing an empty list of features. A Producer could do this to determine if a Consumer is responding to Commands (a heartbeat command) or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer could return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
 #### 3.4.1.6 File
 **_Type: File (Map)_**
@@ -1106,11 +1103,11 @@ Consumers that receive and parse the 'query features':
     *  MUST NOT respond with OK/200.
     *  SHOULD respond with Bad Request/400.
     *  MAY respond with the 500 status code.
-*  With no Target specifiers MUST respond with response code 200.
-*  With the "versions" Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.
-*  With the "profiles" Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.
-*  With the "pairs" Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.
-* With the "rate_limit" Target specifier populated:
+*  With no Target Specifiers MUST respond with response code 200.
+*  With the "versions" Target Specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.
+*  With the "profiles" Target Specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.
+*  With the "pairs" Target Specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.
+* With the "rate_limit" Target Specifier populated:
     * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support.
     * MAY respond with status 200 and with the rate_limit field unpopulated.
 
