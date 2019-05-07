@@ -811,13 +811,7 @@ The Command defines an Action to be performed on a Target.
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
-| 3 | **strings** | String | 0..* | Generic set of string values |
-| 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
-| 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 7 | **profiles** | ArrayOf(Nsid) | 0..* | List of profiles supported by this Actuator |
-| 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
-| 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 3 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 
 **Example:**
 
