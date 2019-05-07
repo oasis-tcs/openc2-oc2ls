@@ -116,14 +116,17 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.1.4 Email Address](#3414-email-address)
             -   [3.4.1.5 Features](#3415-features)
             -   [3.4.1.6 File](#3416-file)
-            -   [3.4.1.7 IPv4 Address Range](#3417-ipv4-address-range)
-            -   [3.4.1.8 IPv4 Connection](#3418-ipv4-connection)
-            -   [3.4.1.9 IPv6 Address Range](#3419-ipv6-address-range)
-            -   [3.4.1.10 IPv6 Connection](#34110-ipv6-connection)
-            -   [3.4.1.11 MAC Address](#34111-mac-address)
-            -   [3.4.1.12 Process](#34112-process)
-            -   [3.4.1.13 Properties](#34113-properties)
-            -   [3.4.1.14 URI](#34114-uri)
+            -   [3.4.1.7 Internationalized Domain Name](#3417-internationalized-domain-name)
+            -   [3.4.1.8 Internationalized Email Address](#3418-international-email-address)
+            -   [3.4.1.9 IPv4 Address Range](#3419-ipv4-address-range)
+            -   [3.4.1.10 IPv4 Connection](#34110-ipv4-connection)
+            -   [3.4.1.11 IPv6 Address Range](#34111-ipv6-address-range)
+            -   [3.4.1.12 IPv6 Connection](#34112-ipv6-connection)
+            -   [3.4.1.13 IRI](#34113-iri)
+            -   [3.4.1.14 MAC Address](#34114-mac-address)
+            -   [3.4.1.15 Process](#34115-process)
+            -   [3.4.1.16 Properties](#34116-properties)
+            -   [3.4.1.17 URI](#34117-uri)
         -   [3.4.2 Data Types](#342-data-types)
             -   [3.4.2.1 Action-Targets](#3421-action-targets)
             -   [3.4.2.2 Date-Time](#3422-date-time)
@@ -131,14 +134,15 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.4 Feature](#3424-feature)
             -   [3.4.2.5 Hashes](#3425-hashes)
             -   [3.4.2.6 Hostname](#3426-hostname)
-            -   [3.4.2.7 IPv4 Address](#3427-ipv4-address)
-            -   [3.4.2.8 IPv6 Address](#3428-ipv6-address)
-            -   [3.4.2.9 L4 Protocol](#3429-l4-protocol)
-            -   [3.4.2.10 Namespace Identifier](#34210-namespace-identifier)
-            -   [3.4.2.11 Payload](#34211-payload)
-            -   [3.4.2.12 Port](#34212-port)
-            -   [3.4.2.13 Response-Type](#34213-response-type)
-            -   [3.4.2.14 Version](#34214-version)
+            -   [3.4.2.7 Internationalized Hostname](#3427-international-hostname)
+            -   [3.4.2.8 IPv4 Address](#3428-ipv4-address)
+            -   [3.4.2.9 IPv6 Address](#3429-ipv6-address)
+            -   [3.4.2.10 L4 Protocol](#34210-l4-protocol)
+            -   [3.4.2.11 Namespace Identifier](#34211-namespace-identifier)
+            -   [3.4.2.12 Payload](#34212-payload)
+            -   [3.4.2.13 Port](#34213-port)
+            -   [3.4.2.14 Response-Type](#34214-response-type)
+            -   [3.4.2.15 Version](#34215-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
     -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
     -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
@@ -470,9 +474,12 @@ Structural validation alone may be insufficient to validate that an instance mee
 | Keyword | Applies to Type | Constraint |
 | :--- | :--- | :--- |
 | **email** | String | Value must be an email address as defined in [[RFC5322]](#rfc5322), Section 3.4.1 |
-| **hostname** | String | Value must be a hostname as defined in [[RFC1034]](#rfc1034), Section 3.1 |
-| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986) |
 | **eui** | Binary | Value must be an EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
+| **hostname** | String | Value must be a hostname as defined in [[RFC1034]](#rfc1034), Section 3.1 |
+| **idn-email** | String | Value must be an internationalized email address as defined in [[RFC6531]](#rfc6531) |
+| **idn-hostname** | String | Value must be an internationalized hostname as defined in [[RFC5890]](#rfc5890), Section 2.3.2.3 |
+| **iri** | String | Value must be an Internationalized Resource Identifier (IRI) as defined in [[RFC3987]](#rfc3987) |
+| **uri** | String | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986) |
 
 ### 3.1.3 Multiplicity
 Property tables for types based on Array, Choice, Map and Record include a multiplicity column (#) that specifies the minimum and maximum cardinality (number of elements) of a field. As used in the Unified Modeling Language ([[UML]](#uml)), typical examples of multiplicity are:
@@ -759,10 +766,13 @@ The Command defines an Action to be performed on a Target.
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
 | 9 | **features** | Features | 1 | A set of items used with the query Action to determine an Actuator's capabilities. |
 | 10 | **file** | File | 1 | Properties of a file. |
+| 11 | **idn_domain_name** | IDN-Domain-Name | 1 | An internationalized domain name. |
+| 12 | **idn_email_addr** | IDN-Email-Addr | 1 | A single internationalized email address. |
 | 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
 | 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
 | 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
+| 20 | **iri** | IRI | 1 | An internationalized resource identifier (IRI). |
 | 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
 | 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
@@ -864,9 +874,10 @@ Usage Requirements:
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **hostname** | Hostname | 1 | A hostname that can be used to connect to this device over a network |
-| 2 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
-| 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
+| 1 | **hostname** | Hostname | 0..1 | A hostname that can be used to connect to this device over a network |
+| 2 | **idn_hostname** | IDN-Hostname | 0..1 | An internationalized hostname that can be used to connect to this device over a network |
+| 3 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
+| 4 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
 
 #### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
@@ -901,7 +912,17 @@ Usage Requirements:
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
 
-#### 3.4.1.7 IPv4 Address Range
+#### 3.4.1.7 Internationalized Domain Name
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **IDN-Domain-Name** | String (idn-hostname) | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
+
+#### 3.4.1.8 Internationalized Email Address
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **IDN-Email-Addr** | String (idn-email) | Internationalized email address, [[RFC6531]](#rfc6531) |
+
+#### 3.4.1.9 IPv4 Address Range
 An IPv4 address range is a CIDR block per "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) and consists of two values, an IPv4 address and a prefix.
 
 For example, "192.168.17.0/24" is range of IP addresses with a prefix of 24 (i.e. 192.168.17.0 - 192.168.17.255).
@@ -917,7 +938,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 1 | IPv4-Addr | 1 | ipv4-address as defined in [[RFC0791]](#rfc0791) |
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
-#### 3.4.1.8 IPv4 Connection
+#### 3.4.1.10 IPv4 Connection
 **_Type: IPv4-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
@@ -926,9 +947,9 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#3429-l4-protocol) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#34210-l4-protocol) |
 
-#### 3.4.1.9 IPv6 Address Range
+#### 3.4.1.11 IPv6 Address Range
 **_Type: IPv6-Net (Array /ipv6-net)_**
 
 | ID | Type | # | Description |
@@ -936,7 +957,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 1 | IPv6-Addr | 1 | ipv6-address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
-#### 3.4.1.10 IPv6 Connection
+#### 3.4.1.12 IPv6 Connection
 **_Type: IPv6-Connection (Record)_**
 
 | ID | Name | Type | # | Description |
@@ -945,16 +966,19 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#3429-l4-protocol) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#34210-l4-protocol) |
 
-*Editor's Note: Renumber*
+#### 3.4.1.13 IRI
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **IRI** | String (iri) | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
 
-#### 3.4.1.11 MAC Address
+#### 3.4.1.14 MAC Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
-#### 3.4.1.12 Process
+#### 3.4.1.15 Process
 **_Type: Process (Map)_**
 
 | ID | Name | Type | # | Description |
@@ -966,15 +990,15 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 5 | **parent** | Process | 0..1 | Process that spawned this one |
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
 
-#### 3.4.1.13 Properties
+#### 3.4.1.16 Properties
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an Actuator. |
 
-#### 3.4.1.14 URI
+#### 3.4.1.17 URI
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **URI** | String (uri) | Uniform Resource Identifier |
+| **URI** | String (uri) | Uniform Resource Identifier, [[RFC3986]](#rfc3986). |
 
 ### 3.4.2 Data Types
 #### 3.4.2.1 Action-Targets
@@ -1028,17 +1052,22 @@ Specifies the results to be returned from a query features Command.
 | :--- | :--- | :--- |
 | **Hostname** | String (hostname) | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
-#### 3.4.2.7 IPv4 Address
+#### 3.4.2.7 Internationalized Hostname
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **IDN-Hostname** | String (idn-hostname) | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
+
+#### 3.4.2.8 IPv4 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
-#### 3.4.2.8 IPv6 Address
+#### 3.4.2.9 IPv6 Address
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
-#### 3.4.2.9 L4 Protocol
+#### 3.4.2.10 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
 
 **_Type: L4-Protocol (Enumerated)_**
@@ -1050,12 +1079,12 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.10 Namespace Identifier
+#### 3.4.2.11 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
-#### 3.4.2.11 Payload
+#### 3.4.2.12 Payload
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
@@ -1063,12 +1092,12 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.12 Port
+#### 3.4.2.13 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.13 Response-Type
+#### 3.4.2.14 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1078,7 +1107,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.14 Version
+#### 3.4.2.15 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
