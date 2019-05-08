@@ -587,7 +587,7 @@ In this example Command, the extended Argument, `direction`, is defined within t
         }
     }
 }
-````
+```
 
 The Actuator property of a Command, defined in [Section 3.3.1.3](#3313-actuator), MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
@@ -606,7 +606,7 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
         }
     }
 }
-````
+```
 
 Response results, defined in Section TBD, MAY be extended using the namespace identifier as the results name, called an extended results namespace. Extended results MUST be defined within the extended results namespace.
 
@@ -622,7 +622,7 @@ In this example Response, the Response results property, `rule_number`, is defin
         }
     }
 }
-````
+```
 
 ### 3.1.6 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and additional requirements specified in the following table.
