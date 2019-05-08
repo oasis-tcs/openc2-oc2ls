@@ -108,6 +108,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.3.1.4 Command Arguments](#3314-command-arguments)
         -   [3.3.2 OpenC2 Response](#332-openc2-response)
             -   [3.3.2.1 Response Status Code](#3321-response-status-code)
+            -   [3.3.2.2 Response Results](#3322-response-results)
     -   [3.4 Type Definitions](#34-type-definitions)
         -   [3.4.1 Target Types](#341-target-types)
             -   [3.4.1.1 Artifact](#3411-artifact)
