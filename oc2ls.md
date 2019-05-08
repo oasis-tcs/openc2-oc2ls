@@ -812,7 +812,7 @@ The Command defines an Action to be performed on a Target.
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
-| 3 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
+| 3 | **results** | Results | 0..* | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
 
@@ -847,6 +847,7 @@ Usage Requirements:
 
 #### 3.3.2.2 Response Results
 **_Type: Results (Map [1..*])_**
+
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
