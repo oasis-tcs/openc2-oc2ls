@@ -812,7 +812,7 @@ The Command defines an Action to be performed on a Target.
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
-| 3 | **results** | Results | 0..* | Map of key:value pairs that contain additional results based on the invoking Command. |
+| 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
 
