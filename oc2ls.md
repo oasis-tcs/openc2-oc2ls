@@ -542,7 +542,7 @@ One of the main design goals of OpenC2 was extensibility. Actuator profiles defi
 
 Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.
 
-All extension names MUST begin with a namespace identifier followed by a colon (":").
+All extensions MUST be identified with a short namespace reference, called a namespace identifier (NSID).
 
 For example, the OASIS standard Stateless Packet Filtering actuator profile has:
 * **Unique Name**: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
@@ -556,10 +556,10 @@ For example, the fictional, non-standard Superwidget actuator profile has:
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
-The Targets defined in [Section 3.3.1.2](#3312-target) MAY be extended.
+Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended Target names MUST begin with a namespace identifier followed by a colon (":").
 
 **Example:**
-In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
+In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier, `slpf`.
 
 ```
 {
@@ -570,10 +570,10 @@ In this example Command, the extended Target, `rule_number`, is defined within t
 }
 ```
 
-The Arguments defined in [Section 3.3.1.4](#3314-command-arguments) MAY be extended.
+Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. Extended Arguments MUST be defined within the extended Argument namespace.
 
 **Example:**
-In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
+In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 
 ```
 {
@@ -582,15 +582,17 @@ In this example Command, the extended Argument, `direction`, is defined within t
         "ipv6_net": {...}
     },
     "args": {
-        "slpf:direction": "ingress"
+        "slpf": {
+            "direction": "ingress"
+        }
     }
 }
 ````
 
-The Actuator property of a Command defined in [Section 3.3.1.3](#3313-actuator) MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
+The Actuator property of a Command, defined in [Section 3.3.1.3](#3313-actuator), MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
 
 **Example:**
-In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace `slpf`.
+In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 
 ```
 {
@@ -606,15 +608,19 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
 }
 ````
 
-The properties of a Response defined in [Section 3.3.2](#332-openc2-response) MAY be extended using the namespace identifier as the results name, called an extended results namespace. One or more extended result types MUST be defined with the extended results namespace.
+Response results, defined in Section TBD, MAY be extended using the namespace identifier as the results name, called an extended results namespace. Extended results MUST be defined within the extended results namespace.
 
 **Example:**
-In this example Response, the Response property, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier `slpf`.
+In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 
 ```
 {
     "status": 200,
-    "slpf:rule_number": 1234
+    "results": {
+        "slpf": {
+            "rule_number": 1234
+        }
+    }
 }
 ````
 
