@@ -844,6 +844,18 @@ Usage Requirements:
 | 501 | **Not Implemented** - the Consumer does not support the functionality required to fulfill the request. |
 | 503 | **Service Unavailable** - the Consumer is currently unable to handle the request due to a temporary overloading or maintenance of the Consumer. |
 
+#### 3.3.2.2 Response Results
+**_Type: Results (Map [1..*])_**
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
+| 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
+| 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
+| 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
+
+
+
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
 #### 3.4.1.1 Artifact
