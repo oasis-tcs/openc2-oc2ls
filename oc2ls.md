@@ -424,7 +424,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Map | An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type. |
 | Map.ID | An unordered set of fields. The API value of each field has an id, label, and type. |
 | MapOf(*ktype*, *vtype*) | An unordered set of keys to values with the same semantics. Each key has key type *ktype* and is mapped to value type *vtype*. |
-| Record | An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
+| Record | An ordered map from a list of keys with positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
@@ -805,7 +805,7 @@ The Command defines an Action to be performed on a Target.
     * If `response_requested` is not explicitly specified then the Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
-**_Type: OpenC2-Response (Record)_**
+**_Type: OpenC2-Response (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -815,9 +815,9 @@ The Command defines an Action to be performed on a Target.
 | 4 | **ints** | Integer | 0..* | Generic set of integer values |
 | 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
 | 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 7 | **profiles** | ArrayOf(Nsid) | 0..* | List of profiles supported by this Actuator |
-| 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
-| 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 7 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
+| 8 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
+| 9 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 
 **Example:**
 
