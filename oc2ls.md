@@ -1331,13 +1331,15 @@ The "pairs" property is defined as an "Action-Targets" data type.
 ```
 {
     "status": 200,
-    "pairs": [
-        {"allow": ["ipv6_net", "ipv6_connection"]},
-        {"deny": ["ipv6_net", "ipv6_connection"]},
-        {"query": ["features"]},
-        {"delete": ["slpf:rule_number"]},
-        {"update": ["file"]}
-    ]
+    "results": {
+        "pairs": {
+            "allow": ["ipv6_net", "ipv6_connection"],
+            "deny": ["ipv6_net", "ipv6_connection"],
+            "query": ["features"],
+            "delete": ["slpf:rule_number"],
+            "update": ["file"]
+        }
+    }
 }
 ```
 
