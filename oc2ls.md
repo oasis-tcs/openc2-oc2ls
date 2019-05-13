@@ -556,7 +556,7 @@ For example, the fictional, non-standard Superwidget actuator profile has:
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
-Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended Target names MUST begin with a namespace identifier followed by a colon (":").
+Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended Target names MUST be prefixed with a namespace identifier followed by a colon (":").
 
 **Example:**
 In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier, `slpf`.
