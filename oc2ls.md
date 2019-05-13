@@ -108,6 +108,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.3.1.4 Command Arguments](#3314-command-arguments)
         -   [3.3.2 OpenC2 Response](#332-openc2-response)
             -   [3.3.2.1 Response Status Code](#3321-response-status-code)
+            -   [3.3.2.2 Response Results](#3322-response-results)
     -   [3.4 Type Definitions](#34-type-definitions)
         -   [3.4.1 Target Types](#341-target-types)
             -   [3.4.1.1 Artifact](#3411-artifact)
@@ -808,13 +809,7 @@ The Command defines an Action to be performed on a Target.
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
-| 3 | **strings** | String | 0..* | Generic set of string values |
-| 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
-| 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 7 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
-| 8 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
-| 9 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
 
@@ -822,7 +817,9 @@ The Command defines an Action to be performed on a Target.
 {
     "status": 200,
     "status_text": "All endpoints successfully updated",
-    "strings": ["wd-394", "sx-2497"]
+    "results": {
+        "endpoints": ["wd-394", "sx-2497"]
+    }
 }
 ```
 
@@ -844,6 +841,19 @@ Usage Requirements:
 | 500 | **Internal Error** - the Consumer encountered an unexpected condition that prevented it from performing the Command. |
 | 501 | **Not Implemented** - the Consumer does not support the functionality required to perform the Command. |
 | 503 | **Service Unavailable** - the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer. |
+
+#### 3.3.2.2 Response Results
+**_Type: Results (Map [1..*])_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
+| 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
+| 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
+| 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
+
+
 
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
