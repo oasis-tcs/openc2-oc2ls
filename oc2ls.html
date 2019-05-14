@@ -389,7 +389,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>OpenC2 Actuator Profiles</strong> specify the subset of the OpenC2 language relevant in the context of specific Actuator functions. Cyber defense components, devices, systems and/or instances may (in fact are likely to) implement multiple Actuator profiles. Actuator profiles extend the language by defining Specifiers that identify the Actuator to the required level of precision. Actuator Profiles may define Command Arguments and Targets that are relevant and/or unique to those Actuator functions.</li>
 <li><strong>OpenC2 Transfer Specifications</strong> utilize existing protocols and standards to implement OpenC2 in specific environments. These standards are used for communications and security functions beyond the scope of the language, such as message transfer encoding, authentication, and end-to-end transport of OpenC2 messages.</li>
 </ul>
-<p>The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (<em>defined</em> as a Message body in the OpenC2 Language Specification Version 1.0 and <em>specified</em> in one or more Actuator profiles). The language defines two payload structures:</p>
+<p>The OpenC2 Language Specification defines a language used to compose Messages for command and control of cyber defense systems and components. A Message consists of a header and a payload (<em>defined</em> as a Message body in the OpenC2 Language Specification Version 1.0 and <em>specified</em> in one or more Actuator profiles).</p>
+<p>The language defines two payload structures:</p>
 <ol>
 <li><strong>Command</strong>: An instruction from one system known as the Producer, to one or more systems, the Consumer(s), to act on the content of the Command.</li>
 <li><strong>Response</strong>: Any information sent back to the Producer as a result of the Command.</li>
@@ -420,13 +421,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">Transfer Specifications<br>(<a href="#openc2-https-v10">[OpenC2-HTTPS-v1.0]</a>, OpenC2-over-CoAP, ...)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Secure Transfer</td>
+<td style="text-align: left;">Secure Transport</td>
 <td style="text-align: left;">HTTPS, CoAP, MQTT, OpenDXL, ...</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>The <strong>Secure Transfer</strong> layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.</li>
+<li>The <strong>Secure Transport</strong> layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transport protocol.</li>
 <li>The <strong>Message</strong> layer provides a transfer- and content-independent mechanism for conveying Messages. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.</li>
 <li>The <strong>Common Content</strong> layer defines the structure of Commands and Responses and a set of common language elements used to construct them.</li>
 <li>The <strong>Function-specific Content</strong> layer defines the language elements used to support a particular cyber defense function. An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.</li>
