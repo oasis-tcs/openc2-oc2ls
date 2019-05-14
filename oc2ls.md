@@ -153,14 +153,8 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 -   [Annex A. Examples](#annex-a-examples)
     -   [A.1 Example 1](#a1-example-1)
-        -   [A.1.1 Example 1: Command](#a11-example-1-command)
-        -   [A.1.2 Example 1: Response](#a12-example-1-response)
     -   [A.2 Example 2](#a2-example-2)
-        -   [A.2.1 Example 2: Command](#a21-example-2-command)
-        -   [A.2.2 Example 2: Response](#a22-example-2-response)
     -   [A.3 Example 3](#a3-example-3)
-        -   [A.3.1 Example 3: Command](#a31-example-3-command)
-        -   [A.3.2 Example 3: Response](#a32-example-3-response)
 -   [Annex B. Acronyms](#annex-b-acronyms)
 -   [Annex C. Design Elements](#annex-c-design-elements)
         -   [C.1 Derived Enumerations](#c1-derived-enumerations)
@@ -781,12 +775,11 @@ The Command defines an Action to be performed on a Target.
 
 **Example:**
 
-```javascript
+```
 {
     "status": 200,
-    "status_text": "All endpoints successfully updated",
     "results": {
-        "endpoints": ["wd-394", "sx-2497"]
+        "versions": ["1.0"]
     }
 }
 ```
@@ -1148,7 +1141,7 @@ _This section is non-normative._
 
 This sub-section provides examples of 'query features' Commands and Responses. The examples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.
 
-### 4.2.1 Sample 1
+### 4.2.1 Example 1
 There are no features specified in the 'query features' Command. A simple "OK" Response Message is returned.
 
 **Command:**
@@ -1168,7 +1161,7 @@ There are no features specified in the 'query features' Command. A simple "OK" R
 }
 ```
 
-### 4.2.2 Sample 2
+### 4.2.2 Example 2
 There are several features requested in the 'query features' Command. All requested features can be returned in a single Response Message.
 
 **Command:**
@@ -1186,9 +1179,11 @@ There are several features requested in the 'query features' Command. All reques
 ```
 {
     "status": 200,
-    "versions": ["1.0"],
-    "profiles": ["slpf", "x-lock"],
-    "rate_limit": 30
+    "results": {
+        "versions": ["1.0"],
+        "profiles": ["slpf", "x-lock"],
+        "rate_limit": 30
+    }
 }
 ```
 
@@ -1238,46 +1233,62 @@ A conformant Consumer
 _The content in this section is non-normative._
 
 ## A.1 Example 1
-This example shows the elements of an OpenC2 Message containing an OpenC2 Command. The content of the Message is the de-serialized Command structure in whatever format is used by the implementation, independent of the transfer protocol and serialization format used to transport the Message.
-
-The request_id in this example is a 64 bit binary value which can be displayed in many ways, including hex: `'d937 fca9 2b64 4e71'`, base64url: `'2Tf8qStkTnE'`, and Python byte string - ASCII characters with hex escapes (\xNN) for non-ASCII bytes: `b'\xd97\xfc\xa9+dNq'`. If Producers generate numeric or alphanumeric request_ids, they are still binary values and are limited to 128 bits, e.g.,: hex: `'6670 2d31 3932 352d 3337 3632 3864 3663'`, base64url: `'ZnAtMTkyNS0zNzYyOGQ2Yw'`, byte string: `b'fp-1925-37628d6c'`.
-
-The created element is a Date-Time value of milliseconds since the epoch. The example `1539355895215` may be displayed as `'12 October 2018 14:51:35 UTC'`.
-
-This example, illustrating an internal representation of a Message, is non-normative. Other programming languages (e.g., Java, Javascript, C, Erlang) have different representations of literal values. There are no interoperability considerations or conformance requirements for how Message elements are represented internally within an implementation. Only the serialized values of the Message elements embedded within a protocol is relevant to interoperability.
-
-
-### A.1.1 Example 1: Command
-```
-content-type: 'application/openc2'
-msg_type: 'request'
-request_id: b'\xd97\xfc\xa9+dNq'
-from: 'nocc-3497'
-to: ['#filter-devices']
-created: 1539355895215
-content: {'action': 'query', 'target': {'features': ['versions', 'profiles']}}
-```
-
-### A.1.2 Example 1: Response
-The Response Message contains a status code, a content-type that is normally the same as the request content type, a msg_type of `'response'`, and the Response content. The request_id from the Command Message, if present, is returned unchanged in the Response Message. The "to" element of the Response normally echoes the "from" element of the Command Message, but the "from" element of the Response is the Actuator's identifier regardless of whether the Command was sent to an individual actuator or a group. The "created" element, if present, contains the creation time of the Response.
-
-A responder could potentially return non-openc2 content, such as a PDF report or an HTML document, in response to a Command. No Actuator profiles currently define response content types other than openc2.
+This Command would be used to quarantine a device on the network.
 
 ```
-status: 200
-content-type: 'application/openc2'
-msg_type: 'response'
-request_id: b'\xd97\xfc\xa9+dNq'
-from: 'pf72394'
-to: ['nocc-3497']
-created: 1539355898000
-content: {'status': 200, 'versions': ['1.3'], 'profiles': ['slpf']}
+{
+    "action": "contain",
+    "target": {
+        "device": {
+            "device_id": "9BCE8431AC106FAA3861C7E771D20E53"
+        }
+    }
+}
 ```
 
 ## A.2 Example 2
-This example is for a transport where the header information is outside the JSON (e.g., HTTPS API) and only body is in JSON.
+This Command blocks a particular connection within the domain. The standard Actuator profile defines the extended Command Argument, `drop_process`, and the Actuator Specifier, `asset_id`. The Response is a simple acknowledgment that was requested in the Command.
 
-### A.2.1 Example 2: Command
+**Command:**
+```
+{
+    "action": "deny",
+    "target": {
+        "ipv4_connection": {
+            "protocol": "tcp",
+            "src_addr": "1.2.3.4",
+            "src_port": 10996,
+            "dst_addr": "198.2.3.4",
+            "dst_port": 80
+        }
+    },
+    "args": {
+        "start_time": 1534775460000,
+        "duration": 500,
+        "response_requested": "ack",
+        "slpf": {
+            "drop_process": "none"
+        }
+    },
+    "actuator": {
+        "slpf": {
+            "asset_id": "30"
+        }
+    }
+}
+```
+
+**Response:**
+```
+{
+    "status": 102
+}
+```
+
+## A.3 Example 3
+This is a notional example of a Command issued to a non-standard Actuator. A Producer sends a 'query properties' Command to request detail about a 'battery'. The Consumer responses with the battery information extended in the results of the Response.
+
+**Command:**
 ```
 {
     "action": "query",
@@ -1292,43 +1303,25 @@ This example is for a transport where the header information is outside the JSON
 }
 ```
 
-### A.2.2 Example 2: Response
+**Response:**
 ```
 {
     "status": 200,
     "results": {
-        "battery": {
-            "capacity": 0.577216,
-            "charged_at": 1547506988,
-            "status": 12,
-            "mode": {
-                "output": high",
-                "supported": [ "high", "trickle" ]
-            }
-            "visible_on_display": true
-        },
-        "asset_id": "TGEadsasd"
+        "x-esm": {
+            "battery": {
+                "capacity": 0.577216,
+                "charged_at": 1547506988,
+                "status": 12,
+                "mode": {
+                    "output": high",
+                    "supported": [ "high", "trickle" ]
+                }
+                "visible_on_display": true
+            },
+            "asset_id": "TGEadsasd"
+        }
     }
-}
-```
-
-## A.3 Example 3
-### A.3.1 Example 3: Command
-```
-{
-    "action": "query",
-    "target": {
-        "features": ["versions", "profiles"]
-    }
-}
-```
-
-### A.3.2 Example 3: Response
-```
-{
-    "status_text": "ACME Corp Internet Toaster",
-    "versions": ["1.0"],
-    "profiles": ["slpf", "x-acme"]
 }
 ```
 
