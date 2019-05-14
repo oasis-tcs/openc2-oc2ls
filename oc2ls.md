@@ -94,11 +94,9 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [3.1.1 Data Types](#311-data-types)
         -   [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
         -   [3.1.3 Multiplicity](#313-multiplicity)
-        -   [3.1.4 Derived Enumerations](#314-derived-enumerations)
-        -   [3.1.5 Extensions](#315-extensions)
-        -   [3.1.6 Serialization](#316-serialization)
-            -   [3.1.6.1 ID and Name Serialization](#3161-id-and-name-serialization)
-            -   [3.1.6.2 Integer Serialization](#3162-integer-serialization)
+        -   [3.1.4 Extensions](#314-extensions)
+        -   [3.1.5 Serialization](#315-serialization)
+            -   [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
     -   [3.2 Message](#32-message)
     -   [3.3 Content](#33-content)
         -   [3.3.1 OpenC2 Command](#331-openc2-command)
@@ -108,6 +106,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.3.1.4 Command Arguments](#3314-command-arguments)
         -   [3.3.2 OpenC2 Response](#332-openc2-response)
             -   [3.3.2.1 Response Status Code](#3321-response-status-code)
+            -   [3.3.2.2 Response Results](#3322-response-results)
     -   [3.4 Type Definitions](#34-type-definitions)
         -   [3.4.1 Target Types](#341-target-types)
             -   [3.4.1.1 Artifact](#3411-artifact)
@@ -138,6 +137,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.8 IPv4 Address](#3428-ipv4-address)
             -   [3.4.2.9 IPv6 Address](#3429-ipv6-address)
             -   [3.4.2.10 L4 Protocol](#34210-l4-protocol)
+            -   [3.4.2.10 Message-Type](#34210-message-type)
             -   [3.4.2.11 Namespace Identifier](#34211-namespace-identifier)
             -   [3.4.2.12 Payload](#34212-payload)
             -   [3.4.2.13 Port](#34213-port)
@@ -162,8 +162,10 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [A.3.1 Example 3: Command](#a31-example-3-command)
         -   [A.3.2 Example 3: Response](#a32-example-3-response)
 -   [Annex B. Acronyms](#annex-b-acronyms)
--   [Annex C. Revision History](#annex-c-revision-history)
--   [Annex D. Acknowledgments](#annex-d-acknowledgments)
+-   [Annex C. Design Elements](#annex-c-design-elements)
+        -   [C.1 Derived Enumerations](#c1-derived-enumerations)
+-   [Annex D. Revision History](#annex-d-revision-history)
+-   [Annex E. Acknowledgments](#annex-e-acknowledgments)
 
 -------
 
@@ -187,9 +189,9 @@ _This section is normative._
 * **Argument**: A property of a Command that provides additional information on how to perform the Command, such as date/time, periodicity, duration, etc.
 * **Command**: A Message defined by an Action-Target pair that is sent from a Producer and received by a Consumer.
 * **Consumer**: A managed device / application that receives Commands. Note that a single device / application can have both Consumer and Producer capabilities.
-* **Message**: A content- and transport-independent set of elements conveyed between Consumers and Producers
+* **Message**: A content- and transport-independent set of elements conveyed between Consumers and Producers.
 * **Producer**: A manager application that sends Commands.
-* **Response**: A Message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received request.
+* **Response**: A Message from a Consumer to a Producer acknowledging a Command or returning the requested resources or status to a previously received Command.
 * **Specifier**: A property or field that identifies a Target or Actuator to some level of precision.
 * **Target**: The object of the Action, i.e., the Action is performed on the Target (e.g., IP Address).
 
@@ -333,7 +335,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 | Secure Transfer | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
 * The **Secure Transfer** layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transfer protocol.
-* The **Message** layer provides a transfer- and content-independent mechanism for conveying requests, responses, and notifications. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.
+* The **Message** layer provides a transfer- and content-independent mechanism for conveying Messages. A transfer specification maps transfer-specific protocol elements to a transfer-independent set of message elements consisting of content and associated metadata.
 * The **Common Content** layer defines the structure of Commands and Responses and a set of common language elements used to construct them.
 * The **Function-specific Content** layer defines the language elements used to support a particular cyber defense function. An Actuator profile defines the implementation conformance requirements for that function. Producers and Consumers will support one or more profiles.
 
@@ -393,9 +395,9 @@ The following list summarizes the main four components of a Command.
 * **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **Actuator** (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
-The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-extensions).
+The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#314-extensions).
 
-Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-extensions).
+Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#314-extensions).
 
 An Actuator is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of Actions, Targets and other aspects of this language specification that are required or optional in the context of a particular Actuator. An Actuator Profile may extend the language by defining additional Targets, Arguments, and Actuator Specifiers that are meaningful and possibly unique to the Actuator.
 
@@ -412,7 +414,7 @@ _The content in this section is normative._
 
 ## 3.1 Base Components and Structures
 ### 3.1.1 Data Types
-OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values). The data types used in OpenC2 messages are:
+OpenC2 data types are defined using an abstract notation that is independent of both their representation within applications ("**API**" values) and their format for transmission between applications ("**serialized**" values). The data types used in OpenC2 Messages are:
 
 | Type | Description |
 | :--- | :--- |
@@ -434,11 +436,11 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 | Map | An unordered map from a set of specified keys to values with semantics bound to each key. Each field has an id, name and type. |
 | Map.ID | An unordered set of fields. The API value of each field has an id, label, and type. |
 | MapOf(*ktype*, *vtype*) | An unordered set of keys to values with the same semantics. Each key has key type *ktype* and is mapped to value type *vtype*. |
-| Record | An ordered map from a list of keys iwth positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
+| Record | An ordered map from a list of keys with positions to values with positionally-defined semantics. Each key has a position and name, and is mapped to a type. Represents a row in a spreadsheet or database table. |
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.6](#316-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
+* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.6](#315-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
 
 Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
 
@@ -507,48 +509,6 @@ When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 A multiplicity of 0..1 denotes a single optional value of the specified type. A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
 
 An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type. The named type can then be used as the type of a required field (multiplicity 1). Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
-
-### 3.1.4 Derived Enumerations
-It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
-
-This example includes a type representing the value of a single picture element ("pixel") in an image, and an operation "SetValue" to set one of the color values of a pixel. It would be possible validate a SetValue operation against an explicit enumeration of the Pixel fields:
-
-**_Type: Pixel (Map)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | red | Integer | 1 | |
-| 2 | green | Integer | 1 | |
-| 3 | blue | Integer | 1 | |
-
-**_Type: SetValue (Record)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | channel | Channel | 1 | |
-| 2 | value | Integer | 1 | |
-
-**_Type: Channel (Enumerated)_**
-
-| ID | Name | Description |
-| :--- | :--- | :--- |
-| 1 | red | |
-| 2 | green | |
-| 3 | blue | |
-
-Example **SetValue** operation:
-```
-{"channel": "green", "value": 95}
-```
-
-But it is both easier and more reliable to use a derived enumeration to validate the reference directly against the type being referenced:
-
-**_Type: SetValue (Record)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | channel | Pixel.Enum | 1 | |
-| 2 | value | Integer | 1 | |
 
 ### 3.1.5 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
@@ -640,8 +600,9 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | :--- | :--- |
 | **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5. |
 | **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
-| **Binary /ipv4-addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2. |
-| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4. |
+| **IPv4-Addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2. |
+| **IPv6-Addr** | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4. |
+| **MAC-Addr** | JSON **string** containing the text representation of a MAC Address in colon hexadecimal format as defined in [[EUI]](#eui). |
 | **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
@@ -666,23 +627,10 @@ Instances of Enumerated types and keys for Choice and Map types are serialized a
 1. Type definitions and application values use only the ID. There is no corresponding name except as an optional part of the description.
 2. Instances of Enumerated values and Choice/Map keys are serialized as IDs regardless of serialization format.
 
-#### 3.1.6.2 Integer Serialization
-For machine-to-machine serialization formats, integers are represented as binary data, e.g., 32 bits, 128 bits. But for human-readable serialization formats (XML and JSON), integers are converted to strings.
-
-**Example:**
-The JSON "number" type represents integers and real numbers as decimal strings without quotes.
-```
-{ "height": 68.2 }
-```
-
-As noted in [[RFC7493]](#rfc7493), Section 2.2, a sender cannot expect a receiver to treat an integer with an absolute value greater than 2^^53 as an exact value.
-
-The default representation of Integer types in text serializations is the native integer type for that format, e.g., "number" for JSON. Integer fields with a range larger than the IEEE 754 exact range (e.g., 64, 128, 2048 bit values) are indicated by appending ".<bit-size>" or ".*" to the type, e.g. Integer.64 or Integer.*. All serializations ensure that large Integer types are transferred exactly, for example in the same manner as Binary types. Integer values support arithmetic operations; Binary values are not intended for that purpose.
-
 ## 3.2 Message
 This language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols. Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol. This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-A message is a content- and transport-independent set of elements conveyed between producers and consumers. To ensure interoperability all transfer specifications must unambiguously define how the message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all message elements must be used in all messages. Content, content_type, and msg_type are required in all messages. Other message elements are not required by this specification but may be required by other specifications.
+A message is a content- and transport-independent set of elements conveyed between Producers and Consumers. To ensure interoperability all transfer specifications must unambiguously define how the Message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all Message elements must be used in all Messages. Content, content_type, and msg_type are required in all Messages. Other Message elements are not required by this specification but may be required by other specifications. The internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2. 
 
 ###### Table 3-1. Common Message Elements
 
@@ -690,22 +638,18 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | :--- | :--- | :--- |
 | **content** | | Message body as specified by content_type and msg_type. |
 | **content_type** | String | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types. Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
-| **msg_type** | Message-Type | One of **request**, **response**, or **notification**. For the **application/openc2** content_type the request content is an OpenC2-Command and the response content is an OpenC2-Response. OpenC2 does not currently define any notification content. |
-| **status** | Status-Code | Populated with a numeric status code in response messages. Not present in request or notification messages. |
-| **request_id** | String | A unique identifier created by the producer and copied by consumer into all responses, in order to support reference to a particular command, transaction or event chain. |
-| **created** | Date-Time | Creation date/time of the content, the number of milliseconds since 00:00:00 UTC, 1 January 1970. |
+| **msg_type** | Message-Type | The type of OpenC2 Message. |
+| **status** | Status-Code | Populated with a numeric status code in Responses. |
+| **request_id** | String | A unique identifier created by the Producer and copied by Consumer into all Responses, in order to support reference to a particular Command, transaction, or event chain. |
+| **created** | Date-Time | Creation date/time of the content. |
 | **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
 | **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
-**Note:**
-
-Implementations may use environment variables, private APIs, data structures, class instances, pointers, or other mechanisms to represent messages within the local environment. However the internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2. This means that the Message content is a data structure in whatever form is used within an implementation, not a serialized representation of that structure. Content is the input provided to a serializer or the output of a de-serializer. Msg_type is a three-element enumeration whose protocol representation is defined in each transfer spec, for example as a string, an integer, or a two-bit field. The internal form of enumerations, like content, does not affect interoperability and is therefore unspecified.
-
 **Usage Requirements:**
 
-* A producer MUST include a request_id in a request message if it expects a response to that request. Absence of a request_id signals consumers that no response is expected.
-* The request_id of a request message SHOULD be a Version 4 UUID as specified in [[RFC4122]](#rfc4122), Section 4.4.
-* A consumer MUST copy the request_id from a request message into each response to that request.
+* A Producer MUST include a `request_id` in the Message header of a Command if it requests a Response.
+* The request_id of a Message SHOULD be a Version 4 UUID as specified in [[RFC4122]](#rfc4122), Section 4.4.
+* A Consumer MUST copy the `request_id` from the Message header of a Command into each Response to that Command.
 
 ## 3.3 Content
 The purpose of this specification is to define the Action and Target portions of a Command and the common portions of a Response. The properties of the Command are defined in [Section 3.3.1](#331-openc2-command) and the properties of the Response are defined in [Section 3.3.2](#332-openc2-response).
@@ -727,7 +671,7 @@ The Command defines an Action to be performed on a Target.
 
 **Usage Requirements:**
 
-* A Consumer receiving a command with command_id absent and request_id present MUST use the value of request_id as the command_id.
+* A Consumer receiving a Command with `command_id` absent and `request_id` present in the header of the Message MUST use the value of `request_id` as the `command_id`.
 * If present, the `args` property MUST contain at least one element defined in [Section 3.3.1.4](#3314-command-arguments).
 
 #### 3.3.1.1 Action
@@ -800,10 +744,10 @@ The Command defines an Action to be performed on a Target.
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the Action |
-| 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Action |
-| 3 | **duration** | Duration | 0..1 | The length of time for an Action to be in effect |
-| 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Action: `none`, `ack`, `status`, `complete`. |
+| 1 | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the Command |
+| 2 | **stop_time** | Date-Time | 0..1 | The specific date/time to terminate the Command |
+| 3 | **duration** | Duration | 0..1 | The length of time for an Command to be in effect |
+| 4 | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: `none`, `ack`, `status`, `complete`. |
 
 **Usage Requirements:**
 
@@ -821,19 +765,13 @@ The Command defines an Action to be performed on a Target.
     * If `response_requested` is not explicitly specified then the Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
-**_Type: OpenC2-Response (Record)_**
+**_Type: OpenC2-Response (Map)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **status** | Status-Code | 1 | An integer status code |
 | 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
-| 3 | **strings** | String | 0..* | Generic set of string values |
-| 4 | **ints** | Integer | 0..* | Generic set of integer values |
-| 5 | **results** | MapOf(String, Any) | 0..* | Generic Map of key:value pairs (keys are strings, and values are any valid JSON value). A JSON value can be an object, array, number, string, true, false, or null, as defined by ECMA-404. |
-| 6 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 7 | **profiles** | ArrayOf(Nsid) | 0..* | List of profiles supported by this Actuator |
-| 9 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
-| 10 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
 
@@ -841,11 +779,13 @@ The Command defines an Action to be performed on a Target.
 {
     "status": 200,
     "status_text": "All endpoints successfully updated",
-    "strings": ["wd-394", "sx-2497"]
+    "results": {
+        "endpoints": ["wd-394", "sx-2497"]
+    }
 }
 ```
 
-Usage Requirements:
+**Usage Requirements:**
 
 * All Responses MUST contain a status.
 
@@ -854,20 +794,33 @@ Usage Requirements:
 
 | ID | Description |
 | ---: | :--- |
-| 102 | **Processing** - an interim Response used to inform the Producer that the Consumer has accepted the request but has not yet completed it. |
-| 200 | **OK** - the request has succeeded. |
-| 400 | **Bad Request** - the Consumer cannot process the request due to something that is perceived to be a Producer error (e.g., malformed request syntax). |
-| 401 | **Unauthorized** - the request lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
-| 403 | **Forbidden** - the Consumer understood the request but refuses to authorize it. |
-| 404 | **Not Found** - the Consumer has not found anything matching the request. |
-| 500 | **Internal Error** - the Consumer encountered an unexpected condition that prevented it from fulfilling the request. |
-| 501 | **Not Implemented** - the Consumer does not support the functionality required to fulfill the request. |
-| 503 | **Service Unavailable** - the Consumer is currently unable to handle the request due to a temporary overloading or maintenance of the Consumer. |
+| 102 | **Processing** - an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it. |
+| 200 | **OK** - the Command has succeeded. |
+| 400 | **Bad Request** - the Consumer cannot process the Command due to something that is perceived to be a Producer error (e.g., malformed Command syntax). |
+| 401 | **Unauthorized** - the Command Message lacks valid authentication credentials for the target resource or authorization has been refused for the submitted credentials. |
+| 403 | **Forbidden** - the Consumer understood the Command but refuses to authorize it. |
+| 404 | **Not Found** - the Consumer has not found anything matching the Command. |
+| 500 | **Internal Error** - the Consumer encountered an unexpected condition that prevented it from performing the Command. |
+| 501 | **Not Implemented** - the Consumer does not support the functionality required to perform the Command. |
+| 503 | **Service Unavailable** - the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer. |
+
+#### 3.3.2.2 Response Results
+**_Type: Results (Map [1..*])_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
+| 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
+| 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
+| 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
+
+
 
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
 #### 3.4.1.1 Artifact
-**_Type: Artifact (Record)_**
+**_Type: Artifact (Record) [1..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -875,15 +828,22 @@ Usage Requirements:
 | 2 | **payload** | Payload | 0..1 | Choice of literal content or URL |
 | 3 | **hashes** | Hashes | 0..1 | Hashes of the payload content |
 
+**Usage Requirement:**
+
+* An "Artifact" Target MUST contain at least one property.
+
 #### 3.4.1.2 Device
-**_Type: Device (Map)_**
+**_Type: Device (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **hostname** | Hostname | 0..1 | A hostname that can be used to connect to this device over a network |
 | 2 | **idn_hostname** | IDN-Hostname | 0..1 | An internationalized hostname that can be used to connect to this device over a network |
-| 3 | **description** | String | 0..1 | A human-readable description of the purpose, relevance, and/or properties of this device |
-| 4 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
+| 3 | **device_id** | String | 0..1 | An identifier that refers to this device within an inventory or management system |
+
+**Usage Requirement:**
+
+* A "Device" Target MUST contain at least one property.
 
 #### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
@@ -904,19 +864,20 @@ Usage Requirements:
 
 * A Producer MUST NOT send a list containing more than one instance of any Feature.
 * A Consumer receiving a list containing more than one instance of any Feature SHOULD behave as if the duplicate(s) were not present.
-
-**Usage Notes:**
-
-* A Producer may send a query command containing an empty list of features to determine if a Consumer is responding to commands (a heartbeat command), or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer will return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
+* A Producer MAY send a 'query' Command containing an empty list of features. A Producer could do this to determine if a Consumer is responding to Commands (a heartbeat command) or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer could return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
 #### 3.4.1.6 File
-**_Type: File (Map)_**
+**_Type: File (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **name** | String | 0..1 | The name of the file as defined in the file system |
 | 2 | **path** | String | 0..1 | The absolute path to the location of the file in the file system |
 | 3 | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents |
+
+**Usage Requirement:**
+
+* A "File" Target MUST contain at least one property.
 
 #### 3.4.1.7 Internationalized Domain Name
 | Type Name | Type Definition | Description |
@@ -941,11 +902,11 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv4-Addr | 1 | ipv4-address as defined in [[RFC0791]](#rfc0791) |
+| 1 | IPv4-Addr | 1 | IPv4 address as defined in [[RFC0791]](#rfc0791) |
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv4 Connection
-**_Type: IPv4-Connection (Record)_**
+**_Type: IPv4-Connection (Record) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -955,16 +916,20 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#34210-l4-protocol) |
 
+**Usage Requirement:**
+
+* An "IPv4-Connection" MUST contain at least one property.
+
 #### 3.4.1.11 IPv6 Address Range
 **_Type: IPv6-Net (Array /ipv6-net)_**
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv6-Addr | 1 | ipv6-address as defined in [[RFC8200]](#rfc8200) |
+| 1 | IPv6-Addr | 1 | IPv6 address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.12 IPv6 Connection
-**_Type: IPv6-Connection (Record)_**
+**_Type: IPv6-Connection (Record) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -973,6 +938,10 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
 | 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#34210-l4-protocol) |
+
+**Usage Requirement:**
+
+* An "IPv6-Connection" Target MUST contain at least one property.
 
 #### 3.4.1.13 IRI
 | Type Name | Type Definition | Description |
@@ -985,7 +954,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.15 Process
-**_Type: Process (Map)_**
+**_Type: Process (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -995,6 +964,10 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
 | 5 | **parent** | Process | 0..1 | Process that spawned this one |
 | 6 | **command_line** | String | 0..1 | The full command line invocation used to start this process, including all arguments |
+
+**Usage Requirement:**
+
+* A "Process" Target MUST contain at least one property.
 
 #### 3.4.1.16 Properties
 | Type Name | Type Definition | Description |
@@ -1042,16 +1015,20 @@ Specifies the results to be returned from a query features Command.
 | 1 | **versions** | List of OpenC2 Language versions supported by this Actuator |
 | 2 | **profiles** | List of profiles supported by this Actuator |
 | 3 | **pairs** | List of supported Actions and applicable Targets |
-| 4 | **rate_limit** | Maximum number of requests per minute supported by design or policy |
+| 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
 #### 3.4.2.5 Hashes
-**_Type: Hashes (Map)_**
+**_Type: Hashes (Map) [0..*]_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
 | 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
 | 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
+
+**Usage Requirement:**
+
+* A "Hashes" data type MUST contain at least one key.
 
 #### 3.4.2.6 Hostname
 | Type Name | Type Definition | Description |
@@ -1084,6 +1061,16 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 6 | **tcp** | Transmission Control Protocol - [[RFC0793]](#rfc0793) |
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
+
+#### 3.4.2.10 Message-Type
+Identifies the type of Message.
+
+ **_Type: Message-Type (Enumerated)_**
+
+| ID | Name | Description |
+| ---: | :--- | :--- |
+| 1 | **command** | The Message content is an OpenC2 Command |
+| 2 | **response** | The Message content is an OpenC2 Response |
 
 #### 3.4.2.11 Namespace Identifier
 | Type Name | Base Type | Description |
@@ -1141,11 +1128,11 @@ Consumers that receive and parse the 'query features':
     *  MUST NOT respond with OK/200.
     *  SHOULD respond with Bad Request/400.
     *  MAY respond with the 500 status code.
-*  With no Target specifiers MUST respond with response code 200.
-*  With the "versions" Target specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.
-*  With the "profiles" Target specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.
-*  With the "pairs" Target specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.
-* With the "rate_limit" Target specifier populated:
+*  With no Target Specifiers MUST respond with response code 200.
+*  With the "versions" Target Specifier MUST respond with status 200 and populate the versions field with a list of the OpenC2 Language Versions supported by the consumer.
+*  With the "profiles" Target Specifier MUST respond with status 200 and populate the profiles field with a list of profiles supported by the consumer.
+*  With the "pairs" Target Specifier MUST respond with status 200 and populate the pairs field with a list of action target pairs that define valid commands supported by the consumer.
+* With the "rate_limit" Target Specifier populated:
     * SHOULD respond with status 200 and populate the rate_limit field with the maximum number of Commands per minute that the Consumer may support.
     * MAY respond with status 200 and with the rate_limit field unpopulated.
 
@@ -1156,7 +1143,7 @@ _This section is non-normative._
 This sub-section provides examples of 'query features' Commands and Responses. The examples provided in this section are for illustrative purposes only and are not to be interpreted as operational examples for actual systems.
 
 ### 4.2.1 Sample 1
-There are no features specified in the 'query features' Command. A simple "OK" Response message is returned.
+There are no features specified in the 'query features' Command. A simple "OK" Response Message is returned.
 
 **Command:**
 ```
@@ -1176,7 +1163,7 @@ There are no features specified in the 'query features' Command. A simple "OK" R
 ```
 
 ### 4.2.2 Sample 2
-There are several features requested in the 'query features' Command. All requested features can be returned in a single Response message.
+There are several features requested in the 'query features' Command. All requested features can be returned in a single Response Message.
 
 **Command:**
 
@@ -1211,9 +1198,9 @@ A conformant Command
 
 * 5.1-1 MUST be structured in accordance with [Section 3.3.1](#331-openc2-command).
 * 5.1-2 MUST include exactly one `action` property defined in accordance with [Section 3.3.1.1](#3311-action).
-* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.5](#315-extensions).
-* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.5](#315-extensions).
-* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.5](#315-extensions).
+* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.5](#314-extensions).
+* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.5](#314-extensions).
+* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.5](#314-extensions).
 
 ### 5.2 Conformance Clause 2: Response
 
@@ -1228,6 +1215,7 @@ A conformant Producer
 
 * 5.3-1 MUST issue Commands and process Responses in accordance with [Section 4](#4-mandatory-commandsresponses).
 * 5.3-2 MUST implement JSON serialization of generated Commands in accordance with [[RFC7493]](#rfc7493).
+* 5.3-3 MUST implement JSON serialization of received Responses in accordance with [[RFC7493]](#rfc7493).
 
 ## 5.4 Conformance Clause 4: Consumer
 
@@ -1235,6 +1223,7 @@ A conformant Consumer
 
 * 5.4-1 MUST process Commands and issue Responses in accordance with [Section 4](#4-mandatory-commandsresponses).
 * 5.4-2 MUST implement JSON serialization of generated Responses in accordance with [[RFC7493]](#rfc7493).
+* 5.4-3 MUST implement JSON serialization of received Commands in accordance with [[RFC7493]](#rfc7493).
 
 -------
 
@@ -1384,7 +1373,44 @@ XML | eXtensibel Markup Language
 
 -------
 
-# Annex C. Revision History
+# Annex C. Design Elements
+## C.1 Derived Enumerations
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
+
+This is the design element that defines the "Action-Targets" data type. The "Action-Targets" data type is a map of each action supported by an actuator to a list of targets implemented for each action. The list of Actions, defined in [Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a Choice data structure where each element is a complex data type of its own. A derived enumeration is used in this case to signify that the list of Targets for the "Action-Targets" data type should be an enumerated list of the possible Targets
+
+**Definition of "Action-Targets" Data Type
+The Targets data type is defined as an array of "Target" enumerations. The "Target" enumerations are derived from the "Target" data type.
+
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
+
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+
+**Example:**
+The "pairs" property is defined as an "Action-Targets" data type.
+
+```
+{
+    "status": 200,
+    "results": {
+        "pairs": {
+            "allow": ["ipv6_net", "ipv6_connection"],
+            "deny": ["ipv6_net", "ipv6_connection"],
+            "query": ["features"],
+            "delete": ["slpf:rule_number"],
+            "update": ["file"]
+        }
+    }
+}
+```
+
+-------
+
+# Annex D. Revision History
 
 _The content in this section is non-normative._
 
@@ -1409,7 +1435,7 @@ _The content in this section is non-normative._
 
 -------
 
-# Annex D. Acknowledgments
+# Annex E. Acknowledgments
 
 _The content in this section is non-normative._
 
