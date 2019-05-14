@@ -94,10 +94,9 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [3.1.1 Data Types](#311-data-types)
         -   [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
         -   [3.1.3 Multiplicity](#313-multiplicity)
-        -   [3.1.4 Derived Enumerations](#314-derived-enumerations)
-        -   [3.1.5 Extensions](#315-extensions)
-        -   [3.1.6 Serialization](#316-serialization)
-            -   [3.1.6.1 ID and Name Serialization](#3161-id-and-name-serialization)
+        -   [3.1.4 Extensions](#314-extensions)
+        -   [3.1.5 Serialization](#315-serialization)
+            -   [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
     -   [3.2 Message](#32-message)
     -   [3.3 Content](#33-content)
         -   [3.3.1 OpenC2 Command](#331-openc2-command)
@@ -159,8 +158,10 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [A.3.1 Example 3: Command](#a31-example-3-command)
         -   [A.3.2 Example 3: Response](#a32-example-3-response)
 -   [Annex B. Acronyms](#annex-b-acronyms)
--   [Annex C. Revision History](#annex-c-revision-history)
--   [Annex D. Acknowledgments](#annex-d-acknowledgments)
+-   [Annex C. Design Elements](#annex-c-design-elements)
+        -   [C.1 Derived Enumerations](#c1-derived-enumerations)
+-   [Annex D. Revision History](#annex-d-revision-history)
+-   [Annex E. Acknowledgments](#annex-e-acknowledgments)
 
 -------
 
@@ -384,9 +385,9 @@ The following list summarizes the main four components of a Command.
 * **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **Actuator** (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
-The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#315-extensions).
+The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#314-extensions).
 
-Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#315-extensions).
+Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#314-extensions).
 
 An Actuator is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of Actions, Targets and other aspects of this language specification that are required or optional in the context of a particular Actuator. An Actuator Profile may extend the language by defining additional Targets, Arguments, and Actuator Specifiers that are meaningful and possibly unique to the Actuator.
 
@@ -429,7 +430,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.6](#316-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
+* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.6](#315-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
 
 Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
 
@@ -495,48 +496,6 @@ When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 A multiplicity of 0..1 denotes a single optional value of the specified type. A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
 
 An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type. The named type can then be used as the type of a required field (multiplicity 1). Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
-
-### 3.1.4 Derived Enumerations
-It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
-
-This example includes a type representing the value of a single picture element ("pixel") in an image, and an operation "SetValue" to set one of the color values of a pixel. It would be possible validate a SetValue operation against an explicit enumeration of the Pixel fields:
-
-**_Type: Pixel (Map)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | red | Integer | 1 | |
-| 2 | green | Integer | 1 | |
-| 3 | blue | Integer | 1 | |
-
-**_Type: SetValue (Record)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | channel | Channel | 1 | |
-| 2 | value | Integer | 1 | |
-
-**_Type: Channel (Enumerated)_**
-
-| ID | Name | Description |
-| :--- | :--- | :--- |
-| 1 | red | |
-| 2 | green | |
-| 3 | blue | |
-
-Example **SetValue** operation:
-```
-{"channel": "green", "value": 95}
-```
-
-But it is both easier and more reliable to use a derived enumeration to validate the reference directly against the type being referenced:
-
-**_Type: SetValue (Record)_**
-
-| ID | Name | Type | # | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 1 | channel | Pixel.Enum | 1 | |
-| 2 | value | Integer | 1 | |
 
 ### 3.1.5 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
@@ -1204,9 +1163,9 @@ A conformant Command
 
 * 5.1-1 MUST be structured in accordance with [Section 3.3.1](#331-openc2-command).
 * 5.1-2 MUST include exactly one `action` property defined in accordance with [Section 3.3.1.1](#3311-action).
-* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.5](#315-extensions).
-* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.5](#315-extensions).
-* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.5](#315-extensions).
+* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.5](#314-extensions).
+* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.5](#314-extensions).
+* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.5](#314-extensions).
 
 ### 5.2 Conformance Clause 2: Response
 
@@ -1379,7 +1338,44 @@ XML | eXtensibel Markup Language
 
 -------
 
-# Annex C. Revision History
+# Annex C. Design Elements
+## C.1 Derived Enumerations
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
+
+This is the design element that defines the "Action-Targets" data type. The "Action-Targets" data type is a map of each action supported by an actuator to a list of targets implemented for each action. The list of Actions, defined in [Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a Choice data structure where each element is a complex data type of its own. A derived enumeration is used in this case to signify that the list of Targets for the "Action-Targets" data type should be an enumerated list of the possible Targets
+
+**Definition of "Action-Targets" Data Type
+The Targets data type is defined as an array of "Target" enumerations. The "Target" enumerations are derived from the "Target" data type.
+
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
+
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+
+**Example:**
+The "pairs" property is defined as an "Action-Targets" data type.
+
+```
+{
+    "status": 200,
+    "results": {
+        "pairs": {
+            "allow": ["ipv6_net", "ipv6_connection"],
+            "deny": ["ipv6_net", "ipv6_connection"],
+            "query": ["features"],
+            "delete": ["slpf:rule_number"],
+            "update": ["file"]
+        }
+    }
+}
+```
+
+-------
+
+# Annex D. Revision History
 
 _The content in this section is non-normative._
 
@@ -1404,7 +1400,7 @@ _The content in this section is non-normative._
 
 -------
 
-# Annex D. Acknowledgments
+# Annex E. Acknowledgments
 
 _The content in this section is non-normative._
 
