@@ -96,7 +96,6 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [3.1.3 Multiplicity](#313-multiplicity)
         -   [3.1.4 Extensions](#314-extensions)
         -   [3.1.5 Serialization](#315-serialization)
-            -   [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
     -   [3.2 Message](#32-message)
     -   [3.3 Content](#33-content)
         -   [3.3.1 OpenC2 Command](#331-openc2-command)
