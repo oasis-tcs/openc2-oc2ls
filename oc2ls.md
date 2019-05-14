@@ -116,7 +116,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.1.5 Features](#3415-features)
             -   [3.4.1.6 File](#3416-file)
             -   [3.4.1.7 Internationalized Domain Name](#3417-internationalized-domain-name)
-            -   [3.4.1.8 Internationalized Email Address](#3418-international-email-address)
+            -   [3.4.1.8 Internationalized Email Address](#3418-internationalized-email-address)
             -   [3.4.1.9 IPv4 Address Range](#3419-ipv4-address-range)
             -   [3.4.1.10 IPv4 Connection](#34110-ipv4-connection)
             -   [3.4.1.11 IPv6 Address Range](#34111-ipv6-address-range)
@@ -133,7 +133,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.4 Feature](#3424-feature)
             -   [3.4.2.5 Hashes](#3425-hashes)
             -   [3.4.2.6 Hostname](#3426-hostname)
-            -   [3.4.2.7 Internationalized Hostname](#3427-international-hostname)
+            -   [3.4.2.7 Internationalized Hostname](#3427-internationalized-hostname)
             -   [3.4.2.8 IPv4 Address](#3428-ipv4-address)
             -   [3.4.2.9 IPv6 Address](#3429-ipv6-address)
             -   [3.4.2.10 L4 Protocol](#34210-l4-protocol)
@@ -157,7 +157,6 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [A.3 Example 3](#a3-example-3)
 -   [Annex B. Acronyms](#annex-b-acronyms)
 -   [Annex C. Design Elements](#annex-c-design-elements)
-        -   [C.1 Derived Enumerations](#c1-derived-enumerations)
 -   [Annex D. Revision History](#annex-d-revision-history)
 -   [Annex E. Acknowledgments](#annex-e-acknowledgments)
 
@@ -505,7 +504,7 @@ A multiplicity of 0..1 denotes a single optional value of the specified type. A 
 
 An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type. The named type can then be used as the type of a required field (multiplicity 1). Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
 
-### 3.1.5 Extensions
+### 3.1.4 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
 Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.
@@ -592,7 +591,7 @@ In this example Response, the Response results property, `rule_number`, is defin
 }
 ```
 
-### 3.1.6 Serialization
+### 3.1.5 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and additional requirements specified in the following table.
 
 **JSON Serialization Requirements:**
@@ -622,7 +621,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **MapOf** | JSON **object**. Member keys are as defined in the specified key type. |
 | **Record** | JSON **object**. Member keys are field names. |
 
-#### 3.1.6.1 ID and Name Serialization
+#### 3.1.5.1 ID and Name Serialization
 Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead. Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
 1. Type definitions and application values use only the ID. There is no corresponding name except as an optional part of the description.
@@ -1062,7 +1061,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.10 Message-Type
+#### 3.4.2.11 Message-Type
 Identifies the type of Message.
 
  **_Type: Message-Type (Enumerated)_**
@@ -1072,12 +1071,12 @@ Identifies the type of Message.
 | 1 | **command** | The Message content is an OpenC2 Command |
 | 2 | **response** | The Message content is an OpenC2 Response |
 
-#### 3.4.2.11 Namespace Identifier
+#### 3.4.2.12 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
-#### 3.4.2.12 Payload
+#### 3.4.2.13 Payload
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
@@ -1085,12 +1084,12 @@ Identifies the type of Message.
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.13 Port
+#### 3.4.2.14 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.14 Response-Type
+#### 3.4.2.15 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1100,7 +1099,7 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.15 Version
+#### 3.4.2.16 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
