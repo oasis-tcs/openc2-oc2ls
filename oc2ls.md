@@ -2,8 +2,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 12
-## 27 March 2019
+## Working Draft 13
+## 14 May 2019
 ### Specification URIs
 #### This version:
 * TBD.md (Authoritative)
@@ -11,9 +11,9 @@
 * TBD.pdf
 
 #### Previous version:
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.md (Authoritative)
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.pdf
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd02.md (Authoritative)
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd02.html
+* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd02.pdf
 
 #### Latest version:
 * http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.md (Authoritative)
@@ -48,7 +48,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 27 March 2019. OASIS Working Draft 12. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd01.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 14 May 2019. OASIS Working Draft 13. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -96,7 +96,6 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
         -   [3.1.3 Multiplicity](#313-multiplicity)
         -   [3.1.4 Extensions](#314-extensions)
         -   [3.1.5 Serialization](#315-serialization)
-            -   [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
     -   [3.2 Message](#32-message)
     -   [3.3 Content](#33-content)
         -   [3.3.1 OpenC2 Command](#331-openc2-command)
@@ -116,7 +115,7 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.1.5 Features](#3415-features)
             -   [3.4.1.6 File](#3416-file)
             -   [3.4.1.7 Internationalized Domain Name](#3417-internationalized-domain-name)
-            -   [3.4.1.8 Internationalized Email Address](#3418-international-email-address)
+            -   [3.4.1.8 Internationalized Email Address](#3418-internationalized-email-address)
             -   [3.4.1.9 IPv4 Address Range](#3419-ipv4-address-range)
             -   [3.4.1.10 IPv4 Connection](#34110-ipv4-connection)
             -   [3.4.1.11 IPv6 Address Range](#34111-ipv6-address-range)
@@ -133,16 +132,16 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.4 Feature](#3424-feature)
             -   [3.4.2.5 Hashes](#3425-hashes)
             -   [3.4.2.6 Hostname](#3426-hostname)
-            -   [3.4.2.7 Internationalized Hostname](#3427-international-hostname)
+            -   [3.4.2.7 Internationalized Hostname](#3427-internationalized-hostname)
             -   [3.4.2.8 IPv4 Address](#3428-ipv4-address)
             -   [3.4.2.9 IPv6 Address](#3429-ipv6-address)
             -   [3.4.2.10 L4 Protocol](#34210-l4-protocol)
-            -   [3.4.2.10 Message-Type](#34210-message-type)
-            -   [3.4.2.11 Namespace Identifier](#34211-namespace-identifier)
-            -   [3.4.2.12 Payload](#34212-payload)
-            -   [3.4.2.13 Port](#34213-port)
-            -   [3.4.2.14 Response-Type](#34214-response-type)
-            -   [3.4.2.15 Version](#34215-version)
+            -   [3.4.2.11 Message-Type](#34211-message-type)
+            -   [3.4.2.12 Namespace Identifier](#34212-namespace-identifier)
+            -   [3.4.2.13 Payload](#34213-payload)
+            -   [3.4.2.14 Port](#34214-port)
+            -   [3.4.2.15 Response-Type](#34215-response-type)
+            -   [3.4.2.16 Version](#34216-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
     -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
     -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
@@ -157,7 +156,6 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
     -   [A.3 Example 3](#a3-example-3)
 -   [Annex B. Acronyms](#annex-b-acronyms)
 -   [Annex C. Design Elements](#annex-c-design-elements)
-        -   [C.1 Derived Enumerations](#c1-derived-enumerations)
 -   [Annex D. Revision History](#annex-d-revision-history)
 -   [Annex E. Acknowledgments](#annex-e-acknowledgments)
 
@@ -390,9 +388,9 @@ The following list summarizes the main four components of a Command.
 * **Arguments** (optional): Provide additional information on how the command is to be performed, such as date/time, periodicity, duration, etc.
 * **Actuator** (optional): The Actuator executes the Command. The Actuator will be defined within the context of an Actuator Profile. Properties of the Actuator, called Actuator Specifiers, further identify the Actuator to some level of precision, such as a specific Actuator, a list of Actuators, or a group of Actuators.
 
-The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.5](#314-extensions).
+The Action and Target components are required and are populated by one of the Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section 3.3.1.2](#3312-target). A particular Target may be further refined by the Target type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the Targets are described in [Section 3.1.4](#314-extensions).
 
-Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.5](#314-extensions).
+Command Arguments, if present, influence the Command by providing information such as timing, periodicity, duration, or other details on what is to be executed. They can also be used to convey the need for acknowledgment or additional status information about the execution of a Command. The valid Arguments defined in this specification are in [Section 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described in [Section 3.1.4](#314-extensions).
 
 An Actuator is an implementation of a cyber defense function that executes the Command. An Actuator Profile is a specification that identifies the subset of Actions, Targets and other aspects of this language specification that are required or optional in the context of a particular Actuator. An Actuator Profile may extend the language by defining additional Targets, Arguments, and Actuator Specifiers that are meaningful and possibly unique to the Actuator.
 
@@ -435,7 +433,7 @@ OpenC2 data types are defined using an abstract notation that is independent of 
 
 * **API** values do not affect interoperabilty, and although they must exhibit the characteristics specified above, their representation within applications is unspecified. A Python application might represent the Map type as a dict variable, a javascript application might represent it as an object literal or an ES6 Map type, and a C# application might represent it as a Dictionary or a Hashtable.
 
-* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.6](#315-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
+* **Serialized** values are critical to interoperability, and this document defines a set of **serialization rules** that unambiguously define how each of the above types are serialized using a human-friendly JSON format. Other serialization rules, such as for XML, machine-optimized JSON, and CBOR formats, exist but are out of scope for this document. Both the format-specific serialization rules in [Section 3.1.5](#315-serialization) and the format-agnostic type definitions in [Section 3.4](#34-type-definitions) are Normative.
 
 Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are equivalent to the non-suffixed types except:
 
@@ -505,7 +503,7 @@ A multiplicity of 0..1 denotes a single optional value of the specified type. A 
 
 An array containing zero or more values of a specified type cannot be created implicitly using multiplicity, it must be defined explicitly as a named ArrayOf type. The named type can then be used as the type of a required field (multiplicity 1). Results are unspecified if an optional field (multiplicity 0..1) is a named ArrayOf type with a minimum length of zero.
 
-### 3.1.5 Extensions
+### 3.1.4 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
 Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.
@@ -592,7 +590,7 @@ In this example Response, the Response results property, `rule_number`, is defin
 }
 ```
 
-### 3.1.6 Serialization
+### 3.1.5 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and additional requirements specified in the following table.
 
 **JSON Serialization Requirements:**
@@ -622,7 +620,7 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | **MapOf** | JSON **object**. Member keys are as defined in the specified key type. |
 | **Record** | JSON **object**. Member keys are field names. |
 
-#### 3.1.6.1 ID and Name Serialization
+#### 3.1.5.1 ID and Name Serialization
 Instances of Enumerated types and keys for Choice and Map types are serialized as ID values except when using serialization formats intended for human consumption, where Name strings are used instead. Defining a type using ".ID" appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
 1. Type definitions and application values use only the ID. There is no corresponding name except as an optional part of the description.
@@ -914,7 +912,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#34210-l4-protocol) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -937,7 +935,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#34210-l4-protocol) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1062,7 +1060,7 @@ Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IA
 | 17 | **udp** | User Datagram Protocol - [[RFC0768]](#rfc0768) |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.10 Message-Type
+#### 3.4.2.11 Message-Type
 Identifies the type of Message.
 
  **_Type: Message-Type (Enumerated)_**
@@ -1072,12 +1070,12 @@ Identifies the type of Message.
 | 1 | **command** | The Message content is an OpenC2 Command |
 | 2 | **response** | The Message content is an OpenC2 Response |
 
-#### 3.4.2.11 Namespace Identifier
+#### 3.4.2.12 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
-#### 3.4.2.12 Payload
+#### 3.4.2.13 Payload
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
@@ -1085,12 +1083,12 @@ Identifies the type of Message.
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.13 Port
+#### 3.4.2.14 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.14 Response-Type
+#### 3.4.2.15 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1100,7 +1098,7 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.15 Version
+#### 3.4.2.16 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
@@ -1200,9 +1198,9 @@ A conformant Command
 
 * 5.1-1 MUST be structured in accordance with [Section 3.3.1](#331-openc2-command).
 * 5.1-2 MUST include exactly one `action` property defined in accordance with [Section 3.3.1.1](#3311-action).
-* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.5](#314-extensions).
-* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.5](#314-extensions).
-* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.5](#314-extensions).
+* 5.1-3 MUST include exactly one `target` property defined in accordance with [Section 3.3.1.2](#3312-target) or exactly one imported `target` property defined in accordance with [Section 3.1.4](#314-extensions).
+* 5.1-4 MUST include zero or one `actuator` property defined in accordance with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator` property defined in accordance with [Section 3.1.4](#314-extensions).
+* 5.1-5 MUST include zero or one `args` property defined in accordance with [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args` property defined in accordance with [Section 3.1.4](#314-extensions).
 
 ### 5.2 Conformance Clause 2: Response
 
@@ -1432,6 +1430,7 @@ _The content in this section is non-normative._
 | v1.0-wd10 | 03/04/2019 | Romano, Sparrell | Produce interim working draft. |
 | v1.0-wd11 | 03/21/2019 | Romano, Sparrell | Produce interim working draft. |
 | v1.0-wd12 | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review. |
+| v1.0-wd13 | 05/14/2019 | Romano, Sparrell | Incorporated commends from CSPRD02. |
 
 -------
 
@@ -1503,4 +1502,3 @@ Jason | Webb | LookingGlass
 Sean | Welsh | AT&T
 Charles | White | Fornetix
 Sounil | Yu | Bank of America
-
