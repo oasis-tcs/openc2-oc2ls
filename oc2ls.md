@@ -130,15 +130,13 @@ The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the own
             -   [3.4.2.4 Feature](#3424-feature)
             -   [3.4.2.5 Hashes](#3425-hashes)
             -   [3.4.2.6 Hostname](#3426-hostname)
-            -   [3.4.2.7 IPv4 Address](#3427-ipv4-address)
-            -   [3.4.2.8 IPv6 Address](#3428-ipv6-address)
-            -   [3.4.2.9 L4 Protocol](#3429-l4-protocol)
+            -   [3.4.2.7 L4 Protocol](#3427-l4-protocol)
             -   [3.4.2.10 Message-Type](#34210-message-type)
-            -   [3.4.2.11 Namespace Identifier](#34211-namespace-identifier)
-            -   [3.4.2.12 Payload](#34212-payload)
-            -   [3.4.2.13 Port](#34213-port)
-            -   [3.4.2.14 Response-Type](#34214-response-type)
-            -   [3.4.2.15 Version](#34215-version)
+            -   [3.4.2.8 Namespace Identifier](#3428-namespace-identifier)
+            -   [3.4.2.9 Payload](#3429-payload)
+            -   [3.4.2.10 Port](#34210-port)
+            -   [3.4.2.11 Response-Type](#34211-response-type)
+            -   [3.4.2.12 Version](#34212-version)
 -   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
     -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
     -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
@@ -587,8 +585,9 @@ OpenC2 is agnostic of any particular serialization; however, implementations MUS
 | :--- | :--- |
 | **Binary** | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5. |
 | **Binary /x** | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
-| **Binary /ipv4-addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2. |
-| **Binary /ipv6-addr** | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4. |
+| **IPv4-Addr** | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2. |
+| **IPv6-Addr** | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4. |
+| **MAC-Addr** | JSON **string** containing the text representation of a MAC Address in colon hexadecimal format as defined in [[EUI]](#eui). |
 | **Boolean** | JSON **true** or **false** |
 | **Integer** | JSON **number** |
 | **Number** | JSON **number** |
@@ -877,7 +876,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv4-Addr | 1 | ipv4-address as defined in [[RFC0791]](#rfc0791) |
+| 1 | IPv4-Addr | 1 | IPv4 address as defined in [[RFC0791]](#rfc0791) |
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.8 IPv4 Connection
@@ -889,7 +888,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#3429-l4-protocol) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.9](#3427-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -900,7 +899,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 
 | ID | Type | # | Description |
 | ---: | :--- | ---: | :--- |
-| 1 | IPv6-Addr | 1 | ipv6-address as defined in [[RFC8200]](#rfc8200) |
+| 1 | IPv6-Addr | 1 | IPv6 address as defined in [[RFC8200]](#rfc8200) |
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv6 Connection
@@ -912,7 +911,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
 | 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.9](#3429-l4-protocol) |
+| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.7](#3427-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1005,17 +1004,7 @@ Specifies the results to be returned from a query features Command.
 | :--- | :--- | :--- |
 | **Hostname** | String (hostname) | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
-#### 3.4.2.7 IPv4 Address
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
-
-#### 3.4.2.8 IPv6 Address
-| Type Name | Base Type | Description |
-| :--- | :--- | :--- |
-| **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
-
-#### 3.4.2.9 L4 Protocol
+#### 3.4.2.7 L4 Protocol
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
 
 **_Type: L4-Protocol (Enumerated)_**
@@ -1032,17 +1021,17 @@ Identifies the type of Message.
 
  **_Type: Message-Type (Enumerated)_**
 
- | ID | Name | Description |
+| ID | Name | Description |
 | ---: | :--- | :--- |
 | 1 | **command** | The Message content is an OpenC2 Command |
 | 2 | **response** | The Message content is an OpenC2 Response |
 
-#### 3.4.2.11 Namespace Identifier
+#### 3.4.2.8 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
 
-#### 3.4.2.12 Payload
+#### 3.4.2.9 Payload
 **_Type: Payload (Choice)_**
 
 | ID | Name | Type | # | Description |
@@ -1050,12 +1039,12 @@ Identifies the type of Message.
 | 1 | **bin** | Binary | 1 | Specifies the data contained in the artifact |
 | 2 | **url** | URI | 1 | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.13 Port
+#### 3.4.2.10 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.14 Response-Type
+#### 3.4.2.11 Response-Type
 **_Type: Response-Type (Enumerated)_**
 
 | ID | Name | Description |
@@ -1065,7 +1054,7 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.15 Version
+#### 3.4.2.12 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
