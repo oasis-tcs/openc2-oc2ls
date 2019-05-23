@@ -1314,9 +1314,9 @@ This is a notional example of a Command issued to a non-standard Actuator. A Pro
                 "charged_at": 1547506988,
                 "status": 12,
                 "mode": {
-                    "output": high",
+                    "output": "high",
                     "supported": [ "high", "trickle" ]
-                }
+                },
                 "visible_on_display": true
             },
             "asset_id": "TGEadsasd"
