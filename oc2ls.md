@@ -277,7 +277,7 @@ The following color, font and font style conventions are used in this document:
 
 Example:
 
-```
+```json
 {
     "action": "deny",
     "target": {
@@ -528,7 +528,7 @@ Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended T
 **Example:**
 In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier, `slpf`.
 
-```
+```json
 {
     "action": "delete",
     "target": {
@@ -542,7 +542,7 @@ Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be
 **Example:**
 In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 
-```
+```json
 {
     "action": "deny",
     "target": {
@@ -561,7 +561,7 @@ The Actuator property of a Command, defined in [Section 3.3.1.3](#3313-actuator)
 **Example:**
 In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 
-```
+```json
 {
     "action": "deny",
     "target": {
@@ -580,7 +580,7 @@ Response results, defined in Section TBD, MAY be extended using the namespace id
 **Example:**
 In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 
-```
+```json
 {
     "status": 200,
     "results": {
@@ -775,7 +775,7 @@ The Command defines an Action to be performed on a Target.
 
 **Example:**
 
-```
+```json
 {
     "status": 200,
     "results": {
@@ -1145,7 +1145,7 @@ This sub-section provides examples of 'query features' Commands and Responses. T
 There are no features specified in the 'query features' Command. A simple "OK" Response Message is returned.
 
 **Command:**
-```
+```json
 {
     "action": "query",
     "target": {
@@ -1155,7 +1155,7 @@ There are no features specified in the 'query features' Command. A simple "OK" R
 ```
 
 **Response:**
-```
+```json
 {
     "status": 200
 }
@@ -1166,7 +1166,7 @@ There are several features requested in the 'query features' Command. All reques
 
 **Command:**
 
-```
+```json
 {
     "action": "query",
     "target": {
@@ -1176,7 +1176,7 @@ There are several features requested in the 'query features' Command. All reques
 ```
 
 **Response:**
-```
+```json
 {
     "status": 200,
     "results": {
@@ -1235,7 +1235,7 @@ _The content in this section is non-normative._
 ## A.1 Example 1
 This Command would be used to quarantine a device on the network.
 
-```
+```json
 {
     "action": "contain",
     "target": {
@@ -1250,7 +1250,7 @@ This Command would be used to quarantine a device on the network.
 This Command blocks a particular connection within the domain. The standard Actuator profile defines the extended Command Argument, `drop_process`, and the Actuator Specifier, `asset_id`. The Response is a simple acknowledgment that was requested in the Command.
 
 **Command:**
-```
+```json
 {
     "action": "deny",
     "target": {
@@ -1279,7 +1279,7 @@ This Command blocks a particular connection within the domain. The standard Actu
 ```
 
 **Response:**
-```
+```json
 {
     "status": 102
 }
@@ -1289,7 +1289,7 @@ This Command blocks a particular connection within the domain. The standard Actu
 This is a notional example of a Command issued to a non-standard Actuator. A Producer sends a 'query properties' Command to request detail about a 'battery'. The Consumer responses with the battery information extended in the results of the Response.
 
 **Command:**
-```
+```json
 {
     "action": "query",
     "target": {
@@ -1304,7 +1304,7 @@ This is a notional example of a Command issued to a non-standard Actuator. A Pro
 ```
 
 **Response:**
-```
+```json
 {
     "status": 200,
     "results": {
@@ -1392,7 +1392,7 @@ The Targets data type is defined as an array of "Target" enumerations. The "Targ
 **Example:**
 The "pairs" property is defined as an "Action-Targets" data type.
 
-```
+```json
 {
     "status": 200,
     "results": {
