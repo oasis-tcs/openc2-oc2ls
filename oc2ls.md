@@ -751,12 +751,12 @@ The Command defines an Action to be performed on a Target.
 
 **Usage Requirements:**
 
-* `start_time`, `end_time`, `duration`:
-    * If none are specified, then `start_time` is now, `end_time` is never, and `duration` is infinity.
-    * Only two of the three are allowed on any given Command and the third is derived from the equation `end_time` = `start_time` + `duration`.
-    * If only `start_time` is specified then `end_time` is never and `duration` is infinity.
-    * If only `end_time` is specified then `start_time` is now and `duration` is derived.
-    * If only `duration` is specified then `start_time` is now and `end-time` is derived.
+* `start_time`, `stop_time`, `duration`:
+    * If none are specified, then `start_time` is now, `stop_time` is never, and `duration` is infinity.
+    * Only two of the three are allowed on any given Command and the third is derived from the equation `stop_time` = `start_time` + `duration`.
+    * If only `start_time` is specified then `stop_time` is never and `duration` is infinity.
+    * If only `stop_time` is specified then `start_time` is now and `duration` is derived.
+    * If only `duration` is specified then `start_time` is now and `stop_time` is derived.
 * `response_requested`:
     * If `response_requested` is specified as `none` then the Consumer SHOULD NOT send a Response.
     * If `response_requested` is specified as `ack` then the Consumer SHOULD send a Response acknowledging receipt of the Command: `{"status": 102}`.
@@ -1118,12 +1118,12 @@ The 'query features' Command is REQUIRED for all Producers and Consumers impleme
 
 The 'query features' Command is REQUIRED for all Producers.
 The 'query features' Command MAY include one or more Features as defined in [Section 3.4.2.4](#3424-feature).
-The 'query features' Command MAY include the `"response_type": "complete"` Argument.
+The 'query features' Command MAY include the `"response_requested": "complete"` Argument.
 The 'query features' Command MUST NOT include any other Argument.
 
 The 'query features' Command is REQUIRED for all Consumers.
 Consumers that receive and parse the 'query features':
-*  With any Argument other than `"response_type": "complete"`
+*  With any Argument other than `"response_requested": "complete"`
     *  MUST NOT respond with OK/200.
     *  SHOULD respond with Bad Request/400.
     *  MAY respond with the 500 status code.
