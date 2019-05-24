@@ -77,16 +77,16 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="styles/markdown-styles-v1.6.css">
+  <link rel="stylesheet" href=".\styles\markdown-styles-v1.6.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
-<p><img src="http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg" alt="OASIS Logo" /></p>
+<h2 id="oasis-logo"><img src="http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg" alt="OASIS Logo" /></h2>
 <h1 id="open-command-and-control-openc2-language-specification-version-10">Open Command and Control (OpenC2) Language Specification Version 1.0</h1>
-<h2 id="working-draft-13">Working Draft 13</h2>
-<h2 id="14-may-2019">14 May 2019</h2>
+<h2 id="working-draft-14">Working Draft 14</h2>
+<h2 id="23-may-2019">23 May 2019</h2>
 <h3 id="specification-uris">Specification URIs</h3>
 <h4 id="this-version">This version:</h4>
 <ul>
@@ -130,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4 id="citation-format">Citation format:</h4>
 <p>When referencing this specification the following citation format should be used:</p>
 <p><strong>[OpenC2-Lang-v1.0]</strong></p>
-<p><em>Open Command and Control (OpenC2) Language Specification Version 1.0</em>. Edited by Jason Romano and Duncan Sparrell. 14 May 2019. OASIS Working Draft 13. <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html</a>. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html</a>.</p>
+<p><em>Open Command and Control (OpenC2) Language Specification Version 1.0</em>. Edited by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Working Draft 14. <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html</a>. Latest version: <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html" class="uri">http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html</a>.</p>
 <hr />
 <h2 id="notices">Notices</h2>
 <p>Copyright © OASIS Open 2018. All Rights Reserved.</p>
@@ -361,20 +361,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>A fixed width font is used for all type names, property names, and literals.</li>
 <li>Property names are in bold style – <strong>'created_at'</strong>.</li>
 <li>All examples in this document are expressed in JSON. They are in fixed width font, with straight quotes, black text and a light shaded background, and 4-space indentation. JSON examples in this document are representations of JSON Objects. They should not be interpreted as string literals. The ordering of object keys is insignificant. Whitespace before or after JSON structural characters in the examples are insignificant <a href="#rfc8259">[RFC8259]</a>.</li>
-<li>Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with the ellipses (...).</li>
+<li>Parts of the example may be omitted for conciseness and clarity. These omitted parts are denoted with ellipses (...).</li>
 </ul>
 <p>Example:</p>
-<pre><code>{
-    &quot;action&quot;: &quot;deny&quot;,
-    &quot;target&quot;: {
-        &quot;file&quot;: {
-            &quot;hashes&quot;: {
-                &quot;sha256&quot;: &quot;22fe72a34f006ea67d26bb7004e2b6941b5c3953d43ae7ec24d41b1a928a6973&quot;
-            }
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;deny&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">        <span class="dt">&quot;file&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">            <span class="dt">&quot;hashes&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">                <span class="dt">&quot;sha256&quot;</span><span class="fu">:</span> <span class="st">&quot;22fe72a34f006ea67d26bb7004e2b6941b5c3953d43ae7ec24d41b1a928a6973&quot;</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">            <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="fu">}</span></a></code></pre></div>
 <h2 id="16-overview">1.6 Overview</h2>
 <p>In general, there are two types of participants involved in the exchange of OpenC2 Messages, as depicted in Figure 1-1:</p>
 <ol>
@@ -791,52 +790,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The list of Actions in <a href="#3311-action">Section 3.3.1.1</a> SHALL NOT be extended.</p>
 <p>Targets, defined in <a href="#3312-target">Section 3.3.1.2</a>, MAY be extended. Extended Target names MUST be prefixed with a namespace identifier followed by a colon (&quot;:&quot;).</p>
 <p><strong>Example:</strong> In this example Command, the extended Target, <code>rule_number</code>, is defined within the Stateless Packet Filtering Profile with the namespace identifier, <code>slpf</code>.</p>
-<pre><code>{
-    &quot;action&quot;: &quot;delete&quot;,
-    &quot;target&quot;: {
-        &quot;slpf:rule_number&quot;: 1234
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;delete&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">        <span class="dt">&quot;slpf:rule_number&quot;</span><span class="fu">:</span> <span class="dv">1234</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="fu">}</span></a></code></pre></div>
 <p>Command Arguments, defined in <a href="#3314-command-arguments">Section 3.3.1.4</a>, MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. Extended Arguments MUST be defined within the extended Argument namespace.</p>
 <p><strong>Example:</strong> In this example Command, the extended Argument, <code>direction</code>, is defined within the Stateless Packet Filtering Profile namespace, <code>slpf</code>.</p>
-<pre><code>{
-    &quot;action&quot;: &quot;deny&quot;,
-    &quot;target&quot;: {
-        &quot;ipv6_net&quot;: {...}
-    },
-    &quot;args&quot;: {
-        &quot;slpf&quot;: {
-            &quot;direction&quot;: &quot;ingress&quot;
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;deny&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">        <span class="dt">&quot;ipv6_net&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="er">...</span><span class="fu">}</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="fu">},</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">    <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">        <span class="dt">&quot;slpf&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">            <span class="dt">&quot;direction&quot;</span><span class="fu">:</span> <span class="st">&quot;ingress&quot;</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="fu">}</span></a></code></pre></div>
 <p>The Actuator property of a Command, defined in <a href="#3313-actuator">Section 3.3.1.3</a>, MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.</p>
 <p><strong>Example:</strong> In this example Command, the Actuator Specifier <code>asset_id</code> is defined within the Stateless Packet Filtering Profile namespace, <code>slpf</code>.</p>
-<pre><code>{
-    &quot;action&quot;: &quot;deny&quot;,
-    &quot;target&quot;: {
-        &quot;ipv4_connection&quot;: {...}
-    },
-    &quot;actuator&quot;: {
-        &quot;slpf&quot;: {
-            &quot;asset_id&quot;: &quot;30&quot;
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;deny&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">        <span class="dt">&quot;ipv4_connection&quot;</span><span class="fu">:</span> <span class="fu">{</span><span class="er">...</span><span class="fu">}</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="fu">},</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">&quot;actuator&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">        <span class="dt">&quot;slpf&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">            <span class="dt">&quot;asset_id&quot;</span><span class="fu">:</span> <span class="st">&quot;30&quot;</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="fu">}</span></a></code></pre></div>
 <p>Response results, defined in Section TBD, MAY be extended using the namespace identifier as the results name, called an extended results namespace. Extended results MUST be defined within the extended results namespace.</p>
 <p><strong>Example:</strong> In this example Response, the Response results property, <code>rule_number</code>, is defined within the Stateless Packet Filtering Profile namespace, <code>slpf</code>.</p>
-<pre><code>{
-    &quot;status&quot;: 200,
-    &quot;results&quot;: {
-        &quot;slpf&quot;: {
-            &quot;rule_number&quot;: 1234
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="dt">&quot;results&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">        <span class="dt">&quot;slpf&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">            <span class="dt">&quot;rule_number&quot;</span><span class="fu">:</span> <span class="dv">1234</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="fu">}</span></a></code></pre></div>
 <h3 id="315-serialization">3.1.5 Serialization</h3>
 <p>OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with <a href="#rfc7493">[RFC7493]</a> and additional requirements specified in the following table.</p>
 <p><strong>JSON Serialization Requirements:</strong></p>
@@ -1393,13 +1388,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p><strong>Usage Requirements:</strong></p>
 <ul>
-<li><code>start_time</code>, <code>end_time</code>, <code>duration</code>:
+<li><code>start_time</code>, <code>stop_time</code>, <code>duration</code>:
 <ul>
-<li>If none are specified, then <code>start_time</code> is now, <code>end_time</code> is never, and <code>duration</code> is infinity.</li>
-<li>Only two of the three are allowed on any given Command and the third is derived from the equation <code>end_time</code> = <code>start_time</code> + <code>duration</code>.</li>
-<li>If only <code>start_time</code> is specified then <code>end_time</code> is never and <code>duration</code> is infinity.</li>
-<li>If only <code>end_time</code> is specified then <code>start_time</code> is now and <code>duration</code> is derived.</li>
-<li>If only <code>duration</code> is specified then <code>start_time</code> is now and <code>end-time</code> is derived.</li>
+<li>If none are specified, then <code>start_time</code> is now, <code>stop_time</code> is never, and <code>duration</code> is infinity.</li>
+<li>Only two of the three are allowed on any given Command and the third is derived from the equation <code>stop_time</code> = <code>start_time</code> + <code>duration</code>.</li>
+<li>If only <code>start_time</code> is specified then <code>stop_time</code> is never and <code>duration</code> is infinity.</li>
+<li>If only <code>stop_time</code> is specified then <code>start_time</code> is now and <code>duration</code> is derived.</li>
+<li>If only <code>duration</code> is specified then <code>start_time</code> is now and <code>stop_time</code> is derived.</li>
 </ul></li>
 <li><code>response_requested</code>:
 <ul>
@@ -1447,13 +1442,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><strong>Example:</strong></p>
-<pre><code>{
-    &quot;status&quot;: 200,
-    &quot;results&quot;: {
-        &quot;versions&quot;: [&quot;1.0&quot;]
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">    <span class="dt">&quot;results&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">        <span class="dt">&quot;versions&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;1.0&quot;</span><span class="ot">]</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="fu">}</span></a></code></pre></div>
 <p><strong>Usage Requirements:</strong></p>
 <ul>
 <li>All Responses MUST contain a status.</li>
@@ -2457,10 +2451,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A Command consists of an Action/Target pair and associated Specifiers and Arguments. This section enumerates the allowed Commands, identifies which are required or optional to implement, and presents the associated responses.</p>
 <h2 id="41-implementation-of-query-features-command">4.1 Implementation of 'query features' Command</h2>
 <p>The 'query features' Command is REQUIRED for all Producers and Consumers implementing OpenC2. This section defines the REQUIRED and OPTIONAL aspects of the 'query features' Command and associated response for Producers and Consumers.</p>
-<p>The 'query features' Command is REQUIRED for all Producers. The 'query features' Command MAY include one or more Features as defined in <a href="#3424-feature">Section 3.4.2.4</a>. The 'query features' Command MAY include the <code>&quot;response_type&quot;: &quot;complete&quot;</code> Argument. The 'query features' Command MUST NOT include any other Argument.</p>
+<p>The 'query features' Command is REQUIRED for all Producers. The 'query features' Command MAY include one or more Features as defined in <a href="#3424-feature">Section 3.4.2.4</a>. The 'query features' Command MAY include the <code>&quot;response_requested&quot;: &quot;complete&quot;</code> Argument. The 'query features' Command MUST NOT include any other Argument.</p>
 <p>The 'query features' Command is REQUIRED for all Consumers. Consumers that receive and parse the 'query features':</p>
 <ul>
-<li>With any Argument other than <code>&quot;response_type&quot;: &quot;complete&quot;</code>
+<li>With any Argument other than <code>&quot;response_requested&quot;: &quot;complete&quot;</code>
 <ul>
 <li>MUST NOT respond with OK/200.</li>
 <li>SHOULD respond with Bad Request/400.</li>
@@ -2482,38 +2476,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 id="421-example-1">4.2.1 Example 1</h3>
 <p>There are no features specified in the 'query features' Command. A simple &quot;OK&quot; Response Message is returned.</p>
 <p><strong>Command:</strong></p>
-<pre><code>{
-    &quot;action&quot;: &quot;query&quot;,
-    &quot;target&quot;: {
-        &quot;features&quot;: []
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;query&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">        <span class="dt">&quot;features&quot;</span><span class="fu">:</span> <span class="ot">[]</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="fu">}</span></a></code></pre></div>
 <p><strong>Response:</strong></p>
-<pre><code>{
-    &quot;status&quot;: 200
-}
-</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">200</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="fu">}</span></a></code></pre></div>
 <h3 id="422-example-2">4.2.2 Example 2</h3>
 <p>There are several features requested in the 'query features' Command. All requested features can be returned in a single Response Message.</p>
 <p><strong>Command:</strong></p>
-<pre><code>{
-    &quot;action&quot;: &quot;query&quot;,
-    &quot;target&quot;: {
-        &quot;features&quot;: [&quot;versions&quot;, &quot;profiles&quot;, &quot;rate_limit&quot;]
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;query&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">        <span class="dt">&quot;features&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;versions&quot;</span><span class="ot">,</span> <span class="st">&quot;profiles&quot;</span><span class="ot">,</span> <span class="st">&quot;rate_limit&quot;</span><span class="ot">]</span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="fu">}</span></a></code></pre></div>
 <p><strong>Response:</strong></p>
-<pre><code>{
-    &quot;status&quot;: 200,
-    &quot;results&quot;: {
-        &quot;versions&quot;: [&quot;1.0&quot;],
-        &quot;profiles&quot;: [&quot;slpf&quot;, &quot;x-lock&quot;],
-        &quot;rate_limit&quot;: 30
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">    <span class="dt">&quot;results&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">        <span class="dt">&quot;versions&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;1.0&quot;</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">        <span class="dt">&quot;profiles&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;slpf&quot;</span><span class="ot">,</span> <span class="st">&quot;x-lock&quot;</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">        <span class="dt">&quot;rate_limit&quot;</span><span class="fu">:</span> <span class="dv">30</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="fu">}</span></a></code></pre></div>
 <hr />
 <h1 id="5-conformance">5 Conformance</h1>
 <p><em>This content in this section is normative.</em></p>
@@ -2551,84 +2541,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><em>The content in this section is non-normative.</em></p>
 <h2 id="a1-example-1">A.1 Example 1</h2>
 <p>This Command would be used to quarantine a device on the network.</p>
-<pre><code>{
-    &quot;action&quot;: &quot;contain&quot;,
-    &quot;target&quot;: {
-        &quot;device&quot;: {
-            &quot;device_id&quot;: &quot;9BCE8431AC106FAA3861C7E771D20E53&quot;
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;contain&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">        <span class="dt">&quot;device&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">            <span class="dt">&quot;device_id&quot;</span><span class="fu">:</span> <span class="st">&quot;9BCE8431AC106FAA3861C7E771D20E53&quot;</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="fu">}</span></a></code></pre></div>
 <h2 id="a2-example-2">A.2 Example 2</h2>
 <p>This Command blocks a particular connection within the domain. The standard Actuator profile defines the extended Command Argument, <code>drop_process</code>, and the Actuator Specifier, <code>asset_id</code>. The Response is a simple acknowledgment that was requested in the Command.</p>
 <p><strong>Command:</strong></p>
-<pre><code>{
-    &quot;action&quot;: &quot;deny&quot;,
-    &quot;target&quot;: {
-        &quot;ipv4_connection&quot;: {
-            &quot;protocol&quot;: &quot;tcp&quot;,
-            &quot;src_addr&quot;: &quot;1.2.3.4&quot;,
-            &quot;src_port&quot;: 10996,
-            &quot;dst_addr&quot;: &quot;198.2.3.4&quot;,
-            &quot;dst_port&quot;: 80
-        }
-    },
-    &quot;args&quot;: {
-        &quot;start_time&quot;: 1534775460000,
-        &quot;duration&quot;: 500,
-        &quot;response_requested&quot;: &quot;ack&quot;,
-        &quot;slpf&quot;: {
-            &quot;drop_process&quot;: &quot;none&quot;
-        }
-    },
-    &quot;actuator&quot;: {
-        &quot;slpf&quot;: {
-            &quot;asset_id&quot;: &quot;30&quot;
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;deny&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">        <span class="dt">&quot;ipv4_connection&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">            <span class="dt">&quot;protocol&quot;</span><span class="fu">:</span> <span class="st">&quot;tcp&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">            <span class="dt">&quot;src_addr&quot;</span><span class="fu">:</span> <span class="st">&quot;1.2.3.4&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">            <span class="dt">&quot;src_port&quot;</span><span class="fu">:</span> <span class="dv">10996</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">            <span class="dt">&quot;dst_addr&quot;</span><span class="fu">:</span> <span class="st">&quot;198.2.3.4&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">            <span class="dt">&quot;dst_port&quot;</span><span class="fu">:</span> <span class="dv">80</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11">    <span class="fu">},</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">    <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13">        <span class="dt">&quot;start_time&quot;</span><span class="fu">:</span> <span class="dv">1534775460000</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">        <span class="dt">&quot;duration&quot;</span><span class="fu">:</span> <span class="dv">500</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">        <span class="dt">&quot;response_requested&quot;</span><span class="fu">:</span> <span class="st">&quot;ack&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16">        <span class="dt">&quot;slpf&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">            <span class="dt">&quot;drop_process&quot;</span><span class="fu">:</span> <span class="st">&quot;none&quot;</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19">    <span class="fu">},</span></a>
+<a class="sourceLine" id="cb12-20" data-line-number="20">    <span class="dt">&quot;actuator&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-21" data-line-number="21">        <span class="dt">&quot;slpf&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb12-22" data-line-number="22">            <span class="dt">&quot;asset_id&quot;</span><span class="fu">:</span> <span class="st">&quot;30&quot;</span></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="fu">}</span></a></code></pre></div>
 <p><strong>Response:</strong></p>
-<pre><code>{
-    &quot;status&quot;: 102
-}
-</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">102</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="fu">}</span></a></code></pre></div>
 <h2 id="a3-example-3">A.3 Example 3</h2>
 <p>This is a notional example of a Command issued to a non-standard Actuator. A Producer sends a 'query properties' Command to request detail about a 'battery'. The Consumer responses with the battery information extended in the results of the Response.</p>
 <p><strong>Command:</strong></p>
-<pre><code>{
-    &quot;action&quot;: &quot;query&quot;,
-    &quot;target&quot;: {
-        &quot;properties&quot;: [&quot;battery&quot;]
-    },
-    &quot;actuator&quot;: {
-        &quot;x-esm&quot;: {
-            &quot;asset_id&quot;: &quot;TGEadsasd&quot;
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">    <span class="dt">&quot;action&quot;</span><span class="fu">:</span> <span class="st">&quot;query&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">        <span class="dt">&quot;properties&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;battery&quot;</span><span class="ot">]</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">    <span class="fu">},</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="dt">&quot;actuator&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">        <span class="dt">&quot;x-esm&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">            <span class="dt">&quot;asset_id&quot;</span><span class="fu">:</span> <span class="st">&quot;TGEadsasd&quot;</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="fu">}</span></a></code></pre></div>
 <p><strong>Response:</strong></p>
-<pre><code>{
-    &quot;status&quot;: 200,
-    &quot;results&quot;: {
-        &quot;x-esm&quot;: {
-            &quot;battery&quot;: {
-                &quot;capacity&quot;: 0.577216,
-                &quot;charged_at&quot;: 1547506988,
-                &quot;status&quot;: 12,
-                &quot;mode&quot;: {
-                    &quot;output&quot;: high&quot;,
-                    &quot;supported&quot;: [ &quot;high&quot;, &quot;trickle&quot; ]
-                }
-                &quot;visible_on_display&quot;: true
-            },
-            &quot;asset_id&quot;: &quot;TGEadsasd&quot;
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">    <span class="dt">&quot;results&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">        <span class="dt">&quot;x-esm&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">            <span class="dt">&quot;battery&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">                <span class="dt">&quot;capacity&quot;</span><span class="fu">:</span> <span class="fl">0.577216</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">                <span class="dt">&quot;charged_at&quot;</span><span class="fu">:</span> <span class="dv">1547506988</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">                <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">12</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">                <span class="dt">&quot;mode&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">                    <span class="dt">&quot;output&quot;</span><span class="fu">:</span> <span class="st">&quot;high&quot;</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11">                    <span class="dt">&quot;supported&quot;</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">&quot;high&quot;</span><span class="ot">,</span> <span class="st">&quot;trickle&quot;</span> <span class="ot">]</span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12">                <span class="fu">},</span></a>
+<a class="sourceLine" id="cb15-13" data-line-number="13">                <span class="dt">&quot;visible_on_display&quot;</span><span class="fu">:</span> <span class="kw">true</span></a>
+<a class="sourceLine" id="cb15-14" data-line-number="14">            <span class="fu">},</span></a>
+<a class="sourceLine" id="cb15-15" data-line-number="15">            <span class="dt">&quot;asset_id&quot;</span><span class="fu">:</span> <span class="st">&quot;TGEadsasd&quot;</span></a>
+<a class="sourceLine" id="cb15-16" data-line-number="16">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb15-17" data-line-number="17">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb15-18" data-line-number="18"><span class="fu">}</span></a></code></pre></div>
 <hr />
 <h1 id="annex-b-acronyms">Annex B. Acronyms</h1>
 <table>
@@ -2798,7 +2783,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 id="c1-derived-enumerations">C.1 Derived Enumerations</h2>
 <p>It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending &quot;.Enum&quot; to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.</p>
 <p>This is the design element that defines the &quot;Action-Targets&quot; data type. The &quot;Action-Targets&quot; data type is a map of each action supported by an actuator to a list of targets implemented for each action. The list of Actions, defined in <a href="#3311-action">Section 3.3.1.1</a>, is appropriately an enumerated list of possible Actions. The list of Targets, defined in <a href="#3312-target">Section 3.3.1.2</a>, is a Choice data structure where each element is a complex data type of its own. A derived enumeration is used in this case to signify that the list of Targets for the &quot;Action-Targets&quot; data type should be an enumerated list of the possible Targets</p>
-<p>**Definition of &quot;Action-Targets&quot; Data Type The Targets data type is defined as an array of &quot;Target&quot; enumerations. The &quot;Target&quot; enumerations are derived from the &quot;Target&quot; data type.</p>
+<p><strong>Definition of &quot;Action-Targets&quot; Data Type:</strong> The Targets data type is defined as an array of &quot;Target&quot; enumerations. The &quot;Target&quot; enumerations are derived from the &quot;Target&quot; data type.</p>
 <table>
 <thead>
 <tr class="header">
@@ -2832,19 +2817,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><strong>Example:</strong> The &quot;pairs&quot; property is defined as an &quot;Action-Targets&quot; data type.</p>
-<pre><code>{
-    &quot;status&quot;: 200,
-    &quot;results&quot;: {
-        &quot;pairs&quot;: {
-            &quot;allow&quot;: [&quot;ipv6_net&quot;, &quot;ipv6_connection&quot;],
-            &quot;deny&quot;: [&quot;ipv6_net&quot;, &quot;ipv6_connection&quot;],
-            &quot;query&quot;: [&quot;features&quot;],
-            &quot;delete&quot;: [&quot;slpf:rule_number&quot;],
-            &quot;update&quot;: [&quot;file&quot;]
-        }
-    }
-}
-</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">    <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="dt">&quot;results&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">        <span class="dt">&quot;pairs&quot;</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">            <span class="dt">&quot;allow&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;ipv6_net&quot;</span><span class="ot">,</span> <span class="st">&quot;ipv6_connection&quot;</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">            <span class="dt">&quot;deny&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;ipv6_net&quot;</span><span class="ot">,</span> <span class="st">&quot;ipv6_connection&quot;</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">            <span class="dt">&quot;query&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;features&quot;</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">            <span class="dt">&quot;delete&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;slpf:rule_number&quot;</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">            <span class="dt">&quot;update&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;file&quot;</span><span class="ot">]</span></a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">        <span class="fu">}</span></a>
+<a class="sourceLine" id="cb16-11" data-line-number="11">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="fu">}</span></a></code></pre></div>
 <hr />
 <h1 id="annex-d-revision-history">Annex D. Revision History</h1>
 <p><em>The content in this section is non-normative.</em></p>
@@ -2958,7 +2942,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">v1.0-wd13</td>
 <td style="text-align: left;">05/14/2019</td>
 <td style="text-align: left;">Romano, Sparrell</td>
-<td style="text-align: left;">Incorporated commends from CSPRD02.</td>
+<td style="text-align: left;">Incorporated comments from CSPRD02.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">v1.0-wd14</td>
+<td style="text-align: left;">05/23/2019</td>
+<td style="text-align: left;">Romano, Sparrell</td>
+<td style="text-align: left;">Incorporated comments from WD13 ballot.</td>
 </tr>
 </tbody>
 </table>
