@@ -2,8 +2,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 13
-## 14 May 2019
+## Working Draft 14
+## 23 May 2019
 ### Specification URIs
 #### This version:
 * TBD.md (Authoritative)
@@ -48,7 +48,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 14 May 2019. OASIS Working Draft 13. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Working Draft 14. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -1378,7 +1378,7 @@ It is sometimes useful to reference the fields of a structure definition, for ex
 
 This is the design element that defines the "Action-Targets" data type. The "Action-Targets" data type is a map of each action supported by an actuator to a list of targets implemented for each action. The list of Actions, defined in [Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a Choice data structure where each element is a complex data type of its own. A derived enumeration is used in this case to signify that the list of Targets for the "Action-Targets" data type should be an enumerated list of the possible Targets
 
-**Definition of "Action-Targets" Data Type
+**Definition of "Action-Targets" Data Type:**
 The Targets data type is defined as an array of "Target" enumerations. The "Target" enumerations are derived from the "Target" data type.
 
 | Type Name | Type Definition | Description |
@@ -1431,7 +1431,8 @@ _The content in this section is non-normative._
 | v1.0-wd10 | 03/04/2019 | Romano, Sparrell | Produce interim working draft. |
 | v1.0-wd11 | 03/21/2019 | Romano, Sparrell | Produce interim working draft. |
 | v1.0-wd12 | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review. |
-| v1.0-wd13 | 05/14/2019 | Romano, Sparrell | Incorporated commends from CSPRD02. |
+| v1.0-wd13 | 05/14/2019 | Romano, Sparrell | Incorporated comments from CSPRD02. |
+| v1.0-wd14 | 05/23/2019 | Romano, Sparrell | Incorporated comments from WD13 ballot. |
 
 -------
 
