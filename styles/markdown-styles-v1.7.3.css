@@ -6,23 +6,29 @@
 /* pk 2018-10-19 - v1.4 added display:inline to avoid page-wide background coloring */
 /* pk 2018-10-25 - v1.5 added use of <h6> as citation tag for References section or elsewhere */
 /* pk 2018-10-26 - v1.5.1 (experimental) and v1.6 added use of <hr /> as a page break when generating PDF from the HTML */
+/* pk 2018-11-14 - v1.6.1 - lighter gray background color for code blocks */
+/* pk 2019-02-18 - v1.7 - Use Liberation Sans and Liberation Mono fonts if possible */
+/* pk 2019-02-18 - v1.7.1 (experimental) changed px to pt (and reduced numbers) for fonts and tables; added bigtitle style */
+/* pk 2019-05-23 - v1.7.2 (based on 1.7.1) changed monospace "code" font to Courier New */
+/* pk 2019-08-01 - v1.7.3 substitute PostScript name for fonts (LiberationSans for "Liberation Sans" and CourierNew for "Courier New") to address a flaw in "wkhtmltopdf" which rendered all text as bold. Changed "bigtitle" to "h1big"*/
 
 body {
     margin-left: 3pc;
     margin-right: 3pc;
-    font-family: sans-serif,arial, helvetica;
-	font-size:15px;
-	line-height:1.5
+    font-family: LiberationSans, Arial, Helvetica, sans-serif;
+	font-size:12pt;
+	line-height:1.2
      }
 
 html{overflow-x:auto}
 
 	 /* styles for section headings - levels 1-5 (maybe include heading1, etc. later) */
-h1{font-size:36px}h2{font-size:27px}h3{font-size:18px}h4{font-size:15px}h5{font-size:14px}
-h1,h2,h3,h4,h5{font-family:Arial, Helvetica, sans-serif;font-weight: bold;margin:10px 0;color: #446CAA}
+h1{font-size:18pt}h2{font-size:14pt}h3{font-size:13pt}h4{font-size:12pt}h5{font-size:11pt}
+h1big{font-size: 24pt}
+h1,h2,h3,h4,h5,h1big{font-family: LiberationSans, Arial, Helvetica, sans-serif;font-weight: bold;margin:8pt 0;color: #446CAA}
 	/* style for h6, for use as Reference tag */
-h6{font-size:15px; line-height:1.0}
-h6{font-family:Arial, Helvetica, sans-serif;font-weight: bold;margin:0px;}
+h6{font-size:12pt; line-height:1.0}
+h6{font-family: LiberationSans, Arial, Helvetica, sans-serif;font-weight: bold;margin:0pt;}
 	/* not needed - can just use brackets in the label itself */
 	/* h6::before {content: "["} */
 	/* h6::after {content: "]"} */
@@ -41,13 +47,13 @@ table {
 	border-spacing:0;
 	width:100%;
 	display:table;
-	font-size:15px;
-	margin-top: 10px;
+	font-size:12pt;
+	margin-top: 6pt;
 	}
 
 table, th, td {
-    border: 1px solid black;
-    padding:8px 8px;
+    border: 1pt solid black;
+    padding:6pt 6pt;
 	text-align:left;
 	vertical-align:top;
 }
@@ -60,16 +66,16 @@ th {
 
 /* style for code blocks */
 code,kbd,pre,samp{
-	font-family:monospace,monospace;
+	font-family:CourierNew, monospace;
 	font-size:1em;
 	white-space: pre-wrap;
-	background-color:#d3d3d3;
+	background-color:#e8e8e8;
 	display:inline;
 	}
 
 /* offset block quote */
 blockquote {
-	background-color:#d3d3d3;
+	background-color:#e8e8e8;
 	display:inline;
 	}
 
