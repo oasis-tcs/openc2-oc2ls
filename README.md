@@ -4,28 +4,19 @@
 <p>Members of the <a href="https://www.oasis-open.org/committees/openc2/">OASIS Open Command and Control (OpenC2) TC</a> create and manage technical content in this TC GitHub repository ( <a href="https://github.com/oasis-tcs/openc2-oc2ls">https://github.com/oasis-tcs/openc2-oc2ls</a> ) as part of the TC's chartered work (<i>i.e.</i>, the program of work and deliverables described in its <a href="https://www.oasis-open.org/committees/openc2/charter.php">charter</a>).</p>
 
 <p>OASIS TC GitHub repositories, as described in <a href="https://www.oasis-open.org/resources/tcadmin/github-repositories-for-oasis-tc-members-chartered-work">GitHub Repositories for OASIS TC Members' Chartered Work</a>, are governed by the OASIS <a href="https://www.oasis-open.org/policies-guidelines/tc-process">TC Process</a>, <a href="https://www.oasis-open.org/policies-guidelines/ipr">IPR Policy</a>, and other policies, similar to TC Wikis, TC JIRA issues tracking instances, TC SVN/Subversion repositories, etc.  While they make use of public GitHub repositories, these TC GitHub repositories are distinct from <a href="https://www.oasis-open.org/resources/open-repositories">OASIS TC Open Repositories</a>, which are used for development of open source <a href="https://www.oasis-open.org/resources/open-repositories/licenses">licensed</a> content.</p>
+
 </div>
 
 <div>
 <h3>Description</h3>
 
-<p>Purpose statement: Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms, or other aspects of the implementation. The <a href="http://docs.oasis-open.org/openc2/oc2ls/">OpenC2 Language Specification</a> defines the OpenC2 language, and the responsibility for drafting it resides with the <a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2-lang">OASIS OpenC2 Language Subcommittee (LSC)</a>.</p>
+<p>The purpose of this GitHub repository is to support development of proposals and change tracking for the OpenC2 Language Specification as new working draft level revisions are created and the associated CSDs mature.</p>
 
-<p>At the time of the creation of this GitHub repository, the OpenC2 Language Specification was at <a href="http://docs.oasis-open.org/openc2/oc2ls/v1.0/csd01/">CSD (Revision) 01</a>. The intent of this repository is to propose and track incremental changes to the <a href="https://www.oasis-open.org/policies-guidelines/oasis-defined-terms-2017-05-26#dCommitteeDraft">CSD</a> as it matures through several revisions.  The intent is to use GitHub to track <a href="https://github.com/oasis-tcs/openc2-oc2ls/issues">issues</a> (<i>e.g.</i>, issues brought by members when reviewing drafts and voting on CSD) and to use individual GitHub commits for change management of proposed changes to the CSD.</p>
+<p>This repository is designed to support TC members' work on a formal specification that describes the OpenC2 language. The Work Product title is "Open Command and Control (OpenC2) Language Specification Version 1.0". The authoritative format for the specification is Markdown, as per the OpenC2 TC <a href="https://issues.oasis-open.org/browse/TCADMIN-3011">request form</a>.</p>
 
-<p>GitHub can be used to review individual <a href="https://github.com/oasis-tcs/openc2-oc2ls/commits/master">commits</a> (<i>e.g.</i>, changes in response to an issue or new text added as it's agreed to by the LSC) and then the commits can be incorporated. Tools exist to support the creation of PDF/HTML/Word documents from the GitHub markdown text in the repository. Editable format Work Product documents in this repository are expected to adhere to the formal specification of "markdown" in the <a href="http://spec.commonmark.org/">CommonMark</a> standard.  Markdown has human readable raw text that is simpler and cleaner than HTML or the underlying XML in Word or Google Docs. It also has the advantage of creating simpler, cleaner HTML than Google Docs or Word.</p>
+<h4>Committee Specification, v1.0</h4>
 
-<p>The goals of the repository include:</p>
-
-<ul>
-
-<li>easier for members to review the changes to the CSD as it matures</li>
-<li>easier for the editors to create the PDF/HTML/Word versions for official voting</li>
-<li>"cleaner" raw text and HTML</li>
-</ul>
-
-<p><b>Note:</b> The OpenC2 Language Subcommittee Co-Chairs (<a href="mailto:duncan@sfractal.com">Duncan Sparrell</a> and <a href="mailto:jdroman@nsa.gov">Jason Romano</a>) <a href="https://issues.oasis-open.org/browse/TCADMIN-2823">proposed</a> this GitHub repository as a trial for the language CSD after some experience with the <a href="https://github.com/oasis-tcs/openc2-glossary">OpenC2 glossary</a> and some experimentation of their own.</p>
-
+<p>The OpenC2 TC approved v1.0 of the Language Specification as an OASIS Committee Specification on 11 July 2019. The OASIS <a href="https://www.oasis-open.org/news/announcements/three-committee-specifications-approved-by-open-command-and-control-openc2-tc">publication announcement</a> was made on 5 August 2019. The master branch of this repository contains copies of the files published by OASIS and linked to that announcement; these copies are captured here for convenience and the versions on the OASIS website are the official, authoritative versions of the specification.</p>
 </div>
 
 <div>
@@ -43,13 +34,11 @@
 <div>
 <h3>Further Description of this Repository</h3>
 
-<p>
-The process for proposing/reviewing/accepting changes to the OpenC2 Language Specification using github is a work in progress and will be described at https://wiki.oasis-open.org/openc2/LanguageMarkDownProcess until we've got it worked out well enough to include right here in the readme.
-</p>
+<p>Open Command and Control (OpenC2) is a concise and extensible language to enable the command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms, or other aspects of the implementation. The <a href="http://docs.oasis-open.org/openc2/oc2ls/">OpenC2 Language Specification</a> defines the OpenC2 language, and the responsibility for drafting it resides with the <a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2-lang">OASIS OpenC2 Language Subcommittee (LSC)</a>.</p>
 </div>
 
 <div>
 
 <h3>Contact</h3>
-<p>Please send questions or comments about <a href="https://www.oasis-open.org/resources/tcadmin/github-repositories-for-oasis-tc-members-chartered-work">OASIS TC GitHub repositories</a> to <a href="mailto:robin@oasis-open.org">Robin Cover</a> and <a href="mailto:chet.ensign@oasis-open.org">Chet Ensign</a>.  For questions about content in this repository, please contact the TC Chair or Co-Chairs as listed on the the OpenC2 TC's <a href="https://www.oasis-open.org/committees/openc2/">home page</a>.</p>
+<p>Please send questions or comments about <a href="https://www.oasis-open.org/resources/tcadmin/github-repositories-for-oasis-tc-members-chartered-work">OASIS TC GitHub repositories</a> to the <a href="mailto:tc-admin@oasis-open.org">OASIS TC Administrator</a>.  For questions about content in this repository, please contact the TC Chair or Co-Chairs as listed on the the OpenC2 TC's <a href="https://www.oasis-open.org/committees/openc2/">home page</a>.</p>
 </div>
