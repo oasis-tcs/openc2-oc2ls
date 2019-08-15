@@ -1,35 +1,36 @@
-![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
+![OASIS Logo](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
+
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0
-## Working Draft 14
-## 23 May 2019
-### Specification URIs
+## Committee Specification 01
+## 11 July 2019
+
 #### This version:
-* TBD.md (Authoritative)
-* TBD.html
-* TBD.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.md (Authoritative) \
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html \
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.pdf
 
 #### Previous version:
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd02.md (Authoritative)
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd02.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd01/oc2ls-v1.0-csprd02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd02/oc2ls-v1.0-csprd02.md (Authoritative) \
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd02/oc2ls-v1.0-csprd02.html \
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd02/oc2ls-v1.0-csprd02.pdf
 
 #### Latest version:
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.md (Authoritative)
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html
-* http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.md (Authoritative) \
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html \
+https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.pdf
 
 #### Technical Committee:
-* [OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
+[OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chairs:
-* Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/)
-* Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
+Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/) \
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Editors:
-* Jason Romano (jdroman@nsa.gov), [National Security Agency](https://www.nsa.gov/)
-* Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
+Jason Romano (jdroman@nsa.gov), [National Security Agency](https://www.nsa.gov/) \
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)
 
 #### Abstract:
 Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic and automated. The provision of cyber defense via statically configured products operating in isolation is untenable. Standardized interfaces, protocols and data models will facilitate the integration of the functional blocks within a system and between systems. Open Command and Control (OpenC2) is a concise and extensible language to enable machine-to-machine communications for purposes of command and control of cyber defense components, subsystems and/or systems in a manner that is agnostic of the underlying products, technologies, transport mechanisms or other aspects of the implementation. It should be understood that a language such as OpenC2 is necessary but insufficient to enable coordinated cyber responses that occur within cyber relevant time. Other aspects of coordinated cyber response such as sensing, analytics, and selecting appropriate courses of action are beyond the scope of OpenC2.
@@ -48,12 +49,12 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Working Draft 14. http://docs.oasis-open.org/openc2/oc2ls/v1.0/csprd03/oc2ls-v1.0-csprd03.html. Latest version: http://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 11 July 2019. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
 ## Notices
-Copyright © OASIS Open 2018. All Rights Reserved.
+Copyright © OASIS Open 2019. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 
