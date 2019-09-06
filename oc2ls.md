@@ -721,12 +721,12 @@ The Command defines an Action to be performed on a Target.
 | 12 | **idn_email_addr** | IDN-Email-Addr | 1 | A single internationalized email address. |
 | 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
-| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
-| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
+| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol. |
+| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol. |
 | 20 | **iri** | IRI | 1 | An internationalized resource identifier (IRI). |
-| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
+| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
-| 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
+| 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator. |
 | 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
 
 **Usage Requirements:**
@@ -770,8 +770,8 @@ The Command defines an Action to be performed on a Target.
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **status** | Status-Code | 1 | An integer status code |
-| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
+| 1 | **status** | Status-Code | 1 | An integer status code. |
+| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status. |
 | 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
@@ -809,9 +809,9 @@ The Command defines an Action to be performed on a Target.
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
+| 1 | **versions** | Version unique | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
-| 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
+| 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
 
@@ -848,12 +848,12 @@ The Command defines an Action to be performed on a Target.
 #### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Domain-Name** | String (hostname) | [[RFC1034]](#rfc1034), Section 3.5 |
+| **Domain-Name** | String /hostname | [[RFC1034]](#rfc1034), Section 3.5 |
 
 #### 3.4.1.4 Email Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String (email) | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
+| **Email-Addr** | String /email | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
 
 #### 3.4.1.5 Features
 | Type Name | Type Definition | Description |
@@ -882,12 +882,12 @@ The Command defines an Action to be performed on a Target.
 #### 3.4.1.7 Internationalized Domain Name
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IDN-Domain-Name** | String (idn-hostname) | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
+| **IDN-Domain-Name** | String /idn-hostname | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
 #### 3.4.1.8 Internationalized Email Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IDN-Email-Addr** | String (idn-email) | Internationalized email address, [[RFC6531]](#rfc6531) |
+| **IDN-Email-Addr** | String /idn-email | Internationalized email address, [[RFC6531]](#rfc6531) |
 
 #### 3.4.1.9 IPv4 Address Range
 An IPv4 address range is a CIDR block per "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) and consists of two values, an IPv4 address and a prefix.
@@ -911,10 +911,10 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
+| 2 | **src_port** | Port | 0..1 | Source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
+| 4 | **dst_port** | Port | 0..1 | Destination service per [[RFC6335]](#rfc6335) |
+| 5 | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -934,10 +934,10 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
+| 2 | **src_port** | Port | 0..1 | Source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
+| 4 | **dst_port** | Port | 0..1 | Destination service per [[RFC6335]](#rfc6335) |
+| 5 | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -946,12 +946,12 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.1.13 IRI
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IRI** | String (iri) | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
+| **IRI** | String /iri | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
 
 #### 3.4.1.14 MAC Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
+| **MAC-Addr** | Binary /eui | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.15 Process
 **_Type: Process (Map{1..*})_**
@@ -983,11 +983,11 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.2.1 Action-Targets
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
+| **Action-Targets** | MapOf(Action, Targets){1..*} | Map of each action supported by this actuator to the list of targets applicable to that action. |
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(Enum(Target)){1..*} unique | List of Target fields | |
+| **Targets** | ArrayOf(Enum(Target)){1..*} unique | List of Target fields |
 
 #### 3.4.2.2 Date-Time
 | Type Name | Type Definition | Description |
@@ -1024,7 +1024,7 @@ Specifies the results to be returned from a query features Command.
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
 | 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
-| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
+| 3 | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
 
 **Usage Requirement:**
 
@@ -1033,20 +1033,20 @@ Specifies the results to be returned from a query features Command.
 #### 3.4.2.6 Hostname
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Hostname** | String (hostname) | Internet host name as specified in [[RFC1123]](#rfc1123) |
+| **Hostname** | String /hostname | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
 #### 3.4.2.7 Internationalized Hostname
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IDN-Hostname** | String (idn-hostname) | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
+| **IDN-Hostname** | String /idn-hostname | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
 #### 3.4.2.8 IPv4 Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
 #### 3.4.2.9 IPv6 Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
@@ -1073,7 +1073,7 @@ Identifies the type of Message.
 | 2 | **response** | The Message content is an OpenC2 Response |
 
 #### 3.4.2.12 Namespace Identifier
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Nsid** | String{1..16} | A short identifier that refers to a namespace. |
 
