@@ -657,6 +657,8 @@ The purpose of this specification is to define the Action and Target portions of
 
 In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in 'Actuator Profile Specifications' such as StateLess Packet Filtering Profile, Routing Profile etc.
 
+The unique name http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0 identifies the content defined in this specification.
+
 ### 3.3.1 OpenC2 Command
 The Command defines an Action to be performed on a Target.
 
@@ -810,7 +812,7 @@ The Command defines an Action to be performed on a Target.
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
+| 2 | **profiles** | Uname unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
@@ -1104,6 +1106,33 @@ Identifies the type of Message.
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
+
+#### 3.4.2.16 Uname
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Uname** | String /uri | Unique name of a referenced specification |
+
+Each specification that defines OpenC2 content is identified by a unique name, and content defined
+in other specifications, for example Actuator Profiles, is referenced by that specification's unique name.
+The URI format of a Uname does not imply that the content is an accessible resource; the Uname acts
+solely as an identifier.
+
+The unique name of this specification is defined in [Section 3.3](#33-content):
+
+**Uname:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0
+
+Content defined in this specification is referenced from other specifications by Uname and type name.
+As an example the Target type defined in [Section 3.3.1.2](#3312-target) would be referenced as:
+
+**Reference:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0/Target
+
+For brevity, another specification may assign an arbitrarily-chosen namespace identifier (NSID) to each
+specification that it references. A specification that assigns the NSID "ls" to this specification would
+then reference the Target type defined here as:
+
+**Reference:** ls:Target
+
+An NSID is a synonym for a Uname, and the short reference is synonymous with the full reference.
 
 -------
 
