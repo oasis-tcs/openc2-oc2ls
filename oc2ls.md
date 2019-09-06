@@ -452,7 +452,7 @@ For types without individual field definitions (Primitive types and ArrayOf), th
 
 For Structure types, the definition includes the name of the type being defined, the built-in type on which it is based, and options applicable to the type as a whole. This is followed by a table defining each of the fields in the structure. This table defines a type called *Args* that is a *Map* containing at least one field. Each of the fields has an integer Tag/ID, a Name, and a Type. Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
 
-**_Type: Args (Map) [1..*]_**
+**_Type: Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
@@ -499,7 +499,7 @@ When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
 
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature){0..10} | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 A multiplicity of 0..1 denotes a single optional value of the specified type. A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
 
@@ -741,7 +741,7 @@ The Command defines an Action to be performed on a Target.
 | 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
 
 #### 3.3.1.4 Command Arguments
-**_Type: Args (Map)_**
+**_Type: Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -805,14 +805,14 @@ The Command defines an Action to be performed on a Target.
 | 503 | **Service Unavailable** - the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer. |
 
 #### 3.3.2.2 Response Results
-**_Type: Results (Map [1..*])_**
+**_Type: Results (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
-| 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
 
 
@@ -820,7 +820,7 @@ The Command defines an Action to be performed on a Target.
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
 #### 3.4.1.1 Artifact
-**_Type: Artifact (Record) [1..*]_**
+**_Type: Artifact (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -833,7 +833,7 @@ The Command defines an Action to be performed on a Target.
 * An "Artifact" Target MUST contain at least one property.
 
 #### 3.4.1.2 Device
-**_Type: Device (Map) [0..*]_**
+**_Type: Device (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -858,7 +858,7 @@ The Command defines an Action to be performed on a Target.
 #### 3.4.1.5 Features
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an Actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query an Actuator for its supported capabilities. |
 
 **Usage Requirements:**
 
@@ -867,7 +867,7 @@ The Command defines an Action to be performed on a Target.
 * A Producer MAY send a 'query' Command containing an empty list of features. A Producer could do this to determine if a Consumer is responding to Commands (a heartbeat command) or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer could return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
 #### 3.4.1.6 File
-**_Type: File (Map) [0..*]_**
+**_Type: File (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -906,7 +906,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv4 Connection
-**_Type: IPv4-Connection (Record) [0..*]_**
+**_Type: IPv4-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -929,7 +929,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.12 IPv6 Connection
-**_Type: IPv6-Connection (Record) [0..*]_**
+**_Type: IPv6-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -954,11 +954,11 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.15 Process
-**_Type: Process (Map) [0..*]_**
+**_Type: Process (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **pid** | Integer | 0..1 | Process ID of the process |
+| 1 | **pid** | Integer{0..*} | 0..1 | Process ID of the process |
 | 2 | **name** | String | 0..1 | Name of the process |
 | 3 | **cwd** | String | 0..1 | Current working directory of the process |
 | 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
@@ -972,7 +972,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.1.16 Properties
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an Actuator. |
+| **Properties** | ArrayOf(String){1..*} unique | A list of names that uniquely identify properties of an Actuator. |
 
 #### 3.4.1.17 URI
 | Type Name | Type Definition | Description |
@@ -987,12 +987,12 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+| **Targets** | ArrayOf(Enum(Target)){1..*} unique | List of Target fields | |
 
 #### 3.4.2.2 Date-Time
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Date-Time** | Integer | Date and Time |
+| **Date-Time** | Integer{0..*} | Date and Time |
 
 **Usage Requirements:**
 * Value is the number of milliseconds since 00:00:00 UTC, 1 January 1970
@@ -1000,7 +1000,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.2.3 Duration
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Duration** | Integer | A length of time |
+| **Duration** | Integer{0..*} | A length of time |
 
 **Usage Requirements:**
 * Value is a number of milliseconds
@@ -1018,7 +1018,7 @@ Specifies the results to be returned from a query features Command.
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
 #### 3.4.2.5 Hashes
-**_Type: Hashes (Map) [0..*]_**
+**_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -1075,7 +1075,7 @@ Identifies the type of Message.
 #### 3.4.2.12 Namespace Identifier
 | Type Name | Base Type | Description |
 | :--- | :--- | :--- |
-| **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
+| **Nsid** | String{1..16} | A short identifier that refers to a namespace. |
 
 #### 3.4.2.13 Payload
 **_Type: Payload (Choice)_**
@@ -1088,7 +1088,7 @@ Identifies the type of Message.
 #### 3.4.2.14 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
+| **Port** | Integer{0..65535} | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
 #### 3.4.2.15 Response-Type
 **_Type: Response-Type (Enumerated)_**
@@ -1375,7 +1375,7 @@ XML | eXtensibel Markup Language
 
 # Annex C. Design Elements
 ## C.1 Derived Enumerations
-It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created using an Enum() expression on the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
 
 This is the design element that defines the "Action-Targets" data type. The "Action-Targets" data type is a map of each action supported by an actuator to a list of targets implemented for each action. The list of Actions, defined in [Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a Choice data structure where each element is a complex data type of its own. A derived enumeration is used in this case to signify that the list of Targets for the "Action-Targets" data type should be an enumerated list of the possible Targets
 
@@ -1388,7 +1388,7 @@ The Targets data type is defined as an array of "Target" enumerations. The "Targ
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+| **Targets** | ArrayOf(Enum(Target)){1..*} | List of Target fields | |
 
 **Example:**
 The "pairs" property is defined as an "Action-Targets" data type.
