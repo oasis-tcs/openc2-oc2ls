@@ -495,9 +495,9 @@ Property tables for types based on Array, Choice, Map and Record include a multi
 | 0..* | Zero or more instances | Optional, Repeatable |
 | m..n | At least m but no more than n instances | Required, Repeatable |
 
-When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
+When a repeatable field type is converted to a separate ArrayOf() Type, multiplicity is converted to the array size, enclosed in curly brackets, e.g.,:
 
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Features** | ArrayOf(Feature){0..10} | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
