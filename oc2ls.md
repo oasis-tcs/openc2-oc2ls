@@ -812,7 +812,7 @@ The Command defines an Action to be performed on a Target.
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
-| 2 | **profiles** | Uname unique | 0..* | List of profiles supported by this Actuator |
+| 2 | **profiles** | Namespace unique | 0..* | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
@@ -1107,21 +1107,21 @@ Identifies the type of Message.
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
 
-#### 3.4.2.16 Uname
+#### 3.4.2.16 Namespace
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Uname** | String /uri | Unique name of a referenced specification |
+| **Namespace** | String /uri | Unique name of a referenced specification |
 
 Each specification that defines OpenC2 content is identified by a unique name, and content defined
 in other specifications, for example Actuator Profiles, is referenced by that specification's unique name.
-The URI format of a Uname does not imply that the content is an accessible resource; the Uname acts
+The URI format of a Namespace does not imply that the content is an accessible resource; the Namespace acts
 solely as an identifier.
 
 The unique name of this specification is defined in [Section 3.3](#33-content):
 
-**Uname:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0
+**Namespace:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0
 
-Content defined in this specification is referenced from other specifications by Uname and type name.
+Content defined in this specification is referenced from other specifications by Namespace and type name.
 As an example the Target type defined in [Section 3.3.1.2](#3312-target) would be referenced as:
 
 **Reference:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0/Target
@@ -1132,7 +1132,7 @@ then reference the Target type defined here as:
 
 **Reference:** ls:Target
 
-An NSID is a synonym for a Uname, and the short reference is synonymous with the full reference.
+An NSID is shorthand for a Namespace, and the short reference is synonymous with the full reference.
 
 -------
 
