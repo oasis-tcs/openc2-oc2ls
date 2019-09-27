@@ -244,6 +244,8 @@ Cotton, M., Eggert, L., Touch, J., Westerlund, M., and S. Cheshire, "Internet As
 Yao, J. and W. Mao, "SMTP Extension for Internationalized Email", RFC 6531, DOI 10.17487/RFC6531, February 2012, <https://www.rfc-editor.org/info/rfc6531>.
 ###### [RFC6838]
 Freed, N., Klensin, J., and T. Hansen, "Media Type Specifications and Registration Procedures", BCP 13, RFC 6838, DOI 10.17487/RFC6838, January 2013, <https://www.rfc-editor.org/info/rfc6838>.
+###### [RFC6901]
+Bryan, P., Zyp, K., Nottingham, M., "JavaScript Object Notation (JSON) Pointer", RFC 6901, April 2013, <https://www.rfc-editor.org/info/rfc6901>.
 ###### [RFC7493]
 Bray, T., Ed., "The I-JSON Message Format", RFC 7493, DOI 10.17487/RFC7493, March 2015, <https://www.rfc-editor.org/info/rfc7493>.
 ###### [RFC8174]
@@ -508,40 +510,36 @@ An array containing zero or more values of a specified type cannot be created im
 ### 3.1.4 Extensions
 One of the main design goals of OpenC2 was extensibility. Actuator profiles define the language extensions that are meaningful and possibly unique to the Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document and a short reference called a namespace identifier (NSID). The NSID is used to separate extensions from the core language defined in this specification.
-
-All extensions MUST be identified with a short namespace reference, called a namespace identifier (NSID).
+Each Actuator profile has a unique name used to identify the profile document.
 
 For example, the OASIS standard Stateless Packet Filtering actuator profile has:
 * **Unique Name**: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
-* **NSID**: slpf
-
-The namespace identifier for non-standard extensions MUST be prefixed with "x-".
 
 For example, the fictional, non-standard Superwidget actuator profile has:
 * **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
-* **NSID**: x-acme
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
-Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended Target names MUST be prefixed with a namespace identifier followed by a colon (":").
+Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended.
 
 **Example:**
-In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile with the namespace identifier, `slpf`.
+In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
 
 ```json
 {
     "action": "delete",
     "target": {
-        "slpf:rule_number": 1234
+        "slpf": {
+            "rule_number": 1234
+        }
     }
 }
 ```
 
-Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be extended using the namespace identifier as the Argument name, called an extended Argument namespace. Extended Arguments MUST be defined within the extended Argument namespace.
+Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be extended.
 
 **Example:**
-In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
 
 ```json
 {
@@ -557,11 +555,10 @@ In this example Command, the extended Argument, `direction`, is defined within t
 }
 ```
 
-The Actuator property of a Command, defined in [Section 3.3.1.3](#3313-actuator), MUST be extended using the namespace identifier as the Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST be defined within the extended Actuator namespace.
+The Actuator property of a Command, defined in [Section 3.3.1.3](#3313-actuator), is always extended if present in a command, because no actuator specifiers are defined in this specification.
 
 **Example:**
-In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
-
+In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
 ```json
 {
     "action": "deny",
@@ -576,10 +573,10 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
 }
 ```
 
-Response results, defined in Section TBD, MAY be extended using the namespace identifier as the results name, called an extended results namespace. Extended results MUST be defined within the extended results namespace.
+Response results, defined in Section TBD, MAY be extended.
 
 **Example:**
-In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
 
 ```json
 {
@@ -1182,7 +1179,7 @@ There are several features requested in the 'query features' Command. All reques
     "status": 200,
     "results": {
         "versions": ["1.0"],
-        "profiles": ["slpf", "x-lock"],
+        "profiles": ["slpf", "x_lock"],
         "rate_limit": 30
     }
 }
@@ -1297,7 +1294,7 @@ This is a notional example of a Command issued to a non-standard Actuator. A Pro
         "properties": ["battery"]
     },
     "actuator": {
-        "x-esm": {
+        "x_esm": {
             "asset_id": "TGEadsasd"
         }
     }
@@ -1309,7 +1306,7 @@ This is a notional example of a Command issued to a non-standard Actuator. A Pro
 {
     "status": 200,
     "results": {
-        "x-esm": {
+        "x_esm": {
             "battery": {
                 "capacity": 0.577216,
                 "charged_at": 1547506988,
@@ -1391,7 +1388,7 @@ The Targets data type is defined as an array of "Target" enumerations. The "Targ
 | **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
 
 **Example:**
-The "pairs" property is defined as an "Action-Targets" data type.
+The "pairs" property is defined as an "Action-Targets" data type. Targets defined in actuator profiles are identified by the [JSON Pointer](#rfc6901) to the target.
 
 ```json
 {
@@ -1401,7 +1398,7 @@ The "pairs" property is defined as an "Action-Targets" data type.
             "allow": ["ipv6_net", "ipv6_connection"],
             "deny": ["ipv6_net", "ipv6_connection"],
             "query": ["features"],
-            "delete": ["slpf:rule_number"],
+            "delete": ["slpf/rule_number"],
             "update": ["file"]
         }
     }
