@@ -523,7 +523,7 @@ The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended.
 
 **Example:**
-In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
+In this example Command, the extended Target, `rule_number`, is defined within the Stateless Packet Filtering Profile which is referenced using the property name slpf.
 
 ```json
 {
@@ -539,7 +539,7 @@ In this example Command, the extended Target, `rule_number`, is defined within t
 Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be extended.
 
 **Example:**
-In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
+In this example Command, the extended Argument, `direction`, is defined within the Stateless Packet Filtering Profile which is referenced using the property name slpf.
 
 ```json
 {
@@ -558,7 +558,7 @@ In this example Command, the extended Argument, `direction`, is defined within t
 The Actuator property of a Command, defined in [Section 3.3.1.3](#3313-actuator), is always extended if present in a command, because no actuator specifiers are defined in this specification.
 
 **Example:**
-In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
+In this example Command, the Actuator Specifier `asset_id` is defined within the Stateless Packet Filtering Profile which is referenced using the property name slpf.
 ```json
 {
     "action": "deny",
@@ -576,7 +576,7 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
 Response results, defined in Section TBD, MAY be extended.
 
 **Example:**
-In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile and referenced using the property name slpf.
+In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile which is referenced using the property name slpf.
 
 ```json
 {
