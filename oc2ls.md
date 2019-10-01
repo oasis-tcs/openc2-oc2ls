@@ -657,7 +657,8 @@ The purpose of this specification is to define the Action and Target portions of
 
 In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in 'Actuator Profile Specifications' such as StateLess Packet Filtering Profile, Routing Profile etc.
 
-**Unique name** http://oasis-open.org/openc2/oc2ls/v1.0 identifies the content defined in this specification.
+**Namespace:** http://oasis-open.org/openc2/oc2ls/v1.0 identifies the content defined in this specification. Note that this URI
+is an identifier and not necessarily a network locator. A schema need not be downloadable from its canonical URI.
 
 ### 3.3.1 OpenC2 Command
 The Command defines an Action to be performed on a Target.
@@ -1114,17 +1115,17 @@ Identifies the type of Message.
 
 Each specification that defines OpenC2 content is identified by a unique name, and content defined
 in other specifications, for example Actuator Profiles, is referenced by that specification's unique name.
-The URI format of a Namespace does not imply that the content is an accessible resource; the Namespace acts
-solely as an identifier.
+A Namespace URI is an identifier and not necessarily a network locator. A schema need not be downloadable from
+its canonical URI.
 
 The unique name of this specification is defined in [Section 3.3](#33-content):
 
-**Namespace:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0
+**Namespace:** http://oasis-open.org/openc2/oc2ls/v1.0
 
 Content defined in this specification is referenced from other specifications by Namespace and type name.
 As an example the Target type defined in [Section 3.3.1.2](#3312-target) would be referenced as:
 
-**Reference:** http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0/Target
+**Reference:** http://oasis-open.org/openc2/oc2ls/v1.0/Target
 
 For brevity, another specification may assign an arbitrarily-chosen namespace identifier (NSID) to each
 specification that it references. A specification that assigns the NSID "ls" to this specification would
