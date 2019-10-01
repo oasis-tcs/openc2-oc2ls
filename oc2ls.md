@@ -657,7 +657,7 @@ The purpose of this specification is to define the Action and Target portions of
 
 In addition to the Action and Target, a Command has an optional Actuator. Other than identification of namespace identifier, the semantics associated with the Actuator Specifiers are defined in Actuator Profiles. The Actuators and Actuator-specific results contained in a Response are specified in 'Actuator Profile Specifications' such as StateLess Packet Filtering Profile, Routing Profile etc.
 
-The unique name http://oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0 identifies the content defined in this specification.
+**Unique name** http://oasis-open.org/openc2/oc2ls/v1.0 identifies the content defined in this specification.
 
 ### 3.3.1 OpenC2 Command
 The Command defines an Action to be performed on a Target.
