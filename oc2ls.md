@@ -1100,7 +1100,7 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.15 Command-ID
+#### 3.4.2.16 Command-ID
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Command-ID** | String (%^\S{0,36}$%) | Command Identifier |
