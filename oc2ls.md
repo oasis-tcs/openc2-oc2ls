@@ -668,7 +668,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **target** | Target | 1 | The object of the Action. The Action is performed on the Target. |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the Command. |
 | 4 | **actuator** | Actuator | 0..1 | The subject of the Action. The Actuator executes the Action on the Target. |
-| 5 | **command_id** | String | 0..1 | An identifier of this Command. |
+| 5 | **command_id** | Command-ID | 0..1 | An identifier of this Command. |
 
 **Usage Requirements:**
 
@@ -711,7 +711,7 @@ The Command defines an Action to be performed on a Target.
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | String | 1 | A reference to a previously issued Command. |
+| 2 | **command** | Command-ID | 1 | A reference to a previously issued Command. |
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
@@ -1100,10 +1100,16 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.16 Version
+#### 3.4.2.15 Command-ID
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Command-ID** | String (%^\S{0,36}$%) | Command Identifier |
+
+#### 3.4.2.17 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
+
 
 -------
 
