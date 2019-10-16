@@ -576,7 +576,8 @@ In this example Command, the Actuator Specifier `asset_id` is defined within the
 Response results, defined in Section TBD, MAY be extended.
 
 **Example:**
-In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile which is referenced using the property name slpf.
+In this example Response, the Response results property, `rule_number`, is defined within the Stateless Packet Filtering Profile
+which is referenced using the property name slpf.
 
 ```json
 {
@@ -588,6 +589,33 @@ In this example Response, the Response results property, `rule_number`, is defin
     }
 }
 ```
+#### 3.1.4.1 References
+Specific values in a JSON document MUST be referenced using [JSON Pointer](#rfc6901) strings.  For example, the slpf-defined
+values shown above are referenced as:
+
+**Target:** "slpf/rule_number"
+**Args:** "slpf/direction"
+**Actuator:** "slpf/asset_id"
+
+The response to a hypothetical "query features [pairs, args]" command that returned the command arguments supported by
+an actuator would be:
+```json
+{
+    "status": 200,
+    "results": {
+        "pairs": {
+            "query": ["features"],
+            "delete": ["slpf/rule_number"],
+        },
+        "args": [
+            "start_time",
+            "slpf/direction",
+            "lock/state"
+        ]
+    }
+}
+```
+
 
 ### 3.1.5 Serialization
 OpenC2 is agnostic of any particular serialization; however, implementations MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and additional requirements specified in the following table.
@@ -1179,7 +1207,10 @@ There are several features requested in the 'query features' Command. All reques
     "status": 200,
     "results": {
         "versions": ["1.0"],
-        "profiles": ["slpf", "x_lock"],
+        "profiles": [
+            "http://docs.oasis-open.org/openc2/oc2slpf/v1.0",
+            "http://docs.oasis-open.org/openc2/cap/x_lock/v1.0"
+        ],
         "rate_limit": 30
     }
 }
