@@ -513,10 +513,10 @@ One of the main design goals of OpenC2 was extensibility. Actuator profiles defi
 Each Actuator profile has a unique name used to identify the profile document.
 
 For example, the OASIS standard Stateless Packet Filtering actuator profile has:
-* **Unique Name**: http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
+* **Unique Name**: http://docs.oasis-open.org/openc2/oc2slpf/v1.0
 
-For example, the fictional, non-standard Superwidget actuator profile has:
-* **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
+For example, a fictional Acme organization could assign to its non-standard Superwidget actuator profile:
+* **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
