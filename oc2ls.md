@@ -265,8 +265,10 @@ M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cybe
 ### 1.5.1 Naming Conventions
 * [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
-* Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
-* The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
+* All type names begin with an uppercase character.
+* Property names and type names are between 1 and 32 characters long.
+* Words in property names are separated with an underscore (_), while words in type names are separated with a hyphen (-).
+* "Underscore" refers to Unicode "low line", U+005F; "hyphen" refers to Unicode "hyphen-minus", U+002D.
 
 ### 1.5.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
