@@ -2,9 +2,9 @@
 
 -------
 
-# Open Command and Control (OpenC2) Language Specification Version 1.0
-## Committee Specification 01
-## 11 July 2019
+# Open Command and Control (OpenC2) Language Specification Version 1.0 Errata 01
+## Working Draft 15
+## 31 October 2019
 
 #### This version:
 https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.md (Authoritative) \
@@ -49,7 +49,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 11 July 2019. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -1442,6 +1442,7 @@ _The content in this section is non-normative._
 | v1.0-wd12 | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review. |
 | v1.0-wd13 | 05/14/2019 | Romano, Sparrell | Incorporated comments from CSPRD02. |
 | v1.0-wd14 | 05/23/2019 | Romano, Sparrell | Incorporated comments from WD13 ballot. |
+| v1.0-wd15 | 05/23/2019 | Romano, Sparrell | Incorporated Errata edited by David Kemp. |
 
 -------
 
