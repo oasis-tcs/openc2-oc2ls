@@ -2,9 +2,9 @@
 
 -------
 
-# Open Command and Control (OpenC2) Language Specification Version 1.0
-## Committee Specification 01
-## 11 July 2019
+# Open Command and Control (OpenC2) Language Specification Version 1.0 Errata 01
+## Working Draft 15
+## 31 October 2019
 
 #### This version:
 https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.md (Authoritative) \
@@ -49,7 +49,7 @@ When referencing this specification the following citation format should be used
 
 **[OpenC2-Lang-v1.0]**
 
-_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 11 July 2019. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+_Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
 -------
 
@@ -265,8 +265,10 @@ M. J. Herring, K. D. Willett, "Active Cyber Defense: A Vision for Real-Time Cybe
 ### 1.5.1 Naming Conventions
 * [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section 1.2](#12-terminology)) are in all uppercase.
 * All property names and literals are in lowercase, except when referencing canonical names defined in another standard (e.g., literal values from an IANA registry).
-* Words in property names are separated with an underscore (_), while words in string enumerations and type names are separated with a hyphen (-).
-* The term "hyphen" used here refers to the ASCII hyphen or minus character, which in Unicode is "hyphen-minus", U+002D.
+* All type names begin with an uppercase character.
+* Property names and type names are between 1 and 32 characters long.
+* Words in property names are separated with an underscore (_), while words in type names are separated with a hyphen (-).
+* "Underscore" refers to Unicode "low line", U+005F; "hyphen" refers to Unicode "hyphen-minus", U+002D.
 
 ### 1.5.2 Font Colors and Style
 The following color, font and font style conventions are used in this document:
@@ -452,7 +454,7 @@ For types without individual field definitions (Primitive types and ArrayOf), th
 
 For Structure types, the definition includes the name of the type being defined, the built-in type on which it is based, and options applicable to the type as a whole. This is followed by a table defining each of the fields in the structure. This table defines a type called *Args* that is a *Map* containing at least one field. Each of the fields has an integer Tag/ID, a Name, and a Type. Each field in this definition is optional (Multiplicity = 0..1), but per the type definition at least one must be present.
 
-**_Type: Args (Map) [1..*]_**
+**_Type: Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | :--- | :--- | :--- | :--- | :--- |
@@ -495,11 +497,11 @@ Property tables for types based on Array, Choice, Map and Record include a multi
 | 0..* | Zero or more instances | Optional, Repeatable |
 | m..n | At least m but no more than n instances | Required, Repeatable |
 
-When used with a Type, multiplicity is enclosed in square brackets, e.g.,:
+When a repeatable field type is converted to a separate ArrayOf() Type, multiplicity is converted to the array size, enclosed in curly brackets, e.g.,:
 
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature){0..10} | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 A multiplicity of 0..1 denotes a single optional value of the specified type. A multiplicity of 0..n denotes a field that is either omitted or is an array containing one or more values of the specified type.
 
@@ -668,7 +670,7 @@ The Command defines an Action to be performed on a Target.
 | 2 | **target** | Target | 1 | The object of the Action. The Action is performed on the Target. |
 | 3 | **args** | Args | 0..1 | Additional information that applies to the Command. |
 | 4 | **actuator** | Actuator | 0..1 | The subject of the Action. The Actuator executes the Action on the Target. |
-| 5 | **command_id** | String | 0..1 | An identifier of this Command. |
+| 5 | **command_id** | Command-ID | 0..1 | An identifier of this Command. |
 
 **Usage Requirements:**
 
@@ -711,7 +713,7 @@ The Command defines an Action to be performed on a Target.
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **artifact** | Artifact | 1 | An array of bytes representing a file-like object or a link to that object. |
-| 2 | **command** | String | 1 | A reference to a previously issued Command. |
+| 2 | **command** | Command-ID | 1 | A reference to a previously issued Command. |
 | 3 | **device** | Device | 1 | The properties of a hardware device. |
 | 7 | **domain_name** | Domain-Name | 1 | A network domain name. |
 | 8 | **email_addr** | Email-Addr | 1 | A single email address. |
@@ -721,12 +723,12 @@ The Command defines an Action to be performed on a Target.
 | 12 | **idn_email_addr** | IDN-Email-Addr | 1 | A single internationalized email address. |
 | 13 | **ipv4_net** | IPv4-Net | 1 | An IPv4 address range including CIDR prefix length. |
 | 14 | **ipv6_net** | IPv6-Net | 1 | An IPv6 address range including prefix length. |
-| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol |
-| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol |
+| 15 | **ipv4_connection** | IPv4-Connection | 1 | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol. |
+| 16 | **ipv6_connection** | IPv6-Connection | 1 | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol. |
 | 20 | **iri** | IRI | 1 | An internationalized resource identifier (IRI). |
-| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui) |
+| 17 | **mac_addr** | MAC-Addr | 1 | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 | 18 | **process** | Process | 1 | Common properties of an instance of a computer program as executed on an operating system. |
-| 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator |
+| 25 | **properties** | Properties | 1 | Data attribute associated with an Actuator. |
 | 19 | **uri** | URI | 1 | A uniform resource identifier (URI). |
 
 **Usage Requirements:**
@@ -741,7 +743,7 @@ The Command defines an Action to be performed on a Target.
 | 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
 
 #### 3.3.1.4 Command Arguments
-**_Type: Args (Map)_**
+**_Type: Args (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -770,8 +772,8 @@ The Command defines an Action to be performed on a Target.
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **status** | Status-Code | 1 | An integer status code |
-| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status |
+| 1 | **status** | Status-Code | 1 | An integer status code. |
+| 2 | **status_text** | String | 0..1 | A free-form human-readable description of the Response status. |
 | 3 | **results** | Results | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
@@ -805,14 +807,14 @@ The Command defines an Action to be performed on a Target.
 | 503 | **Service Unavailable** - the Consumer is currently unable to perform the Command due to a temporary overloading or maintenance of the Consumer. |
 
 #### 3.3.2.2 Response Results
-**_Type: Results (Map [1..*])_**
+**_Type: Results (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **versions** | Version | 0..* | List of OpenC2 language versions supported by this Actuator |
+| 1 | **versions** | Version unique | 0..* | List of OpenC2 language versions supported by this Actuator |
 | 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
-| 3 | **pairs** | Action-Targets | 0..* | List of targets applicable to each supported Action |
-| 4 | **rate_limit** | Number | 0..1 | Maximum number of requests per minute supported by design or policy |
+| 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
+| 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
 | 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
 
 
@@ -820,7 +822,7 @@ The Command defines an Action to be performed on a Target.
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
 #### 3.4.1.1 Artifact
-**_Type: Artifact (Record) [1..*]_**
+**_Type: Artifact (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -833,7 +835,7 @@ The Command defines an Action to be performed on a Target.
 * An "Artifact" Target MUST contain at least one property.
 
 #### 3.4.1.2 Device
-**_Type: Device (Map) [0..*]_**
+**_Type: Device (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -848,17 +850,17 @@ The Command defines an Action to be performed on a Target.
 #### 3.4.1.3 Domain Name
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Domain-Name** | String (hostname) | [[RFC1034]](#rfc1034), Section 3.5 |
+| **Domain-Name** | String /hostname | [[RFC1034]](#rfc1034), Section 3.5 |
 
 #### 3.4.1.4 Email Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Email-Addr** | String (email) | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
+| **Email-Addr** | String /email | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
 
 #### 3.4.1.5 Features
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Features** | ArrayOf(Feature) [0..10] | An array of zero to ten names used to query an Actuator for its supported capabilities. |
+| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query an Actuator for its supported capabilities. |
 
 **Usage Requirements:**
 
@@ -867,7 +869,7 @@ The Command defines an Action to be performed on a Target.
 * A Producer MAY send a 'query' Command containing an empty list of features. A Producer could do this to determine if a Consumer is responding to Commands (a heartbeat command) or to generate idle traffic to keep a connection to a Consumer from being closed due to inactivity (a keep-alive command). An active Consumer could return an empty response to this command, minimizing the amount of traffic used to perform heartbeat / keep-alive functions.
 
 #### 3.4.1.6 File
-**_Type: File (Map) [0..*]_**
+**_Type: File (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -882,12 +884,12 @@ The Command defines an Action to be performed on a Target.
 #### 3.4.1.7 Internationalized Domain Name
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IDN-Domain-Name** | String (idn-hostname) | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
+| **IDN-Domain-Name** | String /idn-hostname | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
 #### 3.4.1.8 Internationalized Email Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IDN-Email-Addr** | String (idn-email) | Internationalized email address, [[RFC6531]](#rfc6531) |
+| **IDN-Email-Addr** | String /idn-email | Internationalized email address, [[RFC6531]](#rfc6531) |
 
 #### 3.4.1.9 IPv4 Address Range
 An IPv4 address range is a CIDR block per "Classless Inter-domain Routing (CIDR): The Internet Address Assignment and Aggregation Plan" [[RFC4632]](#rfc4632) and consists of two values, an IPv4 address and a prefix.
@@ -906,15 +908,15 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | Integer | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv4 Connection
-**_Type: IPv4-Connection (Record) [0..*]_**
+**_Type: IPv4-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **src_addr** | IPv4-Net | 0..1 | IPv4 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
+| 2 | **src_port** | Port | 0..1 | Source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv4-Net | 0..1 | IPv4 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
+| 4 | **dst_port** | Port | 0..1 | Destination service per [[RFC6335]](#rfc6335) |
+| 5 | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -929,15 +931,15 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 | 2 | Integer | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.12 IPv6 Connection
-**_Type: IPv6-Connection (Record) [0..*]_**
+**_Type: IPv6-Connection (Record{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **src_addr** | IPv6-Net | 0..1 | IPv6 source address range |
-| 2 | **src_port** | Port | 0..1 | source service per [[RFC6335]](#rfc6335) |
+| 2 | **src_port** | Port | 0..1 | Source service per [[RFC6335]](#rfc6335) |
 | 3 | **dst_addr** | IPv6-Net | 0..1 | IPv6 destination address range |
-| 4 | **dst_port** | Port | 0..1 | destination service per [[RFC6335]](#rfc6335) |
-| 5 | **protocol** | L4-Protocol | 0..1 | layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
+| 4 | **dst_port** | Port | 0..1 | Destination service per [[RFC6335]](#rfc6335) |
+| 5 | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -946,19 +948,19 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.1.13 IRI
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IRI** | String (iri) | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
+| **IRI** | String /iri | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
 
 #### 3.4.1.14 MAC Address
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **MAC-Addr** | Binary (eui) | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
+| **MAC-Addr** | Binary /eui | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.15 Process
-**_Type: Process (Map) [0..*]_**
+**_Type: Process (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
-| 1 | **pid** | Integer | 0..1 | Process ID of the process |
+| 1 | **pid** | Integer{0..*} | 0..1 | Process ID of the process |
 | 2 | **name** | String | 0..1 | Name of the process |
 | 3 | **cwd** | String | 0..1 | Current working directory of the process |
 | 4 | **executable** | File | 0..1 | Executable that was executed to start the process |
@@ -972,7 +974,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.1.16 Properties
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Properties** | ArrayOf(String) | A list of names that uniquely identify properties of an Actuator. |
+| **Properties** | ArrayOf(String){1..*} unique | A list of names that uniquely identify properties of an Actuator. |
 
 #### 3.4.1.17 URI
 | Type Name | Type Definition | Description |
@@ -983,16 +985,16 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.2.1 Action-Targets
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Action-Targets** | MapOf(Action, Targets) | Map of each action supported by this actuator to the list of targets applicable to that action. |
+| **Action-Targets** | MapOf(Action, Targets){1..*} | Map of each action supported by this actuator to the list of targets applicable to that action. |
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+| **Targets** | ArrayOf(Enum(Target)){1..*} unique | List of Target fields |
 
 #### 3.4.2.2 Date-Time
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Date-Time** | Integer | Date and Time |
+| **Date-Time** | Integer{0..*} | Date and Time |
 
 **Usage Requirements:**
 * Value is the number of milliseconds since 00:00:00 UTC, 1 January 1970
@@ -1000,7 +1002,7 @@ CBOR serialization of an IPv4 address range SHALL use a binary representation of
 #### 3.4.2.3 Duration
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Duration** | Integer | A length of time |
+| **Duration** | Integer{0..*} | A length of time |
 
 **Usage Requirements:**
 * Value is a number of milliseconds
@@ -1018,13 +1020,13 @@ Specifies the results to be returned from a query features Command.
 | 4 | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
 #### 3.4.2.5 Hashes
-**_Type: Hashes (Map) [0..*]_**
+**_Type: Hashes (Map{1..*})_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **md5** | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321) |
 | 2 | **sha1** | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234) |
-| 3 | **sha256** | Binary /x| 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
+| 3 | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
 
 **Usage Requirement:**
 
@@ -1033,20 +1035,20 @@ Specifies the results to be returned from a query features Command.
 #### 3.4.2.6 Hostname
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Hostname** | String (hostname) | Internet host name as specified in [[RFC1123]](#rfc1123) |
+| **Hostname** | String /hostname | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
 #### 3.4.2.7 Internationalized Hostname
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **IDN-Hostname** | String (idn-hostname) | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
+| **IDN-Hostname** | String /idn-hostname | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
 #### 3.4.2.8 IPv4 Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
 #### 3.4.2.9 IPv6 Address
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
@@ -1073,9 +1075,9 @@ Identifies the type of Message.
 | 2 | **response** | The Message content is an OpenC2 Response |
 
 #### 3.4.2.12 Namespace Identifier
-| Type Name | Base Type | Description |
+| Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Nsid** | String [1..16] | A short identifier that refers to a namespace. |
+| **Nsid** | String{1..16} | A short identifier that refers to a namespace. |
 
 #### 3.4.2.13 Payload
 **_Type: Payload (Choice)_**
@@ -1088,7 +1090,7 @@ Identifies the type of Message.
 #### 3.4.2.14 Port
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Port** | Integer [0..65535] | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
+| **Port** | Integer{0..65535} | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
 #### 3.4.2.15 Response-Type
 **_Type: Response-Type (Enumerated)_**
@@ -1100,10 +1102,16 @@ Identifies the type of Message.
 | 2 | **status** | Respond with progress toward Command completion |
 | 3 | **complete** | Respond when all aspects of Command completed |
 
-#### 3.4.2.16 Version
+#### 3.4.2.16 Command-ID
+| Type Name | Type Definition | Description |
+| :--- | :--- | :--- |
+| **Command-ID** | String (%^\S{0,36}$%) | Command Identifier |
+
+#### 3.4.2.17 Version
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
 | **Version** | String | Major.Minor version number |
+
 
 -------
 
@@ -1375,7 +1383,7 @@ XML | eXtensibel Markup Language
 
 # Annex C. Design Elements
 ## C.1 Derived Enumerations
-It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created by appending ".Enum" to the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
+It is sometimes useful to reference the fields of a structure definition, for example to list fields that are usable in a particular context, or to read or update the value of a specific field. An instance of a reference can be validated against the set of valid references using either an explicit or a derived Enumerated type. A derived enumeration is created using an Enum() expression on the type being referenced, and it results in an Enumerated type containing the ID and Name columns of the referenced type.
 
 This is the design element that defines the "Action-Targets" data type. The "Action-Targets" data type is a map of each action supported by an actuator to a list of targets implemented for each action. The list of Actions, defined in [Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a Choice data structure where each element is a complex data type of its own. A derived enumeration is used in this case to signify that the list of Targets for the "Action-Targets" data type should be an enumerated list of the possible Targets
 
@@ -1388,7 +1396,7 @@ The Targets data type is defined as an array of "Target" enumerations. The "Targ
 
 | Type Name | Type Definition | Description |
 | :--- | :--- | :--- |
-| **Targets** | ArrayOf(Target.Enum) [1..*] | List of Target fields | |
+| **Targets** | ArrayOf(Enum(Target)){1..*} | List of Target fields | |
 
 **Example:**
 The "pairs" property is defined as an "Action-Targets" data type.
@@ -1434,6 +1442,7 @@ _The content in this section is non-normative._
 | v1.0-wd12 | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review. |
 | v1.0-wd13 | 05/14/2019 | Romano, Sparrell | Incorporated comments from CSPRD02. |
 | v1.0-wd14 | 05/23/2019 | Romano, Sparrell | Incorporated comments from WD13 ballot. |
+| v1.0-wd15 | 05/23/2019 | Romano, Sparrell | Incorporated Errata edited by David Kemp. |
 
 -------
 
