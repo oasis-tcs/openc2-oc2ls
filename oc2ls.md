@@ -378,7 +378,7 @@ The OpenC2 language assumes that the event has been detected, a decision to act 
 
 _The content in this section is non-normative._
 
-The OpenC2 language has two distinct content types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgment, status, etc.) as a result of a Command.
+The OpenC2 language has two distinct message types: Command and Response. The Command is sent from a Producer to a Consumer and describes an Action to be performed by an Actuator on a Target. The Response is sent from a Consumer, usually back to the Producer, and is a means to provide information (such as acknowledgment, status, etc.) as a result of a Command.
 
 ## 2.1 OpenC2 Command
 The Command describes an Action to be performed on a Target and may include information identifying the Actuator or Actuators that are to execute the Command.
