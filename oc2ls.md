@@ -633,7 +633,7 @@ Instances of Enumerated types and keys for Choice and Map types are serialized a
 ## 3.2 Message
 This language specification and one or more Actuator profiles define the content of Commands and Responses, while transfer specifications define the on-the-wire format of a Message over specific secure transport protocols. Transfer specifications are agnostic with regard to content, and content is agnostic with regard to transfer protocol. This decoupling is accomplished by defining a standard message interface used to transfer any type of content over any transfer protocol.
 
-A message is a content- and transport-independent set of elements conveyed between Producers and Consumers. To ensure interoperability all transfer specifications must unambiguously define how the Message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all Message elements must be used in all Messages. Content, content_type, and msg_type are required in all Messages. Other Message elements are not required by this specification but may be required by other specifications. The internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2. 
+A message is a content- and transport-independent set of elements conveyed between Producers and Consumers. To ensure interoperability all transfer specifications must unambiguously define how the Message elements in [Table 3-1](#table-3-1-common-message-elements) are represented within the secure transport protocol. This does not imply that all Message elements must be used in all Messages. Content, content_type, and msg_type are required in all Messages. Other Message elements are not required by this specification but may be required by other specifications. The internal representation of a Message does not affect interoperability and is therefore beyond the scope of OpenC2.
 
 ###### Table 3-1. Common Message Elements
 
@@ -741,6 +741,15 @@ The Command defines an Action to be performed on a Target.
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
 | 1024 | **slpf** | slpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile |
+| 1025 | **sfpf** | sfpf:Actuator | 1 | **Example**: Actuator Specifiers defined in the Stateful Packet Filtering Profile |
+| 1026 | **sbom** | sbom:Actuator | 1 | **Example**: Actuator Specifiers defined in the Software Bill of Materials Profile |
+| 1027 | **endp** | endp:Actuator | 1 | **Example**: Actuator Specifiers defined in the Endpoint Profile |
+| 1028 | **sdnc** | sdnc:Actuator | 1 | **Example**: Actuator Specifiers defined in the Software Defined Network Controller Profile |
+| 1029 | **emgw** | emgw:Actuator | 1 | **Example**: Actuator Specifiers defined in the Email Gateway Profile |
+| 1030 | **ids** | ids:Actuator | 1 | **Example**: Actuator Specifiers defined in the Intrusion Detection System Profile |
+| 1031 | **ips** | xxxx:Actuator | 1 | **Example**: Actuator Specifiers defined in the Intrusion Prevention System Profile |
+| 1032 | **dlp** | dlp:Actuator | 1 | **Example**: Actuator Specifiers defined in the Data Loss Prevention Profile |
+| 1033 | **swg** | swg:Actuator | 1 | **Example**: Actuator Specifiers defined in the Secure Web Gateway Profile |
 
 #### 3.3.1.4 Command Arguments
 **_Type: Args (Map{1..*})_**
