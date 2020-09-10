@@ -3,7 +3,7 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0 Errata 01
-## Working Draft 15
+## Working Draft 16
 ## 31 October 2019
 
 #### This version:
