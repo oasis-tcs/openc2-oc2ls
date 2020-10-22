@@ -835,7 +835,7 @@ The Command defines an Action to be performed on a Target.
 ### 3.3.2 OpenC2 Response
 OpenC2-Response defines the structure of a response to OpenC2-Command.
 
-**_Type: OpenC2-Response (Map)_**
+**_Type: OpenC2-Response (Record)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
