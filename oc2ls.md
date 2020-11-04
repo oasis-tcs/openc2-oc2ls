@@ -328,7 +328,7 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
 | :--- | :--- |
 | Function-Specific Content | Actuator Profiles<br>([[OpenC2-SLPF-v1.0]](#openc2-slpf-v10), ...) |
 | Common Content | Language Specification<br>(this document) |
-| Message | Transfer Specifications<br>([[OpenC2-HTTPS-v1.0]](#openc2-https-v10), OpenC2-over-CoAP, ...) |
+| Message | Transfer Specifications<br>([[OpenC2-HTTPS-v1.0]](#openc2-https-v10), OpenC2-over-CoAP, ...).  May optionally use the Message structure defined in Common Content. |
 | Secure Transport | HTTPS, CoAP, MQTT, OpenDXL, ... |
 
 * The **Secure Transport** layer provides a communication path between the Producer and the Consumer. OpenC2 can be layered over any standard transport protocol.
@@ -648,6 +648,62 @@ A message is a content- and transport-independent set of elements conveyed betwe
 | **from** | String | Authenticated identifier of the creator of or authority for execution of a message. |
 | **to** | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message. |
 
+As an alternative to using protocol-specific mechanisms to convey message elements, transfer specifications MAY collect all message elements
+into a single Message structure used as a protocol payload. The media type "application/openc2" is reserved with IANA to designate content in
+OpenC2 Message format. The Message structure and its media type are intended to remain stable across future versions of this specification.
+
+**_Type: Message (Record)_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **headers** | Headers | 0..1 |  |
+| 2 | **body** | Body | 1 |  |
+
+Headers contains optional common message elements. Additional constraints on common header values may be defined. Additional headers may be defined.
+
+**_Type: Headers (Map{1..*})_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **request_id** | String | 0..1 |  |
+| 2 | **created** | ls:Date-Time | 0..1 |  |
+| 3 | **from** | String | 0..1 |  |
+| 4 | **to** | String | 0..* |  |
+
+Body indicates the Message content format and is intended to support new types of OpenC2 Content such as command lists
+or bundle objects, but OpenC2 may also assign Body types for non-OpenC2 content such as STIX or CACAO objects.
+
+**_Type: Body (Choice)_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **openc2** | OpenC2-Content | 1 | |
+
+**_Type: OpenC2-Content (Choice)_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
+| 1 | **request** | OpenC2-Command | 1 |  |
+| 2 | **response** | OpenC2-Response | 1 |  |
+| 3 | **notification** | OpenC2-Event | 1 |  |
+
+Example JSON-serialized Message payload:
+```
+{
+  "headers": {
+    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
+    "created": 1595268027000,
+    "from": "Producer1@example.com",
+    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": "deny",
+        "target": {
+          "uri": "http://www.example.com" }}}}}
+```
+
 **Usage Requirements:**
 
 * A Producer MUST include a `request_id` in the Message header of a Command if it requests a Response.
@@ -777,7 +833,9 @@ The Command defines an Action to be performed on a Target.
     * If `response_requested` is not explicitly specified then the Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
-**_Type: OpenC2-Response (Map)_**
+OpenC2-Response defines the structure of a response to OpenC2-Command.
+
+**_Type: OpenC2-Response (Record)_**
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
@@ -824,9 +882,15 @@ The Command defines an Action to be performed on a Target.
 | 2 | **profiles** | ArrayOf(Nsid) | 0..1 | List of profiles supported by this Actuator |
 | 3 | **pairs** | Action-Targets | 0..1 | List of targets applicable to each supported Action |
 | 4 | **rate_limit** | Number{0..*} | 0..1 | Maximum number of requests per minute supported by design or policy |
-| 1024 | **slpf** | slpf:Results | 0..1 | **Example**: Result properties defined in the Stateless Packet Filtering Profile |
 
+### 3.3.3 OpenC2 Event
+OpenC2-Event defines the content of a one-way notification. This structure defines no common event fields, but is the point at which
+profile-defined event content may be added.
 
+**_Type: OpenC2-Event (Map{1..*})_**
+
+| ID | Name | Type | # | Description |
+| ---: | :--- | :--- | ---: | :--- |
 
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
