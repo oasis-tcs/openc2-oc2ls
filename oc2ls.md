@@ -73,92 +73,98 @@ OASIS takes no position regarding the validity or scope of any intellectual prop
 The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
 
 -------
-
-# Table of Contents
--   [1 Introduction](#1-introduction)
-    -   [1.1 IPR Policy](#11-ipr-policy)
-    -   [1.2 Terminology](#12-terminology)
-    -   [1.3 Normative References](#13-normative-references)
-    -   [1.4 Non-Normative References](#14-non-normative-references)
-    -   [1.5 Document Conventions](#15-document-conventions)
-        -   [1.5.1 Naming Conventions](#151-naming-conventions)
-        -   [1.5.2 Font Colors and Style](#152-font-colors-and-style)
-    -   [1.6 Overview](#16-overview)
-    -   [1.7 Goal](#17-goal)
-    -   [1.8 Purpose and Scope](#18-purpose-and-scope)
--   [2 OpenC2 Language Description](#2-openc2-language-description)
-    -   [2.1 OpenC2 Command](#21-openc2-command)
-    -   [2.2 OpenC2 Response](#22-openc2-response)
--   [3 OpenC2 Language Definition](#3-openc2-language-definition)
-    -   [3.1 Base Components and
-        Structures](#31-base-components-and-structures)
-        -   [3.1.1 Data Types](#311-data-types)
-        -   [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
-        -   [3.1.3 Multiplicity](#313-multiplicity)
-        -   [3.1.4 Extensions](#314-extensions)
-        -   [3.1.5 Serialization](#315-serialization)
-    -   [3.2 Message](#32-message)
-    -   [3.3 Content](#33-content)
-        -   [3.3.1 OpenC2 Command](#331-openc2-command)
-            -   [3.3.1.1 Action](#3311-action)
-            -   [3.3.1.2 Target](#3312-target)
-            -   [3.3.1.3 Actuator](#3313-actuator)
-            -   [3.3.1.4 Command Arguments](#3314-command-arguments)
-        -   [3.3.2 OpenC2 Response](#332-openc2-response)
-            -   [3.3.2.1 Response Status Code](#3321-response-status-code)
-            -   [3.3.2.2 Response Results](#3322-response-results)
-    -   [3.4 Type Definitions](#34-type-definitions)
-        -   [3.4.1 Target Types](#341-target-types)
-            -   [3.4.1.1 Artifact](#3411-artifact)
-            -   [3.4.1.2 Device](#3412-device)
-            -   [3.4.1.3 Domain Name](#3413-domain-name)
-            -   [3.4.1.4 Email Address](#3414-email-address)
-            -   [3.4.1.5 Features](#3415-features)
-            -   [3.4.1.6 File](#3416-file)
-            -   [3.4.1.7 Internationalized Domain Name](#3417-internationalized-domain-name)
-            -   [3.4.1.8 Internationalized Email Address](#3418-internationalized-email-address)
-            -   [3.4.1.9 IPv4 Address Range](#3419-ipv4-address-range)
-            -   [3.4.1.10 IPv4 Connection](#34110-ipv4-connection)
-            -   [3.4.1.11 IPv6 Address Range](#34111-ipv6-address-range)
-            -   [3.4.1.12 IPv6 Connection](#34112-ipv6-connection)
-            -   [3.4.1.13 IRI](#34113-iri)
-            -   [3.4.1.14 MAC Address](#34114-mac-address)
-            -   [3.4.1.15 Process](#34115-process)
-            -   [3.4.1.16 Properties](#34116-properties)
-            -   [3.4.1.17 URI](#34117-uri)
-        -   [3.4.2 Data Types](#342-data-types)
-            -   [3.4.2.1 Action-Targets](#3421-action-targets)
-            -   [3.4.2.2 Date-Time](#3422-date-time)
-            -   [3.4.2.3 Duration](#3423-duration)
-            -   [3.4.2.4 Feature](#3424-feature)
-            -   [3.4.2.5 Hashes](#3425-hashes)
-            -   [3.4.2.6 Hostname](#3426-hostname)
-            -   [3.4.2.7 Internationalized Hostname](#3427-internationalized-hostname)
-            -   [3.4.2.8 IPv4 Address](#3428-ipv4-address)
-            -   [3.4.2.9 IPv6 Address](#3429-ipv6-address)
-            -   [3.4.2.10 L4 Protocol](#34210-l4-protocol)
-            -   [3.4.2.11 Message-Type](#34211-message-type)
-            -   [3.4.2.12 Namespace Identifier](#34212-namespace-identifier)
-            -   [3.4.2.13 Payload](#34213-payload)
-            -   [3.4.2.14 Port](#34214-port)
-            -   [3.4.2.15 Response-Type](#34215-response-type)
-            -   [3.4.2.16 Version](#34216-version)
--   [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
-    -   [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
-    -   [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
--   [5 Conformance](#5-conformance)
-    -   [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
-    -   [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
-    -   [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
-    -   [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
--   [Annex A. Examples](#annex-a-examples)
-    -   [A.1 Example 1](#a1-example-1)
-    -   [A.2 Example 2](#a2-example-2)
-    -   [A.3 Example 3](#a3-example-3)
--   [Annex B. Acronyms](#annex-b-acronyms)
--   [Annex C. Design Elements](#annex-c-design-elements)
--   [Annex D. Revision History](#annex-d-revision-history)
--   [Annex E. Acknowledgments](#annex-e-acknowledgments)
+- [1 Introduction](#1-introduction)
+  - [1.1 IPR Policy](#11-ipr-policy)
+  - [1.2 Terminology](#12-terminology)
+  - [1.3 Normative References](#13-normative-references)
+  - [1.4 Non-Normative References](#14-non-normative-references)
+  - [1.5 Document Conventions](#15-document-conventions)
+    - [1.5.1 Naming Conventions](#151-naming-conventions)
+    - [1.5.2 Font Colors and Style](#152-font-colors-and-style)
+  - [1.6 Overview](#16-overview)
+  - [1.7 Goal](#17-goal)
+  - [1.8 Purpose and Scope](#18-purpose-and-scope)
+- [2 OpenC2 Language Description](#2-openc2-language-description)
+  - [2.1 OpenC2 Command](#21-openc2-command)
+  - [2.2 OpenC2 Response](#22-openc2-response)
+- [3 OpenC2 Language Definition](#3-openc2-language-definition)
+  - [3.1 Base Components and Structures](#31-base-components-and-structures)
+    - [3.1.1 Data Types](#311-data-types)
+    - [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
+    - [3.1.3 Multiplicity](#313-multiplicity)
+    - [3.1.4 Extensions](#314-extensions)
+    - [3.1.5 Serialization](#315-serialization)
+      - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
+  - [3.2 Message](#32-message)
+          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
+  - [3.3 Content](#33-content)
+    - [3.3.1 OpenC2 Command](#331-openc2-command)
+      - [3.3.1.1 Action](#3311-action)
+      - [3.3.1.2 Target](#3312-target)
+      - [3.3.1.3 Actuator](#3313-actuator)
+      - [3.3.1.4 Command Arguments](#3314-command-arguments)
+    - [3.3.2 OpenC2 Response](#332-openc2-response)
+      - [3.3.2.1 Response Status Code](#3321-response-status-code)
+      - [3.3.2.2 Response Results](#3322-response-results)
+    - [3.3.3 OpenC2 Event](#333-openc2-event)
+    - [3.3.4 Message Signatures](#334-message-signatures)
+  - [3.4 Type Definitions](#34-type-definitions)
+    - [3.4.1 Target Types](#341-target-types)
+      - [3.4.1.1 Artifact](#3411-artifact)
+      - [3.4.1.2 Device](#3412-device)
+      - [3.4.1.3 Domain Name](#3413-domain-name)
+      - [3.4.1.4 Email Address](#3414-email-address)
+      - [3.4.1.5 Features](#3415-features)
+      - [3.4.1.6 File](#3416-file)
+      - [3.4.1.7 Internationalized Domain Name](#3417-internationalized-domain-name)
+      - [3.4.1.8 Internationalized Email Address](#3418-internationalized-email-address)
+      - [3.4.1.9 IPv4 Address Range](#3419-ipv4-address-range)
+      - [3.4.1.10 IPv4 Connection](#34110-ipv4-connection)
+      - [3.4.1.11 IPv6 Address Range](#34111-ipv6-address-range)
+      - [3.4.1.12 IPv6 Connection](#34112-ipv6-connection)
+      - [3.4.1.13 IRI](#34113-iri)
+      - [3.4.1.14 MAC Address](#34114-mac-address)
+      - [3.4.1.15 Process](#34115-process)
+      - [3.4.1.16 Properties](#34116-properties)
+      - [3.4.1.17 URI](#34117-uri)
+    - [3.4.2 Data Types](#342-data-types)
+      - [3.4.2.1 Action-Targets](#3421-action-targets)
+      - [3.4.2.2 Date-Time](#3422-date-time)
+      - [3.4.2.3 Duration](#3423-duration)
+      - [3.4.2.4 Feature](#3424-feature)
+      - [3.4.2.5 Hashes](#3425-hashes)
+      - [3.4.2.6 Hostname](#3426-hostname)
+      - [3.4.2.7 Internationalized Hostname](#3427-internationalized-hostname)
+      - [3.4.2.8 IPv4 Address](#3428-ipv4-address)
+      - [3.4.2.9 IPv6 Address](#3429-ipv6-address)
+      - [3.4.2.10 L4 Protocol](#34210-l4-protocol)
+      - [3.4.2.11 Message-Type](#34211-message-type)
+      - [3.4.2.12 Namespace Identifier](#34212-namespace-identifier)
+      - [3.4.2.13 Payload](#34213-payload)
+      - [3.4.2.14 Port](#34214-port)
+      - [3.4.2.15 Response-Type](#34215-response-type)
+      - [3.4.2.16 Command-ID](#34216-command-id)
+      - [3.4.2.17 Version](#34217-version)
+- [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
+  - [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
+  - [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
+    - [4.2.1 Example 1](#421-example-1)
+    - [4.2.2 Example 2](#422-example-2)
+- [5 Conformance](#5-conformance)
+    - [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
+    - [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
+  - [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
+  - [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
+- [Annex A. Examples](#annex-a-examples)
+  - [A.1 Example 1](#a1-example-1)
+  - [A.2 Example 2](#a2-example-2)
+  - [A.3 Example 3](#a3-example-3)
+  - [A.4 Example 4](#a4-example-4)
+- [Annex B. Acronyms](#annex-b-acronyms)
+- [Annex C. Design Elements](#annex-c-design-elements)
+  - [C.1 Derived Enumerations](#c1-derived-enumerations)
+- [Annex D. Revision History](#annex-d-revision-history)
+- [Annex E. Acknowledgments](#annex-e-acknowledgments)
 
 -------
 
@@ -246,12 +252,16 @@ Yao, J. and W. Mao, "SMTP Extension for Internationalized Email", RFC 6531, DOI 
 Freed, N., Klensin, J., and T. Hansen, "Media Type Specifications and Registration Procedures", BCP 13, RFC 6838, DOI 10.17487/RFC6838, January 2013, <https://www.rfc-editor.org/info/rfc6838>.
 ###### [RFC7493]
 Bray, T., Ed., "The I-JSON Message Format", RFC 7493, DOI 10.17487/RFC7493, March 2015, <https://www.rfc-editor.org/info/rfc7493>.
+###### [RFC7515]
+Jones, M., Bradley, J., and N. Sakimura, "JSON Web Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May 2015, <https://www.rfc-editor.org/info/rfc7515>.
 ###### [RFC8174]
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 ###### [RFC8200]
 Deering, S. and R. Hinden, "Internet Protocol, Version 6 (IPv6) Specification", STD 86, RFC 8200, DOI 10.17487/RFC8200, July 2017, <https://www.rfc-editor.org/info/rfc8200>.
 ###### [RFC8259]
 Bray, T., Ed., "The JavaScript Object Notation (JSON) Data Interchange Format", STD 90, RFC 8259, DOI 10.17487/RFC8259, December 2017, <https://www.rfc-editor.org/info/rfc8259>.
+###### [RFC8785]
+Rundgren, A., Jordan, B., and S. Erdtman, "JSON Canonicalization Scheme (JCS)", RFC 8785, DOI 10.17487/RFC8785, June 2020, <https://www.rfc-editor.org/info/rfc8785>.
 ###### [EUI]
 "IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE, August 2017, https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
 
@@ -658,8 +668,12 @@ OpenC2 Message format. The Message structure and its media type are intended to 
 | ---: | :--- | :--- | ---: | :--- |
 | 1 | **headers** | Headers | 0..1 |  |
 | 2 | **body** | Body | 1 |  |
+| 3 | **signature** | String | 0..1 |  |
 
-Headers contains optional common message elements. Additional constraints on common header values may be defined. Additional headers may be defined.
+Headers contains optional common message elements. Additional constraints on
+common header values may be defined. Additional headers may be defined. The
+"signature" field is use to contain an option digital signature to provide
+source authentication and integrity protections of the OpenC2 message.
 
 **_Type: Headers (Map{1..*})_**
 
@@ -687,7 +701,7 @@ or bundle objects, but OpenC2 may also assign Body types for non-OpenC2 content 
 | 2 | **response** | OpenC2-Response | 1 |  |
 | 3 | **notification** | OpenC2-Event | 1 |  |
 
-Example JSON-serialized Message payload:
+Example JSON-serialized Message payload (without signature):
 ```
 {
   "headers": {
@@ -891,6 +905,62 @@ profile-defined event content may be added.
 
 | ID | Name | Type | # | Description |
 | ---: | :--- | :--- | ---: | :--- |
+
+<br>
+<br>
+
+### 3.3.4 Message Signatures
+
+Command and control mechanisms need to provide appropriate
+security controls protecting message content (especially
+authentication of command origin and protection of command
+integrity) so that Consumers receiving commands can proceed to
+execute them with confidence and Producers can have confidence
+that the feedback in response messages is meaningful. Digital
+signatures can provide both of those security properties. OpenC2
+messages can be protected with digital signatures using standard
+mechanisms. The following RFCs specify mechanisms for digital
+signature protection of JSON-encoded content:
+
+ * RFC 7515: JSON Web Signature (JWS) [RFC7515]
+ * RFC 8785: JSON Canonicalization Scheme (JCS) [RFC8785]
+ * RFC 7493: The I-JSON Format [RFC7493]
+
+OpenC2 messages SHOULD be digitally signed, unless message
+integrity and source authentication are provided by other
+mechanisms.
+
+OpenC2 messages serialized in JSON MUST conform to the
+requirements of RFC 7493 to support canonicalization.
+
+Digitally-signed OpenC2 messages serialized in JSON MUST be
+signed using JSON Web Signature in accordance with RFC 7515.
+
+Digitally-signed OpenC2 messages serialized in JSON MUST use the
+JWS Compact Serialization method described in RFC 7515, Section
+3.1.
+
+Digitally-signed OpenC2 messages MUST use the  “Detached Content”
+format described in Appendix F of RFC 75151, and MUST NOT include
+the Base64url-encoded JWS content (i.e., the encoding of the
+OpenC2 message content) in the transmitted message.
+
+The JWS signature for a digitally-signed OpenC2 message SHALL be
+placed in the optional “signature” field of the Message structure
+defined in Section 3.2.
+
+An example of creating and validating an OpenC2 message signature
+is contained in [Annex A, Example 4](#a4-example-4).
+
+The method for message recipients to identify and validate the
+appropriate public key to validate a message signature is beyond
+the scope of this specification.  Alternative, appropriate
+signature mechanisms may need to be specified for serializations
+other than JSON. 
+
+
+
+
 
 ## 3.4 Type Definitions
 ### 3.4.1 Target Types
@@ -1406,6 +1476,219 @@ This is a notional example of a Command issued to a non-standard Actuator. A Pro
     }
 }
 ```
+
+## A.4 Example 4
+
+This example illustrates the creation and validation of a JSON
+message signature, as specified in [3.3.4 Message
+Signatures](#334-message-signatures). The example in this section
+was prepared using the on-line JWS tool at
+https://mobilepki.org/jws-ct/create, using the ES256 algorithm.
+Base64url-encoded data and canonicalized JSON in the example are
+shown with line wrapping for presentation only.
+
+### A4.1 OpenC2 Message Signature 
+The user embeds the signature field into the end of the
+payload that carries all the data required to validate
+authenticity and integrity of the payload. This should be done as
+a last step before transfer and only for the purposes of
+transferring the signature along with the payload. Once the
+payload is received the receiver should strip off the signature
+field from the payload, validate the signature, validate the
+content, and then process the contents. The process in which a
+particular payload will be signed will be determined by the
+serialization utilized.
+
+In JSON we can accomplish this by utilizing well know [RFC8785]
+JSON Web Signatures (JWS) and [RFC7515] JSON Canonicalizing Scheme
+(JCS). Although [RFC7515] supports a variety of configurations, for
+this example we will use the ES256 algorithm and assume that the
+receiver has a mechanism to discover the correct public key. The
+following is a generic approach, many libraries in multiple
+programming languages exist that can alter/simplify this process.
+
+
+### A.4.2 OpenC2 Signing Operation (JSON)
+
+#### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification.
+
+```JSON
+{
+  "headers": {
+    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
+    "created": 1595268027000,
+    "from": "Producer1@example.com",
+    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": "deny",
+        "target": {
+          "uri": "http://www.example.com" 
+                }
+            }
+        }
+    }
+}
+```
+
+#### 2. Canonicalize JSON Data using the process described in RFC8785.
+```JSON 
+{"body":{"openc2":{"request":{"action":"deny",
+"target":{"uri":"http://www.example.com"}}}},
+"headers":{"created":1595268027000,
+"from":"Producer1@example.com",
+"request_id":"95ad511c-3339-4111-9c47-9156c47d37d3",
+"to":["consumer1@example.com","consumer2@example.com","consumer3@example.com"]}}
+```
+
+#### 3. Create a JWS using the process described in RFC7515. 
+
+##### A. Develop a protected header for the type of signature that will be used. 
+```JSON
+{
+    "alg": "ES256",
+    "kid": "Producer1@example.com"
+}
+```
+
+##### B. Base64 encode the protected header.
+
+> eyJhbGciOiJFUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9
+
+
+##### C. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload.
+
+> eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
+
+
+##### D. Concatenate the JWS protected header and the JWS payload using with a period character to create our signing input.
+
+> eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9
+> . 
+> eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
+
+
+##### E. Utilize the signing input, ES256 algorithm, and the sender's private key to calculate the signature.
+
+```
+-----BEGIN PRIVATE KEY-----
+MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg6XxMFXhcYT5QN9w5TIg2aSKsbcj+
+pj4BnZkK7ZOt4B+gCgYIKoZIzj0DAQehRANCAAToErGm3Lxwj57EPMKSH6ChTp1ercxtxjRx3Uto
+DGI2tZgm3L1M5uOI9y7dm+QT8kJaEPdbX9g9lfoM3lMVmlHY
+-----END PRIVATE KEY-----
+```
+
+Signature value:
+> PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
+
+
+##### F. Normally at this point we would concatenate all 3 with a period character to create our JWS. However, in order to reduce overhead, we will be using detached version of JWS. To do this we replace the JWS payload portion with an empty string.
+
+> eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
+
+
+#### 4. Add the detached JWS back into the original OpenC2 JSON object under the property “signature”.
+```JSON
+{
+  "headers": {
+    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
+    "created": 1595268027000,
+    "from": "Producer1@example.com",
+    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": "deny",
+        "target": {
+          "uri": "http://www.example.com" 
+                }
+            }
+        }
+    }
+    "signature": "eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw"
+}
+```
+#### 5. Serialize the signed OpenC2 JSON object and send to recipient(s).
+
+
+
+***
+
+
+# OpenC2 Signing Validation (JSON)
+
+#### 1.	Parse the received OpenC2 JSON object and separate out the signature. This should yield:
+
+* ##### A. Original OpenC2 JSON object.
+```JSON
+{
+  "headers": {
+    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
+    "created": 1595268027000,
+    "from": "Producer1@example.com",
+    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
+  },
+  "body": {
+    "openc2": {
+      "request": {
+        "action": "deny",
+        "target": {
+          "uri": "http://www.example.com" 
+                }
+            }
+        }
+    }
+}
+```
+
+* ##### B. Original Detached JWS.
+
+> eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
+
+
+#### 2. Canonicalize JSON Data using the process described in RFC8785.
+```JSON 
+{"body":{"openc2":{"request":{"action":"deny","target":{"uri":"http://www.example.com"}}}},
+"headers":{"created":1595268027000,"from":"Producer1@example.com","request_id":"95ad511c-3339-4111-9c47-9156c47d37d3",
+"to":["consumer1@example.com","consumer2@example.com","consumer3@example.com"]}}
+```
+
+#### 3. Create a JWS using the process described in RFC7515.
+
+* ##### A. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload
+
+> eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
+
+
+* ##### B. Overwrite the detached JWS empty string between the first and second period characters with the JWS payload to create a standard, non-detached, JWS.
+
+> eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9.eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ.PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
+
+
+#### 4. Follow the JWS validation process described in RFC7515. 
+
+##### A. Save the JWS signing Input (which is the initial substring of the JWS up until but not including the second period character)
+
+> eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9.eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
+
+
+##### B. Save the JWS signature (Which is the string following but not including the second period character)
+
+> PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
+
+
+##### C. Pass the public key, the JWS signature, and the JWS signing input to an ES256 signature verifier.  Expect a Boolean response.
+```
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6BKxpty8cI+exDzCkh+goU6dXq3MbcY0cd1LaAxi
+NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
+-----END PUBLIC KEY-----
+```
+
+
 
 -------
 
