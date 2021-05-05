@@ -3,8 +3,8 @@
 -------
 
 # Open Command and Control (OpenC2) Language Specification Version 1.0 Errata 01
-## Working Draft 16
-## 31 October 2019
+## Working Draft 17
+## 28 April 2021
 
 #### This version:
 https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.md (Authoritative) \
@@ -1519,7 +1519,14 @@ _The content in this section is non-normative._
 
 -------
 
-# Annex E. Acknowledgments
+# Appendix A. References
+
+--------
+# Appendix B. Safety, Security and Privacy Considerations
+
+-------
+
+# Appendix C. Acknowledgments
 
 _The content in this section is non-normative._
 
@@ -1588,3 +1595,15 @@ Sean | Welsh | AT&T
 Charles | White | Fornetix
 Sounil | Yu | Bank of America
 Vasileios | Mavroeidis | University of Oslo
+
+----
+Appendix D. Revision History
+
+----
+Appendix E. Examples
+
+
+
+----
+
+Appendix F. Notices
