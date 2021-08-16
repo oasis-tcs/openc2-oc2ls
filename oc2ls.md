@@ -32,18 +32,17 @@ https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.pdf
 [OASIS Open Command and Control (OpenC2)
 TC](https://www.oasis-open.org/committees/openc2/)
 
-#### Chairs:
+#### Chair:
 
-Joe Brule (jmbrule@nsa.gov), [National Security Agency](https://www.nsa.gov/)  
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
 LLC](http://www.sfractal.com/)
 
 #### Editors:
 
-Jason Romano (jdroman@nsa.gov), [National Security Agency](https://www.nsa.gov/)
-
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
 LLC](http://www.sfractal.com/)
+
+ Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
 #### Abstract:
 
@@ -2318,7 +2317,7 @@ multiple programming languages exist that can alter/simplify this process.
       "request": {
         "action": "deny",
         "target": {
-          "uri": "http://www.example.com" 
+          "uri": "http://www.example.com"
                 }
             }
         }
@@ -2394,7 +2393,7 @@ Signature value:
       "request": {
         "action": "deny",
         "target": {
-          "uri": "http://www.example.com" 
+          "uri": "http://www.example.com"
                 }
             }
         }
@@ -2424,7 +2423,7 @@ Signature value:
       "request": {
         "action": "deny",
         "target": {
-          "uri": "http://www.example.com" 
+          "uri": "http://www.example.com"
                 }
             }
         }
