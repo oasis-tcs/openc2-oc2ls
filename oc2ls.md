@@ -1,31 +1,31 @@
 ![](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
-# Open Command and Control (OpenC2) Language Specification Version 1.0
+# Open Command and Control (OpenC2) Language Specification Version 1.1
 
-## Working Draft 18
+## Working Draft 1
 
-## 3 June 2021
+## 18 Aug 2021
 
 #### This version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.pdf
 
 #### Previous version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs01/oc2ls-v1.0-cs01.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.pdf
 
 #### Latest version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.pdf
 
 #### Technical Committee:
 
@@ -94,12 +94,12 @@ in the separate plain text file prevails.
 When referencing this specification the following citation format should be
 used:
 
-**[OpenC2-Lang-v1.0]**
+**[OpenC2-Lang-v1.1]**
 
-*Open Command and Control (OpenC2) Language Specification Version 1.0*. Edited
+*Open Command and Control (OpenC2) Language Specification Version 1.1*. Edited
 by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v1.0/cs02/oc2ls-v1.0-cs02.html.
-Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
+01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html.
+Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 ## Notices
 
@@ -499,7 +499,7 @@ exchange.
 The OpenC2 Language Specification defines a language used to compose Messages
 for command and control of cyber defense systems and components. A Message
 consists of a header and a payload (*defined* as a Message body in the OpenC2
-Language Specification Version 1.0 and *specified* in one or more Actuator
+Language Specification Version 1.1 and *specified* in one or more Actuator
 profiles).
 
 The language defines two payload structures:
@@ -1044,7 +1044,7 @@ does not affect interoperability and is therefore beyond the scope of OpenC2.
 | Name             | Type            | Description                                                                                                                                                                                                                                                                                                           |
 |------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **content**      |                 | Message body as specified by content_type and msg_type.                                                                                                                                                                                                                                                               |
-| **content_type** | String          | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types. Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.0. |
+| **content_type** | String          | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types. Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.1. |
 | **msg_type**     | Message-Type    | The type of OpenC2 Message.                                                                                                                                                                                                                                                                                           |
 | **status**       | Status-Code     | Populated with a numeric status code in Responses.                                                                                                                                                                                                                                                                    |
 | **request_id**   | String          | A unique identifier created by the Producer and copied by Consumer into all Responses, in order to support reference to a particular Command, transaction, or event chain.                                                                                                                                            |
@@ -1313,7 +1313,7 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 {
     "status": 200,
     "results": {
-        "versions": ["1.0"]
+        "versions": ["1.1"]
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1860,7 +1860,7 @@ requested features can be returned in a single Response Message.
 {
     "status": 200,
     "results": {
-        "versions": ["1.0"],
+        "versions": ["1.1"],
         "profiles": ["slpf", "x-lock"],
         "rate_limit": 30
     }
@@ -2527,28 +2527,7 @@ the "Target" data type.
 
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
-| v1.0-wd01  | 10/31/2017 | Romano, Sparrell | Initial working draft                                                                                     |
-| v1.0-csd01 | 11/14/2017 | Romano, Sparrell | approved wd01                                                                                             |
-| v1.0-wd02  | 01/12/2018 | Romano, Sparrell | csd01 ballot commentsTargets                                                                              |
-| v1.0-wd03  | 01/31/2018 | Romano, Sparrell | wd02 review comments                                                                                      |
-| v1.0-csd02 | 02/14/2018 | Romano, Sparrell | approved wd03                                                                                             |
-| v1.0-wd04  | 03/02/2018 | Romano, Sparrell | Property tablesthreads (cmd/resp) from use casesprevious comments                                         |
-| v1.0-wd05  | 03/21/2018 | Romano, Sparrell | wd04 review comments                                                                                      |
-| v1.0-csd03 | 04/03/2018 | Romano, Sparrell | approved wd05                                                                                             |
-| v1.0-wd06  | 05/15/2018 | Romano, Sparrell | Finalizing message structuremessage=header+bodyReview commentsUsing word 'arguments' instead of 'options' |
-| v1.0-csd04 | 5/31/2018  | Romano, Sparrell | approved wd06                                                                                             |
-| v1.0-wd07  | 7/11/2018  | Romano, Sparrell | Continued refinement of detailsReview commentsMoved some Actions and Targets to reserved lists            |
-| v1.0-wd08  | 10/05/2018 | Romano, Sparrell | Continued refinement of detailsReview comments                                                            |
-| v1.0-wd09  | 10/17/2018 | Romano, Sparrell | Additional review comments to create wd09 for CSD approval and release for public review.                 |
-| v1.0-wd10  | 03/04/2019 | Romano, Sparrell | Produce interim working draft.                                                                            |
-| v1.0-wd11  | 03/21/2019 | Romano, Sparrell | Produce interim working draft.                                                                            |
-| v1.0-wd12  | 03/27/2019 | Romano, Sparrell | Produce candidate working draft for next public review.                                                   |
-| v1.0-wd13  | 05/14/2019 | Romano, Sparrell | Incorporated comments from CSPRD02.                                                                       |
-| v1.0-wd14  | 05/23/2019 | Romano, Sparrell | Incorporated comments from WD13 ballot.                                                                   |
-| v1.0-wd15  | 05/23/2019 | Romano, Sparrell | Incorporated Errata edited by David Kemp.                                                                 |
-| v1.0-wd16  | 05/19/2020 | Considine, Toby  | Release                                                                                                   |
-| v1.0-wd17  | 06/03/2021 | Considine, Toby  | Release prior to document reorganization to align with current OASIS expectations                         |
-| v1.0-wd18  | 06/03/2021 | Considine, Toby  | Release after document reorganization to align with current OASIS expectations                            |
+| v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
 
 # Appendix F. Acknowledgments
 
