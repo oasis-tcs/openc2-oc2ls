@@ -2,9 +2,9 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 1.1
 
-## Working Draft 1
+## Working Draft 2
 
-## 18 Aug 2021
+## 18 Aug 2021 {put in new date}
 
 #### This version:
 
