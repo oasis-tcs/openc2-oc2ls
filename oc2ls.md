@@ -1243,6 +1243,7 @@ The Command defines an Action to be performed on a Target.
 | 1031 | **ips**  | xxxx:Actuator | 1  | **Example**: Actuator Specifiers defined in the Intrusion Prevention System Profile         |
 | 1032 | **dlp**  | dlp:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Data Loss Prevention Profile                |
 | 1033 | **swg**  | swg:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Secure Web Gateway Profile                  |
+| 1034 |  **pf**  | pf:Actuator   | 1  | **Example**: Actuator Specifiers defined in the Packet Filter Profile.                      |
 
 #### 3.3.1.4 Command Arguments
 
