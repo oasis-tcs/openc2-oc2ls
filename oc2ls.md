@@ -2,9 +2,9 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 1.1
 
-## Working Draft 1
+## Working Draft 2
 
-## 18 Aug 2021
+## 18 Aug 2021 {put in new date}
 
 #### This version:
 
@@ -2137,6 +2137,10 @@ Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security
 Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003,
 https://www.rfc-editor.org/info/rfc3552.
 
+###### [IACD]
+
+"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018  ,https://www.iacdautomate.org/
+
 # Appendix B. Safety, Security and Privacy Considerations
 
 (Note: OASIS strongly recommends that Technical Committees consider issues that
@@ -2161,7 +2165,7 @@ We encourage editors and TC members concerned with this subject to read
 *Guidelines for Writing RFC Text on Security Considerations*, IETF
 [[RFC3552](#rfc3552)], for more information.
 
-Remove this note before submitting for publication.)
+Remove this note before submitting for publication.)  **{TO DO}**
 
 # Appendix C. Examples
 
