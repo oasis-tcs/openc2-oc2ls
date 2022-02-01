@@ -16,8 +16,8 @@ sections below.
 
 This repository supports the [OpenC2
 TC's](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2)
-work to define the elements of OpenC2 language and the mechanisms
-for extending it.
+work to define the elements of Open Command and Control (OpenC2)
+language and the mechanisms for extending it.
 
 
 ### :twisted_rightwards_arrows: Repository Organization :twisted_rightwards_arrows:
@@ -50,17 +50,19 @@ execute, dynamic and automated. The provision of cyber defense
 via statically configured products operating in isolation is
 untenable. Standardized interfaces, protocols and data models
 will facilitate the integration of the functional blocks within a
-system and between systems. Open Command and Control (OpenC2) is
-a concise and extensible language to enable machine-to-machine
-communications for purposes of command and control of cyber
-defense components, subsystems and/or systems in a manner that is
-agnostic of the underlying products, technologies, transport
-mechanisms or other aspects of the implementation. It should be
-understood that a language such as OpenC2 is necessary but
-insufficient to enable coordinated cyber responses that occur
-within cyber relevant time. Other aspects of coordinated cyber
-response such as sensing, analytics, and selecting appropriate
-courses of action are beyond the scope of OpenC2.
+system and between systems. 
+
+**Open Command and Control (OpenC2)** is a concise and extensible
+language to enable machine-to-machine communications for purposes
+of command and control of cyber defense components, subsystems
+and/or systems in a manner that is agnostic of the underlying
+products, technologies, transport mechanisms or other aspects of
+the implementation. It should be understood that a language such
+as OpenC2 is necessary but insufficient to enable coordinated
+cyber responses that occur within cyber relevant time. Other
+aspects of coordinated cyber response such as sensing, analytics,
+and selecting appropriate courses of action are beyond the scope
+of OpenC2.
 
 
 
@@ -69,9 +71,10 @@ courses of action are beyond the scope of OpenC2.
 As stated in this repository's
 [CONTRIBUTING](https://github.com/oasis-tcs/openc2-oc2ls/blob/published/CONTRIBUTING.md)
 file, contributors to this repository must be Members of the
-OASIS OpenC2 TC for any substantive contributions or change
-requests.  Anyone wishing to contribute to this GitHub project
-and
+OASIS [OpenC2
+TC](https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2)
+for any substantive contributions or change requests.  Anyone
+wishing to contribute to this GitHub project and
 [participate](https://www.oasis-open.org/join/participation-instructions)
 in the TC's technical activity is invited to join as an OASIS TC
 Member. Public feedback is also accepted, subject to the terms of
