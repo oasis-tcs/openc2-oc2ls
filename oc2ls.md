@@ -1253,7 +1253,7 @@ The Command defines an Action to be performed on a Target.
 |----|------------------------|---------------|------|-------------------------------------------------------------------------------------|
 | 1  | **start_time**         | Date-Time     | 0..1 | The specific date/time to initiate the Command                                      |
 | 2  | **stop_time**          | Date-Time     | 0..1 | The specific date/time to terminate the Command                                     |
-| 3  | **duration**           | Duration      | 0..1 | The length of time for an Command to be in effect                                   |
+| 3  | **duration**           | Duration      | 0..1 | The length of time for a Command to be in effect                                   |
 | 4  | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: `none`, `ack`, `status`, `complete`. |
 
 **Usage Requirements:**
