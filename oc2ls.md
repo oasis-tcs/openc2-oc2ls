@@ -698,7 +698,7 @@ of each profile that supports the command's combination of action and target.
 
 ## 2.2 OpenC2 Response
 
-The Response is a Message sent from the recipient of a Ccommand. Response
+The Response is a Message sent from the recipient of a Command. Response
 messages provide acknowledgment, status, results from a query, or other
 information. At a minimum, a Response will contain a status code to indicate the
 result of performing the Command. Additional status text and response fields
