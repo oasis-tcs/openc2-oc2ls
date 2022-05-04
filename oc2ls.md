@@ -552,8 +552,8 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
     Consumers will support one or more profiles.
 
 The components of a Command are an Action (what is to be done), a Target (what
-is being acted upon), an optional Actuator (what is performing the command), and
-Command Arguments, which influence how the Command is to be performed. An Action
+is being acted upon), an optional Actuator (the function performed by the Consumer),
+and Command Arguments, which influence how the Command is to be performed. An Action
 coupled with a Target is sufficient to describe a complete Command. Though
 optional, the inclusion of an Actuator and/or Command Arguments provides
 additional precision to a Command.
@@ -629,7 +629,7 @@ be agnostic of the other aspects of cyber defense implementations that realize
 these assumptions. The following items are beyond the scope of this
 specification:
 
-1.  Language elements applicable to some Actuators, which may be defined in
+1.  Language elements applicable to some Actuator functions, which may be defined in
     individual Actuator profiles.
 
 2.  Alternate serializations of Commands and Responses.
@@ -643,39 +643,32 @@ specification:
 
 The OpenC2 language has two distinct content types: Command and Response. The
 Command is sent from a Producer to a Consumer and describes an Action to be
-performed by an Actuator on a Target. The Response is sent from a Consumer,
+performed by the Consumer on a Target. The Response is sent from a Consumer,
 usually back to the Producer, and is a means to provide information (such as
 acknowledgment, status, etc.) as a result of a Command.
 
 ## 2.1 OpenC2 Command
 
-The Command describes an Action to be performed on a Target and may include
-information identifying the Actuator or Actuators that are to execute the
-Command.
-
-A Command has four main components, two required and two optional. The required
-components are the Action and the Target. The optional components are Command
-Arguments and the Actuator. A Command can also contain an optional Command
+A command has four main components, two required and two optional. The required
+components are the Action and the Target. The optional components are command
+Arguments and the Actuator function. A command can also contain an optional Command
 identifier, if necessary. [Section 3.3.1](#331-openc2-command) defines the
 syntax of an OpenC2 Command.
 
-The following list summarizes the main four components of a Command.
+The following list summarizes the main four components of a command.
 
--   **Action** (required): The task or activity to be performed.
+- **Action** (required): The task or activity to be performed.
 
--   **Target** (required): The object of the action. The Action is performed on
+- **Target** (required): The object of the action. The Action is performed on
     the Target. Properties of the Target, called Target Specifiers, further
     identify the Target to some level of precision, such as a specific Target, a
     list of Targets, or a class of Targets.
 
--   **Arguments** (optional): Provide additional information on how the command
+- **Arguments** (optional): Provide additional information on how the command
     is to be performed, such as date/time, periodicity, duration, etc.
 
--   **Actuator** (optional): The Actuator executes the Command. The Actuator
-    will be defined within the context of an Actuator Profile. Properties of the
-    Actuator, called Actuator Specifiers, further identify the Actuator to some
-    level of precision, such as a specific Actuator, a list of Actuators, or a
-    group of Actuators.
+- **Actuator** (optional): Specifies the Actuator Profile that defines the
+    function to be performed by the command.
 
 The Action and Target components are required and are populated by one of the
 Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section
@@ -683,25 +676,25 @@ Actions in [Section 3.3.1.1](#3311-action) and the Targets in [Section
 type definitions in [Section 3.4.1](#341-target-types). Procedures to extend the
 Targets are described in [Section 3.1.4](#314-extensions).
 
-Command Arguments, if present, influence the Command by providing information
+Command Arguments, if present, influence the command by providing information
 such as timing, periodicity, duration, or other details on what is to be
 executed. They can also be used to convey the need for acknowledgment or
-additional status information about the execution of a Command. The valid
+additional status information about the execution of a command. The valid
 Arguments defined in this specification are in [Section
 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described
 in [Section 3.1.4](#314-extensions).
 
-An Actuator is an implementation of a cyber defense function that executes the
-Command. An Actuator Profile is a specification that identifies the subset of
-Actions, Targets and other aspects of this language specification that are
-required or optional in the context of a particular Actuator. An Actuator
-Profile may extend the language by defining additional Targets, Arguments, and
-Actuator Specifiers that are meaningful and possibly unique to the Actuator.
-
-The Actuator may be omitted from a Command and typically will not be included in
-implementations where the identities of the endpoints are unambiguous or when a
-high-level effects-based Command is desired and the tactical decisions on how
-the effect is achieved is left to the recipient.
+The Actuator field, if present, specifies a profile-defined function to be
+performed. A Consumer executes the command if it supports the specified profile,
+otherwise the command is ignored. Optional profile-defined specifiers may
+be included to further limit command execution to a subset of Consumers that
+support the profile.
+The Actuator field may be omitted and typically will not be included in
+implementations where the functions of the recipients are unambiguous or when a
+high-level effects-based command is desired and tactical decisions on how
+the effect is achieved is left to the recipient. If Actuator is omitted and the
+recipient supports multiple profiles, the command will be executed in the context
+of each profile that supports the command's combination of action and target.
 
 ## 2.2 OpenC2 Response
 
@@ -1135,12 +1128,9 @@ a Command and the common portions of a Response. The properties of the Command
 are defined in [Section 3.3.1](#331-openc2-command) and the properties of the
 Response are defined in [Section 3.3.2](#332-openc2-response).
 
-In addition to the Action and Target, a Command has an optional Actuator. Other
-than identification of namespace identifier, the semantics associated with the
-Actuator Specifiers are defined in Actuator Profiles. The Actuators and
-Actuator-specific results contained in a Response are specified in 'Actuator
-Profile Specifications' such as StateLess Packet Filtering Profile, Routing
-Profile etc.
+In addition to the Action and Target, a Command has an optional Actuator field.
+The semantics associated with Command and Response content for the specified
+Actuator function are defined in Actuator Profiles.
 
 ### 3.3.1 OpenC2 Command
 
@@ -1148,13 +1138,13 @@ The Command defines an Action to be performed on a Target.
 
 **Type: OpenC2-Command (Record)**
 
-| ID | Name           | Type       | \#   | Description                                                                |
-|----|----------------|------------|------|----------------------------------------------------------------------------|
-| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').                   |
-| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.           |
-| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.                        |
-| 4  | **actuator**   | Actuator   | 0..1 | The subject of the Action. The Actuator executes the Action on the Target. |
-| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                             |
+| ID | Name           | Type       | \#   | Description                                                       |
+|----|----------------|------------|------|-------------------------------------------------------------------|
+| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').          |
+| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.  |
+| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.               |
+| 4  | **actuator**   | Actuator   | 0..1 | The profile defining the function to be performed by the Command. |
+| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                    |
 
 **Usage Requirements:**
 
@@ -1230,6 +1220,8 @@ The Command defines an Action to be performed on a Target.
 #### 3.3.1.3 Actuator
 
 **Type: Actuator (Choice)**
+Table 3.3.1.4 lists the properties (ID/Name) and NSIDs assigned to specific Actuator Profiles.
+The OpenC2 Namespace Registry is the most current list of active and proposed Actuator Profiles.
 
 | ID   | Name     | Type          | \# | Description                                                                                 |
 |------|----------|---------------|----|---------------------------------------------------------------------------------------------|
@@ -1345,8 +1337,8 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 
 | ID | Name           | Type           | \#    | Description                                                         |
 |----|----------------|----------------|-------|---------------------------------------------------------------------|
-| 1  | **versions**   | Version unique | 0..\* | List of OpenC2 language versions supported by this Actuator         |
-| 2  | **profiles**   | ArrayOf(Nsid)  | 0..1  | List of profiles supported by this Actuator                         |
+| 1  | **versions**   | Version unique | 0..\* | List of OpenC2 language versions supported by this Consumer         |
+| 2  | **profiles**   | ArrayOf(Nsid)  | 0..1  | List of profiles supported by this Consumer                         |
 | 3  | **pairs**      | Action-Targets | 0..1  | List of targets applicable to each supported Action                 |
 | 4  | **rate_limit** | Number{0..\*}  | 0..1  | Maximum number of requests per minute supported by design or policy |
 
@@ -1452,9 +1444,10 @@ specified for serializations other than JSON.
 
 #### 3.4.1.5 Features
 
-| Type Name    | Type Definition                | Description                                                                             |
-|--------------|--------------------------------|-----------------------------------------------------------------------------------------|
-| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query an Actuator for its supported capabilities. |
+| Type Name    | Type Definition                | Description                                                                            |
+|--------------|--------------------------------|----------------------------------------------------------------------------------------|
+| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query a Consumer for its supported capabilities. |
+
 
 **Usage Requirements:**
 
@@ -1592,9 +1585,9 @@ the IP address and the prefix, each in their own field.
 
 #### 3.4.1.16 Properties
 
-| Type Name      | Type Definition               | Description                                                       |
-|----------------|-------------------------------|-------------------------------------------------------------------|
-| **Properties** | ArrayOf(String){1..\*} unique | A list of names that uniquely identify properties of an Actuator. |
+| Type Name      | Type Definition               | Description                                                                |
+|----------------|-------------------------------|----------------------------------------------------------------------------|
+| **Properties** | ArrayOf(String){1..\*} unique | A list of names that uniquely identify properties supported by a Consumer. |
 
 #### 3.4.1.17 URI
 
@@ -1606,11 +1599,11 @@ the IP address and the prefix, each in their own field.
 
 #### 3.4.2.1 Action-Targets
 
-| Type Name          | Type Definition                     | Description                                                                                     |
-|--------------------|-------------------------------------|-------------------------------------------------------------------------------------------------|
-| **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator to the list of targets applicable to that action. |
-| Type Name          | Type Definition                     | Description                                                                                     |
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                           |
+| Type Name          | Type Definition                     | Description                                                                                              |
+|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator function to the list of targets applicable to that action. |
+| Type Name          | Type Definition                     | Description                                                                                              |
+| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
 #### 3.4.2.2 Date-Time
 
@@ -1640,8 +1633,8 @@ Specifies the results to be returned from a query features Command.
 
 | ID | Name           | Description                                                         |
 |----|----------------|---------------------------------------------------------------------|
-| 1  | **versions**   | List of OpenC2 Language versions supported by this Actuator         |
-| 2  | **profiles**   | List of profiles supported by this Actuator                         |
+| 1  | **versions**   | List of OpenC2 Language versions supported by this Consumer         |
+| 2  | **profiles**   | List of Actuator profiles supported by this Consumer                |
 | 3  | **pairs**      | List of supported Actions and applicable Targets                    |
 | 4  | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
@@ -2503,11 +2496,11 @@ Targets
 as an array of "Target" enumerations. The "Target" enumerations are derived from
 the "Target" data type.
 
-| Type Name          | Type Definition              | Description                                                                                     |
-|--------------------|------------------------------|-------------------------------------------------------------------------------------------------|
-| **Action-Targets** | MapOf(Action, Targets)       | Map of each action supported by this actuator to the list of targets applicable to that action. |
-| Type Name          | Type Definition              | Description                                                                                     |
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} | List of Target fields                                                                           |
+| Type Name          | Type Definition              | Description                                                                                             |
+|--------------------|------------------------------|---------------------------------------------------------------------------------------------------------|
+| **Action-Targets** | MapOf(Action, Targets)       | Map of each action supported by each Actuator Profile to the list of targets applicable to that action. |
+| Type Name          | Type Definition              | Description                                                                                             |
+| **Targets**        | ArrayOf(Enum(Target)){1..\*} | List of Target fields                                                                                   |
 
 **Example:** The "pairs" property is defined as an "Action-Targets" data type.
 
