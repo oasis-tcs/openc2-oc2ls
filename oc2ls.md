@@ -1062,7 +1062,7 @@ stable across future versions of this specification.
 
 Headers contains optional common message elements. Additional constraints on
 common header values may be defined. Additional headers may be defined. The
-"signature" field is use to contain an option digital signature to provide
+"signature" field is used to contain an option digital signature to provide
 source authentication and integrity protections of the OpenC2 message.
 
 **Type: Headers (Map{1..\*})**
