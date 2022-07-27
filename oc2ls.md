@@ -1245,8 +1245,10 @@ The OpenC2 Namespace Registry is the most current list of active and proposed Ac
 |----|------------------------|---------------|------|-------------------------------------------------------------------------------------|
 | 1  | **start_time**         | Date-Time     | 0..1 | The specific date/time to initiate the Command                                      |
 | 2  | **stop_time**          | Date-Time     | 0..1 | The specific date/time to terminate the Command                                     |
-| 3  | **duration**           | Duration      | 0..1 | The length of time for a Command to be in effect                                   |
+| 3  | **duration**           | Duration      | 0..1 | The length of time for a Command to be in effect                                    |
 | 4  | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: `none`, `ack`, `status`, `complete`. |
+| 5  | **comment**            | String        | 0..1 | A human-readable note to annotate or provide information regarding the action.      |
+
 
 **Usage Requirements:**
 
