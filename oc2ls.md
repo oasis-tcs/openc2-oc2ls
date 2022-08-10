@@ -316,35 +316,37 @@ Intellectual Property Rights section of the TC's web page
 
 *This section is normative.*
 
--   **Action**: The task or activity to be performed (e.g., 'deny').
+- **Action**: The task or activity to be performed (e.g., 'deny').
 
--   **Actuator**: The function performed by the Consumer that executes the
-    Command (e.g., 'Stateless Packet Filtering').
+- **Actuator**: The Consumer that executes a Command.
 
--   **Argument**: A property of a Command that provides additional information
+- **Actuator Profile**: The document that defines a category of operations
+    performed by an Actuator (e.g., 'Stateless Packet Filtering').
+
+- **Argument**: A property of a Command that provides additional information
     on how to perform the Command, such as date/time, periodicity, duration,
     etc.
 
--   **Command**: A Message defined by an Action-Target pair that is sent from a
+- **Command**: A Message defined by an Action-Target pair that is sent from a
     Producer and received by a Consumer.
 
--   **Consumer**: A managed device / application that receives Commands. Note
+- **Consumer**: A managed device / application that receives Commands. Note
     that a single device / application can have both Consumer and Producer
     capabilities.
 
--   **Message**: A content- and transport-independent set of elements conveyed
+- **Message**: A content- and transport-independent set of elements conveyed
     between Consumers and Producers.
 
--   **Producer**: A manager application that sends Commands.
+- **Producer**: A manager application that sends Commands.
 
--   **Response**: A Message from a Consumer to a Producer acknowledging a
+- **Response**: A Message from a Consumer to a Producer acknowledging a
     Command or returning the requested resources or status to a previously
     received Command.
 
--   **Specifier**: A property or field that identifies a Target or Actuator to
+- **Specifier**: A property or field that identifies a Target to
     some level of precision.
 
--   **Target**: The object of the Action, i.e., the Action is performed on the
+- **Target**: The object of the Action, i.e., the Action is performed on the
     Target (e.g., IP Address).
 
 ### 1.2.1 Acronyms and abbreviations
@@ -400,8 +402,7 @@ here.
 
 #### 1.2.3.1 Naming Conventions
 
--   [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section
-    1.2](#12-terminology)) are in all uppercase.
+-   [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) keywords are in all uppercase.
 
 -   All property names and literals are in lowercase, except when referencing
     canonical names defined in another standard (e.g., literal values from an
@@ -552,10 +553,10 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
     Consumers will support one or more profiles.
 
 The components of a Command are an Action (what is to be done), a Target (what
-is being acted upon), an optional Actuator (the function performed by the Consumer),
+is being acted upon), an optional Actuator Profile identifier,
 and Command Arguments, which influence how the Command is to be performed. An Action
 coupled with a Target is sufficient to describe a complete Command. Though
-optional, the inclusion of an Actuator and/or Command Arguments provides
+optional, the inclusion of a Profile and/or Command Arguments provides
 additional precision to a Command.
 
 The components of a Response are a numerical status code, an optional status
@@ -630,7 +631,7 @@ these assumptions. The following items are beyond the scope of this
 specification:
 
 1.  Language elements applicable to some Actuator functions, which may be defined in
-    individual Actuator profiles.
+    individual Actuator Profiles.
 
 2.  Alternate serializations of Commands and Responses.
 
@@ -651,7 +652,7 @@ acknowledgment, status, etc.) as a result of a Command.
 
 A command has four main components, two required and two optional. The required
 components are the Action and the Target. The optional components are command
-Arguments and the Actuator function. A command can also contain an optional Command
+Arguments and the Profile identifier. A command can also contain an optional Command
 identifier, if necessary. [Section 3.3.1](#331-openc2-command) defines the
 syntax of an OpenC2 Command.
 
@@ -667,7 +668,7 @@ The following list summarizes the main four components of a command.
 - **Arguments** (optional): Provide additional information on how the command
     is to be performed, such as date/time, periodicity, duration, etc.
 
-- **Actuator** (optional): Specifies the Actuator Profile that defines the
+- **Profile** (optional): Specifies the Actuator Profile that defines the
     function to be performed by the command.
 
 The Action and Target components are required and are populated by one of the
@@ -684,15 +685,13 @@ Arguments defined in this specification are in [Section
 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described
 in [Section 3.1.4](#314-extensions).
 
-The Actuator field, if present, specifies a profile-defined function to be
+The Profile field, if present, specifies the profile that defines the function to be
 performed. A Consumer executes the command if it supports the specified profile,
-otherwise the command is ignored. Optional profile-defined specifiers may
-be included to further limit command execution to a subset of Consumers that
-support the profile.
-The Actuator field may be omitted and typically will not be included in
+otherwise the command is ignored.
+The Profile field may be omitted and typically will not be included in
 implementations where the functions of the recipients are unambiguous or when a
 high-level effects-based command is desired and tactical decisions on how
-the effect is achieved is left to the recipient. If Actuator is omitted and the
+the effect is achieved is left to the recipient. If Profile is omitted and the
 recipient supports multiple profiles, the command will be executed in the context
 of each profile that supports the command's combination of action and target.
 
@@ -858,31 +857,33 @@ type. The named type can then be used as the type of a required field
 
 ### 3.1.4 Extensions
 
-One of the main design goals of OpenC2 was extensibility. Actuator profiles
+One of the main design goals of OpenC2 was extensibility. Actuator Profiles
 define the language extensions that are meaningful and possibly unique to the
 Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document
-and a short reference called a namespace identifier (NSID). The NSID is used to
-separate extensions from the core language defined in this specification.
+Each Profile has a unique name used to identify the profile document
+and a short reference called a namespace identifier (NSID). The NSID is a prefix
+used to separate types defined in one profile document from types defined in
+other profiles or this specification.
 
-All extensions MUST be identified with a short namespace reference, called a
-namespace identifier (NSID).
+For example, the OASIS standard Stateless Packet Filtering profile has:
 
-For example, the OASIS standard Stateless Packet Filtering actuator profile has:
-
--   **Unique Name**:
+- **Namespace**:
     http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
 
--   **NSID**: slpf
+- **NSID**: slpf
 
-The namespace identifier for non-standard extensions MUST be prefixed with "x-".
+- **Language-defined type**: IPv4-Addr
+- **Profile-defined type**: slpf:Rule-ID
 
-For example, the fictional, non-standard Superwidget actuator profile has:
+For example, the fictional, non-standard Superwidget Profile has:
 
--   **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
+- **Namespace**: http://www.acme.com/openc2/superwidget-v1.0.html
 
--   **NSID**: x-acme
+- **NSID**: acmesw
+
+- **Language-defined type**: Device
+- **Profile-defined type**: acmesw:Device
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
@@ -898,7 +899,9 @@ identifier, `slpf`.
 {
     "action": "delete",
     "target": {
-        "slpf:rule_number": 1234
+        "slpf": {
+            "rule_number": 1234
+        }
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2135,7 +2138,11 @@ https://www.rfc-editor.org/info/rfc3552.
 
 ###### [IACD]
 
-"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018  ,https://www.iacdautomate.org/
+"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
+
+###### [UML]
+
+"Unified Modeling Language", Version 2.5.1, December 2017, https://www.omg.org/spec/UML/2.5.1/About-UML/
 
 # Appendix B. Safety, Security and Privacy Considerations
 
