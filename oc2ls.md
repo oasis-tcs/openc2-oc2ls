@@ -866,17 +866,17 @@ and a short reference called a namespace identifier (NSID). The NSID is a prefix
 used to separate types defined in one profile document from types defined in
 other profiles or this specification.
 
-For example, the OASIS standard Stateless Packet Filtering profile has:
+**Example**: the OASIS standard Stateless Packet Filtering profile has:
 
 - **Namespace**:
     http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
 
 - **NSID**: slpf
 
-- **Language-defined type**: IPv4-Addr
+- **Language-defined type**: IPv4-Net
 - **Profile-defined type**: slpf:Rule-ID
 
-For example, the fictional, non-standard Superwidget Profile has:
+**Example**: the fictional, non-standard Superwidget Profile has:
 
 - **Namespace**: http://www.acme.com/openc2/superwidget-v1.0.html
 
@@ -888,12 +888,31 @@ For example, the fictional, non-standard Superwidget Profile has:
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
 Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended
-Target names MUST be prefixed with a namespace identifier followed by a colon
-(":").
+Target type names MUST be prefixed with a namespace identifier followed by a colon
+(":"). Extended target properties appear beneath (nested within) a profile property name.
 
-**Example:** In this example Command, the extended Target, `rule_number`, is
-defined within the Stateless Packet Filtering Profile with the namespace
-identifier, `slpf`.
+**Example:** The Stateless Packet Filtering Profile supports both common and
+profile-specific targets:
+
+Targets used in Consumers that support the SLPF actuator profile:
+
+** Type: Target (Choice) **  
+
+| ID   | Name     | Type           | Description                    |
+|------|----------|----------------|--------------------------------|
+| 13   | ipv4_net | IPv4-Net       | Targets defined in the LS      |
+| 1024 | slpf     | slpf:AP-Target | Targets defined in the SLPF AP |
+
+Targets defined in the SLPF actuator profile:
+
+** Type: slpf:AP-Target (Choice) **  
+
+| ID  | Name        | Type         | Description |
+|-----|-------------|--------------|-------------|
+| 1   | rule_number | slpf:Rule-ID |             |
+
+In this example Command, the extended Target `rule_number` 
+of type `slpf:Rule-ID` appears within the SLPF profile property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -906,13 +925,27 @@ identifier, `slpf`.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be
-extended using the namespace identifier as the Argument name, called an extended
-Argument namespace. Extended Arguments MUST be defined within the extended
-Argument namespace.
+Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY also be
+extended using profile-defined types appearing within the profile property name.
 
-**Example:** In this example Command, the extended Argument, `direction`, is
-defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+** Type: Args (Map) **  
+
+| ID   | Name       | Type          | Description                 |
+|------|------------|---------------|-----------------------------|
+| 1    | start_time | Date-Time     | Args defined in the LS      |
+| 1024 | slpf       | slpf:AP-Args  | Args defined in the SLPF AP |
+
+Args defined in the SLPF actuator profile:
+
+** Type: slpf:AP-Args (Map) **  
+
+| ID  | Name      | Type           | Description |
+|-----|-----------|----------------|-------------|
+| 3   | direction | slpf:Direction |             |
+
+**Example:** In this example Command, the extended Argument, `direction` of type
+slpf:Direction contained in type slpf:AP-Args, appears within the Stateless Packet Filtering
+property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
