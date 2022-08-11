@@ -1605,12 +1605,12 @@ the IP address and the prefix, each in their own field.
 |--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator function to the list of targets applicable to that action. |
 
+#### 3.4.2.2 Command-ID
 
-#### 3.4.2.17 Targets
+| Type Name      | Type Definition          | Description        |
+|----------------|--------------------------|--------------------|
+| **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
 
-| Type Name          | Type Definition                     | Description                                                                                              |
-|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
 #### 3.4.2.3 Date-Time
 
@@ -1740,11 +1740,11 @@ Identifies the type of Message.
 | 2  | **status**   | Respond with progress toward Command completion |
 | 3  | **complete** | Respond when all aspects of Command completed   |
 
-#### 3.4.2.2 Command-ID
+#### 3.4.2.17 Targets
 
-| Type Name      | Type Definition          | Description        |
-|----------------|--------------------------|--------------------|
-| **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
+| Type Name          | Type Definition                     | Description                                                                                              |
+|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
 #### 3.4.2.18 Version
 
