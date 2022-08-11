@@ -1604,7 +1604,12 @@ the IP address and the prefix, each in their own field.
 | Type Name          | Type Definition                     | Description                                                                                              |
 |--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator function to the list of targets applicable to that action. |
+
+
+#### 3.4.2.x Targets
+
 | Type Name          | Type Definition                     | Description                                                                                              |
+|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
 #### 3.4.2.2 Date-Time
