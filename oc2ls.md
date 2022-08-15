@@ -2533,6 +2533,7 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| Issue #396 | 8/24/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
 
 # Appendix F. Acknowledgments
 
