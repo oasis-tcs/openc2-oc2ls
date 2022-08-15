@@ -2534,6 +2534,8 @@ the "Target" data type.
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
 | Issue #396 | 8/24/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
+| Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
+| Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 
 # Appendix F. Acknowledgments
 
