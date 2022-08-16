@@ -1373,7 +1373,7 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 | ID | Name           | Type           | \#    | Description                                                         |
 |----|----------------|----------------|-------|---------------------------------------------------------------------|
 | 1  | **versions**   | Version unique | 0..\* | List of OpenC2 language versions supported by this Consumer         |
-| 2  | **profiles**   | ArrayOf(Nsid)  | 0..1  | List of profiles supported by this Consumer                         |
+| 2  | **profiles**   | Nsid       | 0..\*  | List of profiles supported by this Consumer                         |
 | 3  | **pairs**      | Action-Targets | 0..1  | List of targets applicable to each supported Action                 |
 | 4  | **rate_limit** | Number{0..\*}  | 0..1  | Maximum number of requests per minute supported by design or policy |
 
@@ -1479,9 +1479,9 @@ specified for serializations other than JSON.
 
 #### 3.4.1.5 Features
 
-| Type Name    | Type Definition                | Description                                                                            |
-|--------------|--------------------------------|----------------------------------------------------------------------------------------|
-| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query a Consumer for its supported capabilities. |
+| Type Name    | Type Definition  | \#    | Description                                                                            |
+|--------------|------------------|-------|----------------------------------------------------------------------------------------|
+| **Features** | Feature unique   | 0..10 | An array of zero to ten names used to query a Consumer for its supported capabilities. |
 
 
 **Usage Requirements:**
@@ -1620,9 +1620,9 @@ the IP address and the prefix, each in their own field.
 
 #### 3.4.1.16 Properties
 
-| Type Name      | Type Definition               | Description                                                                |
-|----------------|-------------------------------|----------------------------------------------------------------------------|
-| **Properties** | ArrayOf(String){1..\*} unique | A list of names that uniquely identify properties supported by a Consumer. |
+| Type Name      | Type Definition  | \#    |Description                                                                 |
+|----------------|------------------|-------|----------------------------------------------------------------------------|
+| **Properties** | String unique    | 1..\* | A list of names that uniquely identify properties supported by a Consumer. |
 
 #### 3.4.1.17 URI
 
