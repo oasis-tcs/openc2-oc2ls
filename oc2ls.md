@@ -1209,7 +1209,6 @@ The Command defines an Action to be performed on a Target.
 | 20 | **iri**             | IRI             | 1  | An internationalized resource identifier (IRI).                                                      |
 | 17 | **mac_addr**        | MAC-Addr        | 1  | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui).                 |
 | 18 | **process**         | Process         | 1  | Common properties of an instance of a computer program as executed on an operating system.           |
-| 25 | **properties**      | Properties      | 1  | Data attribute associated with an Actuator.                                                          |
 | 19 | **uri**             | URI             | 1  | A uniform resource identifier (URI).                                                                 |
 
 **Usage Requirements:**
@@ -1585,13 +1584,7 @@ the IP address and the prefix, each in their own field.
 
 -   A "Process" Target MUST contain at least one property.
 
-#### 3.4.1.16 Properties
-
-| Type Name      | Type Definition               | Description                                                                |
-|----------------|-------------------------------|----------------------------------------------------------------------------|
-| **Properties** | ArrayOf(String){1..\*} unique | A list of names that uniquely identify properties supported by a Consumer. |
-
-#### 3.4.1.17 URI
+#### 3.4.1.16 URI
 
 | Type Name | Type Definition | Description                                         |
 |-----------|-----------------|-----------------------------------------------------|
@@ -2227,53 +2220,7 @@ requested in the Command.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## C.3 Example 3
-
-This is a notional example of a Command issued to a non-standard Actuator. A
-Producer sends a 'query properties' Command to request detail about a 'battery'.
-The Consumer responses with the battery information extended in the results of
-the Response.
-
-**Command:**
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "action": "query",
-    "target": {
-        "properties": ["battery"]
-    },
-    "actuator": {
-        "x-esm": {
-            "asset_id": "TGEadsasd"
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Response:**
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "status": 200,
-    "results": {
-        "x-esm": {
-            "battery": {
-                "capacity": 0.577216,
-                "charged_at": 1547506988,
-                "status": 12,
-                "mode": {
-                    "output": "high",
-                    "supported": [ "high", "trickle" ]
-                },
-                "visible_on_display": true
-            },
-            "asset_id": "TGEadsasd"
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-## C.4 Example 4
+## C.3 Example 4
 
 This example illustrates the creation and validation of a JSON message
 signature, as specified in [3.3.4 Message Signatures](#334-message-signatures).
@@ -2282,7 +2229,7 @@ https://mobilepki.org/jws-ct/create, using the ES256 algorithm.
 Base64url-encoded data and canonicalized JSON in the example are shown with line
 wrapping for presentation only.
 
-### C.4.1 OpenC2 Message Signature
+### C.3.1 OpenC2 Message Signature
 
 The user embeds the signature field into the end of the payload that carries all
 the data required to validate authenticity and integrity of the payload. This
@@ -2300,7 +2247,7 @@ ES256 algorithm and assume that the receiver has a mechanism to discover the
 correct public key. The following is a generic approach, many libraries in
 multiple programming languages exist that can alter/simplify this process.
 
-### C.4.2 OpenC2 Signing Operation (JSON)
+### C.3.2 OpenC2 Signing Operation (JSON)
 
 #### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification.
 
@@ -2404,7 +2351,7 @@ Signature value:
 
 #### 5. Serialize the signed OpenC2 JSON object and send to recipient(s).
 
-### C.4.3 OpenC2 Signing Validation (JSON)
+### C.3.3 OpenC2 Signing Validation (JSON)
 
 #### 1. Parse the received OpenC2 JSON object and separate out the signature. This should yield:
 
@@ -2528,6 +2475,7 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| Issues 389, 392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
 
 # Appendix F. Acknowledgments
 
