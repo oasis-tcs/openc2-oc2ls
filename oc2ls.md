@@ -1751,7 +1751,9 @@ Used to report the version(s) of OpenC2 supported by Consumers.
 
 **Usage Requirement:**
 
--   A Version string MUST contain the major and minor version numbers, represented as integers seperated by a period (e.g., "1.1").
+-   A Version string MUST contain the major and minor version
+    numbers, represented as integers seperated by a period (e.g.,
+    "1.1").
 
 # 4 Mandatory Commands/Responses
 
