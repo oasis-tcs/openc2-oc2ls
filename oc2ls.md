@@ -1743,9 +1743,15 @@ Identifies the type of Message.
 
 #### 3.4.2.17 Version
 
+Used to report the version(s) of OpenC2 supported by Consumers.
+
 | Type Name   | Type Definition | Description                |
 |-------------|-----------------|----------------------------|
-| **Version** | String          | Major.Minor version number |
+| **Version** | String          | OpenC2 version in "Major.Minor" format |
+
+**Usage Requirement:**
+
+-   A Version string MUST contain the major and minor version numbers, represented as integers seperated by a period (e.g., "1.1").
 
 # 4 Mandatory Commands/Responses
 
