@@ -2125,6 +2125,12 @@ RFC 8785, DOI 10.17487/RFC8785, June 2020,
 August 2017,
 https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
 
+###### [IEEE_RA]
+
+"IEEE Registration Authority: Assignments", IEEE, August 2022,
+https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries
+
+
 ## A.2 Informative References
 
 ###### [RFC3552]
