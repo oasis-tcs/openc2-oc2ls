@@ -2135,6 +2135,11 @@ https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries
 "Internet Assigned Numbers Authority Protocol Numbers", IANA,
 August 2022, https://www.iana.org/assignments/protocol-numbers
 
+###### [IANA_Media]
+
+"Internet Assigned Numbers Authority Media Types", IANA,
+August 2022, https://www.iana.org/assignments/media-types
+
 
 ## A.2 Informative References
 
