@@ -2130,6 +2130,11 @@ https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tu
 "IEEE Registration Authority: Assignments", IEEE, August 2022,
 https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries
 
+###### [IANA_Protocols]
+
+"Internet Assigned Numbers Authority Protocol Numbers", IANA,
+August 2022, https://www.iana.org/assignments/protocol-numbers
+
 
 ## A.2 Informative References
 
