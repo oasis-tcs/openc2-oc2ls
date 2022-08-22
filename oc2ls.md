@@ -2129,6 +2129,12 @@ Rundgren, A., Jordan, B., and S. Erdtman, "JSON Canonicalization Scheme (JCS)",
 RFC 8785, DOI 10.17487/RFC8785, June 2020,
 <https://www.rfc-editor.org/info/rfc8785>.
 
+###### [RFC9293]
+
+Eddy, W., "Transmission Control Protocol (TCP)", RFC 9293, DOI:
+10.17487/RFC9293, August 2022,
+<https://www.rfc-editor.org/info/rfc8785>.
+
 ###### [EUI]
 
 "IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE,
