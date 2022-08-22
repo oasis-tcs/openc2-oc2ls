@@ -1691,7 +1691,7 @@ values.
 | ID  | Name     | Description                                                  |
 |-----|----------|--------------------------------------------------------------|
 | 1   | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792)    |
-| 6   | **tcp**  | Transmission Control Protocol - [[RFC0793]](#rfc0793)        |
+| 6   | **tcp**  | Transmission Control Protocol - [[RFC9293]](#rfc9293)        |
 | 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
