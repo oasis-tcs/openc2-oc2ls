@@ -1680,8 +1680,11 @@ Specifies the results to be returned from a query features Command.
 
 #### 3.4.2.10 L4 Protocol
 
-Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any
-IANA value, [[RFC5237]](#rfc5237)
+Value of the protocol (IPv4) or next header (IPv6) field in an IP
+packet. Recognized values for these fields are registered with
+IANA, according to the process defined in [[RFC5237]](#rfc5237).
+The table below identifies a non-exhaustive set of commonly used
+values.
 
 **Type: L4-Protocol (Enumerated)**
 
@@ -1691,6 +1694,13 @@ IANA value, [[RFC5237]](#rfc5237)
 | 6   | **tcp**  | Transmission Control Protocol - [[RFC0793]](#rfc0793)        |
 | 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
+
+**Usage Requirement:**
+
+-   The IPv4 Protocol field and IPv6 Next Header field are 8-bit
+    values, therefore L4-Protocol is an enumeration from 0..255.
+-   Values of L4-Protocol should be interpreted as documented in
+    [[IANA_Protocols]](#iana_protocols)
 
 #### 3.4.2.11 Message-Type
 
