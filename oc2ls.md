@@ -1977,11 +1977,6 @@ Postel, J., "Internet Protocol", STD 5, RFC 791, DOI 10.17487/RFC0791, September
 Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, DOI
 10.17487/RFC0792, September 1981, <https://www.rfc-editor.org/info/rfc792>.
 
-###### [RFC0793]
-
-Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI
-10.17487/RFC0793, September 1981, <https://www.rfc-editor.org/info/rfc793>.
-
 ###### [RFC1034]
 
 Mockapetris, P., "Domain names - concepts and facilities", STD 13, RFC 1034, DOI
