@@ -1410,7 +1410,7 @@ specified for serializations other than JSON.
 
 | ID | Name          | Type    | \#   | Description                                                                        |
 |----|---------------|---------|------|------------------------------------------------------------------------------------|
-| 1  | **media_type** | String  | 0..1 | Media types description formatted as specified in [RFC6838](#rfc6838)             |
+| 1  | **media_type** | String  | 0..1 | Media type description formatted as specified in [RFC6838](#rfc6838)             |
 | 2  | **payload**   | Payload | 0..1 | Choice of literal content or URL                                                   |
 | 3  | **hashes**    | Hashes  | 0..1 | Hashes of the payload content                                                      |
 
