@@ -1696,6 +1696,7 @@ values.
 | 1   | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792)    |
 | 6   | **tcp**  | Transmission Control Protocol - [[RFC9293]](#rfc9293)        |
 | 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
+| 28  | **ipv6_icmp**  | ICMP for IPv6 - [[RFC8200]](#rfc8200)                  |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
 **Usage Requirement:**
