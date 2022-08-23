@@ -1704,7 +1704,7 @@ values.
 -   The IPv4 Protocol field and IPv6 Next Header field are 8-bit
     values, therefore L4-Protocol is an enumeration from 0..255.
 -   Values of L4-Protocol should be interpreted as documented in
-    [[IANA_Protocols]](#iana_protocols)
+    [[IANA_Protocols]](#iana_protocols).
 
 #### 3.4.2.11 Message-Type
 
