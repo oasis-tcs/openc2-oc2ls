@@ -1410,13 +1410,16 @@ specified for serializations other than JSON.
 
 | ID | Name          | Type    | \#   | Description                                                                        |
 |----|---------------|---------|------|------------------------------------------------------------------------------------|
-| 1  | **mime_type** | String  | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
+| 1  | **media_type** | String  | 0..1 | Media types description formatted as specified in [RFC6838](#rfc6838)             |
 | 2  | **payload**   | Payload | 0..1 | Choice of literal content or URL                                                   |
 | 3  | **hashes**    | Hashes  | 0..1 | Hashes of the payload content                                                      |
 
 **Usage Requirement:**
 
 -   An "Artifact" Target MUST contain at least one property.
+-   `media_type` "Artifact" property values should be intepreted
+    according to the values documented  in the [IANA Media Types
+    registry](#iana_media)
 
 #### 3.4.1.2 Device
 
