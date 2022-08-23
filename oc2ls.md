@@ -2536,6 +2536,7 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| issue 388, item 4 | 08/xx/2022 | Lemire | Add usage requirement for `Version` format in 3.4.2.17   |
 
 # Appendix F. Acknowledgments
 
