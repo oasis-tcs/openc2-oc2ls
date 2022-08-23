@@ -826,7 +826,9 @@ specify value constraints for which an authoritative definition exists.
 
 **Usage Requirements:**
 
--   Properties identified as conforming to `eui` should be interpreted according to the values documented in the [[IEEE Registration Authority registry]](#ieee_ra).
+-   Properties identified as conforming to `eui` should be
+    interpreted according to the values documented in the [[IEEE
+    Registration Authority registry]](#ieee_ra).
 
 ### 3.1.3 Multiplicity
 
