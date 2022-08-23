@@ -1689,11 +1689,11 @@ Specifies the results to be returned from a query features Command.
 
 #### 3.4.2.10 L4 Protocol
 
-Value of the protocol (IPv4) or next header (IPv6) field in an IP
-packet. Recognized values for these fields are registered with
-IANA, according to the process defined in [[RFC5237]](#rfc5237).
-The table below identifies a non-exhaustive set of commonly used
-values.
+Value of the IPv4 `"protocol"` or IPv6 `"next header"` field in
+an IP packet. Recognized values for these fields are registered
+with IANA, according to the process defined in
+[[RFC5237]](#rfc5237). The table below identifies a
+non-exhaustive set of commonly used values.
 
 **Type: L4-Protocol (Enumerated)**
 
