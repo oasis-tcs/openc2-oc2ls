@@ -824,6 +824,10 @@ specify value constraints for which an authoritative definition exists.
 | **iri**          | String          | Value must be an Internationalized Resource Identifier (IRI) as defined in [[RFC3987]](#rfc3987) |
 | **uri**          | String          | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986)            |
 
+**Usage Requirements:**
+
+-   Properties identified as conforming to `eui` should be interpreted according to the values documented in the [[IEEE Registration Authority registry]](#ieee_ra).
+
 ### 3.1.3 Multiplicity
 
 Property tables for types based on Array, Choice, Map and Record include a
@@ -1410,7 +1414,7 @@ specified for serializations other than JSON.
 
 | ID | Name          | Type    | \#   | Description                                                                        |
 |----|---------------|---------|------|------------------------------------------------------------------------------------|
-| 1  | **media_type** | String  | 0..1 | Media type description formatted as specified in [RFC6838](#rfc6838)             |
+| 1  | **media_type** | String  | 0..1 | Media type description formatted as specified in [[RFC6838]](#rfc6838)             |
 | 2  | **payload**   | Payload | 0..1 | Choice of literal content or URL                                                   |
 | 3  | **hashes**    | Hashes  | 0..1 | Hashes of the payload content                                                      |
 
