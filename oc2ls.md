@@ -2565,6 +2565,7 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| issue 388, item 1, 390 | 08/xx/2022 | Lemire | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
 
 # Appendix F. Acknowledgments
 
