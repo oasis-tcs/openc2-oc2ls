@@ -1425,7 +1425,7 @@ specified for serializations other than JSON.
 -   An "Artifact" Target MUST contain at least one property.
 -   `media_type` "Artifact" property values should be intepreted
     according to the values documented  in the [IANA Media Types
-    registry](#iana_media)
+    registry](#iana_media).
 
 #### 3.4.1.2 Device
 
