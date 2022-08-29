@@ -284,12 +284,16 @@ Contents
 *The content in this section is non-normative, except where it is marked
 normative.*
 
-OpenC2 is a suite of specifications that enables command and control of cyber
-defense systems and components. OpenC2 typically uses a request-response
-paradigm where a *Command* is encoded by a *Producer* (managing application) and
-transferred to a *Consumer* (managed device or virtualized function) using a
-secure transfer protocol, and the Consumer can respond with status and any
-requested information.
+OpenC2 is a suite of specifications that enables command and
+control of cyber defense systems and components. OpenC2 typically
+uses a request-response paradigm where a *Command* is encoded by
+a *Producer* (managing application) and transferred to a
+*Consumer* (managed device or virtualized function) using a
+secure transfer protocol, and the Consumer can respond with
+status and any requested information. An overview of the concepts
+that underlie OpenC2 and the structure of the suite of
+specifications can be found in the OpenC2 Architecture
+Specification.
 
 OpenC2 allows the application producing the commands to discover the set of
 capabilities supported by the managed devices. These capabilities permit the
@@ -298,22 +302,17 @@ exposed by the managed device. The capability definitions can be easily extended
 in a noncentralized manner, allowing standard and non-standard capabilities to
 be defined with semantic and syntactic rigor.
 
-The **OpenC2 Language Specification** (this document) provides
-the semantics for the essential elements of the language, the
-structure for Commands and Responses, and the schema that defines
-the proper syntax for the language elements that represents the
-Command or Response.
-
-The OpenC2 Language Specification defines a language used to compose Messages
-for command and control of cyber defense systems and components. A Message
-consists of a header and a payload (*defined* as a Message body in the OpenC2
-Language Specification Version 1.1 and *specified* in one or more Actuator
-profiles).
-
 The goal of the OpenC2 Language Specification is to provide a language for
 interoperating between functional elements of cyber defense systems. This
 language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer
 Specifications allows for vendor-agnostic cybertime response to attacks.
+
+This **OpenC2 Language Specification** provides the semantics for
+the essential elements of the language, the structure for
+Commands and Responses, and the schema that defines the proper
+syntax for the language elements that represents the Command or
+Response. It also describes the mechanisms for extending the
+capabilities of the language.
 
 ## 1.1 Changes From Earlier Versions
 
