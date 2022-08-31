@@ -293,7 +293,7 @@ secure transfer protocol, and the Consumer can respond with
 status and any requested information. An overview of the concepts
 that underlie OpenC2 and the structure of the suite of
 specifications can be found in the OpenC2 Architecture
-Specification.
+Specification (_reference pending spec publication_).
 
 OpenC2 allows the application producing the commands to discover the set of
 capabilities supported by the managed devices. These capabilities permit the
@@ -304,8 +304,8 @@ be defined with semantic and syntactic rigor.
 
 The goal of the OpenC2 Language Specification is to provide a language for
 interoperating between functional elements of cyber defense systems. This
-language used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer
-Specifications allows for vendor-agnostic cybertime response to attacks.
+language, used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer
+Specifications, allows for vendor-agnostic cybertime response to attacks.
 
 This **OpenC2 Language Specification** provides the semantics for
 the essential elements of the language, the structure for
