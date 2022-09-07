@@ -2573,6 +2573,7 @@ the "Target" data type.
 | Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
+| Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
 
 
 # Appendix F. Acknowledgments
