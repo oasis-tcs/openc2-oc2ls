@@ -1637,10 +1637,15 @@ the IP address and the prefix, each in their own field.
 | Type Name          | Type Definition                     | Description                                                                                              |
 |--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator function to the list of targets applicable to that action. |
-| Type Name          | Type Definition                     | Description                                                                                              |
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
-#### 3.4.2.2 Date-Time
+#### 3.4.2.2 Command-ID
+
+| Type Name      | Type Definition          | Description        |
+|----------------|--------------------------|--------------------|
+| **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
+
+
+#### 3.4.2.3 Date-Time
 
 | Type Name     | Type Definition | Description   |
 |---------------|-----------------|---------------|
@@ -1650,7 +1655,7 @@ the IP address and the prefix, each in their own field.
 
 -   Value is the number of milliseconds since 00:00:00 UTC, 1 January 1970
 
-#### 3.4.2.3 Duration
+#### 3.4.2.4 Duration
 
 | Type Name    | Type Definition | Description      |
 |--------------|-----------------|------------------|
@@ -1660,7 +1665,7 @@ the IP address and the prefix, each in their own field.
 
 -   Value is a number of milliseconds
 
-#### 3.4.2.4 Feature
+#### 3.4.2.F Feature
 
 Specifies the results to be returned from a query features Command.
 
@@ -1673,7 +1678,7 @@ Specifies the results to be returned from a query features Command.
 | 3  | **pairs**      | List of supported Actions and applicable Targets                    |
 | 4  | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
-#### 3.4.2.5 Hashes
+#### 3.4.2.6 Hashes
 
 **Type: Hashes (Map{1..\*})**
 
@@ -1687,31 +1692,31 @@ Specifies the results to be returned from a query features Command.
 
 -   A "Hashes" data type MUST contain at least one key.
 
-#### 3.4.2.6 Hostname
+#### 3.4.2.7 Hostname
 
 | Type Name    | Type Definition  | Description                                              |
 |--------------|------------------|----------------------------------------------------------|
 | **Hostname** | String /hostname | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
-#### 3.4.2.7 Internationalized Hostname
+#### 3.4.2.8 Internationalized Hostname
 
 | Type Name        | Type Definition      | Description                                                                                  |
 |------------------|----------------------|----------------------------------------------------------------------------------------------|
 | **IDN-Hostname** | String /idn-hostname | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
-#### 3.4.2.8 IPv4 Address
+#### 3.4.2.9 IPv4 Address
 
 | Type Name     | Type Definition   | Description                                             |
 |---------------|-------------------|---------------------------------------------------------|
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
-#### 3.4.2.9 IPv6 Address
+#### 3.4.2.10 IPv6 Address
 
 | Type Name     | Type Definition   | Description                                              |
 |---------------|-------------------|----------------------------------------------------------|
 | **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
-#### 3.4.2.10 L4 Protocol
+#### 3.4.2.11 L4 Protocol
 
 Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any
 IANA value, [[RFC5237]](#rfc5237)
@@ -1725,7 +1730,7 @@ IANA value, [[RFC5237]](#rfc5237)
 | 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.11 Message-Type
+#### 3.4.2.12 Message-Type
 
 Identifies the type of Message.
 
@@ -1736,13 +1741,13 @@ Identifies the type of Message.
 | 1  | **command**  | The Message content is an OpenC2 Command  |
 | 2  | **response** | The Message content is an OpenC2 Response |
 
-#### 3.4.2.12 Namespace Identifier
+#### 3.4.2.13 Namespace Identifier
 
 | Type Name | Type Definition | Description                                    |
 |-----------|-----------------|------------------------------------------------|
 | **Nsid**  | String{1..16}   | A short identifier that refers to a namespace. |
 
-#### 3.4.2.13 Payload
+#### 3.4.2.14 Payload
 
 **Type: Payload (Choice)**
 
@@ -1751,13 +1756,13 @@ Identifies the type of Message.
 | 1  | **bin** | Binary | 1  | Specifies the data contained in the artifact                |
 | 2  | **url** | URI    | 1  | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.14 Port
+#### 3.4.2.15 Port
 
 | Type Name | Type Definition   | Description                                           |
 |-----------|-------------------|-------------------------------------------------------|
 | **Port**  | Integer{0..65535} | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.15 Response-Type
+#### 3.4.2.16 Response-Type
 
 **Type: Response-Type (Enumerated)**
 
@@ -1768,13 +1773,13 @@ Identifies the type of Message.
 | 2  | **status**   | Respond with progress toward Command completion |
 | 3  | **complete** | Respond when all aspects of Command completed   |
 
-#### 3.4.2.16 Command-ID
+#### 3.4.2.17 Targets
 
-| Type Name      | Type Definition          | Description        |
-|----------------|--------------------------|--------------------|
-| **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
+| Type Name          | Type Definition                     | Description                                                                                              |
+|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
-#### 3.4.2.17 Version
+#### 3.4.2.18 Version
 
 | Type Name   | Type Definition | Description                |
 |-------------|-----------------|----------------------------|
@@ -2562,6 +2567,9 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
+| Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
+| Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
 
 # Appendix F. Acknowledgments
 
