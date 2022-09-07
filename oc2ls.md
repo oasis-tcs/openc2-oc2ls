@@ -295,17 +295,11 @@ that underlie OpenC2 and the structure of the suite of
 specifications can be found in the OpenC2 Architecture
 Specification (_reference pending spec publication_).
 
-OpenC2 allows the application producing the commands to discover the set of
-capabilities supported by the managed devices. These capabilities permit the
-managing application to adjust its behavior to take advantage of the features
-exposed by the managed device. The capability definitions can be easily extended
-in a noncentralized manner, allowing standard and non-standard capabilities to
-be defined with semantic and syntactic rigor.
-
-The goal of the OpenC2 Language Specification is to provide a language for
-interoperating between functional elements of cyber defense systems. This
-language, used in conjunction with OpenC2 Actuator Profiles and OpenC2 Transfer
-Specifications, allows for vendor-agnostic cybertime response to attacks.
+The goal of  OpenC2 is to provide a language for interoperating
+between functional elements of cyber defense systems. This
+language, used in conjunction with OpenC2 Actuator Profiles and
+OpenC2 Transfer Specifications, allows for vendor-agnostic
+cybertime response to attacks.
 
 This **OpenC2 Language Specification** provides the semantics for
 the essential elements of the language, the structure for
@@ -313,6 +307,13 @@ Commands and Responses, and the schema that defines the proper
 syntax for the language elements that represents the Command or
 Response. It also describes the mechanisms for extending the
 capabilities of the language.
+
+OpenC2 allows the application producing the commands to discover the set of
+capabilities supported by the managed devices. These capabilities permit the
+managing application to adjust its behavior to take advantage of the features
+exposed by the managed device. The capability definitions can be easily extended
+in a noncentralized manner, allowing standard and non-standard capabilities to
+be defined with semantic and syntactic rigor.
 
 ## 1.1 Changes From Earlier Versions
 
