@@ -1781,9 +1781,17 @@ Identifies the type of Message.
 
 #### 3.4.2.18 Version
 
+Used to report the version(s) of OpenC2 supported by Consumers.
+
 | Type Name   | Type Definition | Description                |
 |-------------|-----------------|----------------------------|
-| **Version** | String          | Major.Minor version number |
+| **Version** | String          | OpenC2 version in "Major.Minor" format |
+
+**Usage Requirement:**
+
+-   A Version string MUST contain the major and minor version
+    numbers, represented as integers seperated by a period (e.g.,
+    "1.1").
 
 # 4 Mandatory Commands/Responses
 
@@ -2521,11 +2529,13 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| Issue 388, item 4 | 08/xx/2022 | Lemire | Add usage requirement for `Version` format in 3.4.2.17   |
 | Issue 386, 387 | 08/xx/2022 | Lemire | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations | 
 | Issues 389, 392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
 | Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
+
 
 
 # Appendix F. Acknowledgments
