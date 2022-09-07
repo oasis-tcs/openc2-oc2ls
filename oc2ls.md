@@ -316,35 +316,37 @@ Intellectual Property Rights section of the TC's web page
 
 *This section is normative.*
 
--   **Action**: The task or activity to be performed (e.g., 'deny').
+- **Action**: The task or activity to be performed (e.g., 'deny').
 
--   **Actuator**: The function performed by the Consumer that executes the
-    Command (e.g., 'Stateless Packet Filtering').
+- **Actuator**: The Consumer that executes a Command.
 
--   **Argument**: A property of a Command that provides additional information
+- **Actuator Profile**: The document that defines a category of operations
+    performed by an Actuator (e.g., 'Stateless Packet Filtering').
+
+- **Argument**: A property of a Command that provides additional information
     on how to perform the Command, such as date/time, periodicity, duration,
     etc.
 
--   **Command**: A Message defined by an Action-Target pair that is sent from a
+- **Command**: A Message defined by an Action-Target pair that is sent from a
     Producer and received by a Consumer.
 
--   **Consumer**: A managed device / application that receives Commands. Note
+- **Consumer**: A managed device / application that receives Commands. Note
     that a single device / application can have both Consumer and Producer
     capabilities.
 
--   **Message**: A content- and transport-independent set of elements conveyed
+- **Message**: A content- and transport-independent set of elements conveyed
     between Consumers and Producers.
 
--   **Producer**: A manager application that sends Commands.
+- **Producer**: A manager application that sends Commands.
 
--   **Response**: A Message from a Consumer to a Producer acknowledging a
+- **Response**: A Message from a Consumer to a Producer acknowledging a
     Command or returning the requested resources or status to a previously
     received Command.
 
--   **Specifier**: A property or field that identifies a Target or Actuator to
+- **Specifier**: A property or field that identifies a Target to
     some level of precision.
 
--   **Target**: The object of the Action, i.e., the Action is performed on the
+- **Target**: The object of the Action, i.e., the Action is performed on the
     Target (e.g., IP Address).
 
 ### 1.2.1 Acronyms and abbreviations
@@ -400,8 +402,7 @@ here.
 
 #### 1.2.3.1 Naming Conventions
 
--   [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) key words (see [Section
-    1.2](#12-terminology)) are in all uppercase.
+-   [[RFC2119]](#rfc2119)/[[RFC8174]](#rfc8174) keywords are in all uppercase.
 
 -   All property names and literals are in lowercase, except when referencing
     canonical names defined in another standard (e.g., literal values from an
@@ -477,20 +478,20 @@ language content and meaning at the Producer and Consumer of the Command and
 Response while the transfer specifications focus on the protocols for their
 exchange.
 
--   The **OpenC2 Language Specification** (this document) provides the semantics
+- The **OpenC2 Language Specification** (this document) provides the semantics
     for the essential elements of the language, the structure for Commands and
     Responses, and the schema that defines the proper syntax for the language
     elements that represents the Command or Response.
 
--   **OpenC2 Actuator Profiles** specify the subset of the OpenC2 language
-    relevant in the context of specific Actuator functions. Cyber defense
+- **OpenC2 Actuator Profiles** specify the subset of the OpenC2 language
+    relevant in the context of specific actuator functions. Cyber defense
     components, devices, systems and/or instances may (in fact are likely to)
-    implement multiple Actuator profiles. Actuator profiles extend the language
-    by defining Specifiers that identify the Actuator to the required level of
-    precision. Actuator Profiles may define Command Arguments and Targets that
-    are relevant and/or unique to those Actuator functions.
+    implement multiple profiles. A profile refines the meaning of language
+    elements (actions, targets, command arguments, results) used to perform
+    the actuator function, and often defines additional elements that
+    are relevant and/or unique to that function.
 
--   **OpenC2 Transfer Specifications** utilize existing protocols and standards
+- **OpenC2 Transfer Specifications** utilize existing protocols and standards
     to implement OpenC2 in specific environments. These standards are used for
     communications and security functions beyond the scope of the language, such
     as message transfer encoding, authentication, and end-to-end transport of
@@ -500,7 +501,7 @@ The OpenC2 Language Specification defines a language used to compose Messages
 for command and control of cyber defense systems and components. A Message
 consists of a header and a payload (*defined* as a Message body in the OpenC2
 Language Specification Version 1.1 and *specified* in one or more Actuator
-profiles).
+Profiles).
 
 The language defines two payload structures:
 
@@ -552,10 +553,10 @@ OpenC2 is conceptually partitioned into four layers as shown in Table 1-1.
     Consumers will support one or more profiles.
 
 The components of a Command are an Action (what is to be done), a Target (what
-is being acted upon), an optional Actuator (the function performed by the Consumer),
+is being acted upon), an optional Actuator Profile identifier,
 and Command Arguments, which influence how the Command is to be performed. An Action
 coupled with a Target is sufficient to describe a complete Command. Though
-optional, the inclusion of an Actuator and/or Command Arguments provides
+optional, the inclusion of a Profile and/or Command Arguments provides
 additional precision to a Command.
 
 The components of a Response are a numerical status code, an optional status
@@ -630,7 +631,7 @@ these assumptions. The following items are beyond the scope of this
 specification:
 
 1.  Language elements applicable to some Actuator functions, which may be defined in
-    individual Actuator profiles.
+    individual Actuator Profiles.
 
 2.  Alternate serializations of Commands and Responses.
 
@@ -651,7 +652,7 @@ acknowledgment, status, etc.) as a result of a Command.
 
 A command has four main components, two required and two optional. The required
 components are the Action and the Target. The optional components are command
-Arguments and the Actuator function. A command can also contain an optional Command
+Arguments and the Profile identifier. A command can also contain an optional Command
 identifier, if necessary. [Section 3.3.1](#331-openc2-command) defines the
 syntax of an OpenC2 Command.
 
@@ -667,7 +668,7 @@ The following list summarizes the main four components of a command.
 - **Arguments** (optional): Provide additional information on how the command
     is to be performed, such as date/time, periodicity, duration, etc.
 
-- **Actuator** (optional): Specifies the Actuator Profile that defines the
+- **Profile** (optional): Specifies the Actuator Profile that defines the
     function to be performed by the command.
 
 The Action and Target components are required and are populated by one of the
@@ -684,15 +685,13 @@ Arguments defined in this specification are in [Section
 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described
 in [Section 3.1.4](#314-extensions).
 
-The Actuator field, if present, specifies a profile-defined function to be
+The Profile field, if present, specifies the profile that defines the function to be
 performed. A Consumer executes the command if it supports the specified profile,
-otherwise the command is ignored. Optional profile-defined specifiers may
-be included to further limit command execution to a subset of Consumers that
-support the profile.
-The Actuator field may be omitted and typically will not be included in
+otherwise the command is ignored.
+The Profile field may be omitted and typically will not be included in
 implementations where the functions of the recipients are unambiguous or when a
 high-level effects-based command is desired and tactical decisions on how
-the effect is achieved is left to the recipient. If Actuator is omitted and the
+the effect is achieved is left to the recipient. If Profile is omitted and the
 recipient supports multiple profiles, the command will be executed in the context
 of each profile that supports the command's combination of action and target.
 
@@ -858,58 +857,95 @@ type. The named type can then be used as the type of a required field
 
 ### 3.1.4 Extensions
 
-One of the main design goals of OpenC2 was extensibility. Actuator profiles
+One of the main design goals of OpenC2 was extensibility. Actuator Profiles
 define the language extensions that are meaningful and possibly unique to the
 Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document
-and a short reference called a namespace identifier (NSID). The NSID is used to
-separate extensions from the core language defined in this specification.
+Each Profile has a unique name used to identify the profile document
+and a short reference called a namespace identifier (NSID). The NSID is a prefix
+used to separate types defined in one profile document from types defined in
+other profiles or this specification.
 
-All extensions MUST be identified with a short namespace reference, called a
-namespace identifier (NSID).
+**Example**: the OASIS standard Stateless Packet Filtering profile has:
 
-For example, the OASIS standard Stateless Packet Filtering actuator profile has:
-
--   **Unique Name**:
+- **Namespace**:
     http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
 
--   **NSID**: slpf
+- **NSID**: slpf
 
-The namespace identifier for non-standard extensions MUST be prefixed with "x-".
+- **Language-defined type**: IPv4-Net
+- **Profile-defined type**: slpf:Rule-ID
 
-For example, the fictional, non-standard Superwidget actuator profile has:
+**Example**: the fictional, non-standard Superwidget Profile has:
 
--   **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
+- **Namespace**: http://www.acme.com/openc2/superwidget-v1.0.html
 
--   **NSID**: x-acme
+- **NSID**: acmesw
+
+- **Language-defined type**: Device
+- **Profile-defined type**: acmesw:Device
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
 Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended
-Target names MUST be prefixed with a namespace identifier followed by a colon
-(":").
+Target type names MUST be prefixed with a namespace identifier followed by a colon
+(":"). Extended target properties appear beneath (nested within) a profile property name.
 
-**Example:** In this example Command, the extended Target, `rule_number`, is
-defined within the Stateless Packet Filtering Profile with the namespace
-identifier, `slpf`.
+**Example:** The Stateless Packet Filtering Profile supports both common and
+profile-specific targets:
+
+Targets used in Consumers that support the SLPF actuator profile:
+
+** Type: Target (Choice) **  
+
+| ID   | Name     | Type           | Description                    |
+|------|----------|----------------|--------------------------------|
+| 13   | ipv4_net | IPv4-Net       | Targets defined in the LS      |
+| 1024 | slpf     | slpf:AP-Target | Targets defined in the SLPF AP |
+
+Targets defined in the SLPF actuator profile:
+
+** Type: slpf:AP-Target (Choice) **  
+
+| ID  | Name        | Type         | Description |
+|-----|-------------|--------------|-------------|
+| 1   | rule_number | slpf:Rule-ID |             |
+
+In this example Command, the extended Target `rule_number` 
+of type `slpf:Rule-ID` appears within the SLPF profile property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
     "action": "delete",
     "target": {
-        "slpf:rule_number": 1234
+        "slpf": {
+            "rule_number": 1234
+        }
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be
-extended using the namespace identifier as the Argument name, called an extended
-Argument namespace. Extended Arguments MUST be defined within the extended
-Argument namespace.
+Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY also be
+extended using profile-defined types appearing within the profile property name.
 
-**Example:** In this example Command, the extended Argument, `direction`, is
-defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+** Type: Args (Map) **  
+
+| ID   | Name       | Type          | Description                 |
+|------|------------|---------------|-----------------------------|
+| 1    | start_time | Date-Time     | Args defined in the LS      |
+| 1024 | slpf       | slpf:AP-Args  | Args defined in the SLPF AP |
+
+Args defined in the SLPF actuator profile:
+
+** Type: slpf:AP-Args (Map) **  
+
+| ID  | Name      | Type           | Description |
+|-----|-----------|----------------|-------------|
+| 3   | direction | slpf:Direction |             |
+
+**Example:** In this example Command, the extended Argument, `direction` of type
+slpf:Direction contained in type slpf:AP-Args, appears in the Stateless Packet Filtering
+property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -925,13 +961,13 @@ defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Actuator property of a Command, defined in [Section
-3.3.1.3](#3313-actuator), MUST be extended using the namespace identifier as the
-Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST
-be defined within the extended Actuator namespace.
+The Profile property of a Command, defined in [Section
+3.3.1.3](#3313-profile), specifies the property name of the Actuator Profile
+that defines the function to be performed.
 
-**Example:** In this example Command, the Actuator Specifier `asset_id` is
-defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+**Example:** In this example Command, the `profile` name `slpf` indicates that
+the `deny ipv4_connection` command is to be performed as
+defined by the Stateless Packet Filtering Profile.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -939,11 +975,7 @@ defined within the Stateless Packet Filtering Profile namespace, `slpf`.
     "target": {
         "ipv4_connection": {...}
     },
-    "actuator": {
-        "slpf": {
-            "asset_id": "30"
-        }
-    }
+    "profile": "slpf"
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1014,7 +1046,7 @@ appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
 ## 3.2 Message
 
-This language specification and one or more Actuator profiles define the content
+This language specification and one or more Actuator Profiles define the content
 of Commands and Responses, while transfer specifications define the on-the-wire
 format of a Message over specific secure transport protocols. Transfer
 specifications are agnostic with regard to content, and content is agnostic with
@@ -1128,9 +1160,9 @@ a Command and the common portions of a Response. The properties of the Command
 are defined in [Section 3.3.1](#331-openc2-command) and the properties of the
 Response are defined in [Section 3.3.2](#332-openc2-response).
 
-In addition to the Action and Target, a Command has an optional Actuator field.
-The semantics associated with Command and Response content for the specified
-Actuator function are defined in Actuator Profiles.
+In addition to the Action and Target, a Command has an optional Profile field.
+The semantics associated with Command and Response content are defined in the
+specified Actuator Profile.
 
 ### 3.3.1 OpenC2 Command
 
@@ -1138,13 +1170,13 @@ The Command defines an Action to be performed on a Target.
 
 **Type: OpenC2-Command (Record)**
 
-| ID | Name           | Type       | \#   | Description                                                       |
-|----|----------------|------------|------|-------------------------------------------------------------------|
-| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').          |
-| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.  |
-| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.               |
-| 4  | **actuator**   | Actuator   | 0..1 | The profile defining the function to be performed by the Command. |
-| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                    |
+| ID | Name           | Type       | \#   | Description                                                                |
+|----|----------------|------------|------|----------------------------------------------------------------------------|
+| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').                   |
+| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.           |
+| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.                        |
+| 4  | **profile**    | Profile    | 0..1 | The actuator profile defining the function to be performed by the Command. |
+| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                             |
 
 **Usage Requirements:**
 
@@ -1217,25 +1249,26 @@ The Command defines an Action to be performed on a Target.
 -   The `target` field in a Command MUST contain exactly one type of Target
     (e.g., ipv4_net).
 
-#### 3.3.1.3 Actuator
+#### 3.3.1.3 Profile
 
-**Type: Actuator (Choice)**
-Table 3.3.1.4 lists the properties (ID/Name) and NSIDs assigned to specific Actuator Profiles.
-The OpenC2 Namespace Registry is the most current list of active and proposed Actuator Profiles.
+OpenC2 maintains an [administrative document](https://github.com/oasis-tcs/openc2-oc2arch/blob/working/namespace-registry.md)
+listing current, planned, and extension actuator profile information.
 
-| ID   | Name     | Type          | \# | Description                                                                                 |
-|------|----------|---------------|----|---------------------------------------------------------------------------------------------|
-| 1024 | **slpf** | slpf:Actuator | 1  | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile          |
-| 1025 | **sfpf** | sfpf:Actuator | 1  | **Example**: Actuator Specifiers defined in the Stateful Packet Filtering Profile           |
-| 1026 | **sbom** | sbom:Actuator | 1  | **Example**: Actuator Specifiers defined in the Software Bill of Materials Profile          |
-| 1027 | **endp** | endp:Actuator | 1  | **Example**: Actuator Specifiers defined in the Endpoint Profile                            |
-| 1028 | **sdnc** | sdnc:Actuator | 1  | **Example**: Actuator Specifiers defined in the Software Defined Network Controller Profile |
-| 1029 | **emgw** | emgw:Actuator | 1  | **Example**: Actuator Specifiers defined in the Email Gateway Profile                       |
-| 1030 | **ids**  | ids:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Intrusion Detection System Profile          |
-| 1031 | **ips**  | xxxx:Actuator | 1  | **Example**: Actuator Specifiers defined in the Intrusion Prevention System Profile         |
-| 1032 | **dlp**  | dlp:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Data Loss Prevention Profile                |
-| 1033 | **swg**  | swg:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Secure Web Gateway Profile                  |
-| 1034 |  **pf**  | pf:Actuator   | 1  | **Example**: Actuator Specifiers defined in the Packet Filter Profile.                      |
+**Type: Profile (Enumerated)**
+
+| ID   | Name     | Description                           |
+|------|----------|---------------------------------------|
+| 1024 | **slpf** | Stateless Packet Filtering            |
+| 1025 | **sfpf** | Stateful Packet Filtering             |
+| 1026 | **sbom** | Software Bill of Materials            |
+| 1027 | **er**   | Endpoint Response                     |
+| 1028 | **hop**  | Honeypot Control                      |
+| 1029 | **av**   | Anti-Virus                            |
+| 1030 | **ids**  | Intrusion Detection System            |
+| 1031 | **log**  | Logging Control                       |
+| 1032 | **swup** | Software Update                       |
+| 1034 | **pf**   | Packet Filtering                      |
+| 1035 | **pac**  | Security Posture Attribute Collection |
 
 #### 3.3.1.4 Command Arguments
 
@@ -1881,9 +1914,8 @@ A conformant Command
     [Section 3.3.1.2](#3312-target) or exactly one imported `target` property
     defined in accordance with [Section 3.1.4](#314-extensions).
 
--   5.1-4 MUST include zero or one `actuator` property defined in accordance
-    with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator`
-    property defined in accordance with [Section 3.1.4](#314-extensions).
+-   5.1-4 MUST include zero or one `profile` property defined in accordance
+    with [Section 3.3.1.3](#3313-profile).
 
 -   5.1-5 MUST include zero or one `args` property defined in accordance with
     [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args`
@@ -2135,7 +2167,11 @@ https://www.rfc-editor.org/info/rfc3552.
 
 ###### [IACD]
 
-"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018  ,https://www.iacdautomate.org/
+"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
+
+###### [UML]
+
+"Unified Modeling Language", Version 2.5.1, December 2017, https://www.omg.org/spec/UML/2.5.1/About-UML/
 
 # Appendix B. Safety, Security and Privacy Considerations
 
@@ -2185,9 +2221,9 @@ This Command would be used to quarantine a device on the network.
 ## C.2 Example 2
 
 This Command blocks a particular connection within the domain. The standard
-Actuator profile defines the extended Command Argument, `drop_process`, and the
-Actuator Specifier, `asset_id`. The Response is a simple acknowledgment that was
-requested in the Command.
+Actuator Profile `slpf` defines the extended Command Argument `drop_process`.
+The Response is a simple acknowledgment that was requested in the Command
+arguments.
 
 **Command:**
 
@@ -2211,11 +2247,7 @@ requested in the Command.
             "drop_process": "none"
         }
     },
-    "actuator": {
-        "slpf": {
-            "asset_id": "30"
-        }
-    }
+    "profile": "slpf"
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2226,6 +2258,8 @@ requested in the Command.
     "status": 102
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              
+*Editor's Note: Replace with an example that does not use "properties".*
 
 ## C.3 Example 3
 
