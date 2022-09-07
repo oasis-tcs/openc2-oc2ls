@@ -823,6 +823,12 @@ specify value constraints for which an authoritative definition exists.
 | **iri**          | String          | Value must be an Internationalized Resource Identifier (IRI) as defined in [[RFC3987]](#rfc3987) |
 | **uri**          | String          | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986)            |
 
+**Usage Requirements:**
+
+-   Properties identified as conforming to `eui` should be
+    interpreted according to the values documented in the [[IEEE
+    Registration Authority registry]](#ieee_ra).
+
 ### 3.1.3 Multiplicity
 
 Property tables for types based on Array, Choice, Map and Record include a
@@ -1448,13 +1454,16 @@ specified for serializations other than JSON.
 
 | ID | Name          | Type    | \#   | Description                                                                        |
 |----|---------------|---------|------|------------------------------------------------------------------------------------|
-| 1  | **mime_type** | String  | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
+| 1  | **media_type** | String  | 0..1 | Media type description formatted as specified in [[RFC6838]](#rfc6838)             |
 | 2  | **payload**   | Payload | 0..1 | Choice of literal content or URL                                                   |
 | 3  | **hashes**    | Hashes  | 0..1 | Hashes of the payload content                                                      |
 
 **Usage Requirement:**
 
 -   An "Artifact" Target MUST contain at least one property.
+-   `media_type` "Artifact" property values should be intepreted
+    according to the values documented  in the [IANA Media Types
+    registry](#iana_media).
 
 #### 3.4.1.2 Device
 
@@ -1718,17 +1727,28 @@ Specifies the results to be returned from a query features Command.
 
 #### 3.4.2.11 L4 Protocol
 
-Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any
-IANA value, [[RFC5237]](#rfc5237)
+Value of the IPv4 `"protocol"` or IPv6 `"next header"` field in
+an IP packet. Recognized values for these fields are registered
+with IANA, according to the process defined in
+[[RFC5237]](#rfc5237). The table below identifies a
+non-exhaustive set of commonly used values.
 
 **Type: L4-Protocol (Enumerated)**
 
 | ID  | Name     | Description                                                  |
 |-----|----------|--------------------------------------------------------------|
 | 1   | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792)    |
-| 6   | **tcp**  | Transmission Control Protocol - [[RFC0793]](#rfc0793)        |
+| 6   | **tcp**  | Transmission Control Protocol - [[RFC9293]](#rfc9293)        |
 | 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
+| 28  | **ipv6_icmp**  | ICMP for IPv6 - [[RFC8200]](#rfc8200)                  |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
+
+**Usage Requirement:**
+
+-   The IPv4 Protocol field and IPv6 Next Header field are 8-bit
+    values, therefore L4-Protocol is an enumeration from 0..255.
+-   Values of L4-Protocol should be interpreted as documented in
+    [[IANA_Protocols]](#iana_protocols).
 
 #### 3.4.2.12 Message-Type
 
@@ -2012,11 +2032,6 @@ Postel, J., "Internet Protocol", STD 5, RFC 791, DOI 10.17487/RFC0791, September
 Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, DOI
 10.17487/RFC0792, September 1981, <https://www.rfc-editor.org/info/rfc792>.
 
-###### [RFC0793]
-
-Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI
-10.17487/RFC0793, September 1981, <https://www.rfc-editor.org/info/rfc793>.
-
 ###### [RFC1034]
 
 Mockapetris, P., "Domain names - concepts and facilities", STD 13, RFC 1034, DOI
@@ -2164,11 +2179,33 @@ Rundgren, A., Jordan, B., and S. Erdtman, "JSON Canonicalization Scheme (JCS)",
 RFC 8785, DOI 10.17487/RFC8785, June 2020,
 <https://www.rfc-editor.org/info/rfc8785>.
 
+###### [RFC9293]
+
+Eddy, W., "Transmission Control Protocol (TCP)", RFC 9293, DOI:
+10.17487/RFC9293, August 2022,
+<https://www.rfc-editor.org/info/rfc8785>.
+
 ###### [EUI]
 
 "IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE,
 August 2017,
 https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
+
+###### [IEEE_RA]
+
+"IEEE Registration Authority: Assignments", IEEE, August 2022,
+https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries
+
+###### [IANA_Protocols]
+
+"Internet Assigned Numbers Authority Protocol Numbers", IANA,
+August 2022, https://www.iana.org/assignments/protocol-numbers
+
+###### [IANA_Media]
+
+"Internet Assigned Numbers Authority Media Types", IANA,
+August 2022, https://www.iana.org/assignments/media-types
+
 
 ## A.2 Informative References
 
@@ -2529,13 +2566,13 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
-| Issue 388, item 4 | 08/xx/2022 | Lemire | Add usage requirement for `Version` format in 3.4.2.17   |
-| Issue 386, 387 | 08/xx/2022 | Lemire | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations | 
-| Issues 389, 392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
+| Issue #388, item 1, #390 | 08/xx/2022 | Lemire | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
+| Issue #388, item 4 | 08/xx/2022 | Lemire | Add usage requirement for `Version` format in 3.4.2.17   |
+| Issue #386, #387 | 08/xx/2022 | Lemire | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations | 
+| Issues #389, #392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
 | Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
-
 
 
 # Appendix F. Acknowledgments
