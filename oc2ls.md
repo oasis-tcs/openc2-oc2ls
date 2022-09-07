@@ -1304,22 +1304,28 @@ listing current, planned, and extension actuator profile information.
 
 -   `response_requested`:
 
-    -   If `response_requested` is specified as `none` then the Consumer SHOULD
-        NOT send a Response.
+    -   If `response_requested` is specified as `none` and the
+        Consumer successfully executes the Command then the
+        Consumer SHOULD NOT send a Response.
 
-        -   If `response_requested` is specified as `ack` then the Consumer
+    -   If `response_requested` is specified as `none` and the
+        Consumer encounters an error then the Consumer SHOULD
+        send a Response with a `status` consistent with the error
+        detected.
+
+    -   If `response_requested` is specified as `ack` then the Consumer
             SHOULD send a Response acknowledging receipt of the Command:
             `{"status": 102}`.
 
-        -   If `response_requested` is specified as `status` then the Consumer
+    -   If `response_requested` is specified as `status` then the Consumer
             SHOULD send a Response containing the current status of Command
             execution.
 
-        -   If `response_requested` is specified as `complete` then the Consumer
+    -   If `response_requested` is specified as `complete` then the Consumer
             SHOULD send a Response containing the status or results upon
             completion of Command execution.
 
-        -   If `response_requested` is not explicitly specified then the
+    -   If `response_requested` is not explicitly specified then the
             Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
@@ -2515,10 +2521,12 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| Issue 386, 387 | 08/xx/2022 | Lemire | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations | 
 | Issues 389, 392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
 | Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
+
 
 # Appendix F. Acknowledgments
 
