@@ -281,8 +281,8 @@ Contents
 
 # 1 Introduction
 
-*The content in this section is non-normative, except where it is marked
-normative.*
+*The content in this section is non-normative, except where it is
+marked normative.*
 
 OpenC2 is a suite of specifications that enables command and
 control of cyber defense systems and components. OpenC2 typically
@@ -295,7 +295,7 @@ that underlie OpenC2 and the structure of the suite of
 specifications can be found in the OpenC2 Architecture
 Specification (_reference pending spec publication_).
 
-The goal of  OpenC2 is to provide a language for interoperating
+The goal of OpenC2 is to provide a language for interoperating
 between functional elements of cyber defense systems. This
 language, used in conjunction with OpenC2 Actuator Profiles and
 OpenC2 Transfer Specifications, allows for vendor-agnostic
@@ -308,12 +308,13 @@ syntax for the language elements that represents the Command or
 Response. It also describes the mechanisms for extending the
 capabilities of the language.
 
-OpenC2 allows the application producing the commands to discover the set of
-capabilities supported by the managed devices. These capabilities permit the
-managing application to adjust its behavior to take advantage of the features
-exposed by the managed device. The capability definitions can be easily extended
-in a noncentralized manner, allowing standard and non-standard capabilities to
-be defined with semantic and syntactic rigor.
+OpenC2 allows the application producing the commands to discover
+the set of capabilities supported by the managed devices. These
+capabilities permit the managing application to adjust its
+behavior to take advantage of the features exposed by the managed
+device. The capability definitions can be easily extended in a
+noncentralized manner, allowing standard and non-standard
+capabilities to be defined with semantic and syntactic rigor.
 
 ## 1.1 Changes From Earlier Versions
 
