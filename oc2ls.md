@@ -1,31 +1,31 @@
 ![](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
-# Open Command and Control (OpenC2) Language Specification Version 1.1
+# Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 2
+## Working Draft 01
 
-## 18 Aug 2021 {put in new date}
+## DD MMM 2022
 
 #### This version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
 
 #### Previous version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.pdf
 
 #### Latest version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
 
 #### Technical Committee:
 
@@ -42,7 +42,7 @@ LLC](http://www.sfractal.com/)
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
 LLC](http://www.sfractal.com/)
 
- Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
+Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
 #### Abstract:
 
@@ -98,7 +98,7 @@ used:
 
 *Open Command and Control (OpenC2) Language Specification Version 1.1*. Edited
 by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html.
+01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html.
 Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 ## Notices
@@ -2573,6 +2573,7 @@ the "Target" data type.
 | Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
+| Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
 
 
 # Appendix F. Acknowledgments
