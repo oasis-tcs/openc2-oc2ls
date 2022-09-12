@@ -2615,6 +2615,7 @@ Reference to OpenC2 JADN schema external artifact
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
 | Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
+| Issue #361 | 9/xx/2022 | Lemire | Add explanatory JADN appendix  |
 
 
 # Appendix G. Acknowledgments
