@@ -2637,10 +2637,10 @@ representation, into a form that can be transmitted (i.e., into a
 "document"). The JADN specification defines serialization rules
 for four different representations of an information model:
 
- - Verbose JSON serialization
- - Compact JSON serialization
- - Concise JSON serialization
- - CBOR serialization
+ - Verbose JSON
+ - Compact JSON
+ - Concise JSON
+ - CBOR
 
 In addition, the specification identifies the constraints that
 must be satisifed to define how a JADN IM is represented in other
