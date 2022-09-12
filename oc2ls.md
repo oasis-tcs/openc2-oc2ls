@@ -2619,7 +2619,7 @@ terms of five elements:
 
 From this starting point JADN enables creation of a rich
 information model readily expressed in any of several
-representations. A rich set of options (e.g., semanic validation,
+representations. A rich set of options (e.g., semantic validation,
 size and value contstraints, multiplicity constraints) provide
 the means to define a wide variety of information types in a
 representation-independent manner.
