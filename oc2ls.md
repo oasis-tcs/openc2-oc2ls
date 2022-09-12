@@ -2650,27 +2650,27 @@ simplified.
 
 ## E.3 JADN Example: OpenC2 Subset
 
-Illustration with small subset of OpenC2 language
+> Illustration with small subset of OpenC2 language
 
 ### E.3.1  Basic and Complex Data Types
 
-JIDL for some basic and complex types
+> JIDL for some basic and complex types
 
 ### E.3.2  JADN Representation
 
-Corresponding JSON data in JADN format
+> Corresponding JSON data in JADN format
 
 ### E.3.3  Translation To JSON Schema
 
-JADN translation to JSON schema
+> JADN translation to JSON schema
 
 ### E.3.4  Translation to CBOR / CDDL
 
-JADN translation to CBOR/CDDL
+> JADN translation to CBOR/CDDL
 
 ## E.5 Additional Information
 
-Reference to OpenC2 JADN schema external artifact
+> Reference to OpenC2 JADN schema external artifact
 
 
 
