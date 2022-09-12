@@ -2559,7 +2559,11 @@ the "Target" data type.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Appendix E. Revision History
+# Appendix E. Schema Development With JADN
+
+*The content in this section is non-normative.*
+
+# Appendix F. Revision History
 
 *The content in this section is non-normative.*
 
@@ -2576,7 +2580,7 @@ the "Target" data type.
 | Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
 
 
-# Appendix F. Acknowledgments
+# Appendix G. Acknowledgments
 
 *The content in this section is non-normative.*
 
@@ -2647,7 +2651,7 @@ specification and are gratefully acknowledged:
 | Sounil     | Yu            | Bank of America                                                      |
 | Vasileios  | Mavroeidis    | University of Oslo                                                   |
 
-# Appendix G. Notices
+# Appendix H. Notices
 
 Copyright © OASIS Open 2021. All Rights Reserved.
 
