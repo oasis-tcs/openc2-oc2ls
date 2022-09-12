@@ -2629,9 +2629,24 @@ representation-independent manner.
 
 > Explanation how JADN schema enables other schemas & serializations
 
+Converting an information model to a data model means applying
+serialization rules for each base type that produce physical data
+in the desired format. Serialization is the process for
+converting application information, regardless of its internal
+representation, into a form that can be transmitted (i.e., into a
+"document"). The JADN specification defines serialization rules
+for four different representations of an information model:
 
+ - Verbose JSON serialization
+ - Compact JSON serialization
+ - Concise JSON serialization
+ - CBOR serialization
 
-
+In addition, the specification identifies the constraints that
+must be satisifed to define how a JADN IM is represented in other
+serializations. Because each serialization represents the same
+information model, translation between serialization formats is
+simplified.
 
 ## E.3 JADN Example: OpenC2 Subset
 
