@@ -2063,6 +2063,9 @@ RFC 2119, DOI 10.17487/RFC2119, March 1997,
 Crawford, M., *"Binary Labels in the Domain Name System"*, RFC 2673, August
 1999, https://tools.ietf.org/html/rfc2673
 
+###### [RFC3444] 
+Pras, A., Schoenwaelder, J., "On the Difference between Information Models and Data Models", RFC 3444, January 2003, https://tools.ietf.org/html/rfc3444.
+
 ###### [RFC3986]
 
 Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier
@@ -2567,13 +2570,68 @@ the "Target" data type.
 
 *The content in this section is non-normative.*
 
+This appendix provides a brief overview of the *JSON Abstract Data
+Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information modeling (IM) language
+and its application to rigorously specifying the OpenC2 language.
+
 ## E.1 JADN Overview
 
-JADN as an Information Modeling (IM) language
+> JADN as an Information Modeling (IM) language
+
+The abstract of the OASIS Committee Specification for JADN
+describes it as follows:
+
+> JSON Abstract Data Notation (JADN) is a UML-based information
+> modeling language that defines data structure independently of
+> data format. 
+
+As the specification explains:  [RFC 3444](#rfc3444),
+"Information Models and Data Models", notes that the main purpose
+of an information model is to model objects at a conceptual
+level, independent of specific implementations or protocols used
+to transport the data. JADN provides a tool for developing
+information models, which can be used to define and generate
+physical data models, validate information instances, and enable
+lossless translation across data formats. 
+
+A JADN specification consists of type definitions that comprise
+the information model, and serialization rules that define how
+information instances are represented as data. The model is
+documented using a compact and expressive interface definition
+language, property tables, or entity relationship diagrams,
+easing integration with existing design processes and
+architecture tools.
+
+JADN defines a set of base types that includes five "primitives
+(e.g., boolean, string), and seven complex types (e.g., array,
+map, record). JADN type definitions have a fixed structure
+designed to be easily describable, easily processed, stable, and
+extensible. Every definition in a JADN document is described in
+terms of five elements: 
+
+1) **TypeName:** the name of the type being defined
+1) **BaseType:** the JADN predefined type (Table 3-1) of the type
+   being defined
+1) **TypeOptions:** an array of zero or more TypeOption (Section
+   3.2.1) applicable to BaseType
+1) **TypeDescription:** a non-normative comment
+1) **Fields:** an array of Item or Field definitions
+
+From this starting point JADN enables creation of a rich
+information model readily expressed in any of several
+representations. A rich set of options (e.g., semanic validation,
+size and value contstraints, multiplicity constraints) provide
+the means to define a wide variety of information types in a
+representation-independent manner.
+
 
 ## E.2 Deriving Other Schemas and Serializations
 
-Explanation how JADN schema enables other schemas & serializations
+> Explanation how JADN schema enables other schemas & serializations
+
+
+
+
 
 ## E.3 JADN Example: OpenC2 Subset
 
