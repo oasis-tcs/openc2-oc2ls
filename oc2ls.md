@@ -2005,6 +2005,10 @@ publication, OASIS cannot guarantee their long-term validity.
 The following documents are referenced in such a way that some or all of their
 content constitutes requirements of this document.
 
+###### [JADN-v1.0]
+
+JSON Abstract Data Notation Version 1.0. Edited by David Kemp. 17 August 2021. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/jadn/v1.0/cs01/jadn-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/jadn/v1.0/jadn-v1.0.html.
+
 ###### [OpenC2-HTTPS-v1.0]
 
 *Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0*. Edited by
