@@ -2570,9 +2570,13 @@ the "Target" data type.
 
 *The content in this section is non-normative.*
 
-This appendix provides a brief overview of the *JSON Abstract Data
-Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information modeling (IM) language
-and its application to rigorously specifying the OpenC2 language.
+This appendix provides a brief overview of the *JSON Abstract
+Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
+modeling (IM) language and its application to rigorously
+specifying the OpenC2 language. Unless explicitly labeled
+otherwise, section references in this appendix are to section of
+the [JADN](#jadn-v10) specification, rather than this
+language specification.
 
 ## E.1 JADN Overview
 
@@ -2583,7 +2587,7 @@ describes it as follows:
 > modeling language that defines data structure independently of
 > data format. 
 
-As the specification explains:  [RFC 3444](#rfc3444),
+As the specification explains (section 1):  [RFC 3444](#rfc3444),
 "Information Models and Data Models", notes that the main purpose
 of an **information model** is to model objects at a conceptual
 level, independent of specific implementations or protocols used
@@ -2607,7 +2611,7 @@ JADN defines a set of base types that includes five "primitives
 map, record). JADN type definitions have a fixed structure
 designed to be easily describable, easily processed, stable, and
 extensible. Every definition in a JADN document is described in
-terms of five elements: 
+terms of five elements (JADN specifcation section 3.1): 
 
 1) **TypeName:** the name of the type being defined
 2) **BaseType:** the JADN predefined type (Table 3-1) of the type
@@ -2619,10 +2623,11 @@ terms of five elements:
 
 From this starting point JADN enables creation of a rich
 information model readily expressed in any of several
-representations. A rich set of options (e.g., semantic validation,
-size and value contstraints, multiplicity constraints) provide
-the means to define a wide variety of information types in a
-representation-independent manner.
+representations. Section 3.2 describes a rich set of options
+(e.g., semantic validation, size and value contstraints,
+multiplicity constraints) provide the means to define a wide
+variety of information types in a representation-independent
+manner.
 
 The native format of JADN is JSON, but JADN content can be
 represented in others ways that are more useful for
@@ -2649,7 +2654,8 @@ in the desired format. Serialization is the process for
 converting application information, regardless of its internal
 representation, into a form that can be transmitted (i.e., into a
 "document"). The JADN specification defines serialization rules
-for four different representations of an information model:
+for four different representations of an information mode
+(Section 4):
 
  - Verbose JSON
  - Compact JSON
@@ -2658,9 +2664,9 @@ for four different representations of an information model:
 
 In addition, the specification identifies the constraints that
 must be satisifed to define how a JADN IM is represented in other
-serializations. Because each serialization represents the same
-information model, translation between serialization formats is
-simplified.
+serializations (Section 4). Because each serialization represents
+the same information model, translation between serialization
+formats is simplified.
 
 ## E.3 JADN Example: OpenC2 Subset
 
@@ -2673,9 +2679,9 @@ A 5-tuple is a common means of representing a TCP or UDP session,
 providing the source and destination IP addresses and ports, and
 identifying the Layer 4 protocol in use. The corresponding OpenC2
 target type is called an `IPv4-Connection` (see section
-[3.4.1.10](#34110-ipv4-connection)).  A group of basic types and
-their use in the specification of an IPv4 Connection information
-model are represented in JIDL as follows:
+[3.4.1.10](#34110-ipv4-connection) of this specification).  A
+group of basic types and their use in the definition of an IPv4
+Connection information model are represented in JIDL as follows:
 
 ```
 
@@ -2719,9 +2725,10 @@ Port = Integer{0..65535}                          // Transport Protocol Port Num
 ```
 
 The equivalent property table representations can be found in the
-respective section for each type (ordered as above):
+respective section of this specification for each type (ordered
+as above):
 
- - [3.4.2.9](#3429-ipv4-address): IPv4-Address
+ - [3.4.2.9](#3429-ipv4-address): IPv4-Addr
  - [3.4.1.10](#34110-ipv4-connection): IPv4-Connection
  - [3.4.1.9](#3419-ipv4-address-range): IPv4-Net
  - [3.4.2.11](#34211-l4-protocol): L4-Protocol
