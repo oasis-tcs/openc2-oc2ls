@@ -2643,8 +2643,6 @@ good format for the initial creation of a JADN model.
 
 ## E.2 Deriving Other Schemas and Serializations
 
-> Explanation how JADN schema enables other schemas & serializations
-
 Converting an information model to a data model means applying
 serialization rules for each base type that produce physical data
 in the desired format. Serialization is the process for
@@ -2666,14 +2664,10 @@ simplified.
 
 ## E.3 JADN Example: OpenC2 Subset
 
-> Illustration with small subset of OpenC2 language
-
 This section provide a brief example of a JADN information model,
 using data types from OpenC2. 
 
 ### E.3.1  Basic and Complex Data Types
-
-> JIDL for some basic and complex types
 
 A 5-tuple is a common means of representing a TCP or UDP session,
 providing the source and destination IP addresses and ports, and
@@ -2734,8 +2728,6 @@ respective section for each type (ordered as above):
  - [3.4.2.15](#34215-port): Port
  
 ### E.3.2  JADN Representation
-
-> Corresponding JSON data in JADN format
 
 This section shows the JADN representation of the types defined
 using JIDL in the preceding section.
