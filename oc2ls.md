@@ -2657,10 +2657,12 @@ representation, into a form that can be transmitted (i.e., into a
 for four different representations of an information mode
 (Section 4):
 
- - Verbose JSON
- - Compact JSON
- - Concise JSON
- - CBOR
+| Serialization Type |                              Description                              |
+|:------------------:|:---------------------------------------------------------------------:|
+|    Verbose JSON    | Human-readable JSON format using name-value encoding for tabular data |
+|    Compact JSON    | Human-readable JSON format using positional encoding for tabular data |
+|    Concise JSON    | Represents JADN data types in a format optimized for minimum size     |
+|        CBOR        | Concise Binary Object Representation format of JADN types             |
 
 In addition, the specification identifies the constraints that
 must be satisifed to define how a JADN IM is represented in other
