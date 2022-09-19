@@ -2676,7 +2676,7 @@ using data types from OpenC2.
 > JIDL for some basic and complex types
 
 A 5-tuple is a common means of representing a TCP or UDP session,
-providing the source and destionation IP addresses and ports, and
+providing the source and destination IP addresses and ports, and
 identifying the Layer 4 protocol in use. The corresponding OpenC2
 target type is called an `IPv4-Connection` (see section
 [3.4.1.10](#34110-ipv4-connection)).  A group of basic types and
