@@ -2675,8 +2675,13 @@ using data types from OpenC2.
 
 > JIDL for some basic and complex types
 
-A group of basic types and their use in the definition of an IPv4
-Connection are represented in JIDL as follows:
+A 5-tuple is a common means of representing a TCP or UDP session,
+providing the source and destionation IP addresses and ports, and
+identifying the Layer 4 protocol in use. The corresponding OpenC2
+target type is called an `IPv4-Connection` (see section
+[3.4.1.10](#34110-ipv4-connection)).  A group of basic types and
+their use in the specification of an IPv4 Connection information
+model are represented in JIDL as follows:
 
 ```
 
