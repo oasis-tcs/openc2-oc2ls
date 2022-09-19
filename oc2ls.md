@@ -2574,9 +2574,9 @@ This appendix provides a brief overview of the *JSON Abstract
 Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
 modeling (IM) language and its application to rigorously
 specifying the OpenC2 language. Unless explicitly labeled
-otherwise, section references in this appendix are to section of
-the [JADN](#jadn-v10) specification, rather than this
-language specification.
+otherwise, section references in this appendix are to sections of
+the [JADN](#jadn-v10) specification, rather than this language
+specification.
 
 ## E.1 JADN Overview
 
