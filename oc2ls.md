@@ -2576,8 +2576,6 @@ and its application to rigorously specifying the OpenC2 language.
 
 ## E.1 JADN Overview
 
-> JADN as an Information Modeling (IM) language
-
 The abstract of the OASIS Committee Specification for JADN
 describes it as follows:
 
@@ -2587,19 +2585,21 @@ describes it as follows:
 
 As the specification explains:  [RFC 3444](#rfc3444),
 "Information Models and Data Models", notes that the main purpose
-of an information model is to model objects at a conceptual
+of an **information model** is to model objects at a conceptual
 level, independent of specific implementations or protocols used
 to transport the data. JADN provides a tool for developing
 information models, which can be used to define and generate
 physical data models, validate information instances, and enable
 lossless translation across data formats. 
 
-A JADN specification consists of type definitions that comprise
-the information model, and serialization rules that define how
-information instances are represented as data. The model is
-documented using a compact and expressive interface definition
-language, property tables, or entity relationship diagrams,
-easing integration with existing design processes and
+A JADN specification consists of:
+ -  type definitions that comprise the information model, and
+ -  serialization rules that define how information instances are
+    represented as data. 
+
+The model is documented using a compact and expressive interface
+definition language, property tables, or entity relationship
+diagrams, easing integration with existing design processes and
 architecture tools.
 
 JADN defines a set of base types that includes five "primitives
@@ -2610,12 +2610,12 @@ extensible. Every definition in a JADN document is described in
 terms of five elements: 
 
 1) **TypeName:** the name of the type being defined
-1) **BaseType:** the JADN predefined type (Table 3-1) of the type
+2) **BaseType:** the JADN predefined type (Table 3-1) of the type
    being defined
-1) **TypeOptions:** an array of zero or more TypeOption (Section
+3) **TypeOptions:** an array of zero or more TypeOption (Section
    3.2.1) applicable to BaseType
-1) **TypeDescription:** a non-normative comment
-1) **Fields:** an array of Item or Field definitions
+4) **TypeDescription:** a non-normative comment
+5) **Fields:** an array of Item or Field definitions
 
 From this starting point JADN enables creation of a rich
 information model readily expressed in any of several
@@ -2638,8 +2638,8 @@ four of these formats. Table style presentation is often used in
 specifications (e.g., as property tables such as are found in the
 body of this specficiation). Entity relationship diagrams are
 helpful for visualization of an information model. The JIDL
-format, a simple text structure, is straightforward to edit,
-making it a good format for the initial creation of a JADN model.
+format, a simple text structure, is easy to edit, making it a
+good format for the initial creation of a JADN model.
 
 ## E.2 Deriving Other Schemas and Serializations
 
