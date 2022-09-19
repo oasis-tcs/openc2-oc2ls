@@ -2540,13 +2540,17 @@ the "Action-Targets" data type should be an enumerated list of the possible
 Targets
 
 **Definition of "Action-Targets" Data Type:** The Targets data type is defined
-as an array of "Target" enumerations. The "Target" enumerations are derived from
-the "Target" data type.
+as an array of "Target" enumerations. 
 
 | Type Name          | Type Definition              | Description                                                                                             |
 |--------------------|------------------------------|---------------------------------------------------------------------------------------------------------|
 | **Action-Targets** | MapOf(Action, Targets)       | Map of each action supported by each Actuator Profile to the list of targets applicable to that action. |
+
+The "Target" enumerations are derived from
+the "Target" data type.
+
 | Type Name          | Type Definition              | Description                                                                                             |
+|--------------------|------------------------------|---------------------------------------------------------------------------------------------------------|
 | **Targets**        | ArrayOf(Enum(Target)){1..\*} | List of Target fields                                                                                   |
 
 **Example:** The "pairs" property is defined as an "Action-Targets" data type.
