@@ -2624,6 +2624,22 @@ size and value contstraints, multiplicity constraints) provide
 the means to define a wide variety of information types in a
 representation-independent manner.
 
+The native format of JADN is JSON, but JADN content can be
+represented in others ways that are more useful for
+documentation. The [JADN Specification](#jadn-v10) identifies
+three formats (Section 5):
+
+ - JADN Interface Definition Language (JIDL)
+ - Table Style 
+ - Entity Relationship Diagrams 
+
+Automated tooling makes it straightforward to translate among all
+four of these formats. Table style presentation is often used in
+specifications (e.g., as property tables such as are found in the
+body of this specficiation). Entity relationship diagrams are
+helpful for visualization of an information model. The JIDL
+format, a simple text structure, is straightforward to edit,
+making it a good format for the initial creation of a JADN model.
 
 ## E.2 Deriving Other Schemas and Serializations
 
@@ -2652,13 +2668,99 @@ simplified.
 
 > Illustration with small subset of OpenC2 language
 
+This section provide a brief example of a JADN information model,
+using data types from OpenC2. 
+
 ### E.3.1  Basic and Complex Data Types
 
 > JIDL for some basic and complex types
 
+A group of basic types and their use in the definition of an IPv4
+Connection are represented in JIDL as follows:
+
+```
+
+// An IPv4 address is a binary value representing a 32-bit integer
+
+IPv4-Addr = Binary /ipv4-addr                     // 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)
+
+
+// the IPv4-Connection type is a record
+
+IPv4-Connection = Record{1..*}                    // 5-tuple that specifies a tcp/ip connection
+   1 src_addr         IPv4-Net optional           // IPv4 source address range
+   2 src_port         Port optional               // Source service per [[RFC6335]](#rfc6335)
+   3 dst_addr         IPv4-Net optional           // IPv4 destination address range
+   4 dst_port         Port optional               // Destination service per [[RFC6335]](#rfc6335)
+   5 protocol         L4-Protocol optional        // Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)
+
+
+// the IPv4-Net type is used to represent a CIDR block
+
+IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix length
+   1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [[RFC0791]](#rfc0791)
+   2  Integer optional                            // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
+
+
+// L4-Protocol is an 8-bit value therefore L4-Protocol is an enumeration from 0..255.
+// The interpretation of this value is handled through an external registry
+// See the usage requirements in Section 3.4.2.11, which also contains the following
+// commonly-used example values for the field.
+
+L4-Protocol = Enumerated                          // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
+   1 icmp                                         // Internet Control Message Protocol - [[RFC0792]](#rfc0792)
+   6 tcp                                          // Transmission Control Protocol - [[RFC0793]](#rfc0793)
+  17 udp                                          // User Datagram Protocol - [[RFC0768]](#rfc0768)
+ 132 sctp                                         // Stream Control Transmission Protocol - [[RFC4960]](#rfc4960)
+
+
+// Port is a 16-bit integer
+
+Port = Integer{0..65535}                          // Transport Protocol Port Number, [[RFC6335]](#rfc6335)
+```
+
+The equivalent property table representations can be found in the
+respective section for each type (ordered as above):
+
+ - [3.4.2.9](#3429-ipv4-address): IPv4-Address
+ - [3.4.1.10](#34110-ipv4-connection): IPv4-Connection
+ - [3.4.1.9](#3419-ipv4-address-range): IPv4-Net
+ - [3.4.2.11](#34211-l4-protocol): L4-Protocol
+ - [3.4.2.15](#34215-port): Port
+ 
 ### E.3.2  JADN Representation
 
 > Corresponding JSON data in JADN format
+
+This section shows the JADN representation of the types defined
+using JIDL in the preceding section.
+
+```
+["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)"],
+
+["IPv4-Connection", "Record", ["{1"], "5-tuple that specifies a tcp/ip connection", [
+    [1, "src_addr", "IPv4-Net", ["[0"], "IPv4 source address range"],
+    [2, "src_port", "Port", ["[0"], "Source service per [[RFC6335]](#rfc6335)"],
+    [3, "dst_addr", "IPv4-Net", ["[0"], "IPv4 destination address range"],
+    [4, "dst_port", "Port", ["[0"], "Destination service per [[RFC6335]](#rfc6335)"],
+    [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)"]
+]],
+
+["IPv4-Net", "Array", ["/ipv4-net"], "IPv4 address and prefix length", [
+    [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [[RFC0791]](#rfc0791)"],
+    [2, "prefix_length", "Integer", ["[0"], "CIDR prefix-length. If omitted, refers to a single host address."]
+]],
+
+["L4-Protocol", "Enumerated", [], "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)", [
+    [1, "icmp", "Internet Control Message Protocol - [[RFC0792]](#rfc0792)"],
+    [6, "tcp", "Transmission Control Protocol - [[RFC0793]](#rfc0793)"],
+    [17, "udp", "User Datagram Protocol - [[RFC0768]](#rfc0768)"],
+    [132, "sctp", "Stream Control Transmission Protocol - [[RFC4960]](#rfc4960)"]
+]]
+
+["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [[RFC6335]](#rfc6335)"]
+```
+
 
 ### E.3.3  Translation To JSON Schema
 
