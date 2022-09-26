@@ -2637,7 +2637,7 @@ terms of five elements (JADN specification section 3.1):
 From this starting point JADN enables creation of a rich
 information model readily expressed in any of several
 representations. Section 3.2 describes a rich set of options
-(e.g., semantic validation, size and value contstraints,
+(e.g., semantic validation, size and value constraints,
 multiplicity constraints) that provide the means to define a wide
 variety of information types in a representation-independent
 manner.
@@ -2664,7 +2664,7 @@ three formats (Section 5) in addition to the native format:
 Automated tooling makes it straightforward to translate among all
 four of these formats. Table style presentation is often used in
 specifications (e.g., as property tables such as are found in the
-body of this specficiation). Entity relationship diagrams are
+body of this specification). Entity relationship diagrams are
 helpful for visualization of an information model. The JIDL
 format, a simple text structure, is easy to edit, making it a
 good format for the initial creation of a JADN model.
