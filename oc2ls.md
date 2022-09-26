@@ -2617,7 +2617,7 @@ definition language, property tables, or entity relationship
 diagrams, easing integration with existing design processes and
 architecture tools.
 
-JADN defines a set of base types that includes five "primitives
+JADN defines a set of base types that includes five "primitives"
 (e.g., boolean, string), and seven complex types (e.g., array,
 map, record). JADN type definitions have a fixed structure
 designed to be easily describable, easily processed, stable, and
