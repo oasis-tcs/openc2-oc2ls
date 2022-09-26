@@ -2662,14 +2662,21 @@ good format for the initial creation of a JADN model.
 
 ## E.2 Deriving Other Schemas and Serializations
 
-Converting an information model to a data model means applying
-serialization rules for each base type that produce physical data
-in the desired format. Serialization is the process for
+Once the information model is developed, its use in applications
+requires serialization and deserialization of the information in
+some specific format to permit transmisssion or storage of the
+data corresponding to the model. Serialization is the process for
 converting application information, regardless of its internal
 representation, into a form that can be transmitted (i.e., into a
-"document"). The JADN specification defines serialization rules
-for four different representations of an information mode
-(Section 4):
+"document"). JADN information models can be translated into a
+number of schemea formats, such as JSON schema or CDDL, or can be
+used directly as a format-independent schema language.
+
+Converting an information model to a data model means applying
+serialization rules for each base type that produce physical data
+in the desired format.  The JADN specification defines
+serialization rules for four different representations of an
+information mode (Section 4):
 
 | Serialization Type |                              Description                              |
 |:------------------:|:---------------------------------------------------------------------:|
