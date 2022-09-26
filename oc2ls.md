@@ -2222,6 +2222,10 @@ Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security
 Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003,
 https://www.rfc-editor.org/info/rfc3552.
 
+###### [RFC8610]
+
+Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610, June 2019, https://www.rfc-editor.org/info/rfc8610
+
 ###### [IACD]
 
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
