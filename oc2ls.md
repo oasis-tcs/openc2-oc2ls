@@ -2741,10 +2741,10 @@ as above):
  - [3.4.2.15](#34215-port): Port
  
 The example above also makes use of a pair of  JADN semantic
-validation keywords: `"ipv4-addr"` and `"ipv4-net"` (see section
-3.2.1.5 of the [JADN](#jadn-v10) specification). These keywords
-specify validation requirements for the data types where they are
-used. For example, "`ipv4-addr"` is used to force the
+validation keywords: `"ipv4-addr"` and `"ipv4-net"`. These
+keywords specify validation requirements for the data types where
+they are used (see section 3.2.1.5 of the [JADN](#jadn-v10)
+specification). For example, "`ipv4-addr"` is used to force the
 representation of a binary address in "dotted quad"
 representation, per [[RFC 791](#rfc0791)].
 
