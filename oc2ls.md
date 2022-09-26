@@ -2629,9 +2629,19 @@ From this starting point JADN enables creation of a rich
 information model readily expressed in any of several
 representations. Section 3.2 describes a rich set of options
 (e.g., semantic validation, size and value contstraints,
-multiplicity constraints) provide the means to define a wide
+multiplicity constraints) that provide the means to define a wide
 variety of information types in a representation-independent
 manner.
+
+As an information modeling language, JADN supports only two kinds
+of relationships: "contain" and "reference".  A JADN information
+model is a set of type definitions, where each definition may be
+basic or structured. Each field in a structured type may be
+associated with another model-defined type, and the set of
+associations between types forms a directed graph. Each
+association is either a container or a reference, and the
+direction of each edge is toward the contained or referenced
+type.
 
 The native format of JADN is JSON, but JADN content can be
 represented in others ways that are more useful for
