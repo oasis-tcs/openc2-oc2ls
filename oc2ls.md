@@ -2646,7 +2646,7 @@ type.
 The native format of JADN is JSON, but JADN content can be
 represented in others ways that are more useful for
 documentation. The [JADN Specification](#jadn-v10) identifies
-three formats (Section 5):
+three formats (Section 5) in addition to the native format:
 
  - JADN Interface Definition Language (JIDL)
  - Table Style 
