@@ -2788,29 +2788,29 @@ This section shows the JADN representation of the types defined
 using JIDL in the preceding section.
 
 ```
-["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)"],
+["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [RFC0791]"],
 
 ["IPv4-Connection", "Record", ["{1"], "5-tuple that specifies a tcp/ip connection", [
     [1, "src_addr", "IPv4-Net", ["[0"], "IPv4 source address range"],
-    [2, "src_port", "Port", ["[0"], "Source service per [[RFC6335]](#rfc6335)"],
+    [2, "src_port", "Port", ["[0"], "Source service per [RFC6335],
     [3, "dst_addr", "IPv4-Net", ["[0"], "IPv4 destination address range"],
-    [4, "dst_port", "Port", ["[0"], "Destination service per [[RFC6335]](#rfc6335)"],
-    [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)"]
+    [4, "dst_port", "Port", ["[0"], "Destination service per [RFC6335],
+    [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - see Section 3.4.2.10"]
 ]],
 
 ["IPv4-Net", "Array", ["/ipv4-net"], "IPv4 address and prefix length", [
-    [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [[RFC0791]](#rfc0791)"],
+    [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [RFC0791],
     [2, "prefix_length", "Integer", ["[0"], "CIDR prefix-length. If omitted, refers to a single host address."]
 ]],
 
 ["L4-Protocol", "Enumerated", [], "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)", [
-    [1, "icmp", "Internet Control Message Protocol - [[RFC0792]](#rfc0792)"],
-    [6, "tcp", "Transmission Control Protocol - [[RFC0793]](#rfc0793)"],
-    [17, "udp", "User Datagram Protocol - [[RFC0768]](#rfc0768)"],
-    [132, "sctp", "Stream Control Transmission Protocol - [[RFC4960]](#rfc4960)"]
+    [1, "icmp", "Internet Control Message Protocol - [RFC0792],
+    [6, "tcp", "Transmission Control Protocol - [RFC0793],
+    [17, "udp", "User Datagram Protocol - [RFC0768],
+    [132, "sctp", "Stream Control Transmission Protocol - [RFC4960]"]
 ]]
 
-["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [[RFC6335]](#rfc6335)"]
+["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [RFC6335]"]
 ```
 
 
