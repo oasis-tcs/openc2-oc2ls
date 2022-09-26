@@ -2734,16 +2734,16 @@ IPv4-Addr = Binary /ipv4-addr                     // 32 bit IPv4 address as defi
 
 IPv4-Connection = Record{1..*}                    // 5-tuple that specifies a tcp/ip connection
    1 src_addr         IPv4-Net optional           // IPv4 source address range
-   2 src_port         Port optional               // Source service per [[RFC6335]](#rfc6335)
+   2 src_port         Port optional               // Source service per [RFC6335]
    3 dst_addr         IPv4-Net optional           // IPv4 destination address range
-   4 dst_port         Port optional               // Destination service per [[RFC6335]](#rfc6335)
+   4 dst_port         Port optional               // Destination service per [RFC6335]
    5 protocol         L4-Protocol optional        // Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)
 
 
 // the IPv4-Net type is an array used to represent a CIDR block
 
 IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix length
-   1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [[RFC0791]](#rfc0791)
+   1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [RFC0791]
    2  Integer optional                            // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
 
 
@@ -2753,15 +2753,15 @@ IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix len
 // commonly-used example values for the field.
 
 L4-Protocol = Enumerated                          // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
-   1 icmp                                         // Internet Control Message Protocol - [[RFC0792]](#rfc0792)
-   6 tcp                                          // Transmission Control Protocol - [[RFC0793]](#rfc0793)
-  17 udp                                          // User Datagram Protocol - [[RFC0768]](#rfc0768)
- 132 sctp                                         // Stream Control Transmission Protocol - [[RFC4960]](#rfc4960)
+   1 icmp                                         // Internet Control Message Protocol - [RFC0792]
+   6 tcp                                          // Transmission Control Protocol - [RFC0793]
+  17 udp                                          // User Datagram Protocol - [RFC0768]
+ 132 sctp                                         // Stream Control Transmission Protocol - [RFC4960]
 
 
 // Port is a 16-bit integer
 
-Port = Integer{0..65535}                          // Transport Protocol Port Number, [[RFC6335]](#rfc6335)
+Port = Integer{0..65535}                          // Transport Protocol Port Number, [RFC6335]
 ```
 
 The equivalent property table representations can be found in the
