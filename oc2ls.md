@@ -2624,12 +2624,14 @@ designed to be easily describable, easily processed, stable, and
 extensible. Every definition in a JADN document is described in
 terms of five elements (JADN specification section 3.1): 
 
-1) **TypeName:** the name of the type being defined
-2) **BaseType:** the JADN predefined type (Table 3-1) of the type
-   being defined
+1) **TypeName:** a stromg containing the name of the type being
+   defined
+2) **BaseType:** a choice from the JADN predefined types (Table
+   3-1) of the type being defined
 3) **TypeOptions:** an array of zero or more TypeOption (Section
    3.2.1) applicable to BaseType
-4) **TypeDescription:** a non-normative comment
+4) **TypeDescription:** a stromg containing a non-normative
+   comment
 5) **Fields:** an array of Item or Field definitions
 
 From this starting point JADN enables creation of a rich
