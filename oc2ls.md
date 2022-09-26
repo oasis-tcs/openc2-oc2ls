@@ -2676,8 +2676,9 @@ data corresponding to the model. Serialization is the process for
 converting application information, regardless of its internal
 representation, into a form that can be transmitted (i.e., into a
 "document"). JADN information models can be translated into a
-number of schemea formats, such as [[JSON schema](#json-schema)] or CDDL, or can be
-used directly as a format-independent schema language.
+number of schemea formats, such as [[JSON schema](#json-schema)]
+or CDDL [[RFC8610](#rfc8610)], or can be used directly as a
+format-independent schema language.
 
 Converting an information model to a data model means applying
 serialization rules for each base type that produce physical data
