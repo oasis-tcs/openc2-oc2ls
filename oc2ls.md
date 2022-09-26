@@ -2226,6 +2226,9 @@ https://www.rfc-editor.org/info/rfc3552.
 
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
 
+###### [JSON-Schema]
+"JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieve 9/26/2022, https://json-schema.org/
+
 ###### [UML]
 
 "Unified Modeling Language", Version 2.5.1, December 2017, https://www.omg.org/spec/UML/2.5.1/About-UML/
