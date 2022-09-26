@@ -2622,7 +2622,7 @@ JADN defines a set of base types that includes five "primitives"
 map, record). JADN type definitions have a fixed structure
 designed to be easily describable, easily processed, stable, and
 extensible. Every definition in a JADN document is described in
-terms of five elements (JADN specifcation section 3.1): 
+terms of five elements (JADN specification section 3.1): 
 
 1) **TypeName:** the name of the type being defined
 2) **BaseType:** the JADN predefined type (Table 3-1) of the type
