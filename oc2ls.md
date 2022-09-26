@@ -2738,7 +2738,7 @@ IPv4-Connection = Record{1..*}                    // 5-tuple that specifies a tc
    5 protocol         L4-Protocol optional        // Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)
 
 
-// the IPv4-Net type is used to represent a CIDR block
+// the IPv4-Net type is an array used to represent a CIDR block
 
 IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix length
    1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [[RFC0791]](#rfc0791)
