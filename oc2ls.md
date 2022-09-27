@@ -2766,10 +2766,6 @@ using JIDL in the preceding section.
 
 > JADN translation to JSON schema
 
-### D.3.4  Translation to CBOR / CDDL
-
-> JADN translation to CBOR/CDDL
-
 ## D.5 Additional Information
 
 > Reference to OpenC2 JADN schema external artifact
