@@ -2727,8 +2727,8 @@ validation keywords: `"ipv4-addr"` and `"ipv4-net"`. These
 keywords specify validation requirements for the data types where
 they are used (see section 3.2.1.5 of the [JADN](#jadn-v10)
 specification). For example, "`ipv4-addr"` is used to force the
-representation of a binary address in "dotted quad"
-representation, per [[RFC 791](#rfc0791)].
+representation of a binary address in the commonly used "dotted
+quad" format.
 
 ### D.3.2  JADN Representation
 
@@ -2766,7 +2766,7 @@ using JIDL in the preceding section.
 
 > JADN translation to JSON schema
 
-## D.5 Additional Information
+## D.4 Additional Information
 
 > Reference to OpenC2 JADN schema external artifact
 
