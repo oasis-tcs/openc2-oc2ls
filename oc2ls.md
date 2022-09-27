@@ -2525,7 +2525,7 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-# Appendix E. Schema Development With JADN
+# Appendix D. Schema Development With JADN
 
 *The content in this section is non-normative.*
 
@@ -2537,7 +2537,7 @@ otherwise, section references in this appendix are to sections of
 the [JADN](#jadn-v10) specification, rather than this Language
 Specification.
 
-## E.1 JADN Overview
+## D.1 JADN Overview
 
 The abstract of the OASIS Committee Specification for JADN
 describes it as follows:
@@ -2617,7 +2617,7 @@ helpful for visualization of an information model. The JIDL
 format, a simple text structure, is easy to edit, making it a
 good format for the initial creation of a JADN model.
 
-## E.2 Deriving Other Schemas and Serializations
+## D.2 Deriving Other Schemas and Serializations
 
 Once the information model is developed, its use in applications
 requires serialization and deserialization of the information in
@@ -2652,12 +2652,12 @@ serializations (Section 4). Because each serialization represents
 the same information model, translation between serialization
 formats is simplified.
 
-## E.3 JADN Example: OpenC2 Subset
+## D.3 JADN Example: OpenC2 Subset
 
 This section provide a brief example of a JADN information model,
 using data types from OpenC2. 
 
-### E.3.1  Basic and Complex Data Types
+### D.3.1  Basic and Complex Data Types
 
 This example illustrates the use of basic and complex types to
 describe a network connection. A 5-tuple is a common means of
@@ -2730,7 +2730,7 @@ specification). For example, "`ipv4-addr"` is used to force the
 representation of a binary address in "dotted quad"
 representation, per [[RFC 791](#rfc0791)].
 
-### E.3.2  JADN Representation
+### D.3.2  JADN Representation
 
 This section shows the JADN representation of the types defined
 using JIDL in the preceding section.
@@ -2762,15 +2762,15 @@ using JIDL in the preceding section.
 ```
 
 
-### E.3.3  Translation To JSON Schema
+### D.3.3  Translation To JSON Schema
 
 > JADN translation to JSON schema
 
-### E.3.4  Translation to CBOR / CDDL
+### D.3.4  Translation to CBOR / CDDL
 
 > JADN translation to CBOR/CDDL
 
-## E.5 Additional Information
+## D.5 Additional Information
 
 > Reference to OpenC2 JADN schema external artifact
 
@@ -2779,7 +2779,7 @@ using JIDL in the preceding section.
 
 
 
-# Appendix F. Revision History
+# Appendix E. Revision History
 
 *The content in this section is non-normative.*
 
@@ -2797,7 +2797,7 @@ using JIDL in the preceding section.
 | Issue #361 | 9/xx/2022 | Lemire | Add explanatory JADN appendix  |
 
 
-# Appendix G. Acknowledgments
+# Appendix F. Acknowledgments
 
 *The content in this section is non-normative.*
 
@@ -2868,7 +2868,7 @@ specification and are gratefully acknowledged:
 | Sounil     | Yu            | Bank of America                                                      |
 | Vasileios  | Mavroeidis    | University of Oslo                                                   |
 
-# Appendix H. Notices
+# Appendix G. Notices
 
 Copyright © OASIS Open 2021. All Rights Reserved.
 
