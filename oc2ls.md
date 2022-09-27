@@ -2524,58 +2524,6 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 -----END PUBLIC KEY-----
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Appendix D. Design Elements
-
-## D.1 Derived Enumerations
-
-It is sometimes useful to reference the fields of a structure definition, for
-example to list fields that are usable in a particular context, or to read or
-update the value of a specific field. An instance of a reference can be
-validated against the set of valid references using either an explicit or a
-derived Enumerated type. A derived enumeration is created using an Enum()
-expression on the type being referenced, and it results in an Enumerated type
-containing the ID and Name columns of the referenced type.
-
-This is the design element that defines the "Action-Targets" data type. The
-"Action-Targets" data type is a map of each action supported by an actuator to a
-list of targets implemented for each action. The list of Actions, defined in
-[Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible
-Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a
-Choice data structure where each element is a complex data type of its own. A
-derived enumeration is used in this case to signify that the list of Targets for
-the "Action-Targets" data type should be an enumerated list of the possible
-Targets
-
-**Definition of "Action-Targets" Data Type:** The Targets data type is defined
-as an array of "Target" enumerations. 
-
-| Type Name          | Type Definition              | Description                                                                                             |
-|--------------------|------------------------------|---------------------------------------------------------------------------------------------------------|
-| **Action-Targets** | MapOf(Action, Targets)       | Map of each action supported by each Actuator Profile to the list of targets applicable to that action. |
-
-The "Target" enumerations are derived from
-the "Target" data type.
-
-| Type Name          | Type Definition              | Description                                                                                             |
-|--------------------|------------------------------|---------------------------------------------------------------------------------------------------------|
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} | List of Target fields                                                                                   |
-
-**Example:** The "pairs" property is defined as an "Action-Targets" data type.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "status": 200,
-    "results": {
-        "pairs": {
-            "allow": ["ipv6_net", "ipv6_connection"],
-            "deny": ["ipv6_net", "ipv6_connection"],
-            "query": ["features"],
-            "delete": ["slpf:rule_number"],
-            "update": ["file"]
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Appendix E. Schema Development With JADN
 
