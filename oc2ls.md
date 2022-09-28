@@ -1,31 +1,31 @@
 ![](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
-# Open Command and Control (OpenC2) Language Specification Version 1.1
+# Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 2
+## Working Draft 01
 
-## 18 Aug 2021 {put in new date}
+## DD MMM 2022
 
 #### This version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
 
 #### Previous version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v1.1-cs01.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.pdf
 
 #### Latest version:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.md
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
 (Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.pdf
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
+https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
 
 #### Technical Committee:
 
@@ -42,7 +42,7 @@ LLC](http://www.sfractal.com/)
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
 LLC](http://www.sfractal.com/)
 
- Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
+Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
 #### Abstract:
 
@@ -98,7 +98,7 @@ used:
 
 *Open Command and Control (OpenC2) Language Specification Version 1.1*. Edited
 by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v1.1-cs02.html.
+01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html.
 Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 ## Notices
@@ -326,35 +326,37 @@ To Be Supplied.
 
 *This section is normative.*
 
--   **Action**: The task or activity to be performed (e.g., 'deny').
+- **Action**: The task or activity to be performed (e.g., 'deny').
 
--   **Actuator**: The function performed by the Consumer that executes the
-    Command (e.g., 'Stateless Packet Filtering').
+- **Actuator**: The Consumer that executes a Command.
 
--   **Argument**: A property of a Command that provides additional information
+- **Actuator Profile**: The document that defines a category of operations
+    performed by an Actuator (e.g., 'Stateless Packet Filtering').
+
+- **Argument**: A property of a Command that provides additional information
     on how to perform the Command, such as date/time, periodicity, duration,
     etc.
 
--   **Command**: A Message defined by an Action-Target pair that is sent from a
+- **Command**: A Message defined by an Action-Target pair that is sent from a
     Producer and received by a Consumer.
 
--   **Consumer**: A managed device / application that receives Commands. Note
+- **Consumer**: A managed device / application that receives Commands. Note
     that a single device / application can have both Consumer and Producer
     capabilities.
 
--   **Message**: A content- and transport-independent set of elements conveyed
+- **Message**: A content- and transport-independent set of elements conveyed
     between Consumers and Producers.
 
--   **Producer**: A manager application that sends Commands.
+- **Producer**: A manager application that sends Commands.
 
--   **Response**: A Message from a Consumer to a Producer acknowledging a
+- **Response**: A Message from a Consumer to a Producer acknowledging a
     Command or returning the requested resources or status to a previously
     received Command.
 
--   **Specifier**: A property or field that identifies a Target or Actuator to
+- **Specifier**: A property or field that identifies a Target to
     some level of precision.
 
--   **Target**: The object of the Action, i.e., the Action is performed on the
+- **Target**: The object of the Action, i.e., the Action is performed on the
     Target (e.g., IP Address).
 
 ### 1.2.2 Acronyms and abbreviations
@@ -453,6 +455,7 @@ Example:
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
 ## 1.4 Purpose and Scope
 
 This OpenC2 Language Specification defines the set of components
@@ -498,7 +501,7 @@ acknowledgment, status, etc.) as a result of a Command.
 
 A command has four main components, two required and two optional. The required
 components are the Action and the Target. The optional components are command
-Arguments and the Actuator function. A command can also contain an optional Command
+Arguments and the Profile identifier. A command can also contain an optional Command
 identifier, if necessary. [Section 3.3.1](#331-openc2-command) defines the
 syntax of an OpenC2 Command.
 
@@ -514,7 +517,7 @@ The following list summarizes the main four components of a command.
 - **Arguments** (optional): Provide additional information on how the command
     is to be performed, such as date/time, periodicity, duration, etc.
 
-- **Actuator** (optional): Specifies the Actuator Profile that defines the
+- **Profile** (optional): Specifies the Actuator Profile that defines the
     function to be performed by the command.
 
 The Action and Target components are required and are populated by one of the
@@ -531,15 +534,13 @@ Arguments defined in this specification are in [Section
 3.3.1.4](#3314-command-arguments). Procedures to extend Arguments are described
 in [Section 3.1.4](#314-extensions).
 
-The Actuator field, if present, specifies a profile-defined function to be
+The Profile field, if present, specifies the profile that defines the function to be
 performed. A Consumer executes the command if it supports the specified profile,
-otherwise the command is ignored. Optional profile-defined specifiers may
-be included to further limit command execution to a subset of Consumers that
-support the profile.
-The Actuator field may be omitted and typically will not be included in
+otherwise the command is ignored.
+The Profile field may be omitted and typically will not be included in
 implementations where the functions of the recipients are unambiguous or when a
 high-level effects-based command is desired and tactical decisions on how
-the effect is achieved is left to the recipient. If Actuator is omitted and the
+the effect is achieved is left to the recipient. If Profile is omitted and the
 recipient supports multiple profiles, the command will be executed in the context
 of each profile that supports the command's combination of action and target.
 
@@ -671,6 +672,12 @@ specify value constraints for which an authoritative definition exists.
 | **iri**          | String          | Value must be an Internationalized Resource Identifier (IRI) as defined in [[RFC3987]](#rfc3987) |
 | **uri**          | String          | Value must be a Uniform Resource Identifier (URI) as defined in [[RFC3986]](#rfc3986)            |
 
+**Usage Requirements:**
+
+-   Properties identified as conforming to `eui` should be
+    interpreted according to the values documented in the [[IEEE
+    Registration Authority registry]](#ieee_ra).
+
 ### 3.1.3 Multiplicity
 
 Property tables for types based on Array, Choice, Map and Record include a
@@ -705,58 +712,95 @@ type. The named type can then be used as the type of a required field
 
 ### 3.1.4 Extensions
 
-One of the main design goals of OpenC2 was extensibility. Actuator profiles
+One of the main design goals of OpenC2 was extensibility. Actuator Profiles
 define the language extensions that are meaningful and possibly unique to the
 Actuator.
 
-Each Actuator profile has a unique name used to identify the profile document
-and a short reference called a namespace identifier (NSID). The NSID is used to
-separate extensions from the core language defined in this specification.
+Each Profile has a unique name used to identify the profile document
+and a short reference called a namespace identifier (NSID). The NSID is a prefix
+used to separate types defined in one profile document from types defined in
+other profiles or this specification.
 
-All extensions MUST be identified with a short namespace reference, called a
-namespace identifier (NSID).
+**Example**: the OASIS standard Stateless Packet Filtering profile has:
 
-For example, the OASIS standard Stateless Packet Filtering actuator profile has:
-
--   **Unique Name**:
+- **Namespace**:
     http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
 
--   **NSID**: slpf
+- **NSID**: slpf
 
-The namespace identifier for non-standard extensions MUST be prefixed with "x-".
+- **Language-defined type**: IPv4-Net
+- **Profile-defined type**: slpf:Rule-ID
 
-For example, the fictional, non-standard Superwidget actuator profile has:
+**Example**: the fictional, non-standard Superwidget Profile has:
 
--   **Unique Name**: http://www.acme.com/openc2/superwidget-v1.0.html
+- **Namespace**: http://www.acme.com/openc2/superwidget-v1.0.html
 
--   **NSID**: x-acme
+- **NSID**: acmesw
+
+- **Language-defined type**: Device
+- **Profile-defined type**: acmesw:Device
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
 Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended
-Target names MUST be prefixed with a namespace identifier followed by a colon
-(":").
+Target type names MUST be prefixed with a namespace identifier followed by a colon
+(":"). Extended target properties appear beneath (nested within) a profile property name.
 
-**Example:** In this example Command, the extended Target, `rule_number`, is
-defined within the Stateless Packet Filtering Profile with the namespace
-identifier, `slpf`.
+**Example:** The Stateless Packet Filtering Profile supports both common and
+profile-specific targets:
+
+Targets used in Consumers that support the SLPF actuator profile:
+
+** Type: Target (Choice) **  
+
+| ID   | Name     | Type           | Description                    |
+|------|----------|----------------|--------------------------------|
+| 13   | ipv4_net | IPv4-Net       | Targets defined in the LS      |
+| 1024 | slpf     | slpf:AP-Target | Targets defined in the SLPF AP |
+
+Targets defined in the SLPF actuator profile:
+
+** Type: slpf:AP-Target (Choice) **  
+
+| ID  | Name        | Type         | Description |
+|-----|-------------|--------------|-------------|
+| 1   | rule_number | slpf:Rule-ID |             |
+
+In this example Command, the extended Target `rule_number` 
+of type `slpf:Rule-ID` appears within the SLPF profile property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
     "action": "delete",
     "target": {
-        "slpf:rule_number": 1234
+        "slpf": {
+            "rule_number": 1234
+        }
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY be
-extended using the namespace identifier as the Argument name, called an extended
-Argument namespace. Extended Arguments MUST be defined within the extended
-Argument namespace.
+Command Arguments, defined in [Section 3.3.1.4](#3314-command-arguments), MAY also be
+extended using profile-defined types appearing within the profile property name.
 
-**Example:** In this example Command, the extended Argument, `direction`, is
-defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+** Type: Args (Map) **  
+
+| ID   | Name       | Type          | Description                 |
+|------|------------|---------------|-----------------------------|
+| 1    | start_time | Date-Time     | Args defined in the LS      |
+| 1024 | slpf       | slpf:AP-Args  | Args defined in the SLPF AP |
+
+Args defined in the SLPF actuator profile:
+
+** Type: slpf:AP-Args (Map) **  
+
+| ID  | Name      | Type           | Description |
+|-----|-----------|----------------|-------------|
+| 3   | direction | slpf:Direction |             |
+
+**Example:** In this example Command, the extended Argument, `direction` of type
+slpf:Direction contained in type slpf:AP-Args, appears in the Stateless Packet Filtering
+property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -772,13 +816,13 @@ defined within the Stateless Packet Filtering Profile namespace, `slpf`.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Actuator property of a Command, defined in [Section
-3.3.1.3](#3313-actuator), MUST be extended using the namespace identifier as the
-Actuator name, called an extended Actuator namespace. Actuator Specifiers MUST
-be defined within the extended Actuator namespace.
+The Profile property of a Command, defined in [Section
+3.3.1.3](#3313-profile), specifies the property name of the Actuator Profile
+that defines the function to be performed.
 
-**Example:** In this example Command, the Actuator Specifier `asset_id` is
-defined within the Stateless Packet Filtering Profile namespace, `slpf`.
+**Example:** In this example Command, the `profile` name `slpf` indicates that
+the `deny ipv4_connection` command is to be performed as
+defined by the Stateless Packet Filtering Profile.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -786,11 +830,7 @@ defined within the Stateless Packet Filtering Profile namespace, `slpf`.
     "target": {
         "ipv4_connection": {...}
     },
-    "actuator": {
-        "slpf": {
-            "asset_id": "30"
-        }
-    }
+    "profile": "slpf"
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -861,7 +901,7 @@ appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
 
 ## 3.2 Message
 
-This language specification and one or more Actuator profiles define the content
+This language specification and one or more Actuator Profiles define the content
 of Commands and Responses, while transfer specifications define the on-the-wire
 format of a Message over specific secure transport protocols. Transfer
 specifications are agnostic with regard to content, and content is agnostic with
@@ -975,9 +1015,9 @@ a Command and the common portions of a Response. The properties of the Command
 are defined in [Section 3.3.1](#331-openc2-command) and the properties of the
 Response are defined in [Section 3.3.2](#332-openc2-response).
 
-In addition to the Action and Target, a Command has an optional Actuator field.
-The semantics associated with Command and Response content for the specified
-Actuator function are defined in Actuator Profiles.
+In addition to the Action and Target, a Command has an optional Profile field.
+The semantics associated with Command and Response content are defined in the
+specified Actuator Profile.
 
 ### 3.3.1 OpenC2 Command
 
@@ -985,13 +1025,13 @@ The Command defines an Action to be performed on a Target.
 
 **Type: OpenC2-Command (Record)**
 
-| ID | Name           | Type       | \#   | Description                                                       |
-|----|----------------|------------|------|-------------------------------------------------------------------|
-| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').          |
-| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.  |
-| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.               |
-| 4  | **actuator**   | Actuator   | 0..1 | The profile defining the function to be performed by the Command. |
-| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                    |
+| ID | Name           | Type       | \#   | Description                                                                |
+|----|----------------|------------|------|----------------------------------------------------------------------------|
+| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').                   |
+| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.           |
+| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.                        |
+| 4  | **profile**    | Profile    | 0..1 | The actuator profile defining the function to be performed by the Command. |
+| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                             |
 
 **Usage Requirements:**
 
@@ -1056,7 +1096,6 @@ The Command defines an Action to be performed on a Target.
 | 20 | **iri**             | IRI             | 1  | An internationalized resource identifier (IRI).                                                      |
 | 17 | **mac_addr**        | MAC-Addr        | 1  | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui).                 |
 | 18 | **process**         | Process         | 1  | Common properties of an instance of a computer program as executed on an operating system.           |
-| 25 | **properties**      | Properties      | 1  | Data attribute associated with an Actuator.                                                          |
 | 19 | **uri**             | URI             | 1  | A uniform resource identifier (URI).                                                                 |
 
 **Usage Requirements:**
@@ -1064,25 +1103,26 @@ The Command defines an Action to be performed on a Target.
 -   The `target` field in a Command MUST contain exactly one type of Target
     (e.g., ipv4_net).
 
-#### 3.3.1.3 Actuator
+#### 3.3.1.3 Profile
 
-**Type: Actuator (Choice)**
-Table 3.3.1.4 lists the properties (ID/Name) and NSIDs assigned to specific Actuator Profiles.
-The OpenC2 Namespace Registry is the most current list of active and proposed Actuator Profiles.
+OpenC2 maintains an [administrative document](https://github.com/oasis-tcs/openc2-oc2arch/blob/working/namespace-registry.md)
+listing current, planned, and extension actuator profile information.
 
-| ID   | Name     | Type          | \# | Description                                                                                 |
-|------|----------|---------------|----|---------------------------------------------------------------------------------------------|
-| 1024 | **slpf** | slpf:Actuator | 1  | **Example**: Actuator Specifiers defined in the Stateless Packet Filtering Profile          |
-| 1025 | **sfpf** | sfpf:Actuator | 1  | **Example**: Actuator Specifiers defined in the Stateful Packet Filtering Profile           |
-| 1026 | **sbom** | sbom:Actuator | 1  | **Example**: Actuator Specifiers defined in the Software Bill of Materials Profile          |
-| 1027 | **endp** | endp:Actuator | 1  | **Example**: Actuator Specifiers defined in the Endpoint Profile                            |
-| 1028 | **sdnc** | sdnc:Actuator | 1  | **Example**: Actuator Specifiers defined in the Software Defined Network Controller Profile |
-| 1029 | **emgw** | emgw:Actuator | 1  | **Example**: Actuator Specifiers defined in the Email Gateway Profile                       |
-| 1030 | **ids**  | ids:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Intrusion Detection System Profile          |
-| 1031 | **ips**  | xxxx:Actuator | 1  | **Example**: Actuator Specifiers defined in the Intrusion Prevention System Profile         |
-| 1032 | **dlp**  | dlp:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Data Loss Prevention Profile                |
-| 1033 | **swg**  | swg:Actuator  | 1  | **Example**: Actuator Specifiers defined in the Secure Web Gateway Profile                  |
-| 1034 |  **pf**  | pf:Actuator   | 1  | **Example**: Actuator Specifiers defined in the Packet Filter Profile.                      |
+**Type: Profile (Enumerated)**
+
+| ID   | Name     | Description                           |
+|------|----------|---------------------------------------|
+| 1024 | **slpf** | Stateless Packet Filtering            |
+| 1025 | **sfpf** | Stateful Packet Filtering             |
+| 1026 | **sbom** | Software Bill of Materials            |
+| 1027 | **er**   | Endpoint Response                     |
+| 1028 | **hop**  | Honeypot Control                      |
+| 1029 | **av**   | Anti-Virus                            |
+| 1030 | **ids**  | Intrusion Detection System            |
+| 1031 | **log**  | Logging Control                       |
+| 1032 | **swup** | Software Update                       |
+| 1034 | **pf**   | Packet Filtering                      |
+| 1035 | **pac**  | Security Posture Attribute Collection |
 
 #### 3.3.1.4 Command Arguments
 
@@ -1119,22 +1159,28 @@ The OpenC2 Namespace Registry is the most current list of active and proposed Ac
 
 -   `response_requested`:
 
-    -   If `response_requested` is specified as `none` then the Consumer SHOULD
-        NOT send a Response.
+    -   If `response_requested` is specified as `none` and the
+        Consumer successfully executes the Command then the
+        Consumer SHOULD NOT send a Response.
 
-        -   If `response_requested` is specified as `ack` then the Consumer
+    -   If `response_requested` is specified as `none` and the
+        Consumer encounters an error then the Consumer SHOULD
+        send a Response with a `status` consistent with the error
+        detected.
+
+    -   If `response_requested` is specified as `ack` then the Consumer
             SHOULD send a Response acknowledging receipt of the Command:
             `{"status": 102}`.
 
-        -   If `response_requested` is specified as `status` then the Consumer
+    -   If `response_requested` is specified as `status` then the Consumer
             SHOULD send a Response containing the current status of Command
             execution.
 
-        -   If `response_requested` is specified as `complete` then the Consumer
+    -   If `response_requested` is specified as `complete` then the Consumer
             SHOULD send a Response containing the status or results upon
             completion of Command execution.
 
-        -   If `response_requested` is not explicitly specified then the
+    -   If `response_requested` is not explicitly specified then the
             Consumer SHOULD respond as if `complete` was specified.
 
 ### 3.3.2 OpenC2 Response
@@ -1187,7 +1233,7 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 | ID | Name           | Type           | \#    | Description                                                         |
 |----|----------------|----------------|-------|---------------------------------------------------------------------|
 | 1  | **versions**   | Version unique | 0..\* | List of OpenC2 language versions supported by this Consumer         |
-| 2  | **profiles**   | ArrayOf(Nsid)  | 0..1  | List of profiles supported by this Consumer                         |
+| 2  | **profiles**   | Nsid       | 0..\*  | List of profiles supported by this Consumer                         |
 | 3  | **pairs**      | Action-Targets | 0..1  | List of targets applicable to each supported Action                 |
 | 4  | **rate_limit** | Number{0..\*}  | 0..1  | Maximum number of requests per minute supported by design or policy |
 
@@ -1257,13 +1303,16 @@ specified for serializations other than JSON.
 
 | ID | Name          | Type    | \#   | Description                                                                        |
 |----|---------------|---------|------|------------------------------------------------------------------------------------|
-| 1  | **mime_type** | String  | 0..1 | Permitted values specified in the IANA Media Types registry, [[RFC6838]](#rfc6838) |
+| 1  | **media_type** | String  | 0..1 | Media type description formatted as specified in [[RFC6838]](#rfc6838)             |
 | 2  | **payload**   | Payload | 0..1 | Choice of literal content or URL                                                   |
 | 3  | **hashes**    | Hashes  | 0..1 | Hashes of the payload content                                                      |
 
 **Usage Requirement:**
 
 -   An "Artifact" Target MUST contain at least one property.
+-   `media_type` "Artifact" property values should be intepreted
+    according to the values documented  in the [IANA Media Types
+    registry](#iana_media).
 
 #### 3.4.1.2 Device
 
@@ -1293,9 +1342,9 @@ specified for serializations other than JSON.
 
 #### 3.4.1.5 Features
 
-| Type Name    | Type Definition                | Description                                                                            |
-|--------------|--------------------------------|----------------------------------------------------------------------------------------|
-| **Features** | ArrayOf(Feature){0..10} unique | An array of zero to ten names used to query a Consumer for its supported capabilities. |
+| Type Name    | Type Definition  | \#    | Description                                                                            |
+|--------------|------------------|-------|----------------------------------------------------------------------------------------|
+| **Features** | Feature unique   | 0..10 | An array of zero to ten names used to query a Consumer for its supported capabilities. |
 
 
 **Usage Requirements:**
@@ -1432,13 +1481,8 @@ the IP address and the prefix, each in their own field.
 
 -   A "Process" Target MUST contain at least one property.
 
-#### 3.4.1.16 Properties
 
-| Type Name      | Type Definition               | Description                                                                |
-|----------------|-------------------------------|----------------------------------------------------------------------------|
-| **Properties** | ArrayOf(String){1..\*} unique | A list of names that uniquely identify properties supported by a Consumer. |
-
-#### 3.4.1.17 URI
+#### 3.4.1.16 URI
 
 | Type Name | Type Definition | Description                                         |
 |-----------|-----------------|-----------------------------------------------------|
@@ -1451,10 +1495,15 @@ the IP address and the prefix, each in their own field.
 | Type Name          | Type Definition                     | Description                                                                                              |
 |--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator function to the list of targets applicable to that action. |
-| Type Name          | Type Definition                     | Description                                                                                              |
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
-#### 3.4.2.2 Date-Time
+#### 3.4.2.2 Command-ID
+
+| Type Name      | Type Definition          | Description        |
+|----------------|--------------------------|--------------------|
+| **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
+
+
+#### 3.4.2.3 Date-Time
 
 | Type Name     | Type Definition | Description   |
 |---------------|-----------------|---------------|
@@ -1464,7 +1513,7 @@ the IP address and the prefix, each in their own field.
 
 -   Value is the number of milliseconds since 00:00:00 UTC, 1 January 1970
 
-#### 3.4.2.3 Duration
+#### 3.4.2.4 Duration
 
 | Type Name    | Type Definition | Description      |
 |--------------|-----------------|------------------|
@@ -1474,7 +1523,7 @@ the IP address and the prefix, each in their own field.
 
 -   Value is a number of milliseconds
 
-#### 3.4.2.4 Feature
+#### 3.4.2.F Feature
 
 Specifies the results to be returned from a query features Command.
 
@@ -1487,7 +1536,7 @@ Specifies the results to be returned from a query features Command.
 | 3  | **pairs**      | List of supported Actions and applicable Targets                    |
 | 4  | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
-#### 3.4.2.5 Hashes
+#### 3.4.2.6 Hashes
 
 **Type: Hashes (Map{1..\*})**
 
@@ -1501,45 +1550,56 @@ Specifies the results to be returned from a query features Command.
 
 -   A "Hashes" data type MUST contain at least one key.
 
-#### 3.4.2.6 Hostname
+#### 3.4.2.7 Hostname
 
 | Type Name    | Type Definition  | Description                                              |
 |--------------|------------------|----------------------------------------------------------|
 | **Hostname** | String /hostname | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
-#### 3.4.2.7 Internationalized Hostname
+#### 3.4.2.8 Internationalized Hostname
 
 | Type Name        | Type Definition      | Description                                                                                  |
 |------------------|----------------------|----------------------------------------------------------------------------------------------|
 | **IDN-Hostname** | String /idn-hostname | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
-#### 3.4.2.8 IPv4 Address
+#### 3.4.2.9 IPv4 Address
 
 | Type Name     | Type Definition   | Description                                             |
 |---------------|-------------------|---------------------------------------------------------|
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
-#### 3.4.2.9 IPv6 Address
+#### 3.4.2.10 IPv6 Address
 
 | Type Name     | Type Definition   | Description                                              |
 |---------------|-------------------|----------------------------------------------------------|
 | **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
-#### 3.4.2.10 L4 Protocol
+#### 3.4.2.11 L4 Protocol
 
-Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any
-IANA value, [[RFC5237]](#rfc5237)
+Value of the IPv4 `"protocol"` or IPv6 `"next header"` field in
+an IP packet. Recognized values for these fields are registered
+with IANA, according to the process defined in
+[[RFC5237]](#rfc5237). The table below identifies a
+non-exhaustive set of commonly used values.
 
 **Type: L4-Protocol (Enumerated)**
 
 | ID  | Name     | Description                                                  |
 |-----|----------|--------------------------------------------------------------|
 | 1   | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792)    |
-| 6   | **tcp**  | Transmission Control Protocol - [[RFC0793]](#rfc0793)        |
+| 6   | **tcp**  | Transmission Control Protocol - [[RFC9293]](#rfc9293)        |
 | 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
+| 28  | **ipv6_icmp**  | ICMP for IPv6 - [[RFC8200]](#rfc8200)                  |
 | 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
-#### 3.4.2.11 Message-Type
+**Usage Requirement:**
+
+-   The IPv4 Protocol field and IPv6 Next Header field are 8-bit
+    values, therefore L4-Protocol is an enumeration from 0..255.
+-   Values of L4-Protocol should be interpreted as documented in
+    [[IANA_Protocols]](#iana_protocols).
+
+#### 3.4.2.12 Message-Type
 
 Identifies the type of Message.
 
@@ -1550,13 +1610,13 @@ Identifies the type of Message.
 | 1  | **command**  | The Message content is an OpenC2 Command  |
 | 2  | **response** | The Message content is an OpenC2 Response |
 
-#### 3.4.2.12 Namespace Identifier
+#### 3.4.2.13 Namespace Identifier
 
 | Type Name | Type Definition | Description                                    |
 |-----------|-----------------|------------------------------------------------|
 | **Nsid**  | String{1..16}   | A short identifier that refers to a namespace. |
 
-#### 3.4.2.13 Payload
+#### 3.4.2.14 Payload
 
 **Type: Payload (Choice)**
 
@@ -1565,13 +1625,13 @@ Identifies the type of Message.
 | 1  | **bin** | Binary | 1  | Specifies the data contained in the artifact                |
 | 2  | **url** | URI    | 1  | MUST be a valid URL that resolves to the un-encoded content |
 
-#### 3.4.2.14 Port
+#### 3.4.2.15 Port
 
 | Type Name | Type Definition   | Description                                           |
 |-----------|-------------------|-------------------------------------------------------|
 | **Port**  | Integer{0..65535} | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
-#### 3.4.2.15 Response-Type
+#### 3.4.2.16 Response-Type
 
 **Type: Response-Type (Enumerated)**
 
@@ -1582,17 +1642,25 @@ Identifies the type of Message.
 | 2  | **status**   | Respond with progress toward Command completion |
 | 3  | **complete** | Respond when all aspects of Command completed   |
 
-#### 3.4.2.16 Command-ID
+#### 3.4.2.17 Targets
 
-| Type Name      | Type Definition          | Description        |
-|----------------|--------------------------|--------------------|
-| **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
+| Type Name          | Type Definition                     | Description                                                                                              |
+|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
 
-#### 3.4.2.17 Version
+#### 3.4.2.18 Version
+
+Used to report the version(s) of OpenC2 supported by Consumers.
 
 | Type Name   | Type Definition | Description                |
 |-------------|-----------------|----------------------------|
-| **Version** | String          | Major.Minor version number |
+| **Version** | String          | OpenC2 version in "Major.Minor" format |
+
+**Usage Requirement:**
+
+-   A Version string MUST contain the major and minor version
+    numbers, represented as integers seperated by a period (e.g.,
+    "1.1").
 
 # 4 Mandatory Commands/Responses
 
@@ -1728,9 +1796,8 @@ A conformant Command
     [Section 3.3.1.2](#3312-target) or exactly one imported `target` property
     defined in accordance with [Section 3.1.4](#314-extensions).
 
--   5.1-4 MUST include zero or one `actuator` property defined in accordance
-    with [Section 3.3.1.3](#3313-actuator) or zero or one imported `actuator`
-    property defined in accordance with [Section 3.1.4](#314-extensions).
+-   5.1-4 MUST include zero or one `profile` property defined in accordance
+    with [Section 3.3.1.3](#3313-profile).
 
 -   5.1-5 MUST include zero or one `args` property defined in accordance with
     [Section 3.3.1.4](#3314-command-arguments) or zero or one imported `args`
@@ -1813,11 +1880,6 @@ Postel, J., "Internet Protocol", STD 5, RFC 791, DOI 10.17487/RFC0791, September
 
 Postel, J., "Internet Control Message Protocol", STD 5, RFC 792, DOI
 10.17487/RFC0792, September 1981, <https://www.rfc-editor.org/info/rfc792>.
-
-###### [RFC0793]
-
-Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI
-10.17487/RFC0793, September 1981, <https://www.rfc-editor.org/info/rfc793>.
 
 ###### [RFC1034]
 
@@ -1966,11 +2028,33 @@ Rundgren, A., Jordan, B., and S. Erdtman, "JSON Canonicalization Scheme (JCS)",
 RFC 8785, DOI 10.17487/RFC8785, June 2020,
 <https://www.rfc-editor.org/info/rfc8785>.
 
+###### [RFC9293]
+
+Eddy, W., "Transmission Control Protocol (TCP)", RFC 9293, DOI:
+10.17487/RFC9293, August 2022,
+<https://www.rfc-editor.org/info/rfc8785>.
+
 ###### [EUI]
 
 "IEEE Registration Authority Guidelines for use of EUI, OUI, and CID", IEEE,
 August 2017,
 https://standards.ieee.org/content/dam/ieee-standards/standards/web/documents/tutorials/eui.pdf
+
+###### [IEEE_RA]
+
+"IEEE Registration Authority: Assignments", IEEE, August 2022,
+https://regauth.standards.ieee.org/standards-ra-web/pub/view.html#registries
+
+###### [IANA_Protocols]
+
+"Internet Assigned Numbers Authority Protocol Numbers", IANA,
+August 2022, https://www.iana.org/assignments/protocol-numbers
+
+###### [IANA_Media]
+
+"Internet Assigned Numbers Authority Media Types", IANA,
+August 2022, https://www.iana.org/assignments/media-types
+
 
 ## A.2 Informative References
 
@@ -1982,7 +2066,11 @@ https://www.rfc-editor.org/info/rfc3552.
 
 ###### [IACD]
 
-"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018  ,https://www.iacdautomate.org/
+"What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
+
+###### [UML]
+
+"Unified Modeling Language", Version 2.5.1, December 2017, https://www.omg.org/spec/UML/2.5.1/About-UML/
 
 # Appendix B. Safety, Security and Privacy Considerations
 
@@ -2032,9 +2120,9 @@ This Command would be used to quarantine a device on the network.
 ## C.2 Example 2
 
 This Command blocks a particular connection within the domain. The standard
-Actuator profile defines the extended Command Argument, `drop_process`, and the
-Actuator Specifier, `asset_id`. The Response is a simple acknowledgment that was
-requested in the Command.
+Actuator Profile `slpf` defines the extended Command Argument `drop_process`.
+The Response is a simple acknowledgment that was requested in the Command
+arguments.
 
 **Command:**
 
@@ -2058,11 +2146,7 @@ requested in the Command.
             "drop_process": "none"
         }
     },
-    "actuator": {
-        "slpf": {
-            "asset_id": "30"
-        }
-    }
+    "profile": "slpf"
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2073,54 +2157,10 @@ requested in the Command.
     "status": 102
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              
+*Editor's Note: Replace with an example that does not use "properties".*
 
-## C.3 Example 3
-
-This is a notional example of a Command issued to a non-standard Actuator. A
-Producer sends a 'query properties' Command to request detail about a 'battery'.
-The Consumer responses with the battery information extended in the results of
-the Response.
-
-**Command:**
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "action": "query",
-    "target": {
-        "properties": ["battery"]
-    },
-    "actuator": {
-        "x-esm": {
-            "asset_id": "TGEadsasd"
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Response:**
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "status": 200,
-    "results": {
-        "x-esm": {
-            "battery": {
-                "capacity": 0.577216,
-                "charged_at": 1547506988,
-                "status": 12,
-                "mode": {
-                    "output": "high",
-                    "supported": [ "high", "trickle" ]
-                },
-                "visible_on_display": true
-            },
-            "asset_id": "TGEadsasd"
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-## C.4 Example 4
+## C.3 Example 4
 
 This example illustrates the creation and validation of a JSON message
 signature, as specified in [3.3.4 Message Signatures](#334-message-signatures).
@@ -2129,7 +2169,7 @@ https://mobilepki.org/jws-ct/create, using the ES256 algorithm.
 Base64url-encoded data and canonicalized JSON in the example are shown with line
 wrapping for presentation only.
 
-### C.4.1 OpenC2 Message Signature
+### C.3.1 OpenC2 Message Signature
 
 The user embeds the signature field into the end of the payload that carries all
 the data required to validate authenticity and integrity of the payload. This
@@ -2147,7 +2187,7 @@ ES256 algorithm and assume that the receiver has a mechanism to discover the
 correct public key. The following is a generic approach, many libraries in
 multiple programming languages exist that can alter/simplify this process.
 
-### C.4.2 OpenC2 Signing Operation (JSON)
+### C.3.2 OpenC2 Signing Operation (JSON)
 
 #### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification.
 
@@ -2251,7 +2291,7 @@ Signature value:
 
 #### 5. Serialize the signed OpenC2 JSON object and send to recipient(s).
 
-### C.4.3 OpenC2 Signing Validation (JSON)
+### C.3.3 OpenC2 Signing Validation (JSON)
 
 #### 1. Parse the received OpenC2 JSON object and separate out the signature. This should yield:
 
@@ -2375,6 +2415,15 @@ the "Target" data type.
 | Revision   | Date       | Editor           | Changes Made                                                                                              |
 |------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
 | v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
+| Issue #388, item 1, #390 | 08/xx/2022 | Lemire | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
+| Issue #388, item 4 | 08/xx/2022 | Lemire | Add usage requirement for `Version` format in 3.4.2.17   |
+| Issue #386, #387 | 08/xx/2022 | Lemire | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations | 
+| Issues #389, #392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
+| Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
+| Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
+| Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
+| Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
+
 
 # Appendix F. Acknowledgments
 
