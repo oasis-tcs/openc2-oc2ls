@@ -1854,6 +1854,10 @@ publication, OASIS cannot guarantee their long-term validity.
 The following documents are referenced in such a way that some or all of their
 content constitutes requirements of this document.
 
+###### [JADN-v1.0]
+
+JSON Abstract Data Notation Version 1.0. Edited by David Kemp. 17 August 2021. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/jadn/v1.0/cs01/jadn-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/jadn/v1.0/jadn-v1.0.html.
+
 ###### [OpenC2-HTTPS-v1.0]
 
 *Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0*. Edited by
@@ -1907,6 +1911,9 @@ RFC 2119, DOI 10.17487/RFC2119, March 1997,
 
 Crawford, M., *"Binary Labels in the Domain Name System"*, RFC 2673, August
 1999, https://tools.ietf.org/html/rfc2673
+
+###### [RFC3444] 
+Pras, A., Schoenwaelder, J., "On the Difference between Information Models and Data Models", RFC 3444, January 2003, https://tools.ietf.org/html/rfc3444.
 
 ###### [RFC3986]
 
@@ -2064,9 +2071,16 @@ Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security
 Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003,
 https://www.rfc-editor.org/info/rfc3552.
 
+###### [RFC8610]
+
+Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610, June 2019, https://www.rfc-editor.org/info/rfc8610
+
 ###### [IACD]
 
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
+
+###### [JSON-Schema]
+"JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieved 9/26/2022, https://json-schema.org/
 
 ###### [UML]
 
@@ -2359,54 +2373,260 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 -----END PUBLIC KEY-----
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Appendix D. Design Elements
 
-## D.1 Derived Enumerations
+# Appendix D. Schema Development With JADN
 
-It is sometimes useful to reference the fields of a structure definition, for
-example to list fields that are usable in a particular context, or to read or
-update the value of a specific field. An instance of a reference can be
-validated against the set of valid references using either an explicit or a
-derived Enumerated type. A derived enumeration is created using an Enum()
-expression on the type being referenced, and it results in an Enumerated type
-containing the ID and Name columns of the referenced type.
+*The content in this section is non-normative.*
 
-This is the design element that defines the "Action-Targets" data type. The
-"Action-Targets" data type is a map of each action supported by an actuator to a
-list of targets implemented for each action. The list of Actions, defined in
-[Section 3.3.1.1](#3311-action), is appropriately an enumerated list of possible
-Actions. The list of Targets, defined in [Section 3.3.1.2](#3312-target), is a
-Choice data structure where each element is a complex data type of its own. A
-derived enumeration is used in this case to signify that the list of Targets for
-the "Action-Targets" data type should be an enumerated list of the possible
-Targets
+This appendix provides a brief overview of the *JSON Abstract
+Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
+modeling (IM) language and its application to rigorously
+specifying the OpenC2 language. Unless explicitly labeled
+otherwise, section references in this appendix are to sections of
+the [JADN](#jadn-v10) specification, rather than this Language
+Specification.
 
-**Definition of "Action-Targets" Data Type:** The Targets data type is defined
-as an array of "Target" enumerations. The "Target" enumerations are derived from
-the "Target" data type.
+## D.1 JADN Overview
 
-| Type Name          | Type Definition              | Description                                                                                             |
-|--------------------|------------------------------|---------------------------------------------------------------------------------------------------------|
-| **Action-Targets** | MapOf(Action, Targets)       | Map of each action supported by each Actuator Profile to the list of targets applicable to that action. |
-| Type Name          | Type Definition              | Description                                                                                             |
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} | List of Target fields                                                                                   |
+The abstract of the OASIS Committee Specification for JADN
+describes it as follows:
 
-**Example:** The "pairs" property is defined as an "Action-Targets" data type.
+> JSON Abstract Data Notation (JADN) is a UML-based information
+> modeling language that defines data structure independently of
+> data format. 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "status": 200,
-    "results": {
-        "pairs": {
-            "allow": ["ipv6_net", "ipv6_connection"],
-            "deny": ["ipv6_net", "ipv6_connection"],
-            "query": ["features"],
-            "delete": ["slpf:rule_number"],
-            "update": ["file"]
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As the specification explains (section 1):  [RFC 3444](#rfc3444),
+"Information Models and Data Models", notes that the main purpose
+of an **information model** is to model objects at a conceptual
+level, independent of specific implementations or protocols used
+to transport the data. JADN provides a tool for developing
+information models, which can be used to define and generate
+physical data models, validate information instances, and enable
+lossless translation across data formats. 
+
+A JADN specification consists of:
+ -  type definitions that comprise the information model, and
+ -  serialization rules that define how information instances are
+    represented as data. 
+
+The model is documented using a compact and expressive interface
+definition language, property tables, or entity relationship
+diagrams, easing integration with existing design processes and
+architecture tools.
+
+JADN defines a set of base types that includes five "primitives"
+(e.g., boolean, string), and seven complex types (e.g., array,
+map, record). JADN type definitions have a fixed structure
+designed to be easily describable, easily processed, stable, and
+extensible. Every definition in a JADN document is described in
+terms of five elements (JADN specification section 3.1): 
+
+1) **TypeName:** a string containing the name of the type being
+   defined
+2) **BaseType:** a choice from the JADN predefined types (Table
+   3-1) of the type being defined
+3) **TypeOptions:** an array of zero or more TypeOption (Section
+   3.2.1) applicable to BaseType
+4) **TypeDescription:** a string containing a non-normative
+   comment
+5) **Fields:** an array of Item or Field definitions
+
+From this starting point JADN enables creation of a rich
+information model readily expressed in any of several
+representations. Section 3.2 describes an extensive set of
+options (e.g., semantic validation, size and value constraints,
+multiplicity constraints) that provide the means to define a wide
+variety of information types in a representation-independent
+manner.
+
+As an information modeling language, JADN supports only two kinds
+of relationships: "contain" and "reference".  A JADN information
+model is a set of type definitions, where each definition may be
+basic or structured. Each field in a structured type may be
+associated with another model-defined type, and the set of
+associations between types forms a directed graph. Each
+association is either a container or a reference, and the
+direction of each edge is toward the contained or referenced
+type.
+
+The native format of JADN is JSON, but JADN content can be
+represented in others ways that are more useful for
+documentation. The [JADN Specification](#jadn-v10) identifies
+three formats (Section 5) in addition to the native format:
+
+ - JADN Interface Definition Language (JIDL)
+ - Table Style 
+ - Entity Relationship Diagrams 
+
+Automated tooling makes it straightforward to translate among all
+four of these formats. Table style presentation is often used in
+specifications (e.g., as property tables such as are found in the
+body of this specification). Entity relationship diagrams are
+helpful for visualization of an information model. The JIDL
+format, a simple text structure, is easy to edit, making it a
+good format for the initial creation of a JADN model.
+
+## D.2 Deriving Other Schemas and Serializations
+
+Once the information model is developed, its use in applications
+requires serialization and deserialization of the information in
+some specific format to permit transmisssion or storage of the
+data corresponding to the model. Serialization is the process for
+converting application information, regardless of its internal
+representation, into a form that can be transmitted (i.e., into a
+"document"). JADN information models can be translated into a
+number of schema formats, such as [[JSON schema](#json-schema)]
+or CDDL [[RFC8610](#rfc8610)], or can be used directly as a
+format-independent schema language. As with translation among
+JADN representations, the use of automated tools to create
+schemas ensures the schemas are an accurate, repeatable
+representation of the JADN information model.
+
+Converting an information model to a data model means applying
+serialization rules for each base type that produce physical data
+in the desired format.  The JADN specification defines
+serialization rules for four different representations of an
+information mode (Section 4):
+
+| Serialization Type |                              Description                              |
+|:------------------:|:---------------------------------------------------------------------:|
+|    Verbose JSON    | Human-readable JSON format using name-value encoding for tabular data |
+|    Compact JSON    | Human-readable JSON format using positional encoding for tabular data |
+|    Concise JSON    | Represents JADN data types in a format optimized for minimum size     |
+|        CBOR        | Concise Binary Object Representation format of JADN types             |
+
+In addition, the specification identifies the constraints that
+must be satisifed to define how a JADN IM is represented in other
+serializations (Section 4). Because each serialization represents
+the same information model, translation between serialization
+formats is simplified.
+
+## D.3 JADN Example: OpenC2 Subset
+
+This section provide a brief example of a JADN information model,
+using data types from OpenC2. 
+
+### D.3.1  Basic and Complex Data Types
+
+This example illustrates the use of basic and complex types to
+describe a network connection. A 5-tuple is a common means of
+representing a TCP or UDP session, recording the source and
+destination IP addresses and ports, and identifying the Layer 4
+protocol in use. The corresponding OpenC2 target type is called
+an `IPv4-Connection` (see section
+[3.4.1.10](#34110-ipv4-connection) of this specification).  A
+group of basic (i.e., binary, integer) and complex (i.e., record,
+array, enumeration) types and their use in the definition of an
+IPv4 Connection information model are represented in JIDL as
+follows:
+
+```
+
+// An IPv4 address is a binary value representing a 32-bit integer
+
+IPv4-Addr = Binary /ipv4-addr                     // 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)
+
+
+// the IPv4-Connection type is a record
+
+IPv4-Connection = Record{1..*}                    // 5-tuple that specifies a tcp/ip connection
+   1 src_addr         IPv4-Net optional           // IPv4 source address range
+   2 src_port         Port optional               // Source service per [RFC6335]
+   3 dst_addr         IPv4-Net optional           // IPv4 destination address range
+   4 dst_port         Port optional               // Destination service per [RFC6335]
+   5 protocol         L4-Protocol optional        // Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)
+
+
+// the IPv4-Net type is an array used to represent a CIDR block
+
+IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix length
+   1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [RFC0791]
+   2  Integer optional                            // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
+
+
+// L4-Protocol is an 8-bit value therefore L4-Protocol is an enumeration from 0..255.
+// The interpretation of this value is handled through an external registry
+// See the usage requirements in Section 3.4.2.11, which also contains the following
+// commonly-used example values for the field.
+
+L4-Protocol = Enumerated                          // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
+   1 icmp                                         // Internet Control Message Protocol - [RFC0792]
+   6 tcp                                          // Transmission Control Protocol - [RFC0793]
+  17 udp                                          // User Datagram Protocol - [RFC0768]
+ 132 sctp                                         // Stream Control Transmission Protocol - [RFC4960]
+
+
+// Port is a 16-bit integer
+
+Port = Integer{0..65535}                          // Transport Protocol Port Number, [RFC6335]
+```
+
+The equivalent property table representations can be found in the
+respective section of this specification for each type (ordered
+as above):
+
+ - [3.4.2.9](#3429-ipv4-address): IPv4-Addr
+ - [3.4.1.10](#34110-ipv4-connection): IPv4-Connection
+ - [3.4.1.9](#3419-ipv4-address-range): IPv4-Net
+ - [3.4.2.11](#34211-l4-protocol): L4-Protocol
+ - [3.4.2.15](#34215-port): Port
+ 
+The example above also makes use of a pair of  JADN semantic
+validation keywords: `"ipv4-addr"` and `"ipv4-net"`. These
+keywords specify validation requirements for the data types where
+they are used (see section 3.2.1.5 of the [JADN](#jadn-v10)
+specification). For example, "`ipv4-addr"` is used to force the
+representation of a binary address in the commonly used "dotted
+quad" format.
+
+### D.3.2  JADN Representation
+
+This section shows the JADN representation of the types defined
+using JIDL in the preceding section.
+
+```
+["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [RFC0791]"],
+
+["IPv4-Connection", "Record", ["{1"], "5-tuple that specifies a tcp/ip connection", [
+    [1, "src_addr", "IPv4-Net", ["[0"], "IPv4 source address range"],
+    [2, "src_port", "Port", ["[0"], "Source service per [RFC6335],
+    [3, "dst_addr", "IPv4-Net", ["[0"], "IPv4 destination address range"],
+    [4, "dst_port", "Port", ["[0"], "Destination service per [RFC6335],
+    [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - see Section 3.4.2.10"]
+]],
+
+["IPv4-Net", "Array", ["/ipv4-net"], "IPv4 address and prefix length", [
+    [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [RFC0791],
+    [2, "prefix_length", "Integer", ["[0"], "CIDR prefix-length. If omitted, refers to a single host address."]
+]],
+
+["L4-Protocol", "Enumerated", [], "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)", [
+    [1, "icmp", "Internet Control Message Protocol - [RFC0792],
+    [6, "tcp", "Transmission Control Protocol - [RFC0793],
+    [17, "udp", "User Datagram Protocol - [RFC0768],
+    [132, "sctp", "Stream Control Transmission Protocol - [RFC4960]"]
+]]
+
+["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [RFC6335]"]
+```
+
+
+### D.3.3  Translation To JSON Schema
+
+> TBD:  JADN translation to JSON schema
+
+## D.4 Additional Information
+
+JADN supports organizing features to facilitate the creation and management of JADN schemas. In particular:
+
+ - Schemas can be broken up into a collection of **packages**. A package is a collection of type definitions along with information about the package, such as the namespace the package defines, its version, and other administrative and technical information.
+ - The use of **namespaces** enables one packages toi reference type definitions from other packages.
+
+> TBD: Reference to, descriptionf of OpenC2 JADN schema external artifact
+
+
+
+
 
 # Appendix E. Revision History
 
@@ -2423,6 +2643,7 @@ the "Target" data type.
 | Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
 | Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
 | Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
+| Issue #361 | 9/xx/2022 | Lemire | Add explanatory JADN appendix  |
 
 
 # Appendix F. Acknowledgments
