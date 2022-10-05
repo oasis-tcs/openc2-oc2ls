@@ -2231,7 +2231,7 @@ Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDD
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
 
 ###### [JSON-Schema]
-"JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieve 9/26/2022, https://json-schema.org/
+"JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieved 9/26/2022, https://json-schema.org/
 
 ###### [UML]
 
