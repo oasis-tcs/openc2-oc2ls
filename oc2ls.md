@@ -2584,8 +2584,8 @@ terms of five elements (JADN specification section 3.1):
 
 From this starting point JADN enables creation of a rich
 information model readily expressed in any of several
-representations. Section 3.2 describes a rich set of options
-(e.g., semantic validation, size and value constraints,
+representations. Section 3.2 describes an extensive set of
+options (e.g., semantic validation, size and value constraints,
 multiplicity constraints) that provide the means to define a wide
 variety of information types in a representation-independent
 manner.
