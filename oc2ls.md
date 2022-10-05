@@ -2764,12 +2764,16 @@ using JIDL in the preceding section.
 
 ### D.3.3  Translation To JSON Schema
 
-> JADN translation to JSON schema
+> TBD:  JADN translation to JSON schema
 
 ## D.4 Additional Information
 
-> Reference to OpenC2 JADN schema external artifact
+JADN supports organizing features to facilitate the creation and management of JADN schemas. In particular:
 
+ - Schemas can be broken up into a collection of **packages**. A package is a collection of type definitions along with information about the package, such as the namespace the package defines, its version, and other administrative and technical information.
+ - The use of **namespaces** enables one packages toi reference type definitions from other packages.
+
+> TBD: Reference to, descriptionf of OpenC2 JADN schema external artifact
 
 
 
