@@ -2,9 +2,9 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 01
+## Working Draft 18
 
-## DD MMM 2022
+## 17 Oct 2022
 
 #### This version:
 
@@ -94,11 +94,11 @@ in the separate plain text file prevails.
 When referencing this specification the following citation format should be
 used:
 
-**[OpenC2-Lang-v1.1]**
+**[OpenC2-Lang-v2.0]**
 
-*Open Command and Control (OpenC2) Language Specification Version 1.1*. Edited
-by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html.
+*Open Command and Control (OpenC2) Language Specification Version 2.0. Edited
+by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification
+01\. https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
 Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 ## Notices
@@ -169,115 +169,99 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
 
 Contents
 
-[1 Introduction	5](#_Toc73627299)
-
->   [1.1 IPR Policy	5](#_Toc73627300)
-
->   [1.2 Glossary	6](#_Toc73627301)
-
->   [1.2.1 Definitions of Terms	6](#_Toc73627302)
-
->   [1.2.1 Acronyms and abbreviations	6](#_Toc73627303)
-
->   [1.2.3 Document Conventions	8](#_Toc73627304)
-
->   [1.4 Overview	10](#_Toc73627305)
-
->   [1.5 Goal	13](#_Toc73627306)
-
->   [1.6 Purpose and Scope	14](#_Toc73627307)
-
-[2 OpenC2 Language Description	15](#_Toc73627308)
-
->   [2.1 OpenC2 Command	15](#_Toc73627309)
-
->   [2.2 OpenC2 Response	17](#_Toc73627310)
-
-[3 OpenC2 Language Definition	17](#_Toc73627311)
-
->   [3.1 Base Components and Structures	17](#_Toc73627312)
-
->   [3.1.1 Data Types	17](#_Toc73627313)
-
->   [3.1.2 Semantic Value Constraints	20](#_Toc73627314)
-
->   [3.1.3 Multiplicity	21](#_Toc73627315)
-
->   [3.1.4 Extensions	22](#_Toc73627316)
-
->   [3.1.5 Serialization	25](#_Toc73627317)
-
->   [3.2 Message	27](#_Toc73627318)
-
->   [3.3 Content	30](#_Toc73627319)
-
->   [3.3.1 OpenC2 Command	30](#_Toc73627320)
-
->   [3.3.2 OpenC2 Response	36](#_Toc73627321)
-
->   [3.3.3 OpenC2 Event	38](#_Toc73627322)
-
->   [3.3.4 Message Signatures	38](#_Toc73627323)
-
->   [3.4 Type Definitions	39](#_Toc73627324)
-
->   [3.4.1 Target Types	39](#_Toc73627325)
-
->   [3.4.2 Data Types	44](#_Toc73627326)
-
-[4 Mandatory Commands/Responses	48](#_Toc73627327)
-
->   [4.1 Implementation of 'query features' Command	48](#_Toc73627328)
-
->   [4.2 Examples of 'query features' Commands and Responses	49](#_Toc73627329)
-
->   [4.2.1 Example 1	49](#_Toc73627330)
-
->   [4.2.2 Example 2	49](#_Toc73627331)
-
-[5 Conformance	49](#_Toc73627332)
-
->   [5.1 Conformance Clause 1: Command	49](#_Toc73627333)
-
->   [5.2 Conformance Clause 2: Response	49](#_Toc73627334)
-
->   [5.3 Conformance Clause 3: Producer	49](#_Toc73627335)
-
->   [5.4 Conformance Clause 4: Consumer	49](#_Toc73627336)
-
-[Appendix A. References	49](#_Toc73627337)
-
->   [A.1 Normative References	49](#_Toc73627338)
-
->   [A.2 Informative References	49](#_Toc73627339)
-
-[Appendix B. Safety, Security and Privacy Considerations	49](#_Toc73627340)
-
-[Appendix C. Examples	49](#_Toc73627341)
-
->   [C.1 Example 1	49](#_Toc73627342)
-
->   [C.2 Example 2	49](#_Toc73627343)
-
->   [C.3 Example 3	49](#_Toc73627344)
-
->   [C.4 Example 4	49](#_Toc73627345)
-
->   [C.4.1 OpenC2 Message Signature	49](#_Toc73627346)
-
->   [C.4.2 OpenC2 Signing Operation (JSON)	49](#_Toc73627347)
-
->   [C.4.3 OpenC2 Signing Validation (JSON)	49](#_Toc73627348)
-
-[Appendix D. Design Elements	49](#_Toc73627349)
-
->   [D.1 Derived Enumerations	49](#_Toc73627350)
-
-[Appendix E. Revision History	49](#_Toc73627351)
-
-[Appendix F. Acknowledgments	49](#_Toc73627352)
-
-[Appendix G. Notices	49](#_Toc73627353)
+- [1 Introduction](#1-introduction)
+  - [1.1 Changes From Earlier Versions](#11-changes-from-earlier-versions)
+  - [1.2 Glossary](#12-glossary)
+    - [1.2.1 Definitions of Terms](#121-definitions-of-terms)
+    - [1.2.2 Acronyms and abbreviations](#122-acronyms-and-abbreviations)
+    - [1.2.3 Document Conventions](#123-document-conventions)
+      - [1.2.3.1 Naming Conventions](#1231-naming-conventions)
+      - [1.2.3.2 Font Colors and Style](#1232-font-colors-and-style)
+  - [1.4 Purpose and Scope](#14-purpose-and-scope)
+- [2 OpenC2 Language Description](#2-openc2-language-description)
+  - [2.1 OpenC2 Command](#21-openc2-command)
+  - [2.2 OpenC2 Response](#22-openc2-response)
+- [3 OpenC2 Language Definition](#3-openc2-language-definition)
+  - [3.1 Base Components and Structures](#31-base-components-and-structures)
+    - [3.1.1 Data Types](#311-data-types)
+    - [3.1.2 Semantic Value Constraints](#312-semantic-value-constraints)
+    - [3.1.3 Multiplicity](#313-multiplicity)
+    - [3.1.4 Extensions](#314-extensions)
+    - [3.1.5 Serialization](#315-serialization)
+      - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
+  - [3.2 Message](#32-message)
+          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
+  - [3.3 Content](#33-content)
+    - [3.3.1 OpenC2 Command](#331-openc2-command)
+      - [3.3.1.1 Action](#3311-action)
+      - [3.3.1.2 Target](#3312-target)
+      - [3.3.1.3 Profile](#3313-profile)
+      - [3.3.1.4 Command Arguments](#3314-command-arguments)
+    - [3.3.2 OpenC2 Response](#332-openc2-response)
+      - [3.3.2.1 Response Status Code](#3321-response-status-code)
+      - [3.3.2.2 Response Results](#3322-response-results)
+    - [3.3.3 OpenC2 Event](#333-openc2-event)
+    - [3.3.4 Message Signatures](#334-message-signatures)
+  - [3.4 Type Definitions](#34-type-definitions)
+    - [3.4.1 Target Types](#341-target-types)
+      - [3.4.1.1 Artifact](#3411-artifact)
+      - [3.4.1.2 Device](#3412-device)
+      - [3.4.1.3 Domain Name](#3413-domain-name)
+      - [3.4.1.4 Email Address](#3414-email-address)
+      - [3.4.1.5 Features](#3415-features)
+      - [3.4.1.6 File](#3416-file)
+      - [3.4.1.7 Internationalized Domain Name](#3417-internationalized-domain-name)
+      - [3.4.1.8 Internationalized Email Address](#3418-internationalized-email-address)
+      - [3.4.1.9 IPv4 Address Range](#3419-ipv4-address-range)
+      - [3.4.1.10 IPv4 Connection](#34110-ipv4-connection)
+      - [3.4.1.11 IPv6 Address Range](#34111-ipv6-address-range)
+      - [3.4.1.12 IPv6 Connection](#34112-ipv6-connection)
+      - [3.4.1.13 IRI](#34113-iri)
+      - [3.4.1.14 MAC Address](#34114-mac-address)
+      - [3.4.1.15 Process](#34115-process)
+      - [3.4.1.16 URI](#34116-uri)
+    - [3.4.2 Data Types](#342-data-types)
+      - [3.4.2.1 Action-Targets](#3421-action-targets)
+      - [3.4.2.2 Command-ID](#3422-command-id)
+      - [3.4.2.3 Date-Time](#3423-date-time)
+      - [3.4.2.4 Duration](#3424-duration)
+      - [3.4.2.F Feature](#342f-feature)
+      - [3.4.2.6 Hashes](#3426-hashes)
+      - [3.4.2.7 Hostname](#3427-hostname)
+      - [3.4.2.8 Internationalized Hostname](#3428-internationalized-hostname)
+      - [3.4.2.9 IPv4 Address](#3429-ipv4-address)
+      - [3.4.2.10 IPv6 Address](#34210-ipv6-address)
+      - [3.4.2.11 L4 Protocol](#34211-l4-protocol)
+      - [3.4.2.12 Message-Type](#34212-message-type)
+      - [3.4.2.13 Namespace Identifier](#34213-namespace-identifier)
+      - [3.4.2.14 Payload](#34214-payload)
+      - [3.4.2.15 Port](#34215-port)
+      - [3.4.2.16 Response-Type](#34216-response-type)
+      - [3.4.2.17 Targets](#34217-targets)
+      - [3.4.2.18 Version](#34218-version)
+- [4 Mandatory Commands/Responses](#4-mandatory-commandsresponses)
+  - [4.1 Implementation of 'query features' Command](#41-implementation-of-query-features-command)
+  - [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
+    - [4.2.1 Example 1](#421-example-1)
+    - [4.2.2 Example 2](#422-example-2)
+- [5 Conformance](#5-conformance)
+    - [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
+    - [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
+  - [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
+  - [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
+- [Appendix A. References](#appendix-a-references)
+  - [A.1 Normative References](#a1-normative-references)
+  - [A.2 Informative References](#a2-informative-references)
+- [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
+- [Appendix C. Examples](#appendix-c-examples)
+- [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
+  - [D.1 JADN Overview](#d1-jadn-overview)
+  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
+  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
+  - [D.4 Additional Information](#d4-additional-information)
+- [Appendix E. Revision History](#appendix-e-revision-history)
+- [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
+- [Appendix G. Notices](#appendix-g-notices)
 
 # 1 Introduction
 
