@@ -2,9 +2,9 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 01
+## Working Draft 18
 
-## DD MMM 2022
+## 17 Oct 2022
 
 #### This version:
 
@@ -94,11 +94,11 @@ in the separate plain text file prevails.
 When referencing this specification the following citation format should be
 used:
 
-**[OpenC2-Lang-v1.1]**
+**[OpenC2-Lang-v2.0]**
 
-*Open Command and Control (OpenC2) Language Specification Version 1.1*. Edited
-by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html.
+*Open Command and Control (OpenC2) Language Specification Version 2.0. Edited
+by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification
+01\. https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
 Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 ## Notices
@@ -254,10 +254,14 @@ Contents
   - [A.2 Informative References](#a2-informative-references)
 - [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
 - [Appendix C. Examples](#appendix-c-examples)
-- [Appendix D. Revision History](#appendix-d-revision-history)
-- [Appendix E. Acknowledgments](#appendix-e-acknowledgments)
-- [Appendix F. Notices](#appendix-f-notices)
-
+- [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
+  - [D.1 JADN Overview](#d1-jadn-overview)
+  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
+  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
+  - [D.4 Additional Information](#d4-additional-information)
+- [Appendix E. Revision History](#appendix-e-revision-history)
+- [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
+- [Appendix G. Notices](#appendix-g-notices)
 
 # 1 Introduction
 
