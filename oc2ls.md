@@ -4,7 +4,7 @@
 
 ## Working Draft 19
 
-## 17 Oct 2022
+## 11 November 2022
 
 #### This version:
 
@@ -35,7 +35,8 @@ TC](https://www.oasis-open.org/committees/openc2/)
 #### Chair:
 
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/)
+LLC](http://www.sfractal.com/) \
+Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 
 #### Editors:
 
@@ -167,8 +168,7 @@ implementation and use of, specifications, while reserving the right to enforce
 its marks against misleading uses. Please see
 https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
 
-Contents
-
+# Contents
 - [1 Introduction](#1-introduction)
   - [1.1 Changes From Earlier Versions](#11-changes-from-earlier-versions)
   - [1.2 Glossary](#12-glossary)
@@ -190,7 +190,6 @@ Contents
     - [3.1.5 Serialization](#315-serialization)
       - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
-          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
@@ -254,15 +253,15 @@ Contents
   - [A.2 Informative References](#a2-informative-references)
 - [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
 - [Appendix C. Examples](#appendix-c-examples)
+  - [C.1 Example 1: Device Quarantine](#c1-example-1-device-quarantine)
+  - [C.2 Example 2: Block Connection](#c2-example-2-block-connection)
+  - [C.3 Example 3: Message Signature Processing](#c3-example-3-message-signature-processing)
 - [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
-  - [D.1 JADN Overview](#d1-jadn-overview)
-  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
-  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
-  - [D.4 Additional Information](#d4-additional-information)
 - [Appendix E. Revision History](#appendix-e-revision-history)
 - [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
 - [Appendix G. Notices](#appendix-g-notices)
 
+---
 # 1 Introduction
 
 *The content in this section is non-normative, except where it is
@@ -2100,7 +2099,7 @@ Remove this note before submitting for publication.)  **{TO DO}**
 
 *The content in this section is non-normative.*
 
-## C.1 Example 1
+## C.1 Example 1: Device Quarantine
 
 This Command would be used to quarantine a device on the network.
 
@@ -2115,7 +2114,7 @@ This Command would be used to quarantine a device on the network.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## C.2 Example 2
+## C.2 Example 2: Block Connection
 
 This Command blocks a particular connection within the domain. The standard
 Actuator Profile `slpf` defines the extended Command Argument `drop_process`.
@@ -2158,7 +2157,7 @@ arguments.
               
 *Editor's Note: Replace with an example that does not use "properties".*
 
-## C.3 Example 4
+## C.3 Example 3: Message Signature Processing
 
 This example illustrates the creation and validation of a JSON message
 signature, as specified in [3.3.4 Message Signatures](#334-message-signatures).
@@ -2359,9 +2358,7 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 
 
 
-# Appendix D. Revision History
-
-*The content in this section is non-normative.*
+# Appendix E. Revision History
 
 | Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
 | ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2375,8 +2372,9 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 | Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
 | Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
 | Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
+| Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
 
-# Appendix E. Acknowledgments
+# Appendix F. Acknowledgments
 
 *The content in this section is non-normative.*
 
@@ -2447,7 +2445,7 @@ specification and are gratefully acknowledged:
 | Sounil     | Yu            | Bank of America                                                      |
 | Vasileios  | Mavroeidis    | University of Oslo                                                   |
 
-# Appendix F. Notices
+# Appendix G. Notices
 
 Copyright © OASIS Open 2021. All Rights Reserved.
 
