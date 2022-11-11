@@ -2,7 +2,7 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 01
+## Working Draft 19
 
 ## 11 November 2022
 
@@ -95,11 +95,11 @@ in the separate plain text file prevails.
 When referencing this specification the following citation format should be
 used:
 
-**[OpenC2-Lang-v1.1]**
+**[OpenC2-Lang-v2.0]**
 
-*Open Command and Control (OpenC2) Language Specification Version 1.1*. Edited
-by Jason Romano and Duncan Sparrell. 23 May 2019. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html.
+*Open Command and Control (OpenC2) Language Specification Version 2.0. Edited
+by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification
+01\. https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
 Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 ## Notices
@@ -345,7 +345,7 @@ To Be Supplied.
 ### 1.2.2 Acronyms and abbreviations
 
 | Acronym | Description                                                          |
-|---------|----------------------------------------------------------------------|
+| ------- | -------------------------------------------------------------------- |
 | API     | Application Programming Interface                                    |
 | ASCII   | American Standard Code for Information Interchange                   |
 | BCP     | Best Current Practice                                                |
@@ -551,7 +551,7 @@ format for transmission between applications ("**serialized**" values). The data
 types used in OpenC2 Messages are:
 
 | Type                    | Description                                                                                                                                                                                                      |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Primitive Types**     |                                                                                                                                                                                                                  |
 | Any                     | Anything, used to designate fields with an unspecified value.                                                                                                                                                    |
 | Binary                  | A sequence of octets. Length is the number of octets.                                                                                                                                                            |
@@ -606,7 +606,7 @@ definition of that type. This table defines a type called *Email-Addr* that is a
 *String* that has a semantic value constraint of *email*:
 
 | Type Name      | Type Definition | Description   |
-|----------------|-----------------|---------------|
+| -------------- | --------------- | ------------- |
 | **Email-Addr** | String (email)  | Email address |
 
 For Structure types, the definition includes the name of the type being defined,
@@ -619,16 +619,16 @@ definition at least one must be present.
 
 **Type: Args (Map{1..\*})**
 
-| ID | Name           | Type      | \#   | Description                                      |
-|----|----------------|-----------|------|--------------------------------------------------|
-| 1  | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action    |
-| 2  | **stop_time**  | Date-Time | 0..1 | The specific date/time to terminate the action   |
-| 3  | **duration**   | Duration  | 0..1 | The length of time for an action to be in effect |
+| ID  | Name           | Type      | \#   | Description                                      |
+| --- | -------------- | --------- | ---- | ------------------------------------------------ |
+| 1   | **start_time** | Date-Time | 0..1 | The specific date/time to initiate the action    |
+| 2   | **stop_time**  | Date-Time | 0..1 | The specific date/time to terminate the action   |
+| 3   | **duration**   | Duration  | 0..1 | The length of time for an action to be in effect |
 
 The field columns present in a structure definition depends on the base type:
 
 | Base Type                | Field Definition Columns                       |
-|--------------------------|------------------------------------------------|
+| ------------------------ | ---------------------------------------------- |
 | Enumerated.ID            | ID, Description                                |
 | Enumerated               | ID, Name, Description                          |
 | Array, Choice.ID, Map.ID | ID, Type, Multiplicity (\#), Description       |
@@ -646,7 +646,7 @@ meets all the requirements of an application. Semantic validation keywords
 specify value constraints for which an authoritative definition exists.
 
 | Keyword          | Applies to Type | Constraint                                                                                       |
-|------------------|-----------------|--------------------------------------------------------------------------------------------------|
+| ---------------- | --------------- | ------------------------------------------------------------------------------------------------ |
 | **email**        | String          | Value must be an email address as defined in [[RFC5322]](#rfc5322), Section 3.4.1                |
 | **eui**          | Binary          | Value must be an EUI-48 or EUI-64 as defined in [[EUI]](#eui)                                    |
 | **hostname**     | String          | Value must be a hostname as defined in [[RFC1034]](#rfc1034), Section 3.1                        |
@@ -669,7 +669,7 @@ multiplicity column (\#) that specifies the minimum and maximum cardinality
 ([[UML]](#uml)), typical examples of multiplicity are:
 
 | Multiplicity | Description                             | Keywords             |
-|--------------|-----------------------------------------|----------------------|
+| ------------ | --------------------------------------- | -------------------- |
 | 1            | Exactly one instance                    | Required             |
 | 0..1         | No instances or one instance            | Optional             |
 | 1..\*        | At least one instance                   | Required, Repeatable |
@@ -680,7 +680,7 @@ When a repeatable field type is converted to a separate ArrayOf() Type,
 multiplicity is converted to the array size, enclosed in curly brackets, e.g.,:
 
 | Type Name    | Type Definition         | Description                                                                             |
-|--------------|-------------------------|-----------------------------------------------------------------------------------------|
+| ------------ | ----------------------- | --------------------------------------------------------------------------------------- |
 | **Features** | ArrayOf(Feature){0..10} | An array of zero to ten names used to query an actuator for its supported capabilities. |
 
 A multiplicity of 0..1 denotes a single optional value of the specified type. A
@@ -737,7 +737,7 @@ Targets used in Consumers that support the SLPF actuator profile:
 ** Type: Target (Choice) **  
 
 | ID   | Name     | Type           | Description                    |
-|------|----------|----------------|--------------------------------|
+| ---- | -------- | -------------- | ------------------------------ |
 | 13   | ipv4_net | IPv4-Net       | Targets defined in the LS      |
 | 1024 | slpf     | slpf:AP-Target | Targets defined in the SLPF AP |
 
@@ -746,7 +746,7 @@ Targets defined in the SLPF actuator profile:
 ** Type: slpf:AP-Target (Choice) **  
 
 | ID  | Name        | Type         | Description |
-|-----|-------------|--------------|-------------|
+| --- | ----------- | ------------ | ----------- |
 | 1   | rule_number | slpf:Rule-ID |             |
 
 In this example Command, the extended Target `rule_number` 
@@ -768,17 +768,17 @@ extended using profile-defined types appearing within the profile property name.
 
 ** Type: Args (Map) **  
 
-| ID   | Name       | Type          | Description                 |
-|------|------------|---------------|-----------------------------|
-| 1    | start_time | Date-Time     | Args defined in the LS      |
-| 1024 | slpf       | slpf:AP-Args  | Args defined in the SLPF AP |
+| ID   | Name       | Type         | Description                 |
+| ---- | ---------- | ------------ | --------------------------- |
+| 1    | start_time | Date-Time    | Args defined in the LS      |
+| 1024 | slpf       | slpf:AP-Args | Args defined in the SLPF AP |
 
 Args defined in the SLPF actuator profile:
 
 ** Type: slpf:AP-Args (Map) **  
 
 | ID  | Name      | Type           | Description |
-|-----|-----------|----------------|-------------|
+| --- | --------- | -------------- | ----------- |
 | 3   | direction | slpf:Direction |             |
 
 **Example:** In this example Command, the extended Argument, `direction` of type
@@ -845,7 +845,7 @@ additional requirements specified in the following table.
 **JSON Serialization Requirements:**
 
 | OpenC2 Data Type    | JSON Serialization Requirement                                                                                                                                                        |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Binary**          | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5.                                                                     |
 | **Binary /x**       | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
 | **IPv4-Addr**       | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2.                                                    |
@@ -905,7 +905,7 @@ does not affect interoperability and is therefore beyond the scope of OpenC2.
 ###### Table 3-1. Common Message Elements
 
 | Name             | Type            | Description                                                                                                                                                                                                                                                                                                           |
-|------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **content**      |                 | Message body as specified by content_type and msg_type.                                                                                                                                                                                                                                                               |
 | **content_type** | String          | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types. Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.1. |
 | **msg_type**     | Message-Type    | The type of OpenC2 Message.                                                                                                                                                                                                                                                                                           |
@@ -924,11 +924,11 @@ stable across future versions of this specification.
 
 **Type: Message (Record)**
 
-| ID | Name          | Type    | \#   | Description |
-|----|---------------|---------|------|-------------|
-| 1  | **headers**   | Headers | 0..1 |             |
-| 2  | **body**      | Body    | 1    |             |
-| 3  | **signature** | String  | 0..1 |             |
+| ID  | Name          | Type    | \#   | Description |
+| --- | ------------- | ------- | ---- | ----------- |
+| 1   | **headers**   | Headers | 0..1 |             |
+| 2   | **body**      | Body    | 1    |             |
+| 3   | **signature** | String  | 0..1 |             |
 
 Headers contains optional common message elements. Additional constraints on
 common header values may be defined. Additional headers may be defined. The
@@ -937,12 +937,12 @@ source authentication and integrity protections of the OpenC2 message.
 
 **Type: Headers (Map{1..\*})**
 
-| ID | Name           | Type         | \#    | Description |
-|----|----------------|--------------|-------|-------------|
-| 1  | **request_id** | String       | 0..1  |             |
-| 2  | **created**    | ls:Date-Time | 0..1  |             |
-| 3  | **from**       | String       | 0..1  |             |
-| 4  | **to**         | String       | 0..\* |             |
+| ID  | Name           | Type         | \#    | Description |
+| --- | -------------- | ------------ | ----- | ----------- |
+| 1   | **request_id** | String       | 0..1  |             |
+| 2   | **created**    | ls:Date-Time | 0..1  |             |
+| 3   | **from**       | String       | 0..1  |             |
+| 4   | **to**         | String       | 0..\* |             |
 
 Body indicates the Message content format and is intended to support new types
 of OpenC2 Content such as command lists or bundle objects, but OpenC2 may also
@@ -950,17 +950,17 @@ assign Body types for non-OpenC2 content such as STIX or CACAO objects.
 
 **Type: Body (Choice)**
 
-| ID | Name       | Type           | \# | Description |
-|----|------------|----------------|----|-------------|
-| 1  | **openc2** | OpenC2-Content | 1  |             |
+| ID  | Name       | Type           | \#  | Description |
+| --- | ---------- | -------------- | --- | ----------- |
+| 1   | **openc2** | OpenC2-Content | 1   |             |
 
 **Type: OpenC2-Content (Choice)**
 
-| ID | Name             | Type            | \# | Description |
-|----|------------------|-----------------|----|-------------|
-| 1  | **request**      | OpenC2-Command  | 1  |             |
-| 2  | **response**     | OpenC2-Response | 1  |             |
-| 3  | **notification** | OpenC2-Event    | 1  |             |
+| ID  | Name             | Type            | \#  | Description |
+| --- | ---------------- | --------------- | --- | ----------- |
+| 1   | **request**      | OpenC2-Command  | 1   |             |
+| 2   | **response**     | OpenC2-Response | 1   |             |
+| 3   | **notification** | OpenC2-Event    | 1   |             |
 
 Example JSON-serialized Message payload (without signature):
 
@@ -1008,13 +1008,13 @@ The Command defines an Action to be performed on a Target.
 
 **Type: OpenC2-Command (Record)**
 
-| ID | Name           | Type       | \#   | Description                                                                |
-|----|----------------|------------|------|----------------------------------------------------------------------------|
-| 1  | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').                   |
-| 2  | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.           |
-| 3  | **args**       | Args       | 0..1 | Additional information that applies to the Command.                        |
-| 4  | **profile**    | Profile    | 0..1 | The actuator profile defining the function to be performed by the Command. |
-| 5  | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                             |
+| ID  | Name           | Type       | \#   | Description                                                                |
+| --- | -------------- | ---------- | ---- | -------------------------------------------------------------------------- |
+| 1   | **action**     | Action     | 1    | The task or activity to be performed (i.e., the 'verb').                   |
+| 2   | **target**     | Target     | 1    | The object of the Action. The Action is performed on the Target.           |
+| 3   | **args**       | Args       | 0..1 | Additional information that applies to the Command.                        |
+| 4   | **profile**    | Profile    | 0..1 | The actuator profile defining the function to be performed by the Command. |
+| 5   | **command_id** | Command-ID | 0..1 | An identifier of this Command.                                             |
 
 **Usage Requirements:**
 
@@ -1029,28 +1029,28 @@ The Command defines an Action to be performed on a Target.
 
 **Type: Action (Enumerated)**
 
-| ID | Name            | Description                                                                                                                             |
-|----|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | **scan**        | Systematic examination of some aspect of the entity or its environment.                                                                 |
-| 2  | **locate**      | Find an object physically, logically, functionally, or by organization.                                                                 |
-| 3  | **query**       | Initiate a request for information.                                                                                                     |
-| 6  | **deny**        | Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access.          |
-| 7  | **contain**     | Isolate a file, process, or entity so that it cannot modify or access assets or processes.                                              |
-| 8  | **allow**       | Permit access to or execution of a Target.                                                                                              |
-| 9  | **start**       | Initiate a process, application, system, or activity.                                                                                   |
-| 10 | **stop**        | Halt a system or end an activity.                                                                                                       |
-| 11 | **restart**     | Stop then start a system or an activity.                                                                                                |
-| 14 | **cancel**      | Invalidate a previously issued Action.                                                                                                  |
-| 15 | **set**         | Change a value, configuration, or state of a managed entity.                                                                            |
-| 16 | **update**      | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update. |
-| 18 | **redirect**    | Change the flow of traffic to a destination other than its original destination.                                                        |
-| 19 | **create**      | Add a new entity of a known type (e.g., data, files, directories).                                                                      |
-| 20 | **delete**      | Remove an entity (e.g., data, files, flows).                                                                                            |
-| 22 | **detonate**    | Execute and observe the behavior of a Target (e.g., file, hyperlink) in an isolated environment.                                        |
-| 23 | **restore**     | Return a system to a previously known state.                                                                                            |
-| 28 | **copy**        | Duplicate an object, file, data flow, or artifact.                                                                                      |
-| 30 | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident.                                  |
-| 32 | **remediate**   | Task the recipient to eliminate a vulnerability or attack point.                                                                        |
+| ID  | Name            | Description                                                                                                                             |
+| --- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **scan**        | Systematic examination of some aspect of the entity or its environment.                                                                 |
+| 2   | **locate**      | Find an object physically, logically, functionally, or by organization.                                                                 |
+| 3   | **query**       | Initiate a request for information.                                                                                                     |
+| 6   | **deny**        | Prevent a certain event or action from completion, such as preventing a flow from reaching a destination or preventing access.          |
+| 7   | **contain**     | Isolate a file, process, or entity so that it cannot modify or access assets or processes.                                              |
+| 8   | **allow**       | Permit access to or execution of a Target.                                                                                              |
+| 9   | **start**       | Initiate a process, application, system, or activity.                                                                                   |
+| 10  | **stop**        | Halt a system or end an activity.                                                                                                       |
+| 11  | **restart**     | Stop then start a system or an activity.                                                                                                |
+| 14  | **cancel**      | Invalidate a previously issued Action.                                                                                                  |
+| 15  | **set**         | Change a value, configuration, or state of a managed entity.                                                                            |
+| 16  | **update**      | Instruct a component to retrieve, install, process, and operate in accordance with a software update, reconfiguration, or other update. |
+| 18  | **redirect**    | Change the flow of traffic to a destination other than its original destination.                                                        |
+| 19  | **create**      | Add a new entity of a known type (e.g., data, files, directories).                                                                      |
+| 20  | **delete**      | Remove an entity (e.g., data, files, flows).                                                                                            |
+| 22  | **detonate**    | Execute and observe the behavior of a Target (e.g., file, hyperlink) in an isolated environment.                                        |
+| 23  | **restore**     | Return a system to a previously known state.                                                                                            |
+| 28  | **copy**        | Duplicate an object, file, data flow, or artifact.                                                                                      |
+| 30  | **investigate** | Task the recipient to aggregate and report information as it pertains to a security event or incident.                                  |
+| 32  | **remediate**   | Task the recipient to eliminate a vulnerability or attack point.                                                                        |
 
 **Usage Requirements:**
 
@@ -1061,25 +1061,25 @@ The Command defines an Action to be performed on a Target.
 
 **Type: Target (Choice)**
 
-| ID | Name                | Type            | \# | Description                                                                                          |
-|----|---------------------|-----------------|----|------------------------------------------------------------------------------------------------------|
-| 1  | **artifact**        | Artifact        | 1  | An array of bytes representing a file-like object or a link to that object.                          |
-| 2  | **command**         | Command-ID      | 1  | A reference to a previously issued Command.                                                          |
-| 3  | **device**          | Device          | 1  | The properties of a hardware device.                                                                 |
-| 7  | **domain_name**     | Domain-Name     | 1  | A network domain name.                                                                               |
-| 8  | **email_addr**      | Email-Addr      | 1  | A single email address.                                                                              |
-| 9  | **features**        | Features        | 1  | A set of items used with the query Action to determine an Actuator's capabilities.                   |
-| 10 | **file**            | File            | 1  | Properties of a file.                                                                                |
-| 11 | **idn_domain_name** | IDN-Domain-Name | 1  | An internationalized domain name.                                                                    |
-| 12 | **idn_email_addr**  | IDN-Email-Addr  | 1  | A single internationalized email address.                                                            |
-| 13 | **ipv4_net**        | IPv4-Net        | 1  | An IPv4 address range including CIDR prefix length.                                                  |
-| 14 | **ipv6_net**        | IPv6-Net        | 1  | An IPv6 address range including prefix length.                                                       |
-| 15 | **ipv4_connection** | IPv4-Connection | 1  | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol. |
-| 16 | **ipv6_connection** | IPv6-Connection | 1  | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol. |
-| 20 | **iri**             | IRI             | 1  | An internationalized resource identifier (IRI).                                                      |
-| 17 | **mac_addr**        | MAC-Addr        | 1  | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui).                 |
-| 18 | **process**         | Process         | 1  | Common properties of an instance of a computer program as executed on an operating system.           |
-| 19 | **uri**             | URI             | 1  | A uniform resource identifier (URI).                                                                 |
+| ID  | Name                | Type            | \#  | Description                                                                                          |
+| --- | ------------------- | --------------- | --- | ---------------------------------------------------------------------------------------------------- |
+| 1   | **artifact**        | Artifact        | 1   | An array of bytes representing a file-like object or a link to that object.                          |
+| 2   | **command**         | Command-ID      | 1   | A reference to a previously issued Command.                                                          |
+| 3   | **device**          | Device          | 1   | The properties of a hardware device.                                                                 |
+| 7   | **domain_name**     | Domain-Name     | 1   | A network domain name.                                                                               |
+| 8   | **email_addr**      | Email-Addr      | 1   | A single email address.                                                                              |
+| 9   | **features**        | Features        | 1   | A set of items used with the query Action to determine an Actuator's capabilities.                   |
+| 10  | **file**            | File            | 1   | Properties of a file.                                                                                |
+| 11  | **idn_domain_name** | IDN-Domain-Name | 1   | An internationalized domain name.                                                                    |
+| 12  | **idn_email_addr**  | IDN-Email-Addr  | 1   | A single internationalized email address.                                                            |
+| 13  | **ipv4_net**        | IPv4-Net        | 1   | An IPv4 address range including CIDR prefix length.                                                  |
+| 14  | **ipv6_net**        | IPv6-Net        | 1   | An IPv6 address range including prefix length.                                                       |
+| 15  | **ipv4_connection** | IPv4-Connection | 1   | A 5-tuple of source and destination IPv4 address ranges, source and destination ports, and protocol. |
+| 16  | **ipv6_connection** | IPv6-Connection | 1   | A 5-tuple of source and destination IPv6 address ranges, source and destination ports, and protocol. |
+| 20  | **iri**             | IRI             | 1   | An internationalized resource identifier (IRI).                                                      |
+| 17  | **mac_addr**        | MAC-Addr        | 1   | A Media Access Control (MAC) address - EUI-48 or EUI-64 as defined in [[EUI]](#eui).                 |
+| 18  | **process**         | Process         | 1   | Common properties of an instance of a computer program as executed on an operating system.           |
+| 19  | **uri**             | URI             | 1   | A uniform resource identifier (URI).                                                                 |
 
 **Usage Requirements:**
 
@@ -1094,7 +1094,7 @@ listing current, planned, and extension actuator profile information.
 **Type: Profile (Enumerated)**
 
 | ID   | Name     | Description                           |
-|------|----------|---------------------------------------|
+| ---- | -------- | ------------------------------------- |
 | 1024 | **slpf** | Stateless Packet Filtering            |
 | 1025 | **sfpf** | Stateful Packet Filtering             |
 | 1026 | **sbom** | Software Bill of Materials            |
@@ -1111,13 +1111,13 @@ listing current, planned, and extension actuator profile information.
 
 **Type: Args (Map{1..\*})**
 
-| ID | Name                   | Type          | \#   | Description                                                                         |
-|----|------------------------|---------------|------|-------------------------------------------------------------------------------------|
-| 1  | **start_time**         | Date-Time     | 0..1 | The specific date/time to initiate the Command                                      |
-| 2  | **stop_time**          | Date-Time     | 0..1 | The specific date/time to terminate the Command                                     |
-| 3  | **duration**           | Duration      | 0..1 | The length of time for a Command to be in effect                                    |
-| 4  | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: `none`, `ack`, `status`, `complete`. |
-| 5  | **comment**            | String        | 0..1 | A human-readable note to annotate or provide information regarding the action.      |
+| ID  | Name                   | Type          | \#   | Description                                                                         |
+| --- | ---------------------- | ------------- | ---- | ----------------------------------------------------------------------------------- |
+| 1   | **start_time**         | Date-Time     | 0..1 | The specific date/time to initiate the Command                                      |
+| 2   | **stop_time**          | Date-Time     | 0..1 | The specific date/time to terminate the Command                                     |
+| 3   | **duration**           | Duration      | 0..1 | The length of time for a Command to be in effect                                    |
+| 4   | **response_requested** | Response-Type | 0..1 | The type of Response required for the Command: `none`, `ack`, `status`, `complete`. |
+| 5   | **comment**            | String        | 0..1 | A human-readable note to annotate or provide information regarding the action.      |
 
 
 **Usage Requirements:**
@@ -1172,11 +1172,11 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 
 **Type: OpenC2-Response (Record)**
 
-| ID | Name            | Type        | \#   | Description                                                                           |
-|----|-----------------|-------------|------|---------------------------------------------------------------------------------------|
-| 1  | **status**      | Status-Code | 1    | An integer status code.                                                               |
-| 2  | **status_text** | String      | 0..1 | A free-form human-readable description of the Response status.                        |
-| 3  | **results**     | Results     | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
+| ID  | Name            | Type        | \#   | Description                                                                           |
+| --- | --------------- | ----------- | ---- | ------------------------------------------------------------------------------------- |
+| 1   | **status**      | Status-Code | 1    | An integer status code.                                                               |
+| 2   | **status_text** | String      | 0..1 | A free-form human-readable description of the Response status.                        |
+| 3   | **results**     | Results     | 0..1 | Map of key:value pairs that contain additional results based on the invoking Command. |
 
 **Example:**
 
@@ -1198,7 +1198,7 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 **Type: Status-Code (Enumerated.ID)**
 
 | ID  | Description                                                                                                                                                            |
-|-----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 102 | **Processing** - an interim Response used to inform the Producer that the Consumer has accepted the Command but has not yet completed it.                              |
 | 200 | **OK** - the Command has succeeded.                                                                                                                                    |
 | 400 | **Bad Request** - the Consumer cannot process the Command due to something that is perceived to be a Producer error (e.g., malformed Command syntax).                  |
@@ -1213,12 +1213,12 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 
 **Type: Results (Map{1..\*})**
 
-| ID | Name           | Type           | \#    | Description                                                         |
-|----|----------------|----------------|-------|---------------------------------------------------------------------|
-| 1  | **versions**   | Version unique | 0..\* | List of OpenC2 language versions supported by this Consumer         |
-| 2  | **profiles**   | Nsid       | 0..\*  | List of profiles supported by this Consumer                         |
-| 3  | **pairs**      | Action-Targets | 0..1  | List of targets applicable to each supported Action                 |
-| 4  | **rate_limit** | Number{0..\*}  | 0..1  | Maximum number of requests per minute supported by design or policy |
+| ID  | Name           | Type           | \#    | Description                                                         |
+| --- | -------------- | -------------- | ----- | ------------------------------------------------------------------- |
+| 1   | **versions**   | Version unique | 0..\* | List of OpenC2 language versions supported by this Consumer         |
+| 2   | **profiles**   | Nsid           | 0..\* | List of profiles supported by this Consumer                         |
+| 3   | **pairs**      | Action-Targets | 0..1  | List of targets applicable to each supported Action                 |
+| 4   | **rate_limit** | Number{0..\*}  | 0..1  | Maximum number of requests per minute supported by design or policy |
 
 ### 3.3.3 OpenC2 Event
 
@@ -1228,8 +1228,8 @@ content may be added.
 
 **Type: OpenC2-Event (Map{1..\*})**
 
-| ID | Name | Type | \# | Description |
-|----|------|------|----|-------------|
+| ID  | Name | Type | \#  | Description |
+| --- | ---- | ---- | --- | ----------- |
 
 ### 3.3.4 Message Signatures
 
@@ -1284,11 +1284,11 @@ specified for serializations other than JSON.
 
 **Type: Artifact (Record{1..\*})**
 
-| ID | Name          | Type    | \#   | Description                                                                        |
-|----|---------------|---------|------|------------------------------------------------------------------------------------|
-| 1  | **media_type** | String  | 0..1 | Media type description formatted as specified in [[RFC6838]](#rfc6838)             |
-| 2  | **payload**   | Payload | 0..1 | Choice of literal content or URL                                                   |
-| 3  | **hashes**    | Hashes  | 0..1 | Hashes of the payload content                                                      |
+| ID  | Name           | Type    | \#   | Description                                                            |
+| --- | -------------- | ------- | ---- | ---------------------------------------------------------------------- |
+| 1   | **media_type** | String  | 0..1 | Media type description formatted as specified in [[RFC6838]](#rfc6838) |
+| 2   | **payload**    | Payload | 0..1 | Choice of literal content or URL                                       |
+| 3   | **hashes**     | Hashes  | 0..1 | Hashes of the payload content                                          |
 
 **Usage Requirement:**
 
@@ -1301,11 +1301,11 @@ specified for serializations other than JSON.
 
 **Type: Device (Map{1..\*})**
 
-| ID | Name             | Type         | \#   | Description                                                                             |
-|----|------------------|--------------|------|-----------------------------------------------------------------------------------------|
-| 1  | **hostname**     | Hostname     | 0..1 | A hostname that can be used to connect to this device over a network                    |
-| 2  | **idn_hostname** | IDN-Hostname | 0..1 | An internationalized hostname that can be used to connect to this device over a network |
-| 3  | **device_id**    | String       | 0..1 | An identifier that refers to this device within an inventory or management system       |
+| ID  | Name             | Type         | \#   | Description                                                                             |
+| --- | ---------------- | ------------ | ---- | --------------------------------------------------------------------------------------- |
+| 1   | **hostname**     | Hostname     | 0..1 | A hostname that can be used to connect to this device over a network                    |
+| 2   | **idn_hostname** | IDN-Hostname | 0..1 | An internationalized hostname that can be used to connect to this device over a network |
+| 3   | **device_id**    | String       | 0..1 | An identifier that refers to this device within an inventory or management system       |
 
 **Usage Requirement:**
 
@@ -1314,20 +1314,20 @@ specified for serializations other than JSON.
 #### 3.4.1.3 Domain Name
 
 | Type Name       | Type Definition  | Description                        |
-|-----------------|------------------|------------------------------------|
+| --------------- | ---------------- | ---------------------------------- |
 | **Domain-Name** | String /hostname | [[RFC1034]](#rfc1034), Section 3.5 |
 
 #### 3.4.1.4 Email Address
 
 | Type Name      | Type Definition | Description                                         |
-|----------------|-----------------|-----------------------------------------------------|
+| -------------- | --------------- | --------------------------------------------------- |
 | **Email-Addr** | String /email   | Email address, [[RFC5322]](#rfc5322), Section 3.4.1 |
 
 #### 3.4.1.5 Features
 
-| Type Name    | Type Definition  | \#    | Description                                                                            |
-|--------------|------------------|-------|----------------------------------------------------------------------------------------|
-| **Features** | Feature unique   | 0..10 | An array of zero to ten names used to query a Consumer for its supported capabilities. |
+| Type Name    | Type Definition | \#    | Description                                                                            |
+| ------------ | --------------- | ----- | -------------------------------------------------------------------------------------- |
+| **Features** | Feature unique  | 0..10 | An array of zero to ten names used to query a Consumer for its supported capabilities. |
 
 
 **Usage Requirements:**
@@ -1350,11 +1350,11 @@ specified for serializations other than JSON.
 
 **Type: File (Map{1..\*})**
 
-| ID | Name       | Type   | \#   | Description                                                      |
-|----|------------|--------|------|------------------------------------------------------------------|
-| 1  | **name**   | String | 0..1 | The name of the file as defined in the file system               |
-| 2  | **path**   | String | 0..1 | The absolute path to the location of the file in the file system |
-| 3  | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents        |
+| ID  | Name       | Type   | \#   | Description                                                      |
+| --- | ---------- | ------ | ---- | ---------------------------------------------------------------- |
+| 1   | **name**   | String | 0..1 | The name of the file as defined in the file system               |
+| 2   | **path**   | String | 0..1 | The absolute path to the location of the file in the file system |
+| 3   | **hashes** | Hashes | 0..1 | One or more cryptographic hash codes of the file contents        |
 
 **Usage Requirement:**
 
@@ -1363,13 +1363,13 @@ specified for serializations other than JSON.
 #### 3.4.1.7 Internationalized Domain Name
 
 | Type Name           | Type Definition      | Description                                                            |
-|---------------------|----------------------|------------------------------------------------------------------------|
+| ------------------- | -------------------- | ---------------------------------------------------------------------- |
 | **IDN-Domain-Name** | String /idn-hostname | Internationalized Domain Name, [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
 #### 3.4.1.8 Internationalized Email Address
 
 | Type Name          | Type Definition   | Description                                            |
-|--------------------|-------------------|--------------------------------------------------------|
+| ------------------ | ----------------- | ------------------------------------------------------ |
 | **IDN-Email-Addr** | String /idn-email | Internationalized email address, [[RFC6531]](#rfc6531) |
 
 #### 3.4.1.9 IPv4 Address Range
@@ -1389,22 +1389,22 @@ the IP address and the prefix, each in their own field.
 
 **Type: IPv4-Net (Array /ipv4-net)**
 
-| ID | Type      | \#   | Description                                                      |
-|----|-----------|------|------------------------------------------------------------------|
-| 1  | IPv4-Addr | 1    | IPv4 address as defined in [[RFC0791]](#rfc0791)                 |
-| 2  | Integer   | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
+| ID  | Type      | \#   | Description                                                      |
+| --- | --------- | ---- | ---------------------------------------------------------------- |
+| 1   | IPv4-Addr | 1    | IPv4 address as defined in [[RFC0791]](#rfc0791)                 |
+| 2   | Integer   | 0..1 | CIDR prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.10 IPv4 Connection
 
 **Type: IPv4-Connection (Record{1..\*})**
 
-| ID | Name         | Type        | \#   | Description                                                               |
-|----|--------------|-------------|------|---------------------------------------------------------------------------|
-| 1  | **src_addr** | IPv4-Net    | 0..1 | IPv4 source address range                                                 |
-| 2  | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                                  |
-| 3  | **dst_addr** | IPv4-Net    | 0..1 | IPv4 destination address range                                            |
-| 4  | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                             |
-| 5  | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
+| ID  | Name         | Type        | \#   | Description                                                               |
+| --- | ------------ | ----------- | ---- | ------------------------------------------------------------------------- |
+| 1   | **src_addr** | IPv4-Net    | 0..1 | IPv4 source address range                                                 |
+| 2   | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                                  |
+| 3   | **dst_addr** | IPv4-Net    | 0..1 | IPv4 destination address range                                            |
+| 4   | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                             |
+| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1414,22 +1414,22 @@ the IP address and the prefix, each in their own field.
 
 **Type: IPv6-Net (Array /ipv6-net)**
 
-| ID | Type      | \#   | Description                                                 |
-|----|-----------|------|-------------------------------------------------------------|
-| 1  | IPv6-Addr | 1    | IPv6 address as defined in [[RFC8200]](#rfc8200)            |
-| 2  | Integer   | 0..1 | prefix-length. If omitted, refers to a single host address. |
+| ID  | Type      | \#   | Description                                                 |
+| --- | --------- | ---- | ----------------------------------------------------------- |
+| 1   | IPv6-Addr | 1    | IPv6 address as defined in [[RFC8200]](#rfc8200)            |
+| 2   | Integer   | 0..1 | prefix-length. If omitted, refers to a single host address. |
 
 #### 3.4.1.12 IPv6 Connection
 
 **Type: IPv6-Connection (Record{1..\*})**
 
-| ID | Name         | Type        | \#   | Description                                                           |
-|----|--------------|-------------|------|-----------------------------------------------------------------------|
-| 1  | **src_addr** | IPv6-Net    | 0..1 | IPv6 source address range                                             |
-| 2  | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                              |
-| 3  | **dst_addr** | IPv6-Net    | 0..1 | IPv6 destination address range                                        |
-| 4  | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                         |
-| 5  | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
+| ID  | Name         | Type        | \#   | Description                                                           |
+| --- | ------------ | ----------- | ---- | --------------------------------------------------------------------- |
+| 1   | **src_addr** | IPv6-Net    | 0..1 | IPv6 source address range                                             |
+| 2   | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                              |
+| 3   | **dst_addr** | IPv6-Net    | 0..1 | IPv6 destination address range                                        |
+| 4   | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                         |
+| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1438,27 +1438,27 @@ the IP address and the prefix, each in their own field.
 #### 3.4.1.13 IRI
 
 | Type Name | Type Definition | Description                                                   |
-|-----------|-----------------|---------------------------------------------------------------|
+| --------- | --------------- | ------------------------------------------------------------- |
 | **IRI**   | String /iri     | Internationalized Resource Identifier, [[RFC3987]](#rfc3987). |
 
 #### 3.4.1.14 MAC Address
 
 | Type Name    | Type Definition | Description                                                                                               |
-|--------------|-----------------|-----------------------------------------------------------------------------------------------------------|
+| ------------ | --------------- | --------------------------------------------------------------------------------------------------------- |
 | **MAC-Addr** | Binary /eui     | Media Access Control / Extended Unique Identifier address - EUI-48 or EUI-64 as defined in [[EUI]](#eui). |
 
 #### 3.4.1.15 Process
 
 **Type: Process (Map{1..\*})**
 
-| ID | Name             | Type           | \#   | Description                                                                          |
-|----|------------------|----------------|------|--------------------------------------------------------------------------------------|
-| 1  | **pid**          | Integer{0..\*} | 0..1 | Process ID of the process                                                            |
-| 2  | **name**         | String         | 0..1 | Name of the process                                                                  |
-| 3  | **cwd**          | String         | 0..1 | Current working directory of the process                                             |
-| 4  | **executable**   | File           | 0..1 | Executable that was executed to start the process                                    |
-| 5  | **parent**       | Process        | 0..1 | Process that spawned this one                                                        |
-| 6  | **command_line** | String         | 0..1 | The full command line invocation used to start this process, including all arguments |
+| ID  | Name             | Type           | \#   | Description                                                                          |
+| --- | ---------------- | -------------- | ---- | ------------------------------------------------------------------------------------ |
+| 1   | **pid**          | Integer{0..\*} | 0..1 | Process ID of the process                                                            |
+| 2   | **name**         | String         | 0..1 | Name of the process                                                                  |
+| 3   | **cwd**          | String         | 0..1 | Current working directory of the process                                             |
+| 4   | **executable**   | File           | 0..1 | Executable that was executed to start the process                                    |
+| 5   | **parent**       | Process        | 0..1 | Process that spawned this one                                                        |
+| 6   | **command_line** | String         | 0..1 | The full command line invocation used to start this process, including all arguments |
 
 **Usage Requirement:**
 
@@ -1468,28 +1468,28 @@ the IP address and the prefix, each in their own field.
 #### 3.4.1.16 URI
 
 | Type Name | Type Definition | Description                                         |
-|-----------|-----------------|-----------------------------------------------------|
+| --------- | --------------- | --------------------------------------------------- |
 | **URI**   | String (uri)    | Uniform Resource Identifier, [[RFC3986]](#rfc3986). |
 
 ### 3.4.2 Data Types
 
 #### 3.4.2.1 Action-Targets
 
-| Type Name          | Type Definition                     | Description                                                                                              |
-|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
-| **Action-Targets** | MapOf(Action, Targets){1..\*}       | Map of each action supported by this actuator function to the list of targets applicable to that action. |
+| Type Name          | Type Definition               | Description                                                                                              |
+| ------------------ | ----------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Action-Targets** | MapOf(Action, Targets){1..\*} | Map of each action supported by this actuator function to the list of targets applicable to that action. |
 
 #### 3.4.2.2 Command-ID
 
 | Type Name      | Type Definition          | Description        |
-|----------------|--------------------------|--------------------|
+| -------------- | ------------------------ | ------------------ |
 | **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
 
 
 #### 3.4.2.3 Date-Time
 
 | Type Name     | Type Definition | Description   |
-|---------------|-----------------|---------------|
+| ------------- | --------------- | ------------- |
 | **Date-Time** | Integer{0..\*}  | Date and Time |
 
 **Usage Requirements:**
@@ -1499,7 +1499,7 @@ the IP address and the prefix, each in their own field.
 #### 3.4.2.4 Duration
 
 | Type Name    | Type Definition | Description      |
-|--------------|-----------------|------------------|
+| ------------ | --------------- | ---------------- |
 | **Duration** | Integer{0..\*}  | A length of time |
 
 **Usage Requirements:**
@@ -1512,22 +1512,22 @@ Specifies the results to be returned from a query features Command.
 
 **Type: Feature (Enumerated)**
 
-| ID | Name           | Description                                                         |
-|----|----------------|---------------------------------------------------------------------|
-| 1  | **versions**   | List of OpenC2 Language versions supported by this Consumer         |
-| 2  | **profiles**   | List of Actuator profiles supported by this Consumer                |
-| 3  | **pairs**      | List of supported Actions and applicable Targets                    |
-| 4  | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
+| ID  | Name           | Description                                                         |
+| --- | -------------- | ------------------------------------------------------------------- |
+| 1   | **versions**   | List of OpenC2 Language versions supported by this Consumer         |
+| 2   | **profiles**   | List of Actuator profiles supported by this Consumer                |
+| 3   | **pairs**      | List of supported Actions and applicable Targets                    |
+| 4   | **rate_limit** | Maximum number of Commands per minute supported by design or policy |
 
 #### 3.4.2.6 Hashes
 
 **Type: Hashes (Map{1..\*})**
 
-| ID | Name       | Type      | \#   | Description                                     |
-|----|------------|-----------|------|-------------------------------------------------|
-| 1  | **md5**    | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321)    |
-| 2  | **sha1**   | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234)   |
-| 3  | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
+| ID  | Name       | Type      | \#   | Description                                     |
+| --- | ---------- | --------- | ---- | ----------------------------------------------- |
+| 1   | **md5**    | Binary /x | 0..1 | MD5 hash as defined in [[RFC1321]](#rfc1321)    |
+| 2   | **sha1**   | Binary /x | 0..1 | SHA1 hash as defined in [[RFC6234]](#rfc6234)   |
+| 3   | **sha256** | Binary /x | 0..1 | SHA256 hash as defined in [[RFC6234]](#rfc6234) |
 
 **Usage Requirement:**
 
@@ -1536,25 +1536,25 @@ Specifies the results to be returned from a query features Command.
 #### 3.4.2.7 Hostname
 
 | Type Name    | Type Definition  | Description                                              |
-|--------------|------------------|----------------------------------------------------------|
+| ------------ | ---------------- | -------------------------------------------------------- |
 | **Hostname** | String /hostname | Internet host name as specified in [[RFC1123]](#rfc1123) |
 
 #### 3.4.2.8 Internationalized Hostname
 
 | Type Name        | Type Definition      | Description                                                                                  |
-|------------------|----------------------|----------------------------------------------------------------------------------------------|
+| ---------------- | -------------------- | -------------------------------------------------------------------------------------------- |
 | **IDN-Hostname** | String /idn-hostname | Internationalized Internet host name as specified in [[RFC5890]](#rfc5890), Section 2.3.2.3. |
 
 #### 3.4.2.9 IPv4 Address
 
 | Type Name     | Type Definition   | Description                                             |
-|---------------|-------------------|---------------------------------------------------------|
+| ------------- | ----------------- | ------------------------------------------------------- |
 | **IPv4-Addr** | Binary /ipv4-addr | 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791) |
 
 #### 3.4.2.10 IPv6 Address
 
 | Type Name     | Type Definition   | Description                                              |
-|---------------|-------------------|----------------------------------------------------------|
+| ------------- | ----------------- | -------------------------------------------------------- |
 | **IPv6-Addr** | Binary /ipv6-addr | 128 bit IPv6 address as defined in [[RFC8200]](#rfc8200) |
 
 #### 3.4.2.11 L4 Protocol
@@ -1567,13 +1567,13 @@ non-exhaustive set of commonly used values.
 
 **Type: L4-Protocol (Enumerated)**
 
-| ID  | Name     | Description                                                  |
-|-----|----------|--------------------------------------------------------------|
-| 1   | **icmp** | Internet Control Message Protocol - [[RFC0792]](#rfc0792)    |
-| 6   | **tcp**  | Transmission Control Protocol - [[RFC9293]](#rfc9293)        |
-| 17  | **udp**  | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
-| 28  | **ipv6_icmp**  | ICMP for IPv6 - [[RFC8200]](#rfc8200)                  |
-| 132 | **sctp** | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
+| ID  | Name          | Description                                                  |
+| --- | ------------- | ------------------------------------------------------------ |
+| 1   | **icmp**      | Internet Control Message Protocol - [[RFC0792]](#rfc0792)    |
+| 6   | **tcp**       | Transmission Control Protocol - [[RFC9293]](#rfc9293)        |
+| 17  | **udp**       | User Datagram Protocol - [[RFC0768]](#rfc0768)               |
+| 28  | **ipv6_icmp** | ICMP for IPv6 - [[RFC8200]](#rfc8200)                        |
+| 132 | **sctp**      | Stream Control Transmission Protocol - [[RFC4960]](#rfc4960) |
 
 **Usage Requirement:**
 
@@ -1588,55 +1588,55 @@ Identifies the type of Message.
 
 **Type: Message-Type (Enumerated)**
 
-| ID | Name         | Description                               |
-|----|--------------|-------------------------------------------|
-| 1  | **command**  | The Message content is an OpenC2 Command  |
-| 2  | **response** | The Message content is an OpenC2 Response |
+| ID  | Name         | Description                               |
+| --- | ------------ | ----------------------------------------- |
+| 1   | **command**  | The Message content is an OpenC2 Command  |
+| 2   | **response** | The Message content is an OpenC2 Response |
 
 #### 3.4.2.13 Namespace Identifier
 
 | Type Name | Type Definition | Description                                    |
-|-----------|-----------------|------------------------------------------------|
+| --------- | --------------- | ---------------------------------------------- |
 | **Nsid**  | String{1..16}   | A short identifier that refers to a namespace. |
 
 #### 3.4.2.14 Payload
 
 **Type: Payload (Choice)**
 
-| ID | Name    | Type   | \# | Description                                                 |
-|----|---------|--------|----|-------------------------------------------------------------|
-| 1  | **bin** | Binary | 1  | Specifies the data contained in the artifact                |
-| 2  | **url** | URI    | 1  | MUST be a valid URL that resolves to the un-encoded content |
+| ID  | Name    | Type   | \#  | Description                                                 |
+| --- | ------- | ------ | --- | ----------------------------------------------------------- |
+| 1   | **bin** | Binary | 1   | Specifies the data contained in the artifact                |
+| 2   | **url** | URI    | 1   | MUST be a valid URL that resolves to the un-encoded content |
 
 #### 3.4.2.15 Port
 
 | Type Name | Type Definition   | Description                                           |
-|-----------|-------------------|-------------------------------------------------------|
+| --------- | ----------------- | ----------------------------------------------------- |
 | **Port**  | Integer{0..65535} | Transport Protocol Port Number, [[RFC6335]](#rfc6335) |
 
 #### 3.4.2.16 Response-Type
 
 **Type: Response-Type (Enumerated)**
 
-| ID | Name         | Description                                     |
-|----|--------------|-------------------------------------------------|
-| 0  | **none**     | No response                                     |
-| 1  | **ack**      | Respond when Command received                   |
-| 2  | **status**   | Respond with progress toward Command completion |
-| 3  | **complete** | Respond when all aspects of Command completed   |
+| ID  | Name         | Description                                     |
+| --- | ------------ | ----------------------------------------------- |
+| 0   | **none**     | No response                                     |
+| 1   | **ack**      | Respond when Command received                   |
+| 2   | **status**   | Respond with progress toward Command completion |
+| 3   | **complete** | Respond when all aspects of Command completed   |
 
 #### 3.4.2.17 Targets
 
-| Type Name          | Type Definition                     | Description                                                                                              |
-|--------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------|
-| **Targets**        | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields                                                                                    |
+| Type Name   | Type Definition                     | Description           |
+| ----------- | ----------------------------------- | --------------------- |
+| **Targets** | ArrayOf(Enum(Target)){1..\*} unique | List of Target fields |
 
 #### 3.4.2.18 Version
 
 Used to report the version(s) of OpenC2 supported by Consumers.
 
-| Type Name   | Type Definition | Description                |
-|-------------|-----------------|----------------------------|
+| Type Name   | Type Definition | Description                            |
+| ----------- | --------------- | -------------------------------------- |
 | **Version** | String          | OpenC2 version in "Major.Minor" format |
 
 **Usage Requirement:**
@@ -2357,278 +2357,22 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-# Appendix D. Schema Development With JADN
-
-*The content in this section is non-normative.*
-
-This appendix provides a brief overview of the *JSON Abstract
-Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
-modeling (IM) language and its application to rigorously
-specifying the OpenC2 language. Unless explicitly labeled
-otherwise, section references in this appendix are to sections of
-the [JADN](#jadn-v10) specification, rather than this Language
-Specification.
-
-## D.1 JADN Overview
-
-The abstract of the OASIS Committee Specification for JADN
-describes it as follows:
-
-> JSON Abstract Data Notation (JADN) is a UML-based information
-> modeling language that defines data structure independently of
-> data format. 
-
-As the specification explains (section 1):  [RFC 3444](#rfc3444),
-"Information Models and Data Models", notes that the main purpose
-of an **information model** is to model objects at a conceptual
-level, independent of specific implementations or protocols used
-to transport the data. JADN provides a tool for developing
-information models, which can be used to define and generate
-physical data models, validate information instances, and enable
-lossless translation across data formats. 
-
-A JADN specification consists of:
- -  type definitions that comprise the information model, and
- -  serialization rules that define how information instances are
-    represented as data. 
-
-The model is documented using a compact and expressive interface
-definition language, property tables, or entity relationship
-diagrams, easing integration with existing design processes and
-architecture tools.
-
-JADN defines a set of base types that includes five "primitives"
-(e.g., boolean, string), and seven complex types (e.g., array,
-map, record). JADN type definitions have a fixed structure
-designed to be easily describable, easily processed, stable, and
-extensible. Every definition in a JADN document is described in
-terms of five elements (JADN specification section 3.1): 
-
-1) **TypeName:** a string containing the name of the type being
-   defined
-2) **BaseType:** a choice from the JADN predefined types (Table
-   3-1) of the type being defined
-3) **TypeOptions:** an array of zero or more TypeOption (Section
-   3.2.1) applicable to BaseType
-4) **TypeDescription:** a string containing a non-normative
-   comment
-5) **Fields:** an array of Item or Field definitions
-
-From this starting point JADN enables creation of a rich
-information model readily expressed in any of several
-representations. Section 3.2 describes an extensive set of
-options (e.g., semantic validation, size and value constraints,
-multiplicity constraints) that provide the means to define a wide
-variety of information types in a representation-independent
-manner.
-
-As an information modeling language, JADN supports only two kinds
-of relationships: "contain" and "reference".  A JADN information
-model is a set of type definitions, where each definition may be
-basic or structured. Each field in a structured type may be
-associated with another model-defined type, and the set of
-associations between types forms a directed graph. Each
-association is either a container or a reference, and the
-direction of each edge is toward the contained or referenced
-type.
-
-The native format of JADN is JSON, but JADN content can be
-represented in others ways that are more useful for
-documentation. The [JADN Specification](#jadn-v10) identifies
-three formats (Section 5) in addition to the native format:
-
- - JADN Interface Definition Language (JIDL)
- - Table Style 
- - Entity Relationship Diagrams 
-
-Automated tooling makes it straightforward to translate among all
-four of these formats. Table style presentation is often used in
-specifications (e.g., as property tables such as are found in the
-body of this specification). Entity relationship diagrams are
-helpful for visualization of an information model. The JIDL
-format, a simple text structure, is easy to edit, making it a
-good format for the initial creation of a JADN model.
-
-## D.2 Deriving Other Schemas and Serializations
-
-Once the information model is developed, its use in applications
-requires serialization and deserialization of the information in
-some specific format to permit transmisssion or storage of the
-data corresponding to the model. Serialization is the process for
-converting application information, regardless of its internal
-representation, into a form that can be transmitted (i.e., into a
-"document"). JADN information models can be translated into a
-number of schema formats, such as [[JSON schema](#json-schema)]
-or CDDL [[RFC8610](#rfc8610)], or can be used directly as a
-format-independent schema language. As with translation among
-JADN representations, the use of automated tools to create
-schemas ensures the schemas are an accurate, repeatable
-representation of the JADN information model.
-
-Converting an information model to a data model means applying
-serialization rules for each base type that produce physical data
-in the desired format.  The JADN specification defines
-serialization rules for four different representations of an
-information mode (Section 4):
-
-| Serialization Type |                              Description                              |
-|:------------------:|:---------------------------------------------------------------------:|
-|    Verbose JSON    | Human-readable JSON format using name-value encoding for tabular data |
-|    Compact JSON    | Human-readable JSON format using positional encoding for tabular data |
-|    Concise JSON    | Represents JADN data types in a format optimized for minimum size     |
-|        CBOR        | Concise Binary Object Representation format of JADN types             |
-
-In addition, the specification identifies the constraints that
-must be satisifed to define how a JADN IM is represented in other
-serializations (Section 4). Because each serialization represents
-the same information model, translation between serialization
-formats is simplified.
-
-## D.3 JADN Example: OpenC2 Subset
-
-This section provide a brief example of a JADN information model,
-using data types from OpenC2. 
-
-### D.3.1  Basic and Complex Data Types
-
-This example illustrates the use of basic and complex types to
-describe a network connection. A 5-tuple is a common means of
-representing a TCP or UDP session, recording the source and
-destination IP addresses and ports, and identifying the Layer 4
-protocol in use. The corresponding OpenC2 target type is called
-an `IPv4-Connection` (see section
-[3.4.1.10](#34110-ipv4-connection) of this specification).  A
-group of basic (i.e., binary, integer) and complex (i.e., record,
-array, enumeration) types and their use in the definition of an
-IPv4 Connection information model are represented in JIDL as
-follows:
-
-```
-
-// An IPv4 address is a binary value representing a 32-bit integer
-
-IPv4-Addr = Binary /ipv4-addr                     // 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)
-
-
-// the IPv4-Connection type is a record
-
-IPv4-Connection = Record{1..*}                    // 5-tuple that specifies a tcp/ip connection
-   1 src_addr         IPv4-Net optional           // IPv4 source address range
-   2 src_port         Port optional               // Source service per [RFC6335]
-   3 dst_addr         IPv4-Net optional           // IPv4 destination address range
-   4 dst_port         Port optional               // Destination service per [RFC6335]
-   5 protocol         L4-Protocol optional        // Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)
-
-
-// the IPv4-Net type is an array used to represent a CIDR block
-
-IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix length
-   1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [RFC0791]
-   2  Integer optional                            // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
-
-
-// L4-Protocol is an 8-bit value therefore L4-Protocol is an enumeration from 0..255.
-// The interpretation of this value is handled through an external registry
-// See the usage requirements in Section 3.4.2.11, which also contains the following
-// commonly-used example values for the field.
-
-L4-Protocol = Enumerated                          // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
-   1 icmp                                         // Internet Control Message Protocol - [RFC0792]
-   6 tcp                                          // Transmission Control Protocol - [RFC0793]
-  17 udp                                          // User Datagram Protocol - [RFC0768]
- 132 sctp                                         // Stream Control Transmission Protocol - [RFC4960]
-
-
-// Port is a 16-bit integer
-
-Port = Integer{0..65535}                          // Transport Protocol Port Number, [RFC6335]
-```
-
-The equivalent property table representations can be found in the
-respective section of this specification for each type (ordered
-as above):
-
- - [3.4.2.9](#3429-ipv4-address): IPv4-Addr
- - [3.4.1.10](#34110-ipv4-connection): IPv4-Connection
- - [3.4.1.9](#3419-ipv4-address-range): IPv4-Net
- - [3.4.2.11](#34211-l4-protocol): L4-Protocol
- - [3.4.2.15](#34215-port): Port
- 
-The example above also makes use of a pair of  JADN semantic
-validation keywords: `"ipv4-addr"` and `"ipv4-net"`. These
-keywords specify validation requirements for the data types where
-they are used (see section 3.2.1.5 of the [JADN](#jadn-v10)
-specification). For example, "`ipv4-addr"` is used to force the
-representation of a binary address in the commonly used "dotted
-quad" format.
-
-### D.3.2  JADN Representation
-
-This section shows the JADN representation of the types defined
-using JIDL in the preceding section.
-
-```
-["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [RFC0791]"],
-
-["IPv4-Connection", "Record", ["{1"], "5-tuple that specifies a tcp/ip connection", [
-    [1, "src_addr", "IPv4-Net", ["[0"], "IPv4 source address range"],
-    [2, "src_port", "Port", ["[0"], "Source service per [RFC6335],
-    [3, "dst_addr", "IPv4-Net", ["[0"], "IPv4 destination address range"],
-    [4, "dst_port", "Port", ["[0"], "Destination service per [RFC6335],
-    [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - see Section 3.4.2.10"]
-]],
-
-["IPv4-Net", "Array", ["/ipv4-net"], "IPv4 address and prefix length", [
-    [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [RFC0791],
-    [2, "prefix_length", "Integer", ["[0"], "CIDR prefix-length. If omitted, refers to a single host address."]
-]],
-
-["L4-Protocol", "Enumerated", [], "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)", [
-    [1, "icmp", "Internet Control Message Protocol - [RFC0792],
-    [6, "tcp", "Transmission Control Protocol - [RFC0793],
-    [17, "udp", "User Datagram Protocol - [RFC0768],
-    [132, "sctp", "Stream Control Transmission Protocol - [RFC4960]"]
-]]
-
-["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [RFC6335]"]
-```
-
-
-### D.3.3  Translation To JSON Schema
-
-> TBD:  JADN translation to JSON schema
-
-## D.4 Additional Information
-
-JADN supports organizing features to facilitate the creation and management of JADN schemas. In particular:
-
- - Schemas can be broken up into a collection of **packages**. A package is a collection of type definitions along with information about the package, such as the namespace the package defines, its version, and other administrative and technical information.
- - The use of **namespaces** enables one packages toi reference type definitions from other packages.
-
-> TBD: Reference to, descriptionf of OpenC2 JADN schema external artifact
-
-
-
-
 
 # Appendix E. Revision History
 
-*The content in this section is non-normative.*
-
-| Revision   | Date       | Editor           | Changes Made                                                                                              |
-|------------|------------|------------------|-----------------------------------------------------------------------------------------------------------|
-| v1.1-wd01  | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                     |
-| Issue #388, item 1, #390 | 08/xx/2022 | Lemire | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
-| Issue #388, item 4 | 08/xx/2022 | Lemire | Add usage requirement for `Version` format in 3.4.2.17   |
-| Issue #386, #387 | 08/xx/2022 | Lemire | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations | 
-| Issues #389, #392 | 8/24/2022 | Lemire | Remove Properties target type, per 8/10/2022 working meeting discussion | 
-| Issue #369 | 7/27/2022 | Lemire | * Add "comment" as command argument |
-| Issue #393 | 8/2/2022 | Lemire | * Change ArrayOf() to multiplicity where possible |
-| Issue #396 | 8/xx/2022 | Lemire | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically  |
-| Administrative | 9/07/2022 | Lemire | Changes for version update, v1.1 to v2.0  |
-| Issue #361 | 9/xx/2022 | Lemire | Add explanatory JADN appendix  |
+| Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
+| ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.1-wd01                | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                                                                    |
+| Issue #388, item 1, #390 | 08/xx/2022 | Lemire              | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
+| Issue #388, item 4       | 08/xx/2022 | Lemire              | Add usage requirement for `Version` format in 3.4.2.17                                                                                                   |
+| Issue #386, #387         | 08/xx/2022 | Lemire              | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations                                                                     |
+| Issues #389, #392        | 8/24/2022  | Lemire              | Remove Properties target type, per 8/10/2022 working meeting discussion                                                                                  |
+| Issue #369               | 7/27/2022  | Lemire              | * Add "comment" as command argument                                                                                                                      |
+| Issue #393               | 8/2/2022   | Lemire              | * Change ArrayOf() to multiplicity where possible                                                                                                        |
+| Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
+| Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
+| Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
 | Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
-
 
 # Appendix F. Acknowledgments
 
@@ -2640,7 +2384,7 @@ specification and are gratefully acknowledged:
 **OpenC2 TC Members:**
 
 | First Name | Last Name     | Company                                                              |
-|------------|---------------|----------------------------------------------------------------------|
+| ---------- | ------------- | -------------------------------------------------------------------- |
 | Philippe   | Alcoy         | Arbor Networks                                                       |
 | Darren     | Anstee        | Arbor Networks                                                       |
 | Michelle   | Barry         | AT&T                                                                 |
