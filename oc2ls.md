@@ -1,52 +1,50 @@
-![](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
+
+![OASIS Logo](https://docs.oasis-open.org/templates/OASISLogo-v3.0.png)
+
+-------
 
 # Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 01
+## Committee Specification Draft 01
 
-## 11 November 2022
+## 16 November 2022
 
-#### This version:
+&nbsp;
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
+<!-- URI list start (commented out except during publication by OASIS TC Admin)
 
-#### Previous version:
+#### This stage:
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/csd01/oc2ls-v2.0-csd01.md (Authoritative) \
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/csd01/oc2ls-v2.0-csd01.html \
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/csd01/oc2ls-v2.0-csd01.pdf
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.pdf
+#### Previous stage:
+N/A
 
-#### Latest version:
+#### Latest stage:
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/oc2ls-v2.0.md (Authoritative) \
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/oc2ls-v2.0.html \
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/oc2ls-v2.0.pdf
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
+URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Technical Committee:
+[OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
-[OASIS Open Command and Control (OpenC2)
-TC](https://www.oasis-open.org/committees/openc2/)
-
-#### Chair:
-
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/) \
-Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
+#### Chairs:
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](https://www.sfractal.com/) \
+Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov/)
 
 #### Editors:
-
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/)
-
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/) \
 Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
-#### Abstract:
+#### Related work:
+This specification replaces or supersedes:
+* _Open Command and Control (OpenC2) Language Specification Version 1.1_. Edited by Duncan Sparrell and Toby Considine. Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
+* _Open Command and Control (OpenC2) Language Specification Version 1.0_. Edited by Jason Romano and Duncan Sparrell. Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.0/oc2ls-v1.0.html.
 
+#### Abstract:
 Cyberattacks are increasingly sophisticated, less expensive to execute, dynamic
 and automated. The provision of cyber defense via statically configured products
 operating in isolation is untenable. Standardized interfaces, protocols and data
@@ -62,115 +60,39 @@ coordinated cyber response such as sensing, analytics, and selecting appropriate
 courses of action are beyond the scope of OpenC2.
 
 #### Status:
+This document was last revised or approved by the OASIS Open Command and Control (OpenC2) TC on the above date. The level of approval is also listed above. Check the "Latest stage" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Technical Committee (TC) are listed at https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
 
-This document was last revised or approved by the OASIS Open Command and Control
-(OpenC2) TC on the above date. The level of approval is also listed above. Check
-the "Latest version" location noted above for possible later revisions of this
-document. Any other numbered Versions and other technical work produced by the
-Technical Committee (TC) are listed at
-https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2\#technical.
+TC members should send comments on this specification to the TC's email list. Others should send comments to the TC's public comment list, after subscribing to it by following the instructions at the "[Send A Comment](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=)" button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
 
-TC members should send comments on this specification to the TC's email list.
-Others should send comments to the TC's public comment list, after subscribing
-to it by following the instructions at the "Send A Comment" button on the TC's
-web page at https://www.oasis-open.org/committees/openc2/.
+This specification is provided under the [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr/#Non-Assertion-Mode) Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established. For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
-This specification is provided under the
-[Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode)
-Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was
-established. For information on whether any patents have been disclosed that may
-be essential to implementing this specification, and any offers of patent
-licensing terms, please refer to the Intellectual Property Rights section of the
-TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
+Note that any machine-readable content ([Computer Language Definitions](https://www.oasis-open.org/policies-guidelines/tc-process-2017-05-26/#wpComponentsCompLang)) declared Normative for this Work Product is provided in separate plain text files. In the event of a discrepancy between any such plain text file and display content in the Work Product's prose narrative document(s), the content in the separate plain text file prevails.
 
-Note that any machine-readable content ([Computer Language
-Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang))
-declared Normative for this Work Product is provided in separate plain text
-files. In the event of a discrepancy between any such plain text file and
-display content in the Work Product's prose narrative document(s), the content
-in the separate plain text file prevails.
+#### Key words:
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
 
 #### Citation format:
-
-When referencing this specification the following citation format should be
-used:
+When referencing this specification the following citation format should be used:
 
 **[OpenC2-Lang-v2.0]**
 
-*Open Command and Control (OpenC2) Language Specification Version 2.0. Edited
-by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
-Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
+_Open Command and Control (OpenC2) Language Specification Version 2.0_. Edited by Toby Considine and Duncan Sparrell. 16 November 2022. OASIS Committee Specification Draft 01. https://docs.oasis-open.org/openc2/oc2ls/v2.0/csd01/oc2ls-v2.0-csd01.html. Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v2.0/oc2ls-v2.0.html.
 
-## Notices
+#### Notices
+Copyright &copy; OASIS Open 2022. All Rights Reserved.
 
-Copyright © OASIS Open 2019. All Rights Reserved.
+Distributed under the terms of the OASIS [IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr/).
 
-All capitalized terms in the following text have the meanings assigned to them
-in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The
-full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found
-at the OASIS website.
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs.
 
-This document and translations of it may be copied and furnished to others, and
-derivative works that comment on or otherwise explain it or assist in its
-implementation may be prepared, copied, published, and distributed, in whole or
-in part, without restriction of any kind, provided that the above copyright
-notice and this section are included on all such copies and derivative works.
-However, this document itself may not be modified in any way, including by
-removing the copyright notice or references to OASIS, except as needed for the
-purpose of developing any document or deliverable produced by an OASIS Technical
-Committee (in which case the rules applicable to copyrights, as set forth in the
-OASIS IPR Policy, must be followed) or as required to translate it into
-languages other than English.
+For complete copyright information please see the full Notices section in an Appendix below.
 
-The limited permissions granted above are perpetual and will not be revoked by
-OASIS or its successors or assigns.
+-------
 
-This document and the information contained herein is provided on an "AS IS"
-basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE
-ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
-A PARTICULAR PURPOSE.
+# Table of Contents
 
-OASIS requests that any OASIS Party or any other party that believes it has
-patent claims that would necessarily be infringed by implementations of this
-OASIS Committee Specification or OASIS Standard, to notify OASIS TC
-Administrator and provide an indication of its willingness to grant patent
-licenses to such patent claims in a manner consistent with the IPR Mode of the
-OASIS Technical Committee that produced this specification.
-
-OASIS invites any party to contact the OASIS TC Administrator if it is aware of
-a claim of ownership of any patent claims that would necessarily be infringed by
-implementations of this specification by a patent holder that is not willing to
-provide a license to such patent claims in a manner consistent with the IPR Mode
-of the OASIS Technical Committee that produced this specification. OASIS may
-include such claims on its website, but disclaims any obligation to do so.
-
-OASIS takes no position regarding the validity or scope of any intellectual
-property or other rights that might be claimed to pertain to the implementation
-or use of the technology described in this document or the extent to which any
-license under such rights might or might not be available; neither does it
-represent that it has made any effort to identify any such rights. Information
-on OASIS' procedures with respect to rights in any document or deliverable
-produced by an OASIS Technical Committee can be found on the OASIS website.
-Copies of claims of rights made available for publication and any assurances of
-licenses to be made available, or the result of an attempt made to obtain a
-general license or permission for the use of such proprietary rights by
-implementers or users of this OASIS Committee Specification or OASIS Standard,
-can be obtained from the OASIS TC Administrator. OASIS makes no representation
-that any information or list of intellectual property rights will at any time be
-complete, or that any claims in such list are, in fact, Essential Claims.
-
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the
-owner and developer of this specification, and should be used only to refer to
-the organization and its official outputs. OASIS welcomes reference to, and
-implementation and use of, specifications, while reserving the right to enforce
-its marks against misleading uses. Please see
-https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
-
-# Contents
 - [1 Introduction](#1-introduction)
-  - [1.1 Changes From Earlier Versions](#11-changes-from-earlier-versions)
+  - [1.1 Changes from earlier Versions](#11-changes-from-earlier-versions)
   - [1.2 Glossary](#12-glossary)
     - [1.2.1 Definitions of Terms](#121-definitions-of-terms)
     - [1.2.2 Acronyms and abbreviations](#122-acronyms-and-abbreviations)
@@ -190,6 +112,7 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
     - [3.1.5 Serialization](#315-serialization)
       - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
+          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
@@ -250,18 +173,96 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
   - [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 - [Appendix A. References](#appendix-a-references)
   - [A.1 Normative References](#a1-normative-references)
+          - [\[JADN-v1.0\]](#jadn-v10)
+          - [\[OpenC2-HTTPS-v1.0\]](#openc2-https-v10)
+          - [\[OpenC2-SLPF-v1.0\]](#openc2-slpf-v10)
+          - [\[RFC0768\]](#rfc0768)
+          - [\[RFC0791\]](#rfc0791)
+          - [\[RFC0792\]](#rfc0792)
+          - [\[RFC1034\]](#rfc1034)
+          - [\[RFC1123\]](#rfc1123)
+          - [\[RFC1321\]](#rfc1321)
+          - [\[RFC2119\]](#rfc2119)
+          - [\[RFC2673\]](#rfc2673)
+          - [\[RFC3444\]](#rfc3444)
+          - [\[RFC3986\]](#rfc3986)
+          - [\[RFC3987\]](#rfc3987)
+          - [\[RFC4122\]](#rfc4122)
+          - [\[RFC4291\]](#rfc4291)
+          - [\[RFC4632\]](#rfc4632)
+          - [\[RFC4648\]](#rfc4648)
+          - [\[RFC4960\]](#rfc4960)
+          - [\[RFC5237\]](#rfc5237)
+          - [\[RFC5322\]](#rfc5322)
+          - [\[RFC5890\]](#rfc5890)
+          - [\[RFC5952\]](#rfc5952)
+          - [\[RFC6234\]](#rfc6234)
+          - [\[RFC6335\]](#rfc6335)
+          - [\[RFC6531\]](#rfc6531)
+          - [\[RFC6838\]](#rfc6838)
+          - [\[RFC7493\]](#rfc7493)
+          - [\[RFC7515\]](#rfc7515)
+          - [\[RFC8174\]](#rfc8174)
+          - [\[RFC8200\]](#rfc8200)
+          - [\[RFC8259\]](#rfc8259)
+          - [\[RFC8785\]](#rfc8785)
+          - [\[RFC9293\]](#rfc9293)
+          - [\[EUI\]](#eui)
+          - [\[IEEE\_RA\]](#ieee_ra)
+          - [\[IANA\_Protocols\]](#iana_protocols)
+          - [\[IANA\_Media\]](#iana_media)
   - [A.2 Informative References](#a2-informative-references)
+          - [\[RFC3552\]](#rfc3552)
+          - [\[RFC8610\]](#rfc8610)
+          - [\[IACD\]](#iacd)
+          - [\[JSON-Schema\]](#json-schema)
+          - [\[UML\]](#uml)
 - [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
 - [Appendix C. Examples](#appendix-c-examples)
   - [C.1 Example 1: Device Quarantine](#c1-example-1-device-quarantine)
   - [C.2 Example 2: Block Connection](#c2-example-2-block-connection)
   - [C.3 Example 3: Message Signature Processing](#c3-example-3-message-signature-processing)
+    - [C.3.1 OpenC2 Message Signature](#c31-openc2-message-signature)
+    - [C.3.2 OpenC2 Signing Operation (JSON)](#c32-openc2-signing-operation-json)
+      - [1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification.](#1-generate-the-openc2-json-object-as-described-in-the-openc2-language-specification)
+      - [2. Canonicalize JSON Data using the process described in RFC8785.](#2-canonicalize-json-data-using-the-process-described-in-rfc8785)
+      - [3. Create a JWS using the process described in RFC7515.](#3-create-a-jws-using-the-process-described-in-rfc7515)
+        - [A. Develop a protected header for the type of signature that will be used.](#a-develop-a-protected-header-for-the-type-of-signature-that-will-be-used)
+        - [B. Base64 encode the protected header.](#b-base64-encode-the-protected-header)
+        - [C. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload.](#c-base64-encode-our-canonicalize-json-object-from-step-2-to-create-the-jws-payload)
+        - [D. Concatenate the JWS protected header and the JWS payload using with a period character to create our signing input.](#d-concatenate-the-jws-protected-header-and-the-jws-payload-using-with-a-period-character-to-create-our-signing-input)
+        - [E. Utilize the signing input, ES256 algorithm, and the sender's private key to calculate the signature.](#e-utilize-the-signing-input-es256-algorithm-and-the-senders-private-key-to-calculate-the-signature)
+        - [F. Normally at this point we would concatenate all 3 with a period character to create our JWS. However, in order to reduce overhead, we will be using detached version of JWS. To do this we replace the JWS payload portion with an empty string.](#f-normally-at-this-point-we-would-concatenate-all-3-with-a-period-character-to-create-our-jws-however-in-order-to-reduce-overhead-we-will-be-using-detached-version-of-jws-to-do-this-we-replace-the-jws-payload-portion-with-an-empty-string)
+      - [4. Add the detached JWS back into the original OpenC2 JSON object under the property “signature”.](#4-add-the-detached-jws-back-into-the-original-openc2-json-object-under-the-property-signature)
+      - [5. Serialize the signed OpenC2 JSON object and send to recipient(s).](#5-serialize-the-signed-openc2-json-object-and-send-to-recipients)
+    - [C.3.3 OpenC2 Signing Validation (JSON)](#c33-openc2-signing-validation-json)
+      - [1. Parse the received OpenC2 JSON object and separate out the signature. This should yield:](#1-parse-the-received-openc2-json-object-and-separate-out-the-signature-this-should-yield)
+        - [A. Original OpenC2 JSON object.](#a-original-openc2-json-object)
+        - [B. Original Detached JWS.](#b-original-detached-jws)
+      - [2. Canonicalize JSON Data using the process described in RFC8785.](#2-canonicalize-json-data-using-the-process-described-in-rfc8785-1)
+      - [3. Create a JWS using the process described in RFC7515.](#3-create-a-jws-using-the-process-described-in-rfc7515-1)
+        - [A. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload](#a-base64-encode-our-canonicalize-json-object-from-step-2-to-create-the-jws-payload)
+        - [B. Overwrite the detached JWS empty string between the first and second period characters with the JWS payload to create a standard, non-detached, JWS.](#b-overwrite-the-detached-jws-empty-string-between-the-first-and-second-period-characters-with-the-jws-payload-to-create-a-standard-non-detached-jws)
+      - [4. Follow the JWS validation process described in RFC7515.](#4-follow-the-jws-validation-process-described-in-rfc7515)
+        - [A. Save the JWS signing Input (which is the initial substring of the JWS up until but not including the second period character)](#a-save-the-jws-signing-input-which-is-the-initial-substring-of-the-jws-up-until-but-not-including-the-second-period-character)
+        - [B. Save the JWS signature (Which is the string following but not including the second period character)](#b-save-the-jws-signature-which-is-the-string-following-but-not-including-the-second-period-character)
+        - [C. Pass the public key, the JWS signature, and the JWS signing input to an ES256 signature verifier. Expect a Boolean response.](#c-pass-the-public-key-the-jws-signature-and-the-jws-signing-input-to-an-es256-signature-verifier-expect-a-boolean-response)
 - [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
-- [Appendix E. Revision History](#appendix-e-revision-history)
-- [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
+  - [D.1 JADN Overview](#d1-jadn-overview)
+  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
+  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
+    - [D.3.1  Basic and Complex Data Types](#d31--basic-and-complex-data-types)
+    - [D.3.2  JADN Representation](#d32--jadn-representation)
+    - [D.3.3  Translation To JSON Schema](#d33--translation-to-json-schema)
+  - [D.4 Additional Information](#d4-additional-information)
+- [Appendix E. Acknowledgments](#appendix-e-acknowledgments)
+- [Appendix F. Revision History](#appendix-f-revision-history)
 - [Appendix G. Notices](#appendix-g-notices)
 
----
+[[TOC will be inserted here]]
+
+-------
+
 # 1 Introduction
 
 *The content in this section is non-normative, except where it is
@@ -299,8 +300,10 @@ device. The capability definitions can be easily extended in a
 noncentralized manner, allowing standard and non-standard
 capabilities to be defined with semantic and syntactic rigor.
 
-## 1.1 Changes From Earlier Versions
+## 1.1 Changes from earlier Versions
 
+<!-- Optional section -->
+<!-- Describe significant changes from previous differently-numbered Versions, not changes between stages of the current Version -->
 To Be Supplied.
 
 ## 1.2 Glossary
@@ -1822,20 +1825,19 @@ A conformant Consumer
 -   5.4-3 MUST implement JSON serialization of received Commands in accordance
     with [[RFC7493]](#rfc7493).
 
+-------
+
 # Appendix A. References
 
-This appendix contains the normative and informative references that are used in
-this document. Normative references are specific (identified by date of
-publication and/or edition number or version number) and Informative references
-are either specific or non-specific.
+<!-- Required section -->
 
-While any hyperlinks included in this appendix were valid at the time of
-publication, OASIS cannot guarantee their long-term validity.
+This appendix contains the normative and informative references that are used in this document.
+
+While any hyperlinks included in this appendix were valid at the time of publication, OASIS cannot guarantee their long-term validity.
 
 ## A.1 Normative References
 
-The following documents are referenced in such a way that some or all of their
-content constitutes requirements of this document.
+The following documents are referenced in such a way that some or all of their content constitutes requirements of this document.
 
 ###### [JADN-v1.0]
 
@@ -2045,7 +2047,6 @@ August 2022, https://www.iana.org/assignments/protocol-numbers
 "Internet Assigned Numbers Authority Media Types", IANA,
 August 2022, https://www.iana.org/assignments/media-types
 
-
 ## A.2 Informative References
 
 ###### [RFC3552]
@@ -2069,31 +2070,23 @@ Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDD
 
 "Unified Modeling Language", Version 2.5.1, December 2017, https://www.omg.org/spec/UML/2.5.1/About-UML/
 
+-------
+
 # Appendix B. Safety, Security and Privacy Considerations
 
-(Note: OASIS strongly recommends that Technical Committees consider issues that
-might affect safety, security, privacy, and/or data protection in
-implementations of their specification and document them for implementers and
-adopters. For some purposes, you may find it required, e.g. if you apply for
-IANA registration.
+<!-- Optional section -->
 
-While it may not be immediately obvious how your specification might make
-systems vulnerable to attack, most specifications, because they involve
-communications between systems, message formats, or system settings, open
-potential channels for exploit. For example, IETF [[RFC3552](#rfc3552)] lists
-“eavesdropping, replay, message insertion, deletion, modification, and
-man-in-the-middle” as well as potential denial of service attacks as threats
-that must be considered and, if appropriate, addressed in IETF RFCs.
+(Note: OASIS strongly recommends that Technical Committees consider issues that might affect safety, security, privacy, and/or data protection in implementations of their specification and document them for implementers and adopters. For some purposes, you may find it required, e.g. if you apply for IANA registration.
 
-In addition to considering and describing foreseeable risks, this section should
-include guidance on how implementers and adopters can protect against these
-risks.
+While it may not be immediately obvious how your specification might make systems vulnerable to attack, most specifications, because they involve communications between systems, message formats, or system settings, open potential channels for exploit. For example, IETF [[RFC3552](#rfc3552)] lists “eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle” as well as potential denial of service attacks as threats that must be considered and, if appropriate, addressed in IETF RFCs.
 
-We encourage editors and TC members concerned with this subject to read
-*Guidelines for Writing RFC Text on Security Considerations*, IETF
-[[RFC3552](#rfc3552)], for more information.
+In addition to considering and describing foreseeable risks, this section should include guidance on how implementers and adopters can protect against these risks.
 
-Remove this note before submitting for publication.)  **{TO DO}**
+We encourage editors and TC members concerned with this subject to read _Guidelines for Writing RFC Text on Security Considerations_, IETF [[RFC3552](#rfc3552)], for more information.
+
+Remove this note before submitting for publication.)
+
+-------
 
 # Appendix C. Examples
 
@@ -2607,25 +2600,7 @@ JADN supports organizing features to facilitate the creation and management of J
 > TBD: Reference to, description of OpenC2 JADN schema external artifact
 
 
-
-
-# Appendix E. Revision History
-
-| Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
-| ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.1-wd01                | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                                                                    |
-| Issue #388, item 1, #390 | 08/xx/2022 | Lemire              | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
-| Issue #388, item 4       | 08/xx/2022 | Lemire              | Add usage requirement for `Version` format in 3.4.2.17                                                                                                   |
-| Issue #386, #387         | 08/xx/2022 | Lemire              | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations                                                                     |
-| Issues #389, #392        | 8/24/2022  | Lemire              | Remove Properties target type, per 8/10/2022 working meeting discussion                                                                                  |
-| Issue #369               | 7/27/2022  | Lemire              | * Add "comment" as command argument                                                                                                                      |
-| Issue #393               | 8/2/2022   | Lemire              | * Change ArrayOf() to multiplicity where possible                                                                                                        |
-| Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
-| Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
-| Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
-| Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
-
-# Appendix F. Acknowledgments
+# Appendix E. Acknowledgments
 
 *The content in this section is non-normative.*
 
@@ -2696,73 +2671,38 @@ specification and are gratefully acknowledged:
 | Sounil     | Yu            | Bank of America                                                      |
 | Vasileios  | Mavroeidis    | University of Oslo                                                   |
 
+-------
+
+# Appendix F. Revision History
+
+<!-- Optional section -->
+
+| Revision | Date | Editor | Changes Made |
+| :--- | :--- | :--- | :--- |
+| oc2ls--v2.0-wd01 | yyyy-mm-dd | Toby Considine | Initial working draft |
+
+-------
+
 # Appendix G. Notices
 
-Copyright © OASIS Open 2021. All Rights Reserved.
+<!-- Required section. Do not modify. -->
 
-All capitalized terms in the following text have the meanings assigned to them
-in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The
-full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found
-at the OASIS website.
+Copyright &copy; OASIS Open 2022. All Rights Reserved.
 
-This document and translations of it may be copied and furnished to others, and
-derivative works that comment on or otherwise explain it or assist in its
-implementation may be prepared, copied, published, and distributed, in whole or
-in part, without restriction of any kind, provided that the above copyright
-notice and this section are included on all such copies and derivative works.
-However, this document itself may not be modified in any way, including by
-removing the copyright notice or references to OASIS, except as needed for the
-purpose of developing any document or deliverable produced by an OASIS Technical
-Committee (in which case the rules applicable to copyrights, as set forth in the
-OASIS IPR Policy, must be followed) or as required to translate it into
-languages other than English.
+All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr/) may be found at the OASIS website.
 
-The limited permissions granted above are perpetual and will not be revoked by
-OASIS or its successors or assigns.
+This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
 
-This document and the information contained herein is provided on an "AS IS"
-basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE
-ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
-A PARTICULAR PURPOSE.
+The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
 
-As stated in the OASIS IPR Policy, the following three paragraphs in brackets
-apply to OASIS Standards Final Deliverable documents (Committee Specification,
-Candidate OASIS Standard, OASIS Standard, or Approved Errata).
+This document and the information contained herein is provided on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
 
-[OASIS requests that any OASIS Party or any other party that believes it has
-patent claims that would necessarily be infringed by implementations of this
-OASIS Standards Final Deliverable, to notify OASIS TC Administrator and provide
-an indication of its willingness to grant patent licenses to such patent claims
-in a manner consistent with the IPR Mode of the OASIS Technical Committee that
-produced this deliverable.]
+As stated in the OASIS IPR Policy, the following three paragraphs in brackets apply to OASIS Standards Final Deliverable documents (Committee Specification, Candidate OASIS Standard, OASIS Standard, or Approved Errata).
 
-[OASIS invites any party to contact the OASIS TC Administrator if it is aware of
-a claim of ownership of any patent claims that would necessarily be infringed by
-implementations of this OASIS Standards Final Deliverable by a patent holder
-that is not willing to provide a license to such patent claims in a manner
-consistent with the IPR Mode of the OASIS Technical Committee that produced this
-OASIS Standards Final Deliverable. OASIS may include such claims on its website,
-but disclaims any obligation to do so.]
+\[OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this deliverable.\]
 
-[OASIS takes no position regarding the validity or scope of any intellectual
-property or other rights that might be claimed to pertain to the implementation
-or use of the technology described in this OASIS Standards Final Deliverable or
-the extent to which any license under such rights might or might not be
-available; neither does it represent that it has made any effort to identify any
-such rights. Information on OASIS' procedures with respect to rights in any
-document or deliverable produced by an OASIS Technical Committee can be found on
-the OASIS website. Copies of claims of rights made available for publication and
-any assurances of licenses to be made available, or the result of an attempt
-made to obtain a general license or permission for the use of such proprietary
-rights by implementers or users of this OASIS Standards Final Deliverable, can
-be obtained from the OASIS TC Administrator. OASIS makes no representation that
-any information or list of intellectual property rights will at any time be
-complete, or that any claims in such list are, in fact, Essential Claims.]
+\[OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Technical Committee that produced this OASIS Standards Final Deliverable. OASIS may include such claims on its website, but disclaims any obligation to do so.\]
 
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the
-owner and developer of this specification, and should be used only to refer to
-the organization and its official outputs. OASIS welcomes reference to, and
-implementation and use of, specifications, while reserving the right to enforce
-its marks against misleading uses. Please see
-https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
+\[OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this OASIS Standards Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Technical Committee can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Standards Final Deliverable, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.\]
+
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark/ for above guidance.
