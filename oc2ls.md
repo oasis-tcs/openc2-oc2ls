@@ -2388,7 +2388,9 @@ level, independent of specific implementations or protocols used
 to transport the data. JADN provides a tool for developing
 information models, which can be used to define and generate
 physical data models, validate information instances, and enable
-lossless translation across data formats. 
+lossless translation across data formats. Information modeling
+concepts are discussed in more detail in 
+_Information Modeling with JADN_ [[IM-JADN-v1.0](#im-jadn-v10)].
 
 A JADN specification consists of:
  -  type definitions that comprise the information model, and
