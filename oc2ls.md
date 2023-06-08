@@ -1841,10 +1841,6 @@ content constitutes requirements of this document.
 
 JSON Abstract Data Notation Version 1.0. Edited by David Kemp. 17 August 2021. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/jadn/v1.0/cs01/jadn-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/jadn/v1.0/jadn-v1.0.html.
 
-###### [IM-JADN-v1.0]
-
-Information Modeling with JADN Version 1.0. Edited by David Kemp. 19 April 2023. OASIS Committee Note 01. https://docs.oasis-open.org/openc2/imjadn/v1.0/cn01/imjadn-v1.0-cn01.html. Latest stage: https://docs.oasis-open.org/openc2/imjadn/v1.0/imjadn-v1.0.html.
-
 ###### [OpenC2-HTTPS-v1.0]
 
 *Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0*. Edited by
@@ -2065,6 +2061,10 @@ Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDD
 ###### [IACD]
 
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
+
+###### [IM-JADN-v1.0]
+
+Information Modeling with JADN Version 1.0. Edited by David Kemp. 19 April 2023. OASIS Committee Note 01. https://docs.oasis-open.org/openc2/imjadn/v1.0/cn01/imjadn-v1.0-cn01.html. Latest stage: https://docs.oasis-open.org/openc2/imjadn/v1.0/imjadn-v1.0.html.
 
 ###### [JSON-Schema]
 "JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieved 9/26/2022, https://json-schema.org/
