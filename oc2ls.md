@@ -2403,7 +2403,7 @@ diagrams, easing integration with existing design processes and
 architecture tools.
 
 JADN defines a set of base types that includes five "primitives"
-(e.g., boolean, string), and seven compound types (e.g., array,
+(e.g., boolean, string), and seven "compound" types (e.g., array,
 map, record). JADN type definitions have a fixed structure
 designed to be easily describable, easily processed, stable, and
 extensible. Every definition in a JADN document is described in
@@ -2430,11 +2430,12 @@ manner.
 As an information modeling language, JADN supports only two kinds
 of relationships: "contain" and "reference".  A JADN information
 model is a set of type definitions, where each definition may be
-basic or structured. Each field in a structured type may be
-associated with another model-defined type, and the set of
-associations between types forms a directed graph. Each
-association is either a container or a reference, and the
-direction of each edge is toward the contained or referenced
+basic (e.g., using a single, usuall "primitive" type) or
+structured (e.g., using a "compound" type). Each field in a
+structured type may be associated with another model-defined
+type, and the set of associations between types forms a directed
+graph. Each association is either a container or a reference, and
+the direction of each edge is toward the contained or referenced
 type.
 
 The native format of JADN is JSON, but JADN content can be
