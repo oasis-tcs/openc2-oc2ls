@@ -2495,16 +2495,16 @@ formats is simplified.
 This section provide a brief example of a JADN information model,
 using data types from OpenC2. 
 
-### D.3.1  Basic and Complex Data Types
+### D.3.1  Basic and Compound Data Types
 
-This example illustrates the use of basic and complex types to
+This example illustrates the use of basic and compound types to
 describe a network connection. A 5-tuple is a common means of
 representing a TCP or UDP session, recording the source and
 destination IP addresses and ports, and identifying the Layer 4
 protocol in use. The corresponding OpenC2 target type is called
 an `IPv4-Connection` (see section
 [3.4.1.10](#34110-ipv4-connection) of this specification).  A
-group of basic (i.e., binary, integer) and complex (i.e., record,
+group of basic (i.e., binary, integer) and compound (i.e., record,
 array, enumeration) types and their use in the definition of an
 IPv4 Connection information model are represented in JIDL as
 follows:
