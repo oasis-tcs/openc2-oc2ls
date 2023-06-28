@@ -34,15 +34,12 @@ TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chair:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/) \
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/) \
 Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 
 #### Editors:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/)
-
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)\
 Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
 #### Abstract:
