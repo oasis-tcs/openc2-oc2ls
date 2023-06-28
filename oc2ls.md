@@ -43,7 +43,7 @@ Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
 LLC](http://www.sfractal.com/)\
 Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)\
-Jason Romano, [National Security Agency](https://www.nsa.gov/) \
+Jason Romano, [National Security Agency](https://www.nsa.gov/)
 
 #### Abstract:
 
