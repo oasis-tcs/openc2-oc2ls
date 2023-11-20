@@ -276,7 +276,7 @@ secure transfer protocol, and the Consumer can respond with
 status and any requested information. An overview of the concepts
 that underlie OpenC2 and the structure of the suite of
 specifications can be found in the OpenC2 Architecture
-Specification (_reference pending spec publication_).
+Specification [[OpenC2-Arch-v1.0](#openc2-arch-v10)].
 
 The goal of OpenC2 is to provide a language for interoperating
 between functional elements of cyber defense systems. This
@@ -1840,6 +1840,10 @@ content constitutes requirements of this document.
 ###### [JADN-v1.0]
 
 JSON Abstract Data Notation Version 1.0. Edited by David Kemp. 17 August 2021. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/jadn/v1.0/cs01/jadn-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/jadn/v1.0/jadn-v1.0.html.
+
+###### [OpenC2-Arch-v1.0]
+
+_Open Command and Control (OpenC2) Architecture Specification Version 1.0_. Edited by Duncan Sparrell. 30 September 2022. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2arch/v1.0/cs01/oc2arch-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/oc2arch/v1.0/oc2arch-v1.0.html.
 
 ###### [OpenC2-HTTPS-v1.0]
 
