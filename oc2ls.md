@@ -1448,14 +1448,14 @@ the IP address and the prefix, each in their own field.
 
 **Type: Process (Map{1..\*})**
 
-| ID  | Name             | Type           | \#   | Description                                                                          |
-| --- | ---------------- | -------------- | ---- | ------------------------------------------------------------------------------------ |
-| 1   | **pid**          | Integer{0..\*} | 0..1 | Process ID of the process                                                            |
-| 2   | **name**         | String         | 0..1 | Name of the process                                                                  |
-| 3   | **cwd**          | String         | 0..1 | Current working directory of the process                                             |
-| 4   | **executable**   | File           | 0..1 | Executable that was executed to start the process                                    |
-| 5   | **parent**       | Process        | 0..1 | Process that spawned this one                                                        |
-| 6   | **command_line** | String         | 0..1 | The full command line invocation used to start this process, including all arguments |
+| ID  | Name             | Type                         | \#   | Description                                                                 |
+| --- | ---------------- | --------------------- | ---- | ---------------------------------------------------------------------------------- |
+| 1   | **pid**          | Key(Integer{0..\*}) | 0..1 | Process ID of the process                                                            |
+| 2   | **name**         | String              | 0..1 | Name of the process                                                                  |
+| 3   | **cwd**          | String              | 0..1 | Current working directory of the process                                             |
+| 4   | **executable**   | File                | 0..1 | Executable that was executed to start the process                                    |
+| 5   | **parent**       | Link(Process)       | 0..1 | Process that spawned this one                                                        |
+| 6   | **command_line** | String              | 0..1 | The full command line invocation used to start this process, including all arguments |
 
 **Usage Requirement:**
 
