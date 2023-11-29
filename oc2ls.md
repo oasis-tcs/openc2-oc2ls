@@ -1322,9 +1322,9 @@ specified for serializations other than JSON.
 
 #### 3.4.1.5 Features
 
-| Type Name    | Type Definition | \#    | Description                                                                            |
-| ------------ | --------------- | ----- | -------------------------------------------------------------------------------------- |
-| **Features** | Feature unique  | 0..10 | An array of zero to ten names used to query a Consumer for its supported capabilities. |
+| Type Name    | Type Definition | \#    | Description                                                                        |
+| ------------ | --------------- |-------|------------------------------------------------------------------------------------|
+| **Features** | Feature unique  | 0..\* | An array of feature names used to query a Consumer for its supported capabilities. |
 
 
 **Usage Requirements:**
