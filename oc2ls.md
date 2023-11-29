@@ -34,15 +34,12 @@ TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chair:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/) \
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/) \
 Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 
 #### Editors:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/)
-
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)\
 Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
 #### Abstract:
@@ -2632,6 +2629,19 @@ JADN supports organizing features to facilitate the creation and management of J
 # Appendix F. Acknowledgments
 
 *The content in this section is non-normative.*
+
+## F.1 Special Thanks
+
+<!-- This is an optional subsection to call out contributions from TC members. If a TC wants to thank non-TC members then they should avoid using the term "contribution" and instead thank them for their "expertise" or "assistance". -->
+
+Substantial contributions to this document from the following
+individuals are gratefully acknowledged:
+
+ * Jason Romano, National Security Agency
+
+## F.2 Participants
+
+<!-- A TC can determine who they list here, however, TC Observers must not be listed. It is common practice for TCs to list everyone that was part of the TC during the creation of the document, but this is ultimately a TC decision on who they want to list and not list. -->
 
 The following individuals have participated in the creation of this
 specification and are gratefully acknowledged:
