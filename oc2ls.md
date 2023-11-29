@@ -2062,6 +2062,10 @@ Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDD
 
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
 
+###### [IM-JADN-v1.0]
+
+Information Modeling with JADN Version 1.0. Edited by David Kemp. 19 April 2023. OASIS Committee Note 01. https://docs.oasis-open.org/openc2/imjadn/v1.0/cn01/imjadn-v1.0-cn01.html. Latest stage: https://docs.oasis-open.org/openc2/imjadn/v1.0/imjadn-v1.0.html.
+
 ###### [JSON-Schema]
 "JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieved 9/26/2022, https://json-schema.org/
 
@@ -2365,8 +2369,8 @@ Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
 modeling (IM) language and its application to rigorously
 specifying the OpenC2 language. Unless explicitly labeled
 otherwise, section references in this appendix are to sections of
-the [JADN](#jadn-v10) specification, rather than this Language
-Specification.
+the [JADN](#jadn-v10) specification, rather than this _Language
+Specification_.
 
 ## D.1 JADN Overview
 
@@ -2384,7 +2388,9 @@ level, independent of specific implementations or protocols used
 to transport the data. JADN provides a tool for developing
 information models, which can be used to define and generate
 physical data models, validate information instances, and enable
-lossless translation across data formats. 
+lossless translation across data formats. Information modeling
+concepts are discussed in more detail in 
+_Information Modeling with JADN_ [[IM-JADN-v1.0](#im-jadn-v10)].
 
 A JADN specification consists of:
  -  type definitions that comprise the information model, and
@@ -2397,7 +2403,7 @@ diagrams, easing integration with existing design processes and
 architecture tools.
 
 JADN defines a set of base types that includes five "primitives"
-(e.g., boolean, string), and seven complex types (e.g., array,
+(e.g., boolean, string), and seven "compound" types (e.g., array,
 map, record). JADN type definitions have a fixed structure
 designed to be easily describable, easily processed, stable, and
 extensible. Every definition in a JADN document is described in
@@ -2421,15 +2427,13 @@ multiplicity constraints) that provide the means to define a wide
 variety of information types in a representation-independent
 manner.
 
-As an information modeling language, JADN supports only two kinds
-of relationships: "contain" and "reference".  A JADN information
-model is a set of type definitions, where each definition may be
-basic or structured. Each field in a structured type may be
-associated with another model-defined type, and the set of
-associations between types forms a directed graph. Each
-association is either a container or a reference, and the
-direction of each edge is toward the contained or referenced
-type.
+As an information modeling language, JADN supports only two kinds of
+relationships: "contain" and "reference".  A JADN information model is a set of
+type definitions, where each type may be simple (primitive) or structured
+(compound). Each field in a structured type may be associated with another
+model-defined type, and the set of associations between types forms a directed
+graph. Each association is either a container or a reference, and the direction
+of each edge is toward the contained or referenced type.
 
 The native format of JADN is JSON, but JADN content can be
 represented in others ways that are more useful for
@@ -2488,16 +2492,16 @@ formats is simplified.
 This section provide a brief example of a JADN information model,
 using data types from OpenC2. 
 
-### D.3.1  Basic and Complex Data Types
+### D.3.1  Basic and Compound Data Types
 
-This example illustrates the use of basic and complex types to
+This example illustrates the use of basic and compound types to
 describe a network connection. A 5-tuple is a common means of
 representing a TCP or UDP session, recording the source and
 destination IP addresses and ports, and identifying the Layer 4
 protocol in use. The corresponding OpenC2 target type is called
 an `IPv4-Connection` (see section
 [3.4.1.10](#34110-ipv4-connection) of this specification).  A
-group of basic (i.e., binary, integer) and complex (i.e., record,
+group of basic (i.e., binary, integer) and compound (i.e., record,
 array, enumeration) types and their use in the definition of an
 IPv4 Connection information model are represented in JIDL as
 follows:
