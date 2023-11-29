@@ -2,9 +2,9 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 01
+## Working Draft 02
 
-## 11 November 2022
+## 29 November 2023
 
 #### This version:
 
@@ -187,6 +187,7 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
     - [3.1.5 Serialization](#315-serialization)
       - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
+          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
@@ -246,16 +247,23 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
   - [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
   - [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 - [Appendix A. References](#appendix-a-references)
-  - [A.1 Normative References](#a1-normative-references)
-  - [A.2 Informative References](#a2-informative-references)
 - [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
 - [Appendix C. Examples](#appendix-c-examples)
   - [C.1 Example 1: Device Quarantine](#c1-example-1-device-quarantine)
   - [C.2 Example 2: Block Connection](#c2-example-2-block-connection)
   - [C.3 Example 3: Message Signature Processing](#c3-example-3-message-signature-processing)
 - [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
+  - [D.1 JADN Overview](#d1-jadn-overview)
+  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
+  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
+    - [D.3.1  Basic and Compound Data Types](#d31--basic-and-compound-data-types)
+    - [D.3.2  JADN Representation](#d32--jadn-representation)
+    - [D.3.3  Translation To JSON Schema](#d33--translation-to-json-schema)
+  - [D.4 Additional Information](#d4-additional-information)
 - [Appendix E. Revision History](#appendix-e-revision-history)
 - [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
+  - [F.1 Special Thanks](#f1-special-thanks)
+  - [F.2 Participants](#f2-participants)
 - [Appendix G. Notices](#appendix-g-notices)
 
 ---
