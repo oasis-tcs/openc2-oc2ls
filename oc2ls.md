@@ -1822,10 +1822,14 @@ A conformant Consumer
 -   5.4-3 MUST implement JSON serialization of received Commands in accordance
     with [[RFC7493]](#rfc7493).
 
+-------
+
 # Appendix A. References
 
-This appendix contains the normative and informative references that are used in
-this document. Normative references are specific (identified by date of
+<!-- Required section -->
+
+This appendix contains the normative and informative references that are used in this document.
+Normative references are specific (identified by date of
 publication and/or edition number or version number) and Informative references
 are either specific or non-specific.
 
@@ -2069,7 +2073,11 @@ Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDD
 
 "Unified Modeling Language", Version 2.5.1, December 2017, https://www.omg.org/spec/UML/2.5.1/About-UML/
 
+-------
+
 # Appendix B. Safety, Security and Privacy Considerations
+
+<!-- Optional section -->
 
 (Note: OASIS strongly recommends that Technical Committees consider issues that
 might affect safety, security, privacy, and/or data protection in
@@ -2090,10 +2098,12 @@ include guidance on how implementers and adopters can protect against these
 risks.
 
 We encourage editors and TC members concerned with this subject to read
-*Guidelines for Writing RFC Text on Security Considerations*, IETF
+_Guidelines for Writing RFC Text on Security Considerations_, IETF
 [[RFC3552](#rfc3552)], for more information.
 
 Remove this note before submitting for publication.)  **{TO DO}**
+
+-------
 
 # Appendix C. Examples
 
@@ -2356,6 +2366,8 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 -----END PUBLIC KEY-----
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+-------
+
 # Appendix D. Schema Development With JADN
 
 *The content in this section is non-normative.*
@@ -2606,26 +2618,9 @@ JADN supports organizing features to facilitate the creation and management of J
 
 > TBD: Reference to, description of OpenC2 JADN schema external artifact
 
+-------
 
-
-
-# Appendix E. Revision History
-
-| Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
-| ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.1-wd01                | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                                                                    |
-| Issue #388, item 1, #390 | 08/xx/2022 | Lemire              | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
-| Issue #388, item 4       | 08/xx/2022 | Lemire              | Add usage requirement for `Version` format in 3.4.2.17                                                                                                   |
-| Issue #386, #387         | 08/xx/2022 | Lemire              | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations                                                                     |
-| Issues #389, #392        | 8/24/2022  | Lemire              | Remove Properties target type, per 8/10/2022 working meeting discussion                                                                                  |
-| Issue #369               | 7/27/2022  | Lemire              | * Add "comment" as command argument                                                                                                                      |
-| Issue #393               | 8/2/2022   | Lemire              | * Change ArrayOf() to multiplicity where possible                                                                                                        |
-| Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
-| Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
-| Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
-| Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
-
-# Appendix F. Acknowledgments
+# Appendix E. Acknowledgments
 
 *The content in this section is non-normative.*
 
@@ -2696,13 +2691,37 @@ specification and are gratefully acknowledged:
 | Sounil     | Yu            | Bank of America                                                      |
 | Vasileios  | Mavroeidis    | University of Oslo                                                   |
 
+-------
+
+# Appendix F. Revision History
+
+<!-- Optional section -->
+
+| Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
+| ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.1-wd01                | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                                                                    |
+| Issue #388, item 1, #390 | 08/xx/2022 | Lemire              | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
+| Issue #388, item 4       | 08/xx/2022 | Lemire              | Add usage requirement for `Version` format in 3.4.2.17                                                                                                   |
+| Issue #386, #387         | 08/xx/2022 | Lemire              | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations                                                                     |
+| Issues #389, #392        | 8/24/2022  | Lemire              | Remove Properties target type, per 8/10/2022 working meeting discussion                                                                                  |
+| Issue #369               | 7/27/2022  | Lemire              | * Add "comment" as command argument                                                                                                                      |
+| Issue #393               | 8/2/2022   | Lemire              | * Change ArrayOf() to multiplicity where possible                                                                                                        |
+| Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
+| Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
+| Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
+| Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
+
+-------
+
 # Appendix G. Notices
 
-Copyright © OASIS Open 2021. All Rights Reserved.
+<!-- Required section. Do not modify. -->
+
+Copyright © OASIS Open 2022. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them
 in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The
-full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found
+full [Policy](https://www.oasis-open.org/policies-guidelines/ipr/) may be found
 at the OASIS website.
 
 This document and translations of it may be copied and furnished to others, and
@@ -2730,22 +2749,22 @@ As stated in the OASIS IPR Policy, the following three paragraphs in brackets
 apply to OASIS Standards Final Deliverable documents (Committee Specification,
 Candidate OASIS Standard, OASIS Standard, or Approved Errata).
 
-[OASIS requests that any OASIS Party or any other party that believes it has
+\[OASIS requests that any OASIS Party or any other party that believes it has
 patent claims that would necessarily be infringed by implementations of this
 OASIS Standards Final Deliverable, to notify OASIS TC Administrator and provide
 an indication of its willingness to grant patent licenses to such patent claims
 in a manner consistent with the IPR Mode of the OASIS Technical Committee that
-produced this deliverable.]
+produced this deliverable.\]
 
-[OASIS invites any party to contact the OASIS TC Administrator if it is aware of
+\[OASIS invites any party to contact the OASIS TC Administrator if it is aware of
 a claim of ownership of any patent claims that would necessarily be infringed by
 implementations of this OASIS Standards Final Deliverable by a patent holder
 that is not willing to provide a license to such patent claims in a manner
 consistent with the IPR Mode of the OASIS Technical Committee that produced this
 OASIS Standards Final Deliverable. OASIS may include such claims on its website,
-but disclaims any obligation to do so.]
+but disclaims any obligation to do so.\]
 
-[OASIS takes no position regarding the validity or scope of any intellectual
+\[OASIS takes no position regarding the validity or scope of any intellectual
 property or other rights that might be claimed to pertain to the implementation
 or use of the technology described in this OASIS Standards Final Deliverable or
 the extent to which any license under such rights might or might not be
@@ -2758,11 +2777,11 @@ made to obtain a general license or permission for the use of such proprietary
 rights by implementers or users of this OASIS Standards Final Deliverable, can
 be obtained from the OASIS TC Administrator. OASIS makes no representation that
 any information or list of intellectual property rights will at any time be
-complete, or that any claims in such list are, in fact, Essential Claims.]
+complete, or that any claims in such list are, in fact, Essential Claims.\]
 
 The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the
 owner and developer of this specification, and should be used only to refer to
 the organization and its official outputs. OASIS welcomes reference to, and
 implementation and use of, specifications, while reserving the right to enforce
 its marks against misleading uses. Please see
-https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
+https://www.oasis-open.org/policies-guidelines/trademark/ for above guidance.
