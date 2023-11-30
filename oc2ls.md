@@ -2105,11 +2105,103 @@ Remove this note before submitting for publication.)  **{TO DO}**
 
 -------
 
-# Appendix C. Examples
+# Appendix C. Acknowledgments
 
 *The content in this section is non-normative.*
 
-## C.1 Example 1: Device Quarantine
+The following individuals have participated in the creation of this
+specification and are gratefully acknowledged:
+
+**OpenC2 TC Members:**
+
+| First Name | Last Name     | Company                                                              |
+| ---------- | ------------- | -------------------------------------------------------------------- |
+| Philippe   | Alcoy         | Arbor Networks                                                       |
+| Darren     | Anstee        | Arbor Networks                                                       |
+| Michelle   | Barry         | AT&T                                                                 |
+| Brian      | Berliner      | Symantec Corp.                                                       |
+| Adam       | Bradbury      | EclecticIQ                                                           |
+| Joe        | Brule         | National Security Agency                                             |
+| Michael    | Butt          | NC4                                                                  |
+| Toby       | Considine     | University of North Carolina at Chapel Hill                          |
+| Trey       | Darley        | New Context Services Inc.                                            |
+| David      | Darnell       | North American Energy Standards Board                                |
+| Sudeep     | Das           | McAfee                                                               |
+| Andrea     | De Bernardi   | Moviri SPA                                                           |
+| Blake      | Essing        | AT&T                                                                 |
+| Alex       | Everett       | University of North Carolina at Chapel Hill                          |
+| Joyce      | Fai           | National Security Agency                                             |
+| Travis     | Farral        | Anomali                                                              |
+| David      | Girard        | Trend Micro                                                          |
+| Andy       | Gray          | ForeScout                                                            |
+| John-Mark  | Gurney        | New Context Services Inc.                                            |
+| Stefan     | Hagen         | Individual                                                           |
+| David      | Hamilton      | AT&T                                                                 |
+| Nick       | Humphrey      | Huntsman Security                                                    |
+| Christian  | Hunt          | New Context Services Inc.                                            |
+| April      | Jackson       | G2                                                                   |
+| Sridhar    | Jayanthi      | Individual                                                           |
+| Bret       | Jordan        | Symantec Corp.                                                       |
+| Jason      | Keirstead     | IBM                                                                  |
+| David      | Kemp          | National Security Agency                                             |
+| David      | Lemire        | G2                                                                   |
+| Jason      | Liu           | Northrop Grumman                                                     |
+| Radu       | Marian        | Bank of America                                                      |
+| Danny      | Martinez      | G2                                                                   |
+| Lisa       | Mathews       | National Security Agency                                             |
+| James      | Meck          | FireEye Inc.                                                         |
+| Efrain     | Ortiz         | Symantec Corp.                                                       |
+| Paul       | Patrick       | FireEye Inc.                                                         |
+| Michael    | Pepin         | NC4                                                                  |
+| Nirmal     | Rajarathnam   | ForeScout                                                            |
+| Chris      | Ricard        | Financial Services Information Sharing and Analysis Center (FS-ISAC) |
+| Daniel     | Riedel        | New Context Services Inc.                                            |
+| Jason      | Romano        | National Security Agency                                             |
+| Philip     | Royer         | Splunk Inc.                                                          |
+| Thomas     | Schreck       | Siemens AG                                                           |
+| Duane      | Skeen         | Northrop Grumman                                                     |
+| Duncan     | Sparrell      | sFractal Consulting LLC                                              |
+| Michael    | Stair         | AT&T                                                                 |
+| Andrew     | Storms        | New Context Services Inc.                                            |
+| Gerald     | Stueve        | Fornetix                                                             |
+| Rodney     | Sullivan      | NCI Agency                                                           |
+| Allan      | Thomson       | LookingGlass                                                         |
+| Bill       | Trost         | AT&T                                                                 |
+| Raymon     | van der Velde | EclecticIQ                                                           |
+| Jyoti      | Verma         | Cisco Systems                                                        |
+| David      | Waltermire    | NIST                                                                 |
+| Jason      | Webb          | LookingGlass                                                         |
+| Sean       | Welsh         | AT&T                                                                 |
+| Charles    | White         | Fornetix                                                             |
+| Sounil     | Yu            | Bank of America                                                      |
+| Vasileios  | Mavroeidis    | University of Oslo                                                   |
+
+-------
+
+# Appendix D. Revision History
+
+<!-- Optional section -->
+
+| Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
+| ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1.1-wd01                | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                                                                    |
+| Issue #388, item 1, #390 | 08/xx/2022 | Lemire              | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
+| Issue #388, item 4       | 08/xx/2022 | Lemire              | Add usage requirement for `Version` format in 3.4.2.17                                                                                                   |
+| Issue #386, #387         | 08/xx/2022 | Lemire              | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations                                                                     |
+| Issues #389, #392        | 8/24/2022  | Lemire              | Remove Properties target type, per 8/10/2022 working meeting discussion                                                                                  |
+| Issue #369               | 7/27/2022  | Lemire              | * Add "comment" as command argument                                                                                                                      |
+| Issue #393               | 8/2/2022   | Lemire              | * Change ArrayOf() to multiplicity where possible                                                                                                        |
+| Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
+| Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
+| Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
+| Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
+
+-------
+# Appendix E. Examples
+
+*The content in this section is non-normative.*
+
+## E.1 Example 1: Device Quarantine
 
 This Command would be used to quarantine a device on the network.
 
@@ -2124,7 +2216,7 @@ This Command would be used to quarantine a device on the network.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-## C.2 Example 2: Block Connection
+## E.2 Example 2: Block Connection
 
 This Command blocks a particular connection within the domain. The standard
 Actuator Profile `slpf` defines the extended Command Argument `drop_process`.
@@ -2167,7 +2259,7 @@ arguments.
               
 *Editor's Note: Replace with an example that does not use "properties".*
 
-## C.3 Example 3: Message Signature Processing
+## E.3 Example 3: Message Signature Processing
 
 This example illustrates the creation and validation of a JSON message
 signature, as specified in [3.3.4 Message Signatures](#334-message-signatures).
@@ -2176,7 +2268,7 @@ https://mobilepki.org/jws-ct/create, using the ES256 algorithm.
 Base64url-encoded data and canonicalized JSON in the example are shown with line
 wrapping for presentation only.
 
-### C.3.1 OpenC2 Message Signature
+### E.3.1 OpenC2 Message Signature
 
 The user embeds the signature field into the end of the payload that carries all
 the data required to validate authenticity and integrity of the payload. This
@@ -2194,7 +2286,7 @@ ES256 algorithm and assume that the receiver has a mechanism to discover the
 correct public key. The following is a generic approach, many libraries in
 multiple programming languages exist that can alter/simplify this process.
 
-### C.3.2 OpenC2 Signing Operation (JSON)
+### E.3.2 OpenC2 Signing Operation (JSON)
 
 #### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification.
 
@@ -2298,7 +2390,7 @@ Signature value:
 
 #### 5. Serialize the signed OpenC2 JSON object and send to recipient(s).
 
-### C.3.3 OpenC2 Signing Validation (JSON)
+### E.3.3 OpenC2 Signing Validation (JSON)
 
 #### 1. Parse the received OpenC2 JSON object and separate out the signature. This should yield:
 
@@ -2368,7 +2460,7 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 
 -------
 
-# Appendix D. Schema Development With JADN
+# Appendix F. Schema Development With JADN
 
 *The content in this section is non-normative.*
 
@@ -2380,7 +2472,7 @@ otherwise, section references in this appendix are to sections of
 the [JADN](#jadn-v10) specification, rather than this Language
 Specification.
 
-## D.1 JADN Overview
+## F.1 JADN Overview
 
 The abstract of the OASIS Committee Specification for JADN
 describes it as follows:
@@ -2460,7 +2552,7 @@ helpful for visualization of an information model. The JIDL
 format, a simple text structure, is easy to edit, making it a
 good format for the initial creation of a JADN model.
 
-## D.2 Deriving Other Schemas and Serializations
+## F.2 Deriving Other Schemas and Serializations
 
 Once the information model is developed, its use in applications
 requires serialization and deserialization of the information in
@@ -2495,12 +2587,12 @@ serializations (Section 4). Because each serialization represents
 the same information model, translation between serialization
 formats is simplified.
 
-## D.3 JADN Example: OpenC2 Subset
+## F.3 JADN Example: OpenC2 Subset
 
 This section provide a brief example of a JADN information model,
 using data types from OpenC2. 
 
-### D.3.1  Basic and Complex Data Types
+### F.3.1  Basic and Complex Data Types
 
 This example illustrates the use of basic and complex types to
 describe a network connection. A 5-tuple is a common means of
@@ -2573,7 +2665,7 @@ specification). For example, "`ipv4-addr"` is used to force the
 representation of a binary address in the commonly used "dotted
 quad" format.
 
-### D.3.2  JADN Representation
+### F.3.2  JADN Representation
 
 This section shows the JADN representation of the types defined
 using JIDL in the preceding section.
@@ -2605,11 +2697,11 @@ using JIDL in the preceding section.
 ```
 
 
-### D.3.3  Translation To JSON Schema
+### F.3.3  Translation To JSON Schema
 
 > TBD:  JADN translation to JSON schema
 
-## D.4 Additional Information
+## F.4 Additional Information
 
 JADN supports organizing features to facilitate the creation and management of JADN schemas. In particular:
 
@@ -2617,99 +2709,6 @@ JADN supports organizing features to facilitate the creation and management of J
  - The use of **namespaces** enables one packages toi reference type definitions from other packages.
 
 > TBD: Reference to, description of OpenC2 JADN schema external artifact
-
--------
-
-# Appendix E. Acknowledgments
-
-*The content in this section is non-normative.*
-
-The following individuals have participated in the creation of this
-specification and are gratefully acknowledged:
-
-**OpenC2 TC Members:**
-
-| First Name | Last Name     | Company                                                              |
-| ---------- | ------------- | -------------------------------------------------------------------- |
-| Philippe   | Alcoy         | Arbor Networks                                                       |
-| Darren     | Anstee        | Arbor Networks                                                       |
-| Michelle   | Barry         | AT&T                                                                 |
-| Brian      | Berliner      | Symantec Corp.                                                       |
-| Adam       | Bradbury      | EclecticIQ                                                           |
-| Joe        | Brule         | National Security Agency                                             |
-| Michael    | Butt          | NC4                                                                  |
-| Toby       | Considine     | University of North Carolina at Chapel Hill                          |
-| Trey       | Darley        | New Context Services Inc.                                            |
-| David      | Darnell       | North American Energy Standards Board                                |
-| Sudeep     | Das           | McAfee                                                               |
-| Andrea     | De Bernardi   | Moviri SPA                                                           |
-| Blake      | Essing        | AT&T                                                                 |
-| Alex       | Everett       | University of North Carolina at Chapel Hill                          |
-| Joyce      | Fai           | National Security Agency                                             |
-| Travis     | Farral        | Anomali                                                              |
-| David      | Girard        | Trend Micro                                                          |
-| Andy       | Gray          | ForeScout                                                            |
-| John-Mark  | Gurney        | New Context Services Inc.                                            |
-| Stefan     | Hagen         | Individual                                                           |
-| David      | Hamilton      | AT&T                                                                 |
-| Nick       | Humphrey      | Huntsman Security                                                    |
-| Christian  | Hunt          | New Context Services Inc.                                            |
-| April      | Jackson       | G2                                                                   |
-| Sridhar    | Jayanthi      | Individual                                                           |
-| Bret       | Jordan        | Symantec Corp.                                                       |
-| Jason      | Keirstead     | IBM                                                                  |
-| David      | Kemp          | National Security Agency                                             |
-| David      | Lemire        | G2                                                                   |
-| Jason      | Liu           | Northrop Grumman                                                     |
-| Radu       | Marian        | Bank of America                                                      |
-| Danny      | Martinez      | G2                                                                   |
-| Lisa       | Mathews       | National Security Agency                                             |
-| James      | Meck          | FireEye Inc.                                                         |
-| Efrain     | Ortiz         | Symantec Corp.                                                       |
-| Paul       | Patrick       | FireEye Inc.                                                         |
-| Michael    | Pepin         | NC4                                                                  |
-| Nirmal     | Rajarathnam   | ForeScout                                                            |
-| Chris      | Ricard        | Financial Services Information Sharing and Analysis Center (FS-ISAC) |
-| Daniel     | Riedel        | New Context Services Inc.                                            |
-| Jason      | Romano        | National Security Agency                                             |
-| Philip     | Royer         | Splunk Inc.                                                          |
-| Thomas     | Schreck       | Siemens AG                                                           |
-| Duane      | Skeen         | Northrop Grumman                                                     |
-| Duncan     | Sparrell      | sFractal Consulting LLC                                              |
-| Michael    | Stair         | AT&T                                                                 |
-| Andrew     | Storms        | New Context Services Inc.                                            |
-| Gerald     | Stueve        | Fornetix                                                             |
-| Rodney     | Sullivan      | NCI Agency                                                           |
-| Allan      | Thomson       | LookingGlass                                                         |
-| Bill       | Trost         | AT&T                                                                 |
-| Raymon     | van der Velde | EclecticIQ                                                           |
-| Jyoti      | Verma         | Cisco Systems                                                        |
-| David      | Waltermire    | NIST                                                                 |
-| Jason      | Webb          | LookingGlass                                                         |
-| Sean       | Welsh         | AT&T                                                                 |
-| Charles    | White         | Fornetix                                                             |
-| Sounil     | Yu            | Bank of America                                                      |
-| Vasileios  | Mavroeidis    | University of Oslo                                                   |
-
--------
-
-# Appendix F. Revision History
-
-<!-- Optional section -->
-
-| Revision                 | Date       | Editor              | Changes Made                                                                                                                                             |
-| ------------------------ | ---------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1.1-wd01                | 10/31/2017 | Sparrell, Considine | Initial working draft                                                                                                                                    |
-| Issue #388, item 1, #390 | 08/xx/2022 | Lemire              | Add guidance in 3.1.2, 3.4.1.1, 3.4.2.10 regarding types that depend on external registries, and add associated references; update RFC reference for TCP |
-| Issue #388, item 4       | 08/xx/2022 | Lemire              | Add usage requirement for `Version` format in 3.4.2.17                                                                                                   |
-| Issue #386, #387         | 08/xx/2022 | Lemire              | Adjust `response_requested` handling (3.3.1.4) to consider Consumer error situations                                                                     |
-| Issues #389, #392        | 8/24/2022  | Lemire              | Remove Properties target type, per 8/10/2022 working meeting discussion                                                                                  |
-| Issue #369               | 7/27/2022  | Lemire              | * Add "comment" as command argument                                                                                                                      |
-| Issue #393               | 8/2/2022   | Lemire              | * Change ArrayOf() to multiplicity where possible                                                                                                        |
-| Issue #396               | 8/xx/2022  | Lemire              | * Fixed malformed table in 3.4.2.1 <br> * Reordered data types alphabetically                                                                            |
-| Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
-| Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
-| Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
 
 -------
 
