@@ -2,9 +2,9 @@
 
 # Open Command and Control (OpenC2) Language Specification Version 2.0
 
-## Working Draft 01
+## Working Draft 02
 
-## 11 November 2022
+## 29 November 2023
 
 #### This version:
 
@@ -34,15 +34,12 @@ TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chair:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/) \
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/) \
 Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 
 #### Editors:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting
-LLC](http://www.sfractal.com/)
-
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)\
 Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
 
 #### Abstract:
@@ -190,6 +187,7 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
     - [3.1.5 Serialization](#315-serialization)
       - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
+          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
@@ -249,16 +247,23 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
   - [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
   - [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 - [Appendix A. References](#appendix-a-references)
-  - [A.1 Normative References](#a1-normative-references)
-  - [A.2 Informative References](#a2-informative-references)
 - [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
 - [Appendix C. Examples](#appendix-c-examples)
   - [C.1 Example 1: Device Quarantine](#c1-example-1-device-quarantine)
   - [C.2 Example 2: Block Connection](#c2-example-2-block-connection)
   - [C.3 Example 3: Message Signature Processing](#c3-example-3-message-signature-processing)
 - [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
+  - [D.1 JADN Overview](#d1-jadn-overview)
+  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
+  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
+    - [D.3.1  Basic and Compound Data Types](#d31--basic-and-compound-data-types)
+    - [D.3.2  JADN Representation](#d32--jadn-representation)
+    - [D.3.3  Translation To JSON Schema](#d33--translation-to-json-schema)
+  - [D.4 Additional Information](#d4-additional-information)
 - [Appendix E. Revision History](#appendix-e-revision-history)
 - [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
+  - [F.1 Special Thanks](#f1-special-thanks)
+  - [F.2 Participants](#f2-participants)
 - [Appendix G. Notices](#appendix-g-notices)
 
 ---
@@ -276,7 +281,7 @@ secure transfer protocol, and the Consumer can respond with
 status and any requested information. An overview of the concepts
 that underlie OpenC2 and the structure of the suite of
 specifications can be found in the OpenC2 Architecture
-Specification (_reference pending spec publication_).
+Specification [[OpenC2-Arch-v1.0](#openc2-arch-v10)].
 
 The goal of OpenC2 is to provide a language for interoperating
 between functional elements of cyber defense systems. This
@@ -1325,9 +1330,9 @@ specified for serializations other than JSON.
 
 #### 3.4.1.5 Features
 
-| Type Name    | Type Definition | \#    | Description                                                                            |
-| ------------ | --------------- | ----- | -------------------------------------------------------------------------------------- |
-| **Features** | Feature unique  | 0..10 | An array of zero to ten names used to query a Consumer for its supported capabilities. |
+| Type Name    | Type Definition | \#    | Description                                                                        |
+| ------------ | --------------- |-------|------------------------------------------------------------------------------------|
+| **Features** | Feature unique  | 0..\* | An array of feature names used to query a Consumer for its supported capabilities. |
 
 
 **Usage Requirements:**
@@ -1451,14 +1456,14 @@ the IP address and the prefix, each in their own field.
 
 **Type: Process (Map{1..\*})**
 
-| ID  | Name             | Type           | \#   | Description                                                                          |
-| --- | ---------------- | -------------- | ---- | ------------------------------------------------------------------------------------ |
-| 1   | **pid**          | Integer{0..\*} | 0..1 | Process ID of the process                                                            |
-| 2   | **name**         | String         | 0..1 | Name of the process                                                                  |
-| 3   | **cwd**          | String         | 0..1 | Current working directory of the process                                             |
-| 4   | **executable**   | File           | 0..1 | Executable that was executed to start the process                                    |
-| 5   | **parent**       | Process        | 0..1 | Process that spawned this one                                                        |
-| 6   | **command_line** | String         | 0..1 | The full command line invocation used to start this process, including all arguments |
+| ID  | Name             | Type                         | \#   | Description                                                                 |
+| --- | ---------------- | --------------------- | ---- | ---------------------------------------------------------------------------------- |
+| 1   | **pid**          | Key(Integer{0..\*}) | 0..1 | Process ID of the process                                                            |
+| 2   | **name**         | String              | 0..1 | Name of the process                                                                  |
+| 3   | **cwd**          | String              | 0..1 | Current working directory of the process                                             |
+| 4   | **executable**   | File                | 0..1 | Executable that was executed to start the process                                    |
+| 5   | **parent**       | Link(Process)       | 0..1 | Process that spawned this one                                                        |
+| 6   | **command_line** | String              | 0..1 | The full command line invocation used to start this process, including all arguments |
 
 **Usage Requirement:**
 
@@ -1845,6 +1850,10 @@ content constitutes requirements of this document.
 
 JSON Abstract Data Notation Version 1.0. Edited by David Kemp. 17 August 2021. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/jadn/v1.0/cs01/jadn-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/jadn/v1.0/jadn-v1.0.html.
 
+###### [OpenC2-Arch-v1.0]
+
+_Open Command and Control (OpenC2) Architecture Specification Version 1.0_. Edited by Duncan Sparrell. 30 September 2022. OASIS Committee Specification 01. https://docs.oasis-open.org/openc2/oc2arch/v1.0/cs01/oc2arch-v1.0-cs01.html. Latest stage: https://docs.oasis-open.org/openc2/oc2arch/v1.0/oc2arch-v1.0.html.
+
 ###### [OpenC2-HTTPS-v1.0]
 
 *Specification for Transfer of OpenC2 Messages via HTTPS Version 1.0*. Edited by
@@ -2066,6 +2075,10 @@ Birkholz, H., Vigano, C. and Bormann, C., "Concise Data Definition Language (CDD
 
 "What is IACD", __IACD__, Integrated Adaptive Cyber Defense, 3/17/2018, https://www.iacdautomate.org/
 
+###### [IM-JADN-v1.0]
+
+Information Modeling with JADN Version 1.0. Edited by David Kemp. 19 April 2023. OASIS Committee Note 01. https://docs.oasis-open.org/openc2/imjadn/v1.0/cn01/imjadn-v1.0-cn01.html. Latest stage: https://docs.oasis-open.org/openc2/imjadn/v1.0/imjadn-v1.0.html.
+
 ###### [JSON-Schema]
 "JSON Schema, a vocabulary that allows you to annotate and validate JSON documents.", retrieved 9/26/2022, https://json-schema.org/
 
@@ -2108,6 +2121,19 @@ Remove this note before submitting for publication.)  **{TO DO}**
 # Appendix C. Acknowledgments
 
 *The content in this section is non-normative.*
+
+## C.1 Special Thanks
+
+<!-- This is an optional subsection to call out contributions from TC members. If a TC wants to thank non-TC members then they should avoid using the term "contribution" and instead thank them for their "expertise" or "assistance". -->
+
+Substantial contributions to this document from the following
+individuals are gratefully acknowledged:
+
+ * Jason Romano, National Security Agency
+
+## C.2 Participants
+
+<!-- A TC can determine who they list here, however, TC Observers must not be listed. It is common practice for TCs to list everyone that was part of the TC during the creation of the document, but this is ultimately a TC decision on who they want to list and not list. -->
 
 The following individuals have participated in the creation of this
 specification and are gratefully acknowledged:
@@ -2197,6 +2223,7 @@ specification and are gratefully acknowledged:
 | Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
 
 -------
+
 # Appendix E. Examples
 
 *The content in this section is non-normative.*
@@ -2469,8 +2496,8 @@ Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
 modeling (IM) language and its application to rigorously
 specifying the OpenC2 language. Unless explicitly labeled
 otherwise, section references in this appendix are to sections of
-the [JADN](#jadn-v10) specification, rather than this Language
-Specification.
+the [JADN](#jadn-v10) specification, rather than this _Language
+Specification_.
 
 ## F.1 JADN Overview
 
@@ -2488,7 +2515,9 @@ level, independent of specific implementations or protocols used
 to transport the data. JADN provides a tool for developing
 information models, which can be used to define and generate
 physical data models, validate information instances, and enable
-lossless translation across data formats. 
+lossless translation across data formats. Information modeling
+concepts are discussed in more detail in 
+_Information Modeling with JADN_ [[IM-JADN-v1.0](#im-jadn-v10)].
 
 A JADN specification consists of:
  -  type definitions that comprise the information model, and
@@ -2501,7 +2530,7 @@ diagrams, easing integration with existing design processes and
 architecture tools.
 
 JADN defines a set of base types that includes five "primitives"
-(e.g., boolean, string), and seven complex types (e.g., array,
+(e.g., boolean, string), and seven "compound" types (e.g., array,
 map, record). JADN type definitions have a fixed structure
 designed to be easily describable, easily processed, stable, and
 extensible. Every definition in a JADN document is described in
@@ -2525,15 +2554,13 @@ multiplicity constraints) that provide the means to define a wide
 variety of information types in a representation-independent
 manner.
 
-As an information modeling language, JADN supports only two kinds
-of relationships: "contain" and "reference".  A JADN information
-model is a set of type definitions, where each definition may be
-basic or structured. Each field in a structured type may be
-associated with another model-defined type, and the set of
-associations between types forms a directed graph. Each
-association is either a container or a reference, and the
-direction of each edge is toward the contained or referenced
-type.
+As an information modeling language, JADN supports only two kinds of
+relationships: "contain" and "reference".  A JADN information model is a set of
+type definitions, where each type may be simple (primitive) or structured
+(compound). Each field in a structured type may be associated with another
+model-defined type, and the set of associations between types forms a directed
+graph. Each association is either a container or a reference, and the direction
+of each edge is toward the contained or referenced type.
 
 The native format of JADN is JSON, but JADN content can be
 represented in others ways that are more useful for
@@ -2592,16 +2619,16 @@ formats is simplified.
 This section provide a brief example of a JADN information model,
 using data types from OpenC2. 
 
-### F.3.1  Basic and Complex Data Types
+### F.3.1  Basic and Compound Data Types
 
-This example illustrates the use of basic and complex types to
+This example illustrates the use of basic and compound types to
 describe a network connection. A 5-tuple is a common means of
 representing a TCP or UDP session, recording the source and
 destination IP addresses and ports, and identifying the Layer 4
 protocol in use. The corresponding OpenC2 target type is called
 an `IPv4-Connection` (see section
 [3.4.1.10](#34110-ipv4-connection) of this specification).  A
-group of basic (i.e., binary, integer) and complex (i.e., record,
+group of basic (i.e., binary, integer) and compound (i.e., record,
 array, enumeration) types and their use in the definition of an
 IPv4 Connection information model are represented in JIDL as
 follows:
