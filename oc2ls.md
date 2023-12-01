@@ -484,20 +484,19 @@ OpenC2 Response.
 
 ### 3.1.1 Data Types
 
-OpenC2 data types are defined using an abstract notation that is independent of
-both their representation within applications ("**API**" values) and their
-format for transmission between applications ("**serialized**" values). The data
-types used in OpenC2 Messages are:
+OpenC2 data types are defined using using the types and options available in
+[[JADN](#jadn-v10)], providing definitions that are independent of both their
+representation within applications ("**API**" values) and their format for
+transmission between applications ("**serialized**" values). The data types used
+in OpenC2 Messages are:
 
 | Type                    | Description                                                                                                                                                                                                      |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Primitive Types**     |                                                                                                                                                                                                                  |
-| Any                     | Anything, used to designate fields with an unspecified value.                                                                                                                                                    |
 | Binary                  | A sequence of octets. Length is the number of octets.                                                                                                                                                            |
 | Boolean                 | An element with one of two values: `true` and `false`.                                                                                                                                                           |
 | Integer                 | A whole number.                                                                                                                                                                                                  |
 | Number                  | A real number.                                                                                                                                                                                                   |
-| Null                    | Nothing, used to designate fields with no value.                                                                                                                                                                 |
 | String                  | A sequence of characters, each of which has a Unicode codepoint. Length is the number of characters.                                                                                                             |
 | **Structures**          |                                                                                                                                                                                                                  |
 | Array                   | An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type.                                                                                               |
@@ -519,25 +518,21 @@ types used in OpenC2 Messages are:
     as a Dictionary or a Hashtable.
 
 -   **Serialized** values are critical to interoperability, and this document
-    defines a set of **serialization rules** that unambiguously define how each
+    defines a set of **serializtion rules** that unambiguously define how each
     of the above types are serialized using a human-friendly JSON format. Other
     serialization rules, such as for XML, machine-optimized JSON, and CBOR
-    formats, exist but are out of scope for this document. Both the
-    format-specific serialization rules in [Section 3.1.5](#315-serialization)
-    and the format-agnostic type definitions in [Section
-    3.4](#34-type-definitions) are Normative.
+    formats, exist but are out of scope for this document. 
+    
+OpenC2 messages in JSON format SHALL be serialized in accordance with the rules
+defined in the JADN Specification [[JADN](#jadn-v10)], section 4.
 
-Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are
-equivalent to the non-suffixed types except:
+The format-agnostic type definitions in [Section 3.4](#34-type-definitions) are
+Normative.
 
-1.  Field definitions and API values are identified only by ID. The
-    non-normative description may include a suggested name.
-
-2.  Serialized values of Enumerated types and keys of Choice/Map types are IDs
-    regardless of serialization format.
-
-OpenC2 type definitions are presented in table format. All table columns except
-Description are Normative. The Description column is always Non-normative.
+OpenC2 type definitions are presented in this specification in table format. All
+table columns except Description are Normative, however any conflict between the
+table presentation and the JADN must be resolved by applying the schema
+definition. The Description column is always Non-normative.
 
 For types without individual field definitions (Primitive types and ArrayOf),
 the type definition includes the name of the type being defined and the
@@ -548,7 +543,7 @@ definition of that type. This table defines a type called *Email-Addr* that is a
 | -------------- | --------------- | ------------- |
 | **Email-Addr** | String (email)  | Email address |
 
-For Structure types, the definition includes the name of the type being defined,
+For Structured types, the definition includes the name of the type being defined,
 the built-in type on which it is based, and options applicable to the type as a
 whole. This is followed by a table defining each of the fields in the structure.
 This table defines a type called *Args* that is a *Map* containing at least one
