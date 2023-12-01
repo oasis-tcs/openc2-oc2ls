@@ -482,10 +482,15 @@ OpenC2 Response.
 
 ## 3.1 Base Components and Structures
 
+OpenC2 data types are defined using using the types and options available in
+[[JADN](#jadn-v10)]. This section provides a concise summary of JADN type
+definitions; for more complete explanations refer to the _JADN Committee
+Specification_ and the _Information Modeling with JADN
+[[IM-JADN-v1.0](#im-jadn-v10)] Committee Note.
+
 ### 3.1.1 Data Types
 
-OpenC2 data types are defined using using the types and options available in
-[[JADN](#jadn-v10)], providing definitions that are independent of both their
+The use of JADN provides type definitions that are independent of both their
 representation within applications ("**API**" values) and their format for
 transmission between applications ("**serialized**" values). The data types used
 in OpenC2 Messages are:
@@ -531,7 +536,7 @@ Normative.
 
 OpenC2 type definitions are presented in this specification in table format. All
 table columns except Description are Normative, however any conflict between the
-table presentation and the JADN must be resolved by applying the schema
+table presentation and the JADN schema must be resolved by applying the schema
 definition. The Description column is always Non-normative.
 
 For types without individual field definitions (Primitive types and ArrayOf),
@@ -543,13 +548,14 @@ definition of that type. This table defines a type called *Email-Addr* that is a
 | -------------- | --------------- | ------------- |
 | **Email-Addr** | String (email)  | Email address |
 
-For Structured types, the definition includes the name of the type being defined,
-the built-in type on which it is based, and options applicable to the type as a
-whole. This is followed by a table defining each of the fields in the structure.
-This table defines a type called *Args* that is a *Map* containing at least one
-field. Each of the fields has an integer Tag/ID, a Name, and a Type. Each field
-in this definition is optional (Multiplicity = 0..1), but per the type
-definition at least one must be present.
+For Structured types, the definition includes the name of the type being
+defined, the built-in type on which it is based, and options applicable to the
+type as a whole. This is followed by a table defining each of the fields in the
+structure. This table defines a type called *Args* that is a *Map* containing at
+least one field. Each of the fields has an integer Tag/ID, a Name, and a Type.
+Each field in this example type definition is optional (Multiplicity = 0..1),
+but per the type definition (Multiplicity = 1..\*) at least one field must be
+present.
 
 **Type: Args (Map{1..\*})**
 
@@ -591,9 +597,9 @@ specify value constraints for which an authoritative definition exists.
 
 **Usage Requirements:**
 
--   Properties identified as conforming to `eui` should be
-    interpreted according to the values documented in the [[IEEE
-    Registration Authority registry]](#ieee_ra).
+-   Properties identified as conforming to `eui` SHOULD be
+    interpreted according to the values documented in the 
+    [[IEEE Registration Authority registry]](#ieee_ra).
 
 ### 3.1.3 Multiplicity
 
@@ -641,7 +647,7 @@ other profiles or this specification.
 **Example**: the OASIS standard Stateless Packet Filtering profile has:
 
 - **Namespace**:
-    http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
+    http://docs.oasis-open.org/openc2/ns/ap/slpf/v1.0
 
 - **NSID**: slpf
 
@@ -751,9 +757,10 @@ defined by the Stateless Packet Filtering Profile.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Response results, defined in Section TBD, MAY be extended using the namespace
-identifier as the results name, called an extended results namespace. Extended
-results MUST be defined within the extended results namespace.
+Response results, defined in [Section 3.3.2.2](#3322-response-results), MAY be
+extended using the namespace identifier as the results name, called an extended
+results namespace. Extended results MUST be defined within the extended results
+namespace.
 
 **Example:** In this example Response, the Response results property,
 `rule_number`, is defined within the Stateless Packet Filtering Profile
@@ -773,48 +780,13 @@ namespace, `slpf`.
 ### 3.1.5 Serialization
 
 OpenC2 is agnostic of any particular serialization; however, implementations
-MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and
-additional requirements specified in the following table.
+MUST support JSON serialization in accordance with 
 
-**JSON Serialization Requirements:**
+ - [[RFC7493]](#rfc7493) and
+ - [[JADN](#jadn-v10)].
 
-| OpenC2 Data Type    | JSON Serialization Requirement                                                                                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Binary**          | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5.                                                                     |
-| **Binary /x**       | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
-| **IPv4-Addr**       | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2.                                                    |
-| **IPv6-Addr**       | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4.                                                               |
-| **MAC-Addr**        | JSON **string** containing the text representation of a MAC Address in colon hexadecimal format as defined in [[EUI]](#eui).                                                          |
-| **Boolean**         | JSON **true** or **false**                                                                                                                                                            |
-| **Integer**         | JSON **number**                                                                                                                                                                       |
-| **Number**          | JSON **number**                                                                                                                                                                       |
-| **Null**            | JSON **null**                                                                                                                                                                         |
-| **String**          | JSON **string**                                                                                                                                                                       |
-| **Array**           | JSON **array**                                                                                                                                                                        |
-| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in [[RFC4632]](#rfc4632), Section 3.1.                                                       |
-| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in [[RFC4291]](#rfc4291), Section 2.3.                                                       |
-| **ArrayOf**         | JSON **array**                                                                                                                                                                        |
-| **Choice**          | JSON **object** with one member. Member key is the field name.                                                                                                                        |
-| **Choice.ID**       | JSON **object** with one member. Member key is the integer field id converted to string.                                                                                              |
-| **Enumerated**      | JSON **string**                                                                                                                                                                       |
-| **Enumerated.ID**   | JSON **integer**                                                                                                                                                                      |
-| **Map**             | JSON **object**. Member keys are field names.                                                                                                                                         |
-| **Map.ID**          | JSON **object**. Member keys are integer field ids converted to strings.                                                                                                              |
-| **MapOf**           | JSON **object**. Member keys are as defined in the specified key type.                                                                                                                |
-| **Record**          | JSON **object**. Member keys are field names.                                                                                                                                         |
-
-#### 3.1.5.1 ID and Name Serialization
-
-Instances of Enumerated types and keys for Choice and Map types are serialized
-as ID values except when using serialization formats intended for human
-consumption, where Name strings are used instead. Defining a type using ".ID"
-appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
-
-1.  Type definitions and application values use only the ID. There is no
-    corresponding name except as an optional part of the description.
-
-2.  Instances of Enumerated values and Choice/Map keys are serialized as IDs
-    regardless of serialization format.
+Types defined with the ".ID" appended to the base type (Enumerated, Choice, Map)
+are serialized in accordance with [[JADN](#jadn-v10)].
 
 ## 3.2 Message
 
