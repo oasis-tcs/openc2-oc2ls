@@ -325,6 +325,10 @@ To Be Supplied.
 
 #### 1.2.3.1 Naming Conventions
 
+The OpenC2 language is formally defined by a schema written in JSON Abstract
+Data Notation (JADN) [[JADN-v1.0](#jadn-v10)]. The naming conventions used in
+this specification are consistent with JADN's default conventions.
+
 -   All property names and literals are in lowercase, except when referencing
     canonical names defined in another standard (e.g., literal values from an
     IANA registry).
