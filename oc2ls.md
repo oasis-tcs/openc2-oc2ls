@@ -89,6 +89,7 @@ https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
 Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 # Contents
+- [Contents](#contents)
 - [1 Introduction](#1-introduction)
   - [1.1 Changes From Earlier Versions](#11-changes-from-earlier-versions)
   - [1.2 Glossary](#12-glossary)
@@ -108,8 +109,8 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
     - [3.1.3 Multiplicity](#313-multiplicity)
     - [3.1.4 Extensions](#314-extensions)
     - [3.1.5 Serialization](#315-serialization)
-      - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
+          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
@@ -180,18 +181,7 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
   - [E.1 Example 1: Device Quarantine](#e1-example-1-device-quarantine)
   - [E.2 Example 2: Block Connection](#e2-example-2-block-connection)
   - [E.3 Example 3: Message Signature Processing](#e3-example-3-message-signature-processing)
-    - [E.3.1 OpenC2 Message Signature](#e31-openc2-message-signature)
-    - [E.3.2 OpenC2 Signing Operation (JSON)](#e32-openc2-signing-operation-json)
-    - [E.3.3 OpenC2 Signing Validation (JSON)](#e33-openc2-signing-validation-json)
-- [Appendix F. Schema Development With JADN](#appendix-f-schema-development-with-jadn)
-  - [F.1 JADN Overview](#f1-jadn-overview)
-  - [F.2 Deriving Other Schemas and Serializations](#f2-deriving-other-schemas-and-serializations)
-  - [F.3 JADN Example: OpenC2 Subset](#f3-jadn-example-openc2-subset)
-    - [F.3.1  Basic and Compound Data Types](#f31--basic-and-compound-data-types)
-    - [F.3.2  JADN Representation](#f32--jadn-representation)
-    - [F.3.3  Translation To JSON Schema](#f33--translation-to-json-schema)
-  - [F.4 Additional Information](#f4-additional-information)
-- [Appendix G. Notices](#appendix-g-notices)
+- [Appendix F. Notices](#appendix-f-notices)
 
 -------
 
@@ -2402,7 +2392,7 @@ NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
 -------
 
 
-# Appendix G. Notices
+# Appendix F. Notices
 
 <!-- Required section. Do not modify. -->
 
