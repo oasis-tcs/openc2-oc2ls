@@ -6,31 +6,18 @@
 
 ## 29 November 2023
 
-#### This version:
+<!-- URI list start (commented out except during publication by OASIS TC Admin)
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
+#### This stage:
 
-#### Previous version:
+#### Previous stage:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.pdf
+#### Latest stage:
 
-#### Latest version:
-
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
+URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Technical Committee:
-
-[OASIS Open Command and Control (OpenC2)
-TC](https://www.oasis-open.org/committees/openc2/)
+[OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chair:
 
@@ -39,8 +26,9 @@ Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 
 #### Editors:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)\
-Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/) \
+Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/) \
+David Lemire (david.lemire@hii-tsd.com), [National Security Agency](https://www.nsa.gov/)
 
 #### Abstract:
 
@@ -62,18 +50,19 @@ courses of action are beyond the scope of OpenC2.
 
 This document was last revised or approved by the OASIS Open Command and Control
 (OpenC2) TC on the above date. The level of approval is also listed above. Check
-the "Latest version" location noted above for possible later revisions of this
+the "Latest stage" location noted above for possible later revisions of this
 document. Any other numbered Versions and other technical work produced by the
 Technical Committee (TC) are listed at
-https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2\#technical.
+https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
 
 TC members should send comments on this specification to the TC's email list.
 Others should send comments to the TC's public comment list, after subscribing
-to it by following the instructions at the "Send A Comment" button on the TC's
-web page at https://www.oasis-open.org/committees/openc2/.
+to it by following the instructions at the
+"[Send A Comment](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=)"
+button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
 
 This specification is provided under the
-[Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode)
+[Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr/#Non-Assertion-Mode)
 Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was
 established. For information on whether any patents have been disclosed that may
 be essential to implementing this specification, and any offers of patent
@@ -81,7 +70,7 @@ licensing terms, please refer to the Intellectual Property Rights section of the
 TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 Note that any machine-readable content ([Computer Language
-Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang))
+Definitions](https://www.oasis-open.org/policies-guidelines/tc-process-2017-05-26/#wpComponentsCompLang))
 declared Normative for this Work Product is provided in separate plain text
 files. In the event of a discrepancy between any such plain text file and
 display content in the Work Product's prose narrative document(s), the content
@@ -95,9 +84,9 @@ used:
 **[OpenC2-Lang-v2.0]**
 
 _Open Command and Control (OpenC2) Language Specification Version 2.0_. Edited
-by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
-Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
+by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification 01.
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
+Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 # Contents
 - [1 Introduction](#1-introduction)
