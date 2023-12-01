@@ -1,36 +1,23 @@
 ![](https://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 
-# Open Command and Control (OpenC2) Language Specification Version 2.0
+# Open Command and Control (OpenC2) Language Specification Version 2.0 <!-- omit from toc -->
 
 ## Working Draft 02
 
 ## 29 November 2023
 
-#### This version:
+<!-- URI list start (commented out except during publication by OASIS TC Admin)
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
+#### This stage:
 
-#### Previous version:
+#### Previous stage:
 
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs01/oc2ls-v2.0-cs01.pdf
+#### Latest stage:
 
-#### Latest version:
-
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.md
-(Authoritative)  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.html  
-https://docs.oasis-open.org/openc2/oc2ls/v1.1/cs02/oc2ls-v2.0-cs01.pdf
+URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Technical Committee:
-
-[OASIS Open Command and Control (OpenC2)
-TC](https://www.oasis-open.org/committees/openc2/)
+[OASIS Open Command and Control (OpenC2) TC](https://www.oasis-open.org/committees/openc2/)
 
 #### Chair:
 
@@ -39,8 +26,9 @@ Michael Rosa (mjrosa@nsa.gov), [National Security Agency](https://www.nsa.gov)
 
 #### Editors:
 
-Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/)\
-Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/)
+Duncan Sparrell (duncan@sfractal.com), [sFractal Consulting LLC](http://www.sfractal.com/) \
+Toby Considine (toby.considine@unc.edu), [University of North Carolina at Chapel Hill](https://www.unc.edu/) \
+David Lemire (david.lemire@hii-tsd.com), [National Security Agency](https://www.nsa.gov/)
 
 #### Abstract:
 
@@ -62,18 +50,19 @@ courses of action are beyond the scope of OpenC2.
 
 This document was last revised or approved by the OASIS Open Command and Control
 (OpenC2) TC on the above date. The level of approval is also listed above. Check
-the "Latest version" location noted above for possible later revisions of this
+the "Latest stage" location noted above for possible later revisions of this
 document. Any other numbered Versions and other technical work produced by the
 Technical Committee (TC) are listed at
-https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2\#technical.
+https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=openc2#technical.
 
 TC members should send comments on this specification to the TC's email list.
 Others should send comments to the TC's public comment list, after subscribing
-to it by following the instructions at the "Send A Comment" button on the TC's
-web page at https://www.oasis-open.org/committees/openc2/.
+to it by following the instructions at the
+"[Send A Comment](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=)"
+button on the TC's web page at https://www.oasis-open.org/committees/openc2/.
 
 This specification is provided under the
-[Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode)
+[Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr/#Non-Assertion-Mode)
 Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was
 established. For information on whether any patents have been disclosed that may
 be essential to implementing this specification, and any offers of patent
@@ -81,7 +70,7 @@ licensing terms, please refer to the Intellectual Property Rights section of the
 TC's web page (https://www.oasis-open.org/committees/openc2/ipr.php).
 
 Note that any machine-readable content ([Computer Language
-Definitions](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsCompLang))
+Definitions](https://www.oasis-open.org/policies-guidelines/tc-process-2017-05-26/#wpComponentsCompLang))
 declared Normative for this Work Product is provided in separate plain text
 files. In the event of a discrepancy between any such plain text file and
 display content in the Work Product's prose narrative document(s), the content
@@ -94,76 +83,10 @@ used:
 
 **[OpenC2-Lang-v2.0]**
 
-*Open Command and Control (OpenC2) Language Specification Version 2.0. Edited
-by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification
-01\. https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
-Latest version: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
-
-## Notices
-
-Copyright © OASIS Open 2019. All Rights Reserved.
-
-All capitalized terms in the following text have the meanings assigned to them
-in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The
-full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found
-at the OASIS website.
-
-This document and translations of it may be copied and furnished to others, and
-derivative works that comment on or otherwise explain it or assist in its
-implementation may be prepared, copied, published, and distributed, in whole or
-in part, without restriction of any kind, provided that the above copyright
-notice and this section are included on all such copies and derivative works.
-However, this document itself may not be modified in any way, including by
-removing the copyright notice or references to OASIS, except as needed for the
-purpose of developing any document or deliverable produced by an OASIS Technical
-Committee (in which case the rules applicable to copyrights, as set forth in the
-OASIS IPR Policy, must be followed) or as required to translate it into
-languages other than English.
-
-The limited permissions granted above are perpetual and will not be revoked by
-OASIS or its successors or assigns.
-
-This document and the information contained herein is provided on an "AS IS"
-basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE
-ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
-A PARTICULAR PURPOSE.
-
-OASIS requests that any OASIS Party or any other party that believes it has
-patent claims that would necessarily be infringed by implementations of this
-OASIS Committee Specification or OASIS Standard, to notify OASIS TC
-Administrator and provide an indication of its willingness to grant patent
-licenses to such patent claims in a manner consistent with the IPR Mode of the
-OASIS Technical Committee that produced this specification.
-
-OASIS invites any party to contact the OASIS TC Administrator if it is aware of
-a claim of ownership of any patent claims that would necessarily be infringed by
-implementations of this specification by a patent holder that is not willing to
-provide a license to such patent claims in a manner consistent with the IPR Mode
-of the OASIS Technical Committee that produced this specification. OASIS may
-include such claims on its website, but disclaims any obligation to do so.
-
-OASIS takes no position regarding the validity or scope of any intellectual
-property or other rights that might be claimed to pertain to the implementation
-or use of the technology described in this document or the extent to which any
-license under such rights might or might not be available; neither does it
-represent that it has made any effort to identify any such rights. Information
-on OASIS' procedures with respect to rights in any document or deliverable
-produced by an OASIS Technical Committee can be found on the OASIS website.
-Copies of claims of rights made available for publication and any assurances of
-licenses to be made available, or the result of an attempt made to obtain a
-general license or permission for the use of such proprietary rights by
-implementers or users of this OASIS Committee Specification or OASIS Standard,
-can be obtained from the OASIS TC Administrator. OASIS makes no representation
-that any information or list of intellectual property rights will at any time be
-complete, or that any claims in such list are, in fact, Essential Claims.
-
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the
-owner and developer of this specification, and should be used only to refer to
-the organization and its official outputs. OASIS welcomes reference to, and
-implementation and use of, specifications, while reserving the right to enforce
-its marks against misleading uses. Please see
-https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
+_Open Command and Control (OpenC2) Language Specification Version 2.0_. Edited
+by Toby Considine and Duncan Sparrell. 17 Oct 2022. OASIS Committee Specification 01.
+https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
+Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 # Contents
 - [1 Introduction](#1-introduction)
@@ -187,7 +110,6 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
     - [3.1.5 Serialization](#315-serialization)
       - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
-          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
@@ -247,26 +169,32 @@ https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
   - [5.3 Conformance Clause 3: Producer](#53-conformance-clause-3-producer)
   - [5.4 Conformance Clause 4: Consumer](#54-conformance-clause-4-consumer)
 - [Appendix A. References](#appendix-a-references)
+  - [A.1 Normative References](#a1-normative-references)
+  - [A.2 Informative References](#a2-informative-references)
 - [Appendix B. Safety, Security and Privacy Considerations](#appendix-b-safety-security-and-privacy-considerations)
-- [Appendix C. Examples](#appendix-c-examples)
-  - [C.1 Example 1: Device Quarantine](#c1-example-1-device-quarantine)
-  - [C.2 Example 2: Block Connection](#c2-example-2-block-connection)
-  - [C.3 Example 3: Message Signature Processing](#c3-example-3-message-signature-processing)
-- [Appendix D. Schema Development With JADN](#appendix-d-schema-development-with-jadn)
-  - [D.1 JADN Overview](#d1-jadn-overview)
-  - [D.2 Deriving Other Schemas and Serializations](#d2-deriving-other-schemas-and-serializations)
-  - [D.3 JADN Example: OpenC2 Subset](#d3-jadn-example-openc2-subset)
-    - [D.3.1  Basic and Compound Data Types](#d31--basic-and-compound-data-types)
-    - [D.3.2  JADN Representation](#d32--jadn-representation)
-    - [D.3.3  Translation To JSON Schema](#d33--translation-to-json-schema)
-  - [D.4 Additional Information](#d4-additional-information)
-- [Appendix E. Revision History](#appendix-e-revision-history)
-- [Appendix F. Acknowledgments](#appendix-f-acknowledgments)
-  - [F.1 Special Thanks](#f1-special-thanks)
-  - [F.2 Participants](#f2-participants)
+- [Appendix C. Acknowledgments](#appendix-c-acknowledgments)
+  - [C.1 Special Thanks](#c1-special-thanks)
+  - [C.2 Participants](#c2-participants)
+- [Appendix D. Revision History](#appendix-d-revision-history)
+- [Appendix E. Examples](#appendix-e-examples)
+  - [E.1 Example 1: Device Quarantine](#e1-example-1-device-quarantine)
+  - [E.2 Example 2: Block Connection](#e2-example-2-block-connection)
+  - [E.3 Example 3: Message Signature Processing](#e3-example-3-message-signature-processing)
+    - [E.3.1 OpenC2 Message Signature](#e31-openc2-message-signature)
+    - [E.3.2 OpenC2 Signing Operation (JSON)](#e32-openc2-signing-operation-json)
+    - [E.3.3 OpenC2 Signing Validation (JSON)](#e33-openc2-signing-validation-json)
+- [Appendix F. Schema Development With JADN](#appendix-f-schema-development-with-jadn)
+  - [F.1 JADN Overview](#f1-jadn-overview)
+  - [F.2 Deriving Other Schemas and Serializations](#f2-deriving-other-schemas-and-serializations)
+  - [F.3 JADN Example: OpenC2 Subset](#f3-jadn-example-openc2-subset)
+    - [F.3.1  Basic and Compound Data Types](#f31--basic-and-compound-data-types)
+    - [F.3.2  JADN Representation](#f32--jadn-representation)
+    - [F.3.3  Translation To JSON Schema](#f33--translation-to-json-schema)
+  - [F.4 Additional Information](#f4-additional-information)
 - [Appendix G. Notices](#appendix-g-notices)
 
----
+-------
+
 # 1 Introduction
 
 *The content in this section is non-normative, except where it is
@@ -306,6 +234,8 @@ capabilities to be defined with semantic and syntactic rigor.
 
 ## 1.1 Changes From Earlier Versions
 
+<!-- Optional section -->
+<!-- Describe significant changes from previous differently-numbered Versions, not changes between stages of the current Version -->
 To Be Supplied.
 
 ## 1.2 Glossary
@@ -1331,7 +1261,7 @@ specified for serializations other than JSON.
 #### 3.4.1.5 Features
 
 | Type Name    | Type Definition | \#    | Description                                                                        |
-| ------------ | --------------- |-------|------------------------------------------------------------------------------------|
+|--------------|-----------------|-------|------------------------------------------------------------------------------------|
 | **Features** | Feature unique  | 0..\* | An array of feature names used to query a Consumer for its supported capabilities. |
 
 
@@ -1456,14 +1386,14 @@ the IP address and the prefix, each in their own field.
 
 **Type: Process (Map{1..\*})**
 
-| ID  | Name             | Type                         | \#   | Description                                                                 |
-| --- | ---------------- | --------------------- | ---- | ---------------------------------------------------------------------------------- |
-| 1   | **pid**          | Key(Integer{0..\*}) | 0..1 | Process ID of the process                                                            |
-| 2   | **name**         | String              | 0..1 | Name of the process                                                                  |
-| 3   | **cwd**          | String              | 0..1 | Current working directory of the process                                             |
-| 4   | **executable**   | File                | 0..1 | Executable that was executed to start the process                                    |
-| 5   | **parent**       | Link(Process)       | 0..1 | Process that spawned this one                                                        |
-| 6   | **command_line** | String              | 0..1 | The full command line invocation used to start this process, including all arguments |
+| ID | Name             | Type                | \#   | Description                                                                          |
+|----|------------------|---------------------|------|--------------------------------------------------------------------------------------|
+| 1  | **pid**          | Key(Integer{0..\*}) | 0..1 | Process ID of the process                                                            |
+| 2  | **name**         | String              | 0..1 | Name of the process                                                                  |
+| 3  | **cwd**          | String              | 0..1 | Current working directory of the process                                             |
+| 4  | **executable**   | File                | 0..1 | Executable that was executed to start the process                                    |
+| 5  | **parent**       | Link(Process)       | 0..1 | Process that spawned this one                                                        |
+| 6  | **command_line** | String              | 0..1 | The full command line invocation used to start this process, including all arguments |
 
 **Usage Requirement:**
 
@@ -2315,7 +2245,7 @@ multiple programming languages exist that can alter/simplify this process.
 
 ### E.3.2 OpenC2 Signing Operation (JSON)
 
-#### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification.
+#### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification. <!-- omit from toc -->
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -2338,7 +2268,7 @@ multiple programming languages exist that can alter/simplify this process.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### 2. Canonicalize JSON Data using the process described in RFC8785.
+#### 2. Canonicalize JSON Data using the process described in RFC8785. <!-- omit from toc -->
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {"body":{"openc2":{"request":{"action":"deny",
@@ -2349,7 +2279,7 @@ multiple programming languages exist that can alter/simplify this process.
 "to":["consumer1@example.com","consumer2@example.com","consumer3@example.com"]}}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### 3. Create a JWS using the process described in RFC7515.
+#### 3. Create a JWS using the process described in RFC7515. <!-- omit from toc -->
 
 ##### A. Develop a protected header for the type of signature that will be used.
 
@@ -2391,7 +2321,7 @@ Signature value:
 
 >   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
 
-#### 4. Add the detached JWS back into the original OpenC2 JSON object under the property “signature”.
+#### 4. Add the detached JWS back into the original OpenC2 JSON object under the property “signature”. <!-- omit from toc -->
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -2415,11 +2345,11 @@ Signature value:
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### 5. Serialize the signed OpenC2 JSON object and send to recipient(s).
+#### 5. Serialize the signed OpenC2 JSON object and send to recipient(s). <!-- omit from toc -->
 
 ### E.3.3 OpenC2 Signing Validation (JSON)
 
-#### 1. Parse the received OpenC2 JSON object and separate out the signature. This should yield:
+#### 1. Parse the received OpenC2 JSON object and separate out the signature. This should yield: <!-- omit from toc -->
 
 ##### A. Original OpenC2 JSON object.
 
@@ -2448,7 +2378,7 @@ Signature value:
 
 >   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
 
-#### 2. Canonicalize JSON Data using the process described in RFC8785.
+#### 2. Canonicalize JSON Data using the process described in RFC8785. <!-- omit from toc -->
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {"body":{"openc2":{"request":{"action":"deny","target":{"uri":"http://www.example.com"}}}},
@@ -2456,7 +2386,7 @@ Signature value:
 "to":["consumer1@example.com","consumer2@example.com","consumer3@example.com"]}}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#### 3. Create a JWS using the process described in RFC7515.
+#### 3. Create a JWS using the process described in RFC7515. <!-- omit from toc -->
 
 ##### A. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload
 
@@ -2466,7 +2396,7 @@ Signature value:
 
 >   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9.eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ.PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
 
-#### 4. Follow the JWS validation process described in RFC7515.
+#### 4. Follow the JWS validation process described in RFC7515. <!-- omit from toc -->
 
 ##### A. Save the JWS signing Input (which is the initial substring of the JWS up until but not including the second period character)
 
