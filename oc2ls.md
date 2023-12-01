@@ -483,10 +483,23 @@ OpenC2 Response.
 ## 3.1 Base Components and Structures
 
 OpenC2 data types are defined using using the types and options available in
-[[JADN](#jadn-v10)]. This section provides a concise summary of JADN type
-definitions; for more complete explanations refer to the _JADN Committee
-Specification_ and the _Information Modeling with JADN
-[[IM-JADN-v1.0](#im-jadn-v10)] Committee Note.
+[[JADN](#jadn-v10)]. JADN is a UML-based *information modeling* language that
+defines data structure independently of data format. [RFC 3444](#rfc3444),
+"Information Models and Data Models", describes the main purpose of an
+**information model** as modeling objects at a conceptual level, independent of
+specific implementations or protocols used to transport the data. This concept
+of an information model is consistent with the goal of defining OpenC2 commands
+and responses independent of their representation in any specific
+implementation. JADN provides a tool for developing information models, which
+can be used to define and generate physical data models, validate information
+instances, and enable lossless translation across data formats. Information
+modeling concepts are discussed in more detail in _Information Modeling with
+JADN_ [[IM-JADN-v1.0](#im-jadn-v10)].
+
+This section provides a concise summary of JADN type
+definitions to facilitate readability; for more complete explanations 
+refer to the _JADN Committee Specification_ and the 
+_Information Modeling with JADN_ Committee Note.
 
 ### 3.1.1 Data Types
 
