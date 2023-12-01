@@ -1168,6 +1168,9 @@ content may be added.
 
 ### 3.3.4 Message Signatures
 
+> TO-DO: update this section to use the signing and validation mechanisms
+> specified in ITU-T Recommendation X.590.
+
 Command and control mechanisms need to provide appropriate security controls
 protecting message content (especially authentication of command origin and
 protection of command integrity) so that Consumers receiving commands can
@@ -1204,11 +1207,11 @@ The JWS signature for a digitally-signed OpenC2 message SHALL be placed in the
 optional “signature” field of the Message structure defined in Section 3.2.
 
 An example of creating and validating an OpenC2 message signature is contained
-in [Annex A, Example 4](#a4-example-4).
+in [Appendix E, Example 3](#e3-example-3-message-signature-processing)).
 
 The method for message recipients to identify and validate the appropriate
 public key to validate a message signature is beyond the scope of this
-specification. Alternative, appropriate signature mechanisms may need to be
+specification. Alternative, appropriate signature mechanisms will need to be
 specified for serializations other than JSON.
 
 ## 3.4 Type Definitions
@@ -1339,7 +1342,7 @@ the IP address and the prefix, each in their own field.
 | 2   | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                                  |
 | 3   | **dst_addr** | IPv4-Net    | 0..1 | IPv4 destination address range                                            |
 | 4   | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                             |
-| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
+| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.11](#34211-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1364,7 +1367,7 @@ the IP address and the prefix, each in their own field.
 | 2   | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                              |
 | 3   | **dst_addr** | IPv6-Net    | 0..1 | IPv6 destination address range                                        |
 | 4   | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                         |
-| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
+| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.11](#34211-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1441,7 +1444,7 @@ the IP address and the prefix, each in their own field.
 
 -   Value is a number of milliseconds
 
-#### 3.4.2.F Feature
+#### 3.4.2.5 Feature
 
 Specifies the results to be returned from a query features Command.
 
@@ -1598,7 +1601,7 @@ Consumers.
 
 The 'query features' Command is REQUIRED for all Producers. The 'query features'
 Command MAY include one or more Features as defined in [Section
-3.4.2.4](#3424-feature). The 'query features' Command MAY include the
+3.4.2.5](#3425-feature). The 'query features' Command MAY include the
 `"response_requested": "complete"` Argument. The 'query features' Command MUST
 NOT include any other Argument.
 
@@ -1741,7 +1744,7 @@ A conformant Producer
 -   5.3-2 MUST implement JSON serialization of generated Commands in accordance
     with [[RFC7493]](#rfc7493).
 
--   5.3-3 MUST implement JSON serialization of received Responses in accordance
+-   5.3-3 MUST implement JSON deserialization of received Responses in accordance
     with [[RFC7493]](#rfc7493).
 
 ## 5.4 Conformance Clause 4: Consumer
@@ -1754,7 +1757,7 @@ A conformant Consumer
 -   5.4-2 MUST implement JSON serialization of generated Responses in accordance
     with [[RFC7493]](#rfc7493).
 
--   5.4-3 MUST implement JSON serialization of received Commands in accordance
+-   5.4-3 MUST implement JSON deserialization of received Commands in accordance
     with [[RFC7493]](#rfc7493).
 
 -------
@@ -2217,6 +2220,8 @@ arguments.
 *Editor's Note: Replace with an example that does not use "properties".*
 
 ## E.3 Example 3: Message Signature Processing
+
+> TO-DO: revise this section to use ITU-T X.590 in place of JWS.
 
 This example illustrates the creation and validation of a JSON message
 signature, as specified in [3.3.4 Message Signatures](#334-message-signatures).
