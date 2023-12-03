@@ -89,7 +89,6 @@ https://docs.oasis-open.org/openc2/oc2ls/v2.0/cs01/oc2ls-v2.0-cs01.html.
 Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
 
 # Contents
-- [Contents](#contents)
 - [1 Introduction](#1-introduction)
   - [1.1 Changes From Earlier Versions](#11-changes-from-earlier-versions)
   - [1.2 Glossary](#12-glossary)
@@ -110,7 +109,6 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
     - [3.1.4 Extensions](#314-extensions)
     - [3.1.5 Serialization](#315-serialization)
   - [3.2 Message](#32-message)
-          - [Table 3-1. Common Message Elements](#table-3-1-common-message-elements)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
       - [3.3.1.1 Action](#3311-action)
