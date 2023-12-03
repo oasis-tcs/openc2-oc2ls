@@ -524,7 +524,7 @@ in OpenC2 Messages are:
     as a Dictionary or a Hashtable.
 
 -   **Serialized** values are critical to interoperability, and this document
-    defines a set of **serializtion rules** that unambiguously define how each
+    defines a set of **serialization rules** that unambiguously define how each
     of the above types are serialized using a human-friendly JSON format. Other
     serialization rules, such as for XML, machine-optimized JSON, and CBOR
     formats, exist but are out of scope for this document. 
