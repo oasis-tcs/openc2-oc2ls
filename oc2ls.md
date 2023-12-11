@@ -298,6 +298,7 @@ To Be Supplied.
 | IP      | Internet Protocol                                                    |
 | IPR     | Intellectual Property Rights                                         |
 | JSON    | JavaScript Object Notation                                           |
+| JSS     | JSON Signature Scheme                                                |
 | MAC     | Media Access Control                                                 |
 | MD5     | Message Digest                                                       |
 | MQTT    | Message Queuing Telemetry Transfer                                   |
@@ -1174,14 +1175,10 @@ protection of command integrity) so that Consumers receiving commands can
 proceed to execute them with confidence and Producers can have confidence that
 the feedback in response messages is meaningful. Digital signatures can provide
 both of those security properties. OpenC2 messages can be protected with digital
-signatures using standard mechanisms. The following RFCs specify mechanisms for
-digital signature protection of JSON-encoded content:
+signatures using standard mechanisms. ITU-T Recommendation X.590 [[ITU-T
+X.590](#itu-t-x590)], *JSON Signature Scheme (JSS)* provides a signature
+mechanism for JSON content that aligns with the needs of OpenC2.
 
--   RFC 7515: JSON Web Signature (JWS) [RFC7515]
-
--   RFC 8785: JSON Canonicalization Scheme (JCS) [RFC8785]
-
--   RFC 7493: The I-JSON Format [RFC7493]
 
 OpenC2 messages SHOULD be digitally signed, unless message integrity and source
 authentication are provided by other mechanisms.
