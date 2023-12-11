@@ -1179,7 +1179,6 @@ signatures using standard mechanisms. ITU-T Recommendation X.590 [[ITU-T
 X.590](#itu-t-x590)], *JSON Signature Scheme (JSS)* provides a signature
 mechanism for JSON content that aligns with the needs of OpenC2.
 
-
 OpenC2 messages SHOULD be digitally signed, unless message integrity and source
 authentication are provided by other mechanisms.
 
@@ -1187,25 +1186,11 @@ OpenC2 messages serialized in JSON MUST conform to the requirements of RFC 7493
 to support canonicalization.
 
 Digitally-signed OpenC2 messages serialized in JSON MUST be signed using JSON
-Web Signature in accordance with RFC 7515.
-
-Digitally-signed OpenC2 messages serialized in JSON MUST use the JWS Compact
-Serialization method described in RFC 7515, Section 3.1.
-
-Digitally-signed OpenC2 messages MUST use the “Detached Content” format
-described in Appendix F of RFC 75151, and MUST NOT include the Base64url-encoded
-JWS content (i.e., the encoding of the OpenC2 message content) in the
-transmitted message.
-
-The JWS signature for a digitally-signed OpenC2 message SHALL be placed in the
-optional “signature” field of the Message structure defined in Section 3.2.
-
-An example of creating and validating an OpenC2 message signature is contained
-in [Annex A, Example 4](#a4-example-4).
+Signature Scheme in accordance with ITU-T X.590.
 
 The method for message recipients to identify and validate the appropriate
 public key to validate a message signature is beyond the scope of this
-specification. Alternative, appropriate signature mechanisms may need to be
+specification. Alternative, appropriate signature mechanisms will need to be
 specified for serializations other than JSON.
 
 ## 3.4 Type Definitions
@@ -2217,204 +2202,6 @@ arguments.
               
 *Editor's Note: Replace with an example that does not use "properties".*
 
-## E.3 Example 3: Message Signature Processing
-
-This example illustrates the creation and validation of a JSON message
-signature, as specified in [3.3.4 Message Signatures](#334-message-signatures).
-The example in this section was prepared using the on-line JWS tool at
-https://mobilepki.org/jws-ct/create, using the ES256 algorithm.
-Base64url-encoded data and canonicalized JSON in the example are shown with line
-wrapping for presentation only.
-
-### E.3.1 OpenC2 Message Signature
-
-The user embeds the signature field into the end of the payload that carries all
-the data required to validate authenticity and integrity of the payload. This
-should be done as a last step before transfer and only for the purposes of
-transferring the signature along with the payload. Once the payload is received
-the receiver should strip off the signature field from the payload, validate the
-signature, validate the content, and then process the contents. The process in
-which a particular payload will be signed will be determined by the
-serialization utilized.
-
-In JSON we can accomplish this by utilizing well know [RFC8785] JSON Web
-Signatures (JWS) and [RFC7515] JSON Canonicalizing Scheme (JCS). Although
-[RFC7515] supports a variety of configurations, for this example we will use the
-ES256 algorithm and assume that the receiver has a mechanism to discover the
-correct public key. The following is a generic approach, many libraries in
-multiple programming languages exist that can alter/simplify this process.
-
-### E.3.2 OpenC2 Signing Operation (JSON)
-
-#### 1. Generate the OpenC2 JSON object as described in the OpenC2 Language Specification. <!-- omit from toc -->
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-  "headers": {
-    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
-    "created": 1595268027000,
-    "from": "Producer1@example.com",
-    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
-  },
-  "body": {
-    "openc2": {
-      "request": {
-        "action": "deny",
-        "target": {
-          "uri": "http://www.example.com"
-                }
-            }
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#### 2. Canonicalize JSON Data using the process described in RFC8785. <!-- omit from toc -->
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{"body":{"openc2":{"request":{"action":"deny",
-"target":{"uri":"http://www.example.com"}}}},
-"headers":{"created":1595268027000,
-"from":"Producer1@example.com",
-"request_id":"95ad511c-3339-4111-9c47-9156c47d37d3",
-"to":["consumer1@example.com","consumer2@example.com","consumer3@example.com"]}}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#### 3. Create a JWS using the process described in RFC7515. <!-- omit from toc -->
-
-##### A. Develop a protected header for the type of signature that will be used.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-    "alg": "ES256",
-    "kid": "Producer1@example.com"
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-##### B. Base64 encode the protected header.
-
->   eyJhbGciOiJFUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9
-
-##### C. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload.
-
->   eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
-
-##### D. Concatenate the JWS protected header and the JWS payload using with a period character to create our signing input.
-
->   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9 .
->   eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
-
-##### E. Utilize the signing input, ES256 algorithm, and the sender's private key to calculate the signature.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
------BEGIN PRIVATE KEY-----
-MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg6XxMFXhcYT5QN9w5TIg2aSKsbcj+
-pj4BnZkK7ZOt4B+gCgYIKoZIzj0DAQehRANCAAToErGm3Lxwj57EPMKSH6ChTp1ercxtxjRx3Uto
-DGI2tZgm3L1M5uOI9y7dm+QT8kJaEPdbX9g9lfoM3lMVmlHY
------END PRIVATE KEY-----
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Signature value:
-
->   PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
-
-##### F. Normally at this point we would concatenate all 3 with a period character to create our JWS. However, in order to reduce overhead, we will be using detached version of JWS. To do this we replace the JWS payload portion with an empty string.
-
->   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
-
-#### 4. Add the detached JWS back into the original OpenC2 JSON object under the property “signature”. <!-- omit from toc -->
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-  "headers": {
-    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
-    "created": 1595268027000,
-    "from": "Producer1@example.com",
-    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
-  },
-  "body": {
-    "openc2": {
-      "request": {
-        "action": "deny",
-        "target": {
-          "uri": "http://www.example.com"
-                }
-            }
-        }
-    }
-    "signature": "eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw"
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#### 5. Serialize the signed OpenC2 JSON object and send to recipient(s). <!-- omit from toc -->
-
-### E.3.3 OpenC2 Signing Validation (JSON)
-
-#### 1. Parse the received OpenC2 JSON object and separate out the signature. This should yield: <!-- omit from toc -->
-
-##### A. Original OpenC2 JSON object.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{
-  "headers": {
-    "request_id": "95ad511c-3339-4111-9c47-9156c47d37d3",
-    "created": 1595268027000,
-    "from": "Producer1@example.com",
-    "to": ["consumer1@example.com", "consumer2@example.com", "consumer3@example.com"]
-  },
-  "body": {
-    "openc2": {
-      "request": {
-        "action": "deny",
-        "target": {
-          "uri": "http://www.example.com"
-                }
-            }
-        }
-    }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-##### B. Original Detached JWS.
-
->   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9..PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
-
-#### 2. Canonicalize JSON Data using the process described in RFC8785. <!-- omit from toc -->
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{"body":{"openc2":{"request":{"action":"deny","target":{"uri":"http://www.example.com"}}}},
-"headers":{"created":1595268027000,"from":"Producer1@example.com","request_id":"95ad511c-3339-4111-9c47-9156c47d37d3",
-"to":["consumer1@example.com","consumer2@example.com","consumer3@example.com"]}}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#### 3. Create a JWS using the process described in RFC7515. <!-- omit from toc -->
-
-##### A. Base64 encode our canonicalize JSON object from step 2 to create the JWS payload
-
->   eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
-
-##### B. Overwrite the detached JWS empty string between the first and second period characters with the JWS payload to create a standard, non-detached, JWS.
-
->   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9.eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ.PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
-
-#### 4. Follow the JWS validation process described in RFC7515. <!-- omit from toc -->
-
-##### A. Save the JWS signing Input (which is the initial substring of the JWS up until but not including the second period character)
-
->   eyJhbGciOiJSUzI1NiIsImtpZCI6IlByb2R1Y2VyMUBleGFtcGxlLmNvbSJ9.eyJib2R5Ijp7Im9wZW5jMiI6eyJyZXF1ZXN0Ijp7ImFjdGlvbiI6ImRlbnkiLCJ0YXJnZXQiOnsidXJpIjoiaHR0cDovL3d3dy5leGFtcGxlLmNvbSJ9fX19LCJoZWFkZXJzIjp7ImNyZWF0ZWQiOjE1OTUyNjgwMjcwMDAsImZyb20iOiJQcm9kdWNlcjFAZXhhbXBsZS5jb20iLCJyZXF1ZXN0X2lkIjoiOTVhZDUxMWMtMzMzOS00MTExLTljNDctOTE1NmM0N2QzN2QzIiwidG8iOlsiY29uc3VtZXIxQGV4YW1wbGUuY29tIiwiY29uc3VtZXIyQGV4YW1wbGUuY29tIiwiY29uc3VtZXIzQGV4YW1wbGUuY29tIl19fQ
-
-##### B. Save the JWS signature (Which is the string following but not including the second period character)
-
->   PsJmWi726O_HTK-Svp_fIlZ8FdIH6jeWslM9F5Qrv1gFqv7EwREGOUU4rd53hHS59Yr0Zapk4Ryv9XFmPxHObw
-
-##### C. Pass the public key, the JWS signature, and the JWS signing input to an ES256 signature verifier. Expect a Boolean response.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
------BEGIN PUBLIC KEY-----
-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE6BKxpty8cI+exDzCkh+goU6dXq3MbcY0cd1LaAxi
-NrWYJty9TObjiPcu3ZvkE/JCWhD3W1/YPZX6DN5TFZpR2A==
------END PUBLIC KEY-----
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -------
 
