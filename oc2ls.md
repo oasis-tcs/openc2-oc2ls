@@ -1169,6 +1169,9 @@ content may be added.
 
 ### 3.3.4 Message Signatures
 
+> To-Do:  develop a replacement JSS-based example and add to Appendix E. Need to
+> find tooling to assist.
+
 Command and control mechanisms need to provide appropriate security controls
 protecting message content (especially authentication of command origin and
 protection of command integrity) so that Consumers receiving commands can
