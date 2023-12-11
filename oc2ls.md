@@ -1988,6 +1988,10 @@ August 2022, https://www.iana.org/assignments/protocol-numbers
 "Internet Assigned Numbers Authority Media Types", IANA,
 August 2022, https://www.iana.org/assignments/media-types
 
+###### [ITU-T X.590] 
+
+Recommendation ITU-T X.509 | ISO/IEC 9594-8 (2019), *Information technology – Open Systems Interconnection – The Directory: Public-key and attribute certificate frameworks. JSON Signature Scheme (JSS)*
+
 
 ## A.2 Informative References
 
