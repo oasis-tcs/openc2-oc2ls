@@ -108,7 +108,6 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
     - [3.1.3 Multiplicity](#313-multiplicity)
     - [3.1.4 Extensions](#314-extensions)
     - [3.1.5 Serialization](#315-serialization)
-      - [3.1.5.1 ID and Name Serialization](#3151-id-and-name-serialization)
   - [3.2 Message](#32-message)
   - [3.3 Content](#33-content)
     - [3.3.1 OpenC2 Command](#331-openc2-command)
@@ -180,18 +179,7 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
   - [E.1 Example 1: Device Quarantine](#e1-example-1-device-quarantine)
   - [E.2 Example 2: Block Connection](#e2-example-2-block-connection)
   - [E.3 Example 3: Message Signature Processing](#e3-example-3-message-signature-processing)
-    - [E.3.1 OpenC2 Message Signature](#e31-openc2-message-signature)
-    - [E.3.2 OpenC2 Signing Operation (JSON)](#e32-openc2-signing-operation-json)
-    - [E.3.3 OpenC2 Signing Validation (JSON)](#e33-openc2-signing-validation-json)
-- [Appendix F. Schema Development With JADN](#appendix-f-schema-development-with-jadn)
-  - [F.1 JADN Overview](#f1-jadn-overview)
-  - [F.2 Deriving Other Schemas and Serializations](#f2-deriving-other-schemas-and-serializations)
-  - [F.3 JADN Example: OpenC2 Subset](#f3-jadn-example-openc2-subset)
-    - [F.3.1  Basic and Compound Data Types](#f31--basic-and-compound-data-types)
-    - [F.3.2  JADN Representation](#f32--jadn-representation)
-    - [F.3.3  Translation To JSON Schema](#f33--translation-to-json-schema)
-  - [F.4 Additional Information](#f4-additional-information)
-- [Appendix G. Notices](#appendix-g-notices)
+- [Appendix F. Notices](#appendix-f-notices)
 
 -------
 
@@ -325,6 +313,10 @@ To Be Supplied.
 
 
 #### 1.2.3.1 Naming Conventions
+
+The OpenC2 language is formally defined by a schema written in JSON Abstract
+Data Notation (JADN) [[JADN-v1.0](#jadn-v10)]. The naming conventions used in
+this specification are consistent with JADN's default conventions.
 
 -   All property names and literals are in lowercase, except when referencing
     canonical names defined in another standard (e.g., literal values from an
@@ -479,22 +471,39 @@ OpenC2 Response.
 
 ## 3.1 Base Components and Structures
 
+OpenC2 data types are defined using using the types and options available in
+[[JADN](#jadn-v10)]. JADN is a UML-based *information modeling* language that
+defines data structure independently of data format. [RFC 3444](#rfc3444),
+"Information Models and Data Models", describes the main purpose of an
+*information model* as modeling objects at a conceptual level, independent of
+specific implementations or protocols used to transport the data. This concept
+of an information model is consistent with the goal of defining OpenC2 commands
+and responses independent of their representation in any specific
+implementation. JADN provides a tool for developing information models, which
+can be used to define and generate physical data models, validate information
+instances, and enable lossless translation across data formats. Information
+modeling concepts are discussed in more detail in _Information Modeling with
+JADN_ [[IM-JADN-v1.0](#im-jadn-v10)].
+
+This section provides a concise summary of JADN type
+definitions to facilitate readability; for more complete explanations 
+refer to the JADN Committee Specification and the 
+_Information Modeling with JADN_ Committee Note.
+
 ### 3.1.1 Data Types
 
-OpenC2 data types are defined using an abstract notation that is independent of
-both their representation within applications ("**API**" values) and their
-format for transmission between applications ("**serialized**" values). The data
-types used in OpenC2 Messages are:
+The use of JADN enables type definitions that are independent of both their
+representation within applications ("**API**" values) and their format for
+transmission between applications ("**serialized**" values). The data types used
+in OpenC2 Messages are:
 
 | Type                    | Description                                                                                                                                                                                                      |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Primitive Types**     |                                                                                                                                                                                                                  |
-| Any                     | Anything, used to designate fields with an unspecified value.                                                                                                                                                    |
 | Binary                  | A sequence of octets. Length is the number of octets.                                                                                                                                                            |
 | Boolean                 | An element with one of two values: `true` and `false`.                                                                                                                                                           |
 | Integer                 | A whole number.                                                                                                                                                                                                  |
 | Number                  | A real number.                                                                                                                                                                                                   |
-| Null                    | Nothing, used to designate fields with no value.                                                                                                                                                                 |
 | String                  | A sequence of characters, each of which has a Unicode codepoint. Length is the number of characters.                                                                                                             |
 | **Structures**          |                                                                                                                                                                                                                  |
 | Array                   | An ordered list of unnamed fields with positionally-defined semantics. Each field has a position, label, and type.                                                                                               |
@@ -519,22 +528,18 @@ types used in OpenC2 Messages are:
     defines a set of **serialization rules** that unambiguously define how each
     of the above types are serialized using a human-friendly JSON format. Other
     serialization rules, such as for XML, machine-optimized JSON, and CBOR
-    formats, exist but are out of scope for this document. Both the
-    format-specific serialization rules in [Section 3.1.5](#315-serialization)
-    and the format-agnostic type definitions in [Section
-    3.4](#34-type-definitions) are Normative.
+    formats, exist but are out of scope for this document. 
+    
+OpenC2 messages in JSON format SHALL be serialized in accordance with the rules
+defined in the JADN Specification [[JADN](#jadn-v10)], section 4.
 
-Types defined with an ".ID" suffix (Choice.ID, Enumerated.ID, Map.ID) are
-equivalent to the non-suffixed types except:
+The format-agnostic type definitions in [Section 3.4](#34-type-definitions) are
+Normative.
 
-1.  Field definitions and API values are identified only by ID. The
-    non-normative description may include a suggested name.
-
-2.  Serialized values of Enumerated types and keys of Choice/Map types are IDs
-    regardless of serialization format.
-
-OpenC2 type definitions are presented in table format. All table columns except
-Description are Normative. The Description column is always Non-normative.
+OpenC2 type definitions are presented in this specification in table format. All
+table columns except Description are Normative, however any conflict between the
+table presentation and the JADN schema must be resolved by applying the schema
+definition. The Description column is always Non-normative.
 
 For types without individual field definitions (Primitive types and ArrayOf),
 the type definition includes the name of the type being defined and the
@@ -545,13 +550,14 @@ definition of that type. This table defines a type called *Email-Addr* that is a
 | -------------- | --------------- | ------------- |
 | **Email-Addr** | String (email)  | Email address |
 
-For Structure types, the definition includes the name of the type being defined,
-the built-in type on which it is based, and options applicable to the type as a
-whole. This is followed by a table defining each of the fields in the structure.
-This table defines a type called *Args* that is a *Map* containing at least one
-field. Each of the fields has an integer Tag/ID, a Name, and a Type. Each field
-in this definition is optional (Multiplicity = 0..1), but per the type
-definition at least one must be present.
+For Structured types, the definition includes the name of the type being
+defined, the built-in type on which it is based, and options applicable to the
+type as a whole. This is followed by a table defining each of the fields in the
+structure. This table defines a type called *Args* that is a *Map* containing at
+least one field. Each of the fields has an integer Tag/ID, a Name, and a Type.
+Each field in this example type definition is optional (Multiplicity = 0..1),
+but per the type definition (Multiplicity = 1..\*) at least one field must be
+present.
 
 **Type: Args (Map{1..\*})**
 
@@ -593,9 +599,9 @@ specify value constraints for which an authoritative definition exists.
 
 **Usage Requirements:**
 
--   Properties identified as conforming to `eui` should be
-    interpreted according to the values documented in the [[IEEE
-    Registration Authority registry]](#ieee_ra).
+-   Properties identified as conforming to `eui` SHOULD be
+    interpreted according to the values documented in the 
+    [[IEEE Registration Authority registry]](#ieee_ra).
 
 ### 3.1.3 Multiplicity
 
@@ -643,7 +649,7 @@ other profiles or this specification.
 **Example**: the OASIS standard Stateless Packet Filtering profile has:
 
 - **Namespace**:
-    http://docs.oasis-open.org/openc2/oc2slpf/v1.0/oc2slpf-v1.0.md
+    http://docs.oasis-open.org/openc2/ns/ap/slpf/v1.0
 
 - **NSID**: slpf
 
@@ -753,9 +759,10 @@ defined by the Stateless Packet Filtering Profile.
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Response results, defined in Section TBD, MAY be extended using the namespace
-identifier as the results name, called an extended results namespace. Extended
-results MUST be defined within the extended results namespace.
+Response results, defined in [Section 3.3.2.2](#3322-response-results), MAY be
+extended using the namespace identifier as the results name, called an extended
+results namespace. Extended results MUST be defined within the extended results
+namespace.
 
 **Example:** In this example Response, the Response results property,
 `rule_number`, is defined within the Stateless Packet Filtering Profile
@@ -775,48 +782,13 @@ namespace, `slpf`.
 ### 3.1.5 Serialization
 
 OpenC2 is agnostic of any particular serialization; however, implementations
-MUST support JSON serialization in accordance with [[RFC7493]](#rfc7493) and
-additional requirements specified in the following table.
+MUST support JSON serialization in accordance with 
 
-**JSON Serialization Requirements:**
+ - [[RFC7493]](#rfc7493) and
+ - [[JADN](#jadn-v10)].
 
-| OpenC2 Data Type    | JSON Serialization Requirement                                                                                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Binary**          | JSON **string** containing Base64url encoding of the binary value as defined in [[RFC4648]](#rfc4648), Section 5.                                                                     |
-| **Binary /x**       | JSON **string** containing Base16 (hex) encoding of a binary value as defined in [[RFC4648]](#rfc4648), Section 8. Note that the Base16 alphabet does not include lower-case letters. |
-| **IPv4-Addr**       | JSON **string** containing the "dotted-quad" representation of an IPv4 address as specified in [[RFC2673]](#rfc2673), Section 3.2.                                                    |
-| **IPv6-Addr**       | JSON **string** containing the text representation of an IPv6 address as specified in [[RFC5952]](#rfc5952), Section 4.                                                               |
-| **MAC-Addr**        | JSON **string** containing the text representation of a MAC Address in colon hexadecimal format as defined in [[EUI]](#eui).                                                          |
-| **Boolean**         | JSON **true** or **false**                                                                                                                                                            |
-| **Integer**         | JSON **number**                                                                                                                                                                       |
-| **Number**          | JSON **number**                                                                                                                                                                       |
-| **Null**            | JSON **null**                                                                                                                                                                         |
-| **String**          | JSON **string**                                                                                                                                                                       |
-| **Array**           | JSON **array**                                                                                                                                                                        |
-| **Array /ipv4-net** | JSON **string** containing the text representation of an IPv4 address range as specified in [[RFC4632]](#rfc4632), Section 3.1.                                                       |
-| **Array /ipv6-net** | JSON **string** containing the text representation of an IPv6 address range as specified in [[RFC4291]](#rfc4291), Section 2.3.                                                       |
-| **ArrayOf**         | JSON **array**                                                                                                                                                                        |
-| **Choice**          | JSON **object** with one member. Member key is the field name.                                                                                                                        |
-| **Choice.ID**       | JSON **object** with one member. Member key is the integer field id converted to string.                                                                                              |
-| **Enumerated**      | JSON **string**                                                                                                                                                                       |
-| **Enumerated.ID**   | JSON **integer**                                                                                                                                                                      |
-| **Map**             | JSON **object**. Member keys are field names.                                                                                                                                         |
-| **Map.ID**          | JSON **object**. Member keys are integer field ids converted to strings.                                                                                                              |
-| **MapOf**           | JSON **object**. Member keys are as defined in the specified key type.                                                                                                                |
-| **Record**          | JSON **object**. Member keys are field names.                                                                                                                                         |
-
-#### 3.1.5.1 ID and Name Serialization
-
-Instances of Enumerated types and keys for Choice and Map types are serialized
-as ID values except when using serialization formats intended for human
-consumption, where Name strings are used instead. Defining a type using ".ID"
-appended to the base type (e.g., Enumerated.ID, Map.ID) indicates that:
-
-1.  Type definitions and application values use only the ID. There is no
-    corresponding name except as an optional part of the description.
-
-2.  Instances of Enumerated values and Choice/Map keys are serialized as IDs
-    regardless of serialization format.
+Types defined with the ".ID" appended to the base type (Enumerated, Choice, Map)
+are serialized in accordance with [[JADN](#jadn-v10)].
 
 ## 3.2 Message
 
@@ -1324,7 +1296,7 @@ the IP address and the prefix, each in their own field.
 | 2   | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                                  |
 | 3   | **dst_addr** | IPv4-Net    | 0..1 | IPv4 destination address range                                            |
 | 4   | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                             |
-| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol) |
+| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.11](#34211-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1349,7 +1321,7 @@ the IP address and the prefix, each in their own field.
 | 2   | **src_port** | Port        | 0..1 | Source service per [[RFC6335]](#rfc6335)                              |
 | 3   | **dst_addr** | IPv6-Net    | 0..1 | IPv6 destination address range                                        |
 | 4   | **dst_port** | Port        | 0..1 | Destination service per [[RFC6335]](#rfc6335)                         |
-| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.10](#34210-l4-protocol) |
+| 5   | **protocol** | L4-Protocol | 0..1 | Layer 4 protocol (e.g., TCP) - [Section 3.4.2.11](#34211-l4-protocol) |
 
 **Usage Requirement:**
 
@@ -1426,7 +1398,7 @@ the IP address and the prefix, each in their own field.
 
 -   Value is a number of milliseconds
 
-#### 3.4.2.F Feature
+#### 3.4.2.5 Feature
 
 Specifies the results to be returned from a query features Command.
 
@@ -1583,7 +1555,7 @@ Consumers.
 
 The 'query features' Command is REQUIRED for all Producers. The 'query features'
 Command MAY include one or more Features as defined in [Section
-3.4.2.4](#3424-feature). The 'query features' Command MAY include the
+3.4.2.5](#3425-feature). The 'query features' Command MAY include the
 `"response_requested": "complete"` Argument. The 'query features' Command MUST
 NOT include any other Argument.
 
@@ -1726,7 +1698,7 @@ A conformant Producer
 -   5.3-2 MUST implement JSON serialization of generated Commands in accordance
     with [[RFC7493]](#rfc7493).
 
--   5.3-3 MUST implement JSON serialization of received Responses in accordance
+-   5.3-3 MUST implement JSON deserialization of received Responses in accordance
     with [[RFC7493]](#rfc7493).
 
 ## 5.4 Conformance Clause 4: Consumer
@@ -1739,7 +1711,7 @@ A conformant Consumer
 -   5.4-2 MUST implement JSON serialization of generated Responses in accordance
     with [[RFC7493]](#rfc7493).
 
--   5.4-3 MUST implement JSON serialization of received Commands in accordance
+-   5.4-3 MUST implement JSON deserialization of received Commands in accordance
     with [[RFC7493]](#rfc7493).
 
 -------
@@ -2009,31 +1981,15 @@ Information Modeling with JADN Version 1.0. Edited by David Kemp. 19 April 2023.
 
 # Appendix B. Safety, Security and Privacy Considerations
 
-<!-- Optional section -->
+OpenC2, as a cyber defense automation tool, is high-value target for adversaries
+attempting to exploit an environment where it is used. Appendix B of the OpenC2
+Architecture Specification [[OpenC2-Arch-v1.0](#openc2-arch-v10)] discusses:
 
-(Note: OASIS strongly recommends that Technical Committees consider issues that
-might affect safety, security, privacy, and/or data protection in
-implementations of their specification and document them for implementers and
-adopters. For some purposes, you may find it required, e.g. if you apply for
-IANA registration.
+- Threats to OpenC2
+- Applying security services to OpenC2 operations
+- Network topology considerations for OpenC2 messages
 
-While it may not be immediately obvious how your specification might make
-systems vulnerable to attack, most specifications, because they involve
-communications between systems, message formats, or system settings, open
-potential channels for exploit. For example, IETF [[RFC3552](#rfc3552)] lists
-“eavesdropping, replay, message insertion, deletion, modification, and
-man-in-the-middle” as well as potential denial of service attacks as threats
-that must be considered and, if appropriate, addressed in IETF RFCs.
-
-In addition to considering and describing foreseeable risks, this section should
-include guidance on how implementers and adopters can protect against these
-risks.
-
-We encourage editors and TC members concerned with this subject to read
-_Guidelines for Writing RFC Text on Security Considerations_, IETF
-[[RFC3552](#rfc3552)], for more information.
-
-Remove this note before submitting for publication.)  **{TO DO}**
+Refer to that document for a review of these topics in the context of OpenC2.
 
 -------
 
@@ -2208,259 +2164,8 @@ arguments.
 
 -------
 
-# Appendix F. Schema Development With JADN
 
-*The content in this section is non-normative.*
-
-This appendix provides a brief overview of the *JSON Abstract
-Data Notation (JADN)* [[JADN-v1.0](#jadn-v10)] information
-modeling (IM) language and its application to rigorously
-specifying the OpenC2 language. Unless explicitly labeled
-otherwise, section references in this appendix are to sections of
-the [JADN](#jadn-v10) specification, rather than this _Language
-Specification_.
-
-## F.1 JADN Overview
-
-The abstract of the OASIS Committee Specification for JADN
-describes it as follows:
-
-> JSON Abstract Data Notation (JADN) is a UML-based information
-> modeling language that defines data structure independently of
-> data format. 
-
-As the specification explains (section 1):  [RFC 3444](#rfc3444),
-"Information Models and Data Models", notes that the main purpose
-of an **information model** is to model objects at a conceptual
-level, independent of specific implementations or protocols used
-to transport the data. JADN provides a tool for developing
-information models, which can be used to define and generate
-physical data models, validate information instances, and enable
-lossless translation across data formats. Information modeling
-concepts are discussed in more detail in 
-_Information Modeling with JADN_ [[IM-JADN-v1.0](#im-jadn-v10)].
-
-A JADN specification consists of:
- -  type definitions that comprise the information model, and
- -  serialization rules that define how information instances are
-    represented as data. 
-
-The model is documented using a compact and expressive interface
-definition language, property tables, or entity relationship
-diagrams, easing integration with existing design processes and
-architecture tools.
-
-JADN defines a set of base types that includes five "primitives"
-(e.g., boolean, string), and seven "compound" types (e.g., array,
-map, record). JADN type definitions have a fixed structure
-designed to be easily describable, easily processed, stable, and
-extensible. Every definition in a JADN document is described in
-terms of five elements (JADN specification section 3.1): 
-
-1) **TypeName:** a string containing the name of the type being
-   defined
-2) **BaseType:** a choice from the JADN predefined types (Table
-   3-1) of the type being defined
-3) **TypeOptions:** an array of zero or more TypeOption (Section
-   3.2.1) applicable to BaseType
-4) **TypeDescription:** a string containing a non-normative
-   comment
-5) **Fields:** an array of Item or Field definitions
-
-From this starting point JADN enables creation of a rich
-information model readily expressed in any of several
-representations. Section 3.2 describes an extensive set of
-options (e.g., semantic validation, size and value constraints,
-multiplicity constraints) that provide the means to define a wide
-variety of information types in a representation-independent
-manner.
-
-As an information modeling language, JADN supports only two kinds of
-relationships: "contain" and "reference".  A JADN information model is a set of
-type definitions, where each type may be simple (primitive) or structured
-(compound). Each field in a structured type may be associated with another
-model-defined type, and the set of associations between types forms a directed
-graph. Each association is either a container or a reference, and the direction
-of each edge is toward the contained or referenced type.
-
-The native format of JADN is JSON, but JADN content can be
-represented in others ways that are more useful for
-documentation. The [JADN Specification](#jadn-v10) identifies
-three formats (Section 5) in addition to the native format:
-
- - JADN Interface Definition Language (JIDL)
- - Table Style 
- - Entity Relationship Diagrams 
-
-Automated tooling makes it straightforward to translate among all
-four of these formats. Table style presentation is often used in
-specifications (e.g., as property tables such as are found in the
-body of this specification). Entity relationship diagrams are
-helpful for visualization of an information model. The JIDL
-format, a simple text structure, is easy to edit, making it a
-good format for the initial creation of a JADN model.
-
-## F.2 Deriving Other Schemas and Serializations
-
-Once the information model is developed, its use in applications
-requires serialization and deserialization of the information in
-some specific format to permit transmisssion or storage of the
-data corresponding to the model. Serialization is the process for
-converting application information, regardless of its internal
-representation, into a form that can be transmitted (i.e., into a
-"document"). JADN information models can be translated into a
-number of schema formats, such as [[JSON schema](#json-schema)]
-or CDDL [[RFC8610](#rfc8610)], or can be used directly as a
-format-independent schema language. As with translation among
-JADN representations, the use of automated tools to create
-schemas ensures the schemas are an accurate, repeatable
-representation of the JADN information model.
-
-Converting an information model to a data model means applying
-serialization rules for each base type that produce physical data
-in the desired format.  The JADN specification defines
-serialization rules for four different representations of an
-information mode (Section 4):
-
-| Serialization Type |                              Description                              |
-|:------------------:|:---------------------------------------------------------------------:|
-|    Verbose JSON    | Human-readable JSON format using name-value encoding for tabular data |
-|    Compact JSON    | Human-readable JSON format using positional encoding for tabular data |
-|    Concise JSON    | Represents JADN data types in a format optimized for minimum size     |
-|        CBOR        | Concise Binary Object Representation format of JADN types             |
-
-In addition, the specification identifies the constraints that
-must be satisifed to define how a JADN IM is represented in other
-serializations (Section 4). Because each serialization represents
-the same information model, translation between serialization
-formats is simplified.
-
-## F.3 JADN Example: OpenC2 Subset
-
-This section provide a brief example of a JADN information model,
-using data types from OpenC2. 
-
-### F.3.1  Basic and Compound Data Types
-
-This example illustrates the use of basic and compound types to
-describe a network connection. A 5-tuple is a common means of
-representing a TCP or UDP session, recording the source and
-destination IP addresses and ports, and identifying the Layer 4
-protocol in use. The corresponding OpenC2 target type is called
-an `IPv4-Connection` (see section
-[3.4.1.10](#34110-ipv4-connection) of this specification).  A
-group of basic (i.e., binary, integer) and compound (i.e., record,
-array, enumeration) types and their use in the definition of an
-IPv4 Connection information model are represented in JIDL as
-follows:
-
-```
-
-// An IPv4 address is a binary value representing a 32-bit integer
-
-IPv4-Addr = Binary /ipv4-addr                     // 32 bit IPv4 address as defined in [[RFC0791]](#rfc0791)
-
-
-// the IPv4-Connection type is a record
-
-IPv4-Connection = Record{1..*}                    // 5-tuple that specifies a tcp/ip connection
-   1 src_addr         IPv4-Net optional           // IPv4 source address range
-   2 src_port         Port optional               // Source service per [RFC6335]
-   3 dst_addr         IPv4-Net optional           // IPv4 destination address range
-   4 dst_port         Port optional               // Destination service per [RFC6335]
-   5 protocol         L4-Protocol optional        // Layer 4 protocol (e.g., TCP) - see [Section 3.4.2.10](#34210-l4-protocol)
-
-
-// the IPv4-Net type is an array used to represent a CIDR block
-
-IPv4-Net = Array /ipv4-net                        // IPv4 address and prefix length
-   1  IPv4-Addr                                   // ipv4_addr:: IPv4 address as defined in [RFC0791]
-   2  Integer optional                            // prefix_length:: CIDR prefix-length. If omitted, refers to a single host address.
-
-
-// L4-Protocol is an 8-bit value therefore L4-Protocol is an enumeration from 0..255.
-// The interpretation of this value is handled through an external registry
-// See the usage requirements in Section 3.4.2.11, which also contains the following
-// commonly-used example values for the field.
-
-L4-Protocol = Enumerated                          // Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)
-   1 icmp                                         // Internet Control Message Protocol - [RFC0792]
-   6 tcp                                          // Transmission Control Protocol - [RFC0793]
-  17 udp                                          // User Datagram Protocol - [RFC0768]
- 132 sctp                                         // Stream Control Transmission Protocol - [RFC4960]
-
-
-// Port is a 16-bit integer
-
-Port = Integer{0..65535}                          // Transport Protocol Port Number, [RFC6335]
-```
-
-The equivalent property table representations can be found in the
-respective section of this specification for each type (ordered
-as above):
-
- - [3.4.2.9](#3429-ipv4-address): IPv4-Addr
- - [3.4.1.10](#34110-ipv4-connection): IPv4-Connection
- - [3.4.1.9](#3419-ipv4-address-range): IPv4-Net
- - [3.4.2.11](#34211-l4-protocol): L4-Protocol
- - [3.4.2.15](#34215-port): Port
- 
-The example above also makes use of a pair of  JADN semantic
-validation keywords: `"ipv4-addr"` and `"ipv4-net"`. These
-keywords specify validation requirements for the data types where
-they are used (see section 3.2.1.5 of the [JADN](#jadn-v10)
-specification). For example, "`ipv4-addr"` is used to force the
-representation of a binary address in the commonly used "dotted
-quad" format.
-
-### F.3.2  JADN Representation
-
-This section shows the JADN representation of the types defined
-using JIDL in the preceding section.
-
-```
-["IPv4-Addr", "Binary", ["/ipv4-addr"], "32 bit IPv4 address as defined in [RFC0791]"],
-
-["IPv4-Connection", "Record", ["{1"], "5-tuple that specifies a tcp/ip connection", [
-    [1, "src_addr", "IPv4-Net", ["[0"], "IPv4 source address range"],
-    [2, "src_port", "Port", ["[0"], "Source service per [RFC6335],
-    [3, "dst_addr", "IPv4-Net", ["[0"], "IPv4 destination address range"],
-    [4, "dst_port", "Port", ["[0"], "Destination service per [RFC6335],
-    [5, "protocol", "L4-Protocol", ["[0"], "Layer 4 protocol (e.g., TCP) - see Section 3.4.2.10"]
-]],
-
-["IPv4-Net", "Array", ["/ipv4-net"], "IPv4 address and prefix length", [
-    [1, "ipv4_addr", "IPv4-Addr", [], "IPv4 address as defined in [RFC0791],
-    [2, "prefix_length", "Integer", ["[0"], "CIDR prefix-length. If omitted, refers to a single host address."]
-]],
-
-["L4-Protocol", "Enumerated", [], "Value of the protocol (IPv4) or next header (IPv6) field in an IP packet. Any IANA value, [[RFC5237]](#rfc5237)", [
-    [1, "icmp", "Internet Control Message Protocol - [RFC0792],
-    [6, "tcp", "Transmission Control Protocol - [RFC0793],
-    [17, "udp", "User Datagram Protocol - [RFC0768],
-    [132, "sctp", "Stream Control Transmission Protocol - [RFC4960]"]
-]]
-
-["Port", "Integer", ["{0", "}65535"], "Transport Protocol Port Number, [RFC6335]"]
-```
-
-
-### F.3.3  Translation To JSON Schema
-
-> TBD:  JADN translation to JSON schema
-
-## F.4 Additional Information
-
-JADN supports organizing features to facilitate the creation and management of JADN schemas. In particular:
-
- - Schemas can be broken up into a collection of **packages**. A package is a collection of type definitions along with information about the package, such as the namespace the package defines, its version, and other administrative and technical information.
- - The use of **namespaces** enables one packages toi reference type definitions from other packages.
-
-> TBD: Reference to, description of OpenC2 JADN schema external artifact
-
--------
-
-# Appendix G. Notices
+# Appendix F. Notices
 
 <!-- Required section. Do not modify. -->
 
