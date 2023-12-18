@@ -1995,31 +1995,15 @@ Information Modeling with JADN Version 1.0. Edited by David Kemp. 19 April 2023.
 
 # Appendix B. Safety, Security and Privacy Considerations
 
-<!-- Optional section -->
+OpenC2, as a cyber defense automation tool, is high-value target for adversaries
+attempting to exploit an environment where it is used. Appendix B of the OpenC2
+Architecture Specification [[OpenC2-Arch-v1.0](#openc2-arch-v10)] discusses:
 
-(Note: OASIS strongly recommends that Technical Committees consider issues that
-might affect safety, security, privacy, and/or data protection in
-implementations of their specification and document them for implementers and
-adopters. For some purposes, you may find it required, e.g. if you apply for
-IANA registration.
+- Threats to OpenC2
+- Applying security services to OpenC2 operations
+- Network topology considerations for OpenC2 messages
 
-While it may not be immediately obvious how your specification might make
-systems vulnerable to attack, most specifications, because they involve
-communications between systems, message formats, or system settings, open
-potential channels for exploit. For example, IETF [[RFC3552](#rfc3552)] lists
-“eavesdropping, replay, message insertion, deletion, modification, and
-man-in-the-middle” as well as potential denial of service attacks as threats
-that must be considered and, if appropriate, addressed in IETF RFCs.
-
-In addition to considering and describing foreseeable risks, this section should
-include guidance on how implementers and adopters can protect against these
-risks.
-
-We encourage editors and TC members concerned with this subject to read
-_Guidelines for Writing RFC Text on Security Considerations_, IETF
-[[RFC3552](#rfc3552)], for more information.
-
-Remove this note before submitting for publication.)  **{TO DO}**
+Refer to that document for a review of these topics in the context of OpenC2.
 
 -------
 
