@@ -236,8 +236,11 @@ To Be Supplied.
 
 - **Actuator**: The Consumer that executes a Command.
 
-- **Actuator Profile**: The document that defines a category of operations
-    performed by an Actuator (e.g., 'Stateless Packet Filtering').
+- **Actuator Profile**: A defined subset of the OpenC2 language (i.e., actions,
+  targets, command arguments, results) plus any extensions required to specify
+  the use of OpenC2 to command a particular function. Actuator Profiles are
+  defined in JADN schemas associated with published actuator profile
+  specification documents.
 
 - **Argument**: A property of a Command that provides additional information
     on how to perform the Command, such as date/time, periodicity, duration,
