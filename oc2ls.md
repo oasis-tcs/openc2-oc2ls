@@ -1373,9 +1373,18 @@ the IP address and the prefix, each in their own field.
 
 #### 3.4.2.2 Command-ID
 
+Included in a Command message by an OpenC2 Producer to enable future references
+to the specific command. OpenC2 Consumers can include the `command_id` from the
+Command message in Reponses to specify the Command to which the Response
+corresponds.
+
 | Type Name      | Type Definition          | Description        |
 | -------------- | ------------------------ | ------------------ |
 | **Command-ID** | String (%\^\\S{0,36}\$%) | Command Identifier |
+
+**Usage Requirements:**
+
+-   Value SHOULD be a string representation of a UUIDv4 as defined in [[RFC4122](#rfc4122)].
 
 
 #### 3.4.2.3 Date-Time
