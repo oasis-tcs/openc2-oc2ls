@@ -640,14 +640,16 @@ type. The named type can then be used as the type of a required field
 
 ### 3.1.4 Extensions
 
-One of the main design goals of OpenC2 was extensibility. Actuator Profiles
+One of the main design goals of OpenC2 is extensibility. Actuator Profiles
 define the language extensions that are meaningful and possibly unique to the
 Actuator.
 
-Each Profile has a unique name used to identify the profile document
-and a short reference called a namespace identifier (NSID). The NSID is a prefix
-used to separate types defined in one profile document from types defined in
-other profiles or this specification.
+Each Profile has a unique name used to identify the profile document and a short
+reference called a namespace identifier (NSID). The NSID is a prefix used to
+separate types defined in one profile document from types defined in other
+profiles or this specification. OpenC2 conventions for managing namespaces are
+described in Appendix F of the OpenC2 *Architecture Specification*
+[[Openc2-Arch-v1.0](#openc2-arch-v10)].
 
 **Example**: the OASIS standard Stateless Packet Filtering profile has:
 
@@ -657,7 +659,7 @@ other profiles or this specification.
 - **NSID**: slpf
 
 - **Language-defined type**: IPv4-Net
-- **Profile-defined type**: slpf:Rule-ID
+- **Profile-defined type**: slpf/Rule-ID
 
 **Example**: the fictional, non-standard Superwidget Profile has:
 
@@ -666,13 +668,13 @@ other profiles or this specification.
 - **NSID**: acmesw
 
 - **Language-defined type**: Device
-- **Profile-defined type**: acmesw:Device
+- **Profile-defined type**: acmesw/Device
 
 The list of Actions in [Section 3.3.1.1](#3311-action) SHALL NOT be extended.
 
 Targets, defined in [Section 3.3.1.2](#3312-target), MAY be extended. Extended
-Target type names MUST be prefixed with a namespace identifier followed by a colon
-(":"). Extended target properties appear beneath (nested within) a profile property name.
+Target type names MUST be prefixed with a namespace identifier followed by a slash
+("/"). Extended target properties appear beneath (nested within) a profile property name.
 
 **Example:** The Stateless Packet Filtering Profile supports both common and
 profile-specific targets:
@@ -684,18 +686,18 @@ Targets used in Consumers that support the SLPF actuator profile:
 | ID   | Name     | Type           | Description                    |
 | ---- | -------- | -------------- | ------------------------------ |
 | 13   | ipv4_net | IPv4-Net       | Targets defined in the LS      |
-| 1024 | slpf     | slpf:AP-Target | Targets defined in the SLPF AP |
+| 1024 | slpf     | slpf/AP-Target | Targets defined in the SLPF AP |
 
 Targets defined in the SLPF actuator profile:
 
-** Type: slpf:AP-Target (Choice) **  
+** Type: slpf/AP-Target (Choice) **  
 
 | ID  | Name        | Type         | Description |
 | --- | ----------- | ------------ | ----------- |
-| 1   | rule_number | slpf:Rule-ID |             |
+| 1   | rule_number | slpf/Rule-ID |             |
 
 In this example Command, the extended Target `rule_number` 
-of type `slpf:Rule-ID` appears within the SLPF profile property name `slpf`:
+of type `slpf/Rule-ID` appears within the SLPF profile property name `slpf`:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
@@ -716,15 +718,15 @@ extended using profile-defined types appearing within the profile property name.
 | ID   | Name       | Type         | Description                 |
 | ---- | ---------- | ------------ | --------------------------- |
 | 1    | start_time | Date-Time    | Args defined in the LS      |
-| 1024 | slpf       | slpf:AP-Args | Args defined in the SLPF AP |
+| 1024 | slpf       | slpf/AP-Args | Args defined in the SLPF AP |
 
 Args defined in the SLPF actuator profile:
 
-** Type: slpf:AP-Args (Map) **  
+** Type: slpf/AP-Args (Map) **  
 
 | ID  | Name      | Type           | Description |
 | --- | --------- | -------------- | ----------- |
-| 3   | direction | slpf:Direction |             |
+| 3   | direction | slpf/Direction |             |
 
 **Example:** In this example Command, the extended Argument, `direction` of type
 slpf:Direction contained in type slpf:AP-Args, appears in the Stateless Packet Filtering
