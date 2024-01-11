@@ -996,7 +996,7 @@ The Command defines an Action to be performed on a Target.
 
 #### 3.3.1.3 Profile
 
-OpenC2 maintains an [administrative document](https://github.com/oasis-tcs/openc2-oc2arch/blob/working/namespace-registry.md)
+OpenC2 maintains an [administrative document](https://github.com/oasis-tcs/openc2-oc2arch/blob/published/namespace-registry.md)
 listing current, planned, and extension actuator profile information.
 
 **Type: Profile (Enumerated)**
