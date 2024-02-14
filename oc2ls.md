@@ -162,6 +162,7 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
   - [4.2 Examples of 'query features' Commands and Responses](#42-examples-of-query-features-commands-and-responses)
     - [4.2.1 Example 1](#421-example-1)
     - [4.2.2 Example 2](#422-example-2)
+    - [4.2.3 Example 3](#423-example-3)
 - [5 Conformance](#5-conformance)
     - [5.1 Conformance Clause 1: Command](#51-conformance-clause-1-command)
     - [5.2 Conformance Clause 2: Response](#52-conformance-clause-2-response)
@@ -1131,6 +1132,16 @@ OpenC2-Response defines the structure of a response to OpenC2-Command.
 | 3   | **pairs**      | Action-Targets | 0..1  | List of targets applicable to each supported Action                 |
 | 4   | **rate_limit** | Number{0..\*}  | 0..1  | Maximum number of requests per minute supported by design or policy |
 
+**Usage Requirements:**
+
+> *NOTE: Confirm whether any language schema changes are necessary to support this.*
+
+-   `pairs` results should be grouped by profile such that a Producer processing
+    the Response message can identify the commands available for each supported
+    profile. See [Example 3](#423-example-3) in 
+    [Section 4.2](#42-examples-of-query-features-commands-and-responses).
+
+
 ### 3.3.3 OpenC2 Event
 
 OpenC2-Event defines the content of a one-way notification. This structure
@@ -1608,13 +1619,13 @@ receive and parse the 'query features':
 
 *This section is non-normative.*
 
-This sub-section provides examples of 'query features' Commands and Responses.
+This sub-section provides examples of `query features` Commands and Responses.
 The examples provided in this section are for illustrative purposes only and are
 not to be interpreted as operational examples for actual systems.
 
 ### 4.2.1 Example 1
 
-There are no features specified in the 'query features' Command. A simple "OK"
+There are no features specified in the `query features` Command. A simple "OK"
 Response Message is returned.
 
 **Command:**
@@ -1638,7 +1649,7 @@ Response Message is returned.
 
 ### 4.2.2 Example 2
 
-There are several features requested in the 'query features' Command. All
+There are several features requested in the `query features` Command. All
 requested features can be returned in a single Response Message.
 
 **Command:**
@@ -1664,6 +1675,64 @@ requested features can be returned in a single Response Message.
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### 4.2.3 Example 3
+
+This example illustrates a response to the `query features` command from a
+Consumer that implements two Profiles: stateless packet filtering (`slpf`) and a
+notional `blinky` profile. The Command exercises the full range of `query
+features` options.  Both profiles define custom targets:
+
+- `slpf` defines the `rule_number` target
+- `blinky` defines the `device` and `display` targets
+
+This example illustrates the response to this mandatory command is split
+among aspects defined at the Consumer level and aspects defined at the individual
+Profile level. In a sense, the requirements of [Section 4.1](#41-implementation-of-query-features-command) 
+of this specification constitute a base "profile" for the Consumer as a whole,
+and the results for `versions`, `profiles`, `rate_limit` and the basic `"query":
+["features"]` appear in that portion of the response. The remaining content in
+the response is grouped by the two supported profiles.
+
+**Command:**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+  "action": "query",
+  "target": {
+    "features": ["versions", "profiles", "pairs", "rate_limit"]
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Response:**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+  "status": 200,
+  "results": {
+    "versions": ["1.1"],
+    "profiles": ["slpf", "blinky"],
+    "pairs": {
+      "query": ["features"]
+    },
+    "rate_limit": 30,
+    "slpf": {
+      "pairs": {
+        "allow": ["ipv6_net", "ipv6_connection"],
+        "deny": ["ipv6_net", "ipv6_connection"],
+        "delete": ["slpf/rule_number"],
+        "update": ["file"]
+      }
+    },
+    "blinky": {
+      "pairs": {
+        "query": ["blinky/device"],
+        "set": ["blinky/display"]
+      }
+    }
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 # 5 Conformance
 
@@ -2108,7 +2177,7 @@ specification and are gratefully acknowledged:
 | Administrative           | 9/07/2022  | Lemire              | Changes for version update, v1.1 to v2.0                                                                                                                 |
 | Issue #361               | 9/xx/2022  | Lemire              | Add explanatory JADN appendix                                                                                                                            |
 | Create WD01  | 11/11/2022 | Lemire | Create first WD package for v2.0  |
-
+| Issues #350, 365  | 022/14/2024 | Lemire | Address `query features` response for multiple profiles  |
 -------
 
 # Appendix E. Examples
