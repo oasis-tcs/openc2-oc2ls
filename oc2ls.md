@@ -143,7 +143,7 @@ Latest stage: https://docs.oasis-open.org/openc2/oc2ls/v1.1/oc2ls-v1.1.html.
       - [3.4.2.2 Command-ID](#3422-command-id)
       - [3.4.2.3 Date-Time](#3423-date-time)
       - [3.4.2.4 Duration](#3424-duration)
-      - [3.4.2.F Feature](#342f-feature)
+      - [3.4.2.5 Feature](#3425-feature)
       - [3.4.2.6 Hashes](#3426-hashes)
       - [3.4.2.7 Hostname](#3427-hostname)
       - [3.4.2.8 Internationalized Hostname](#3428-internationalized-hostname)
