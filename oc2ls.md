@@ -821,7 +821,7 @@ does not affect interoperability and is therefore beyond the scope of OpenC2.
 | **content_type** | String          | Media Type that identifies the format of the content, including major version. Incompatible content formats must have different content_types. Content_type **application/openc2** identifies content defined by OpenC2 language specification versions 1.x, i.e., all versions that are compatible with version 1.1. |
 | **msg_type**     | Message-Type    | The type of OpenC2 Message.                                                                                                                                                                                                                                                                                           |
 | **status**       | Status-Code     | Populated with a numeric status code in Responses.                                                                                                                                                                                                                                                                    |
-| **request_id**   | String          | A unique identifier created by the Producer and copied by Consumer into all Responses, in order to support reference to a particular Command, transaction, or event chain.                                                                                                                                            |
+| **request_id**   | Command-ID      | A unique identifier created by the Producer and copied by Consumer into all Responses, in order to support reference to a particular Command, transaction, or event chain.                                                                                                                                            |
 | **created**      | Date-Time       | Creation date/time of the content.                                                                                                                                                                                                                                                                                    |
 | **from**         | String          | Authenticated identifier of the creator of or authority for execution of a message.                                                                                                                                                                                                                                   |
 | **to**           | ArrayOf(String) | Authenticated identifier(s) of the authorized recipient(s) of a message.                                                                                                                                                                                                                                              |
@@ -850,7 +850,7 @@ source authentication and integrity protections of the OpenC2 message.
 
 | ID  | Name           | Type         | \#    | Description |
 | --- | -------------- | ------------ | ----- | ----------- |
-| 1   | **request_id** | String       | 0..1  |             |
+| 1   | **request_id** | Command-ID   | 0..1  |             |
 | 2   | **created**    | ls:Date-Time | 0..1  |             |
 | 3   | **from**       | String       | 0..1  |             |
 | 4   | **to**         | String       | 0..\* |             |
